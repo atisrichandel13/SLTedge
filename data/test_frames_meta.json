@@ -1,0 +1,19 @@
+{
+  "vid": "Ads-4j06eJY-00:07:37.233-00:07:47.200",
+  "yid": "Ads-4j06eJY",
+  "crop_xywh": [
+    382,
+    0,
+    666,
+    720
+  ],
+  "bbox_norm": [
+    0.2987185806698269,
+    -0.14340023511721764,
+    0.8196143224504259,
+    1.3237934013649268
+  ],
+  "text": "The tweets appeared to solicit donations as part of a Bitcoin scam.",
+  "split": "test",
+  "fps": 29.97
+}

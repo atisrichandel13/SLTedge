@@ -1,0 +1,22 @@
+{
+  "input_size": [
+    288,
+    384
+  ],
+  "simcc_split_ratio": 2.0,
+  "mean": [
+    123.675,
+    116.28,
+    103.53
+  ],
+  "std": [
+    58.395,
+    57.12,
+    57.375
+  ],
+  "bgr_to_rgb": true,
+  "bbox_padding": 1.25,
+  "config": "/Users/atisrichandel/atisri-cv-jetson/weights/rtmpose-x_8xb32-270e_coco-wholebody-384x288.py",
+  "checkpoint": "/Users/atisrichandel/atisri-cv-jetson/weights/rtmpose-x_simcc-coco-wholebody_pt-body7_270e-384x288-401dfc90_20230629.pth",
+  "num_keypoints": 133
+}

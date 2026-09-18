@@ -1,0 +1,31 @@
+# ---- large artefacts (kept on the shared Drive, mirroring these paths) ----
+weights/
+models/*.onnx
+models/*.engine
+models/mt5_pruned_onnx/
+models/*/*.engine
+
+# ---- data ----
+data/raw/
+data/test_frames/
+data/calib_frames/
+data/clips/
+data/openasl_test_pose/
+data/openasl_train_pose/
+data/openasl_ref_pose/*.pkl
+
+# ---- bulky results (keep the .json and RESULTS.md, drop raw dumps) ----
+results/*.csv
+results/*.npz
+results/*.pkl
+
+# ---- python / envs / editors ----
+__pycache__/
+*.pyc
+venv/
+.venv/
+*.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+.idea/

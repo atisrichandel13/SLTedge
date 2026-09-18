@@ -1,0 +1,62 @@
+{
+ "n": 16,
+ "missing": 0,
+ "bleu": {
+  "bleu1": 34.10199482986195,
+  "bleu2": 20.94566723484254,
+  "bleu3": 14.026960674824418,
+  "bleu4": 9.666503049130293
+ },
+ "rouge_l": 31.59013302617299,
+ "wall_s": 16.636855625001772,
+ "config": {
+  "ckpt": "weights/openasl_pose_only_slt.pth",
+  "mt5": "weights/mt5-base",
+  "poses": "data/openasl_test_pose",
+  "labels": "data/openasl_labels/labels.test",
+  "device": "cpu",
+  "dtype": "fp32",
+  "batch_size": 8,
+  "max_length": 256,
+  "max_new_tokens": 100,
+  "num_beams": 4,
+  "limit": 16,
+  "out": "results/eval_smoke16.json"
+ },
+ "refs": [
+  "I am Ed Bosson, and I am 67 years old and now retired.",
+  "The suit was filed under Title II of the Americans with Disabilities Act and Section 504 of the Rehabilitation Act of 1973.",
+  "I just toured through the Ali museum and it is inspiring!",
+  "The demands are not like a big city, they don't share the same issues.",
+  "The community isn\u2019t used to something different.",
+  "There may be state laws that apply to employers with less than 15 employees, watch out for that.",
+  "If you or your family cannot help, don\u2019t worry, there may be caregivers in your area to provide support to the family member with needs.",
+  "It is important to let the caregiver know what the patient truly needs, so the caregiver can adapt and do their job well.",
+  "NAD finally approved 2018.",
+  "I've been staying home in self-quarantine and practicing social distancing.",
+  "So, yes, I want you to join us in Phoenix!",
+  "A lot of the State and National Associations are hosting conferences.",
+  "One of my role models -- Mike Rowe, the \u201cDirty Jobs\u201d TV show host, once said, \u201cIt\u2019s okay to not go to college.\u201d That stuck with me.",
+  "Once I saw there was a job opening and applied.",
+  "In a per-user system, I was concerned that VRS companies may lose money, so I thought it best to make more calls and was quickly discouraged to do so.",
+  "Submit your comments at www.fcc.gov/comments. Enter your information on the FCC form, then select 'Telecommunications Relay Services in the drop-down menu, and enter your comments, then submit your comments."
+ ],
+ "preds": [
+  "Hello, I'm Howard Rosenblum, and I'm a fourteen-year-old immigrant.",
+  "That lawsuit was filed under the Title II of the Americans with Disabilities Act (ADA).",
+  "When I moved here, I knew I wanted to be an ally.",
+  "Bermuda isn t a big city, it s not a big city.",
+  "I feel that our community doesn't use something different.",
+  "However, state laws may start with officers with less than 15 people to comply with their laws.",
+  "They can t worry because often their home owners have a caregiver and they can give their family a support with their needs.",
+  "It s important to have a lot of care to know that the patients really need it so they can change to their work well.",
+  "The NAD finally graduated in 2018.",
+  "Since we're staying at home, ourselves have been in quarantine and socially distanced.",
+  "Join us in Phoenix!",
+  "Many state associations and national organizations are also hosting conferences.",
+  "One of my favorite things about the show was the 'Mutew' show, 'Children of a Lesser God', and one of his languages said, It s ok, it s not your college.",
+  "I m a part of the workplace and I earn a lot of debt to work.",
+  "VRS providers would be able to change the per-user system using VRS providers.",
+  "You can go to the website www.go.gallaudet.org/community-cuomo.org You will see their personal information on the NAD s website and you will see several links that explain the differences between"
+ ]
+}
