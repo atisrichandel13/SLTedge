@@ -22,6 +22,7 @@ import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from common.pose_to_unisign import collate, load_keypoints_json, load_pkl, to_model_inputs  # noqa: E402
+from common.power_logger import add_power_args, run_with_power  # noqa: E402
 from common.trt_runner import TrtRunner  # noqa: E402
 from unisign.model import load_model  # noqa: E402
 
@@ -70,6 +71,7 @@ def main():
     ap.add_argument("--max-new-tokens", type=int, default=64)
     ap.add_argument("--repeat", type=int, default=1)
     ap.add_argument("--out", default=None)
+    add_power_args(ap)  # --power-json/--power-csv wrap the timed runs (queue J3)
     args = ap.parse_args()
 
     model = load_model(args.ckpt, args.mt5, device="cuda")  # PyTorch reference on the same board
@@ -85,14 +87,35 @@ def main():
     enc = TrtRunner(os.path.join(args.engine_dir, f"encoder_{tag}.engine"))
     init = TrtRunner(os.path.join(args.engine_dir, f"decoder_init_{tag}.engine"))
     step = TrtRunner(os.path.join(args.engine_dir, f"decoder_step_{tag}.engine"))
-    runs = []
-    for i in range(args.repeat + 1):
-        tokens, logprobs, t_enc, t_dec = decode_once(enc, init, step, emb, mask, args.max_new_tokens)
-        if i == 0:
-            print(f"[trt] warm-up enc {t_enc:.0f} ms dec {t_dec:.0f} ms")
-            continue
-        runs.append({"encoder_ms": t_enc, "decoder_ms": t_dec, "tokens": len(tokens)})
-        print(f"[trt] {tag} run {i}: encoder {t_enc:.0f} ms, decoder {t_dec:.0f} ms for {len(tokens)} tokens ({t_dec/max(1,len(tokens)):.1f} ms/token)")
+    tokens, logprobs, t_enc, t_dec = decode_once(enc, init, step, emb, mask, args.max_new_tokens)
+    print(f"[trt] warm-up enc {t_enc:.0f} ms dec {t_dec:.0f} ms")
+
+    def timed_runs():
+        runs = []
+        for i in range(1, args.repeat + 1):
+            tk, lp, t_enc, t_dec = decode_once(enc, init, step, emb, mask, args.max_new_tokens)
+            runs.append({"encoder_ms": t_enc, "decoder_ms": t_dec, "tokens": len(tk), "_tokens": tk, "_logprobs": lp})
+            print(f"[trt] {tag} run {i}: encoder {t_enc:.0f} ms, decoder {t_dec:.0f} ms for {len(tk)} tokens ({t_dec/max(1,len(tk)):.1f} ms/token)")
+        return runs
+
+    power = None
+    if args.power_json or args.power_csv:
+        runs, power = run_with_power(args, timed_runs, lambda rs: len(rs))  # "frame" = one sentence
+        toks = sum(x["tokens"] for x in runs)
+        power["n_sentences"] = len(runs); power["n_tokens"] = toks
+        power["J_per_sentence"] = round(power["energy_mJ"] / len(runs) / 1000, 3)
+        if "dynamic_energy_mJ" in power:
+            power["dynamic_J_per_sentence"] = round(power["dynamic_energy_mJ"] / len(runs) / 1000, 3)
+        power["mJ_per_token"] = round(power["energy_mJ"] / max(1, toks), 1)
+        print(f"[power] {power.get('avg_watts')} W avg, {power['J_per_sentence']} J/sentence, {power['mJ_per_token']} mJ/token")
+        if args.power_json:
+            json.dump(power, open(args.power_json, "w"), indent=2)  # re-write with the per-sentence keys
+    else:
+        runs = timed_runs()
+    if runs:
+        tokens, logprobs = runs[-1].pop("_tokens"), runs[-1].pop("_logprobs")
+        for x in runs:
+            x.pop("_tokens", None); x.pop("_logprobs", None)
     text = model.mt5_tokenizer.decode(torch.tensor([0] + tokens), skip_special_tokens=True)
     print(f"[trt] text  : {text}")
     print(f"[torch] text: {ref['text']}  (torch dec {ref['timing_ms']['decoder']:.0f} ms, enc {ref['timing_ms']['encoder']:.0f} ms)")
@@ -106,7 +129,7 @@ def main():
     print(f"[mem] torch peak {torch_mem:.2f} GB; total peak incl. engines {torch.cuda.max_memory_allocated()/1e9:.2f} GB")
     if args.out:
         json.dump({"tag": tag, "text": text, "tokens": tokens, "logprobs": logprobs, "ref": ref, "runs": runs,
-                   "same_tokens": same}, open(args.out, "w"), indent=1)
+                   "same_tokens": same, "power": power}, open(args.out, "w"), indent=1)
         print("[trt] wrote", args.out)
 
 

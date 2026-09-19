@@ -208,3 +208,88 @@ logits ≤ 2.2e-5, tokens identical. Real-pose verify (`unisign/onnx_decode.py`,
 **tokens identical to PyTorch, max |logprob diff| 2.9e-5**; ORT CPU encoder 62 ms, decoder 178 ms for
 24 tokens (7.4 ms/token) vs PyTorch 191 ms. Export + verification took one attempt (budget was 3 days).
 Remaining for L8: TensorRT engines on the Jetson (queue J4) and the drift check there.
+
+### L3.2 `max_new_tokens` cap sweep (pruned model, 976 test clips, Mac CPU, beam 4)
+
+| cap | BLEU-4 | ROUGE-L | Δ BLEU-4 vs cap 100 (paired bootstrap, 1000) | preds at/over cap | sentences changed |
+|---|---|---|---|---|---|
+| 100 (reference) | 22.87 | 42.98 | — | 0 | — |
+| 64 | 22.87 | 42.98 | 0.00 (identical output) | 0 / 976 | 0 |
+| 48 | 22.73 | 42.96 | −0.14 [−0.30, −0.03], P(B<A)=0.994 | 39 / 976 | 28 |
+
+Files: `results/eval_test_pruned_mac.json`, `results/eval_test_pruned_mnt64_mac.json`, `results/eval_test_pruned_mnt48_mac.json`.
+Prediction length (mT5 tokens): mean 21.2, median 19, p95 44, max 62. References: mean 21.4, max 136.
+Reading: the longest prediction is 62 tokens, so cap 64 is free and is the deployment default
+(`unisign_infer.py` already defaults to 64). Cap 48 truncates 4 % of sentences for −0.14 BLEU-4,
+statistically real but small. The cap only bounds the worst case; the mean sentence (21 tokens) is
+unaffected, so the energy saving is in tail latency, not the average. Beam width (L6.1) remains the
+lever that moves the average decoder cost.
+
+### L9.1 Weight-only INT8 (W8A16) on the pruned mT5 (`unisign/quant.py`), 976 test clips, Mac CPU, beam 4, cap 64
+
+Per-row symmetric int8 (absmax/127) + fp16 scale on every mT5 2-D weight ≥ 1e5 elements: 220 tensors,
+278.3 M of 285.2 M stored values (the shared embedding is counted once per copy in the state dict).
+Pose stack, layer norms and relative-attention bias stay fp32. Max per-tensor relative error 4.2e-3.
+
+| Checkpoint | file MB | BLEU-4 | ROUGE-L | Δ BLEU-4 (paired bootstrap, 1000) | sentences changed |
+|---|---|---|---|---|---|
+| released, full vocab (fp32 ref) | 1187 | 23.16 | 43.17 | — | — |
+| pruned vocab, bf16 | 571 | 22.87 | 42.98 | −0.28 [−0.63, +0.05] vs released | — |
+| **pruned + W8A16** | **293** | 22.79 | 43.00 | **−0.09 [−0.34, +0.14]** vs pruned, P=0.77; −0.37 [−0.76, −0.02] vs released | 182 / 976 |
+
+Files: `results/eval_test_pruned_w8_mac.json`, checkpoint `weights/openasl_pose_only_slt_pruned_w8.pth`.
+Clip check (Bitcoin): tokens identical to pruned fp32 in both load modes, max |logprob diff| 0.078
+(`results/c5_w8_{dequant,int8}_Ads-4j06eJY.json` vs `results/c5_pruned_fp32_Ads-4j06eJY.json`).
+Reading: W8 alone is within noise (CI spans zero). Stacked with pruning the total cost vs the released
+model is −0.37 BLEU-4 for a 4.05× smaller file (1187 → 293 MB). 19 % of sentences change wording, so
+the quantisation is not invisible per sentence, only in aggregate. Runtime modes: `--w8-runtime dequant`
+(float weights in RAM, used for these numbers) and `int8` (int8 in RAM, dequantised per forward;
+10× slower decoder on CPU, 2139 vs 197 ms, because 217 layers dequantise per token). Board memory and
+speed for both modes come from a J-request; a fused W8A16 kernel (TensorRT INT8 weights) is the
+version that saves both memory and energy.
+
+### L7.1 Encoder input length (frame cap) vs BLEU and LM time, no retraining (pruned + W8A16, 976 clips, Mac CPU, beam 4)
+
+`--max-length L` subsamples any clip longer than L frames uniformly to L; shorter clips are untouched.
+Test clips: mean 217 frames, median 171, p95 545 (30 fps), so a cap of 256 already touches 305/976 clips.
+
+| cap L (≈ fps) | clips subsampled | BLEU-4 | ROUGE-L | Δ BLEU-4 vs 256 (paired bootstrap) | GCN ms | encoder ms | decoder ms |
+|---|---|---|---|---|---|---|---|
+| 256 (30) | 305 / 976 | 22.79 | 43.00 | — | 107 | 113 | 189 |
+| 205 (24) | 410 | 22.62 | 42.87 | −0.17 [−0.61, +0.26], P=0.78 | 94 | 88 | 178 |
+| 137 (16) | 602 | 21.17 | 41.92 | −1.61 [−2.36, −0.89] | 77 | 59 | 162 |
+| 103 (12) | 716 | 19.52 | 40.74 | −3.26 [−4.10, −2.41] | 62 | 44 | 181 |
+| 68 (8) | 819 | 14.76 | 37.28 | −8.02 [−9.20, −6.86] | 49 | 35 | 134 |
+
+Files: `results/eval_test_w8_len{205,137,103,68}_mac.json` (256 = `results/eval_test_pruned_w8_mac.json`).
+Timing: Bitcoin clip (300 frames), median of 3, Mac CPU; GCN + encoder scale linearly with L
+(220 → 84 ms from 256 to 68), decoder does not depend on L.
+Reading: 24 fps-equivalent is free (CI spans zero); 16 fps costs 1.6 BLEU-4 without retraining; 12 and
+8 fps are not usable un-adapted. The pose stage's energy is linear in frames processed, so 24 fps
+is a 20 % pose-energy cut for nothing and 16 fps a 47 % cut for −1.6 BLEU-4, which is the case for the
+C8 adaptation run at 16 fps (L11): if adaptation recovers ~1 BLEU, 16 fps becomes the deployment rate.
+Caveat: this models frame-dropping by uniform subsampling of the released 30 fps poses; the pose owner's
+P8 rows drop frames before extraction, which is the same input to the LM.
+
+### C8.1 Training harness smoke test (`unisign/train_adapt.py`), Mac CPU, 300-clip train slice, no input shift
+
+Purpose: prove the script and checkpoint format are correct, not to produce a real result — 300 clips
+teach the model nothing. mT5 frozen; trainable = proj_linear + gcn_modules + fusion_gcn_modules +
+part_para + pose_proj = 5.35 M / 243.6 M params. AdamW (eps 1e-9, wd 1e-4), cosine schedule, no
+warm-up, grad clip 1.0, label smoothing 0.2, lr 1e-4, batch 8, 2 epochs on 300 train clips fetched via
+`data/openasl_pose_fetch.py --split train --limit 300` (fetch is a Mac-side debug slice only; the full
+97 K-clip / 30 GB train set for the real runs is not stored on the Mac, per PROJECT-GUIDE 4.1).
+
+| checkpoint | BLEU-4 (200 held-out test clips, beam 4, cap 64) |
+|---|---|
+| pruned, before training | 14.71 |
+| after epoch 0 | 14.08 |
+| after epoch 1 (`log.jsonl`) | 14.49 |
+| after epoch 1, reloaded via `unisign.eval_openasl` (round-trip check) | 14.55 |
+
+`adapted_full.pth` (571 MB, bf16, same shape/dtype as the source checkpoint) round-trips through
+`unisign.eval_openasl` within 0.06 BLEU-4 of the training log's own eval (batching/padding noise, not
+a bug). Reading: the ±0.6 wobble across 2 epochs with no input shift is the expected noise floor for
+this harness on 300 clips; a real L11 adaptation run needs the fps shift itself to show a signal.
+Wall time: ~3 min/epoch train + ~6 min eval (200 clips) on Mac CPU. Files: `runs/c8_smoke/` (not
+committed, in `.gitignore`), `results/c8_smoke_check.json`.

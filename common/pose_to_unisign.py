@@ -136,9 +136,17 @@ def save_pkl(path, kps, scs):
                      "scores": [s.astype(np.float32) for s in scs]}, f)
 
 
-def subsample(kps, scs, max_length, random_subsample=False):
-    """Mirror of S2T_Dataset.load_pose: keep at most max_length frames."""
+def subsample(kps, scs, max_length, random_subsample=False, fps_ratio=1.0):
+    """Mirror of S2T_Dataset.load_pose: keep at most max_length frames.
+    fps_ratio < 1 first thins EVERY clip uniformly to round(T * fps_ratio) frames (emulates a lower
+    camera rate, e.g. 16/24 for 16 fps from 24 fps source); the max_length cap then applies as usual."""
     T = len(scs)
+    if fps_ratio < 1.0:
+        keep = max(1, int(round(T * fps_ratio)))
+        idx0 = np.round(np.linspace(0, T - 1, keep)).astype(int).tolist()
+        kps, scs = [kps[i] for i in idx0], [scs[i] for i in idx0]
+        k2, s2, idx1 = subsample(kps, scs, max_length, random_subsample)
+        return k2, s2, [idx0[i] for i in idx1]
     if T <= max_length:
         return kps, scs, list(range(T))
     if random_subsample:
@@ -148,8 +156,8 @@ def subsample(kps, scs, max_length, random_subsample=False):
     return [kps[i] for i in idx], [scs[i] for i in idx], idx
 
 
-def to_model_inputs(kps, scs, max_length=256, random_subsample=False):
-    kps, scs, idx = subsample(kps, scs, max_length, random_subsample)
+def to_model_inputs(kps, scs, max_length=256, random_subsample=False, fps_ratio=1.0):
+    kps, scs, idx = subsample(kps, scs, max_length, random_subsample, fps_ratio)
     return load_part_kp(kps, scs, force_ok=True), idx
 
 

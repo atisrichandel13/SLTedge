@@ -184,12 +184,19 @@ class PrunedTokenizer:
         return [self.decode(s, **kw) for s in seqs]
 
 
-def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=None):
+def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=None, w8_runtime="dequant"):
     """keep_ids: list of old token ids -> build the model, load the full checkpoint, then prune.
-    A checkpoint saved by prune_and_save() carries its own keep_ids and is loaded pruned."""
+    A checkpoint saved by prune_and_save() carries its own keep_ids and is loaded pruned.
+    A checkpoint saved by unisign.quant carries w8_keys; w8_runtime = "dequant" (float weights in
+    RAM) or "int8" (W8Linear modules, int8 in RAM, dequantised per forward)."""
     sd = torch.load(ckpt_path, map_location="cpu")
     ckpt_keep = sd.get("keep_ids", None)
+    w8_keys = sd.get("w8_keys", None)
     sd = sd.get("model", sd)
+    if w8_keys:
+        from .quant import dequantize_state_dict, swap_linears_to_w8
+        q_sd = sd
+        sd = dequantize_state_dict(sd, w8_keys)
     if ckpt_keep is not None:
         model = PoseOnlyUniSign(mt5_path, keep_ids=ckpt_keep)
     else:
@@ -202,6 +209,10 @@ def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=
     if keep_ids is not None and ckpt_keep is None:
         model.prune_vocab(keep_ids)
     model.eval().to(device=device, dtype=dtype)
+    if w8_keys and w8_runtime == "int8":
+        n = swap_linears_to_w8(model, q_sd, w8_keys)
+        print(f"[load] W8A16 runtime: {n} Linear modules hold int8 weights")
+    model.w8 = bool(w8_keys)
     return model
 
 
