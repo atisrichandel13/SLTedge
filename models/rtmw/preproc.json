@@ -1,0 +1,23 @@
+{
+  "input_size": [
+    192,
+    256
+  ],
+  "simcc_split_ratio": 2.0,
+  "mean": [
+    123.675,
+    116.28,
+    103.53
+  ],
+  "std": [
+    58.395,
+    57.12,
+    57.375
+  ],
+  "bgr_to_rgb": true,
+  "bbox_padding": 1.25,
+  "config": "rtmw-m_8xb1024-270e_cocktail13-256x192.py (mmpose projects/rtmpose, from detail.json in the OpenMMLab ONNX SDK zip)",
+  "checkpoint": "rtmw-dw-l-m_simcc-cocktail14_270e-256x192-20231122.pth (ONNX SDK export, opset 11, dynamic batch)",
+  "source_zip": "https://download.openmmlab.com/mmpose/v1/projects/rtmw/onnx_sdk/rtmw-dw-l-m_simcc-cocktail14_270e-256x192_20231122.zip",
+  "num_keypoints": 133
+}

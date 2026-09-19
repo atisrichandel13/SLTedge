@@ -134,6 +134,26 @@ class _SysfsBackend:
                 open(cand).read(); self.gpu_load = cand; break
             except OSError:
                 pass
+        # DVFS state: GPU/CPU clocks and fan, so a run's power mode is visible in the CSV.
+        # (nvpmodel 15W caps the Orin Nano GPU at 612 MHz, 25W at 918 MHz; latency scales with it.)
+        self.clocks = {}
+        for key, cand in (("gpu_MHz", "/sys/class/devfreq/17000000.gpu/cur_freq"),
+                          ("cpu0_MHz", "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq"),
+                          ("fan_pwm", "/sys/devices/platform/pwm-fan/hwmon/hwmon0/pwm1"),
+                          ("fan_rpm", "/sys/devices/platform/pwm-fan/hwmon/hwmon0/rpm")):
+            try:
+                open(cand).read(); self.clocks[key] = cand
+            except OSError:
+                pass
+        for hw in glob.glob("/sys/class/hwmon/hwmon*"):  # fan hwmon index varies per board
+            try:
+                nm = open(hw + "/name").read().strip()
+            except OSError:
+                continue
+            if nm == "pwmfan" and "fan_pwm" not in self.clocks:
+                self.clocks["fan_pwm"] = hw + "/pwm1"
+            if nm == "pwm_tach" and "fan_rpm" not in self.clocks:
+                self.clocks["fan_rpm"] = hw + "/rpm"
         self._stop = threading.Event()
 
     @staticmethod
@@ -150,6 +170,11 @@ class _SysfsBackend:
             except OSError: pass
         if self.gpu_load:
             try: s["GR3D_FREQ_pct"] = self._read(self.gpu_load) / 10.0  # load is in 0..1000
+            except OSError: pass
+        for k, path in self.clocks.items():
+            try:
+                v = self._read(path)
+                s[k] = v / 1e6 if k == "gpu_MHz" else (v / 1e3 if k == "cpu0_MHz" else v)
             except OSError: pass
         return s
 

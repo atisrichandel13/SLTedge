@@ -11,6 +11,7 @@ execute_async_v3); the old bindings API is gone in TRT 10.
     outs = r.infer({"input": np_or_torch_array})     # dict name -> torch.Tensor (on GPU)
 """
 import os
+import re
 import numpy as np
 import tensorrt as trt
 import torch
@@ -101,8 +102,10 @@ class TrtRunner:
 
 
 def build_engine_from_onnx(onnx_path, engine_path, fp16=False, workspace_gb=2.0,
-                           profiles=None, verbose=False):
-    """Build a TRT engine. `profiles` = list of dict name -> (min, opt, max) shape tuples."""
+                           profiles=None, verbose=False, bf16=False, fp32_layers=None):
+    """Build a TRT engine. `profiles` = list of dict name -> (min, opt, max) shape tuples.
+    `fp32_layers`: regex; layers whose name matches are pinned to FP32 (mixed precision for FP16
+    engines that overflow somewhere, found with task1_rtmpose/08_fp16_range_scan.py)."""
     logger = trt.Logger(trt.Logger.VERBOSE if verbose else trt.Logger.INFO)
     builder = trt.Builder(logger)
     network = builder.create_network(0)  # TRT 10: explicit batch is the only mode
@@ -114,9 +117,33 @@ def build_engine_from_onnx(onnx_path, engine_path, fp16=False, workspace_gb=2.0,
             raise RuntimeError("ONNX parse failed")
     config = builder.create_builder_config()
     config.set_memory_pool_limit(trt.MemoryPoolType.WORKSPACE, int(workspace_gb * (1 << 30)))
+    if bf16:
+        # mT5 overflows in FP16 (FFN activations > 65504 -> constant logits); BF16 keeps FP32's
+        # exponent range at 8 bits of mantissa. Ampere (Orin, SM 87) has BF16 tensor cores.
+        config.set_flag(trt.BuilderFlag.BF16)
     if fp16:
         config.set_flag(trt.BuilderFlag.FP16)
-    else:
+    if fp32_layers:
+        pat = re.compile(fp32_layers)
+        config.set_flag(trt.BuilderFlag.OBEY_PRECISION_CONSTRAINTS)
+        n_pinned = 0
+        for i in range(network.num_layers):
+            layer = network.get_layer(i)
+            if not pat.search(layer.name):
+                continue
+            if layer.type in (trt.LayerType.SHAPE, trt.LayerType.CONSTANT, trt.LayerType.CAST,
+                              trt.LayerType.IDENTITY, trt.LayerType.SHUFFLE, trt.LayerType.SLICE,
+                              trt.LayerType.CONCATENATION, trt.LayerType.GATHER):
+                continue  # non-compute layers are dtype pass-through; setting float on them is a no-op or error
+            if layer.get_input(0) is not None and layer.get_input(0).dtype not in (trt.float32, trt.float16, trt.bfloat16):
+                continue  # integer/bool layers (shape math) cannot be pinned to a float type
+            layer.precision = trt.float32
+            for j in range(layer.num_outputs):
+                if layer.get_output(j).dtype in (trt.float32, trt.float16, trt.bfloat16):
+                    layer.set_output_type(j, trt.float32)
+            n_pinned += 1
+        print(f"[trt] pinned {n_pinned}/{network.num_layers} layers to FP32 (regex {fp32_layers!r})")
+    if not fp16 and not bf16:
         # TF32 is ON by default on Ampere (Orin). It rounds matmul/conv inputs to 10-bit mantissa,
         # so an "FP32" engine would not match PyTorch. Keep the FP32 baseline honest.
         config.clear_flag(trt.BuilderFlag.TF32)
@@ -126,7 +153,7 @@ def build_engine_from_onnx(onnx_path, engine_path, fp16=False, workspace_gb=2.0,
         for name, (mn, opt, mx) in prof.items():
             p.set_shape(name, mn, opt, mx)
         config.add_optimization_profile(p)
-    print(f"[trt] building {engine_path} (fp16={fp16}) ... this can take minutes on Orin Nano")
+    print(f"[trt] building {engine_path} (fp16={fp16}, bf16={bf16}, fp32_layers={fp32_layers}) ... this can take minutes on Orin Nano")
     plan = builder.build_serialized_network(network, config)
     if plan is None:
         raise RuntimeError("engine build failed")

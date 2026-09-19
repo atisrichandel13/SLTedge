@@ -1,0 +1,26 @@
+
+[build] encoder <- encoder.onnx
+        inputs_embeds                            min=(1, 1, 768) opt=(1, 264, 768) max=(1, 512, 768)
+        attention_mask                           min=(1, 1) opt=(1, 264) max=(1, 512)
+[09/18/2026-22:58:37] [TRT] [I] [MemUsageChange] Init CUDA: CPU +14, GPU +0, now: CPU 137, GPU 1269 (MiB)
+[09/18/2026-22:58:43] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU +420, GPU +406, now: CPU 622, GPU 1742 (MiB)
+[09/18/2026-22:58:43] [TRT] [W] ModelImporter.cpp:516: Make sure input attention_mask has Int64 binding.
+[trt] TF32 disabled for the FP32 baseline
+[trt] building models/mt5_pruned_onnx/encoder_fp32.engine (fp16=False) ... this can take minutes on Orin Nano
+[09/18/2026-22:58:43] [TRT] [W] DLA requests all profiles have same min, max, and opt value. All dla layers are falling back to GPU
+[09/18/2026-22:58:47] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[09/18/2026-22:58:47] [TRT] [I] Compiler backend is used during engine build.
+NvMapMemAllocInternalTagged: 1075072515 error 12
+NvMapMemHandleAlloc: error 0
+[09/18/2026-22:59:01] [TRT] [I] Detected 2 inputs and 1 output network tensors.
+[09/18/2026-22:59:02] [TRT] [I] Total Host Persistent Memory: 80 bytes
+[09/18/2026-22:59:02] [TRT] [I] Total Device Persistent Memory: 0 bytes
+[09/18/2026-22:59:02] [TRT] [I] Max Scratch Memory: 56623104 bytes
+[09/18/2026-22:59:02] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 1 steps to complete.
+[09/18/2026-22:59:02] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 0.035873ms to assign 1 blocks to 1 nodes requiring 56623104 bytes.
+[09/18/2026-22:59:02] [TRT] [I] Total Activation Memory: 56623104 bytes
+[09/18/2026-22:59:02] [TRT] [I] Total Weights Memory: 339818112 bytes
+[09/18/2026-22:59:02] [TRT] [I] Compiler backend is used during engine execution.
+[09/18/2026-22:59:02] [TRT] [I] Engine generation completed in 14.7832 seconds.
+[09/18/2026-22:59:02] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 0 MiB, GPU 381 MiB
+[trt] wrote models/mt5_pruned_onnx/encoder_fp32.engine (341.3 MB)

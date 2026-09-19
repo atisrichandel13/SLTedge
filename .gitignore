@@ -29,3 +29,12 @@ venv/
 .DS_Store
 .vscode/
 .idea/
+
+# ---- credentials (never commit) ----
+Jetson-access.md
+
+# ---- local mirror of the shared large-file repo (nested git clone) ----
+model-data-lpcv/
+
+# RTMW SDK export (123 MB); canonical copy on the Mac, re-download from the OpenMMLab SDK zip
+models/rtmw/*.onnx

@@ -62,6 +62,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--engine-dir", required=True)
     ap.add_argument("--fp16", action="store_true", help="use *_fp16.engine files")
+    ap.add_argument("--bf16", action="store_true", help="use *_bf16.engine files")
     ap.add_argument("--ckpt", required=True)
     ap.add_argument("--mt5", required=True)
     g = ap.add_mutually_exclusive_group(required=True)
@@ -80,11 +81,33 @@ def main():
         emb, mask = model.build_encoder_inputs({k: (v.cuda() if torch.is_tensor(v) else v) for k, v in src.items()})
     emb, mask = emb.float().contiguous(), mask.long().contiguous()
     torch_mem = torch.cuda.max_memory_allocated() / 1e9
+    tokenizer = model.mt5_tokenizer
+    emb, mask = emb.cpu(), mask.cpu()
+    del model  # the engines are the deployment path; don't keep 1-2 GB of PyTorch weights resident
+    import gc; gc.collect()
+    torch.cuda.empty_cache()  # give the caching allocator's spare blocks back before the engines load
+    try:  # Jetson: loading the PyTorch reference filled the page cache, and nvmap only takes MemFree
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "jetson"))
+        from drop_file_cache import main as _drop_cache
+        if os.path.exists("/sys/class/devfreq/17000000.gpu"):
+            _drop_cache()
+    except Exception as e:  # noqa: BLE001
+        print("[trt] page-cache drop skipped:", e)
 
-    tag = "fp16" if args.fp16 else "fp32"
+    def memfree():
+        try:
+            with open("/proc/meminfo") as f:
+                return next(int(l.split()[1]) // 1024 for l in f if l.startswith("MemFree:"))
+        except (OSError, StopIteration):
+            return -1
+
+    tag = "fp16" if args.fp16 else ("bf16" if args.bf16 else "fp32")
+    print(f"[mem] MemFree before engines {memfree()} MB")
     enc = TrtRunner(os.path.join(args.engine_dir, f"encoder_{tag}.engine"))
     init = TrtRunner(os.path.join(args.engine_dir, f"decoder_init_{tag}.engine"))
     step = TrtRunner(os.path.join(args.engine_dir, f"decoder_step_{tag}.engine"))
+    print(f"[mem] MemFree after engines {memfree()} MB")
+    emb, mask = emb.cuda(), mask.cuda()
     runs = []
     for i in range(args.repeat + 1):
         tokens, logprobs, t_enc, t_dec = decode_once(enc, init, step, emb, mask, args.max_new_tokens)
@@ -93,7 +116,7 @@ def main():
             continue
         runs.append({"encoder_ms": t_enc, "decoder_ms": t_dec, "tokens": len(tokens)})
         print(f"[trt] {tag} run {i}: encoder {t_enc:.0f} ms, decoder {t_dec:.0f} ms for {len(tokens)} tokens ({t_dec/max(1,len(tokens)):.1f} ms/token)")
-    text = model.mt5_tokenizer.decode(torch.tensor([0] + tokens), skip_special_tokens=True)
+    text = tokenizer.decode(torch.tensor([0] + tokens), skip_special_tokens=True)
     print(f"[trt] text  : {text}")
     print(f"[torch] text: {ref['text']}  (torch dec {ref['timing_ms']['decoder']:.0f} ms, enc {ref['timing_ms']['encoder']:.0f} ms)")
     same = tokens == ref["tokens"]
@@ -103,7 +126,7 @@ def main():
     if ref["token_logprobs"]:
         d = max(abs(a - b) for a, b in zip(logprobs, ref["token_logprobs"]))
         print(f"[check] max |logprob diff| over shared steps: {d:.2e}")
-    print(f"[mem] torch peak {torch_mem:.2f} GB; total peak incl. engines {torch.cuda.max_memory_allocated()/1e9:.2f} GB")
+    print(f"[mem] torch reference peak {torch_mem:.2f} GB (freed before the engines loaded)")
     if args.out:
         json.dump({"tag": tag, "text": text, "tokens": tokens, "logprobs": logprobs, "ref": ref, "runs": runs,
                    "same_tokens": same}, open(args.out, "w"), indent=1)

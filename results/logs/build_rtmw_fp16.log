@@ -1,0 +1,18 @@
+
+[09/18/2026-23:38:50] [TRT] [I] [MemUsageChange] Init CUDA: CPU +14, GPU +0, now: CPU 135, GPU 2276 (MiB)
+[09/18/2026-23:38:51] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU +422, GPU +420, now: CPU 622, GPU 2764 (MiB)
+[trt] building models/rtmw/rtmw-l-m_256x192_fp16.engine (fp16=True, bf16=False) ... this can take minutes on Orin Nano
+[09/18/2026-23:38:56] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[09/18/2026-23:46:45] [TRT] [I] Compiler backend is used during engine build.
+[09/18/2026-23:47:29] [TRT] [I] Detected 1 inputs and 2 output network tensors.
+[09/18/2026-23:47:36] [TRT] [I] Total Host Persistent Memory: 608576 bytes
+[09/18/2026-23:47:36] [TRT] [I] Total Device Persistent Memory: 7168 bytes
+[09/18/2026-23:47:36] [TRT] [I] Max Scratch Memory: 732160 bytes
+[09/18/2026-23:47:36] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 190 steps to complete.
+[09/18/2026-23:47:36] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 17.8446ms to assign 8 blocks to 190 nodes requiring 2439168 bytes.
+[09/18/2026-23:47:36] [TRT] [I] Total Activation Memory: 2438144 bytes
+[09/18/2026-23:47:36] [TRT] [I] Total Weights Memory: 64903296 bytes
+[09/18/2026-23:47:36] [TRT] [I] Compiler backend is used during engine execution.
+[09/18/2026-23:47:36] [TRT] [I] Engine generation completed in 520.489 seconds.
+[09/18/2026-23:47:37] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 10 MiB, GPU 108 MiB
+[trt] wrote models/rtmw/rtmw-l-m_256x192_fp16.engine (68.7 MB)

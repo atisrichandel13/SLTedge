@@ -15,6 +15,7 @@ Architecture (pose-only):
     prefix "Translate sign language video to English: " token embeddings ++ pose tokens -> mT5-base
 Note: left and right hand share weights (the repo aliases the modules), so 3 of everything, not 4.
 """
+import gc
 import time
 
 import torch
@@ -27,7 +28,9 @@ PARTS = ["body", "left", "right", "face_all"]
 
 
 class PoseOnlyUniSign(nn.Module):
-    def __init__(self, mt5_path, hidden_dim=256, lang="English", keep_ids=None):
+    def __init__(self, mt5_path, hidden_dim=256, lang="English", keep_ids=None, device=None):
+        """device: where from_pretrained materialises mT5. On the 8 GB unified-memory Jetson the
+        full FP32 model (2.3 GB) must land on the GPU directly; a CPU copy plus a GPU copy OOMs."""
         super().__init__()
         self.modes = PARTS
         self.lang = lang
@@ -51,7 +54,8 @@ class PoseOnlyUniSign(nn.Module):
         self.part_para = nn.Parameter(torch.zeros(hidden_dim * len(self.modes)))
         self.pose_proj = nn.Linear(256 * 4, 768)
 
-        self.mt5_model = MT5ForConditionalGeneration.from_pretrained(mt5_path)
+        load_kw = {"device_map": str(device)} if device is not None and str(device) != "cpu" else {}
+        self.mt5_model = MT5ForConditionalGeneration.from_pretrained(mt5_path, **load_kw)
         self.mt5_tokenizer = T5Tokenizer.from_pretrained(mt5_path, legacy=False)
         self.prefix = f"Translate sign language video to {self.lang}: "
         self.keep_ids = None
@@ -67,11 +71,12 @@ class PoseOnlyUniSign(nn.Module):
         assert keep[:3].tolist() == [0, 1, 2], "keep_ids must contain pad/eos/unk = 0/1/2"
         m = self.mt5_model
         old_shared, old_head = m.shared.weight.data, m.lm_head.weight.data
+        keep_dev = keep.to(old_shared.device)  # weights may already be on the GPU
         new_shared = nn.Embedding(len(keep), old_shared.shape[1])
-        new_shared.weight.data = old_shared[keep].clone()
+        new_shared.weight.data = old_shared[keep_dev].clone()
         m.set_input_embeddings(new_shared)          # also rewires encoder/decoder embed_tokens
         new_head = nn.Linear(old_head.shape[1], len(keep), bias=False)
-        new_head.weight.data = old_head[keep].clone()
+        new_head.weight.data = old_head[keep_dev].clone()
         m.lm_head = new_head
         m.config.vocab_size = len(keep)
         if getattr(m, "generation_config", None) is not None:
@@ -178,7 +183,7 @@ class PrunedTokenizer:
 
     def decode(self, ids, **kw):
         ids = torch.as_tensor(ids, dtype=torch.long).reshape(-1)
-        return self.tok.decode(self.keep[ids].tolist(), **kw)
+        return self.tok.decode(self.keep[ids.cpu()].tolist(), **kw)  # ids may live on CUDA
 
     def batch_decode(self, seqs, **kw):
         return [self.decode(s, **kw) for s in seqs]
@@ -187,13 +192,17 @@ class PrunedTokenizer:
 def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=None):
     """keep_ids: list of old token ids -> build the model, load the full checkpoint, then prune.
     A checkpoint saved by prune_and_save() carries its own keep_ids and is loaded pruned."""
-    sd = torch.load(ckpt_path, map_location="cpu")
+    # mmap: the 2.3 GB full checkpoint stays page-cache backed instead of anonymous RAM, which
+    # matters on the 8 GB unified-memory Jetson where CPU + GPU copies share one pool.
+    sd = torch.load(ckpt_path, map_location="cpu", mmap=True)
     ckpt_keep = sd.get("keep_ids", None)
     sd = sd.get("model", sd)
     if ckpt_keep is not None:
+        # pruned: build on CPU and slice first (peak 1.0 GB on the GPU instead of 2.6 GB)
         model = PoseOnlyUniSign(mt5_path, keep_ids=ckpt_keep)
     else:
-        model = PoseOnlyUniSign(mt5_path)
+        # full: materialise mT5 on the target device; CPU copy + GPU copy OOMs the Jetson
+        model = PoseOnlyUniSign(mt5_path, device=device)
     missing, unexpected = model.load_state_dict(sd, strict=False)
     # strict=False only to give a readable report; anything missing except mt5 buffers is a bug
     bad_missing = [k for k in missing if not k.startswith("mt5_model.")]
@@ -201,6 +210,8 @@ def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=
         raise RuntimeError(f"checkpoint mismatch: missing={bad_missing[:5]} unexpected={unexpected[:5]}")
     if keep_ids is not None and ckpt_keep is None:
         model.prune_vocab(keep_ids)
+    del sd, missing, unexpected  # free the checkpoint before the device copy (OOMed on the Jetson)
+    gc.collect()
     model.eval().to(device=device, dtype=dtype)
     return model
 

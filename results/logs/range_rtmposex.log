@@ -1,0 +1,34 @@
+
+[scan] 376 tensors over 2 frames; 1 overflow FP16, 1 within 4x of it
+      142292.8  mean 66277.914  ReduceSum    /mlp/mlp.0/ReduceSum                                         -> /mlp/mlp.0/ReduceSum_output_0  OVERFLOW
+       23565.4  mean   616.437  Pow          /mlp/mlp.0/Pow                                               -> /mlp/mlp.0/Pow_output_0  near
+         377.2  mean   245.305  Pow          /mlp/mlp.0/Pow_1                                             -> /mlp/mlp.0/Pow_1_output_0  
+         174.3  mean     2.349  Conv         /backbone/stage2/stage2.1/blocks/blocks.7/conv2/pointwise_conv/conv/Conv -> /backbone/stage2/stage2.1/blocks/blocks.7/conv2/pointwise_conv/conv/Conv_output_0  
+         167.1  mean     1.037  Add          /backbone/stage2/stage2.1/blocks/blocks.7/Add                -> /backbone/stage2/stage2.1/blocks/blocks.7/Add_output_0  
+         167.1  mean     0.730  Concat       /backbone/stage2/stage2.1/Concat                             -> /backbone/stage2/stage2.1/Concat_output_0  
+         166.4  mean     0.671  Mul          /backbone/stage2/stage2.1/blocks/blocks.7/conv2/pointwise_conv/activate/Mul -> /backbone/stage2/stage2.1/blocks/blocks.7/conv2/pointwise_conv/activate/Mul_output_0  
+         153.5  mean    15.307  Abs          /mlp/mlp.0/Abs                                               -> /mlp/mlp.0/Abs_output_0  
+         153.5  mean    15.307  Conv         /final_layer/Conv                                            -> /final_layer/Conv_output_0  
+         153.5  mean    15.307  Reshape      /Reshape                                                     -> /Reshape_output_0  
+         109.8  mean     8.221  MaxPool      /backbone/stage4/stage4.1/poolings.2/MaxPool                 -> /backbone/stage4/stage4.1/poolings.2/MaxPool_output_0  
+         109.8  mean     7.882  MaxPool      /backbone/stage4/stage4.1/poolings.1/MaxPool                 -> /backbone/stage4/stage4.1/poolings.1/MaxPool_output_0  
+         109.8  mean     7.112  Concat       /backbone/stage4/stage4.1/Concat                             -> /backbone/stage4/stage4.1/Concat_output_0  
+         109.8  mean     7.097  MaxPool      /backbone/stage4/stage4.1/poolings.0/MaxPool                 -> /backbone/stage4/stage4.1/poolings.0/MaxPool_output_0  
+         109.8  mean     5.372  Conv         /backbone/stage4/stage4.1/conv1/conv/Conv                    -> /backbone/stage4/stage4.1/conv1/conv/Conv_output_0  
+         109.8  mean     5.250  Mul          /backbone/stage4/stage4.1/conv1/activate/Mul                 -> /backbone/stage4/stage4.1/conv1/activate/Mul_output_0  
+         109.0  mean     1.549  Conv         /backbone/stage1/stage1.1/blocks/blocks.3/conv2/pointwise_conv/conv/Conv -> /backbone/stage1/stage1.1/blocks/blocks.3/conv2/pointwise_conv/conv/Conv_output_0  
+         109.0  mean     0.403  Mul          /backbone/stage1/stage1.1/blocks/blocks.3/conv2/pointwise_conv/activate/Mul -> /backbone/stage1/stage1.1/blocks/blocks.3/conv2/pointwise_conv/activate/Mul_output_0  
+         108.1  mean     0.569  Add          /backbone/stage1/stage1.1/blocks/blocks.3/Add                -> /backbone/stage1/stage1.1/blocks/blocks.3/Add_output_0  
+         108.1  mean     0.543  Concat       /backbone/stage1/stage1.1/Concat                             -> /backbone/stage1/stage1.1/Concat_output_0  
+         100.7  mean     2.986  Conv         /backbone/stage3/stage3.1/blocks/blocks.7/conv2/pointwise_conv/conv/Conv -> /backbone/stage3/stage3.1/blocks/blocks.7/conv2/pointwise_conv/conv/Conv_output_0  
+          90.1  mean     3.899  Conv         /backbone/stage3/stage3.1/blocks/blocks.3/conv2/depthwise_conv/conv/Conv -> /backbone/stage3/stage3.1/blocks/blocks.3/conv2/depthwise_conv/conv/Conv_output_0  
+          90.1  mean     3.199  Mul          /backbone/stage3/stage3.1/blocks/blocks.3/conv2/depthwise_conv/activate/Mul -> /backbone/stage3/stage3.1/blocks/blocks.3/conv2/depthwise_conv/activate/Mul_output_0  
+          88.0  mean     4.075  Conv         /backbone/stage2/stage2.1/blocks/blocks.5/conv2/depthwise_conv/conv/Conv -> /backbone/stage2/stage2.1/blocks/blocks.5/conv2/depthwise_conv/conv/Conv_output_0  
+          88.0  mean     3.296  Mul          /backbone/stage2/stage2.1/blocks/blocks.5/conv2/depthwise_conv/activate/Mul -> /backbone/stage2/stage2.1/blocks/blocks.5/conv2/depthwise_conv/activate/Mul_output_0  
+          82.6  mean    67.869  ReduceSum    /gau/ln/ReduceSum                                            -> /gau/ln/ReduceSum_output_0  
+          78.3  mean     5.693  Conv         /backbone/stage2/stage2.1/blocks/blocks.6/conv2/depthwise_conv/conv/Conv -> /backbone/stage2/stage2.1/blocks/blocks.6/conv2/depthwise_conv/conv/Conv_output_0  
+          78.3  mean     5.157  Mul          /backbone/stage2/stage2.1/blocks/blocks.6/conv2/depthwise_conv/activate/Mul -> /backbone/stage2/stage2.1/blocks/blocks.6/conv2/depthwise_conv/activate/Mul_output_0  
+          76.8  mean     2.398  Conv         /backbone/stage4/stage4.0/conv/Conv                          -> /backbone/stage4/stage4.0/conv/Conv_output_0  
+          76.8  mean     0.837  Mul          /backbone/stage4/stage4.0/activate/Mul                       -> /backbone/stage4/stage4.0/activate/Mul_output_0  
+[scan] node-name prefixes of overflow/near tensors: ['/mlp/mlp.0']
+[scan] wrote results/rtmposex_fp16_range.json

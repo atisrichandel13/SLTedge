@@ -209,3 +209,169 @@ export + eval; conda `unisign` (py3.11, torch 2.14, transformers 4.57.6, onnx, o
 Open: C0 git init (user decision pending). Jetson queue for the teammate (`WORKSPLIT.md` §5): J1 keypoints JSON,
 J2 on-board LM run full + pruned, J4 TRT engines + `trt_decode`. Next on the LM track: L9 weight-only INT8, C8 training
 harness (needs the 97 K train pose pkls, ~30 GB via `openasl_pose_fetch.py --split train`), L13 LLM correction.
+
+---
+
+# Session 3 — 2026-09-18 — Pose track (Tushar), P0 onboarding on the Jetson
+
+Board: `jetson-lpcv-03` = `192.168.1.73` on the lab LAN, reachable only through WireGuard (hostname
+DNS is flaky; use the IP). Login `tgoyal`, password auth, **no sudo**, docker group. This is a shared
+course board: 24 student homes and other students' `lpcv:fall2026` containers running. Atisri's
+account `fatisri` is on the same host but their home is unreadable, so the Phase-1 artefacts
+(`data/test_frames/`, `models/rtmpose-x.onnx`, `results/rtmpose_reference.npz`, `results/rtmpose_*`
+raw outputs) are **not** available to the pose owner until Atisri copies them (J1).
+
+Done:
+- Own container per `Jetson-access.md`: `jetson/Dockerfile` (base `nvcr.io/nvidia/pytorch:25.06-py3`,
+  already on the board, arm64) + `jetson/run.sh` (`build|probe|run|shell|up|exec|down`) +
+  `jetson/README.md`. Image `slt-jetson:25.06`, runs as the host UID so bind-mounted files stay
+  user-owned. Stack identical to Session 1: Python 3.12.3, torch 2.8.0a0 nv25.06, TensorRT 10.11.0.33,
+  CUDA 12.9, numpy 1.26.4; added cv2 4.11, onnx, onnxruntime (CPU), transformers 4.57.6, sentencepiece.
+  NGC banner parts removed from the entrypoint. Build ≈ 1 min (pip layer 41 s).
+- Repo synced to `~/sign-lang-project` on the board (rsync over ssh; `.git` excluded).
+- Checks passed in the container: GPU visible (Orin), `03_infer_frames.py --help`, `power_logger.py`
+  self-test reads INA3221 sysfs without root (VDD_IN 3.3 W idle, Tj 45 °C), `rtmpose_utils.py`
+  self-test, `import unisign.unisign_infer / unisign.trt_decode / common.trt_runner`.
+- `common/envinfo.py`: power mode now read from `/var/lib/nvpmodel/status` (bind-mounted read-only
+  by `run.sh`) when the `nvpmodel` binary is absent → reports `mode 0 (15W)`.
+- Host facts: 6 CPUs, 7.4 GiB RAM, 40 GB free, host TensorRT 10.3 + `trtexec`, `tegrastats` and
+  `jtop` exist on the host (not needed; sysfs backend is used). Internet works from the board (PyPI,
+  GitHub, Hugging Face); `download.openmmlab.com` root answers 403 (file URLs untested).
+
+Blocked / next:
+- **J1** needs Atisri: copy `results/rtmpose_trt_fp32.json`, `results/rtmpose_fp32_15W_power.{json,csv}`,
+  `results/rtmpose_reference.npz`, `models/rtmpose-x.onnx`, `data/test_frames/` (299 jpg) to the shared
+  Drive or to `/home/tgoyal/` on the board (their `fatisri` home is mode 700).
+- **P1** (RTMW-l-m 256×192 baseline) can start without J1 if the test frames are regenerated from
+  `data/test_frames_meta.json` (yt-dlp section download + crop, SESSION-LOG §3) and the ONNX is fetched
+  via `rtmlib` on the board; reference would be ONNX Runtime CPU instead of mmpose PyTorch.
+- J2 / J4 need Atisri's `weights/` (mT5-base, `openasl_pose_only_slt*.pth`, `models/mt5_pruned_onnx/`).
+
+### Session 3, later: wrong base image variant (found 2026-09-18 evening)
+
+The first `slt-jetson:25.06` image was built on `nvcr.io/nvidia/pytorch:25.06-py3`, which was already
+pulled on the board. Torch saw the GPU, but every TensorRT build failed with
+`Error Code 9: API Usage Error (Target GPU SM 87 is not supported by this TensorRT release.)`, also
+with `trtexec` on a 2 KB ONNX, also as root with the stock entrypoint. Cause: that tag is the **SBSA
+(server ARM) build** (`docker history` shows `L4T=0`, CUDA runtime from `targets/sbsa-linux`). The
+course image `lpcv:fall2026` is built from the **iGPU variant** (`L4T=1`), tag
+`nvcr.io/nvidia/pytorch:25.06-py3-igpu`; same torch / TensorRT version strings, different binaries.
+Fix: `jetson/Dockerfile` now uses `pytorch:25.06-py3-igpu` (pulled 2026-09-18). Lesson: on Jetson,
+always check `docker history <image> | grep L4T=` or run `trtexec` on a tiny ONNX before trusting a
+container's TensorRT.
+
+Large files staged on the board for the queue (to be deleted after results are pulled back, see
+`jetson/run.sh clean-large`): `data/test_frames/`, `models/rtmpose-x.onnx`,
+`results/rtmpose_reference.npz`, `weights/{mt5-base,mt5-base-openasl-pruned,openasl_pose_only_slt*.pth}`,
+`models/mt5_pruned_onnx/`, `data/openasl_ref_pose/`. Source: `model-data-lpcv/` on the Mac (Atisri's
+large-file clone, 7.9 GB, gitignored in this repo). Missing from it: the three raw Phase-1 outputs
+(`results/rtmpose_trt_fp32.json`, `results/rtmpose_fp32_15W_power.{json,csv}`); they will be
+regenerated here by rerunning the FP32 pipeline (a reproduction on a second board).
+
+P1 prep: RTMW-l-m 256x192 ONNX fetched from the OpenMMLab SDK zip (rtmlib "lightweight" pose model)
+to `models/rtmw/rtmw-l-m_256x192.onnx` (129 MB, opset 11, input `input` 1x3x256x192 dynamic batch,
+outputs `simcc_x` 133x384, `simcc_y` 133x512) with `models/rtmw/preproc.json` written from the zip's
+`pipeline.json` (same mean/std as RTMPose-x, padding 1.25, simcc_split_ratio 2). Reference for it =
+`task1_rtmpose/05b_make_reference_ort.py` (ONNX Runtime CPU; no mmpose checkpoint for this export).
+
+### Session 3 checkpoint (2026-09-18, ~22:15 board time) — where to pick up
+
+- Image `slt-jetson:25.06` rebuilt on `pytorch:25.06-py3-igpu`; `trtexec` tiny build **PASSED**,
+  `envinfo` shows Orin / TRT 10.11.0.33 / mode 0 (15 W). All large inputs for J1-reproduction, J2, J4
+  and P1 are staged on the board under `~/sign-lang-project/` (6.4 GB) + `models/rtmw/` (129 MB).
+- First real engine build (`02_build_engine.py --onnx models/rtmpose-x.onnx`, default
+  `--workspace-gb 2`) ran 157 s then failed: `Cuda Runtime (out of memory)` when the builder
+  requested 512 MB. Board had 5.7 GB available afterwards and the other student's container was idle,
+  so it was a transient peak (builder tactic timing + 2 GB workspace + page cache from 18 GB of
+  transfers just before). **Next step: retry with `--workspace-gb 1`**, then `06_compare_trt.py`,
+  `03_infer_frames.py`, `04_infer_power.py --repeat 3`, pull `results/rtmpose_*` back, record in
+  `results/RESULTS.md` as the second-board reproduction, then J2, J4, P1.
+- Logs on the board: `results/logs/build_rtmposex_fp32.log`, `results/logs/compare_rtmposex_fp32.log`.
+
+## Session 4 (2026-09-18, evening) — J1 reproduction on lpcv-03; the 15W/25W finding
+
+- Engine build retry with `--workspace-gb 1` succeeded: 158 s wall, 140 s engine generation, TRT
+  allocator peak 384 MiB GPU, `models/rtmpose-x_fp32.engine` 259 MB. The 2 GB-workspace OOM was
+  contention on the shared 8 GB unified memory, not a hard limit.
+- `06_compare_trt.py` vs the Mac PyTorch reference: simcc max 6.9e-6, all 2416 confident keypoints at
+  0.0 px, PASS. `03_infer_frames.py` -> `results/rtmpose_trt_fp32.json`; `04_infer_power.py --repeat 3`
+  -> `results/rtmpose_fp32_15W_power.{json,csv}`. All three now in the repo (Atisri's C4 input).
+- **Numbers do not match Atisri's Phase-1 row**: TRT 66.7 ms vs 44.4 ms, 8.2 W vs 11.6 W. Root cause:
+  lpcv-03's GPU is DVFS-capped at 612 MHz (`/sys/class/devfreq/17000000.gpu/max_freq`), which is the
+  nvpmodel mode 0 = 15W cap in `nvpmodel_p3767_0003_super.conf`. Mode 1 = 25W caps at 918 MHz and is
+  the conf's DEFAULT; 66.7 x 612/918 = 44.5 ms. So the Phase-1 row was taken at the 25W cap. The
+  status file alone is not enough evidence of the power mode; the clock must be logged.
+- Fixes: `common/power_logger.py` sysfs backend now samples `gpu_MHz`, `cpu0_MHz`, `fan_pwm`,
+  `fan_rpm` every 100 ms (CSV columns + `aux_avg`); `common/envinfo.py` reports `gpu_max_MHz`,
+  `gpu_min_MHz`, `cpu_max_MHz` and has the correct mode table (0=15W, 1=25W, 2=MAXN_SUPER, 3=7W).
+  Power run repeated with the new logger: GPU 612 MHz on every busy sample. RESULTS.md Task 1 table
+  now has a Board / GPU MHz column and a discrepancy note; the lpcv-03 mode-0 row is the FP32 baseline.
+- `jetson-lpcv-04` (192.168.1.74, same login) checked at the user's suggestion: also mode 0 / 612 MHz,
+  no containers, home has only the course assignment1 files. No engine there; nothing to gain.
+- Still on the board: engine (259 MB), ONNX, frames, weights for J2/J4/P1. Delete after those stages.
+
+### Session 4 checkpoint — where to pick up
+
+J1 reproduction is done and recorded. Next in the queue: **J2** (Uni-Sign on-board run, full then
+pruned checkpoint, `unisign.unisign_infer ... --repeat 3`), then **J4** (mT5 TensorRT engines +
+`trt_decode`), then **P1** (RTMW-l-m 256x192: `05b_make_reference_ort.py`, build, compare, latency,
+power). Inputs for all three are already staged on lpcv-03.
+
+## Session 5 (2026-09-18, evening) — J2 on-board LM run done; J4 engines
+
+- **J2 = L4 done** on `jetson-lpcv-03` (mode 0, GPU 612 MHz). `unisign.unisign_infer --device cuda
+  --repeat 3` with the full and the pruned checkpoint on the Bitcoin clip: text, token ids and
+  log-probs identical to the Mac (`c5_authors_pose_Ads-4j06eJY.json`). Full: GCN ~85 / encoder 57 /
+  decoder 1653–1664 ms (24 tokens, 69 ms/token), peak GPU 2.41 GB. Pruned: decoder 1330 ms (55
+  ms/token), peak 1.03 GB. Files `results/l4_jetson_{full,pruned}_fp32.json`, logs `results/logs/j2_*`.
+- Finding: the board decoder is 5–7× slower than the Mac CPU while the encoder is faster. HF
+  `generate()` is launch/Python-bound on the 15W ARM cores; this is the number the TensorRT KV-cache
+  engines (J4) have to beat. Pruned decoder drifted 1240 → 1330 ms over three runs (noise ±5%).
+- Three failures fixed in `unisign/model.py` (all only reachable on CUDA / the 8 GB board):
+  1. `PrunedTokenizer.decode` indexed a CPU tensor with CUDA ids → `ids.cpu()`.
+  2. Full FP32 model OOMed in `.to("cuda")` twice (NvMap error 12, then CUDA OOM): 2.3 GB CPU copy +
+     2.3 GB GPU copy with ~1.8 GB free outside page cache. Now `from_pretrained(device_map=device)`
+     for the full checkpoint, checkpoint `torch.load(mmap=True)` and freed before the device copy.
+  3. `prune_vocab` now indexes with `keep` on the weights' device. The pruned path deliberately still
+     builds on CPU and slices first (1.03 GB peak vs 2.57 GB when sliced on the GPU).
+  Mac (CPU) behaviour is unchanged: `device_map` is only passed for non-CPU devices.
+- **J4 FP32 = PASS.** Engines `models/mt5_pruned_onnx/{encoder,decoder_init,decoder_step}_fp32.engine`
+  (341/616/558 MB, built in 15/23/13 s, builder peak ≤ 698 MiB) with `--enc-len 1,264,512
+  --dec-len 1,1,128 --workspace-gb 1`. `unisign.trt_decode`: tokens identical to PyTorch, max
+  |Δlogprob| 5.6e-4, decoder 460 ms / 24 tokens = **19 ms/token vs 55 in PyTorch**; TRT FP32
+  encoder 82 ms is slower than PyTorch's 57 (TF32 off → FFMA kernels). `results/l8_jetson_trt_fp32.json`.
+- **Board memory finding (root cause of every OOM today)**: nvmap (the Jetson GPU allocator) only
+  takes from `MemFree` and does not reclaim page cache. Decoder engine builds failed on 57–613 MB
+  allocations with 2.7 GB free and 3.9 GB cached; engine deserialisation failed the same way after
+  the PyTorch reference had filled the cache. No root, so `jetson/drop_file_cache.py` evicts our own
+  files with `posix_fadvise(DONTNEED)`; `03_build_engines.py` and `trt_decode.py` call it on the board
+  automatically, and `trt_decode.py` now frees the PyTorch reference before loading engines (it also
+  prints MemFree before/after: engines take 2.07 GB). Documented in `jetson/README.md`.
+- **J4 FP16 = numerically broken** (mT5 FP16 overflow: every step token 0, logprob −ln 26078). The
+  FP16 encoder is 3–4× faster than FP32 TRT, the FP16 decoder step is not faster at all (18 vs 19
+  ms/token) → the step loop is host-bound. Added `--bf16` to the runner/build/decode scripts; BF16
+  engines + decode run next. `results/l8_jetson_trt_fp16.json` kept as the negative result.
+- **J4 BF16**: builds and decodes coherently but diverges from FP32 greedy at step 3 (22 vs 24
+  tokens, max |Δlogprob| 1.1); 21.8 ms/token, no faster. Conclusion recorded in RESULTS.md L8.2: the
+  deployable LM engine set on this board is FP32; a real FP16 path needs mixed precision (FP32
+  residual/FFN-out). **J4 done.** mT5 engines deleted from the board (rebuild ≈ 1 min each from the
+  ONNX, which stays with the weights until the user decides).
+- **P1 done**: RTMW-l-m 256×192 FP32 on `jetson-lpcv-03` (15W). `05b_make_reference_ort.py` (ORT CPU,
+  20 frames, 8 s) → `02_build_engine.py --workspace-gb 1` (158 MB, 123 s) → `06_compare_trt.py`
+  PASS (0.0 px, simcc 2.0e-5) → `03_infer_frames.py` → `04_infer_power.py --repeat 3` (897 frames):
+  pre 6.1 / TRT 25.6 / post 1.2 / total 33.0 ms, 6.53 W avg, 3.62 W idle, 275 mJ/frame (123 dyn),
+  GPU 60 %, Tj 51 C. Busy-sample GPU clock 598 MHz mean (governor 408–612). 2.6× faster and 2.7×
+  less energy than RTMPose-x on the same board. Row + paragraph in RESULTS.md Task 1.
+- Board cleanup at this checkpoint: all engines deleted (RTMPose-x FP32, RTMW FP32, mT5 ×9; each
+  rebuilds in 15 s–2.5 min from the ONNX). Kept on the board for P2/later stages: `models/rtmpose-x.onnx`,
+  `models/rtmw/`, `models/mt5_pruned_onnx/*.onnx` (1.5 GB), `weights/` (4.8 GB), `data/`, reference npz.
+  Ask the user before wiping weights/ONNX (`jetson/run.sh clean-large`).
+
+### Session 5 checkpoint — where to pick up
+
+J2, J4, P1 are done and recorded (RESULTS.md L4, L8.2, Task 1; PROJECT-GUIDE 1.3, 1.4, 2.1).
+Next in the Teammate queue: **P2** (FP16 engines for RTMW-l-m and RTMPose-x: `02_build_engine.py
+--fp16 --workspace-gb 1`, gate with `--simcc-atol 0.05 --kpt-atol-px 2`, then `04_infer_power.py
+--repeat 3` → `results/*_fp16_15W_power.json` rows), then the rest of section 2 of the guide. Run
+`python3 jetson/drop_file_cache.py` on the board before every build/engine load. Nothing is running
+on the board. Uncommitted: see `git status` (all of today's work).

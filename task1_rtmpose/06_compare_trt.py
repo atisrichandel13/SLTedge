@@ -40,6 +40,7 @@ def main():
     in_name = runner.inputs[0]
     n = ref["inputs"].shape[0]
     simcc_diffs, simcc_means, kpt_diffs, kpt_diffs_all, score_diffs = [], [], [], [], []
+    conf_px, conf_scores = [], []  # every confident keypoint's px error and its reference score
     worst = (0.0, -1, -1)  # (px, frame, keypoint) among confident keypoints
     n_conf = 0
     for i in range(n):
@@ -56,6 +57,7 @@ def main():
             conf = ref["scores"][i].reshape(-1) >= args.min_score
             n_conf += int(conf.sum())
             kpt_diffs_all.append(px.max())
+            conf_px.append(px[conf]); conf_scores.append(ref["scores"][i].reshape(-1)[conf])
             if conf.any():
                 j = int(np.argmax(np.where(conf, px, -1)))
                 kpt_diffs.append(px[j])
@@ -71,6 +73,13 @@ def main():
         rep["min_score"] = args.min_score
         rep["keypoint_max_abs_diff_px_all_incl_unconfident"] = float(max(kpt_diffs_all))
         rep["score_max_abs_diff"] = float(max(score_diffs))
+        allpx = np.concatenate(conf_px); allsc = np.concatenate(conf_scores)
+        # distribution over confident keypoints: one argmax flip on a flat hand heatmap dominates the
+        # max, so report how many keypoints moved and by how much (same bins as 07_kpt_agreement.py)
+        rep["keypoint_px_percentiles"] = {f"p{q}": float(np.percentile(allpx, q)) for q in (50, 90, 99, 99.9)}
+        rep["keypoint_frac_within_px"] = {f"{t}px": float((allpx <= t).mean()) for t in (0.5, 1, 2, 5)}
+        rep["keypoint_n_over_atol"] = int((allpx > args.kpt_atol_px).sum())
+        rep["keypoint_worst"]["ref_score"] = float(allsc[int(np.argmax(allpx))])
     ok = rep["simcc_max_abs_diff"] <= args.simcc_atol and \
         rep.get("keypoint_max_abs_diff_px", 0.0) <= args.kpt_atol_px
     rep["PASS"] = bool(ok)

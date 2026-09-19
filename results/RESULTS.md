@@ -9,6 +9,12 @@ All numbers measured on the board. Nothing here is estimated.
   sudo, permanently. So: no 7W mode, no `jetson_clocks`. Every run is at 15W with the default DVFS
   governor. Power budgets in this project are therefore *measured average watts*, not a hardware cap.
   Clock frequency and fan state are logged from sysfs alongside each run to document the DVFS state.
+- **Power modes on these boards** (`/etc/nvpmodel/nvpmodel_p3767_0003_super.conf`, JetPack 6.2):
+  mode 0 = 15W caps the GPU at **612 MHz** (CPU 1.5 GHz, EMC 2133 MHz); mode 1 = 25W caps it at
+  **918 MHz** (EMC 3199 MHz) and is the conf's DEFAULT; mode 2 = MAXN_SUPER uncapped (1020 MHz);
+  mode 3 = 7W at 408 MHz. TensorRT latency scales almost exactly with the GPU cap, so every row must
+  carry its measured `gpu_MHz` (now a column in every power CSV, `aux_avg.gpu_MHz` in the JSON, and
+  `gpu_max_MHz` in `env`). Rows without it are labelled by inference from the latency ratio.
 - Power: INA3221 via hwmon sysfs (`common/power_logger.py --power-backend sysfs`), 100 ms samples,
   `VDD_IN` = module total. Idle baseline measured for 3 s before each run.
 - Input: OpenASL test clip `Ads-4j06eJY-00:07:37.233-00:07:47.200`, 299 frames at 29.97 fps, cropped
@@ -24,24 +30,87 @@ All numbers measured on the board. Nothing here is estimated.
 | ONNX Runtime vs PyTorch, 20 frames (Mac) | simcc max diff 8.0e-6 |
 | TensorRT FP32 vs PyTorch, **TF32 left on** (TRT default) | simcc max diff 1.55e-3, FAIL |
 | TensorRT FP32 vs PyTorch, TF32 disabled | simcc max diff 7.2e-6, 2416/2416 confident kpts at 0.0 px, PASS |
+| TensorRT FP32 vs PyTorch, engine rebuilt on `jetson-lpcv-03` (own image `slt-jetson:25.06`, 1 GB workspace) | simcc max diff 6.9e-6, 2416/2416 confident kpts at 0.0 px, PASS |
 
 Methodology note: TensorRT enables TF32 by default on Ampere. An "FP32" engine built with defaults is
 not FP32. `common/trt_runner.py` now clears the flag for the FP32 baseline.
 
 ## Task 1: RTMPose-x pose extraction, per-frame
 
-| Config | Mode | pre ms | TRT ms | post ms | total ms | avg W | idle W | mJ/frame | dyn mJ/frame | GPU % | Tj C |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| FP32 (TF32 off), first pass, 3x299 frames | 15W | 10.6 | 44.4 | 1.5 | 56.4 | 11.62 | 3.73 | 754 | 512 | 68 | 56 |
+| Config | Board | GPU MHz | pre ms | TRT ms | post ms | total ms | avg W | idle W | mJ/frame | dyn mJ/frame | GPU % | Tj C |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| FP32 (TF32 off), first pass, 3x299 frames (Atisri, Phase 1) | Atisri's board | not logged; **~918 inferred** (see note) | 10.6 | 44.4 | 1.5 | 56.4 | 11.62 | 3.73 | 754 | 512 | 68 | 56 |
+| FP32 (TF32 off), 3x299 frames, 2026-09-18 | `jetson-lpcv-03`, mode 0 (15W) | **612 measured** (every busy sample) | 10.7 | 66.7 | 1.5 | 79.2 | 8.20 | 3.62 | 733 | 410 | 74 | 53 |
+| **RTMW-l-m 256x192 FP32 (TF32 off), 3x299 frames, 2026-09-18 (P1 baseline)** | `jetson-lpcv-03`, mode 0 (15W) | 598 mean over busy samples (governor 408–612; 306/353 at 612) | 6.1 | **25.6** | 1.2 | **33.0** | 6.53 | 3.62 | **275** | 123 | 60 | 51 |
+| **RTMW-l-m 256x192 FP16, 3x299 frames, 2026-09-18 (P2)** | `jetson-lpcv-03`, mode 0 (15W) | **310 mean** over busy samples (0.9 % at 612) | 4.7 | **13.8** | 1.2 | **19.7** | 4.93 | 3.59 | **127** | 34 | 53 | 50 |
+| RTMPose-x FP16 plain — **fails the gate** (head overflow), 3x299 frames, 2026-09-18 (P2) | `jetson-lpcv-03`, mode 0 (15W) | 414 mean over busy samples (1.8 % at 612) | 9.4 | 22.7 | 1.5 | 33.5 | 6.20 | 3.62 | 254 | 106 | 58 | 51 |
 
-Raw: `results/rtmpose_fp32_15W_power.json`, `.csv` (on the Jetson, copy back).
+Raw: `results/rtmpose_fp32_15W_power.json`, `.csv` (lpcv-03 run, in the repo); logs in `results/logs/`.
+RTMW-l-m: `results/rtmw_fp32_15W_power.json`, `.csv`, `results/rtmw_trt_fp32.json`, reference
+`results/rtmw_reference.npz` (ORT CPU, 20 frames, gitignored), logs `results/logs/*rtmw*`.
+
+**P1: RTMW-l-m 256×192 is the Jetson pose baseline (2026-09-18).** ONNX from the OpenMMLab SDK zip
+(opset 11, input `input` 1×3×256×192, outputs `simcc_x` 133×384 / `simcc_y` 133×512), preprocessing
+from `models/rtmw/preproc.json`. Gate against an ONNX Runtime CPU reference on 20 frames (there is no
+PyTorch checkpoint for this export; on RTMPose-x ORT matched PyTorch to 8e-6): simcc max diff 2.0e-5,
+mean 6.1e-7, keypoint max diff **0.0 px** over 2458 confident keypoints, score diff 2.6e-6 → **PASS**.
+Engine 158.5 MB, built in 123 s with a 1 GB workspace (builder peak 384 MiB). Versus RTMPose-x on the
+same board and power mode: TRT time 66.7 → 25.6 ms (**2.6×**), total 79 → 33 ms (30 fps, 25 fps
+end-to-end including JPEG decode), energy 733 → 275 mJ/frame (**2.7×**), average power 8.2 → 6.5 W, GPU
+busy 74 → 60 %. Note the GPU governor no longer sits at 612 MHz for this lighter model: busy samples
+range 408–612 MHz, so the row's "GPU MHz" is the busy-sample mean; energy per frame is the robust
+number. Together with L4/L8: one 10 s sentence (300 frames) now costs ~83 J of pose extraction vs
+~220 J with RTMPose-x, before any FP16 or frame-rate reduction.
+
+**P2: FP16 pose engines (2026-09-18).** `02_build_engine.py --fp16 --workspace-gb 1`, gated with
+`06_compare_trt.py --simcc-atol 0.05 --kpt-atol-px 2` against the same references as the FP32 rung.
+The two models behave completely differently.
+
+| Engine | build s | size MB | simcc max abs Δ | kpt max Δpx | % kpts exact (≤0.5 px) | % ≤2 px | % ≤5 px | gate |
+|---|---|---|---|---|---|---|---|---|
+| RTMW-l-m FP16 | 534 | 68.7 | 0.039 | 6.50 | 88.5 | 88.5 | 99.8 | **FAIL on px only** |
+| RTMPose-x FP16 plain | 631 | 117.1 | 0.649 | 383.0 | 40.8 | 67.7 | 71.7 | **FAIL, unusable** |
+
+- **RTMW-l-m FP16 is usable; the 2 px gate is the wrong instrument.** Every keypoint error is an exact
+  multiple of one simcc bin (0.5 crop px = 2.17 image px at this bbox scale): p50 0.0, p90 = p99 =
+  2.17 (one bin), worst 6.50 (three bins) on a keypoint whose reference score is 0.58. 88.5 % of the
+  2458 confident keypoints are bit-exact and 99.8 % are within 5 px. Nothing overflows (see the scan
+  below), so this is argmax quantization noise on flat heatmaps, not numerical failure. The honest
+  accuracy statement for a heatmap model is the agreement distribution, not a max over one argmax
+  flip — that is what P4's `07_kpt_agreement.py` is for, and the pose→BLEU path (P5) is the decider.
+- **RTMPose-x FP16 plain is genuinely broken**, and `08_fp16_range_scan.py` (new; runs the ONNX on
+  ORT CPU with every intermediate exposed and reports activations against the FP16 max of 65504)
+  names the single cause: the head's ScaleNorm computes a sum of squares, `/mlp/mlp.0/ReduceSum`,
+  that peaks at **142 293** — 2.2× over the FP16 limit, with `/mlp/mlp.0/Pow` at 23 565 already
+  within 4× of it. One tensor in 376 saturates and takes the whole head with it (p90 error 130 px).
+  The same scan over RTMW-l-m's 398 tensors finds **zero** overflowing or near-overflowing tensors,
+  which is exactly why its FP16 engine is fine. Raw: `results/{rtmposex,rtmw}_fp16_range.json`.
+- **Latency comparisons across precisions need the clock column.** The governor drops the GPU as the
+  work gets lighter: FP32 RTMW ran at 598 MHz mean over busy samples (86 % of them at the 612 MHz
+  cap), FP16 RTMW at **310 MHz** (0.9 % at the cap) and FP16 RTMPose-x at 414 MHz. So RTMW's
+  25.6 → 13.8 ms is a 1.9× wall-clock gain achieved *at roughly half the clock*; the per-clock
+  speedup is larger, and the honest headline is the energy: **275 → 127 mJ/frame, 2.2×**, average
+  power 6.5 → 4.9 W, Tj 50 °C. End to end RTMW FP16 is 19.7 ms/frame = 40 fps, the first pose
+  configuration in this project that clears the 30 fps source rate at 15 W with headroom.
+
+**Second-board reproduction and the 15W/25W discrepancy.** The same ONNX, the same script and the same
+TensorRT 10.11 on `jetson-lpcv-03` give 66.7 ms TRT time vs Atisri's 44.4 ms, at 8.2 W vs 11.6 W. The
+CSV shows the lpcv-03 GPU pinned at 612 MHz whenever it was busy, which is the nvpmodel 15W cap.
+Scaling 66.7 ms by 612/918 gives 44.5 ms, i.e. Atisri's number to within 0.1 ms, and the 25W mode is
+the conf's default. The Phase-1 row was therefore almost certainly taken with the GPU at the 25W cap
+(918 MHz), whatever `/var/lib/nvpmodel/status` said at the time (the file can be stale, and nothing
+logged the clock). Energy per frame barely moves (754 vs 733 mJ): the slower clock draws
+proportionally less power, so **latency rows are not comparable across power modes but energy rows
+nearly are.** From here on the lpcv-03 mode-0 row is the FP32 baseline for every ratio in this
+document, and no row without a logged `gpu_MHz` is used for a latency comparison.
 
 Reading it:
-- 56 ms/frame = ~18 fps compute-bound; source video is 30 fps, so FP32 RTMPose-x cannot keep up
-  without dropping frames. That is the motivation for every knob that follows.
-- Preprocess (JPEG decode + affine, CPU) is 19% of frame time and does not shrink with GPU quantization.
-- Peak `VDD_IN` 13.3 W, close to the 15 W cap. TRT latency jitter <2 ms, so no throttling at 56 C.
-- One 10 s sentence costs 299 x 0.754 J = 225 J of pose extraction at FP32.
+- At the true 15W cap: 79 ms/frame = ~12.6 fps end to end, 66.7 ms of it TensorRT; source video is
+  30 fps, so FP32 RTMPose-x cannot keep up without dropping frames. That is the motivation for every
+  knob that follows. (At 918 MHz it was 56 ms = ~18 fps, still short.)
+- Preprocess (JPEG decode + affine, CPU) is 13% of frame time at 15W and does not shrink with GPU quantization.
+- Peak `VDD_IN` 9.1 W at 15W mode (13.3 W in the 918 MHz run). TRT latency jitter <1 ms, Tj 53 C, so no throttling.
+- One 10 s sentence costs 299 x 0.733 J = 219 J of pose extraction at FP32.
 
 First pass only: single run per cell. Final table needs 3 runs, mean+std, several clips/signers, 30 min sustained.
 
@@ -199,6 +268,38 @@ The energy-relevant conclusion: on the LM side the lever order is beam width > v
 anything on the encoder. Combined with L6.1: beam 4→2 saves ~25% total LM time for -0.8 BLEU-4;
 greedy saves ~60% for -2.0.
 
+### L4 Uni-Sign on the Jetson, PyTorch FP32 (J2, 2026-09-18, `jetson-lpcv-03`, nvpmodel 15W, GPU 612 MHz)
+
+Same Bitcoin clip and authors' poses as L3 (256 frames → encoder length 264, greedy, 24 tokens),
+`unisign.unisign_infer --device cuda --repeat 3`, container `slt-jetson:25.06` (torch 2.8 nv25.06).
+Both checkpoints reproduce the Mac output **exactly**: identical text, identical token ids, mean
+logprob −0.749 (full; Mac −0.75) and −0.492 (pruned). Files: `results/l4_jetson_full_fp32.json`,
+`results/l4_jetson_pruned_fp32.json`, logs in `results/logs/j2_*.log`.
+
+| Model | load s | GCN ms | encoder ms | decoder ms | ms/token | total ms | peak GPU GB |
+|---|---|---|---|---|---|---|---|
+| full (582M) | 32 | 79–90 | 57–58 | 1653–1664 | 69 | 1789–1812 | 2.41 |
+| pruned (238M) | 32 | 86–94 | 57–63 | 1330–1331 | 55 | 1475–1483 | 1.03 |
+
+Reading it:
+- **The board decoder is 5–7× slower than the Mac CPU** (1.65 s vs 0.27 s full; 1.33 s vs 0.19 s
+  pruned) while the **encoder is faster** (57 ms vs 86–105 ms). One 264-token encoder pass is a
+  GPU-friendly graph; greedy decoding through `generate()` is 24 sequential steps of Python plus
+  ~200 small kernel launches each, and the Orin's ARM cores at 15W (0.9–1.5 GHz) pay that overhead.
+  This is launch-bound, not compute-bound, which is exactly what the TensorRT KV-cache engines (L8/J4)
+  and, later, CUDA graphs address. The Jetson PyTorch line is the baseline those must beat.
+- Pruning saves 20% per token (69 → 55 ms), in line with L3's 20–30% on CPU.
+- Pruned decoder time drifted 1240 → 1303 → 1330 ms across three back-to-back runs of the same
+  config (another student's container was idle; likely thermal/DVFS). Treat ±5% as run-to-run noise
+  on this shared board until the power logger wraps these runs.
+- **Memory**: the full FP32 model is 2.3 GB. Building it on the CPU and then `.to("cuda")` OOMed
+  twice (NvMap error 12, then `CUDA error: out of memory`) because the board had only ~1.8 GB free
+  outside page cache and the two copies coexist. Fix in `unisign/model.py`: the full checkpoint now
+  materialises mT5 directly on the target device (`from_pretrained(device_map=...)`), the checkpoint
+  is `mmap`-loaded and freed before the device copy, and the pruned tokenizer's `decode` accepts CUDA
+  ids (it crashed on the GPU before). The pruned path still builds on CPU and slices first: 1.03 GB
+  peak instead of 2.57 GB if the full vocabulary were sliced on the GPU.
+
 ### L8.1 mT5 (pruned) → ONNX with explicit KV cache (`task3_mt5_onnx/02_export_manual.py`)
 
 Three graphs, fp32, opset 17, from `weights/mt5-base-openasl-pruned` (vocab 26,078):
@@ -208,3 +309,47 @@ logits ≤ 2.2e-5, tokens identical. Real-pose verify (`unisign/onnx_decode.py`,
 **tokens identical to PyTorch, max |logprob diff| 2.9e-5**; ORT CPU encoder 62 ms, decoder 178 ms for
 24 tokens (7.4 ms/token) vs PyTorch 191 ms. Export + verification took one attempt (budget was 3 days).
 Remaining for L8: TensorRT engines on the Jetson (queue J4) and the drift check there.
+
+### L8.2 mT5 (pruned) TensorRT engines on the Jetson (J4, 2026-09-18, `jetson-lpcv-03`, 15W, GPU 612 MHz)
+
+`task3_mt5_onnx/03_build_engines.py --enc-len 1,264,512 --dec-len 1,1,128 --workspace-gb 1`, one
+engine per process, TF32 off for the FP32 engines. Decode loop `unisign/trt_decode.py` (greedy,
+explicit KV cache, PyTorch reference computed on the same board then freed), Bitcoin clip, 24 tokens,
+`--repeat 3`. Files `results/l8_jetson_trt_{fp32,fp16,bf16}.json`, logs `results/logs/build_mt5_*`, `results/logs/trt_decode_*`.
+
+| Engine set | encoder / init / step size | build s | builder peak GPU MiB | tokens vs PyTorch | max \|Δlogprob\| | encoder ms | decoder ms (24 tok) | ms/token |
+|---|---|---|---|---|---|---|---|---|
+| FP32 | 341 / 616 / 558 MB | 15 / 23 / 13 | 381 / 698 / 585 | **identical** | 5.6e-4 | 82–86 | 459–460 | **19.2** |
+| FP16 | 172 / 309 / 280 MB | 58 / 54 / 43 | 394 / 375 / 319 | **broken**: 64× token 0 | 10.2 (uniform) | 19–25 | (1132–1372 for 64 tok) | 17.7–21.4 |
+| BF16 | 171 / 311 / 282 MB | 37 / 43 / 31 | 394 / 358 / 292 | diverges at step 3 (22 vs 24 tok) | 1.1 | 19–28 | 475–485 (22 tok) | 21.8 |
+| PyTorch FP32 (L4, same board) | — | — | — | reference | — | 57 | 1330 | 55 |
+
+Reading it:
+- **FP32 engines pass the gate**: identical token ids to PyTorch; the logprob drift (5.6e-4) is
+  larger than ORT-CPU's 2.9e-5 but far below any token-flip margin (min per-token logprob on this
+  clip is −1.39).
+- **Decoder 2.9× faster than PyTorch on the same board** (19 vs 55 ms/token): the explicit-KV-cache
+  engine turns ~200 launches per step into one; the remaining 19 ms is still mostly per-step host
+  work (50 input bindings re-fed, output clones) rather than the 238M-param matmuls, so CUDA graphs /
+  keeping the KV cache device-resident are the next lever.
+- The TRT encoder (82 ms) is **slower** than PyTorch (57 ms) at this length; with TF32 off TensorRT
+  falls back to plain FP32 FFMA kernels while cuBLAS in PyTorch has better FP32 GEMM tiles. The
+  encoder is one pass per sentence, so this costs ~25 ms per sentence vs the ~870 ms saved on the decoder.
+- **FP16 engines are numerically broken for mT5**: every step returns token 0 with logprob
+  −10.169 = −ln(26078), i.e. a uniform distribution from saturated logits. This is the known T5/mT5
+  FP16 overflow (feed-forward activations exceed 65504 in later blocks; HF's own fp16 path clamps
+  them). Latency is still informative: the FP16 **encoder** is 3–4× faster (19–25 vs 82 ms), but the
+  FP16 **decoder step is no faster** (18 vs 19 ms/token), confirming the step is host-bound, not
+  GEMM-bound.
+- **BF16 engines run but drift**: coherent output (*"The tweet appears to target donations like those
+  involved in the Biden campaign."*) that diverges from the FP32 greedy path at step 3 where the
+  reference margin is small (logprob −1.05 for the chosen token). BF16's 8-bit mantissa is too coarse
+  for token-exact greedy decoding; its BLEU cost would need the 976-clip eval on the board (not done).
+  Decoder step 21.8 ms/token — again no faster than FP32, so **reduced precision buys nothing on the
+  decoder here; the deployable LM engine set is FP32** (2.07 GB resident) until the step loop is
+  made GPU-resident. If memory forces it, the right FP16 recipe is mixed precision with the residual
+  stream / FFN output projections kept in FP32, not a blanket FP16 or BF16 flag.
+- Memory: engines resident take 2.07 GB of MemFree (1.5 GB weights + activations + TRT context); the
+  PyTorch reference (1.03 GB) had to be freed first, and the page cache evicted (see the L4 note and
+  `jetson/README.md`), or engine deserialisation failed with `Cuda Runtime (out of memory)`.
+

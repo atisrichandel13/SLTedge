@@ -1,0 +1,24 @@
+
+[cache] fadvise DONTNEED on 21 files (9.47 GB) under ['models', 'weights', 'data', 'results']: MemFree 3215 -> 4062 MB, Cached 2499 -> 1650 MB
+[build] encoder <- encoder.onnx
+        inputs_embeds                            min=(1, 1, 768) opt=(1, 264, 768) max=(1, 512, 768)
+        attention_mask                           min=(1, 1) opt=(1, 264) max=(1, 512)
+[09/18/2026-23:19:30] [TRT] [I] [MemUsageChange] Init CUDA: CPU +14, GPU +0, now: CPU 137, GPU 2211 (MiB)
+[09/18/2026-23:19:31] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU +420, GPU +409, now: CPU 622, GPU 2686 (MiB)
+[09/18/2026-23:19:32] [TRT] [W] ModelImporter.cpp:516: Make sure input attention_mask has Int64 binding.
+[trt] building models/mt5_pruned_onnx/encoder_bf16.engine (fp16=False, bf16=True) ... this can take minutes on Orin Nano
+[09/18/2026-23:19:32] [TRT] [W] DLA requests all profiles have same min, max, and opt value. All dla layers are falling back to GPU
+[09/18/2026-23:19:35] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[09/18/2026-23:19:35] [TRT] [I] Compiler backend is used during engine build.
+[09/18/2026-23:20:11] [TRT] [I] Detected 2 inputs and 1 output network tensors.
+[09/18/2026-23:20:12] [TRT] [I] Total Host Persistent Memory: 240 bytes
+[09/18/2026-23:20:12] [TRT] [I] Total Device Persistent Memory: 0 bytes
+[09/18/2026-23:20:12] [TRT] [I] Max Scratch Memory: 15728640 bytes
+[09/18/2026-23:20:12] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 3 steps to complete.
+[09/18/2026-23:20:12] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 0.043009ms to assign 3 blocks to 3 nodes requiring 16515584 bytes.
+[09/18/2026-23:20:12] [TRT] [I] Total Activation Memory: 16515072 bytes
+[09/18/2026-23:20:12] [TRT] [I] Total Weights Memory: 169909632 bytes
+[09/18/2026-23:20:12] [TRT] [I] Compiler backend is used during engine execution.
+[09/18/2026-23:20:12] [TRT] [I] Engine generation completed in 37.2927 seconds.
+[09/18/2026-23:20:12] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 162 MiB, GPU 394 MiB
+[trt] wrote models/mt5_pruned_onnx/encoder_bf16.engine (171.4 MB)

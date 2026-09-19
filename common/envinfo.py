@@ -33,10 +33,43 @@ def l4t_version():
         return "n/a (not a Jetson)"
 
 
+# Orin Nano 8GB with JetPack 6.2 "super" conf (/etc/nvpmodel/nvpmodel_p3767_0003_super.conf):
+# 0 = 15W (GPU <= 612 MHz), 1 = 25W (GPU <= 918 MHz, the conf's DEFAULT), 2 = MAXN_SUPER (uncapped),
+# 3 = 7W (GPU <= 408 MHz). The course boards are pinned to mode 0.
+_NVP_MODES = {"0": "15W", "1": "25W", "2": "MAXN_SUPER", "3": "7W"}
+
+
+def gpu_clock_caps():
+    """DVFS caps from devfreq (readable in the container). Latency scales ~1/gpu_max_MHz."""
+    out = {}
+    for k, path in (("gpu_max_MHz", "/sys/class/devfreq/17000000.gpu/max_freq"),
+                    ("gpu_min_MHz", "/sys/class/devfreq/17000000.gpu/min_freq"),
+                    ("cpu_max_MHz", "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq")):
+        try:
+            with open(path) as f:
+                v = float(f.read().strip())
+            out[k] = v / 1e6 if k.startswith("gpu") else v / 1e3
+        except (OSError, ValueError):
+            pass
+    return out
+
+
 def nvpmodel_mode():
     # `nvpmodel -q` may need sudo on some images; we only read, never set.
     out = _run(["nvpmodel", "-q"]) or _run(["sudo", "-n", "nvpmodel", "-q"])
-    return " ".join(out.split()) if out else "unknown (try: sudo nvpmodel -q)"
+    if out:
+        return " ".join(out.split())
+    # Inside a container (no nvpmodel binary) the host's status file can be bind-mounted read-only:
+    # `pmode:0000` -> mode 0. jetson/run.sh mounts it.
+    try:
+        with open("/var/lib/nvpmodel/status") as f:
+            m = re.search(r"pmode:(\d+)", f.read())
+        if m:
+            mode = str(int(m.group(1)))
+            return f"mode {mode} ({_NVP_MODES.get(mode, '?')}) from /var/lib/nvpmodel/status"
+    except OSError:
+        pass
+    return "unknown (try: sudo nvpmodel -q)"
 
 
 def collect():
@@ -47,6 +80,7 @@ def collect():
         "l4t": l4t_version(),
         "nvpmodel": nvpmodel_mode(),
     }
+    info.update(gpu_clock_caps())
     try:
         import torch
         info["torch"] = torch.__version__

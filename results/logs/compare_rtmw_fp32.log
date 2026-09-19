@@ -1,0 +1,17 @@
+
+{
+  "n_frames": 20,
+  "simcc_max_abs_diff": 1.9788742065429688e-05,
+  "simcc_mean_abs_diff": 6.110389280772169e-07,
+  "keypoint_max_abs_diff_px": 0.0,
+  "keypoint_worst": {
+    "px": 0.0,
+    "frame": -1,
+    "keypoint": -1
+  },
+  "n_confident_keypoints": 2458,
+  "min_score": 0.3,
+  "keypoint_max_abs_diff_px_all_incl_unconfident": 0.0,
+  "score_max_abs_diff": 2.562999725341797e-06,
+  "PASS": true
+}
