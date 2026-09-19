@@ -375,3 +375,43 @@ Next in the Teammate queue: **P2** (FP16 engines for RTMW-l-m and RTMPose-x: `02
 --repeat 3` → `results/*_fp16_15W_power.json` rows), then the rest of section 2 of the guide. Run
 `python3 jetson/drop_file_cache.py` on the board before every build/engine load. Nothing is running
 on the board. Uncommitted: see `git status` (all of today's work).
+
+## Session 6 (2026-09-18, night) — P2 FP16 pose engines
+
+- **RTMW-l-m FP16** (`02_build_engine.py --fp16 --workspace-gb 1`, 534 s, 68.7 MB): 13.8 ms TRT,
+  19.7 ms total (40 fps end to end), 4.93 W, **127 mJ/frame**, Tj 50 C. Gate at `--simcc-atol 0.05
+  --kpt-atol-px 2`: simcc 0.039 (inside), keypoints max 6.50 px (outside) → FAIL. But every error is
+  an exact multiple of one simcc bin (2.17 image px here), 88.5 % of 2458 confident keypoints are
+  bit-exact, 99.8 % within 5 px. Re-gated at `--min-score 0.7`: worst error exactly one bin, 100 %
+  within 5 px. The max-px criterion is the wrong instrument for argmax decoding.
+- **RTMPose-x plain FP16 is unusable**: simcc 0.649, keypoint p90 130 px, 383 px worst.
+  New `task1_rtmpose/08_fp16_range_scan.py` (ONNX on ORT CPU with every intermediate exposed, peak
+  |activation| vs the FP16 max) found one cause in 376 tensors: the head's ScaleNorm sum of squares
+  `/mlp/mlp.0/ReduceSum` peaks at **142 293**, with `/mlp/mlp.0/Pow` at 23 565. The same scan over
+  RTMW's 398 tensors reports **zero** overflowing tensors, which is why its FP16 engine is fine.
+- **Mixed precision fixes it**: new `--fp32-layers <regex>` in `02_build_engine.py` /
+  `common/trt_runner.py` (sets `OBEY_PRECISION_CONSTRAINTS`, pins matching compute layers to FP32,
+  skips shape/constant/cast layers). `--fp32-layers 'mlp\.0'` pinned **7 of 465** layers: simcc
+  0.649 → 0.023, within-2 px 67.7 → 96.1 %, within-5 px 71.7 → 99.5 %, for 23.3 vs 22.7 ms and 264 vs
+  254 mJ/frame. Engine 132.3 MB. This is the RTMPose-x FP16 row to use.
+- **Clock caveat, new**: the governor drops the GPU as work gets lighter — FP32 RTMW ran at 598 MHz
+  mean over busy samples, FP16 RTMW at **310 MHz**, FP16 RTMPose-x at 413 MHz. Cross-precision
+  latency ratios are therefore understated; energy per frame is the robust comparison.
+- **Incident**: a bare `rsync board:results/ results/` overwrote `results/RESULTS.md` with the
+  board's stale copy and reverted the J2/J4/P1 write-ups. Recovered by replaying the edits out of the
+  session transcript. Added `jetson/pull_results.sh` (excludes `*.md` and `*.npz`) — use it, never a
+  bare rsync of `results/`. Root cause is that the board carries a full copy of the repo.
+- **Committed** `a33443d` (71 files): all of J2/J4/P1/P2-so-far plus the jetson/ tooling. Before
+  this the whole day existed only in one uncommitted working tree.
+
+### Session 6 checkpoint — where to pick up
+
+P2 is done and recorded (RESULTS.md Task 1 rows + the "P2: FP16 pose engines" note; PROJECT-GUIDE
+2.2). Pose stage now: **RTMW-l-m FP16, 19.7 ms/frame, 127 mJ/frame, 40 fps at 15 W**, vs 79.2 ms and
+733 mJ for the original RTMPose-x FP32 baseline.
+
+Next in the Teammate queue: **P3** (guide 2.3) — `data/openasl_fetch.py`, ≥5 test clips from distinct
+signers and ≥300 calibration frames from ≥5 signers into `data/calib_frames/`. Everything after it
+(P4 keypoint agreement, C7 pose→BLEU, INT8 calibration) is blocked on having more than 20 frames of
+one clip. Run `python3 jetson/drop_file_cache.py` before every board build/engine load, and pull with
+`jetson/pull_results.sh`.

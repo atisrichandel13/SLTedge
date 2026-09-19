@@ -44,6 +44,7 @@ not FP32. `common/trt_runner.py` now clears the flag for the FP32 baseline.
 | **RTMW-l-m 256x192 FP32 (TF32 off), 3x299 frames, 2026-09-18 (P1 baseline)** | `jetson-lpcv-03`, mode 0 (15W) | 598 mean over busy samples (governor 408–612; 306/353 at 612) | 6.1 | **25.6** | 1.2 | **33.0** | 6.53 | 3.62 | **275** | 123 | 60 | 51 |
 | **RTMW-l-m 256x192 FP16, 3x299 frames, 2026-09-18 (P2)** | `jetson-lpcv-03`, mode 0 (15W) | **310 mean** over busy samples (0.9 % at 612) | 4.7 | **13.8** | 1.2 | **19.7** | 4.93 | 3.59 | **127** | 34 | 53 | 50 |
 | RTMPose-x FP16 plain — **fails the gate** (head overflow), 3x299 frames, 2026-09-18 (P2) | `jetson-lpcv-03`, mode 0 (15W) | 414 mean over busy samples (1.8 % at 612) | 9.4 | 22.7 | 1.5 | 33.5 | 6.20 | 3.62 | 254 | 106 | 58 | 51 |
+| **RTMPose-x FP16 mixed** (head kept in FP32), 3x299 frames, 2026-09-18 (P2) | `jetson-lpcv-03`, mode 0 (15W) | 413 mean over busy samples (2.0 % at 612) | 10.2 | **23.3** | 1.5 | **35.0** | 6.15 | 3.60 | **264** | 110 | 58 | 51 |
 
 Raw: `results/rtmpose_fp32_15W_power.json`, `.csv` (lpcv-03 run, in the repo); logs in `results/logs/`.
 RTMW-l-m: `results/rtmw_fp32_15W_power.json`, `.csv`, `results/rtmw_trt_fp32.json`, reference
@@ -70,6 +71,7 @@ The two models behave completely differently.
 |---|---|---|---|---|---|---|---|---|
 | RTMW-l-m FP16 | 534 | 68.7 | 0.039 | 6.50 | 88.5 | 88.5 | 99.8 | **FAIL on px only** |
 | RTMPose-x FP16 plain | 631 | 117.1 | 0.649 | 383.0 | 40.8 | 67.7 | 71.7 | **FAIL, unusable** |
+| RTMPose-x FP16 mixed (7/465 layers FP32) | 629 | 132.3 | 0.023 | 20.2 | 65.0 | 96.1 | 99.5 | **FAIL on px only** |
 
 - **RTMW-l-m FP16 is usable; the 2 px gate is the wrong instrument.** Every keypoint error is an exact
   multiple of one simcc bin (0.5 crop px = 2.17 image px at this bbox scale): p50 0.0, p90 = p99 =
@@ -85,6 +87,20 @@ The two models behave completely differently.
   within 4× of it. One tensor in 376 saturates and takes the whole head with it (p90 error 130 px).
   The same scan over RTMW-l-m's 398 tensors finds **zero** overflowing or near-overflowing tensors,
   which is exactly why its FP16 engine is fine. Raw: `results/{rtmposex,rtmw}_fp16_range.json`.
+- **Pinning seven layers of 465 repairs RTMPose-x FP16.** `02_build_engine.py --fp16 --fp32-layers
+  'mlp\.0'` keeps the ScaleNorm block in FP32 under `OBEY_PRECISION_CONSTRAINTS` and leaves the rest
+  of the network in half precision. Simcc error falls 0.649 → **0.023** (inside the 0.05 tolerance),
+  keypoints within 2 px go 67.7 → **96.1 %**, within 5 px 71.7 → **99.5 %**, and the worst remaining
+  error sits on a keypoint whose reference score is 0.357, i.e. right at the 0.3 confidence floor.
+  Engine 132.3 MB vs 117.1 MB plain FP16 and 231 MB FP32; build time is unchanged at ~630 s. Cost of
+  the repair at runtime: **23.3 ms vs 22.7 ms** TRT time and 264 vs 254 mJ/frame, under 3 %. So the
+  whole FP16 failure was two tensors, and the fix is nearly free. **This is the RTMPose-x FP16 row to
+  use**; the plain FP16 row is kept only as the negative result.
+- **Raising the confidence floor removes RTMW's tail entirely.** Re-gating RTMW-l-m FP16 at
+  `--min-score 0.7` (1962 keypoints): worst error **2.17 px = exactly one simcc bin**, p90 0.0,
+  everything within 5 px, 91.2 % bit-exact. The 6.50 px worst case at the 0.3 floor was three bins on
+  a 0.58-score keypoint. A keypoint the model is unsure about has a flat heatmap whose argmax moves
+  on rounding noise, which is a property of argmax decoding, not of FP16.
 - **Latency comparisons across precisions need the clock column.** The governor drops the GPU as the
   work gets lighter: FP32 RTMW ran at 598 MHz mean over busy samples (86 % of them at the 612 MHz
   cap), FP16 RTMW at **310 MHz** (0.9 % at the cap) and FP16 RTMPose-x at 414 MHz. So RTMW's
@@ -92,6 +108,21 @@ The two models behave completely differently.
   speedup is larger, and the honest headline is the energy: **275 → 127 mJ/frame, 2.2×**, average
   power 6.5 → 4.9 W, Tj 50 °C. End to end RTMW FP16 is 19.7 ms/frame = 40 fps, the first pose
   configuration in this project that clears the 30 fps source rate at 15 W with headroom.
+- **Where P2 leaves the pose stage.** RTMW-l-m FP16 is the configuration to carry forward: 19.7 ms
+  end to end, 127 mJ/frame, 40 fps at 15 W, against 79.2 ms and 733 mJ for the original RTMPose-x
+  FP32 baseline. That is **4.0× the frame rate for 5.8× less energy per frame**, and one 10 s
+  sentence costs 38 J of pose extraction instead of 219 J. What is *not* yet established is accuracy
+  in the only units that matter for this project: these gates compare engines against their own FP32
+  reference on 20 frames of one clip, and say nothing about BLEU. P3 (clips from several signers) and
+  the pose→BLEU path decide whether FP16's argmax flips cost translation quality.
+
+**On the gate itself.** Both FP16 engines are reported as FAIL above, and both verdicts come from a
+single keypoint. The criterion is a max over per-keypoint pixel error, which one argmax flip on a
+flat heatmap saturates, so the number that fails the gate is the number least related to pose
+quality. The distribution columns were added to `06_compare_trt.py` for exactly this reason. The
+pass criterion has deliberately not been loosened to match: P4's `07_kpt_agreement.py` over full
+clips is the intended replacement, and loosening a gate to make a result pass, before the better
+measurement exists, is how a project talks itself into a regression.
 
 **Second-board reproduction and the 15W/25W discrepancy.** The same ONNX, the same script and the same
 TensorRT 10.11 on `jetson-lpcv-03` give 66.7 ms TRT time vs Atisri's 44.4 ms, at 8.2 W vs 11.6 W. The

@@ -1,0 +1,31 @@
+
+{
+  "n_frames": 20,
+  "simcc_max_abs_diff": 0.03925800323486328,
+  "simcc_mean_abs_diff": 0.001802943197152028,
+  "keypoint_max_abs_diff_px": 2.16796875,
+  "keypoint_worst": {
+    "px": 2.16796875,
+    "frame": 0,
+    "keypoint": 7,
+    "ref_score": 0.8587925434112549
+  },
+  "n_confident_keypoints": 1962,
+  "min_score": 0.7,
+  "keypoint_max_abs_diff_px_all_incl_unconfident": 138.75,
+  "score_max_abs_diff": 0.006485342979431152,
+  "keypoint_px_percentiles": {
+    "p50": 0.0,
+    "p90": 0.0,
+    "p99": 2.16796875,
+    "p99.9": 2.16796875
+  },
+  "keypoint_frac_within_px": {
+    "0.5px": 0.9118246687054027,
+    "1px": 0.9118246687054027,
+    "2px": 0.9118246687054027,
+    "5px": 1.0
+  },
+  "keypoint_n_over_atol": 173,
+  "PASS": false
+}
