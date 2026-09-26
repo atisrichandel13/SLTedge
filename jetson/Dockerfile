@@ -20,6 +20,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 # numpy stays <2 for the NVIDIA torch/tensorrt python bindings (SESSION-LOG §0).
 # onnxruntime = CPU wheel, only for off-GPU verification of ONNX graphs.
+# portalocker + rouge are imported by the vendored unisign/external_metrics/sacrebleu.py and
+# unisign/metrics.py; without them eval_openasl.py dies at import, before any inference.
 RUN python3 -m pip install --no-cache-dir \
         "numpy<2" \
         "opencv-python-headless>=4.8" \
@@ -29,7 +31,10 @@ RUN python3 -m pip install --no-cache-dir \
         sentencepiece \
         protobuf \
         accelerate \
-    && python3 -c "import numpy, cv2, onnx, onnxruntime, transformers, sentencepiece; print('numpy', numpy.__version__, 'cv2', cv2.__version__, 'transformers', transformers.__version__)"
+        portalocker \
+        rouge \
+    && python3 -c "import numpy, cv2, onnx, onnxruntime, transformers, sentencepiece; print('numpy', numpy.__version__, 'cv2', cv2.__version__, 'transformers', transformers.__version__)" \
+    && python3 -c "import portalocker, rouge; print('portalocker', portalocker.__version__)"
 
 # Non-root user matching the host account. Explicit HOME/USER so getpass.getuser() and the
 # torch inductor cache never crash on a UID with no passwd entry (Jetson-access.md).
