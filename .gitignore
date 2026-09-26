@@ -17,6 +17,12 @@ data/openasl_ref_pose/*.pkl
 # ---- bulky results (keep the .json and RESULTS.md, drop raw dumps) ----
 results/*.csv
 results/*.npz
+# 46 MB of raw 133-keypoint dumps (4 configs x 5 clips): the input to 2.5 pose->BLEU, and
+# reproducible with jetson/p4_clips.sh. The derived results/kpt_agreement_*.json ARE tracked.
+results/kpts/
+# the OpenASL authors' own released pose pkls for our 5 test clips (35 MB), fetched by
+# data/openasl_pose_fetch.py; they are the ceiling row for the pose->BLEU comparison.
+data/openasl_5clip_pose/
 results/*.pkl
 
 # ---- python / envs / editors ----

@@ -126,7 +126,8 @@ measurement exists, is how a project talks itself into a regression.
 
 ### P4 Keypoint agreement vs the FP32 engine (`task1_rtmpose/07_kpt_agreement.py`, 2026-09-26)
 
-299 frames of the baseline clip, 133 keypoints each, judged only where the FP32 engine scores the
+Two samples: 299 frames of the baseline clip for all three FP16 variants, then 1510 frames over
+five signers for the two that survive. 133 keypoints each, judged only where the FP32 engine scores the
 joint at least 0.3 (the threshold `common/pose_to_unisign.py` gates joints on, so a joint below it
 is zeroed before the ST-GCN and its position cannot reach the translation). Distance is Euclidean,
 unlike `06_compare_trt.py`'s per-axis max. `unisign_used` is the 69 of 133 keypoints Uni-Sign's
@@ -150,13 +151,26 @@ pose-only path actually consumes.
 | | unisign_used | 18722 | 48.3 % | 81.7 % | 99.3 % | 1.44 | 2.05 | 14.9 | 108.4 |
 | | all | 34347 | 65.5 % | 89.7 % | 99.6 % | 0.00 | 2.04 | 11.7 | 108.4 |
 
-- **The 1 px and 2 px columns are not two measurements, they are one bin apart.** A simcc head
-  decodes by argmax over bins, so an error is a whole number of bins: 2.17 image px for RTMW (192-wide
-  crop) and 1.45 px for RTMPose-x (288-wide crop) at this clip's bbox scale. For RTMW one bin exceeds
-  2 px, so the ≤1 px and ≤2 px columns are *identical by construction* — every disagreeing keypoint
-  is at least one bin out. For RTMPose-x the ≤1 px column counts bit-exact agreement only and ≤2 px
-  counts "within one bin". These columns must be read against the bin size, not as absolute accuracy,
-  and the 5 px column is the only one comparable across the two models.
+- **The 1 px and 2 px columns are not two measurements, they are one bin apart — and the bin is not a
+  constant.** A simcc head decodes by argmax over bins, so an error is a whole number of bins, and one
+  bin in image pixels is `max(crop_w, crop_h × 0.75) × 1.25 / (input_w × simcc_split_ratio)`: it scales
+  with the signer's bbox. Measuring the smallest non-zero error per clip recovers exactly that bin,
+  and it varies by 43 % across the five clips:
+
+| clip | crop | RTMW bin | RTMW ≤2 px | RTMPose-x bin | RTMPose-x ≤2 px |
+|---|---|---:|---:|---:|---:|
+| ImwA3Ctckfk | 548×720 | 1.78 px | 99.2 % | 1.18 px | 98.2 % |
+| UoU3ZSuTef4 | 754×720 | **2.45 px** | **86.5 %** | 1.63 px | 88.9 % |
+| ZdEwfVNtSmw | 530×720 | 1.75 px | 99.4 % | 1.17 px | 98.4 % |
+| ixq65EiuJ_c | 644×720 | **2.09 px** | **87.9 %** | 1.39 px | 98.1 % |
+| y7KIrON1uco | 502×702 | 1.71 px | 99.4 % | 1.14 px | 98.2 % |
+
+  RTMW's ≤2 px column reads 99.2–99.4 % on the three clips whose bin is under 2 px and 86.5–87.9 % on
+  the two whose bin is over it. That is a 13-point swing produced by bbox geometry alone, with no
+  difference in numerical accuracy — pooling the clips (the 94.00 % in the table above) averages the
+  two regimes and means nothing. **The ≤5 px column is the only comparable one**, and for a principled
+  reason: the largest bin over all five clips and both models is 2.45 px, so 5 px is "within two bins"
+  everywhere, uniformly. Any future threshold must be justified in bins, not pixels.
 - **Mixed precision repairs the face branch, which plain FP16 destroys.** Plain FP16 RTMPose-x agrees
   with its own FP32 engine on under half of confident face keypoints, with a *median* error of 108 px
   — the head's ScaleNorm overflow (P2) is not a tail effect there, it is the typical case. Pinning
@@ -180,11 +194,39 @@ pose-only path actually consumes.
   gate also failed for a real reason, plain FP16 RTMPose-x, sits at 86.5 %, with the median face
   keypoint a hundred pixels out. One number separates a bin flip from an overflow; the gate's worst-case
   criterion did not.
-- **Caveat: one clip, one signer.** These 36 k keypoints all come from the same signer under the same
-  lighting, so they measure precision damage, not generalisation. The 1510-frame, five-signer version
-  is scripted as `jetson/p4_clips.sh` (rebuild engines from the staged ONNX, one dump per config per
-  clip into `results/kpts/`) and is pending board access; those dumps are also the input P5 needs
-  for pose→BLEU.
+- **Five signers, 1510 frames, confirms it.** `jetson/p4_clips.sh` rebuilt all four deployable engines
+  on the board and dumped one file per config per clip into `results/kpts/` (20 dumps). The verdict does
+  not move, and the ≤5 px figure for the keypoints Uni-Sign consumes improves slightly on the wider
+  sample: **99.81 % for RTMW FP16** (was 99.5 % on one clip) and **99.75 % for RTMPose-x FP16 mixed**
+  (was 99.3 %). Score-threshold crossings stay rare — 33 of 201 k keypoints (0.016 %) for RTMW and 27
+  (0.013 %) for mixed — and the confident fraction is unchanged to 0.1 pp in both. Plain FP16
+  RTMPose-x was excluded from this run as already-disqualified, so its numbers remain single-clip.
+
+| config | group | n conf | ≤1 px | ≤2 px | ≤5 px | p50 | p90 | p99.9 | max |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| RTMW-l-m FP16 | body | 19589 | 86.3 % | 94.2 % | 99.87 % | 0.00 | 1.76 | 5.3 | 7.8 |
+| | hands | 63343 | 83.4 % | 92.5 % | 99.69 % | 0.00 | 1.78 | 7.4 | 122.7 |
+| | face | 102680 | 91.8 % | 97.1 % | 100.00 % | 0.00 | 0.00 | 2.5 | 3.5 |
+| | feet | 1527 | 80.0 % | 88.5 % | 98.89 % | 0.00 | 2.45 | 12.3 | 58.0 |
+| | unisign_used | 104113 | 86.1 % | 94.0 % | **99.81 %** | 0.00 | 1.76 | 6.9 | 122.7 |
+| | all | 187139 | 88.3 % | 95.1 % | 99.87 % | 0.00 | 1.72 | 5.5 | 122.7 |
+| RTMPose-x FP16 mixed | body | 19118 | 51.3 % | 93.5 % | 99.76 % | 0.00 | 1.68 | 5.9 | 12.8 |
+| | hands | 62604 | 44.3 % | 92.2 % | 99.61 % | 1.15 | 1.68 | 9.9 | 229.1 |
+| | face | 102680 | 86.8 % | 99.9 % | 100.00 % | 0.00 | 1.17 | 2.0 | 2.3 |
+| | feet | 30 | 40.0 % | 83.3 % | 90.00 % | 1.17 | 2.79 | 41.3 | 42.3 |
+| | unisign_used | 103301 | 56.1 % | 94.6 % | **99.75 %** | 0.00 | 1.65 | 7.3 | 229.1 |
+| | all | 184432 | 68.6 % | 96.6 % | 99.84 % | 0.00 | 1.63 | 5.9 | 229.1 |
+
+- **Hands remain the floor across all five signers, and the tail got worse, not better.** Hand
+  agreement is the lowest ≤5 px figure in both engines (99.69 % RTMW, 99.61 % mixed) and the worst
+  confident keypoint is a hand joint in both (122.7 px at ref score 0.337 for RTMW; 229.1 px at 0.470
+  for mixed, both on `UoU3ZSuTef4`). With five signers the max roughly doubles versus one clip, which
+  is what a tail driven by rare low-confidence argmax flips should do when the sample grows — further
+  evidence it is instability, not precision. This is the group P5's INT8 work has to be judged on.
+- **RTMPose-x barely sees feet: 30 confident foot keypoints against RTMW's 1527**, out of 9060
+  possible. It does not affect anything here, since feet are not among the 69 keypoints Uni-Sign
+  consumes, but it is a real behavioural difference between the two extractors and worth one line in
+  the report.
 
 **Second-board reproduction and the 15W/25W discrepancy.** The same ONNX, the same script and the same
 TensorRT 10.11 on `jetson-lpcv-03` give 66.7 ms TRT time vs Atisri's 44.4 ms, at 8.2 W vs 11.6 W. The

@@ -1,0 +1,1124 @@
+[p4] power mode: pmode:0000
+[p4] 4 config(s) x 5 clip(s)
+[p4] building models/rtmw/rtmw-l-m_256x192_fp32.engine
+[09/26/2026-22:25:42] [TRT] [I] [MemUsageChange] Init CUDA: CPU +14, GPU +0, now: CPU 135, GPU 2131 (MiB)
+[09/26/2026-22:25:43] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU +422, GPU +240, now: CPU 622, GPU 2418 (MiB)
+[trt] TF32 disabled for the FP32 baseline
+[trt] building models/rtmw/rtmw-l-m_256x192_fp32.engine (fp16=False, bf16=False, fp32_layers=None) ... this can take minutes on Orin Nano
+[09/26/2026-22:25:48] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[09/26/2026-22:27:35] [TRT] [I] Compiler backend is used during engine build.
+[09/26/2026-22:27:50] [TRT] [I] Detected 1 inputs and 2 output network tensors.
+[09/26/2026-22:27:53] [TRT] [I] Total Host Persistent Memory: 583392 bytes
+[09/26/2026-22:27:53] [TRT] [I] Total Device Persistent Memory: 150016 bytes
+[09/26/2026-22:27:53] [TRT] [I] Max Scratch Memory: 1464320 bytes
+[09/26/2026-22:27:53] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 348 steps to complete.
+[09/26/2026-22:27:53] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 36.0578ms to assign 7 blocks to 348 nodes requiring 6636032 bytes.
+[09/26/2026-22:27:53] [TRT] [I] Total Activation Memory: 6635520 bytes
+[09/26/2026-22:27:53] [TRT] [I] Total Weights Memory: 155484420 bytes
+[09/26/2026-22:27:53] [TRT] [I] Compiler backend is used during engine execution.
+[09/26/2026-22:27:53] [TRT] [I] Engine generation completed in 124.763 seconds.
+[09/26/2026-22:27:53] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 19 MiB, GPU 384 MiB
+[trt] wrote models/rtmw/rtmw-l-m_256x192_fp32.engine (159.0 MB)
+[p4] built in 139 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 347,
+  "wall_s": 14.652,
+  "fps_end_to_end": 23.68,
+  "preprocess_ms": {
+    "mean": 7.194,
+    "median": 7.182,
+    "p95": 7.278,
+    "min": 7.079,
+    "max": 8.631
+  },
+  "trt_ms": {
+    "mean": 26.159,
+    "median": 25.849,
+    "p95": 30.436,
+    "min": 25.762,
+    "max": 30.765
+  },
+  "postprocess_ms": {
+    "mean": 1.238,
+    "median": 1.228,
+    "p95": 1.299,
+    "min": 1.178,
+    "max": 2.241
+  },
+  "total_ms": {
+    "mean": 34.591,
+    "median": 34.273,
+    "p95": 38.822,
+    "min": 34.13,
+    "max": 39.276
+  }
+}
+[infer] wrote results/kpts/rtmw_fp32__ImwA3Ctckfk-00:06:30.466-00:06:42.000.json
+[p4] rtmw_fp32  ImwA3Ctckfk-00:06:30.466-00:06:42.000  23 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 255,
+  "wall_s": 11.986,
+  "fps_end_to_end": 21.28,
+  "preprocess_ms": {
+    "mean": 6.607,
+    "median": 6.855,
+    "p95": 6.957,
+    "min": 3.482,
+    "max": 8.354
+  },
+  "trt_ms": {
+    "mean": 30.143,
+    "median": 30.488,
+    "p95": 30.778,
+    "min": 25.724,
+    "max": 31.588
+  },
+  "postprocess_ms": {
+    "mean": 1.274,
+    "median": 1.273,
+    "p95": 1.419,
+    "min": 0.783,
+    "max": 2.277
+  },
+  "total_ms": {
+    "mean": 38.024,
+    "median": 38.592,
+    "p95": 38.987,
+    "min": 31.333,
+    "max": 41.706
+  }
+}
+[infer] wrote results/kpts/rtmw_fp32__ixq65EiuJ_c-00:03:47.633-00:03:56.133.json
+[p4] rtmw_fp32  ixq65EiuJ_c-00:03:47.633-00:03:56.133  19 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 267,
+  "wall_s": 12.519,
+  "fps_end_to_end": 21.33,
+  "preprocess_ms": {
+    "mean": 6.442,
+    "median": 6.536,
+    "p95": 6.612,
+    "min": 4.222,
+    "max": 7.302
+  },
+  "trt_ms": {
+    "mean": 30.103,
+    "median": 30.461,
+    "p95": 30.598,
+    "min": 25.778,
+    "max": 30.807
+  },
+  "postprocess_ms": {
+    "mean": 1.262,
+    "median": 1.255,
+    "p95": 1.328,
+    "min": 0.853,
+    "max": 2.251
+  },
+  "total_ms": {
+    "mean": 37.807,
+    "median": 38.26,
+    "p95": 38.43,
+    "min": 33.517,
+    "max": 38.684
+  }
+}
+[infer] wrote results/kpts/rtmw_fp32__UoU3ZSuTef4-00:04:12.100-00:04:21.000.json
+[p4] rtmw_fp32  UoU3ZSuTef4-00:04:12.100-00:04:21.000  20 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 294,
+  "wall_s": 12.584,
+  "fps_end_to_end": 23.36,
+  "preprocess_ms": {
+    "mean": 7.139,
+    "median": 7.13,
+    "p95": 7.203,
+    "min": 7.053,
+    "max": 8.283
+  },
+  "trt_ms": {
+    "mean": 26.956,
+    "median": 25.87,
+    "p95": 30.512,
+    "min": 25.76,
+    "max": 30.753
+  },
+  "postprocess_ms": {
+    "mean": 1.229,
+    "median": 1.222,
+    "p95": 1.28,
+    "min": 1.15,
+    "max": 2.197
+  },
+  "total_ms": {
+    "mean": 35.324,
+    "median": 34.231,
+    "p95": 38.87,
+    "min": 33.997,
+    "max": 40.552
+  }
+}
+[infer] wrote results/kpts/rtmw_fp32__y7KIrON1uco-00:02:58.433-00:03:08.233.json
+[p4] rtmw_fp32  y7KIrON1uco-00:02:58.433-00:03:08.233  20 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 347,
+  "wall_s": 15.406,
+  "fps_end_to_end": 22.52,
+  "preprocess_ms": {
+    "mean": 7.118,
+    "median": 7.149,
+    "p95": 7.256,
+    "min": 4.607,
+    "max": 8.415
+  },
+  "trt_ms": {
+    "mean": 28.558,
+    "median": 30.365,
+    "p95": 30.66,
+    "min": 25.688,
+    "max": 31.112
+  },
+  "postprocess_ms": {
+    "mean": 1.248,
+    "median": 1.23,
+    "p95": 1.339,
+    "min": 1.025,
+    "max": 2.205
+  },
+  "total_ms": {
+    "mean": 36.924,
+    "median": 38.712,
+    "p95": 39.043,
+    "min": 33.994,
+    "max": 40.334
+  }
+}
+[infer] wrote results/kpts/rtmw_fp32__ZdEwfVNtSmw-00:00:19.533-00:00:31.100.json
+[p4] rtmw_fp32  ZdEwfVNtSmw-00:00:19.533-00:00:31.100  22 s
+[p4] building models/rtmw/rtmw-l-m_256x192_fp16.engine
+[09/26/2026-22:29:48] [TRT] [I] [MemUsageChange] Init CUDA: CPU +14, GPU +0, now: CPU 135, GPU 2358 (MiB)
+[09/26/2026-22:29:49] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU +422, GPU +421, now: CPU 622, GPU 2845 (MiB)
+[trt] building models/rtmw/rtmw-l-m_256x192_fp16.engine (fp16=True, bf16=False, fp32_layers=None) ... this can take minutes on Orin Nano
+[09/26/2026-22:29:54] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[09/26/2026-22:37:46] [TRT] [I] Compiler backend is used during engine build.
+[09/26/2026-22:38:30] [TRT] [I] Detected 1 inputs and 2 output network tensors.
+[09/26/2026-22:38:38] [TRT] [I] Total Host Persistent Memory: 611152 bytes
+[09/26/2026-22:38:38] [TRT] [I] Total Device Persistent Memory: 1024 bytes
+[09/26/2026-22:38:38] [TRT] [I] Max Scratch Memory: 732160 bytes
+[09/26/2026-22:38:38] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 191 steps to complete.
+[09/26/2026-22:38:38] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 16.9193ms to assign 7 blocks to 191 nodes requiring 2438656 bytes.
+[09/26/2026-22:38:38] [TRT] [I] Total Activation Memory: 2438144 bytes
+[09/26/2026-22:38:38] [TRT] [I] Total Weights Memory: 64903296 bytes
+[09/26/2026-22:38:38] [TRT] [I] Compiler backend is used during engine execution.
+[09/26/2026-22:38:38] [TRT] [I] Engine generation completed in 524.307 seconds.
+[09/26/2026-22:38:38] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 10 MiB, GPU 108 MiB
+[trt] wrote models/rtmw/rtmw-l-m_256x192_fp16.engine (68.4 MB)
+[p4] built in 537 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 347,
+  "wall_s": 9.636,
+  "fps_end_to_end": 36.01,
+  "preprocess_ms": {
+    "mean": 5.78,
+    "median": 6.224,
+    "p95": 6.86,
+    "min": 3.776,
+    "max": 8.299
+  },
+  "trt_ms": {
+    "mean": 14.044,
+    "median": 14.191,
+    "p95": 14.34,
+    "min": 12.848,
+    "max": 26.01
+  },
+  "postprocess_ms": {
+    "mean": 1.346,
+    "median": 1.343,
+    "p95": 1.48,
+    "min": 0.92,
+    "max": 4.113
+  },
+  "total_ms": {
+    "mean": 21.17,
+    "median": 21.735,
+    "p95": 22.577,
+    "min": 17.794,
+    "max": 38.421
+  }
+}
+[infer] wrote results/kpts/rtmw_fp16__ImwA3Ctckfk-00:06:30.466-00:06:42.000.json
+[p4] rtmw_fp16  ImwA3Ctckfk-00:06:30.466-00:06:42.000  15 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 255,
+  "wall_s": 7.169,
+  "fps_end_to_end": 35.57,
+  "preprocess_ms": {
+    "mean": 5.349,
+    "median": 5.576,
+    "p95": 6.07,
+    "min": 3.659,
+    "max": 6.868
+  },
+  "trt_ms": {
+    "mean": 13.971,
+    "median": 14.201,
+    "p95": 14.368,
+    "min": 7.307,
+    "max": 14.584
+  },
+  "postprocess_ms": {
+    "mean": 1.288,
+    "median": 1.294,
+    "p95": 1.49,
+    "min": 0.853,
+    "max": 2.113
+  },
+  "total_ms": {
+    "mean": 20.609,
+    "median": 21.052,
+    "p95": 21.751,
+    "min": 15.3,
+    "max": 22.318
+  }
+}
+[infer] wrote results/kpts/rtmw_fp16__ixq65EiuJ_c-00:03:47.633-00:03:56.133.json
+[p4] rtmw_fp16  ixq65EiuJ_c-00:03:47.633-00:03:56.133  13 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 267,
+  "wall_s": 7.587,
+  "fps_end_to_end": 35.19,
+  "preprocess_ms": {
+    "mean": 5.347,
+    "median": 5.66,
+    "p95": 6.23,
+    "min": 3.565,
+    "max": 6.864
+  },
+  "trt_ms": {
+    "mean": 13.996,
+    "median": 14.243,
+    "p95": 14.483,
+    "min": 7.561,
+    "max": 14.855
+  },
+  "postprocess_ms": {
+    "mean": 1.315,
+    "median": 1.322,
+    "p95": 1.498,
+    "min": 0.996,
+    "max": 2.001
+  },
+  "total_ms": {
+    "mean": 20.657,
+    "median": 21.042,
+    "p95": 22.028,
+    "min": 14.81,
+    "max": 22.964
+  }
+}
+[infer] wrote results/kpts/rtmw_fp16__UoU3ZSuTef4-00:04:12.100-00:04:21.000.json
+[p4] rtmw_fp16  UoU3ZSuTef4-00:04:12.100-00:04:21.000  13 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 294,
+  "wall_s": 8.537,
+  "fps_end_to_end": 34.44,
+  "preprocess_ms": {
+    "mean": 6.659,
+    "median": 6.683,
+    "p95": 6.81,
+    "min": 5.715,
+    "max": 7.304
+  },
+  "trt_ms": {
+    "mean": 14.035,
+    "median": 14.113,
+    "p95": 14.216,
+    "min": 12.986,
+    "max": 25.027
+  },
+  "postprocess_ms": {
+    "mean": 1.355,
+    "median": 1.334,
+    "p95": 1.451,
+    "min": 1.084,
+    "max": 4.375
+  },
+  "total_ms": {
+    "mean": 22.049,
+    "median": 22.15,
+    "p95": 22.379,
+    "min": 20.858,
+    "max": 33.088
+  }
+}
+[infer] wrote results/kpts/rtmw_fp16__y7KIrON1uco-00:02:58.433-00:03:08.233.json
+[p4] rtmw_fp16  y7KIrON1uco-00:02:58.433-00:03:08.233  15 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 347,
+  "wall_s": 9.737,
+  "fps_end_to_end": 35.64,
+  "preprocess_ms": {
+    "mean": 5.835,
+    "median": 6.245,
+    "p95": 6.827,
+    "min": 3.792,
+    "max": 7.487
+  },
+  "trt_ms": {
+    "mean": 14.097,
+    "median": 14.196,
+    "p95": 14.376,
+    "min": 7.405,
+    "max": 26.917
+  },
+  "postprocess_ms": {
+    "mean": 1.369,
+    "median": 1.351,
+    "p95": 1.493,
+    "min": 0.867,
+    "max": 2.876
+  },
+  "total_ms": {
+    "mean": 21.301,
+    "median": 21.896,
+    "p95": 22.558,
+    "min": 15.072,
+    "max": 36.735
+  }
+}
+[infer] wrote results/kpts/rtmw_fp16__ZdEwfVNtSmw-00:00:19.533-00:00:31.100.json
+[p4] rtmw_fp16  ZdEwfVNtSmw-00:00:19.533-00:00:31.100  16 s
+[p4] building models/rtmpose-x_fp32.engine
+[09/26/2026-22:39:58] [TRT] [I] [MemUsageChange] Init CUDA: CPU +14, GPU +0, now: CPU 135, GPU 2259 (MiB)
+[09/26/2026-22:39:59] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU +421, GPU +419, now: CPU 621, GPU 2746 (MiB)
+[trt] TF32 disabled for the FP32 baseline
+[trt] building models/rtmpose-x_fp32.engine (fp16=False, bf16=False, fp32_layers=None) ... this can take minutes on Orin Nano
+[09/26/2026-22:40:05] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[09/26/2026-22:42:08] [TRT] [I] Compiler backend is used during engine build.
+[09/26/2026-22:42:23] [TRT] [I] Detected 1 inputs and 2 output network tensors.
+[09/26/2026-22:42:26] [TRT] [I] Total Host Persistent Memory: 555552 bytes
+[09/26/2026-22:42:26] [TRT] [I] Total Device Persistent Memory: 335360 bytes
+[09/26/2026-22:42:26] [TRT] [I] Max Scratch Memory: 1624064 bytes
+[09/26/2026-22:42:26] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 328 steps to complete.
+[09/26/2026-22:42:26] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 22.9005ms to assign 6 blocks to 328 nodes requiring 24330752 bytes.
+[09/26/2026-22:42:26] [TRT] [I] Total Activation Memory: 24330240 bytes
+[09/26/2026-22:42:26] [TRT] [I] Total Weights Memory: 256633624 bytes
+[09/26/2026-22:42:26] [TRT] [I] Compiler backend is used during engine execution.
+[09/26/2026-22:42:26] [TRT] [I] Engine generation completed in 141.432 seconds.
+[09/26/2026-22:42:26] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 31 MiB, GPU 384 MiB
+[trt] wrote models/rtmpose-x_fp32.engine (259.3 MB)
+[p4] built in 154 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 384, 288) DataType.FLOAT
+  output simcc_x                                  (1, 133, 576) DataType.FLOAT
+  output simcc_y                                  (1, 133, 768) DataType.FLOAT
+{
+  "n_frames": 347,
+  "wall_s": 30.423,
+  "fps_end_to_end": 11.41,
+  "preprocess_ms": {
+    "mean": 12.173,
+    "median": 12.295,
+    "p95": 13.666,
+    "min": 7.024,
+    "max": 14.441
+  },
+  "trt_ms": {
+    "mean": 65.688,
+    "median": 65.73,
+    "p95": 65.872,
+    "min": 65.173,
+    "max": 66.035
+  },
+  "postprocess_ms": {
+    "mean": 1.568,
+    "median": 1.544,
+    "p95": 1.64,
+    "min": 1.08,
+    "max": 12.931
+  },
+  "total_ms": {
+    "mean": 79.429,
+    "median": 79.574,
+    "p95": 81.013,
+    "min": 74.378,
+    "max": 91.41
+  }
+}
+[infer] wrote results/kpts/rtmposex_fp32__ImwA3Ctckfk-00:06:30.466-00:06:42.000.json
+[p4] rtmposex_fp32  ImwA3Ctckfk-00:06:30.466-00:06:42.000  40 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 384, 288) DataType.FLOAT
+  output simcc_x                                  (1, 133, 576) DataType.FLOAT
+  output simcc_y                                  (1, 133, 768) DataType.FLOAT
+{
+  "n_frames": 255,
+  "wall_s": 22.299,
+  "fps_end_to_end": 11.44,
+  "preprocess_ms": {
+    "mean": 10.75,
+    "median": 10.907,
+    "p95": 11.227,
+    "min": 7.021,
+    "max": 12.891
+  },
+  "trt_ms": {
+    "mean": 65.809,
+    "median": 65.838,
+    "p95": 66.017,
+    "min": 65.3,
+    "max": 66.263
+  },
+  "postprocess_ms": {
+    "mean": 1.537,
+    "median": 1.54,
+    "p95": 1.635,
+    "min": 1.033,
+    "max": 2.71
+  },
+  "total_ms": {
+    "mean": 78.096,
+    "median": 78.286,
+    "p95": 78.72,
+    "min": 74.156,
+    "max": 81.095
+  }
+}
+[infer] wrote results/kpts/rtmposex_fp32__ixq65EiuJ_c-00:03:47.633-00:03:56.133.json
+[p4] rtmposex_fp32  ixq65EiuJ_c-00:03:47.633-00:03:56.133  31 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 384, 288) DataType.FLOAT
+  output simcc_x                                  (1, 133, 576) DataType.FLOAT
+  output simcc_y                                  (1, 133, 768) DataType.FLOAT
+{
+  "n_frames": 267,
+  "wall_s": 23.163,
+  "fps_end_to_end": 11.53,
+  "preprocess_ms": {
+    "mean": 10.256,
+    "median": 10.577,
+    "p95": 10.855,
+    "min": 6.828,
+    "max": 13.649
+  },
+  "trt_ms": {
+    "mean": 65.78,
+    "median": 65.817,
+    "p95": 65.979,
+    "min": 65.281,
+    "max": 66.088
+  },
+  "postprocess_ms": {
+    "mean": 1.564,
+    "median": 1.572,
+    "p95": 1.646,
+    "min": 1.122,
+    "max": 2.687
+  },
+  "total_ms": {
+    "mean": 77.6,
+    "median": 77.919,
+    "p95": 78.336,
+    "min": 74.051,
+    "max": 80.872
+  }
+}
+[infer] wrote results/kpts/rtmposex_fp32__UoU3ZSuTef4-00:04:12.100-00:04:21.000.json
+[p4] rtmposex_fp32  UoU3ZSuTef4-00:04:12.100-00:04:21.000  32 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 384, 288) DataType.FLOAT
+  output simcc_x                                  (1, 133, 576) DataType.FLOAT
+  output simcc_y                                  (1, 133, 768) DataType.FLOAT
+{
+  "n_frames": 294,
+  "wall_s": 25.223,
+  "fps_end_to_end": 11.66,
+  "preprocess_ms": {
+    "mean": 11.043,
+    "median": 11.199,
+    "p95": 12.404,
+    "min": 7.31,
+    "max": 14.459
+  },
+  "trt_ms": {
+    "mean": 65.728,
+    "median": 65.762,
+    "p95": 65.919,
+    "min": 65.224,
+    "max": 66.012
+  },
+  "postprocess_ms": {
+    "mean": 1.56,
+    "median": 1.572,
+    "p95": 1.654,
+    "min": 1.019,
+    "max": 2.749
+  },
+  "total_ms": {
+    "mean": 78.331,
+    "median": 78.522,
+    "p95": 79.824,
+    "min": 74.313,
+    "max": 81.742
+  }
+}
+[infer] wrote results/kpts/rtmposex_fp32__y7KIrON1uco-00:02:58.433-00:03:08.233.json
+[p4] rtmposex_fp32  y7KIrON1uco-00:02:58.433-00:03:08.233  33 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 384, 288) DataType.FLOAT
+  output simcc_x                                  (1, 133, 576) DataType.FLOAT
+  output simcc_y                                  (1, 133, 768) DataType.FLOAT
+{
+  "n_frames": 347,
+  "wall_s": 30.641,
+  "fps_end_to_end": 11.32,
+  "preprocess_ms": {
+    "mean": 12.702,
+    "median": 12.349,
+    "p95": 13.686,
+    "min": 8.567,
+    "max": 14.404
+  },
+  "trt_ms": {
+    "mean": 65.606,
+    "median": 65.631,
+    "p95": 65.796,
+    "min": 65.21,
+    "max": 65.903
+  },
+  "postprocess_ms": {
+    "mean": 1.496,
+    "median": 1.492,
+    "p95": 1.578,
+    "min": 1.084,
+    "max": 2.625
+  },
+  "total_ms": {
+    "mean": 79.805,
+    "median": 79.504,
+    "p95": 80.879,
+    "min": 75.64,
+    "max": 81.749
+  }
+}
+[infer] wrote results/kpts/rtmposex_fp32__ZdEwfVNtSmw-00:00:19.533-00:00:31.100.json
+[p4] rtmposex_fp32  ZdEwfVNtSmw-00:00:19.533-00:00:31.100  39 s
+[p4] building models/rtmpose-x_fp16mixed.engine
+[09/26/2026-22:45:32] [TRT] [I] [MemUsageChange] Init CUDA: CPU +14, GPU +0, now: CPU 135, GPU 2272 (MiB)
+[09/26/2026-22:45:34] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU +421, GPU +417, now: CPU 621, GPU 2755 (MiB)
+[trt] pinned 7/465 layers to FP32 (regex 'mlp\\.0')
+[trt] building models/rtmpose-x_fp16mixed.engine (fp16=True, bf16=False, fp32_layers=mlp\.0) ... this can take minutes on Orin Nano
+[09/26/2026-22:45:40] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[09/26/2026-22:54:10] [TRT] [I] Compiler backend is used during engine build.
+[09/26/2026-22:54:54] [TRT] [I] Detected 1 inputs and 2 output network tensors.
+[09/26/2026-22:55:05] [TRT] [I] Total Host Persistent Memory: 612192 bytes
+[09/26/2026-22:55:05] [TRT] [I] Total Device Persistent Memory: 7168 bytes
+[09/26/2026-22:55:05] [TRT] [I] Max Scratch Memory: 734208 bytes
+[09/26/2026-22:55:05] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 220 steps to complete.
+[09/26/2026-22:55:05] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 19.5001ms to assign 5 blocks to 220 nodes requiring 8863744 bytes.
+[09/26/2026-22:55:05] [TRT] [I] Total Activation Memory: 8863744 bytes
+[09/26/2026-22:55:05] [TRT] [I] Total Weights Memory: 113783712 bytes
+[09/26/2026-22:55:05] [TRT] [I] Compiler backend is used during engine execution.
+[09/26/2026-22:55:05] [TRT] [I] Engine generation completed in 565.02 seconds.
+[09/26/2026-22:55:05] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 16 MiB, GPU 202 MiB
+[trt] wrote models/rtmpose-x_fp16mixed.engine (117.3 MB)
+[p4] built in 580 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 384, 288) DataType.FLOAT
+  output simcc_x                                  (1, 133, 576) DataType.FLOAT
+  output simcc_y                                  (1, 133, 768) DataType.FLOAT
+{
+  "n_frames": 347,
+  "wall_s": 15.255,
+  "fps_end_to_end": 22.75,
+  "preprocess_ms": {
+    "mean": 11.031,
+    "median": 11.216,
+    "p95": 11.86,
+    "min": 6.16,
+    "max": 14.202
+  },
+  "trt_ms": {
+    "mean": 23.96,
+    "median": 23.258,
+    "p95": 32.358,
+    "min": 16.375,
+    "max": 33.634
+  },
+  "postprocess_ms": {
+    "mean": 1.51,
+    "median": 1.496,
+    "p95": 1.858,
+    "min": 1.031,
+    "max": 2.571
+  },
+  "total_ms": {
+    "mean": 36.501,
+    "median": 35.99,
+    "p95": 46.216,
+    "min": 24.686,
+    "max": 49.216
+  }
+}
+[infer] wrote results/kpts/rtmposex_fp16mixed__ImwA3Ctckfk-00:06:30.466-00:06:42.000.json
+[p4] rtmposex_fp16mixed  ImwA3Ctckfk-00:06:30.466-00:06:42.000  22 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 384, 288) DataType.FLOAT
+  output simcc_x                                  (1, 133, 576) DataType.FLOAT
+  output simcc_y                                  (1, 133, 768) DataType.FLOAT
+{
+  "n_frames": 255,
+  "wall_s": 12.218,
+  "fps_end_to_end": 20.87,
+  "preprocess_ms": {
+    "mean": 10.165,
+    "median": 10.892,
+    "p95": 11.451,
+    "min": 6.025,
+    "max": 12.46
+  },
+  "trt_ms": {
+    "mean": 27.154,
+    "median": 30.285,
+    "p95": 33.31,
+    "min": 16.089,
+    "max": 33.637
+  },
+  "postprocess_ms": {
+    "mean": 1.657,
+    "median": 1.543,
+    "p95": 1.977,
+    "min": 1.054,
+    "max": 2.596
+  },
+  "total_ms": {
+    "mean": 38.976,
+    "median": 39.156,
+    "p95": 46.597,
+    "min": 24.616,
+    "max": 46.974
+  }
+}
+[infer] wrote results/kpts/rtmposex_fp16mixed__ixq65EiuJ_c-00:03:47.633-00:03:56.133.json
+[p4] rtmposex_fp16mixed  ixq65EiuJ_c-00:03:47.633-00:03:56.133  19 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 384, 288) DataType.FLOAT
+  output simcc_x                                  (1, 133, 576) DataType.FLOAT
+  output simcc_y                                  (1, 133, 768) DataType.FLOAT
+{
+  "n_frames": 267,
+  "wall_s": 12.152,
+  "fps_end_to_end": 21.97,
+  "preprocess_ms": {
+    "mean": 10.048,
+    "median": 10.534,
+    "p95": 10.943,
+    "min": 5.614,
+    "max": 12.171
+  },
+  "trt_ms": {
+    "mean": 25.04,
+    "median": 23.322,
+    "p95": 33.214,
+    "min": 16.212,
+    "max": 33.871
+  },
+  "postprocess_ms": {
+    "mean": 1.576,
+    "median": 1.51,
+    "p95": 1.966,
+    "min": 1.044,
+    "max": 2.824
+  },
+  "total_ms": {
+    "mean": 36.664,
+    "median": 35.38,
+    "p95": 45.985,
+    "min": 24.309,
+    "max": 46.649
+  }
+}
+[infer] wrote results/kpts/rtmposex_fp16mixed__UoU3ZSuTef4-00:04:12.100-00:04:21.000.json
+[p4] rtmposex_fp16mixed  UoU3ZSuTef4-00:04:12.100-00:04:21.000  18 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 384, 288) DataType.FLOAT
+  output simcc_x                                  (1, 133, 576) DataType.FLOAT
+  output simcc_y                                  (1, 133, 768) DataType.FLOAT
+{
+  "n_frames": 294,
+  "wall_s": 12.698,
+  "fps_end_to_end": 23.15,
+  "preprocess_ms": {
+    "mean": 11.11,
+    "median": 11.209,
+    "p95": 11.98,
+    "min": 7.227,
+    "max": 14.297
+  },
+  "trt_ms": {
+    "mean": 23.311,
+    "median": 23.328,
+    "p95": 23.505,
+    "min": 16.626,
+    "max": 33.447
+  },
+  "postprocess_ms": {
+    "mean": 1.479,
+    "median": 1.48,
+    "p95": 1.567,
+    "min": 0.996,
+    "max": 2.587
+  },
+  "total_ms": {
+    "mean": 35.9,
+    "median": 36.02,
+    "p95": 36.42,
+    "min": 30.467,
+    "max": 48.248
+  }
+}
+[infer] wrote results/kpts/rtmposex_fp16mixed__y7KIrON1uco-00:02:58.433-00:03:08.233.json
+[p4] rtmposex_fp16mixed  y7KIrON1uco-00:02:58.433-00:03:08.233  20 s
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 384, 288) DataType.FLOAT
+  output simcc_x                                  (1, 133, 576) DataType.FLOAT
+  output simcc_y                                  (1, 133, 768) DataType.FLOAT
+{
+  "n_frames": 347,
+  "wall_s": 17.205,
+  "fps_end_to_end": 20.17,
+  "preprocess_ms": {
+    "mean": 12.287,
+    "median": 11.688,
+    "p95": 14.376,
+    "min": 11.122,
+    "max": 14.588
+  },
+  "trt_ms": {
+    "mean": 27.466,
+    "median": 30.437,
+    "p95": 33.356,
+    "min": 16.367,
+    "max": 34.6
+  },
+  "postprocess_ms": {
+    "mean": 1.652,
+    "median": 1.557,
+    "p95": 1.926,
+    "min": 1.357,
+    "max": 2.674
+  },
+  "total_ms": {
+    "mean": 41.405,
+    "median": 44.286,
+    "p95": 49.327,
+    "min": 29.179,
+    "max": 51.35
+  }
+}
+[infer] wrote results/kpts/rtmposex_fp16mixed__ZdEwfVNtSmw-00:00:19.533-00:00:31.100.json
+[p4] rtmposex_fp16mixed  ZdEwfVNtSmw-00:00:19.533-00:00:31.100  24 s
+[p4] done. On the Mac: jetson/pull_results.sh, then
+     python task1_rtmpose/07_kpt_agreement.py --ref results/kpts/rtmw_fp32__*.json \
+        --test results/kpts/rtmw_fp16__*.json --out results/kpt_agreement_rtmw_fp16_5signers.json

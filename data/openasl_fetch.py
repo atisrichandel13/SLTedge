@@ -83,7 +83,12 @@ def crop_xywh(bbox_norm, W, H):
     x1, y1 = min(W, x1), min(H, y1)
     if x1 - x0 < 16 or y1 - y0 < 16:
         raise RuntimeError(f"degenerate crop {x0},{y0},{x1},{y1} in {W}x{H}")
-    return [x0, y0, x1 - x0, y1 - y0]
+    # ffmpeg's crop filter silently rounds width/height DOWN to even for yuv420p chroma
+    # subsampling, so an odd request produces frames 1 px smaller than asked. Round here instead,
+    # or meta.json records a size the JPEGs do not have and anything normalising keypoints by it
+    # is off by ~0.1 % (found 2026-09-26, after the first five clips were already fetched).
+    w, h = (x1 - x0) & ~1, (y1 - y0) & ~1
+    return [x0, y0, w, h]
 
 
 def download_section(yt_dlp, yid, start_s, end_s, dest, height=720, cookies=None):

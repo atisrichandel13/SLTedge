@@ -4,7 +4,7 @@
  "crop_xywh": [
   666,
   0,
-  549,
+  548,
   720
  ],
  "bbox_norm": [
@@ -24,5 +24,6 @@
  "stride": 1,
  "start": "00:06:30.466",
  "end": "00:06:42.000",
- "duration_s": 11.534
+ "duration_s": 11.534,
+ "crop_note": "w/h are the delivered JPEG size; ffmpeg rounds crop down to even"
 }

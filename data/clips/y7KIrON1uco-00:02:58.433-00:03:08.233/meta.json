@@ -5,7 +5,7 @@
   697,
   0,
   502,
-  703
+  702
  ],
  "bbox_norm": [
   0.5443517345493123,
@@ -24,5 +24,6 @@
  "stride": 1,
  "start": "00:02:58.433",
  "end": "00:03:08.233",
- "duration_s": 9.8
+ "duration_s": 9.8,
+ "crop_note": "w/h are the delivered JPEG size; ffmpeg rounds crop down to even"
 }

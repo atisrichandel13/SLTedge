@@ -500,3 +500,66 @@ it tests generalisation across signers rather than precision damage; (c) **C7/P5
 pose→BLEU path, which consumes the same `results/kpts/` dumps through
 `common/pose_to_unisign.py` → `unisign/eval_openasl.py --poses`. Note that BLEU needs torch, which
 this Mac no longer has: rebuilding an env is a prerequisite for 2.5 either way.
+
+
+## Session 9 (2026-09-26) — split tunnel, the 5-signer P4 run, and a crop bug
+
+**The WireGuard split tunnel works.** A second tunnel `lab-split` with `AllowedIPs = 192.168.1.0/24`
+and no `DNS =` line gives board access and Claude access at once: `192.168.1.73/32 → utun12` while the
+default route stays on `en0`. The original profile was a full tunnel (`AllowedIPs = 0.0.0.0/0`), which
+moved the default route into the lab. This is why board access previously seemed to depend on the
+*order* of operations — sockets opened before the tunnel came up survived, because macOS caches the
+route on the socket, so an already-running Claude session kept working while a new one could not start.
+
+**P4 is complete over five signers.** Pushed `data/clips/` + `data/calib_frames/` (78 MB) and ran
+`jetson/p4_clips.sh` on `jetson-lpcv-03` at 15 W (`pmode:0000`): 4 engines built, 20 dumps, ~35 min.
+`results/kpt_agreement_{rtmw_fp16,rtmposex_fp16mixed}_5signers.json`. The verdict from the single-clip
+run holds and improves: **99.81 % (RTMW FP16) and 99.75 % (RTMPose-x FP16 mixed)** of Uni-Sign-consumed
+keypoints within 5 px of FP32, over 1510 frames and ~104 k confident keypoints per config.
+
+**The finding worth keeping: the simcc bin is bbox-dependent, so the ≤1/≤2 px columns are not a
+measurement of accuracy.** The smallest non-zero error in each clip *is* one bin, and it matches
+`max(crop_w, crop_h × 0.75) × 1.25 / (input_w × simcc_split_ratio)` to two decimals — 1.71–2.45 px for
+RTMW across the five clips, 1.14–1.63 px for RTMPose-x. RTMW's ≤2 px column therefore reads 99.2–99.4 %
+on the three clips whose bin is under 2 px and 86.5–87.9 % on the two whose bin is over it: a 13-point
+swing from signer framing alone. The ≤5 px column is the only comparable one, because 5 px is "within
+two bins" for every clip in both models (largest bin 2.45 px). Any future gate must be stated in bins.
+
+Hands stay the accuracy floor (99.69 % / 99.61 % within 5 px, lowest of every group) and the worst
+confident keypoint is a hand joint in both engines — 122.7 px at ref score 0.337 for RTMW, 229.1 px at
+0.470 for mixed. Both maxima roughly doubled versus the single clip, which is what a tail driven by
+rare low-confidence argmax flips does as the sample grows: more evidence it is instability, not
+precision. Also noted: RTMPose-x produces only 30 confident foot keypoints against RTMW's 1527 out of
+9060. Feet are not among the 69 keypoints Uni-Sign consumes, so nothing downstream changes.
+
+**Bug found and fixed: every clip's recorded crop was 1 px too large.** ffmpeg's `crop` filter rounds
+width and height *down* to even for yuv420p chroma subsampling, so all five clips with an odd dimension
+delivered JPEGs 1 px smaller than `meta.json` claimed. `pose_to_unisign.load_keypoints_json` normalises
+by exactly those numbers, so every coordinate would have been scaled by e.g. 754/755. Fixed in three
+places: `crop_xywh` now rounds with `& ~1` and records why, the five `meta.json` files and `index.json`
+were corrected in place, and `common/dumps_to_pkl.py` asserts normalised keypoints land within
+[0, 1.05] rather than trusting the metadata. The error is ~0.1 % and largely absorbed by Uni-Sign's own
+renormalisation, but nothing would have flagged it.
+
+**The authors' own poses are now a ceiling row.** `data/openasl_pose_fetch.py` pulled the released
+`pose-rtmpose-192` pkls for exactly our five test clips (35 MB, by HTTP range request out of the 32 GB
+8-part archive) into `data/openasl_5clip_pose/`. 2.5 can therefore compare our engines against *the
+authors' extractor on the same five sentences*, which isolates the cost of our pose front-end from the
+cost of the checkpoint. Caveat to carry into the write-up: BLEU over 5 sentences is far too noisy to
+read as an absolute score — the signal is the ordering against that ceiling plus the count of
+token-identical predictions between configs.
+
+Both dump sets are gitignored (`results/kpts/` 46 MB, `data/openasl_5clip_pose/` 35 MB); the derived
+`results/kpt_agreement_*.json` are tracked, and `jetson/p4_clips.sh` regenerates the dumps.
+
+**Session 9 checkpoint — where to pick up.** Committed. The board still holds the repo, both ONNX, the
+4 engines, `data/clips/`, `data/calib_frames/` and `data/openasl_5clip_pose/`; container `slt-work` is
+up; nothing is running. Next, in order: (a) **2.5 pose→BLEU on the board** — `common/dumps_to_pkl.py`
+per config, then `python -m unisign.eval_openasl --poses <dir> --labels data/openasl_labels/labels.test
+--ckpt weights/openasl_pose_only_slt.pth --mt5 weights/mt5-base --out results/eval_<config>.json`, plus
+`data/openasl_5clip_pose` as the ceiling row (this needs the LM weights staged on the board again);
+(b) **5.1 C6/M1**, the first on-device end-to-end translation and the Stage-0 baseline the week-4 gate
+(5.3) depends on; (c) **2.6 P5 INT8**, judged on hand agreement specifically, calibrated from the 360
+frames already on the board. Then `jetson/run.sh clean-large`. Still outstanding from session 8: the C9
+results protocol (3 runs mean ± std, ≥3 clips/signers, one 30-min sustained run) has never been applied
+retroactively to the existing latency rows, which are 3×299 frames of a single clip.
