@@ -452,3 +452,51 @@ that failed both FP16 engines on a single argmax flip. Then C7, the pose→BLEU 
 
 Board runs need the frames pushed (78 MB) and the engines rebuilt from the staged ONNX; delete both
 afterwards. Pull results with `jetson/pull_results.sh`, never a bare rsync.
+
+## Session 8 (2026-09-26) — P4 keypoint agreement
+
+The board was unreachable for this session: the lab WireGuard tunnel is a full tunnel
+(`AllowedIPs = 0.0.0.0/0`), so bringing it up moves the default route into the lab and Claude Code's
+own connection dies with it. Sockets opened *before* the tunnel comes up keep using `en0` because
+macOS caches the route on the socket, which is why it looked like the two could coexist if started in
+the right order. The fix is a split tunnel: `AllowedIPs = 192.168.1.0/24` and no `DNS =` line (we
+address the board by IP with `HostKeyAlias`, so lab DNS is not needed). Until that is set, board and
+Claude access are mutually exclusive.
+
+P4 did not need the board. The 299-frame keypoint dumps from the P1/P2 board runs are already in
+`results/` (`rtmw_trt_fp32`, `rtmw_trt_fp16`, `rtmpose_trt_fp32`, `rtmposex_trt_fp16`,
+`rtmposex_trt_fp16mixed`), which is 36 k confident keypoints per config against the 20 frames the
+gate used.
+
+- **`task1_rtmpose/07_kpt_agreement.py`** (new): pairs two keypoint dumps, Euclidean px error per
+  keypoint, masked by the reference score, reported per COCO-WholeBody group plus `unisign_used` (the
+  69 keypoints `common/pose_to_unisign.py` keeps). Also reports score-threshold crossings, since
+  Uni-Sign zeroes joints under 0.3 and a crossing changes the LM's input at 0 px of motion. Pure
+  numpy — the four Uni-Sign index slices are mirrored locally with an assert against the real module,
+  because `pose_to_unisign` imports torch and no env on this Mac has torch any more. `--ref`/`--test`
+  take several per-clip dumps and pair them on the clip id parsed out of `<config>__<vid>.json`.
+- **Results** (RESULTS.md "P4", three `results/kpt_agreement_*.json`): both engines the max-px gate
+  failed agree with FP32 on 99.5 % (RTMW FP16) and 99.3 % (RTMPose-x FP16 mixed) of consumed
+  keypoints within 5 px; plain FP16 RTMPose-x sits at 86.5 %, its face branch at 49.6 % with a median
+  error of 108 px. So the gate's single-keypoint verdict was hiding the difference between a bin flip
+  and a real overflow.
+- **Two findings worth carrying.** (1) The ≤1 px and ≤2 px columns are one simcc bin apart — 2.17 px
+  for RTMW, 1.45 px for RTMPose-x — so for RTMW they are identical by construction and only the 5 px
+  column compares across models. (2) Hand agreement is *identical* in the broken and repaired
+  RTMPose-x engines (98.87 % vs 98.93 %), so hand error is argmax instability on low-confidence
+  joints, not FP16 precision, and no fix so far touches it. Hands are the accuracy floor in every
+  config while the face is essentially exact — the wrong way round for sign language.
+- **`jetson/p4_clips.sh`** (new): board driver for the five-signer version. Rebuilds each engine from
+  the staged ONNX (the board keeps none between sessions), runs `03_infer_frames.py` per clip per
+  config into `results/kpts/<config>__<vid>.json`, drops the page cache before every build and load,
+  and skips dumps that already exist so it survives an interruption. Those dumps are also P5's input.
+
+**Session 8 checkpoint — where to pick up.** Committed; working tree clean. Nothing running, nothing
+left on the board (it was never reached). Next, in order: (a) set the WireGuard split tunnel, (b) push
+`data/clips/` (62 MB) to the board and run `jetson/p4_clips.sh`, then `jetson/pull_results.sh` and
+re-run `07_kpt_agreement.py` across all five clips into
+`results/kpt_agreement_<config>_5signers.json` — this is the only part of P4 still outstanding, and
+it tests generalisation across signers rather than precision damage; (c) **C7/P5** (guide 2.5), the
+pose→BLEU path, which consumes the same `results/kpts/` dumps through
+`common/pose_to_unisign.py` → `unisign/eval_openasl.py --poses`. Note that BLEU needs torch, which
+this Mac no longer has: rebuilding an env is a prerequisite for 2.5 either way.

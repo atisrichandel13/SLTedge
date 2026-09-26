@@ -124,6 +124,68 @@ pass criterion has deliberately not been loosened to match: P4's `07_kpt_agreeme
 clips is the intended replacement, and loosening a gate to make a result pass, before the better
 measurement exists, is how a project talks itself into a regression.
 
+### P4 Keypoint agreement vs the FP32 engine (`task1_rtmpose/07_kpt_agreement.py`, 2026-09-26)
+
+299 frames of the baseline clip, 133 keypoints each, judged only where the FP32 engine scores the
+joint at least 0.3 (the threshold `common/pose_to_unisign.py` gates joints on, so a joint below it
+is zeroed before the ST-GCN and its position cannot reach the translation). Distance is Euclidean,
+unlike `06_compare_trt.py`'s per-axis max. `unisign_used` is the 69 of 133 keypoints Uni-Sign's
+pose-only path actually consumes.
+
+| config | group | n conf | ≤1 px | ≤2 px | ≤5 px | p50 | p90 | p99.9 | max |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| RTMW-l-m FP16 | body | 3504 | 85.9 % | 85.9 % | 99.7 % | 0.00 | 2.17 | 7.6 | 36.9 |
+| | hands | 11603 | 78.0 % | 78.0 % | 99.2 % | 0.00 | 2.17 | 31.3 | 134.4 |
+| | face | 20332 | 91.9 % | 91.9 % | 100.0 % | 0.00 | 0.00 | 3.1 | 3.1 |
+| | unisign_used | 19609 | 82.7 % | 82.7 % | 99.5 % | 0.00 | 2.17 | 17.3 | 134.4 |
+| | all | 35999 | 86.6 % | 86.6 % | 99.7 % | 0.00 | 2.17 | 8.7 | 134.4 |
+| RTMPose-x FP16 plain | body | 3271 | 36.4 % | 70.4 % | 87.6 % | 1.44 | 122.9 | 351.8 | 352.4 |
+| | hands | 10740 | 32.5 % | 74.2 % | 98.9 % | 1.44 | 2.05 | 27.2 | 111.3 |
+| | face | 20332 | 41.0 % | 49.3 % | **49.6 %** | **108.40** | 323.8 | 500.8 | 507.2 |
+| | unisign_used | 18722 | 37.5 % | 69.4 % | 86.5 % | 1.44 | 124.3 | 464.0 | 506.4 |
+| | all | 34347 | 37.9 % | 59.1 % | 68.6 % | 1.45 | 144.5 | 465.0 | 507.2 |
+| RTMPose-x FP16 mixed | body | 3271 | 48.1 % | 81.2 % | 99.5 % | 1.44 | 2.05 | 8.8 | 39.1 |
+| | hands | 10740 | 31.6 % | 73.7 % | 98.9 % | 1.44 | 2.05 | 28.6 | 108.4 |
+| | face | 20332 | 86.2 % | 99.5 % | 100.0 % | 0.00 | 1.44 | 2.0 | 2.1 |
+| | unisign_used | 18722 | 48.3 % | 81.7 % | 99.3 % | 1.44 | 2.05 | 14.9 | 108.4 |
+| | all | 34347 | 65.5 % | 89.7 % | 99.6 % | 0.00 | 2.04 | 11.7 | 108.4 |
+
+- **The 1 px and 2 px columns are not two measurements, they are one bin apart.** A simcc head
+  decodes by argmax over bins, so an error is a whole number of bins: 2.17 image px for RTMW (192-wide
+  crop) and 1.45 px for RTMPose-x (288-wide crop) at this clip's bbox scale. For RTMW one bin exceeds
+  2 px, so the ≤1 px and ≤2 px columns are *identical by construction* — every disagreeing keypoint
+  is at least one bin out. For RTMPose-x the ≤1 px column counts bit-exact agreement only and ≤2 px
+  counts "within one bin". These columns must be read against the bin size, not as absolute accuracy,
+  and the 5 px column is the only one comparable across the two models.
+- **Mixed precision repairs the face branch, which plain FP16 destroys.** Plain FP16 RTMPose-x agrees
+  with its own FP32 engine on under half of confident face keypoints, with a *median* error of 108 px
+  — the head's ScaleNorm overflow (P2) is not a tail effect there, it is the typical case. Pinning
+  seven `mlp.0` layers takes face to 100 % within 5 px and body from 87.6 % to 99.5 %.
+- **The overflow damage is group-selective, and hands are not where it lands.** Hand agreement is
+  the same in the broken and the repaired engine (98.87 % vs 98.93 % within 5 px, p99.9 of 27 vs
+  29 px). So hand disagreement is not caused by the FP16 overflow at all; it is argmax instability on
+  low-confidence hand joints, and it survives every fix applied so far. Why the same corrupted head
+  wrecks face and body while leaving hands intact is not established here.
+- **Hands are the accuracy floor for every configuration**, at roughly 99 % within 5 px with a
+  p99.9 near 30 px, against 100 % and 3 px for the face in the two good engines. That is the opposite
+  of the ordering this project needs: hands carry most of the sign lexicon. The worst confident
+  keypoint in each good config is a hand joint scoring barely above threshold (RTMW: 134 px at score
+  0.403; mixed: 108 px at 0.438), i.e. a joint the FP32 engine is itself unsure of.
+- **Score-threshold crossings are rare but not zero**: 32 keypoints for RTMW FP16 (0.080 %), 9 for
+  mixed (0.023 %), 41 for plain FP16 (0.103 %). Each one changes the tensor the LM sees even at 0 px
+  of motion, because the joint is present in one engine's input and zeroed in the other's. The overall
+  confident fraction is stable to 0.1 pp, so no engine is systematically more or less certain.
+- **This replaces the max-px gate, and it changes the verdict.** Both engines that the gate failed
+  agree with FP32 on 99.3–99.5 % of the keypoints Uni-Sign consumes, within 5 px. The engine the
+  gate also failed for a real reason, plain FP16 RTMPose-x, sits at 86.5 %, with the median face
+  keypoint a hundred pixels out. One number separates a bin flip from an overflow; the gate's worst-case
+  criterion did not.
+- **Caveat: one clip, one signer.** These 36 k keypoints all come from the same signer under the same
+  lighting, so they measure precision damage, not generalisation. The 1510-frame, five-signer version
+  is scripted as `jetson/p4_clips.sh` (rebuild engines from the staged ONNX, one dump per config per
+  clip into `results/kpts/`) and is pending board access; those dumps are also the input P5 needs
+  for pose→BLEU.
+
 **Second-board reproduction and the 15W/25W discrepancy.** The same ONNX, the same script and the same
 TensorRT 10.11 on `jetson-lpcv-03` give 66.7 ms TRT time vs Atisri's 44.4 ms, at 8.2 W vs 11.6 W. The
 CSV shows the lpcv-03 GPU pinned at 612 MHz whenever it was busy, which is the nvpmodel 15W cap.
