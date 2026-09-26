@@ -20,7 +20,9 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from common.pose_to_unisign import load_keypoints_json, save_pkl  # noqa: E402
+import numpy as np  # noqa: E402
+
+from common.pose_to_unisign import THR, load_keypoints_json, save_pkl  # noqa: E402
 
 
 def main():
@@ -42,15 +44,27 @@ def main():
             raise SystemExit(f"no meta.json for {vid} (looked in {meta})")
         _, _, w, h = json.load(open(meta))["crop_xywh"]
         kps, scs, frames = load_keypoints_json(p, [w, h])
-        # A wrong crop size is silent in the pkl but shifts every coordinate, so check the
-        # normalised keypoints land in roughly [0,1] before writing.
-        mx = max(float(k[..., 0].max()) for k in kps); my = max(float(k[..., 1].max()) for k in kps)
-        if mx > 1.05 or my > 1.05:
-            raise SystemExit(f"{vid}: normalised keypoints reach {mx:.3f},{my:.3f} with crop {w}x{h} "
-                             f"-- crop size is wrong")
+        # A wrong crop size is silent in the pkl but rescales every coordinate, so sanity-check the
+        # normalised keypoints before writing. Note that coordinates outside [0,1] are NORMAL and must
+        # not be treated as an error: RTMPose decodes over a bbox padded 1.25x beyond the crop, so a
+        # joint at the edge can reach ~1.125, and the OpenASL authors' own released pkls for these same
+        # five clips span -0.031..1.218. Bounding the max is therefore useless as a scale check. What
+        # a wrong normaliser actually does is shift the whole distribution, so test that instead: over
+        # confident joints the authors' p99.9 sits at 0.67-0.99 per axis, and dividing by, say, the
+        # full frame width instead of the crop would drag it to ~0.3.
+        allk = np.concatenate(kps); alls = np.concatenate(scs) >= THR
+        lo, hi = [], []
+        for ax in (0, 1):
+            v = allk[..., ax][alls]
+            lo.append(float(np.percentile(v, 0.1))); hi.append(float(np.percentile(v, 99.9)))
+        if not all(0.5 <= t <= 1.25 for t in hi) or not all(-0.25 <= t <= 0.5 for t in lo):
+            raise SystemExit(
+                f"{vid}: confident keypoints span x {lo[0]:.3f}..{hi[0]:.3f} y {lo[1]:.3f}..{hi[1]:.3f} "
+                f"(0.1/99.9 pct) with crop {w}x{h} -- expected roughly 0..1, so the crop size is wrong")
         out = os.path.join(args.out, f"{vid}.pkl")
         save_pkl(out, kps, scs)
-        print(f"[c3] {vid}  {len(scs)} frames  crop {w}x{h}  max xy {mx:.3f},{my:.3f}  -> {out}")
+        print(f"[c3] {vid}  {len(scs)} frames  crop {w}x{h}  confident x {lo[0]:.3f}..{hi[0]:.3f} "
+              f"y {lo[1]:.3f}..{hi[1]:.3f}  -> {out}")
     print(f"[c3] {len(paths)} clips -> {args.out}")
 
 
