@@ -560,12 +560,24 @@ on the translation. RTMPose-x mixed precision is *not* neutral (3/5), which is t
 ≤5 px figure gave (99.81 % RTMW vs 99.75 % mixed), and the first sign that the keypoint metric predicts
 downstream behaviour.
 
-The unexpected result: **extractor match beats pose accuracy.** RTMW-l-m runs at 256×192, which is what
-the checkpoint was trained on (the authors' folder is literally `pose-rtmpose-192`); RTMPose-x runs at
-384×288. RTMW wins by 11.5 ROUGE-L (43.39 vs 31.94) and is the only engine to reproduce a ceiling
-prediction verbatim (1/5 vs 0/5). The larger, more accurate, 216 MB extractor translates *worse* because
-it is off-distribution for the frozen ST-GCN. **Front-end decided: RTMW-l-m FP16** — which is also the
-cheaper engine, so nothing is traded away.
+RTMW-l-m also beats RTMPose-x by 11.5 ROUGE-L (43.39 vs 31.94) and is the only engine to reproduce a
+ceiling prediction verbatim (1/5 vs 0/5) — **but Tushar caught that this conflicts with the paper**,
+which specifies RTMPose-x for the 133 keypoints, the same source as our index groups. Checked it two
+ways. (1) Measured the simcc grid in the authors' own released pkls: bbox span / bin is scale-free, our
+two engines recover 288/192 = 1.500 to within 2.6 % which validates the estimator, and the authors' poses
+come out at 1.008x our 192-wide engine and 0.655x our 288-wide one — so the *archive* the checkpoint
+consumes is 192-wide, agreeing with its `pose-rtmpose-192` folder name. The ratio conflates input width
+with split_ratio and bbox padding though, so a 288 model padded ~1.9x would also fit: best reading, not
+proof. Likely the paper describes their pipeline (CSL-News) while the distributed OpenASL poses were made
+at 192. (2) Ruled out a bug in our RTMPose-x: its FP32 engine matched PyTorch to 8e-6 at P1 and its
+per-group confidences track RTMW's (body 0.627 vs 0.715; face 100 % both; hands 98.4/99.1 vs 99.9/99.9).
+The 0.3 % vs 16.9 % feet gap is both models failing on feet either side of the 0.3 gate.
+
+**So the front-end is provisionally RTMW-l-m FP16, carried mainly on cost** (1.8x faster, 2x less energy
+than RTMPose-x FP16 mixed), not on a 5-sentence accuracy claim. I had written "front-end decided" off
+1/5 vs 0/5 ceiling matches, which cannot carry that weight in a report. The FP16 half is independent and
+solid. Settling it needs ~25 more clips: the authors' poses for all 976 test clips are already in
+`data/openasl_test_pose/`, so only the videos need fetching plus one board pass.
 
 Two things to hold on to. (1) **BLEU on 5 sentences is not usable**: the authors' own poses score 16.23
 BLEU-4 on this subset against 22.53–22.67 on the full 976-clip split with the same checkpoint and metric
@@ -587,10 +599,13 @@ failed round of five evals.
 **Session 9 checkpoint — where to pick up.** Committed. Board: repo + both ONNX + 4 engines +
 `data/clips/` + `data/calib_frames/` + `data/openasl_5clip_pose/` + `data/poses_*` + LM weights, 7.2 G,
 30 G free; container `slt-work` up; nothing running. **P4 and 2.5 are both closed.** Next, in order:
-(a) **5.1 C6/M1**, first on-device end-to-end translation (RTMW-l-m FP16 pose → pkl → LM in one process)
-— the Stage-0 baseline the week-4 gate (5.3) depends on, and now unambiguous about which pose engine to
-use; (b) **the author-style crop experiment** described above, which is cheap and would move every 2.5
-row; (c) **2.6 P5 INT8**, judged on hand agreement specifically (the group with no headroom) and on the
+(a) **settle the extractor question** with ~25 more clips, because the front-end choice currently rests on
+5 sentences and contradicts the paper (see above) — `data/openasl_fetch.py` for the videos, then one board
+pass repeating the 2.5 table; (b) **5.1 C6/M1**, first on-device end-to-end translation (pose → pkl → LM in
+one process) — the Stage-0 baseline the week-4 gate (5.3) depends on; note it can proceed on RTMW FP16
+regardless, since a later extractor switch changes one engine path and not the harness; (c) **the
+author-style crop experiment**, cheap and would move every 2.5 row — and worth doing *before* (a), since a
+crop mismatch may not penalise the two extractors equally; (d) **2.6 P5 INT8**, judged on hand agreement specifically (the group with no headroom) and on the
 5/5-identical-predictions bar RTMW FP16 just set, calibrated from the 360 frames already on the board.
 Then `jetson/run.sh clean-large`. Still outstanding from session 8: the C9 results protocol (3 runs
 mean ± std, ≥3 clips/signers, one 30-min sustained run) has never been applied retroactively to the

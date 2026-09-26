@@ -260,13 +260,48 @@ are exact and discrete.
   against RTMW's 99.81 %, and where its worst confident error was 229 px against RTMW's 123 px. So the
   keypoint metric and the translation agree on the ordering of the two engines, which is the first
   evidence that P4's ≤5 px figure actually predicts downstream behaviour.
-- **The big effect is not precision, it is extractor match — and the lower-resolution model wins.**
-  RTMW-l-m beats RTMPose-x by 11.5 ROUGE-L (43.39 vs 31.94) and is the only one of our engines to ever
-  reproduce a ceiling prediction exactly (1/5 vs 0/5). RTMW-l-m runs at 256×192, which is what the
-  checkpoint was trained on (the authors' archive folder is literally `pose-rtmpose-192`); RTMPose-x
-  runs at 384×288. The more accurate, higher-resolution, 216 MB extractor produces *worse* translation
-  than the 123 MB one because it is off-distribution for the frozen ST-GCN. **Matching the training
-  extractor dominates pose accuracy**, and that decides the front-end: RTMW-l-m FP16.
+- **RTMW-l-m beats RTMPose-x here by 11.5 ROUGE-L** (43.39 vs 31.94) and is the only one of our engines
+  to reproduce a ceiling prediction exactly (1/5 vs 0/5). The likely cause is extractor mismatch against
+  the frozen ST-GCN rather than pose quality, but see the contradiction below — **this is a provisional
+  reading on 5 sentences, not a settled result.**
+
+  **The Uni-Sign paper specifies RTMPose-x, which contradicts the archive.** The paper extracts 133
+  COCO-WholeBody keypoints with RTMPose-x from MMPose, and the four index groups in
+  `common/pose_to_unisign.py` come from it verbatim. So the paper-faithful extractor is the 384×288
+  RTMPose-x we are proposing to drop. Against that, the OpenASL poses the released checkpoint actually
+  consumes measure as 192-wide. Measuring the simcc grid in the authors' own released pkls (smallest
+  intra-frame coordinate gap = one bin; bbox span / bin is scale-free and equals
+  `input_w × split_ratio / padding`):
+
+| poses | span / bin | vs ours-192 | vs ours-288 |
+|---|---:|---:|---:|
+| ours, RTMW-l-m 256×192 | 291 | 1.000 | — |
+| ours, RTMPose-x 384×288 | 447 | 1.539 (theory 1.500 ✓) | 1.000 |
+| **authors' released OpenASL poses** | **293** | **1.008** | 0.655 |
+
+  The estimator is validated by our own two engines recovering 288/192 = 1.500 to within 2.6 %. The
+  authors' poses match a 192-wide extractor to 0.8 % and miss a 288-wide one by 35 %, which agrees with
+  their archive folder being named `pose-rtmpose-192`. **Caveat: the ratio conflates input width with
+  `simcc_split_ratio` and bbox padding**, so a 288-wide model padded ~1.9× would fit the same number;
+  192 is the best-supported reading, not a proof. Most likely the paper describes their pipeline
+  (notably for CSL-News, their own dataset) while the distributed OpenASL poses were produced at 192.
+  Since we use the released checkpoint **frozen**, what governs is the archive's distribution, not the
+  paper's prose — but anyone *training* a model should follow the paper and use RTMPose-x.
+- **Our RTMPose-x pipeline is not the problem, which was the obvious competing explanation.** Its FP32
+  engine matched its PyTorch checkpoint to 8e-6 at P1, and its per-group confidences track RTMW's
+  closely (body 0.627 vs 0.715 mean, face 100 % vs 100 % above threshold, hands 98.4/99.1 % vs
+  99.9/99.9 %). The one striking difference, 0.3 % vs 16.9 % of foot keypoints above threshold, is both
+  models failing on feet with RTMPose-x landing just under the 0.3 gate and RTMW just over it (means
+  0.136 vs 0.208); feet are outside the 69 keypoints Uni-Sign consumes. So RTMPose-x is extracting
+  correctly and is simply off-distribution for this checkpoint.
+- **Front-end: RTMW-l-m FP16, provisionally, and mostly on cost.** It is 1.8× faster and 2× more
+  energy-efficient than RTMPose-x FP16 mixed on the board (19.7 ms / 127 mJ vs 35.0 ms / 264 mJ, P2),
+  so it wins even at equal accuracy; the accuracy claim above only has to survive *not being much
+  worse*. The FP16 half of the decision is independent of all this and is solid, because 5/5 identical
+  predictions is a within-extractor comparison. **To settle the extractor question**, re-run this table
+  over ~25 more clips: the authors' poses for all 976 test clips are already in
+  `data/openasl_test_pose/`, so only the videos need fetching (`data/openasl_fetch.py`) plus one board
+  pass. 1/5 vs 0/5 ceiling matches cannot carry a front-end decision in the report.
 - **There is still a real gap to the ceiling: 6.3 BLEU-4 / 2.8 ROUGE-L, with only 1/5 predictions
   shared.** Two candidate causes, not yet separated. (a) Crop recipe: P3 crops the signer bbox at
   native resolution, the authors square/pad/resize to 224, and our confident keypoints consequently
@@ -338,7 +373,7 @@ scoring them raw gives a bogus 58.7 BLEU-4.
 
 976 test clips, 122 batches of 8, 5 min 05 s wall, 2.50 s/batch, peak GPU mem 6.1 GB. Poses = authors'
 released `openasl_pose_format` (archive folder is named `pose-rtmpose-192`, i.e. a 256x192
-RTMPose-family extractor, not the 384x288 RTMPose-x used for the Jetson FP32 row; see B2.1).
+RTMPose-family extractor, not the 384x288 RTMPose-x used for the Jetson FP32 row; measured in 2.5).
 Env: transformers 4.57.6, torch 2.11, deepspeed 0.16.3, ZeRO-2 eval path unchanged. Patches: dev-split
 eval skipped (dev poses not extracted), BLEURT skipped (no checkpoint). Predictions saved to Drive
 `unisign/eval_openasl_ours/`. Gap to paper (-0.14 BLEU-4) is within the loader's random frame
