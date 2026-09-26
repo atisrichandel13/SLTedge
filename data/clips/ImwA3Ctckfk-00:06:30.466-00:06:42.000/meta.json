@@ -1,0 +1,28 @@
+{
+ "vid": "ImwA3Ctckfk-00:06:30.466-00:06:42.000",
+ "yid": "ImwA3Ctckfk",
+ "crop_xywh": [
+  666,
+  0,
+  549,
+  720
+ ],
+ "bbox_norm": [
+  0.5203073996589297,
+  -0.11730614778226015,
+  0.9495620695749918,
+  1.1244222004199154
+ ],
+ "text": "The winter storm that slammed the Midwest, Northern Plains and Northeast has left brutally cold temperatures in its path.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 347,
+ "stride": 1,
+ "start": "00:06:30.466",
+ "end": "00:06:42.000",
+ "duration_s": 11.534
+}

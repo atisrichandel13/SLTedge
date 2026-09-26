@@ -1,0 +1,161 @@
+{
+ "split": "test",
+ "mode": "clips",
+ "requested": 5,
+ "n_ok": 5,
+ "n_failed": 0,
+ "signers": [
+  "UoU3ZSuTef4",
+  "ImwA3Ctckfk",
+  "ZdEwfVNtSmw",
+  "y7KIrON1uco",
+  "ixq65EiuJ_c"
+ ],
+ "total_frames": 1510,
+ "clips": [
+  {
+   "vid": "UoU3ZSuTef4-00:04:12.100-00:04:21.000",
+   "yid": "UoU3ZSuTef4",
+   "crop_xywh": [
+    478,
+    0,
+    755,
+    720
+   ],
+   "bbox_norm": [
+    0.37339899804857046,
+    -0.1964393979400928,
+    0.9636597227167201,
+    1.502666832749899
+   ],
+   "text": "Crews spent this holiday weekend battling wildfires in several states in the West.",
+   "split": "test",
+   "fps": 30.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 267,
+   "stride": 1,
+   "start": "00:04:12.100",
+   "end": "00:04:21.000",
+   "duration_s": 8.9
+  },
+  {
+   "vid": "ImwA3Ctckfk-00:06:30.466-00:06:42.000",
+   "yid": "ImwA3Ctckfk",
+   "crop_xywh": [
+    666,
+    0,
+    549,
+    720
+   ],
+   "bbox_norm": [
+    0.5203073996589297,
+    -0.11730614778226015,
+    0.9495620695749918,
+    1.1244222004199154
+   ],
+   "text": "The winter storm that slammed the Midwest, Northern Plains and Northeast has left brutally cold temperatures in its path.",
+   "split": "test",
+   "fps": 30.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 347,
+   "stride": 1,
+   "start": "00:06:30.466",
+   "end": "00:06:42.000",
+   "duration_s": 11.534
+  },
+  {
+   "vid": "ZdEwfVNtSmw-00:00:19.533-00:00:31.100",
+   "yid": "ZdEwfVNtSmw",
+   "crop_xywh": [
+    635,
+    0,
+    531,
+    720
+   ],
+   "bbox_norm": [
+    0.4964331953866141,
+    -0.10704238528297061,
+    0.9108692232767741,
+    1.1261676041537492
+   ],
+   "text": "After nine frantic days of searching, the Thai soccer team trapped in a cave has been found.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 347,
+   "stride": 1,
+   "start": "00:00:19.533",
+   "end": "00:00:31.100",
+   "duration_s": 11.567
+  },
+  {
+   "vid": "y7KIrON1uco-00:02:58.433-00:03:08.233",
+   "yid": "y7KIrON1uco",
+   "crop_xywh": [
+    697,
+    0,
+    502,
+    703
+   ],
+   "bbox_norm": [
+    0.5443517345493123,
+    -0.09380372353342444,
+    0.93674063763376,
+    0.9758590038512684
+   ],
+   "text": "Meteorologist say some areas might not get relief from the rain and floods until Friday afternoon.",
+   "split": "test",
+   "fps": 30.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 294,
+   "stride": 1,
+   "start": "00:02:58.433",
+   "end": "00:03:08.233",
+   "duration_s": 9.8
+  },
+  {
+   "vid": "ixq65EiuJ_c-00:03:47.633-00:03:56.133",
+   "yid": "ixq65EiuJ_c",
+   "crop_xywh": [
+    297,
+    0,
+    645,
+    720
+   ],
+   "bbox_norm": [
+    0.23173505128958286,
+    -0.20907297025718583,
+    0.7359323162298936,
+    1.2969982056196598
+   ],
+   "text": "When I moved to Texas one year and a half ago, this was my first artwork.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 255,
+   "stride": 1,
+   "start": "00:03:47.633",
+   "end": "00:03:56.133",
+   "duration_s": 8.5
+  }
+ ],
+ "failures": [],
+ "crop": "OpenASL bbox scaled to frame and clamped (no square/pad/resize)",
+ "height_cap": 720,
+ "seed": 0
+}

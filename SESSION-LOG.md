@@ -415,3 +415,40 @@ signers and ≥300 calibration frames from ≥5 signers into `data/calib_frames/
 (P4 keypoint agreement, C7 pose→BLEU, INT8 calibration) is blocked on having more than 20 frames of
 one clip. Run `python3 jetson/drop_file_cache.py` before every board build/engine load, and pull with
 `jetson/pull_results.sh`.
+
+## Session 7 (2026-09-26) — P3 data
+
+- New `data/openasl_fetch.py`. OpenASL is distributed by reference (YouTube id, time range, signer
+  bbox, sentence), so frames have to be fetched per clip. The script joins the release tsv with
+  `bbox-v1.0.json`, picks one clip per YouTube video (distinct video = signer proxy; OpenASL has no
+  signer field), downloads only that section with yt-dlp, crops and writes JPEG frames, and records
+  every skip with its reason.
+- **Crop recipe**: normalised bbox scaled to the frame and **clamped** to it, native resolution,
+  native fps. This matches `data/test_frames_meta.json` from the baseline clip, *not* OpenASL's own
+  `prep/crop_video.py`, which squares the box, black-pads the overflow and resizes to 224. We keep
+  the extra pixels because the pose models do their own affine and black padding would change the
+  input. Documented in the script header: change it for one clip and the rows stop comparing.
+- **Test clips**: 5/5 from 5 distinct videos, **1510 frames**, 62 MB, 0 failures — `UoU3ZSuTef4`,
+  `ImwA3Ctckfk`, `ZdEwfVNtSmw`, `y7KIrON1uco`, `ixq65EiuJ_c` (all 1280x720, ~30 fps). With the
+  baseline `Ads-4j06eJY` clip that is **6 signers**. Visual check on two clips: signer centred,
+  hands in frame, one studio and one home setting, no black bars.
+- **Calibration**: 6/6 train videos, 60 strided frames each = **360 frames**, 16 MB, in
+  `data/calib_frames/` with `calib_index.json`. Ready for INT8 calibration.
+- **yt-dlp version matters**: the 6-month-old build in the `yt-crawl` env fails every section
+  download with `ffmpeg exited with code 8` / HTTP 403, because `--download-sections` hands ffmpeg a
+  URL bound to the player client that yt-dlp used. A current yt-dlp (2026.08.19) in an isolated
+  scratchpad venv works with no cookies and no sign-in. Pass it with `--yt-dlp <path>`. The script
+  also takes `--cookies-from-browser` if YouTube ever demands sign-in; not needed today.
+- **Note**: the Mac `mmpose` conda env from Session 1 no longer exists, and no env on this Mac has
+  cv2. The fetch script therefore shells out to ffmpeg instead of using cv2. Anything that needs
+  mmpose again (new ONNX exports, PyTorch references) will have to rebuild that env.
+
+### Session 7 checkpoint — where to pick up
+
+P3 done (guide 2.3). Next: **P4** (guide 2.4) `task1_rtmpose/07_kpt_agreement.py` — % of confident
+keypoints within 1 / 2 / 5 px of the FP32 engine, per keypoint group (body / face / hands), over all
+1510 frames rather than the 20-frame gate. This is the measurement that replaces the max-px gate
+that failed both FP16 engines on a single argmax flip. Then C7, the pose→BLEU path.
+
+Board runs need the frames pushed (78 MB) and the engines rebuilt from the staged ONNX; delete both
+afterwards. Pull results with `jetson/pull_results.sh`, never a bare rsync.

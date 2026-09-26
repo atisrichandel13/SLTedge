@@ -8,8 +8,8 @@ models/*/*.engine
 # ---- data ----
 data/raw/
 data/test_frames/
-data/calib_frames/
-data/clips/
+data/calib_frames/*.jpg
+data/clips/**/frames/
 data/openasl_test_pose/
 data/openasl_train_pose/
 data/openasl_ref_pose/*.pkl
@@ -38,3 +38,6 @@ model-data-lpcv/
 
 # RTMW SDK export (123 MB); canonical copy on the Mac, re-download from the OpenMMLab SDK zip
 models/rtmw/*.onnx
+
+# OpenASL release tables, re-downloaded by data/openasl_fetch.py (40 MB)
+data/openasl_meta/

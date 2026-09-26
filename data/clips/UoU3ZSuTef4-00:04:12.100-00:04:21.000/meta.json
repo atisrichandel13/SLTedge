@@ -1,0 +1,28 @@
+{
+ "vid": "UoU3ZSuTef4-00:04:12.100-00:04:21.000",
+ "yid": "UoU3ZSuTef4",
+ "crop_xywh": [
+  478,
+  0,
+  755,
+  720
+ ],
+ "bbox_norm": [
+  0.37339899804857046,
+  -0.1964393979400928,
+  0.9636597227167201,
+  1.502666832749899
+ ],
+ "text": "Crews spent this holiday weekend battling wildfires in several states in the West.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 267,
+ "stride": 1,
+ "start": "00:04:12.100",
+ "end": "00:04:21.000",
+ "duration_s": 8.9
+}
