@@ -28,6 +28,21 @@ clips, beam 4):
 - Test-clip lengths: mean 217 frames, median 171, p95 545. Even the default cap of 256 already
   subsamples 305 of 976 clips.
 
+## 1b. The honest frame-rate numbers (L7.2, measured 2026-09-26)
+
+Re-measured with true per-clip rate emulation instead of a length cap, all 976 test clips:
+
+| target fps | BLEU-4 | Δ vs source rate (95% CI) |
+|---|---|---|
+| source (30/24) | 22.79 | — |
+| 24 | 22.80 | +0.02 [−0.38, +0.45] → **free** |
+| 16 | 21.66 | **−1.12 [−1.71, −0.48]** |
+| 12 | 20.26 | −2.52 [−3.22, −1.85] |
+
+These replace the L7.1 numbers above for any claim about frame rate. 16 fps costs 1.12 BLEU-4, not
+1.61: the cap method overstated the damage because it only thinned clips longer than the cap, and hit
+those harder than a real slower camera would. 24 fps remains free either way.
+
 ## 2. A frame-length cap is not the same as a lower frame rate
 
 - `--max-length L` (L7.1) only shortens clips **longer** than L. Short clips pass through unchanged.
@@ -36,10 +51,13 @@ clips, beam 4):
   and `unisign/train_adapt.py`. It first thins each clip uniformly to `round(T × fps/src_fps)`, then
   applies the usual 256 cap. Check: T=152 gives 101 at 16/24, 76 at 12/24 and 51 at 8/24.
   A 869-frame clip still ends up capped at 256.
-- ⚠️ **Open question: the source frame rate.** L7.1 assumes 30 fps source video. The new `--src-fps`
-  flag defaults to 24. These can't both be right. OpenASL clips come from YouTube, so the true rate
-  may differ per video. Settle this before the Colab L11 runs, because it changes what "16 fps"
-  actually means (ratio 0.67 vs 0.53).
+- ✅ **Resolved 2026-09-26: OpenASL has no single frame rate.** Measured on 400 test clips (frames ÷
+  duration, taken from the clip-name timestamps): **73 % are 30 fps, 21 % are 24 fps**, the rest 25,
+  31 or 60. So both the old assumptions were wrong, and a global `--src-fps` mis-thins about a fifth
+  of the data. Fix: `fps_ratio_for_clip` derives each clip's own rate and targets
+  `round(duration × target_fps)` frames. Verified: a 30 fps clip and a 24 fps clip both land on
+  16.0 fps. Consequence: the "≈ fps" labels in L7.1 and the 0.667 ratio in the C8.2 dry run are both
+  approximations; L7.2 re-measures 24/16/12 fps properly.
 
 ## 3. How the authors trained Uni-Sign (from their GitHub code)
 
@@ -104,11 +122,13 @@ was measured on all 976 clips with a length cap.
 
 ## 8. Still in progress / next
 
-- **16 fps adaptation on the Mac slice** (`runs/c8_adapt16`) is still running. Expected result:
+- **16 fps adaptation on the Mac slice** (`runs/c8_adapt16`) — done. Expected result:
   probably nothing, since 300 clips is too few to show a real effect. Its job is to exercise the
   `--fps` path end to end before Colab.
   Baseline before any training, at 16 fps (ratio 0.667) on the same 200 clips: **13.79 BLEU-4**. At
-  full frame rate those clips score 14.71, so thinning to 16 fps costs 0.92 BLEU-4 on this subset.
+  full frame rate those clips score 14.71, so thinning to 16 fps costs 0.92 BLEU-4 on this subset. After epoch 0 (loss 3.32, 185 s): 13.78,
+  no change. After epoch 1 (loss 3.29): 13.55, inside the ±0.6 noise floor. **Null result, as
+  expected on 300 clips; the `--fps` path works end to end.** Recorded in RESULTS.md "C8.2".
 - **Colab:** fetch the full training poses into Drive (4.1) → seed-variance runs (4.3, L10) →
   adaptation at 16 fps and maybe 12 fps (4.4, L11).
 - Other open items: L6 remainder, L13 LLM correction, frontier plot script (5.4), GitHub remote (C0),

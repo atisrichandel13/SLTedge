@@ -268,6 +268,12 @@ Reading: 24 fps-equivalent is free (CI spans zero); 16 fps costs 1.6 BLEU-4 with
 8 fps are not usable un-adapted. The pose stage's energy is linear in frames processed, so 24 fps
 is a 20 % pose-energy cut for nothing and 16 fps a 47 % cut for −1.6 BLEU-4, which is the case for the
 C8 adaptation run at 16 fps (L11): if adaptation recovers ~1 BLEU, 16 fps becomes the deployment rate.
+⚠️ Correction (2026-09-26): the "≈ fps" labels in this table are approximate. A cap only shortens clips
+longer than L, and OpenASL is not one frame rate — measured over 400 test clips, 73 % are 30 fps, 21 %
+are 24 fps, the rest 25/31/60 (frames / duration from the clip-name timestamps). True per-clip rate
+emulation is now in `common/pose_to_unisign.py::fps_ratio_for_clip` (`--fps` in `eval_openasl.py` and
+`train_adapt.py`); see L7.2 for the honest numbers. Likewise C8.2's 0.667 ratio emulated ~20 fps on the
+30 fps clips and 16 fps on the 24 fps ones, so its 0.92 BLEU-4 drop is a mixture, not a 16 fps cost.
 Caveat: this models frame-dropping by uniform subsampling of the released 30 fps poses; the pose owner's
 P8 rows drop frames before extraction, which is the same input to the LM.
 
@@ -293,3 +299,48 @@ a bug). Reading: the ±0.6 wobble across 2 epochs with no input shift is the exp
 this harness on 300 clips; a real L11 adaptation run needs the fps shift itself to show a signal.
 Wall time: ~3 min/epoch train + ~6 min eval (200 clips) on Mac CPU. Files: `runs/c8_smoke/` (not
 committed, in `.gitignore`), `results/c8_smoke_check.json`.
+
+### C8.2 16 fps adaptation, Mac dry run (`unisign/train_adapt.py --fps 16`), 300-clip train slice
+
+Same recipe and 200 held-out test clips as C8.1; every clip thinned to 16/24 of its frames
+(`fps_ratio` 0.667, `--src-fps 24`) in both training and eval. Purpose: exercise the `--fps` path
+end to end before Colab, not to measure adaptation (300 clips cannot).
+
+| checkpoint | BLEU-4 | ROUGE-L | train loss |
+|---|---|---|---|
+| pruned, full rate (C8.1 baseline) | 14.71 | — | — |
+| pruned, 16 fps, before training | 13.79 | — | — |
+| 16 fps, after epoch 0 | 13.78 | 33.87 | 3.320 |
+| 16 fps, after epoch 1 | 13.55 | 33.55 | 3.294 |
+
+Reading: 16 fps costs 0.92 BLEU-4 on this subset un-adapted; 2 epochs on 300 clips recover nothing
+(−0.24, inside the ±0.6 noise floor from C8.1). Expected null; the real L11 answer needs the full
+train set on Colab. Open issue: `--src-fps 24` vs the 30 fps assumed in L7.1 must be settled first.
+~3 min/epoch train. Files: `runs/c8_adapt16/` (not committed).
+
+### L7.2 True per-clip frame-rate emulation vs BLEU (pruned + W8A16, 976 test clips, Mac CPU, beam 4, cap 64)
+
+Supersedes the "≈ fps" reading of L7.1. OpenASL is **not one frame rate**: measured as frames ÷
+duration (duration from the clip-name timestamps) over 400 test clips, **73 % are 30 fps, 21 % are
+24 fps**, the rest 25/31/60. So neither a single `--src-fps` nor a length cap emulates a slower camera:
+`common/pose_to_unisign.py::fps_ratio_for_clip` derives each clip's own rate and keeps
+`round(duration × target_fps)` frames, then the 256 cap applies as before. Verified: a 30.00 fps clip
+(T=152 → 81) and a 24.11 fps clip (T=131 → 87) both land on 16.0 fps.
+
+| target fps | ratio vs source | BLEU-4 | ROUGE-L | Δ BLEU-4 vs source rate (paired bootstrap, 1000) |
+|---|---|---|---|---|
+| source (30/24, unthinned) | 1.0 | 22.79 | 43.00 | — |
+| 24 | 0.8 / 1.0 | 22.80 | 43.22 | **+0.02 [−0.38, +0.45]**, P=0.45 |
+| 16 | 0.53 / 0.66 | 21.66 | 41.56 | **−1.12 [−1.71, −0.48]**, P=1.00 |
+| 12 | 0.4 / 0.5 | 20.26 | 39.15 | −2.52 [−3.22, −1.85], P=1.00 |
+
+Files: `results/eval_test_w8_truefps{24,16,12}.json`; baseline `results/eval_test_pruned_w8_mac.json`.
+Reading, and this is the headline for the frame-rate axis:
+* **24 fps is free** — CI centred on zero, no retraining. On the 30 fps clips that is a 20 % cut in
+  frames processed, so ~20 % off the pose stage's energy for no accuracy cost. Claimable today.
+* **16 fps costs 1.12 BLEU-4 un-adapted** (not 1.6 — the L7.1 cap overstated it by only touching long
+  clips, and hitting those harder). This 1.12 is the gap the C8/L11 Colab adaptation must close; if it
+  recovers most of it, 16 fps (≈47 % fewer frames) becomes the deployment rate.
+* **12 fps costs 2.5 BLEU-4**, still large; worth an adaptation run only if 16 fps succeeds.
+Board caveat: BLEU is hardware-independent (same model, same inputs, same sentences), but the ms/W
+that turn a frame-rate cut into an energy saving must come from the Jetson (J-queue), not the Mac.

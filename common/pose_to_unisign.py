@@ -25,6 +25,7 @@ import json
 import os
 import pickle
 import random
+import re
 
 import numpy as np
 import torch
@@ -134,6 +135,34 @@ def save_pkl(path, kps, scs):
     with open(path, "wb") as f:
         pickle.dump({"keypoints": [k.astype(np.float32) for k in kps],
                      "scores": [s.astype(np.float32) for s in scs]}, f)
+
+
+_TS_RE = re.compile(r"(\d\d):(\d\d):(\d\d\.\d+)")
+
+
+def clip_duration_s(name):
+    """OpenASL clip names end in -HH:MM:SS.mmm-HH:MM:SS.mmm; returns the clip's duration or None."""
+    m = _TS_RE.findall(name)
+    if len(m) != 2:
+        return None
+    t = [int(h) * 3600 + int(mi) * 60 + float(s) for h, mi, s in m]
+    d = t[1] - t[0]
+    return d if d > 0 else None
+
+
+def fps_ratio_for_clip(name, n_frames, target_fps, fallback_src_fps=30.0):
+    """Thinning ratio that lands the clip at target_fps, using the clip's OWN source rate.
+
+    OpenASL is not one frame rate: over 400 test clips, 73 % are 30 fps, 21 % are 24 fps, with a few
+    at 25/31/60, so a single --src-fps mis-thins a fifth of the data. The clip name carries its
+    duration, so the source rate is n_frames / duration and the target frame count is
+    round(duration * target_fps). Falls back to fallback_src_fps when the name has no timestamps.
+    """
+    if not target_fps:
+        return 1.0
+    d = clip_duration_s(name)
+    src = (n_frames / d) if d else fallback_src_fps
+    return min(1.0, target_fps / src)
 
 
 def subsample(kps, scs, max_length, random_subsample=False, fps_ratio=1.0):

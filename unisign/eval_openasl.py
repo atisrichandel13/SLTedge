@@ -21,7 +21,7 @@ import time
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from common.pose_to_unisign import collate, load_pkl, to_model_inputs  # noqa: E402
+from common.pose_to_unisign import collate, fps_ratio_for_clip, load_pkl, to_model_inputs  # noqa: E402
 from unisign.model import load_model  # noqa: E402
 from unisign.metrics import translation_performance  # noqa: E402
 
@@ -38,7 +38,8 @@ def main():
     ap.add_argument("--batch-size", type=int, default=8)
     ap.add_argument("--max-length", type=int, default=256)
     ap.add_argument("--fps", type=float, default=None, help="emulate this camera rate on every clip (source --src-fps)")
-    ap.add_argument("--src-fps", type=float, default=24.0)
+    ap.add_argument("--src-fps", type=float, default=30.0,
+                    help="fallback source rate for clips whose name has no timestamps; per-clip rate is used otherwise")
     ap.add_argument("--max-new-tokens", type=int, default=100)
     ap.add_argument("--num-beams", type=int, default=4)
     ap.add_argument("--limit", type=int, default=None)
@@ -47,7 +48,6 @@ def main():
 
     dtype = {"fp32": torch.float32, "fp16": torch.float16, "bf16": torch.bfloat16}[args.dtype]
     model = load_model(args.ckpt, args.mt5, device=args.device, dtype=dtype, w8_runtime=args.w8_runtime)
-    fps_ratio = (args.fps / args.src_fps) if args.fps else 1.0
     labels = pickle.load(gzip.open(args.labels, "rb"))
     names = list(labels)[: args.limit] if args.limit else list(labels)
     refs, preds, missing = [], [], []
@@ -60,7 +60,8 @@ def main():
                 missing.append(n)
                 continue
             kps, scs, _ = load_pkl(p)
-            inputs, _ = to_model_inputs(kps, scs, args.max_length, fps_ratio=fps_ratio)
+            ratio = fps_ratio_for_clip(n, len(scs), args.fps, args.src_fps)
+            inputs, _ = to_model_inputs(kps, scs, args.max_length, fps_ratio=ratio)
             batch.append(inputs); batch_names.append(n)
         if not batch:
             continue

@@ -40,7 +40,7 @@ from torch import nn
 from torch.utils.data import DataLoader, Dataset
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from common.pose_to_unisign import collate, load_pkl, to_model_inputs  # noqa: E402
+from common.pose_to_unisign import collate, fps_ratio_for_clip, load_pkl, to_model_inputs  # noqa: E402
 from unisign.metrics import translation_performance  # noqa: E402
 from unisign.model import load_model  # noqa: E402
 
@@ -49,9 +49,10 @@ TRAINABLE_PREFIXES = ("proj_linear.", "gcn_modules.", "fusion_gcn_modules.", "pa
 
 # ----------------------------------------------------------------------------- data
 class PoseTextDataset(Dataset):
-    def __init__(self, poses_dir, labels, names, max_length, random_subsample, fps_ratio):
+    def __init__(self, poses_dir, labels, names, max_length, random_subsample, fps, src_fps):
         self.poses_dir, self.labels, self.names = poses_dir, labels, names
-        self.max_length, self.random_subsample, self.fps_ratio = max_length, random_subsample, fps_ratio
+        self.max_length, self.random_subsample = max_length, random_subsample
+        self.fps, self.src_fps = fps, src_fps
 
     def __len__(self):
         return len(self.names)
@@ -59,7 +60,8 @@ class PoseTextDataset(Dataset):
     def __getitem__(self, i):
         n = self.names[i]
         kps, scs, _ = load_pkl(os.path.join(self.poses_dir, n.replace(".mp4", ".pkl")))
-        inputs, _ = to_model_inputs(kps, scs, self.max_length, self.random_subsample, self.fps_ratio)
+        ratio = fps_ratio_for_clip(n, len(scs), self.fps, self.src_fps)
+        inputs, _ = to_model_inputs(kps, scs, self.max_length, self.random_subsample, ratio)
         return n, inputs, self.labels[n]["text"]
 
 
@@ -112,7 +114,7 @@ def compute_loss(model, src, texts, label_smoothing, max_target_len=50):
 
 
 @torch.no_grad()
-def evaluate(model, poses_dir, labels, names, max_length, fps_ratio, batch_size, num_beams, max_new_tokens):
+def evaluate(model, poses_dir, labels, names, max_length, fps, src_fps, batch_size, num_beams, max_new_tokens):
     model.eval()
     dev = next(model.parameters()).device
     refs, preds = [], []
@@ -120,7 +122,8 @@ def evaluate(model, poses_dir, labels, names, max_length, fps_ratio, batch_size,
         batch, bn = [], []
         for n in names[b:b + batch_size]:
             kps, scs, _ = load_pkl(os.path.join(poses_dir, n.replace(".mp4", ".pkl")))
-            batch.append(to_model_inputs(kps, scs, max_length, False, fps_ratio)[0]); bn.append(n)
+            ratio = fps_ratio_for_clip(n, len(scs), fps, src_fps)
+            batch.append(to_model_inputs(kps, scs, max_length, False, ratio)[0]); bn.append(n)
         src = to_device(collate(batch, bn), dev)
         emb, mask = model.build_encoder_inputs(src)
         out = model.mt5_model.generate(inputs_embeds=emb, attention_mask=mask, max_new_tokens=max_new_tokens, num_beams=num_beams)
@@ -146,7 +149,8 @@ def main():
     # input shift
     ap.add_argument("--max-length", type=int, default=256)
     ap.add_argument("--fps", type=float, default=None, help="emulate this camera rate on every clip")
-    ap.add_argument("--src-fps", type=float, default=24.0)
+    ap.add_argument("--src-fps", type=float, default=30.0,
+                    help="fallback source rate for clips whose name has no timestamps; per-clip rate is used otherwise")
     # recipe
     ap.add_argument("--epochs", type=int, default=1)
     ap.add_argument("--batch-size", type=int, default=8)
@@ -176,19 +180,18 @@ def main():
     def log(d):
         d["time"] = round(time.time(), 1); log_f.write(json.dumps(d) + "\n"); log_f.flush()
 
-    fps_ratio = (args.fps / args.src_fps) if args.fps else 1.0
     model = load_model(args.ckpt, args.mt5, device=args.device)
     _src = torch.load(args.ckpt, map_location="cpu"); _src = _src.get("model", _src)
     src_dtypes = {k: v.dtype for k, v in _src.items() if torch.is_tensor(v)}; del _src  # keep file size of the source
     n_train = set_trainable(model, args.freeze_bn)
     n_total = sum(p.numel() for p in model.parameters())
-    print(f"[train] trainable {n_train/1e6:.2f} M of {n_total/1e6:.1f} M params; fps_ratio {fps_ratio:.3f}; max_length {args.max_length}")
+    print(f"[train] trainable {n_train/1e6:.2f} M of {n_total/1e6:.1f} M params; target fps {args.fps if args.fps else 'source'}; max_length {args.max_length}")
 
     labels = pickle.load(gzip.open(args.labels, "rb"))
     names = available_names(labels, args.poses, args.limit)
     if not names:
         raise SystemExit(f"no train clips found in {args.poses}")
-    ds = PoseTextDataset(args.poses, labels, names, args.max_length, True, fps_ratio)
+    ds = PoseTextDataset(args.poses, labels, names, args.max_length, True, args.fps, args.src_fps)
     dl = DataLoader(ds, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers,
                     collate_fn=collate_batch, drop_last=False, persistent_workers=args.num_workers > 0)
     print(f"[train] {len(names)} clips, {len(dl)} batches/epoch, batch {args.batch_size} x accum {args.accum}")
@@ -220,7 +223,7 @@ def main():
         eval_labels = pickle.load(gzip.open(args.eval_labels, "rb"))
         eval_names = available_names(eval_labels, args.eval_poses, args.eval_limit)
         if args.eval_before and start_epoch == 0:
-            r = evaluate(model, args.eval_poses, eval_labels, eval_names, args.max_length, fps_ratio,
+            r = evaluate(model, args.eval_poses, eval_labels, eval_names, args.max_length, args.fps, args.src_fps,
                          args.eval_batch_size, args.num_beams, args.max_new_tokens)
             print(f"[eval] before: BLEU-4 {r['bleu']['bleu4']:.2f} on {r['n']} clips"); log({"eval": "before", **r})
 
@@ -257,7 +260,7 @@ def main():
         torch.save({"trainable": trainable_state(model), "optimizer": opt.state_dict(), "scheduler": sched.state_dict(),
                     "epoch": epoch, "step": step, "args": vars(args)}, last_path)
         if eval_names:
-            r = evaluate(model, args.eval_poses, eval_labels, eval_names, args.max_length, fps_ratio,
+            r = evaluate(model, args.eval_poses, eval_labels, eval_names, args.max_length, args.fps, args.src_fps,
                          args.eval_batch_size, args.num_beams, args.max_new_tokens)
             print(f"[eval] epoch {epoch}: BLEU-4 {r['bleu']['bleu4']:.2f} ROUGE-L {r['rouge_l']:.2f} on {r['n']} clips")
             for ref, pred in r["sample"]:
