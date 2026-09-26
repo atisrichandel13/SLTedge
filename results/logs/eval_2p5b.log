@@ -1,0 +1,81 @@
+===== rtmw_fp32
+[cache] fadvise DONTNEED on 43 files (7.61 GB) under ['models', 'weights', 'data', 'results']: MemFree 2761 -> 4835 MB, Cached 3158 -> 1074 MB
+Mem:            7619        1536        4838         109        1245        5741
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[eval] 2/976  5.34 s/clip  eta 86.7 min
+{'bleu1': 47.68344772523245, 'bleu2': 30.09338453510011, 'bleu3': 19.073075299411006, 'bleu4': 9.894897055559063}
+Rouge: 43.39
+{
+  "n": 5,
+  "missing": 971,
+  "bleu": {
+    "bleu1": 47.68344772523245,
+    "bleu2": 30.09338453510011,
+    "bleu3": 19.073075299411006,
+    "bleu4": 9.894897055559063
+  },
+  "rouge_l": 43.387546248416534,
+  "wall_s": 17.794201587093994
+}
+[eval] wrote results/eval_rtmw_fp32.json
+===== rtmw_fp16
+[cache] fadvise DONTNEED on 43 files (7.61 GB) under ['models', 'weights', 'data', 'results']: MemFree 2851 -> 5016 MB, Cached 3120 -> 952 MB
+Mem:            7619        1517        5015          91        1086        5778
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[eval] 2/976  5.40 s/clip  eta 87.6 min
+{'bleu1': 47.68344772523245, 'bleu2': 30.09338453510011, 'bleu3': 19.073075299411006, 'bleu4': 9.894897055559063}
+Rouge: 43.39
+{
+  "n": 5,
+  "missing": 971,
+  "bleu": {
+    "bleu1": 47.68344772523245,
+    "bleu2": 30.09338453510011,
+    "bleu3": 19.073075299411006,
+    "bleu4": 9.894897055559063
+  },
+  "rouge_l": 43.387546248416534,
+  "wall_s": 18.235851163044572
+}
+[eval] wrote results/eval_rtmw_fp16.json
+===== rtmposex_fp32
+[cache] fadvise DONTNEED on 43 files (7.61 GB) under ['models', 'weights', 'data', 'results']: MemFree 2806 -> 5047 MB, Cached 3165 -> 919 MB
+Mem:            7619        1527        5048          70        1043        5790
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[eval] 2/976  5.56 s/clip  eta 90.3 min
+{'bleu1': 39.315609294135776, 'bleu2': 21.646300765690377, 'bleu3': 13.349068264882277, 'bleu4': 8.964305423437533}
+Rouge: 31.94
+{
+  "n": 5,
+  "missing": 971,
+  "bleu": {
+    "bleu1": 39.315609294135776,
+    "bleu2": 21.646300765690377,
+    "bleu3": 13.349068264882277,
+    "bleu4": 8.964305423437533
+  },
+  "rouge_l": 31.943047341859288,
+  "wall_s": 18.470047685084864
+}
+[eval] wrote results/eval_rtmposex_fp32.json
+===== rtmposex_fp16mixed
+[cache] fadvise DONTNEED on 43 files (7.61 GB) under ['models', 'weights', 'data', 'results']: MemFree 4113 -> 5034 MB, Cached 1854 -> 934 MB
+Mem:            7619        1530        5033          57        1055        5804
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[eval] 2/976  5.55 s/clip  eta 90.1 min
+{'bleu1': 42.62392593785637, 'bleu2': 23.64743771177021, 'bleu3': 14.174743102573217, 'bleu4': 9.391152829579447}
+Rouge: 33.76
+{
+  "n": 5,
+  "missing": 971,
+  "bleu": {
+    "bleu1": 42.62392593785637,
+    "bleu2": 23.64743771177021,
+    "bleu3": 14.174743102573217,
+    "bleu4": 9.391152829579447
+  },
+  "rouge_l": 33.76344036645856,
+  "wall_s": 18.615330419968814
+}
+[eval] wrote results/eval_rtmposex_fp16mixed.json
+ALL_EVALS_DONE

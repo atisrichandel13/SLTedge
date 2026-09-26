@@ -228,6 +228,67 @@ pose-only path actually consumes.
   consumes, but it is a real behavioural difference between the two extractors and worth one line in
   the report.
 
+### 2.5 Pose→BLEU: does the pose front-end change the translation? (`unisign/eval_openasl.py`, 2026-09-26)
+
+The five P3 clips, each config's `results/kpts/` dump → `common/dumps_to_pkl.py` → the released
+pose-only checkpoint on the board (FP32, beam 4, max_new_tokens 100, max_length 256, batch 8, ~18 s per
+config). The **ceiling row** is the OpenASL authors' own released `pose-rtmpose-192` pkls for these same
+five clips, scored through the identical path: it separates the cost of *our pose extractor* from the
+cost of the checkpoint, because everything downstream is held fixed.
+
+| poses | BLEU-1 | BLEU-4 | ROUGE-L | preds identical to ceiling | to own FP32 |
+|---|---:|---:|---:|---:|---:|
+| **Authors' released poses (ceiling)** | 57.30 | **16.23** | **46.17** | 5/5 | — |
+| RTMW-l-m FP32 | 47.68 | 9.89 | 43.39 | 1/5 | — |
+| **RTMW-l-m FP16** | 47.68 | 9.89 | 43.39 | 1/5 | **5/5** |
+| RTMPose-x FP32 | 39.32 | 8.96 | 31.94 | 0/5 | — |
+| RTMPose-x FP16 mixed | 42.62 | 9.39 | 33.76 | 0/5 | 3/5 |
+
+**Read the identical-prediction counts, not the BLEU.** Five sentences cannot support a BLEU
+comparison: the authors' own poses score 16.23 BLEU-4 here against 22.53–22.67 on the full 976-clip
+split (B1.4/B1.5) with the same checkpoint and the same metric code, so the subset alone moves BLEU-4
+by 6 points. Any difference below ~1 BLEU-4 in this table is noise. The prediction counts, by contrast,
+are exact and discrete.
+
+- **RTMW FP16 is translation-neutral: 5/5 predictions token-identical to its own FP32 engine**, so
+  every metric agrees to 12 decimal places. This is the result the pose track needed. P4 said FP16
+  moves 0.19 % of consumed keypoints by more than 5 px; 2.5 says that costs *exactly nothing* in
+  output text on this sample. **FP16 is adopted for the pose stage**, and the max-px gate that failed
+  this engine is now refuted twice, once on keypoints and once on the translation itself.
+- **RTMPose-x mixed precision is *not* neutral: 3/5 identical to its own FP32.** Two of five sentences
+  change. That tracks P4, where mixed RTMPose-x agreed with FP32 on 99.75 % of consumed keypoints
+  against RTMW's 99.81 %, and where its worst confident error was 229 px against RTMW's 123 px. So the
+  keypoint metric and the translation agree on the ordering of the two engines, which is the first
+  evidence that P4's ≤5 px figure actually predicts downstream behaviour.
+- **The big effect is not precision, it is extractor match — and the lower-resolution model wins.**
+  RTMW-l-m beats RTMPose-x by 11.5 ROUGE-L (43.39 vs 31.94) and is the only one of our engines to ever
+  reproduce a ceiling prediction exactly (1/5 vs 0/5). RTMW-l-m runs at 256×192, which is what the
+  checkpoint was trained on (the authors' archive folder is literally `pose-rtmpose-192`); RTMPose-x
+  runs at 384×288. The more accurate, higher-resolution, 216 MB extractor produces *worse* translation
+  than the 123 MB one because it is off-distribution for the frozen ST-GCN. **Matching the training
+  extractor dominates pose accuracy**, and that decides the front-end: RTMW-l-m FP16.
+- **There is still a real gap to the ceiling: 6.3 BLEU-4 / 2.8 ROUGE-L, with only 1/5 predictions
+  shared.** Two candidate causes, not yet separated. (a) Crop recipe: P3 crops the signer bbox at
+  native resolution, the authors square/pad/resize to 224, and our confident keypoints consequently
+  span ~0.01–0.99 of the frame where theirs span ~0.06–0.89 — a normalisation shift the frozen encoder
+  never saw. (b) Extractor identity: RTMW-l-m is 256×192 but is not the same network as their
+  `pose-rtmpose-192`. (a) is testable without any new model by re-cropping the five clips the authors'
+  way and re-running this table; that is the highest-value next experiment on the pose track, because
+  a normalisation fix would lift every config at once.
+- Qualitatively all five configs are fluent and largely wrong, matching the pattern noted at B1.4. On
+  clip 0 RTMW reproduces the ceiling sentence verbatim ("Meteorologists say some areas could see heavy
+  rain until Friday afternoon."), while RTMPose-x invents "up to a foot of flooding until Wednesday
+  evening". On clip 2 every config fails: the reference is a cave rescue and RTMW emits "a shark attack
+  took place on Haiti". 22 BLEU is the state of the art here, so this is expected, not a bug.
+
+**Board note.** The first attempt failed five times with `NvMapMemAllocInternalTagged: error 12` (ENOMEM)
+inside `MT5ForConditionalGeneration.from_pretrained`, because nvmap allocates only from `MemFree` and
+never reclaims page cache: 3.1 GB was sitting in `Cached`. `python3 jetson/drop_file_cache.py` before
+each eval (MemFree 2.8 → 5.0 GB) fixes it. This is the same failure mode as the engine builds in J4,
+and the rule is now general: **drop the page cache before loading any large model on the board**, not
+just before TensorRT builds. Separately, `eval_openasl.py` needs `portalocker` and `rouge`, which the
+image lacked; both are now in `jetson/Dockerfile`.
+
 **Second-board reproduction and the 15W/25W discrepancy.** The same ONNX, the same script and the same
 TensorRT 10.11 on `jetson-lpcv-03` give 66.7 ms TRT time vs Atisri's 44.4 ms, at 8.2 W vs 11.6 W. The
 CSV shows the lpcv-03 GPU pinned at 612 MHz whenever it was busy, which is the nvpmodel 15W cap.

@@ -552,14 +552,46 @@ token-identical predictions between configs.
 Both dump sets are gitignored (`results/kpts/` 46 MB, `data/openasl_5clip_pose/` 35 MB); the derived
 `results/kpt_agreement_*.json` are tracked, and `jetson/p4_clips.sh` regenerates the dumps.
 
-**Session 9 checkpoint — where to pick up.** Committed. The board still holds the repo, both ONNX, the
-4 engines, `data/clips/`, `data/calib_frames/` and `data/openasl_5clip_pose/`; container `slt-work` is
-up; nothing is running. Next, in order: (a) **2.5 pose→BLEU on the board** — `common/dumps_to_pkl.py`
-per config, then `python -m unisign.eval_openasl --poses <dir> --labels data/openasl_labels/labels.test
---ckpt weights/openasl_pose_only_slt.pth --mt5 weights/mt5-base --out results/eval_<config>.json`, plus
-`data/openasl_5clip_pose` as the ceiling row (this needs the LM weights staged on the board again);
-(b) **5.1 C6/M1**, the first on-device end-to-end translation and the Stage-0 baseline the week-4 gate
-(5.3) depends on; (c) **2.6 P5 INT8**, judged on hand agreement specifically, calibrated from the 360
-frames already on the board. Then `jetson/run.sh clean-large`. Still outstanding from session 8: the C9
-results protocol (3 runs mean ± std, ≥3 clips/signers, one 30-min sustained run) has never been applied
-retroactively to the existing latency rows, which are 3×299 frames of a single clip.
+**2.5 pose→BLEU is done too, and it decides the front-end.** All four configs plus the authors' released
+poses as a ceiling row, scored on the board through the same checkpoint (`results/eval_*.json`).
+Headline: **RTMW FP16 produces 5/5 token-identical predictions to its own FP32 engine**, so FP16 costs
+exactly nothing in output text — the max-px gate is now refuted twice over, once on keypoints and once
+on the translation. RTMPose-x mixed precision is *not* neutral (3/5), which is the same ordering P4's
+≤5 px figure gave (99.81 % RTMW vs 99.75 % mixed), and the first sign that the keypoint metric predicts
+downstream behaviour.
+
+The unexpected result: **extractor match beats pose accuracy.** RTMW-l-m runs at 256×192, which is what
+the checkpoint was trained on (the authors' folder is literally `pose-rtmpose-192`); RTMPose-x runs at
+384×288. RTMW wins by 11.5 ROUGE-L (43.39 vs 31.94) and is the only engine to reproduce a ceiling
+prediction verbatim (1/5 vs 0/5). The larger, more accurate, 216 MB extractor translates *worse* because
+it is off-distribution for the frozen ST-GCN. **Front-end decided: RTMW-l-m FP16** — which is also the
+cheaper engine, so nothing is traded away.
+
+Two things to hold on to. (1) **BLEU on 5 sentences is not usable**: the authors' own poses score 16.23
+BLEU-4 on this subset against 22.53–22.67 on the full 976-clip split with the same checkpoint and metric
+code, so the subset alone moves BLEU-4 by 6 points. Only the identical-prediction counts are exact.
+(2) **A 6.3 BLEU-4 / 2.8 ROUGE-L gap to the ceiling remains**, with only 1/5 predictions shared. The
+leading untested cause is the crop recipe: P3 crops the bbox at native resolution, the authors
+square/pad/resize to 224, and our confident keypoints span ~0.01–0.99 of the frame where theirs span
+~0.06–0.89. Re-cropping the five clips the authors' way needs no new model and would lift every config
+at once — highest-value next experiment on this track.
+
+Board lessons from this run, both now fixed in the repo: `eval_openasl.py` died at import five times on
+missing `portalocker` and `rouge` (now in `jetson/Dockerfile`), and then five more times with
+`NvMapMemAllocInternalTagged: error 12` (ENOMEM) inside `from_pretrained`, because 3.1 GB sat in page
+cache and nvmap only allocates from `MemFree`. `jetson/drop_file_cache.py` before each eval took MemFree
+2.8 → 5.0 GB and fixed it. **The rule generalises beyond TensorRT builds: drop the page cache before
+loading any large model on the board.** I had treated it as a build-time-only step, which cost a full
+failed round of five evals.
+
+**Session 9 checkpoint — where to pick up.** Committed. Board: repo + both ONNX + 4 engines +
+`data/clips/` + `data/calib_frames/` + `data/openasl_5clip_pose/` + `data/poses_*` + LM weights, 7.2 G,
+30 G free; container `slt-work` up; nothing running. **P4 and 2.5 are both closed.** Next, in order:
+(a) **5.1 C6/M1**, first on-device end-to-end translation (RTMW-l-m FP16 pose → pkl → LM in one process)
+— the Stage-0 baseline the week-4 gate (5.3) depends on, and now unambiguous about which pose engine to
+use; (b) **the author-style crop experiment** described above, which is cheap and would move every 2.5
+row; (c) **2.6 P5 INT8**, judged on hand agreement specifically (the group with no headroom) and on the
+5/5-identical-predictions bar RTMW FP16 just set, calibrated from the 360 frames already on the board.
+Then `jetson/run.sh clean-large`. Still outstanding from session 8: the C9 results protocol (3 runs
+mean ± std, ≥3 clips/signers, one 30-min sustained run) has never been applied retroactively to the
+existing latency rows, which are 3×299 frames of a single clip.

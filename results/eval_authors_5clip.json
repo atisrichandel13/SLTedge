@@ -1,0 +1,40 @@
+{
+ "n": 5,
+ "missing": 971,
+ "bleu": {
+  "bleu1": 57.303370786516865,
+  "bleu2": 38.740193187673945,
+  "bleu3": 25.762005035775676,
+  "bleu4": 16.225837764749272
+ },
+ "rouge_l": 46.16593032733661,
+ "wall_s": 17.172191716032103,
+ "config": {
+  "ckpt": "weights/openasl_pose_only_slt.pth",
+  "mt5": "weights/mt5-base",
+  "poses": "data/openasl_5clip_pose",
+  "labels": "data/openasl_labels/labels.test",
+  "device": "cuda",
+  "dtype": "fp32",
+  "batch_size": 8,
+  "max_length": 256,
+  "max_new_tokens": 100,
+  "num_beams": 4,
+  "limit": null,
+  "out": "results/eval_authors_5clip.json"
+ },
+ "refs": [
+  "Meteorologist say some areas might not get relief from the rain and floods until Friday afternoon.",
+  "Crews spent this holiday weekend battling wildfires in several states in the West.",
+  "After nine frantic days of searching, the Thai soccer team trapped in a cave has been found.",
+  "The winter storm that slammed the Midwest, Northern Plains and Northeast has left brutally cold temperatures in its path.",
+  "When I moved to Texas one year and a half ago, this was my first artwork."
+ ],
+ "preds": [
+  "Meteorologists say some areas could see heavy rain until Friday afternoon.",
+  "Firefighters are battling the blazes in several states this weekend.",
+  "After nine days of searching the Thai cave, the suspects were able to find the remains of all the bodies in a Thailand cave.",
+  "The winter storms are expected to make landfall in the Midwest and the Northeast, bringing temperatures as low as 30 degrees below zero.",
+  "When I moved to Texas a year ago, it was my first initiative."
+ ]
+}
