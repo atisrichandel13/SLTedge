@@ -5,6 +5,9 @@
 #     ./jetson/p4_clips.sh                                  # the four deployable configs
 #     ./jetson/p4_clips.sh rtmw_fp32 rtmw_fp16              # a subset
 #
+# Env overrides, for running the same engines over a different crop of the same clips:
+#     SLT_CLIPS=data/clips_openasl SLT_KPTS=results/kpts_openasl ./jetson/p4_clips.sh
+#
 # Writes one dump per (config, clip) to results/kpts/<config>__<vid>.json, which is what
 # task1_rtmpose/07_kpt_agreement.py pairs on. Already-finished dumps are skipped, so the script
 # is safe to re-run after an interruption.
@@ -15,7 +18,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-OUT=results/kpts
+CLIPS_DIR="${SLT_CLIPS:-data/clips}"
+OUT="${SLT_KPTS:-results/kpts}"
 mkdir -p "$OUT"
 
 # The persistent container, non-tty so this works over ssh.
@@ -42,11 +46,11 @@ select_config() {
 CONFIGS=("$@")
 [ "${#CONFIGS[@]}" -eq 0 ] && CONFIGS=(rtmw_fp32 rtmw_fp16 rtmposex_fp32 rtmposex_fp16mixed)
 
-CLIPS=(data/clips/*/frames)
-[ -d "${CLIPS[0]}" ] || { echo "no frames under data/clips/*/frames -- push them from the Mac first" >&2; exit 1; }
+CLIPS=("$CLIPS_DIR"/*/frames)
+[ -d "${CLIPS[0]}" ] || { echo "no frames under $CLIPS_DIR/*/frames -- push them from the Mac first" >&2; exit 1; }
 # nvpmodel -q wants root; the mode is readable here (0 = 15 W, the mode the boards are pinned to).
 echo "[p4] power mode: $(cat /var/lib/nvpmodel/status 2>/dev/null || echo unknown)"
-echo "[p4] ${#CONFIGS[@]} config(s) x ${#CLIPS[@]} clip(s)"
+echo "[p4] ${#CONFIGS[@]} config(s) x ${#CLIPS[@]} clip(s) from $CLIPS_DIR -> $OUT"
 
 for cfg in "${CONFIGS[@]}"; do
     select_config "$cfg"
