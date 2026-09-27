@@ -33,7 +33,9 @@ echo "[p5] tag=$TAG  clips=$(ls -d "$CLIPS"/*/ 2>/dev/null | wc -l)  beams=$BEAM
 echo "[p5] power mode: $(cat /var/lib/nvpmodel/status 2>/dev/null || echo unknown)"
 
 run_eval() {  # $1 = pose dir, $2 = output tag
-    local poses="$1" name="$2" out="results/eval_${TAG}_${name}.json"
+    local poses="$1"
+    local name="$2"
+    local out="results/eval_${TAG}_${name}.json"
     if [ -f "$out" ]; then echo "[p5] skip $out"; return; fi
     drop_cache
     local t0=$SECONDS

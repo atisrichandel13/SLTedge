@@ -1,0 +1,19 @@
+{
+ "a": "results/eval_test_pruned_mac.json",
+ "b": "results/eval_test_pruned_greedy_mac.json",
+ "n_clips": 976,
+ "n_boot": 1000,
+ "aligned_by": "position",
+ "bleu4": {
+  "a": 22.87417053966081,
+  "b": 20.875927850914426,
+  "delta": -1.9982426887463838,
+  "ci": [
+   -2.627875290419405,
+   -1.4096959464387588
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0
+ }
+}

@@ -97,13 +97,24 @@ existing full-split evals, **976 clips, paired clip-level bootstrap, 1000 resamp
 | comparison | BLEU-4 | delta | 95 % CI | verdict |
 |---|---|---:|---|---|
 | released → pruned vocabulary | 23.16 → 22.87 | −0.28 | [−0.63, +0.05] | **not established as a loss** |
+| pruned, beam 4 → **beam 2** | 22.87 → 22.06 | −0.81 | [−1.29, −0.39] | **real loss** |
+| pruned, beam 4 → **greedy** | 22.87 → 20.88 | −2.00 | [−2.63, −1.41] | **real loss** |
 
-That is a good result for the pruning work: at n=976 the cost of vocabulary pruning cannot be
-distinguished from zero. It is worth stating that way in the report rather than as "−0.28 BLEU-4",
-which reads like a measured penalty.
+Two things to take from this:
 
-Raw: `results/ci_pruning_976.json`. (Beam-2 and greedy CIs against beam-4 are computing on the same
-basis and will be appended.)
+- **Vocabulary pruning is free and the decode knobs are not.** At n=976 the pruning cost cannot be
+  distinguished from zero, so report it as "not established as a loss" rather than "−0.28 BLEU-4",
+  which reads like a measured penalty. Beam reduction, by contrast, has an established sign in both
+  cases — these are genuine accuracy prices, not noise.
+- **This puts a number on the TensorRT decision in §2.** The TRT path is greedy-only, and greedy costs
+  **2.00 BLEU-4 (CI [−2.63, −1.41])** against beam 4. So "PyTorch encoder + TRT greedy decoder", the
+  fastest configuration we have measured, buys a 2.9× decoder speedup at a measured cost of 2 BLEU-4 —
+  roughly a third of the entire pose-front-end gap in §5, spent on the decoder alone. Beam 2 on the
+  PyTorch path costs 0.81 instead. **That trade is the frontier plot**, and it can be drawn today from
+  these three rows plus board energy, with no INT8 at all.
+
+Raw: `results/ci_pruning_976.json`, `results/ci_beam2_976.json`, `results/ci_greedy_976.json`
+(976 clips, 1000 resamples, paired on clips, BLEU-4 via sacrebleu 13a).
 
 ## 5. The BLEU denominator trap — read this before comparing any two BLEU numbers
 
@@ -249,9 +260,10 @@ scripts) is not a blocker — I can wrap them externally. Say the word and which
    inherits the FP16 failure, and the decoder is host-bound so INT8 likely buys memory not latency.)
 2. **Is beam on TensorRT worth implementing**, given that the fastest configuration (PyTorch encoder +
    TRT greedy decoder) cannot do beam at all? (§2)
-3. If INT8 is dropped, **what should the frontier plot's LM axis be** — FP32 greedy vs FP32 beam 4, at
-   varying frame counts? The accuracy–energy frontier (guide row 5.4) is the report's central plot and
-   is currently blocked only on deciding this.
+3. If INT8 is dropped, **the frontier plot's LM axis can be the decode knob instead**, and §4 already
+   has the accuracy side of it measured with CIs (beam 4 / beam 2 / greedy at 22.87 / 22.06 / 20.88).
+   All that is missing is board energy per sentence for those three, which the pose track can measure
+   without any new LM artifact. Is that an acceptable substitute for the INT8 axis?
 4. Do you want your existing evals **re-run to record clip names** (§6), or is the legacy positional
    path good enough for the comparisons you still plan?
 5. **Which pose source is C8 training on** — the authors' released train poses (row 4.1), or something
