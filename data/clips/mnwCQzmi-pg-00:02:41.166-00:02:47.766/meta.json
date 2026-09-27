@@ -1,0 +1,30 @@
+{
+ "vid": "mnwCQzmi-pg-00:02:41.166-00:02:47.766",
+ "yid": "mnwCQzmi-pg",
+ "crop_xywh": [
+  539,
+  0,
+  640,
+  720
+ ],
+ "bbox_norm": [
+  0.42133178015549977,
+  -0.19668955317250006,
+  0.9210437307755153,
+  1.2972154208907374
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "President Trump was on a call with state governors this afternoon.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 159,
+ "stride": 1,
+ "start": "00:02:41.166",
+ "end": "00:02:47.766",
+ "duration_s": 6.6
+}

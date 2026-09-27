@@ -1,0 +1,30 @@
+{
+ "vid": "EDlQOtl4fW8-00:04:19.433-00:04:26.766",
+ "yid": "EDlQOtl4fW8",
+ "crop_xywh": [
+  338,
+  0,
+  576,
+  720
+ ],
+ "bbox_norm": [
+  0.26425191778125184,
+  -0.06434666283604272,
+  0.7138222210335009,
+  1.226686384220316
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The second component is what issue or gaps do you want NAD to address.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 220,
+ "stride": 1,
+ "start": "00:04:19.433",
+ "end": "00:04:26.766",
+ "duration_s": 7.333
+}

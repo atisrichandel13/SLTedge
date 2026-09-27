@@ -1,0 +1,30 @@
+{
+ "vid": "wdmj6E_faOo-00:01:18.633-00:01:24.400",
+ "yid": "wdmj6E_faOo",
+ "crop_xywh": [
+  179,
+  24,
+  430,
+  620
+ ],
+ "bbox_norm": [
+  0.13976372718811034,
+  0.03285733056446863,
+  0.47614444051470073,
+  0.8959810154021732
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Whew, it was crazy, but I kept getting up to write, write, and write.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 173,
+ "stride": 1,
+ "start": "00:01:18.633",
+ "end": "00:01:24.400",
+ "duration_s": 5.767
+}

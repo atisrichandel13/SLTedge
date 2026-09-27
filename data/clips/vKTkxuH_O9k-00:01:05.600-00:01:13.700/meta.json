@@ -1,0 +1,30 @@
+{
+ "vid": "vKTkxuH_O9k-00:01:05.600-00:01:13.700",
+ "yid": "vKTkxuH_O9k",
+ "crop_xywh": [
+  359,
+  0,
+  514,
+  720
+ ],
+ "bbox_norm": [
+  0.2807369608457397,
+  -0.12765085331346623,
+  0.6831496504699291,
+  1.0089410585791256
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Navigating through the topic of mental health comes with a lot of taboo and myths.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 243,
+ "stride": 1,
+ "start": "00:01:05.600",
+ "end": "00:01:13.700",
+ "duration_s": 8.1
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "WMoeSSvCyTU-00:10:55.466-00:11:06.300",
+ "yid": "WMoeSSvCyTU",
+ "crop_xywh": [
+  644,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.503488352804473,
+  -0.21537769416098373,
+  0.9711221955039284,
+  1.2326016994437785
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The pastor admitted that he knew what they were getting into when they gathered, that he knew the possibilities.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 325,
+ "stride": 1,
+ "start": "00:10:55.466",
+ "end": "00:11:06.300",
+ "duration_s": 10.834
+}

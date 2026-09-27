@@ -1,0 +1,30 @@
+{
+ "vid": "UgqB79-BaJ4-00:00:37.466-00:00:45.666",
+ "yid": "UgqB79-BaJ4",
+ "crop_xywh": [
+  590,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.4613003804133488,
+  -0.1897132822817434,
+  0.9350229067680164,
+  1.2437908230570534
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The officer also shot the man's parents - both are in the ICU at a hospital.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 197,
+ "stride": 1,
+ "start": "00:00:37.466",
+ "end": "00:00:45.666",
+ "duration_s": 8.2
+}

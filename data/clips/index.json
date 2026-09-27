@@ -1,45 +1,282 @@
 {
  "split": "test",
  "mode": "clips",
- "requested": 5,
- "n_ok": 5,
- "n_failed": 0,
+ "requested": 30,
+ "n_ok": 30,
+ "n_failed": 3,
  "signers": [
-  "UoU3ZSuTef4",
+  "045-gE1O_hQ",
+  "2MnvFrB5ljQ",
+  "5iRIeHAK9b0",
+  "A33z5b18iew",
+  "CkufhP_fqpQ",
+  "EDlQOtl4fW8",
+  "G2tzMT1j0gI",
+  "I976oI3s1jQ",
   "ImwA3Ctckfk",
+  "S1HvZQRRIaY",
+  "UgqB79-BaJ4",
+  "UoU3ZSuTef4",
+  "UxlnxGyS3lc",
+  "WMoeSSvCyTU",
   "ZdEwfVNtSmw",
+  "bpkFrbslLbU",
+  "e9o20Wskpvw",
+  "ftjAL7MnqsE",
+  "ixq65EiuJ_c",
+  "lLPFTLjYFho",
+  "mnwCQzmi-pg",
+  "oLBUT0xMVmY",
+  "qrR_VwMIsnU",
+  "r5AHxaq6bkE",
+  "vKTkxuH_O9k",
+  "wdmj6E_faOo",
+  "y0URUVcvrTg",
   "y7KIrON1uco",
-  "ixq65EiuJ_c"
+  "z3jAMn3xpoM",
+  "znwRZXn3jc0"
  ],
- "total_frames": 1510,
+ "total_frames": 7299,
  "clips": [
   {
-   "vid": "UoU3ZSuTef4-00:04:12.100-00:04:21.000",
-   "yid": "UoU3ZSuTef4",
+   "vid": "045-gE1O_hQ-00:06:48.166-00:06:55.333",
+   "yid": "045-gE1O_hQ",
    "crop_xywh": [
-    478,
     0,
-    754,
+    0,
+    704,
     720
    ],
    "bbox_norm": [
-    0.37339899804857046,
-    -0.1964393979400928,
-    0.9636597227167201,
-    1.502666832749899
+    -0.0040717792141345115,
+    -0.18572250451639127,
+    0.5497151284254798,
+    1.4736050859594223
    ],
-   "text": "Crews spent this holiday weekend battling wildfires in several states in the West.",
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "You have to think about the family, are they willing to go through a second trial?",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 215,
+   "stride": 1,
+   "start": "00:06:48.166",
+   "end": "00:06:55.333",
+   "duration_s": 7.167
+  },
+  {
+   "vid": "2MnvFrB5ljQ-00:01:53.066-00:01:58.233",
+   "yid": "2MnvFrB5ljQ",
+   "crop_xywh": [
+    435,
+    0,
+    538,
+    720
+   ],
+   "bbox_norm": [
+    0.3398201747607159,
+    -0.06788649017807974,
+    0.7600478982412686,
+    1.1166878252473782
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "Hello, I\u2019m Alicia and I\u2019ve been working with the Outreach committee.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 155,
+   "stride": 1,
+   "start": "00:01:53.066",
+   "end": "00:01:58.233",
+   "duration_s": 5.167
+  },
+  {
+   "vid": "5iRIeHAK9b0-00:04:05.366-00:04:15.733",
+   "yid": "5iRIeHAK9b0",
+   "crop_xywh": [
+    601,
+    0,
+    592,
+    720
+   ],
+   "bbox_norm": [
+    0.4693369653489855,
+    -0.15561694100910883,
+    0.9329888384178202,
+    1.215045863470563
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "Two parents accused of horrific child abuse pleaded guilty in a California court, Friday.",
    "split": "test",
    "fps": 30.0,
    "source_wh": [
     1280,
     720
    ],
-   "n_frames": 267,
+   "n_frames": 312,
    "stride": 1,
-   "start": "00:04:12.100",
-   "end": "00:04:21.000",
-   "duration_s": 8.9
+   "start": "00:04:05.366",
+   "end": "00:04:15.733",
+   "duration_s": 10.367
+  },
+  {
+   "vid": "A33z5b18iew-00:01:19.033-00:01:30.533",
+   "yid": "A33z5b18iew",
+   "crop_xywh": [
+    782,
+    90,
+    454,
+    630
+   ],
+   "bbox_norm": [
+    0.6110229661499245,
+    0.12515268679018374,
+    0.9660852325135384,
+    1.184603475794892
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "Some states have been the most hardest-hit areas with Covid and still have not received their medicine.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 345,
+   "stride": 1,
+   "start": "00:01:19.033",
+   "end": "00:01:30.533",
+   "duration_s": 11.5
+  },
+  {
+   "vid": "CkufhP_fqpQ-00:08:19.166-00:08:24.433",
+   "yid": "CkufhP_fqpQ",
+   "crop_xywh": [
+    597,
+    0,
+    596,
+    720
+   ],
+   "bbox_norm": [
+    0.46637530815907013,
+    -0.20599327685146931,
+    0.932112567852705,
+    1.2577867081362297
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "Roy passed away on Friday from COVID-19.",
+   "split": "test",
+   "fps": 24.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 127,
+   "stride": 1,
+   "start": "00:08:19.166",
+   "end": "00:08:24.433",
+   "duration_s": 5.267
+  },
+  {
+   "vid": "EDlQOtl4fW8-00:04:19.433-00:04:26.766",
+   "yid": "EDlQOtl4fW8",
+   "crop_xywh": [
+    338,
+    0,
+    576,
+    720
+   ],
+   "bbox_norm": [
+    0.26425191778125184,
+    -0.06434666283604272,
+    0.7138222210335009,
+    1.226686384220316
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "The second component is what issue or gaps do you want NAD to address.",
+   "split": "test",
+   "fps": 30.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 220,
+   "stride": 1,
+   "start": "00:04:19.433",
+   "end": "00:04:26.766",
+   "duration_s": 7.333
+  },
+  {
+   "vid": "G2tzMT1j0gI-00:00:10.633-00:00:19.633",
+   "yid": "G2tzMT1j0gI",
+   "crop_xywh": [
+    203,
+    0,
+    750,
+    720
+   ],
+   "bbox_norm": [
+    0.15895867965839525,
+    -0.22762555330378528,
+    0.7448878791597154,
+    1.4168576936499409
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "If you are not able to understand your remote work meetings, talk to your boss or the meeting host about what you need.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 270,
+   "stride": 1,
+   "start": "00:00:10.633",
+   "end": "00:00:19.633",
+   "duration_s": 9.0
+  },
+  {
+   "vid": "I976oI3s1jQ-00:00:45.366-00:00:52.366",
+   "yid": "I976oI3s1jQ",
+   "crop_xywh": [
+    272,
+    0,
+    1008,
+    720
+   ],
+   "bbox_norm": [
+    0.21238498407251694,
+    -0.329238341420824,
+    1.0544602496951234,
+    2.084463707917656
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "It felt like a chill, but I thought nothing of it and I thought I could overcome it.",
+   "split": "test",
+   "fps": 24.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 168,
+   "stride": 1,
+   "start": "00:00:45.366",
+   "end": "00:00:52.366",
+   "duration_s": 7.0
   },
   {
    "vid": "ImwA3Ctckfk-00:06:30.466-00:06:42.000",
@@ -67,7 +304,157 @@
    "stride": 1,
    "start": "00:06:30.466",
    "end": "00:06:42.000",
-   "duration_s": 11.534
+   "duration_s": 11.534,
+   "crop_note": "w/h are the delivered JPEG size; ffmpeg rounds crop down to even"
+  },
+  {
+   "vid": "S1HvZQRRIaY-00:00:35.500-00:00:45.766",
+   "yid": "S1HvZQRRIaY",
+   "crop_xywh": [
+    680,
+    0,
+    518,
+    720
+   ],
+   "bbox_norm": [
+    0.530976471336939,
+    -0.1257071464292465,
+    0.9360467413420318,
+    1.0814221476710968
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "200 people were killed and many more injured all across Sri Lanka as a result of eight explosions.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 308,
+   "stride": 1,
+   "start": "00:00:35.500",
+   "end": "00:00:45.766",
+   "duration_s": 10.266
+  },
+  {
+   "vid": "UgqB79-BaJ4-00:00:37.466-00:00:45.666",
+   "yid": "UgqB79-BaJ4",
+   "crop_xywh": [
+    590,
+    0,
+    606,
+    720
+   ],
+   "bbox_norm": [
+    0.4613003804133488,
+    -0.1897132822817434,
+    0.9350229067680164,
+    1.2437908230570534
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "The officer also shot the man's parents - both are in the ICU at a hospital.",
+   "split": "test",
+   "fps": 23.976,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 197,
+   "stride": 1,
+   "start": "00:00:37.466",
+   "end": "00:00:45.666",
+   "duration_s": 8.2
+  },
+  {
+   "vid": "UoU3ZSuTef4-00:04:12.100-00:04:21.000",
+   "yid": "UoU3ZSuTef4",
+   "crop_xywh": [
+    478,
+    0,
+    754,
+    720
+   ],
+   "bbox_norm": [
+    0.37339899804857046,
+    -0.1964393979400928,
+    0.9636597227167201,
+    1.502666832749899
+   ],
+   "text": "Crews spent this holiday weekend battling wildfires in several states in the West.",
+   "split": "test",
+   "fps": 30.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 267,
+   "stride": 1,
+   "start": "00:04:12.100",
+   "end": "00:04:21.000",
+   "duration_s": 8.9,
+   "crop_note": "w/h are the delivered JPEG size; ffmpeg rounds crop down to even"
+  },
+  {
+   "vid": "UxlnxGyS3lc-00:04:22.300-00:04:32.633",
+   "yid": "UxlnxGyS3lc",
+   "crop_xywh": [
+    364,
+    0,
+    552,
+    720
+   ],
+   "bbox_norm": [
+    0.28406828848520915,
+    -0.14229082884611907,
+    0.7162852862675985,
+    1.0786537106831868
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "Likewise, to ensure accessibility is provided throughout, they can use support services through appropriate technology such as video conferencing platforms.",
+   "split": "test",
+   "fps": 23.976,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 248,
+   "stride": 1,
+   "start": "00:04:22.300",
+   "end": "00:04:32.633",
+   "duration_s": 10.333
+  },
+  {
+   "vid": "WMoeSSvCyTU-00:10:55.466-00:11:06.300",
+   "yid": "WMoeSSvCyTU",
+   "crop_xywh": [
+    644,
+    0,
+    598,
+    720
+   ],
+   "bbox_norm": [
+    0.503488352804473,
+    -0.21537769416098373,
+    0.9711221955039284,
+    1.2326016994437785
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "The pastor admitted that he knew what they were getting into when they gathered, that he knew the possibilities.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 325,
+   "stride": 1,
+   "start": "00:10:55.466",
+   "end": "00:11:06.300",
+   "duration_s": 10.834
   },
   {
    "vid": "ZdEwfVNtSmw-00:00:19.533-00:00:31.100",
@@ -95,35 +482,98 @@
    "stride": 1,
    "start": "00:00:19.533",
    "end": "00:00:31.100",
-   "duration_s": 11.567
+   "duration_s": 11.567,
+   "crop_note": "w/h are the delivered JPEG size; ffmpeg rounds crop down to even"
   },
   {
-   "vid": "y7KIrON1uco-00:02:58.433-00:03:08.233",
-   "yid": "y7KIrON1uco",
+   "vid": "bpkFrbslLbU-00:09:01.700-00:09:08.533",
+   "yid": "bpkFrbslLbU",
    "crop_xywh": [
-    697,
+    589,
     0,
-    502,
-    702
+    574,
+    720
    ],
    "bbox_norm": [
-    0.5443517345493123,
-    -0.09380372353342444,
-    0.93674063763376,
-    0.9758590038512684
+    0.46034541852546457,
+    -0.16957070150493106,
+    0.9091862745959349,
+    1.1724841350123
    ],
-   "text": "Meteorologist say some areas might not get relief from the rain and floods until Friday afternoon.",
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "Events that have more than 25 people will not be allowed.",
    "split": "test",
-   "fps": 30.0,
+   "fps": 24.0,
    "source_wh": [
     1280,
     720
    ],
-   "n_frames": 294,
+   "n_frames": 164,
    "stride": 1,
-   "start": "00:02:58.433",
-   "end": "00:03:08.233",
-   "duration_s": 9.8
+   "start": "00:09:01.700",
+   "end": "00:09:08.533",
+   "duration_s": 6.833
+  },
+  {
+   "vid": "e9o20Wskpvw-00:04:31.566-00:04:42.533",
+   "yid": "e9o20Wskpvw",
+   "crop_xywh": [
+    641,
+    0,
+    504,
+    720
+   ],
+   "bbox_norm": [
+    0.5007454929929791,
+    -0.10716026222665703,
+    0.8947657122756496,
+    1.1401545763818501
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "The league is asking them to consider what actions they would take in their arenas to play games without fans inside.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 329,
+   "stride": 1,
+   "start": "00:04:31.566",
+   "end": "00:04:42.533",
+   "duration_s": 10.967
+  },
+  {
+   "vid": "ftjAL7MnqsE-00:00:23.666-00:00:34.133",
+   "yid": "ftjAL7MnqsE",
+   "crop_xywh": [
+    590,
+    0,
+    658,
+    720
+   ],
+   "bbox_norm": [
+    0.4608970662273427,
+    -0.21524145069155953,
+    0.9760013862892433,
+    1.3554577984997693
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "Over 2,600 died at the World Trade Center.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 314,
+   "stride": 1,
+   "start": "00:00:23.666",
+   "end": "00:00:34.133",
+   "duration_s": 10.467
   },
   {
    "vid": "ixq65EiuJ_c-00:03:47.633-00:03:56.133",
@@ -151,11 +601,358 @@
    "stride": 1,
    "start": "00:03:47.633",
    "end": "00:03:56.133",
-   "duration_s": 8.5
+   "duration_s": 8.5,
+   "crop_note": "w/h are the delivered JPEG size; ffmpeg rounds crop down to even"
+  },
+  {
+   "vid": "lLPFTLjYFho-00:00:44.366-00:00:52.333",
+   "yid": "lLPFTLjYFho",
+   "crop_xywh": [
+    768,
+    76,
+    418,
+    644
+   ],
+   "bbox_norm": [
+    0.5996260578433673,
+    0.10622347814065439,
+    0.9265806570649147,
+    1.06350160351506
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "This is according to discrimination charges filed with the Minnesota Department of Human Rights.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 239,
+   "stride": 1,
+   "start": "00:00:44.366",
+   "end": "00:00:52.333",
+   "duration_s": 7.967
+  },
+  {
+   "vid": "mnwCQzmi-pg-00:02:41.166-00:02:47.766",
+   "yid": "mnwCQzmi-pg",
+   "crop_xywh": [
+    539,
+    0,
+    640,
+    720
+   ],
+   "bbox_norm": [
+    0.42133178015549977,
+    -0.19668955317250006,
+    0.9210437307755153,
+    1.2972154208907374
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "President Trump was on a call with state governors this afternoon.",
+   "split": "test",
+   "fps": 24.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 159,
+   "stride": 1,
+   "start": "00:02:41.166",
+   "end": "00:02:47.766",
+   "duration_s": 6.6
+  },
+  {
+   "vid": "oLBUT0xMVmY-00:01:01.333-00:01:06.633",
+   "yid": "oLBUT0xMVmY",
+   "crop_xywh": [
+    185,
+    0,
+    538,
+    470
+   ],
+   "bbox_norm": [
+    0.2170579037007459,
+    -0.17113685405000728,
+    0.8469659092833901,
+    1.7098362755268177
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "Should we focus our energy on supporting these deaf schools?",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    854,
+    470
+   ],
+   "n_frames": 159,
+   "stride": 1,
+   "start": "00:01:01.333",
+   "end": "00:01:06.633",
+   "duration_s": 5.3
+  },
+  {
+   "vid": "qrR_VwMIsnU-00:00:23.333-00:00:33.000",
+   "yid": "qrR_VwMIsnU",
+   "crop_xywh": [
+    213,
+    0,
+    860,
+    720
+   ],
+   "bbox_norm": [
+    0.16619133652940307,
+    -0.3186879836308155,
+    0.8394331404044804,
+    1.6758433109697723
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "If you are passionate about NAD and have good leadership skills I encourage you to apply for available a position.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 290,
+   "stride": 1,
+   "start": "00:00:23.333",
+   "end": "00:00:33.000",
+   "duration_s": 9.667
+  },
+  {
+   "vid": "r5AHxaq6bkE-00:03:58.266-00:04:06.433",
+   "yid": "r5AHxaq6bkE",
+   "crop_xywh": [
+    762,
+    124,
+    370,
+    596
+   ],
+   "bbox_norm": [
+    0.5950223827362061,
+    0.17220098537868925,
+    0.884128927230835,
+    1.06985650422838
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "That would be the highest unemployment rate since the Great Depression.",
+   "split": "test",
+   "fps": 30.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 246,
+   "stride": 1,
+   "start": "00:03:58.266",
+   "end": "00:04:06.433",
+   "duration_s": 8.167
+  },
+  {
+   "vid": "vKTkxuH_O9k-00:01:05.600-00:01:13.700",
+   "yid": "vKTkxuH_O9k",
+   "crop_xywh": [
+    359,
+    0,
+    514,
+    720
+   ],
+   "bbox_norm": [
+    0.2807369608457397,
+    -0.12765085331346623,
+    0.6831496504699291,
+    1.0089410585791256
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "Navigating through the topic of mental health comes with a lot of taboo and myths.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 243,
+   "stride": 1,
+   "start": "00:01:05.600",
+   "end": "00:01:13.700",
+   "duration_s": 8.1
+  },
+  {
+   "vid": "wdmj6E_faOo-00:01:18.633-00:01:24.400",
+   "yid": "wdmj6E_faOo",
+   "crop_xywh": [
+    179,
+    24,
+    430,
+    620
+   ],
+   "bbox_norm": [
+    0.13976372718811034,
+    0.03285733056446863,
+    0.47614444051470073,
+    0.8959810154021732
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "Whew, it was crazy, but I kept getting up to write, write, and write.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 173,
+   "stride": 1,
+   "start": "00:01:18.633",
+   "end": "00:01:24.400",
+   "duration_s": 5.767
+  },
+  {
+   "vid": "y0URUVcvrTg-00:01:42.000-00:01:47.733",
+   "yid": "y0URUVcvrTg",
+   "crop_xywh": [
+    412,
+    0,
+    364,
+    470
+   ],
+   "bbox_norm": [
+    0.48233544103036,
+    -0.1463794733760567,
+    0.9087208308516318,
+    1.1165420216847335
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "At that meeting, we\u2019ll be discussing status updates, plans for the months leading up to the Conference!",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    854,
+    470
+   ],
+   "n_frames": 172,
+   "stride": 1,
+   "start": "00:01:42.000",
+   "end": "00:01:47.733",
+   "duration_s": 5.733
+  },
+  {
+   "vid": "y7KIrON1uco-00:02:58.433-00:03:08.233",
+   "yid": "y7KIrON1uco",
+   "crop_xywh": [
+    697,
+    0,
+    502,
+    702
+   ],
+   "bbox_norm": [
+    0.5443517345493123,
+    -0.09380372353342444,
+    0.93674063763376,
+    0.9758590038512684
+   ],
+   "text": "Meteorologist say some areas might not get relief from the rain and floods until Friday afternoon.",
+   "split": "test",
+   "fps": 30.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 294,
+   "stride": 1,
+   "start": "00:02:58.433",
+   "end": "00:03:08.233",
+   "duration_s": 9.8,
+   "crop_note": "w/h are the delivered JPEG size; ffmpeg rounds crop down to even"
+  },
+  {
+   "vid": "z3jAMn3xpoM-00:08:41.000-00:08:49.100",
+   "yid": "z3jAMn3xpoM",
+   "crop_xywh": [
+    640,
+    0,
+    600,
+    720
+   ],
+   "bbox_norm": [
+    0.5001398800181694,
+    -0.16733982089065008,
+    0.9691869385388433,
+    1.2571648814690806
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "One of them filmed a Facebook Live video that showed the officer lying on the floor, bleeding.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 243,
+   "stride": 1,
+   "start": "00:08:41.000",
+   "end": "00:08:49.100",
+   "duration_s": 8.1
+  },
+  {
+   "vid": "znwRZXn3jc0-00:03:01.100-00:03:06.700",
+   "yid": "znwRZXn3jc0",
+   "crop_xywh": [
+    584,
+    0,
+    606,
+    720
+   ],
+   "bbox_norm": [
+    0.4558865481731938,
+    -0.13485617211701303,
+    0.930651330947876,
+    1.226918481066336
+   ],
+   "crop_style": "native",
+   "crop_geom": null,
+   "text": "A vote on immigration failed in the House of Representatives.",
+   "split": "test",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 168,
+   "stride": 1,
+   "start": "00:03:01.100",
+   "end": "00:03:06.700",
+   "duration_s": 5.6
   }
  ],
- "failures": [],
+ "failures": [
+  {
+   "vid": "Uy-9Iz-8xjw-00:00:18.300-00:00:27.466",
+   "yid": "Uy-9Iz-8xjw",
+   "reason": "ERROR: [youtube] Uy-9Iz-8xjw: Private video"
+  },
+  {
+   "vid": "1qMSlb1sbXw-00:02:37.700-00:02:42.733",
+   "yid": "1qMSlb1sbXw",
+   "reason": "ERROR: [youtube] 1qMSlb1sbXw: Private video"
+  },
+  {
+   "vid": "vvKNQ16zXLA-00:03:38.300-00:03:45.766",
+   "yid": "vvKNQ16zXLA",
+   "reason": "ERROR: [youtube] vvKNQ16zXLA: Private video"
+  }
+ ],
  "crop": "OpenASL bbox scaled to frame and clamped (no square/pad/resize)",
+ "crop_style": "native",
  "height_cap": 720,
  "seed": 0
 }

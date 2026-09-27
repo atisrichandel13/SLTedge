@@ -1,0 +1,30 @@
+{
+ "vid": "CkufhP_fqpQ-00:08:19.166-00:08:24.433",
+ "yid": "CkufhP_fqpQ",
+ "crop_xywh": [
+  597,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.46637530815907013,
+  -0.20599327685146931,
+  0.932112567852705,
+  1.2577867081362297
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Roy passed away on Friday from COVID-19.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 127,
+ "stride": 1,
+ "start": "00:08:19.166",
+ "end": "00:08:24.433",
+ "duration_s": 5.267
+}

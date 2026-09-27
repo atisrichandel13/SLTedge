@@ -207,6 +207,10 @@ def main():
     ap.add_argument("--exclude-yid", action="append", default=["Ads-4j06eJY"],
                     help="already have this signer (the baseline clip); repeatable")
     ap.add_argument("--max-attempts", type=int, default=40, help="dead links are common; cap the walk")
+    ap.add_argument("--skip-existing", action=argparse.BooleanOptionalAction, default=True,
+                    help="reuse clips already on disk with a complete frame set, instead of "
+                         "re-downloading them. Makes the fetch resumable, which matters because dead "
+                         "links force repeated runs; --no-skip-existing forces a clean re-fetch")
     ap.add_argument("--cookies-from-browser", default=None,
                     help="e.g. chrome - needed if YouTube demands sign-in")
     ap.add_argument("--yt-dlp", default=shutil.which("yt-dlp") or "yt-dlp")
@@ -256,6 +260,22 @@ def main():
         if len(done) >= want or len(done) + len(failures) >= args.max_attempts:
             break
         vid, yid = r["vid"], r["yid"]
+        if args.skip_existing and not args.calib:
+            mp = os.path.join(args.out, vid, "meta.json")
+            fdir = os.path.join(args.out, vid, "frames")
+            if os.path.exists(mp):
+                try:
+                    prev = json.load(open(mp))
+                    n_on_disk = len(glob.glob(os.path.join(fdir, "*.jpg")))
+                    # only trust it if every frame the old run claimed is still there: a truncated
+                    # frame dir would silently shorten the clip for every downstream measurement
+                    if prev.get("n_frames") and n_on_disk == prev["n_frames"]:
+                        done.append(prev)
+                        print(f"[keep] {vid}  {n_on_disk} frames already on disk")
+                        continue
+                    print(f"[redo] {vid}: {n_on_disk} frames on disk, meta says {prev.get('n_frames')}")
+                except Exception as e:  # noqa: BLE001
+                    print(f"[redo] {vid}: unreadable meta ({e})")
         start_s, end_s = hms_to_s(r["start"]), hms_to_s(r["end"])
         tmp = tempfile.mkdtemp()
         mp4 = os.path.join(tmp, "clip.mp4")

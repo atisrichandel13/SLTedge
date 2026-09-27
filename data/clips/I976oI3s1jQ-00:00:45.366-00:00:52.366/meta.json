@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:00:45.366-00:00:52.366",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  272,
+  0,
+  1008,
+  720
+ ],
+ "bbox_norm": [
+  0.21238498407251694,
+  -0.329238341420824,
+  1.0544602496951234,
+  2.084463707917656
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It felt like a chill, but I thought nothing of it and I thought I could overcome it.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 168,
+ "stride": 1,
+ "start": "00:00:45.366",
+ "end": "00:00:52.366",
+ "duration_s": 7.0
+}
