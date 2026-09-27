@@ -23,6 +23,7 @@ old and clips go private or get deleted, so the script walks candidates until en
 records every failure with its reason.
 """
 import argparse
+import glob
 import gzip
 import json
 import os
@@ -91,6 +92,45 @@ def crop_xywh(bbox_norm, W, H):
     return [x0, y0, w, h]
 
 
+def openasl_square_crop(bbox_norm, W, H, target=224):
+    """OpenASL's own recipe, from their `prep/crop_video.py` `crop_resize()`.
+
+    They square the box by expanding the SHORTER side symmetrically, black-pad whatever falls outside
+    the frame (`cv2.copyMakeBorder`), then `cv2.resize` to `target` x `target`. Two differences from
+    `crop_xywh` above, both deliberate on their side: the square expansion reaches pixels beyond the
+    bbox, and the final frame is a fixed 224 square rather than native resolution.
+
+    Their bbox conversion truncates (`int(x0*W)`), not rounds, so this matches that.
+
+    Returns (vf, geom). `vf` is the ffmpeg filter chain reproducing it: crop the part of the square
+    that is really inside the frame, pad back out to the full square with black at the right offset,
+    then scale. `flags=bilinear` matches cv2.resize's INTER_LINEAR default; ffmpeg would otherwise use
+    bicubic and the frames would not be comparable to theirs at the pixel level.
+    """
+    x0, y0, x1, y1 = bbox_norm
+    x0, x1 = int(x0 * W), int(x1 * W)
+    y0, y1 = int(y0 * H), int(y1 * H)
+    dw, dh = x1 - x0, y1 - y0
+    if dw < 16 or dh < 16:
+        raise RuntimeError(f"degenerate bbox {x0},{y0},{x1},{y1} in {W}x{H}")
+    side = max(dw, dh)
+    # expand the shorter side symmetrically; an odd remainder goes to the right/bottom, and the square
+    # is pinned to exactly `side` so it cannot drift by a pixel
+    sx0, sy0 = x0 - (side - dw) // 2, y0 - (side - dh) // 2
+    ix0, iy0 = max(0, sx0), max(0, sy0)
+    ix1, iy1 = min(W, sx0 + side), min(H, sy0 + side)
+    iw, ih = ix1 - ix0, iy1 - iy0
+    if iw < 16 or ih < 16:
+        raise RuntimeError(f"square box {sx0},{sy0}+{side} barely intersects {W}x{H}")
+    px, py = ix0 - sx0, iy0 - sy0          # where the real pixels sit inside the square
+    vf = (f"crop={iw}:{ih}:{ix0}:{iy0},"
+          f"pad={side}:{side}:{px}:{py}:black,"
+          f"scale={target}:{target}:flags=bilinear")
+    geom = {"square_xywh": [sx0, sy0, side, side], "inside_frame_xywh": [ix0, iy0, iw, ih],
+            "pad_xy": [px, py], "black_pad_px": side * side - iw * ih, "target": target}
+    return vf, geom
+
+
 def download_section(yt_dlp, yid, start_s, end_s, dest, height=720, cookies=None):
     """yt-dlp section download. Returns (ok, reason)."""
     cmd = [yt_dlp, "-q", "--no-warnings", "--no-playlist",
@@ -110,10 +150,14 @@ def download_section(yt_dlp, yid, start_s, end_s, dest, height=720, cookies=None
     return False, msg
 
 
-def extract_frames(ffmpeg, video, out_dir, crop, prefix="f", stride=1, limit=None, quality=2):
+def extract_frames(ffmpeg, video, out_dir, crop, prefix="f", stride=1, limit=None, quality=2,
+                   vf_override=None):
     os.makedirs(out_dir, exist_ok=True)
-    x, y, w, h = crop
-    vf = f"crop={w}:{h}:{x}:{y}"
+    if vf_override:
+        vf = vf_override
+    else:
+        x, y, w, h = crop
+        vf = f"crop={w}:{h}:{x}:{y}"
     if stride > 1:
         vf += f",select=not(mod(n\\,{stride}))"
     cmd = [ffmpeg, "-v", "error", "-y", "-i", video, "-vf", vf, "-vsync", "0",
@@ -149,6 +193,16 @@ def main():
     ap.add_argument("--min-dur", type=float, default=5.0)
     ap.add_argument("--max-dur", type=float, default=12.0)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--crop-style", choices=["native", "openasl"], default="native",
+                    help="native = OpenASL bbox clamped to the frame at source resolution (our P3 "
+                         "default). openasl = their own prep/crop_video.py recipe: square the box, "
+                         "black-pad outside the frame, resize to --openasl-size. Use openasl to test "
+                         "whether our crop convention costs BLEU against their released poses.")
+    ap.add_argument("--openasl-size", type=int, default=224,
+                    help="square side for --crop-style openasl (their default is 224)")
+    ap.add_argument("--only-vid", action="append", default=None,
+                    help="restrict to these clip ids; repeatable. Needed to re-fetch exactly the "
+                         "clips a previous run picked, so two crop styles are compared on one sample.")
     ap.add_argument("--height", type=int, default=720)
     ap.add_argument("--exclude-yid", action="append", default=["Ads-4j06eJY"],
                     help="already have this signer (the baseline clip); repeatable")
@@ -168,6 +222,18 @@ def main():
     cands = candidates(rows, vid2bbox, split, args.min_dur, args.max_dur, set(args.exclude_yid))
     print(f"[meta] {len(rows)} rows, {len(cands)} {split} candidates with a bbox and duration "
           f"{args.min_dur}-{args.max_dur}s")
+    if args.only_vid:
+        want_vids = set(args.only_vid)
+        # bypass the duration filter and the exclude list: an explicit id is an explicit request, and
+        # re-fetching a clip a previous run already accepted must not be second-guessed here
+        byvid = {r["vid"]: (r, hms_to_s(r["end"]) - hms_to_s(r["start"]))
+                 for r in rows if r["vid"] in want_vids and r["vid"] in vid2bbox}
+        missing = want_vids - set(byvid)
+        if missing:
+            raise SystemExit(f"--only-vid not found in the OpenASL tables (or has no bbox): "
+                             f"{sorted(missing)}")
+        cands = list(byvid.values())
+        print(f"[meta] --only-vid: {len(cands)} clip(s) forced")
 
     # one clip per video, shuffled deterministically: distinct yid is our signer proxy (OpenASL has
     # no signer field, but a video is one signer in these news/vlog sources)
@@ -179,7 +245,11 @@ def main():
     order = list(by_yid.values())
     rnd.shuffle(order)
 
-    want = args.n_signers if args.calib else args.n_clips
+    if args.only_vid:
+        order = cands                      # exactly what was asked, in table order
+        want = len(order)
+    else:
+        want = args.n_signers if args.calib else args.n_clips
     os.makedirs(args.out, exist_ok=True)
     done, failures = [], []
     for r, dur in order:
@@ -198,17 +268,25 @@ def main():
             continue
         try:
             W, H, fps, npkt = probe(args.ffprobe, mp4)
-            crop = crop_xywh(vid2bbox[vid], W, H)
+            if args.crop_style == "openasl":
+                vf_override, geom = openasl_square_crop(vid2bbox[vid], W, H, args.openasl_size)
+                # the delivered JPEG *is* the square, so this is what normalises the keypoints
+                crop = [0, 0, args.openasl_size, args.openasl_size]
+            else:
+                vf_override, geom = None, None
+                crop = crop_xywh(vid2bbox[vid], W, H)
             if args.calib:
                 stride = max(1, int(npkt // max(1, args.frames_per_signer)) or 1)
                 names = extract_frames(args.ffmpeg, mp4, args.out, crop, prefix=f"c_{yid}",
-                                       stride=stride, limit=args.frames_per_signer)
+                                       stride=stride, limit=args.frames_per_signer,
+                                       vf_override=vf_override)
                 frame_dir = args.out
             else:
                 frame_dir = os.path.join(args.out, vid, "frames")
                 stride = 1
-                names = extract_frames(args.ffmpeg, mp4, frame_dir, crop)
+                names = extract_frames(args.ffmpeg, mp4, frame_dir, crop, vf_override=vf_override)
             meta = {"vid": vid, "yid": yid, "crop_xywh": crop, "bbox_norm": vid2bbox[vid],
+                    "crop_style": args.crop_style, "crop_geom": geom,
                     "text": r["raw-text"], "split": split, "fps": fps, "source_wh": [W, H],
                     "n_frames": len(names), "stride": stride,
                     "start": r["start"], "end": r["end"], "duration_s": round(dur, 3)}
@@ -222,10 +300,29 @@ def main():
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
+    # A later run with --only-vid must not erase clips an earlier run already fetched: pick up every
+    # <vid>/meta.json still on disk that this run did not produce. Without this, retrying one failed
+    # clip rewrites index.json as a one-clip index while the other four sit there unlisted.
+    if not args.calib:
+        have = {m["vid"] for m in done}
+        for mp in sorted(glob.glob(os.path.join(args.out, "*", "meta.json"))):
+            try:
+                prev = json.load(open(mp))
+            except (OSError, ValueError):
+                continue
+            if prev.get("vid") and prev["vid"] not in have:
+                done.append(prev)
+                have.add(prev["vid"])
+        done.sort(key=lambda m: m["vid"])
+
     index = {"split": split, "mode": "calib" if args.calib else "clips", "requested": want,
              "n_ok": len(done), "n_failed": len(failures), "signers": [m["yid"] for m in done],
              "total_frames": sum(m["n_frames"] for m in done), "clips": done, "failures": failures,
-             "crop": "OpenASL bbox scaled to frame and clamped (no square/pad/resize)",
+             "crop": ("OpenASL bbox scaled to frame and clamped (no square/pad/resize)"
+                      if args.crop_style == "native" else
+                      f"OpenASL prep/crop_video.py recipe: square, black-pad, resize to "
+                      f"{args.openasl_size}"),
+             "crop_style": args.crop_style,
              "height_cap": args.height, "seed": args.seed}
     idx_path = os.path.join(args.out, "index.json" if not args.calib else "calib_index.json")
     json.dump(index, open(idx_path, "w"), indent=1)
