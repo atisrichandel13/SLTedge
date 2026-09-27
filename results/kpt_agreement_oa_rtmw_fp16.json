@@ -1,0 +1,243 @@
+{
+ "label": "ImwA3Ctckfk-00:06:30.466-00:06:42.000",
+ "ref": [
+  "results/kpts_openasl/rtmw_fp32__ImwA3Ctckfk-00:06:30.466-00:06:42.000.json",
+  "results/kpts_openasl/rtmw_fp32__UoU3ZSuTef4-00:04:12.100-00:04:21.000.json",
+  "results/kpts_openasl/rtmw_fp32__ZdEwfVNtSmw-00:00:19.533-00:00:31.100.json",
+  "results/kpts_openasl/rtmw_fp32__ixq65EiuJ_c-00:03:47.633-00:03:56.133.json",
+  "results/kpts_openasl/rtmw_fp32__y7KIrON1uco-00:02:58.433-00:03:08.233.json"
+ ],
+ "test": [
+  "results/kpts_openasl/rtmw_fp16__ImwA3Ctckfk-00:06:30.466-00:06:42.000.json",
+  "results/kpts_openasl/rtmw_fp16__UoU3ZSuTef4-00:04:12.100-00:04:21.000.json",
+  "results/kpts_openasl/rtmw_fp16__ZdEwfVNtSmw-00:00:19.533-00:00:31.100.json",
+  "results/kpts_openasl/rtmw_fp16__ixq65EiuJ_c-00:03:47.633-00:03:56.133.json",
+  "results/kpts_openasl/rtmw_fp16__y7KIrON1uco-00:02:58.433-00:03:08.233.json"
+ ],
+ "n_clips": 5,
+ "n_frames": 1510,
+ "n_keypoints_per_frame": 133,
+ "clips": [
+  {
+   "clip": "ImwA3Ctckfk-00:06:30.466-00:06:42.000",
+   "source": "results/kpts_openasl/rtmw_fp32__ImwA3Ctckfk-00:06:30.466-00:06:42.000.json",
+   "n_frames": 347
+  },
+  {
+   "clip": "UoU3ZSuTef4-00:04:12.100-00:04:21.000",
+   "source": "results/kpts_openasl/rtmw_fp32__UoU3ZSuTef4-00:04:12.100-00:04:21.000.json",
+   "n_frames": 267
+  },
+  {
+   "clip": "ZdEwfVNtSmw-00:00:19.533-00:00:31.100",
+   "source": "results/kpts_openasl/rtmw_fp32__ZdEwfVNtSmw-00:00:19.533-00:00:31.100.json",
+   "n_frames": 347
+  },
+  {
+   "clip": "ixq65EiuJ_c-00:03:47.633-00:03:56.133",
+   "source": "results/kpts_openasl/rtmw_fp32__ixq65EiuJ_c-00:03:47.633-00:03:56.133.json",
+   "n_frames": 255
+  },
+  {
+   "clip": "y7KIrON1uco-00:02:58.433-00:03:08.233",
+   "source": "results/kpts_openasl/rtmw_fp32__y7KIrON1uco-00:02:58.433-00:03:08.233.json",
+   "n_frames": 294
+  }
+ ],
+ "min_score": 0.3,
+ "distance": "euclidean_px_source_frame",
+ "thresholds_px": [
+  1.0,
+  2.0,
+  5.0
+ ],
+ "groups": {
+  "body": {
+   "n_keypoints": 25670,
+   "n_confident": 19748,
+   "frac_confident": 0.7693026879626023,
+   "within_px": {
+    "1px": 0.9929106744986834,
+    "2px": 0.9998480858821146,
+    "5px": 1.0
+   },
+   "px_percentiles": {
+    "p50": 0.0,
+    "p90": 0.7299957275390625,
+    "p99": 0.730010986328125,
+    "p99.9": 1.4600067138671875,
+    "max": 2.3084636569785153
+   },
+   "mean_px": 0.08985996576380417
+  },
+  "feet": {
+   "n_keypoints": 9060,
+   "n_confident": 925,
+   "frac_confident": 0.1020971302428256,
+   "within_px": {
+    "1px": 0.9308108108108109,
+    "2px": 0.985945945945946,
+    "5px": 0.9989189189189189
+   },
+   "px_percentiles": {
+    "p50": 0.0,
+    "p90": 0.7300033569335938,
+    "p99": 2.1800003051757812,
+    "p99.9": 4.093074035645321,
+    "max": 9.479995727539062
+   },
+   "mean_px": 0.21184001114099493
+  },
+  "face": {
+   "n_keypoints": 102680,
+   "n_confident": 102680,
+   "frac_confident": 1.0,
+   "within_px": {
+    "1px": 0.9983054148811843,
+    "2px": 1.0,
+    "5px": 1.0
+   },
+   "px_percentiles": {
+    "p50": 0.0,
+    "p90": 0.0,
+    "p99": 0.7300033569335938,
+    "p99.9": 1.0323752531708619,
+    "max": 1.0323806480097577
+   },
+   "mean_px": 0.05883080297575692
+  },
+  "left_hand": {
+   "n_keypoints": 31710,
+   "n_confident": 31710,
+   "frac_confident": 1.0,
+   "within_px": {
+    "1px": 0.9901923683380637,
+    "2px": 0.9994954273099969,
+    "5px": 0.9999053926206244
+   },
+   "px_percentiles": {
+    "p50": 0.0,
+    "p90": 0.7299957275390625,
+    "p99": 0.730010986328125,
+    "p99.9": 1.4600067138671875,
+    "max": 31.35000228881836
+   },
+   "mean_px": 0.11570125210462259
+  },
+  "right_hand": {
+   "n_keypoints": 31710,
+   "n_confident": 31710,
+   "frac_confident": 1.0,
+   "within_px": {
+    "1px": 0.9874802901292967,
+    "2px": 0.9987701040681173,
+    "5px": 0.9998107852412488
+   },
+   "px_percentiles": {
+    "p50": 0.0,
+    "p90": 0.7299957275390625,
+    "p99": 1.0323698583601568,
+    "p99.9": 2.1899970321655275,
+    "max": 29.170001983642578
+   },
+   "mean_px": 0.12376375985171874
+  },
+  "hands": {
+   "n_keypoints": 63420,
+   "n_confident": 63420,
+   "frac_confident": 1.0,
+   "within_px": {
+    "1px": 0.9888363292336803,
+    "2px": 0.9991327656890571,
+    "5px": 0.9998580889309366
+   },
+   "px_percentiles": {
+    "p50": 0.0,
+    "p90": 0.7299957275390625,
+    "p99": 1.025332462642389,
+    "p99.9": 1.6323303059722043,
+    "max": 31.35000228881836
+   },
+   "mean_px": 0.11973250597817067
+  },
+  "unisign_used": {
+   "n_keypoints": 104190,
+   "n_confident": 104190,
+   "frac_confident": 1.0,
+   "within_px": {
+    "1px": 0.992427296285632,
+    "2px": 0.999472118245513,
+    "5px": 0.9999136193492658
+   },
+   "px_percentiles": {
+    "p50": 0.0,
+    "p90": 0.7299957275390625,
+    "p99": 0.730010986328125,
+    "p99.9": 1.4600067138671875,
+    "max": 31.35000228881836
+   },
+   "mean_px": 0.09923493455397273
+  },
+  "all": {
+   "n_keypoints": 200830,
+   "n_confident": 186773,
+   "frac_confident": 0.9300054772693322,
+   "within_px": {
+    "1px": 0.9941854550711291,
+    "2px": 0.9996198594015195,
+    "5px": 0.9999464590706365
+   },
+   "px_percentiles": {
+    "p50": 0.0,
+    "p90": 0.7299957275390625,
+    "p99": 0.730010986328125,
+    "p99.9": 1.4599990844726562,
+    "max": 31.35000228881836
+   },
+   "mean_px": 0.08354895511072441
+  }
+ },
+ "conf_flip": {
+  "n": 23,
+  "frac": 0.00011452472240203156,
+  "ref_conf_frac": 0.9300054772693322,
+  "test_conf_frac": 0.9300104566050889,
+  "per_group_frac": {
+   "body": 0.00015582391897156213,
+   "feet": 0.0020971302428256073,
+   "face": 0.0,
+   "left_hand": 0.0,
+   "right_hand": 0.0,
+   "hands": 0.0,
+   "unisign_used": 0.0,
+   "all": 0.00011452472240203156
+  },
+  "score_mean_abs_diff": 0.0014035148098964659,
+  "score_max_abs_diff": 0.01569998264312744
+ },
+ "worst_confident": {
+  "px": 31.35000228881836,
+  "frame": "UoU3ZSuTef4-00:04:12.100-00:04:21.000/f_0106.jpg",
+  "keypoint": 94,
+  "group": "left_hand",
+  "ref_score": 0.5670999884605408,
+  "test_score": 0.5746999979019165,
+  "ref_xy": [
+   58.77,
+   145.54
+  ],
+  "test_xy": [
+   90.12,
+   145.54
+  ]
+ },
+ "per_frame_worst_px": {
+  "mean": 1.039989602969707,
+  "max": 31.35000228881836,
+  "frac_frames_all_within_5px": 0.9947019867549669
+ },
+ "trt_ms_mean": {
+  "ref": 25.848,
+  "test": 14.143
+ }
+}

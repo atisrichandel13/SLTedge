@@ -1,0 +1,57 @@
+===== oa_rtmw_fp32
+[cache] fadvise DONTNEED on 63 files (7.66 GB) under ['models', 'weights', 'data', 'results']: MemFree 4049 -> 4212 MB, Cached 1897 -> 1731 MB
+  "n": 5,
+  "missing": 971,
+  "bleu": {
+    "bleu1": 44.83189713418465,
+    "bleu2": 31.023094721199804,
+    "bleu3": 20.47624003288386,
+    "bleu4": 12.379959793648274
+  },
+  "rouge_l": 38.868219533655264,
+  "wall_s": 17.57768996595405
+}
+[eval] wrote results/eval_oa_rtmw_fp32.json
+===== oa_rtmw_fp16
+[cache] fadvise DONTNEED on 63 files (7.66 GB) under ['models', 'weights', 'data', 'results']: MemFree 3797 -> 4920 MB, Cached 2172 -> 1048 MB
+  "n": 5,
+  "missing": 971,
+  "bleu": {
+    "bleu1": 44.895589480137204,
+    "bleu2": 28.338951729082634,
+    "bleu3": 15.98734331419055,
+    "bleu4": 8.638699536299715
+  },
+  "rouge_l": 36.773711228501526,
+  "wall_s": 19.310714407125488
+}
+[eval] wrote results/eval_oa_rtmw_fp16.json
+===== oa_rtmposex_fp32
+[cache] fadvise DONTNEED on 63 files (7.66 GB) under ['models', 'weights', 'data', 'results']: MemFree 2784 -> 5029 MB, Cached 3199 -> 952 MB
+  "n": 5,
+  "missing": 971,
+  "bleu": {
+    "bleu1": 32.35294117647059,
+    "bleu2": 18.26295365065817,
+    "bleu3": 10.28391520549682,
+    "bleu4": 5.946193696016625
+  },
+  "rouge_l": 30.369457632006124,
+  "wall_s": 21.35168426297605
+}
+[eval] wrote results/eval_oa_rtmposex_fp32.json
+===== oa_rtmposex_fp16mixed
+[cache] fadvise DONTNEED on 63 files (7.66 GB) under ['models', 'weights', 'data', 'results']: MemFree 2769 -> 5079 MB, Cached 3229 -> 916 MB
+  "n": 5,
+  "missing": 971,
+  "bleu": {
+    "bleu1": 33.673469387755105,
+    "bleu2": 19.02840813093325,
+    "bleu3": 10.727071270228096,
+    "bleu4": 6.209996443535291
+  },
+  "rouge_l": 30.21794248001114,
+  "wall_s": 19.251643773168325
+}
+[eval] wrote results/eval_oa_rtmposex_fp16mixed.json
+OA_EVALS_DONE

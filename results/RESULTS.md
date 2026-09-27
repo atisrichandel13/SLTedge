@@ -324,6 +324,66 @@ and the rule is now general: **drop the page cache before loading any large mode
 just before TensorRT builds. Separately, `eval_openasl.py` needs `portalocker` and `rouge`, which the
 image lacked; both are now in `jetson/Dockerfile`.
 
+### 2.5b The crop experiment: hypothesis not supported, and a result of mine retracted (2026-09-26)
+
+§2.5 blamed the 6.3 BLEU-4 gap to the ceiling on our crop convention. Tested directly:
+`data/openasl_fetch.py --crop-style openasl` re-fetched the *same five clips* using OpenASL's own
+`prep/crop_video.py` recipe (square the bbox, black-pad outside the frame, resize to 224), and all four
+engines re-ran over them. `data/verify_openasl_crop.py` first confirmed the geometry reproduces theirs:
+their confident keypoints fall inside the real-pixel region of our square on all five clips, with the
+y-maxima tracking the predicted content edge to 0.01–0.03.
+
+**Their frames are 15–50 % black padding.** The OpenASL bboxes extend well outside the frame
+(`UoU3ZSuTef4`: y from −141 to 1082 in a 720-tall frame), so squaring pads heavily. In their normalised
+space the signer never reaches the frame edge; our native crop fills it. Confirmed by the re-crop: our
+confident spans moved from ~0.01–0.99 to ~0.14–0.88, against the authors' ~0.10–0.91.
+
+| poses | BLEU-4 | ROUGE-L | preds = ceiling | preds = own FP32 |
+|---|---:|---:|---:|---:|
+| ceiling (authors' poses) | 16.23 | 46.17 | 5/5 | — |
+| RTMW FP32, **native** crop | 9.89 | **43.39** | 1/5 | — |
+| RTMW FP32, **openasl** crop | **12.38** | 38.87 | 1/5 | — |
+| RTMW FP16, native crop | 9.89 | 43.39 | 1/5 | **5/5** |
+| RTMW FP16, openasl crop | 8.64 | 36.77 | 0/5 | **3/5** |
+| RTMPose-x FP32, native / openasl | 8.96 / 5.95 | 31.94 / 30.37 | 0/5 / 0/5 | — |
+| RTMPose-x FP16 mixed, native / openasl | 9.39 / 6.21 | 33.76 / 30.22 | 0/5 / 0/5 | 3/5 / 3/5 |
+
+- **The crop hypothesis is not supported.** Matching their crop did not move us toward the ceiling.
+  BLEU-4 rose for RTMW FP32 (9.89 → 12.38) while ROUGE-L *fell* (43.39 → 38.87), the two metrics
+  disagree in direction, and the only discrete measure — predictions identical to the ceiling — stayed
+  at **1/5**. RTMPose-x got worse on both metrics. Changing crop changes almost every sentence
+  (native vs openasl: 0–1 of 5 identical per engine), so the effect is large but not toward the target.
+- **This makes extractor identity the leading explanation for the ceiling gap.** Note the direction: the
+  authors' 224 crop *discards* resolution, since our native crops are 502–754 px wide. Our native-crop
+  pose input is strictly better-resolved, and their poses still translate better. So the ceiling
+  advantage is not crop convention and not pose sharpness; the remaining candidate is that their
+  specific network places keypoints differently (joint centre conventions, hand-model priors) and the
+  frozen ST-GCN learned *those* placements. That is not fixable by re-cropping and would require either
+  their extractor or fine-tuning.
+- **Retracted: "RTMW FP16 is translation-neutral (5/5 identical)" does not survive.** On the openasl
+  crop the same engine pair gives **3/5**, i.e. two of five sentences change. Crucially this is *not* a
+  resolution-dependent FP16 effect — measured in simcc bins (the only cross-crop-valid unit, see the P4
+  bin note), agreement is if anything *better* at 224:
+
+| crop | 1 bin | RTMW FP16 ≤1 bin | ≤2 bins | ≤4 bins | worst |
+|---|---:|---:|---:|---:|---:|
+| native (502–754 px) | 1.71 px | 86.95 % | 99.39 % | 99.95 % | 53 bins |
+| openasl (224 px) | 0.72 px | 88.17 % | **99.76 %** | 99.98 % | 44 bins |
+
+  Keypoint agreement is essentially unchanged, so the jump from 5/5 to 3/5 sentences is **the fragility
+  of a five-sentence sample, not a real effect**. The 5/5 was a favourable coin flip. What is robust is
+  the keypoint agreement: **99.4–99.8 % of consumed keypoints within 2 bins of FP32 on both crops.**
+  Sentence-level neutrality is unproven at n=5 and must be re-tested on ~25 clips before any report
+  repeats it.
+- **One ordering does reproduce across crops, which is worth having:** RTMW agrees with its own FP32
+  better than RTMPose-x mixed does, in bins, on both crops (≤2 bins: 99.39 % vs 96.58 % native;
+  99.76 % vs 98.72 % openasl; worst 53 vs 147 bins native, 44 vs 77 openasl). Two independent crops
+  giving the same ordering is much stronger than the single-crop comparison in §2.5.
+- **Method note for the report.** This experiment is the clearest demonstration of why pixel thresholds
+  are unusable here. The same engine pair reads 99.81 % (≤5 px) at native crop and 99.99 % at 224,
+  which would suggest the 224 crop is numerically safer — but 5 px is ~2 bins at native and ~7 bins at
+  224. In bins the two are within 0.4 pp. **Any agreement threshold must be stated in bins.**
+
 **Second-board reproduction and the 15W/25W discrepancy.** The same ONNX, the same script and the same
 TensorRT 10.11 on `jetson-lpcv-03` give 66.7 ms TRT time vs Atisri's 44.4 ms, at 8.2 W vs 11.6 W. The
 CSV shows the lpcv-03 GPU pinned at 612 MHz whenever it was busy, which is the nvpmodel 15W cap.

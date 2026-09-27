@@ -1,0 +1,40 @@
+{
+ "n": 5,
+ "missing": 971,
+ "bleu": {
+  "bleu1": 32.35294117647059,
+  "bleu2": 18.26295365065817,
+  "bleu3": 10.28391520549682,
+  "bleu4": 5.946193696016625
+ },
+ "rouge_l": 30.369457632006124,
+ "wall_s": 21.35168426297605,
+ "config": {
+  "ckpt": "weights/openasl_pose_only_slt.pth",
+  "mt5": "weights/mt5-base",
+  "poses": "data/poses_oa_rtmposex_fp32",
+  "labels": "data/openasl_labels/labels.test",
+  "device": "cuda",
+  "dtype": "fp32",
+  "batch_size": 8,
+  "max_length": 256,
+  "max_new_tokens": 100,
+  "num_beams": 4,
+  "limit": null,
+  "out": "results/eval_oa_rtmposex_fp32.json"
+ },
+ "refs": [
+  "Meteorologist say some areas might not get relief from the rain and floods until Friday afternoon.",
+  "Crews spent this holiday weekend battling wildfires in several states in the West.",
+  "After nine frantic days of searching, the Thai soccer team trapped in a cave has been found.",
+  "The winter storm that slammed the Midwest, Northern Plains and Northeast has left brutally cold temperatures in its path.",
+  "When I moved to Texas one year and a half ago, this was my first artwork."
+ ],
+ "preds": [
+  "Meteorologists say some areas could see up to a foot of flooding by the end of the week.",
+  "During the holiday weekends in the states where there's a forest fire, I've been working on it.",
+  "After nine days of fighting, police and flooding hundreds of cars lined up around the world to save lives.",
+  "The storm is making a big difference between the east and the eastern coast and the coast is actually a very cold.",
+  "When I moved to Austin, Texas a few years ago, I had a fever and a fever."
+ ]
+}

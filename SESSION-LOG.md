@@ -596,12 +596,44 @@ cache and nvmap only allocates from `MemFree`. `jetson/drop_file_cache.py` befor
 loading any large model on the board.** I had treated it as a build-time-only step, which cost a full
 failed round of five evals.
 
+**The crop experiment: hypothesis tested, not supported, and one of my results retracted.** Re-fetched the
+same five clips with OpenASL's own recipe (`--crop-style openasl`: square the bbox, black-pad outside the
+frame, resize to 224), validated the geometry against the authors' released keypoints first
+(`data/verify_openasl_crop.py`, all five clips pass, y-maxima within 0.01–0.03 of the predicted content
+edge), then re-ran all four engines and the four evals.
+
+Their frames are **15–50 % black padding** — the OpenASL bboxes run far outside the frame, e.g.
+`UoU3ZSuTef4` y from −141 to 1082 in a 720-tall frame. The shift landed as intended: our confident
+keypoint spans moved from ~0.01–0.99 to ~0.14–0.88 against the authors' ~0.10–0.91.
+
+**But it did not close the gap.** RTMW FP32 BLEU-4 rose 9.89 → 12.38 while ROUGE-L fell 43.39 → 38.87, and
+ceiling-identical predictions stayed at 1/5. RTMPose-x got worse on both. So **crop convention is not the
+cause of the ceiling gap.** The direction matters: their 224 crop *discards* resolution (our native crops
+are 502–754 px wide), so our pose input is better-resolved and theirs still translates better — which rules
+out pose sharpness too. The live hypothesis is now their extractor's keypoint placement conventions, learned
+by the frozen ST-GCN, which no re-crop can fix.
+
+**Retraction: "RTMW FP16 is translation-neutral, 5/5 identical" does not hold.** On the openasl crop the
+same engine pair gives 3/5. I checked whether this was a real resolution effect by re-running the agreement
+metric in **bins** rather than pixels — the only cross-crop-valid unit — and it is not: ≤2 bins is 99.39 %
+at native and 99.76 % at 224, i.e. unchanged or slightly better. So the 5/5 was a favourable five-sentence
+coin flip. The robust claim is the keypoint agreement; **sentence-level neutrality is unproven at n=5** and
+must not be repeated in a report until it is re-tested on ~25 clips. FP16 stays adopted on the keypoint
+evidence and on cost (1.8× faster, 2× less energy).
+
+Two things gained. An ordering that now reproduces on two independent crops: RTMW agrees with its own FP32
+better than RTMPose-x mixed does (≤2 bins 99.39 % vs 96.58 % native, 99.76 % vs 98.72 % openasl) — much
+stronger than the single-crop version. And the sharpest illustration yet of why pixel thresholds are
+unusable: the same engine pair reads 99.81 % within 5 px at native crop and 99.99 % at 224, which looks
+like the small crop is safer, but 5 px is ~2 bins at native and ~7 bins at 224.
+
 **Session 9 checkpoint — where to pick up.** Committed. Board: repo + both ONNX + 4 engines +
 `data/clips/` + `data/calib_frames/` + `data/openasl_5clip_pose/` + `data/poses_*` + LM weights, 7.2 G,
 30 G free; container `slt-work` up; nothing running. **P4 and 2.5 are both closed.** Next, in order:
-(a) **settle the extractor question** with ~25 more clips, because the front-end choice currently rests on
-5 sentences and contradicts the paper (see above) — `data/openasl_fetch.py` for the videos, then one board
-pass repeating the 2.5 table; (b) **5.1 C6/M1**, first on-device end-to-end translation (pose → pkl → LM in
+(a) **fetch ~25 more clips.** This is now the blocking item for three separate questions, all of which are
+n=5-limited: the extractor choice (which contradicts the paper), sentence-level FP16 neutrality (retracted
+above), and the size of the ceiling gap. One fetch plus one board pass answers all three; the crop question
+is already closed and needs no repeat. (b) **5.1 C6/M1**, first on-device end-to-end translation (pose → pkl → LM in
 one process) — the Stage-0 baseline the week-4 gate (5.3) depends on; note it can proceed on RTMW FP16
 regardless, since a later extractor switch changes one engine path and not the harness; (c) **the
 author-style crop experiment**, cheap and would move every 2.5 row — and worth doing *before* (a), since a

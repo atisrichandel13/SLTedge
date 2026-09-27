@@ -1,0 +1,40 @@
+{
+ "n": 5,
+ "missing": 971,
+ "bleu": {
+  "bleu1": 33.673469387755105,
+  "bleu2": 19.02840813093325,
+  "bleu3": 10.727071270228096,
+  "bleu4": 6.209996443535291
+ },
+ "rouge_l": 30.21794248001114,
+ "wall_s": 19.251643773168325,
+ "config": {
+  "ckpt": "weights/openasl_pose_only_slt.pth",
+  "mt5": "weights/mt5-base",
+  "poses": "data/poses_oa_rtmposex_fp16mixed",
+  "labels": "data/openasl_labels/labels.test",
+  "device": "cuda",
+  "dtype": "fp32",
+  "batch_size": 8,
+  "max_length": 256,
+  "max_new_tokens": 100,
+  "num_beams": 4,
+  "limit": null,
+  "out": "results/eval_oa_rtmposex_fp16mixed.json"
+ },
+ "refs": [
+  "Meteorologist say some areas might not get relief from the rain and floods until Friday afternoon.",
+  "Crews spent this holiday weekend battling wildfires in several states in the West.",
+  "After nine frantic days of searching, the Thai soccer team trapped in a cave has been found.",
+  "The winter storm that slammed the Midwest, Northern Plains and Northeast has left brutally cold temperatures in its path.",
+  "When I moved to Texas one year and a half ago, this was my first artwork."
+ ],
+ "preds": [
+  "Meteorologists say some areas could see up to a foot of flooding by the end of the week.",
+  "During the holiday weekends in the states, we've had a fever, a fever, and a fever.",
+  "After nine days of fighting, police and flooding hundreds of cars lined up around the world to save lives.",
+  "The winds are so close, the pollen is high and the oxygen is actually very cold.",
+  "When I moved to Austin, Texas a few years ago, I had a fever and a fever."
+ ]
+}
