@@ -106,11 +106,14 @@ The two models behave completely differently.
   cap), FP16 RTMW at **310 MHz** (0.9 % at the cap) and FP16 RTMPose-x at 414 MHz. So RTMW's
   25.6 → 13.8 ms is a 1.9× wall-clock gain achieved *at roughly half the clock*; the per-clock
   speedup is larger, and the honest headline is the energy: **275 → 127 mJ/frame, 2.2×**, average
-  power 6.5 → 4.9 W, Tj 50 °C. End to end RTMW FP16 is 19.7 ms/frame = 40 fps, the first pose
-  configuration in this project that clears the 30 fps source rate at 15 W with headroom.
+  power 6.5 → 4.9 W, Tj 50 °C. RTMW FP16 is 19.7 ms/frame of pose-stage compute = **51 fps**, or
+  **40 fps** measured on the harness's wall clock, which also pays JPEG decode from disk (§2.2b).
+  Either way it is the first pose configuration in this project that clears the 30 fps source rate at
+  15 W with headroom, but the two figures are different measurements and must not be mixed.
 - **Where P2 leaves the pose stage.** RTMW-l-m FP16 is the configuration to carry forward: 19.7 ms
-  end to end, 127 mJ/frame, 40 fps at 15 W, against 79.2 ms and 733 mJ for the original RTMPose-x
-  FP32 baseline. That is **4.0× the frame rate for 5.8× less energy per frame**, and one 10 s
+  of pose-stage compute (51 fps; 40 fps wall clock), 127 mJ/frame at 15 W, against 79.2 ms (12.6 fps;
+  11.5 fps wall clock) and 733 mJ for the original RTMPose-x FP32 baseline. That is **4.0× the frame
+  rate on the compute basis (3.5× end to end) for 5.8× less energy per frame**, and one 10 s
   sentence costs 38 J of pose extraction instead of 219 J. What is *not* yet established is accuracy
   in the only units that matter for this project: these gates compare engines against their own FP32
   reference on 20 frames of one clip, and say nothing about BLEU. P3 (clips from several signers) and
@@ -123,6 +126,65 @@ quality. The distribution columns were added to `06_compare_trt.py` for exactly 
 pass criterion has deliberately not been loosened to match: P4's `07_kpt_agreement.py` over full
 clips is the intended replacement, and loosening a gate to make a result pass, before the better
 measurement exists, is how a project talks itself into a regression.
+
+### 2.2b Where the frame time actually goes, and why there are two fps numbers (2026-09-26)
+
+Prompted by a discrepancy Tushar spotted: the FP16 row was quoted as 19.7 ms *and* 40 fps, but
+1000/19.7 = 51, and every other row in the briefing used 1000/total. Both numbers were real; they
+were two different metrics printed as one. `03_infer_frames.py` now times the two stages that were
+never instrumented, so the wall clock adds up instead of being inferred.
+
+Board `jetson-lpcv-03`, mode 0 (15 W), 3×299 frames of the baseline clip, occupancy checked with the
+new `jetson/run.sh whoelse` (no other users, no other GPU client, load 0.0 before start).
+
+| stage | in `total_ms`? | RTMW FP16 | RTMW FP32 | what it is |
+|---|---|---:|---:|---|
+| `imread_ms` | **no** | 5.33 | 6.83 | `cv2.imread`: JPEG decode of the frame from disk |
+| `preprocess_ms` | yes | 4.76 | 6.10 | affine warp to 192×256, BGR→RGB, normalise, transpose (CPU, numpy) |
+| `trt_ms` | yes | 13.66 | 25.83 | H2D upload of the 590 KB input + `execute_async_v3` + stream sync |
+| `postprocess_ms` | yes | 1.28 | 1.22 | D2H copy of simcc (133×384 + 133×512 = 477 KB), argmax, affine back |
+| **`total_ms`** | — | **19.71** | **33.15** | preprocess + TRT + postprocess = the pose stage |
+| `collect_ms` | **no** | 0.16 | 0.16 | `kpts.round(2).tolist()` into the results list |
+| residual | **no** | 0.01 | 0.01 | loop overhead — the accounting closes |
+| **wall ms/frame** | — | **25.20** | **40.14** | what `fps_end_to_end` divides into |
+| fps (compute) | — | 50.7 | 30.2 | 1000 / `total_ms` |
+| fps (end-to-end) | — | 39.7 | 24.9 | frames / wall_s |
+
+`total_ms` reproduces the published P2 rows exactly (19.708 vs 19.679; 33.146 vs 32.996), so this is
+the same measurement with more of it visible, not a new one.
+
+**Answer to "what is the overhead": JPEG decode, 5.3 ms of it, plus 0.16 ms of result
+serialisation.** Nothing is missing — the residual is 0.01 ms. Which fps to quote depends on the
+claim:
+- **fps (compute) is the right number for the design**, because the 5.3 ms JPEG decode is an artifact
+  of this harness reading pre-extracted JPEGs off disk. A deployed pipeline decodes H.264 on NVDEC,
+  not JPEG on the CPU, so that cost is not a property of our pose stage.
+- **fps (end-to-end) is the right number for this harness**, and is what any reproduction of these
+  commands will observe.
+
+Both are now emitted as `fps_compute` and `fps_end_to_end` in every run JSON so the choice is
+explicit rather than accidental.
+
+**The finding that was not the question: CPU-side stages are a function of the GPU's power draw.**
+Between the two runs, `imread` went 5.33 → 6.83 ms and `preprocess` 4.76 → 6.10 ms — both **×1.281,
+the same factor to three digits**, on identical input and identical code. Measured `cpu0_MHz` over
+the same window: 1045 (FP16) vs 897 (FP32), ×1.165. The GPU at 604 MHz instead of 312 MHz takes
+enough of the 15 W cap that the CPU downclocks, and DRAM contention accounts for the rest of the
+factor the clock does not explain. `postprocess` is flat (1.28 vs 1.22) because it is half a
+device→host copy, which gets *faster* at the higher GPU clock, cancelling out.
+
+Consequences:
+- **`pre ms` is not a property of the preprocessing code.** It is a property of the whole
+  configuration's power budget. Comparing `pre ms` across engines measures the governor as much as
+  the code. (This retires the old §Task-1 note claiming preprocess "does not shrink with GPU
+  quantization" — on RTMW it shrinks 22 %.)
+- Part of FP16's wall-clock win is a *CPU* win it gets for free: of the 14.9 ms/frame RTMW FP16 saves
+  over FP32 end to end, 12.2 ms is the engine (TRT 25.83 → 13.66) and **2.8 ms is the CPU stages
+  speeding up** (imread 1.50 + preprocess 1.34, less 0.06 given back by postprocess) because the
+  engine left power on the table.
+- `cpu0_MHz` was already in every power CSV; it had simply never been read alongside the CPU stages.
+
+Raw: `results/p2b_split_rtmw_fp16.json`, `results/p2b_split_rtmw_fp32.json` (+ `.csv` on the board).
 
 ### P4 Keypoint agreement vs the FP32 engine (`task1_rtmpose/07_kpt_agreement.py`, 2026-09-26)
 
@@ -396,10 +458,14 @@ nearly are.** From here on the lpcv-03 mode-0 row is the FP32 baseline for every
 document, and no row without a logged `gpu_MHz` is used for a latency comparison.
 
 Reading it:
-- At the true 15W cap: 79 ms/frame = ~12.6 fps end to end, 66.7 ms of it TensorRT; source video is
-  30 fps, so FP32 RTMPose-x cannot keep up without dropping frames. That is the motivation for every
-  knob that follows. (At 918 MHz it was 56 ms = ~18 fps, still short.)
-- Preprocess (JPEG decode + affine, CPU) is 13% of frame time at 15W and does not shrink with GPU quantization.
+- At the true 15W cap: 79 ms/frame = ~12.6 fps of pose-stage compute (11.5 fps on the harness wall
+  clock), 66.7 ms of it TensorRT; source video is 30 fps, so FP32 RTMPose-x cannot keep up without
+  dropping frames. That is the motivation for every knob that follows. (At 918 MHz it was 56 ms =
+  ~18 fps, still short.)
+- Preprocess (affine warp + normalise, CPU) is 13% of frame time at 15W. **Two corrections to what
+  this line used to say**: JPEG decode is *not* inside it (`cv2.imread` sits outside the timed window
+  — see §2.2b), and it *does* shrink with GPU quantization, by 22 % on RTMW, because a cheaper engine
+  leaves the CPU more of the 15 W budget to clock up with.
 - Peak `VDD_IN` 9.1 W at 15W mode (13.3 W in the 918 MHz run). TRT latency jitter <1 ms, Tj 53 C, so no throttling.
 - One 10 s sentence costs 299 x 0.733 J = 219 J of pose extraction at FP32.
 

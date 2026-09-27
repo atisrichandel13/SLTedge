@@ -9,6 +9,9 @@
 #   jetson/run.sh exec <cmd...>    run a command inside the persistent container
 #   jetson/run.sh down             stop + remove the persistent container
 #   jetson/run.sh probe            print the stack versions + GPU + power-rail sanity inside the container
+#   jetson/run.sh whoelse         is the shared board free? other users, load, GPU/CPU hogs, free MemFree.
+#                                 Run this BEFORE any timing or power measurement -- another tenant
+#                                 inflates latency and power, and nothing in the result would show it.
 #   jetson/run.sh clean-large      delete weights / ONNX / engines / frames from the board (shared scratch)
 #
 # Env overrides: SLT_PROJECT (host repo path, default ~/sign-lang-project),
@@ -75,6 +78,21 @@ case "$cmd" in
                models/mt5_pruned_onnx data/test_frames data/calib_frames data/clips \
                data/openasl_test_pose data/openasl_train_pose results/*.npz
         echo "after:  $(du -sh . | cut -f1)   (results/*.json|csv|md and the code are kept)"
+        ;;
+    whoelse)   # occupancy check: timing/power runs are only valid on an idle board
+        echo "== logged-in users (want: only you, or none)"; who
+        echo "== load average (want: < ~0.5 before you start)"; uptime
+        echo "== processes over 1% CPU not owned by you"
+        ps -eo user,pcpu,pmem,etime,args --sort=-pcpu \
+            | awk -v me="$(id -un)" 'NR==1 || ($1!=me && $2+0>1.0)' | head -15
+        echo "== containers running (other tenants work in theirs)"
+        docker ps --format '{{.Names}}\t{{.Image}}\t{{.Status}}'
+        echo "== GPU clients (any process holding /dev/nvidia*)"
+        fuser -v /dev/nvidia* 2>&1 | head -10 || echo "  (fuser unavailable)"
+        echo "== memory (nvmap allocates from MemFree only; see jetson/drop_file_cache.py)"
+        free -m | head -2
+        echo "== power mode (0 = 15 W; every published row is mode 0)"
+        cat /var/lib/nvpmodel/status 2>/dev/null || echo "  status file not visible"
         ;;
     probe)
         docker run --rm "${COMMON_FLAGS[@]}" "$IMAGE" python3 - <<'PY'

@@ -642,3 +642,28 @@ crop mismatch may not penalise the two extractors equally; (d) **2.6 P5 INT8**, 
 Then `jetson/run.sh clean-large`. Still outstanding from session 8: the C9 results protocol (3 runs
 mean ± std, ≥3 clips/signers, one 30-min sustained run) has never been applied retroactively to the
 existing latency rows, which are 3×299 frames of a single clip.
+
+### Session 9 addendum: the two fps numbers, and a CPU/GPU power-budget coupling (2026-09-26)
+
+Tushar asked why the RTMW FP16 row said 19.7 ms and 40 fps when 1000/19.7 = 51 and every other row
+obeyed 1000/total. **It was an error in my briefing table**: that one cell held `fps_end_to_end` from
+the harness while the rest held computed compute-fps. Both numbers were real, mixed as one.
+
+Instrumented the two previously untimed stages in `task1_rtmpose/03_infer_frames.py` (`imread_ms`,
+`collect_ms`, plus `fps_compute`, `wall_ms_per_frame`, `residual_ms`) and re-ran both RTMW engines with
+power logging. The gap is JPEG decode (5.3 ms) + result serialisation (0.16 ms); residual 0.01 ms, so
+the accounting closes. `total_ms` reproduced the published P2 rows to <1 %.
+
+Unasked-for finding: `imread` and `preprocess` both inflate by **exactly ×1.281** between the FP16 and
+FP32 runs, with `cpu0_MHz` 1045 → 897 (×1.165). A hungrier engine starves the CPU under the 15 W cap,
+so CPU-stage timings are a property of the configuration, not of the code — which retires an old
+RESULTS.md claim that preprocess "does not shrink with GPU quantization" (it shrinks 22 %).
+
+Process fix: Tushar caught that I had not verified the shared board was idle before timing — I had
+checked `docker ps` and `free -m` (memory safety) but not other users or GPU clients (timing validity).
+Added **`jetson/run.sh whoelse`** (users, load, non-mine CPU hogs, containers, `/dev/nvidia*` holders,
+MemFree, power mode) and used it for these runs. Retroactively, the earlier run was clean: 0 other
+users, no foreign process >1 % CPU, and the latencies reproduce the published ones.
+
+Docs: RESULTS.md new §2.2b + three corrected fps claims; BRIEFING §3.1 table now carries both fps
+columns and CPU MHz; PROJECT-GUIDE rows 2.2 and A5.
