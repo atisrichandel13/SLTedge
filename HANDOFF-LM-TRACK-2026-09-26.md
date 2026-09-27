@@ -127,6 +127,21 @@ things that change are which clips, and whose poses.
 | **our 5 clips** | **16.23** | −6.93, *purely which clips* |
 | our 5 clips, **our poses** | **9.89** | a further −6.33, *our pose front-end* |
 
+**UPDATE, same evening, n=30 (this supersedes the −6.33 above).** With 30 clips instead of 5, the pose
+front-end gap is far smaller and the 6.33 was a subset artifact:
+
+| | BLEU-4 | ROUGE-L |
+|---|---:|---:|
+| authors' poses, same 30 clips | 18.17 | 45.03 |
+| **ours (RTMW FP16 + frame fix)** | **18.52** | 43.91 |
+| ours (RTMW FP32) | 16.55 | 40.72 |
+
+Paired bootstrap at n=30: the raw gap is **+1.61 BLEU-4, CI [−2.57, +5.94] — not established**; only
+ROUGE-L was (+4.32, CI [+0.47, +8.30]), and a coordinate-frame correction removes that too. **The best
+pose configuration is statistically indistinguishable from the authors' own poses on both metrics.** So
+the pose front-end is no longer the project's largest accuracy risk; treat the LM-side decisions in §1
+and §2 as the binding ones.
+
 Cross-check worth knowing about: we extracted those same 5 clips *out of* the 976-clip Mac run and
 scored them alone — **16.23**, identical to the separate board run to two decimals. So the board LM and
 the Mac LM agree exactly on these clips. **Your Mac-side results transfer to the board**; there is no
@@ -135,11 +150,12 @@ platform or precision drift in the LM path to worry about.
 Consequences:
 - **A 5-clip BLEU number and a 976-clip BLEU number are not comparable.** The subset alone is worth
   ~7 BLEU-4. No small-n BLEU figure in this project is an absolute score.
-- The pose front-end costs **6.33 BLEU-4** on these clips, 95 % CI **[+0.48, +13.11]** — the sign is
-  established, the magnitude is not remotely. At the bottom of that interval it is negligible; at the
-  top, if it held at full scale, we would report ~16.8 instead of ~23.16. **This is the largest open
-  accuracy risk in the project** and it is a pose-track problem, not an LM one.
-- A 30-clip run is in flight tonight to narrow it; a 100-clip run is planned next.
+- ~~The pose front-end costs 6.33 BLEU-4 (CI [+0.48, +13.11]), the largest open accuracy risk in the
+  project.~~ **Resolved the same evening at n=30: +1.61 BLEU-4, CI [−2.57, +5.94], not established.**
+  Those five clips were unusually hard for our poses. A 100-clip run will tighten it further.
+- **Also settled at n=30: RTMW beats RTMPose-x by 7.13 BLEU-4 (CI [−10.94, −3.07]).** The paper
+  specifies RTMPose-x and we chose RTMW on cost; that choice turns out to be the accuracy-correct one
+  on our pipeline, so no front-end switch is coming that would disturb the LM interface.
 
 ## 5b. How the C8 adaptation interacts with the gap above
 

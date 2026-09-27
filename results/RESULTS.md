@@ -386,7 +386,124 @@ and the rule is now general: **drop the page cache before loading any large mode
 just before TensorRT builds. Separately, `eval_openasl.py` needs `portalocker` and `rouge`, which the
 image lacked; both are now in `jetson/Dockerfile`.
 
+### 2.5c Pose→BLEU at n=30, with CIs: the extractor question answered (2026-09-26)
+
+30 clips from 30 distinct YouTube videos, 7299 frames, released Uni-Sign checkpoint, beam 4, board
+`jetson-lpcv-03` mode 0. All rows scored on **the same 30 clips** (the ceiling's raw file says 16.79 at
+n=40 because `data/openasl_pose` holds 40 reference poses; restricted to the shared 30 it is 18.17 —
+**do not quote the n=40 figure against these**). `sqnorm` = our own keypoints re-expressed in the
+authors' square normalisation frame by `common/renorm_to_openasl.py`; extractor, precision, frames and
+checkpoint all held fixed, so a delta there is the coordinate frame alone.
+
+| config | n | BLEU-4 | ROUGE-L |
+|---|---:|---:|---:|
+| authors' poses (ceiling) | 30 | 18.17 | **45.03** |
+| **RTMW FP16 + frame fix** | 30 | **18.52** | 43.91 |
+| RTMW FP32 + frame fix | 30 | 17.52 | 42.73 |
+| RTMW FP32 | 30 | 16.55 | 40.72 |
+| RTMW FP16 | 30 | 16.42 | 40.76 |
+| RTMPose-x FP32 | 30 | 9.42 | 32.99 |
+| RTMPose-x FP16 mixed | 30 | 8.13 | 32.49 |
+
+Paired clip-level bootstrap, 2000 resamples, aligned by clip name (`unisign/bootstrap_ci.py`):
+
+| comparison | BLEU-4 delta | 95 % CI | ROUGE-L delta | 95 % CI |
+|---|---:|---|---:|---|
+| RTMW FP32 → **RTMPose-x FP32** | **−7.13** | **[−10.94, −3.07]** | **−7.73** | **[−12.10, −3.57]** |
+| RTMW FP32 → RTMW FP16 | −0.13 | [−1.48, +1.21] | +0.04 | [−1.03, +1.22] |
+| RTMPose-x FP32 → FP16 mixed | −1.29 | [−3.73, +0.37] | −0.49 | [−3.02, +2.15] |
+| RTMW FP32 → ceiling | +1.61 | [−2.57, +5.94] | **+4.32** | **[+0.47, +8.30]** |
+| RTMW FP32 → **+ frame fix** | +0.97 | [−2.62, +4.64] | +2.01 | [−1.81, +5.74] |
+| RTMW FP32 + frame fix → ceiling | +0.65 | [−3.29, +4.45] | +2.31 | [−1.51, +6.09] |
+| RTMW FP16 + frame fix → ceiling | −0.35 | [−4.23, +3.17] | +1.13 | [−2.25, +4.57] |
+
+**1. The extractor question is answered, and it reverses the worry.** The paper specifies RTMPose-x and
+we chose RTMW on cost, which was flagged as a risk to accuracy. On 30 clips RTMW beats RTMPose-x by
+**7.13 BLEU-4 and 7.73 ROUGE-L, sign established on both metrics**. The front-end choice is no longer
+provisional or cost-led: it is the accuracy-correct choice on our pipeline too. Note this does *not*
+contradict the paper — their RTMPose-x ran at 192 width on their own square crops, ours at 384×288 on
+native crops; what it establishes is that within our pipeline RTMW is much the better of the two.
+
+**2. FP16 is free, and this replaces the retracted claim properly.** §2.5b retracted "RTMW FP16 is
+translation-neutral (5/5 identical)" as a five-sentence coin flip. The properly powered version: at
+n=30, FP16 vs FP32 is −0.13 BLEU-4 (CI [−1.48, +1.21]) and +0.04 ROUGE-L (CI [−1.03, +1.22]) — no
+measured difference on either metric. Under the frame fix the point estimate flips sign (+1.00 BLEU-4,
+CI [−0.05, +2.57]), which is what "no real effect" looks like when measured twice.
+
+**3. The gap to the ceiling is small, and the n=5 figure was a subset artifact.** At n=5 our poses
+scored 9.89 against a 16.23 ceiling — a 6.33 BLEU-4 gap that I described as the project's largest
+accuracy risk. At n=30 the same comparison is **+1.61 BLEU-4, not established** (CI spans zero), with
+the ROUGE-L gap of +4.32 the only established one. Those five clips were unusually hard for our poses.
+
+**4. The coordinate-frame fix closes most of what remains.** Re-expressing our keypoints in the
+authors' square frame (§2.5d for the mechanism) moves both metrics toward the ceiling and drops the gap
+from +1.61 / +4.32 to **+0.65 / +2.31** — and the ROUGE-L gap, the *only* established gap in the whole
+table, becomes unestablished. The best configuration, RTMW FP16 + frame fix, is statistically
+indistinguishable from the authors' own poses on both metrics (BLEU-4 −0.35, ROUGE-L +1.13).
+
+**What is not established:** the frame fix's own effect (+0.97 BLEU-4, CI [−2.62, +4.64]). n=30 cannot
+resolve a ~1-point effect. The direction is consistent across all four of its comparisons and the
+mechanism is measured independently (§2.5d, 24× reduction in body-keypoint disagreement), but the
+effect size needs the 100-clip run. **Do not report the frame fix as a measured BLEU gain yet.**
+
+Raw: `results/eval_30clip_*.json` (7 evals), `results/ci_30clip_*.json`, board logs
+`results/logs/p5_all.log`, `results/logs/final_30clip_summary.txt`.
+
+### 2.5d Why our poses differed: a 1.68x coordinate-frame mismatch (2026-09-26)
+
+Diffed our 30-clip poses against the authors' released poses in the units the frozen encoder consumes
+(`common/pose_to_unisign.py`: 9 body joints absolute, 21+21 hands wrist-relative, 18 face
+nose-tip-relative, anything under score 0.3 zeroed).
+
+| group | frame | median difference, ours vs theirs |
+|---|---|---:|
+| body | **absolute** | **0.1175** |
+| left hand | wrist-relative | 0.0509 |
+| right hand | wrist-relative | 0.0572 |
+| face | nose-tip-relative | 0.0298 |
+
+Body is the only absolute group and the worst by 2–4×. That is the signature of a **global scale
+error**: subtracting a root cancels it for the other three.
+
+**Cause.** The authors normalise over a square — bbox expanded on its *short* side, black-padded where
+it leaves the frame, resized to 224. We normalise over the bbox crop. Signer boxes are tall and narrow,
+so their square side is much wider than our crop width and the signer fills less of their frame.
+Predicted `square_side / our_crop_width` against measured shoulder-width ratio, 30 clips:
+**correlation 0.968**, mean abs error 0.028 (predicted 1.657 ± 0.070, measured 1.679 ± 0.083).
+
+**Ruled out along the way:**
+- **Confidence gating.** We zero 2.8 % of consumed joints, they zero 2.8 %; every group within 0.1 pp;
+  frames with a whole hand gated off 8.3 % vs 8.3 %. The THR=0.3 interaction is not involved.
+- **A translation component.** Removing a per-clip mean shift accounts for 2 % of the difference.
+- **Detector quality**, mostly: the residual in root-relative units is 0.03–0.05.
+
+**Fix, and it needs no re-extraction.** `common/renorm_to_openasl.py` maps our normalised coordinates
+into their square frame by exact arithmetic from geometry already in each clip's `meta.json`:
+
+| | shoulder ratio ours/theirs | body median difference |
+|---|---:|---:|
+| our crop frame | 1.679 ± 0.083 | 0.1328 |
+| **their square frame** | **1.014 ± 0.014** | **0.0055** |
+
+A 24× reduction. What remains is genuine detector disagreement — our detector ran on different pixels
+(native 502–754 px crops vs their 224 square with 15–50 % black padding), and renormalising coordinates
+cannot change what the detector saw. See §2.5c for the BLEU effect.
+
+**This corrects §2.5b.** That section reported the crop hypothesis as "tested, not supported" and
+retracted it, judged on five clips where BLEU-4 rose 9.89 → 12.38 against a 16.23 ceiling while ROUGE-L
+fell. The direction was right; the sample could not support the call, and a real signal was read as
+noise.
+
+**Deployment consequence:** the transform belongs in `common/pose_to_unisign.py`, in the live path, not
+only in an offline script — otherwise the demo reproduces the bug the offline results just fixed.
+
 ### 2.5b The crop experiment: hypothesis not supported, and a result of mine retracted (2026-09-26)
+
+> **SUPERSEDED by §2.5c and §2.5d (same day, n=30).** Both conclusions in this section were wrong
+> in the same way -- drawn from five clips. The crop/normalisation direction *was* right (§2.5d
+> measures the mechanism: a 1.68x coordinate-frame mismatch), and FP16 neutrality is real but was
+> established properly only at n=30 (§2.5c). Kept in place because the reasoning error is the
+> lesson: five sentences cannot resolve a one-to-two point BLEU effect, in either direction.
 
 §2.5 blamed the 6.3 BLEU-4 gap to the ceiling on our crop convention. Tested directly:
 `data/openasl_fetch.py --crop-style openasl` re-fetched the *same five clips* using OpenASL's own

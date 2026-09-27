@@ -667,3 +667,35 @@ users, no foreign process >1 % CPU, and the latencies reproduce the published on
 
 Docs: RESULTS.md new §2.2b + three corrected fps claims; BRIEFING §3.1 table now carries both fps
 columns and CPU MHz; PROJECT-GUIDE rows 2.2 and A5.
+
+### Session 9 addendum 2: n=30 pose→BLEU, and the extractor question answered (2026-09-26, late)
+
+Fetched 25 more test clips (30 total, 30 distinct videos, 7299 frames) plus the authors' released poses
+for all 30, ran 4 pose configs × 30 clips on the board (120 dumps), then 7 evals with paired bootstrap
+CIs. The three questions that were n=5-limited are now answered, and two of my earlier conclusions were
+wrong in the same direction — both drawn from five clips.
+
+**Answered.** RTMW beats RTMPose-x by **7.13 BLEU-4 / 7.73 ROUGE-L**, sign established — the front-end
+choice was cost-led and turns out to be accuracy-correct, so every "provisional" hedge is removed.
+**FP16 is free**: −0.13 BLEU-4, CI [−1.48, +1.21], which properly replaces the retracted 5/5 claim.
+**The ceiling gap is +1.61 BLEU-4, not established** (the n=5 figure of 6.33 was a subset artifact).
+
+**Mechanism found for what remained.** Diffing our poses against theirs in the encoder's own units, the
+*body* group (the only one in absolute coordinates) was worse by 2–4× than the root-relative hand and
+face groups — the signature of a global scale error. Cause: they normalise over a square-padded-224 crop,
+we over the bbox; predicted `square_side/crop_width` vs measured shoulder ratio correlate at **0.968**.
+`common/renorm_to_openasl.py` fixes it by exact arithmetic (body disagreement 0.1328 → 0.0055, 24×) and
+the best config, RTMW FP16 + frame fix at BLEU-4 18.52, is indistinguishable from the ceiling's 18.17.
+Confidence gating was ruled out cleanly (2.8 % vs 2.8 % of consumed joints zeroed).
+
+**Two mistakes worth keeping.** (1) I reported the crop hypothesis as "tested, not supported" and
+retracted it on five clips where BLEU-4 had actually risen 9.89 → 12.38 — a real signal read as noise.
+(2) I queued a second eval behind a `pgrep` guard that did not hold, ran two PyTorch processes at once,
+and both died on the NVML allocator assert, losing an eval. Replaced with `jetson/p5_all_evals.sh`
+(strictly sequential, one process, MemFree floor) and `jetson/after_evals.sh` (detached post-run CI
+analysis, waits on a log marker rather than a pgrep).
+
+Also caught in my own pipeline: the ceiling eval scored n=40 because `data/openasl_pose` holds 40
+reference poses, so its raw 16.79 is not comparable to our n=30 rows. Restricted to the shared 30 it is
+18.17. `bootstrap_ci.py` intersects by clip name so the CIs were unaffected — that name-recording change
+earned itself back the same day.
