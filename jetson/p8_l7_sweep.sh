@@ -26,7 +26,9 @@ CKPT_PRUNED="${SLT_CKPT_PRUNED:-weights/openasl_pose_only_slt_pruned.pth}"
 MT5_PRUNED="${SLT_MT5_PRUNED:-weights/mt5-base-openasl-pruned}"
 LABELS="${SLT_LABELS:-data/openasl_labels/labels.test}"
 REPEAT="${SLT_REPEAT:-3}"
-MIN_FREE_MB="${SLT_MIN_FREE_MB:-4000}"
+# 4000 was not enough: the 30 fps eval (longest encoder sequence) died of a masked OOM at MemFree
+# 4215 MB, while the batch-8 evals that worked had 4932-5200. Ask for 5200.
+MIN_FREE_MB="${SLT_MIN_FREE_MB:-5200}"
 
 R=(jetson/run.sh exec-batch)
 
@@ -91,7 +93,11 @@ elif [ ! -f "$CKPT_PRUNED" ]; then
 else
     prep_mem || exit 1
     echo "[sweep] C: LM matrix (pruned)  $(date +%H:%M:%S)"
-    "${R[@]}" python3 -m unisign.lm_sweep --ckpt "$CKPT_PRUNED" --mt5 "$MT5_PRUNED" \
+    # NOTE the full mT5, not MT5_PRUNED. The pruned checkpoint carries keep_ids that index the
+    # ORIGINAL 250,112-token vocabulary and load_model does the slicing itself; handing it the
+    # already-pruned 26,078-row directory raises "index 99537 is out of bounds for dimension 0 with
+    # size 26078". Guide row 1.4 loads it the same way.
+    "${R[@]}" python3 -m unisign.lm_sweep --ckpt "$CKPT_PRUNED" --mt5 "$MT5_FULL" \
         --poses "$POSES" --n-clips 3 --beams 1 2 4 --lengths 256 205 137 103 68 \
         --repeat "$REPEAT" --out "$out" > results/logs/lm_sweep_pruned.log 2>&1
     tail -20 results/logs/lm_sweep_pruned.log | sed 's/^/[sweep]   /'
