@@ -32,10 +32,19 @@ from rtmpose_utils import draw, load_preproc, postprocess, preprocess  # noqa: E
 EXTS = (".jpg", ".jpeg", ".png", ".bmp")
 
 
-def list_frames(folder, limit=None):
+def list_frames(folder, limit=None, keep_fps=None, src_fps=29.97):
     frames = sorted(p for p in glob.glob(os.path.join(folder, "*")) if p.lower().endswith(EXTS))
     if not frames:
         raise SystemExit(f"no frames in {folder}")
+    if keep_fps:
+        # Temporal subsampling (P8): drop frames BEFORE extraction, which is what a deployed pipeline
+        # would do. Uniform over the clip rather than a fixed stride so non-integer ratios (30->24)
+        # stay evenly spaced. Pose extraction is per-frame independent, so the kept frames get exactly
+        # the keypoints they would have had at full rate -- which is why accuracy at a reduced rate can
+        # be evaluated by subsampling existing keypoints, while ENERGY needs a real run like this one.
+        n = max(1, int(round(len(frames) * float(keep_fps) / float(src_fps))))
+        idx = np.round(np.linspace(0, len(frames) - 1, n)).astype(int)
+        frames = [frames[i] for i in sorted(set(idx.tolist()))]
     return frames[:limit] if limit else frames
 
 
@@ -44,6 +53,9 @@ def add_args(ap):
     ap.add_argument("--preproc", default=None, help="preproc.json (default: next to engine)")
     ap.add_argument("--frames", required=True)
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--keep-fps", type=float, default=None,
+                    help="subsample frames to this rate before extraction (P8); None = every frame")
+    ap.add_argument("--src-fps", type=float, default=29.97)
     ap.add_argument("--bboxes", default=None)
     ap.add_argument("--warmup", type=int, default=10)
     ap.add_argument("--out", default=None, help="JSON with keypoints + latencies")
@@ -56,7 +68,8 @@ def run_folder(args, runner=None, quiet=False):
     runner = runner or TrtRunner(args.engine)
     if not quiet:
         runner.describe()
-    frames = list_frames(args.frames, args.limit)
+    frames = list_frames(args.frames, args.limit, getattr(args, 'keep_fps', None),
+                         getattr(args, 'src_fps', 29.97))
     bboxes = json.load(open(args.bboxes)) if args.bboxes else {}
     in_name = runner.inputs[0]
 
@@ -101,6 +114,7 @@ def run_folder(args, runner=None, quiet=False):
     accounted = sum(statistics.mean(lat[k]) for k in
                     ("imread_ms", "total_ms", "collect_ms"))
     summary = {"n_frames": len(frames), "wall_s": round(wall_s, 3),
+               "keep_fps": getattr(args, "keep_fps", None), "src_fps": getattr(args, "src_fps", 29.97),
                # fps_compute counts the pose stage only (1000 / total_ms); fps_end_to_end also
                # pays JPEG decode + result collection. They are NOT interchangeable -- at 15 W
                # the gap is 5-8 ms/frame. Quote which one you mean.
