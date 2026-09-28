@@ -1,0 +1,30 @@
+{
+ "vid": "0anurowGDtM-00:00:01.200-00:00:02.033",
+ "yid": "0anurowGDtM",
+ "crop_xywh": [
+  348,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.2722432549794515,
+  -0.14459163241916234,
+  0.7552669620513917,
+  1.1780062173914028
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm Melissa.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 25,
+ "stride": 1,
+ "start": "00:00:01.200",
+ "end": "00:00:02.033",
+ "duration_s": 0.833
+}

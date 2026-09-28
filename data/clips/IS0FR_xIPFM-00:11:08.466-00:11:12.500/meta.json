@@ -1,0 +1,30 @@
+{
+ "vid": "IS0FR_xIPFM-00:11:08.466-00:11:12.500",
+ "yid": "IS0FR_xIPFM",
+ "crop_xywh": [
+  442,
+  0,
+  590,
+  720
+ ],
+ "bbox_norm": [
+  0.34536737673210377,
+  -0.042499587190673004,
+  0.806085982467189,
+  1.2405510854239414
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The line of dolls features four diverse figures.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 122,
+ "stride": 1,
+ "start": "00:11:08.466",
+ "end": "00:11:12.500",
+ "duration_s": 4.034
+}

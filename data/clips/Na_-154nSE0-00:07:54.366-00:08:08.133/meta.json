@@ -1,0 +1,30 @@
+{
+ "vid": "Na_-154nSE0-00:07:54.366-00:08:08.133",
+ "yid": "Na_-154nSE0",
+ "crop_xywh": [
+  601,
+  0,
+  610,
+  720
+ ],
+ "bbox_norm": [
+  0.4695161984148753,
+  -0.20822202588021357,
+  0.9459571275366357,
+  1.247613315505675
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "With the 5-4 decision by the Supreme Court, abortion clinics across Louisiana can remain open.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 413,
+ "stride": 1,
+ "start": "00:07:54.366",
+ "end": "00:08:08.133",
+ "duration_s": 13.767
+}

@@ -52,3 +52,6 @@ data/openasl_meta/
 # author-style 224x224 re-crop of the same five clips (crop-recipe experiment); regenerable with
 # data/openasl_fetch.py --crop-style openasl, and verified by data/verify_openasl_crop.py
 data/clips_openasl/*/frames/
+
+# transient fetch log (progress only; the real state is the clip dirs on disk)
+results/logs/fetch_full_split.log

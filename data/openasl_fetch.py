@@ -218,6 +218,9 @@ def main():
     ap.add_argument("--ffprobe", default=shutil.which("ffprobe") or "ffprobe")
     ap.add_argument("--cache", default=None, help="where to cache the tsv/bbox (default <out>/../openasl_meta)")
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--max-per-video", type=int, default=1,
+                    help="clips per YouTube video: 1 = signer-diverse sample (default), "
+                         "0 = no cap, for a full-split run")
     args = ap.parse_args()
 
     cache = args.cache or os.path.join(os.path.dirname(os.path.abspath(args.out)), "openasl_meta")
@@ -239,14 +242,27 @@ def main():
         cands = list(byvid.values())
         print(f"[meta] --only-vid: {len(cands)} clip(s) forced")
 
-    # one clip per video, shuffled deterministically: distinct yid is our signer proxy (OpenASL has
-    # no signer field, but a video is one signer in these news/vlog sources)
-    by_yid = {}
+    # By default one clip per video, shuffled deterministically: distinct yid is our signer proxy
+    # (OpenASL has no signer field, but a video is one signer in these news/vlog sources). That is what
+    # a small sample wants. --max-per-video 0 lifts the cap for a full-split run, where the point is
+    # coverage rather than diversity -- the 976 test clips come from only 456 videos, so a per-video cap
+    # of 1 makes 976 unreachable.
     rnd = random.Random(args.seed)
     rnd.shuffle(cands)
-    for r, dur in cands:
-        by_yid.setdefault(r["yid"], (r, dur))
-    order = list(by_yid.values())
+    if args.max_per_video == 1:
+        by_yid = {}
+        for r, dur in cands:
+            by_yid.setdefault(r["yid"], (r, dur))
+        order = list(by_yid.values())
+    elif args.max_per_video > 1:
+        seen, order = {}, []
+        for r, dur in cands:
+            k = r["yid"]
+            if seen.get(k, 0) < args.max_per_video:
+                seen[k] = seen.get(k, 0) + 1
+                order.append((r, dur))
+    else:
+        order = list(cands)
     rnd.shuffle(order)
 
     if args.only_vid:

@@ -1,0 +1,30 @@
+{
+ "vid": "XyL4sxEiD3E-00:01:02.566-00:01:08.400",
+ "yid": "XyL4sxEiD3E",
+ "crop_xywh": [
+  271,
+  0,
+  824,
+  720
+ ],
+ "bbox_norm": [
+  0.2119490636719598,
+  -0.322455108018569,
+  0.855567075146569,
+  1.5516283207469517
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We'll see how I can improve to try and meet the judges' preferences and perspectives too.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 175,
+ "stride": 1,
+ "start": "00:01:02.566",
+ "end": "00:01:08.400",
+ "duration_s": 5.834
+}

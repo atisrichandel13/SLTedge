@@ -1,0 +1,30 @@
+{
+ "vid": "rgE2ZZ9bHKA-00:01:46.600-00:01:51.200",
+ "yid": "rgE2ZZ9bHKA",
+ "crop_xywh": [
+  383,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.2995555012314408,
+  -0.13025199931998965,
+  0.7273520275398536,
+  1.1431012207261493
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Receiving services, there is a lot of information that comes with strong opinions on speech and auditory therapy services.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 138,
+ "stride": 1,
+ "start": "00:01:46.600",
+ "end": "00:01:51.200",
+ "duration_s": 4.6
+}

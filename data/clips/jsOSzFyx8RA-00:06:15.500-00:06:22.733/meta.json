@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:06:15.500-00:06:22.733",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  367,
+  0,
+  576,
+  718
+ ],
+ "bbox_norm": [
+  0.2863682707150777,
+  -0.19128124465043297,
+  0.737351500265526,
+  0.998754545092984
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "And then looking at myself, I'm an alumni student athlete for the same team and they don't help me know.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 217,
+ "stride": 1,
+ "start": "00:06:15.500",
+ "end": "00:06:22.733",
+ "duration_s": 7.233
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "WMoeSSvCyTU-00:10:31.700-00:10:43.066",
+ "yid": "WMoeSSvCyTU",
+ "crop_xywh": [
+  647,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.505823148275919,
+  -0.21265042274790427,
+  0.9791994583203596,
+  1.2617547793344854
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The pastor said the church services were shut down last week because leaders found out that one of the members tested positive for Covid-19.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 341,
+ "stride": 1,
+ "start": "00:10:31.700",
+ "end": "00:10:43.066",
+ "duration_s": 11.366
+}
