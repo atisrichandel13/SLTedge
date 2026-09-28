@@ -22,10 +22,21 @@ MT5="${SLT_MT5:-weights/mt5-base}"
 DUR="${SLT_DURATION_S:-1800}"
 R=(jetson/run.sh exec-batch)
 
+# A 30-minute run reads its frames hundreds of times and leaves the page cache full, and the previous
+# process needs a moment to release its mappings before fadvise can do anything. Settle, then retry:
+# a single attempt straight after phase 1 left MemFree at 1659 MB and the LM load died of a masked OOM.
 prep_mem() {
-    python3 jetson/drop_file_cache.py --target-free-mb=5200 2>&1 | tail -1
-    local f; f=$(awk '/MemFree/{print int($2/1024)}' /proc/meminfo)
-    [ "$f" -lt 2500 ] && { echo "[c9] ABORT: MemFree ${f} MB too low" >&2; return 1; }
+    local want="${1:-5200}" f=0 attempt
+    sleep 15
+    for attempt in 1 2 3; do
+        python3 jetson/drop_file_cache.py --target-free-mb="$want" 2>&1 | tail -1
+        f=$(awk '/MemFree/{print int($2/1024)}' /proc/meminfo)
+        [ "$f" -ge "$want" ] && break
+        echo "[c9]   attempt ${attempt}: MemFree ${f} MB < ${want} MB, retrying"
+        sleep 10
+    done
+    echo "[c9]   MemFree before load: ${f} MB"
+    [ "$f" -lt 3500 ] && { echo "[c9] ABORT: MemFree ${f} MB too low to load both models" >&2; return 1; }
     return 0
 }
 
@@ -45,6 +56,21 @@ else
         --out results/c9_sustained_pose_iters.json > results/logs/c9_pose.log 2>&1
     grep -E '^\[c9\] VERDICT|throttled|tj_C_max_overall|drift' results/logs/c9_pose.log | tail -5 \
         | sed 's/^/[c9]   /'
+fi
+
+# ---- phase 1b: pose at FP32. C9 asks for a sustained run for FP32 *and* the best compressed config,
+# so the FP16 result above needs its uncompressed counterpart to be comparable.
+if [ -f results/c9_sustained_pose_fp32_iters.json ]; then
+    echo "[c9] have phase 1b"
+else
+    prep_mem 4500 || exit 1
+    echo "[c9] PHASE 1b: sustained pose FP32, ${DUR}s  $(date +%H:%M:%S)"
+    "${R[@]}" python3 -m unisign.sustained_run --mode pose --duration-s "$DUR" \
+        --engine models/rtmw/rtmw-l-m_256x192_fp32.engine --frames "data/clips/$CLIP/frames" \
+        --power-json results/c9_sustained_pose_fp32.json \
+        --power-csv results/c9_sustained_pose_fp32.csv \
+        --out results/c9_sustained_pose_fp32_iters.json > results/logs/c9_pose_fp32.log 2>&1
+    grep -E '^\[c9\] VERDICT' results/logs/c9_pose_fp32.log | tail -2 | sed 's/^/[c9]   /'
 fi
 
 # ---- phase 2: full pipeline
