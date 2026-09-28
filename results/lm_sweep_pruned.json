@@ -1,0 +1,414 @@
+{
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-5.15.148-tegra-aarch64-with-glibc2.39",
+    "jetpack": "unknown (nvidia-jetpack package not found)",
+    "l4t": "R36.4.7",
+    "nvpmodel": "mode 0 (15W) from /var/lib/nvpmodel/status",
+    "gpu_max_MHz": 612.0,
+    "gpu_min_MHz": 306.0,
+    "cpu_max_MHz": 1497.6,
+    "torch": "2.8.0a0+5228986c39.nv25.06",
+    "torch_cuda": "12.9",
+    "cuda_available": true,
+    "gpu": "Orin",
+    "tensorrt": "10.11.0.33",
+    "nvcc": "V12.9.86"
+  },
+  "rows": [
+    {
+      "beams": 1,
+      "requested_length": 256,
+      "frames_used": [
+        215,
+        155,
+        256
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1372.4,
+        "std": 72.6
+      },
+      "gcn_ms": 95.3,
+      "encoder_ms": 48.6,
+      "decoder_ms": 1228.5,
+      "decoded_tokens": 22,
+      "avg_W": 6.48,
+      "idle_W": 3.84,
+      "J_per_sentence": 8.88,
+      "dyn_J_per_sentence": 3.62,
+      "gpu_MHz": 419.0,
+      "cpu0_MHz": 1473.0
+    },
+    {
+      "beams": 2,
+      "requested_length": 256,
+      "frames_used": [
+        215,
+        155,
+        256
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1582.1,
+        "std": 145.3
+      },
+      "gcn_ms": 85.7,
+      "encoder_ms": 49.6,
+      "decoder_ms": 1446.8,
+      "decoded_tokens": 22,
+      "avg_W": 6.49,
+      "idle_W": 3.78,
+      "J_per_sentence": 10.26,
+      "dyn_J_per_sentence": 4.3,
+      "gpu_MHz": 411.0,
+      "cpu0_MHz": 1138.0
+    },
+    {
+      "beams": 4,
+      "requested_length": 256,
+      "frames_used": [
+        215,
+        155,
+        256
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1675.5,
+        "std": 135.2
+      },
+      "gcn_ms": 88.2,
+      "encoder_ms": 49.0,
+      "decoder_ms": 1538.3,
+      "decoded_tokens": 22,
+      "avg_W": 6.62,
+      "idle_W": 3.76,
+      "J_per_sentence": 11.04,
+      "dyn_J_per_sentence": 4.78,
+      "gpu_MHz": 413.0,
+      "cpu0_MHz": 918.0
+    },
+    {
+      "beams": 1,
+      "requested_length": 205,
+      "frames_used": [
+        205,
+        155,
+        205
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1369.0,
+        "std": 106.9
+      },
+      "gcn_ms": 85.0,
+      "encoder_ms": 43.8,
+      "decoder_ms": 1240.2,
+      "decoded_tokens": 22.3,
+      "avg_W": 6.46,
+      "idle_W": 3.94,
+      "J_per_sentence": 8.85,
+      "dyn_J_per_sentence": 3.47,
+      "gpu_MHz": 416.0,
+      "cpu0_MHz": 946.0
+    },
+    {
+      "beams": 2,
+      "requested_length": 205,
+      "frames_used": [
+        205,
+        155,
+        205
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1556.8,
+        "std": 103.2
+      },
+      "gcn_ms": 81.8,
+      "encoder_ms": 46.7,
+      "decoder_ms": 1428.4,
+      "decoded_tokens": 21.7,
+      "avg_W": 6.52,
+      "idle_W": 3.75,
+      "J_per_sentence": 10.09,
+      "dyn_J_per_sentence": 4.31,
+      "gpu_MHz": 406.0,
+      "cpu0_MHz": 951.0
+    },
+    {
+      "beams": 4,
+      "requested_length": 205,
+      "frames_used": [
+        205,
+        155,
+        205
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1663.0,
+        "std": 119.6
+      },
+      "gcn_ms": 83.3,
+      "encoder_ms": 49.0,
+      "decoder_ms": 1530.7,
+      "decoded_tokens": 21.7,
+      "avg_W": 6.51,
+      "idle_W": 3.78,
+      "J_per_sentence": 10.79,
+      "dyn_J_per_sentence": 4.53,
+      "gpu_MHz": 407.0,
+      "cpu0_MHz": 1076.0
+    },
+    {
+      "beams": 1,
+      "requested_length": 137,
+      "frames_used": [
+        137,
+        137,
+        137
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1351.2,
+        "std": 99.9
+      },
+      "gcn_ms": 75.9,
+      "encoder_ms": 38.8,
+      "decoder_ms": 1236.5,
+      "decoded_tokens": 22.3,
+      "avg_W": 6.35,
+      "idle_W": 3.77,
+      "J_per_sentence": 8.55,
+      "dyn_J_per_sentence": 3.49,
+      "gpu_MHz": 406.0,
+      "cpu0_MHz": 1063.0
+    },
+    {
+      "beams": 2,
+      "requested_length": 137,
+      "frames_used": [
+        137,
+        137,
+        137
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1454.1,
+        "std": 61.3
+      },
+      "gcn_ms": 71.0,
+      "encoder_ms": 42.0,
+      "decoder_ms": 1341.1,
+      "decoded_tokens": 21.3,
+      "avg_W": 6.37,
+      "idle_W": 3.89,
+      "J_per_sentence": 9.21,
+      "dyn_J_per_sentence": 3.6,
+      "gpu_MHz": 392.0,
+      "cpu0_MHz": 966.0
+    },
+    {
+      "beams": 4,
+      "requested_length": 137,
+      "frames_used": [
+        137,
+        137,
+        137
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1574.0,
+        "std": 63.6
+      },
+      "gcn_ms": 74.4,
+      "encoder_ms": 41.0,
+      "decoder_ms": 1458.6,
+      "decoded_tokens": 21.7,
+      "avg_W": 6.3,
+      "idle_W": 3.77,
+      "J_per_sentence": 9.89,
+      "dyn_J_per_sentence": 3.99,
+      "gpu_MHz": 353.0,
+      "cpu0_MHz": 1418.0
+    },
+    {
+      "beams": 1,
+      "requested_length": 103,
+      "frames_used": [
+        103,
+        103,
+        103
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1163.5,
+        "std": 112.3
+      },
+      "gcn_ms": 63.4,
+      "encoder_ms": 38.7,
+      "decoder_ms": 1061.5,
+      "decoded_tokens": 19,
+      "avg_W": 6.25,
+      "idle_W": 3.76,
+      "J_per_sentence": 7.23,
+      "dyn_J_per_sentence": 2.89,
+      "gpu_MHz": 407.0,
+      "cpu0_MHz": 1119.0
+    },
+    {
+      "beams": 2,
+      "requested_length": 103,
+      "frames_used": [
+        103,
+        103,
+        103
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1425.2,
+        "std": 125.7
+      },
+      "gcn_ms": 68.4,
+      "encoder_ms": 41.5,
+      "decoder_ms": 1315.3,
+      "decoded_tokens": 19.7,
+      "avg_W": 6.22,
+      "idle_W": 3.77,
+      "J_per_sentence": 8.79,
+      "dyn_J_per_sentence": 3.47,
+      "gpu_MHz": 359.0,
+      "cpu0_MHz": 910.0
+    },
+    {
+      "beams": 4,
+      "requested_length": 103,
+      "frames_used": [
+        103,
+        103,
+        103
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1577.0,
+        "std": 119.2
+      },
+      "gcn_ms": 66.4,
+      "encoder_ms": 44.0,
+      "decoder_ms": 1466.6,
+      "decoded_tokens": 20.3,
+      "avg_W": 6.2,
+      "idle_W": 3.74,
+      "J_per_sentence": 9.72,
+      "dyn_J_per_sentence": 3.86,
+      "gpu_MHz": 344.0,
+      "cpu0_MHz": 1488.0
+    },
+    {
+      "beams": 1,
+      "requested_length": 68,
+      "frames_used": [
+        68,
+        68,
+        68
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1264.1,
+        "std": 223.4
+      },
+      "gcn_ms": 55.2,
+      "encoder_ms": 40.7,
+      "decoder_ms": 1168.3,
+      "decoded_tokens": 21,
+      "avg_W": 6.19,
+      "idle_W": 3.75,
+      "J_per_sentence": 7.79,
+      "dyn_J_per_sentence": 3.08,
+      "gpu_MHz": 402.0,
+      "cpu0_MHz": 1043.0
+    },
+    {
+      "beams": 2,
+      "requested_length": 68,
+      "frames_used": [
+        68,
+        68,
+        68
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1403.2,
+        "std": 118.1
+      },
+      "gcn_ms": 54.1,
+      "encoder_ms": 41.1,
+      "decoder_ms": 1308.0,
+      "decoded_tokens": 19,
+      "avg_W": 6.16,
+      "idle_W": 3.77,
+      "J_per_sentence": 8.57,
+      "dyn_J_per_sentence": 3.33,
+      "gpu_MHz": 333.0,
+      "cpu0_MHz": 912.0
+    },
+    {
+      "beams": 4,
+      "requested_length": 68,
+      "frames_used": [
+        68,
+        68,
+        68
+      ],
+      "n_sentences": 9,
+      "total_ms": {
+        "mean": 1464.7,
+        "std": 71.5
+      },
+      "gcn_ms": 53.5,
+      "encoder_ms": 41.0,
+      "decoder_ms": 1370.2,
+      "decoded_tokens": 20.3,
+      "avg_W": 6.14,
+      "idle_W": 3.76,
+      "J_per_sentence": 8.94,
+      "dyn_J_per_sentence": 3.47,
+      "gpu_MHz": 328.0,
+      "cpu0_MHz": 904.0
+    }
+  ],
+  "clips": [
+    "045-gE1O_hQ-00:06:48.166-00:06:55.333.pkl",
+    "2MnvFrB5ljQ-00:01:53.066-00:01:58.233.pkl",
+    "5iRIeHAK9b0-00:04:05.366-00:04:15.733.pkl"
+  ],
+  "config": {
+    "ckpt": "weights/openasl_pose_only_slt_pruned.pth",
+    "mt5": "weights/mt5-base",
+    "poses": "results/pkl_30clip_rtmw_fp16_sqnorm",
+    "n_clips": 3,
+    "beams": [
+      1,
+      2,
+      4
+    ],
+    "lengths": [
+      256,
+      205,
+      137,
+      103,
+      68
+    ],
+    "device": "cuda",
+    "dtype": "fp32",
+    "max_new_tokens": 100,
+    "repeat": 3,
+    "out": "results/lm_sweep_pruned.json",
+    "power_backend": "auto",
+    "power_interval_ms": 100,
+    "power_sudo": false,
+    "idle_seconds": 3.0,
+    "power_csv": null,
+    "power_json": null
+  }
+}

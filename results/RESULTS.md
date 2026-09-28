@@ -588,6 +588,93 @@ Reading it:
 
 First pass only: single run per cell. Final table needs 3 runs, mean+std, several clips/signers, 30 min sustained.
 
+## 2.9 / P8 + L7: energy and accuracy versus capture rate (2026-09-28)
+
+`jetson/p8_l7_sweep.sh`, board `jetson-lpcv-03` mode 0 (15 W), one other user present with an idle shell
+(no process above 1 % CPU, GPU load 0). Three parts: real pose runs at each rate for energy, accuracy at
+the same rates from subsampled keypoints, and the LM's own latency/energy matrix.
+
+### A. Pose stage vs capture rate (real runs, 3 repeats)
+
+| fps | frames | ms/frame | mJ/frame | dyn mJ | avg W | gpu MHz | cpu MHz | **J per second of video** | vs 30 fps |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 30 | 255 | 19.82 | 141.6 | 40.1 | 4.88 | 309 | 897 | **4.25** | 1.00× |
+| 24 | 204 | 21.29 | 139.9 | 33.6 | 4.88 | 308 | 868 | **3.36** | 0.79× |
+| 16 | 136 | 20.68 | 141.8 | 39.1 | 4.85 | 312 | 882 | **2.27** | 0.53× |
+| 12 | 102 | 20.54 | 139.5 | 39.1 | 4.90 | 313 | 901 | **1.67** | 0.39× |
+| 8 | 68 | 19.99 | 145.9 | 40.1 | 4.87 | 318 | 1039 | **1.17** | 0.27× |
+
+`mJ/frame` is flat by construction — every frame costs the same to process. What scales is how many
+frames exist per second of video, so **J per second of video is the only comparable column**. The CPU
+clock rising at low rates (897 → 1039 MHz) is the 15 W coupling of §2.2b again: less sustained GPU work
+leaves the CPU more budget.
+
+**Do not compare the absolute 141.6 mJ/frame with P2's 127.** Each of the 3 repeats pays 20 warm-up
+inferences and this clip has 255 frames against P2's 299, so the warm-up amortises differently. The
+ratios across rates are what P8 needs and they are unaffected.
+
+### B. Accuracy vs capture rate (30 clips, beam 4, batch 1, released checkpoint)
+
+Poses subsampled from the full-rate keypoints. **This is exact, not an approximation**: pose extraction
+is per-frame independent, so a frame kept at a reduced rate receives exactly the keypoints it would have
+received at 30 fps (`common/subsample_pkl.py`). Confirmed by the 30 fps row reproducing the unsubsampled
+batch-1 eval to two decimals. Paired bootstrap against 30 fps, 2000 resamples:
+
+| fps | BLEU-4 | ROUGE-L | Δ BLEU-4 | 95 % CI | verdict |
+|---:|---:|---:|---:|---|---|
+| 30 | 18.64 | 44.19 | — | — | baseline |
+| 24 | 20.15 | 46.31 | +1.51 | [−2.32, +5.78] | no measured cost |
+| **16** | 18.49 | 43.56 | −0.15 | [−3.20, +2.89] | **no measured cost** |
+| 12 | 15.39 | 43.58 | −3.25 | [−7.22, +0.80] | ambiguous |
+| 8 | 11.46 | 36.28 | −7.18 | **[−12.55, −2.13]** | **established loss** |
+
+**16 fps is the operating point: 47 % less pose energy at no measured accuracy cost.** 8 fps is an
+established loss, so there is a floor. 12 fps should not be used — the point estimate is a meaningful
+−3.25 and n=30 cannot resolve it, so "ambiguous" here means *unknown*, not *free*. **24 fps scoring
+above 30 fps is noise and must not be reported as an improvement.**
+
+These rows are **un-adapted**: the frozen encoder never saw a reduced rate. They are the baseline any
+C8 adaptation gain is measured against, and they say an adaptation run at 24 fps has nothing to recover.
+
+### C. LM latency and energy: beam width × encoder length (pruned checkpoint)
+
+One process for all 15 configurations (model load is ~64 s), each with its own power window.
+
+| beams | T requested | frames used | total ms | **encoder ms** | **decoder ms** | J/sentence | dyn J | avg W |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 256 | 215 | 1372 | **49** | **1228** | 8.88 | 3.62 | 6.48 |
+| 2 | 256 | 215 | 1582 | 50 | 1447 | 10.26 | 4.30 | 6.49 |
+| 4 | 256 | 215 | 1676 | 49 | 1538 | **11.04** | 4.78 | 6.62 |
+| 1 | 137 | 137 | 1351 | 39 | 1236 | 8.55 | 3.49 | 6.35 |
+| 4 | 137 | 137 | 1574 | 41 | 1459 | 9.89 | 3.99 | 6.30 |
+| 1 | 68 | 68 | 1264 | 41 | 1168 | **7.79** | 3.08 | 6.19 |
+| 4 | 68 | 68 | 1465 | 41 | 1370 | 8.94 | 3.47 | 6.14 |
+
+Full matrix in `results/lm_sweep_pruned.json`.
+
+**Encoder length is nearly useless as a lever.** The encoder costs **39–50 ms** across the whole range
+while the decoder costs **1062–1538 ms**. Cutting T from 256 to 68 — 73 % fewer pose frames — saves the
+LM only 8.88 → 7.79 J, **12 %**, because the decoder dominates and its cost tracks tokens generated
+rather than input length. **Reduced frame rate is a pose-stage saving, not an LM saving**, and a report
+that presents it as the latter is claiming ~12 % where the pose side delivers 47–73 %.
+
+**Beam width is the LM's real lever, and both of its axes are now measured.** Greedy 8.88 J vs beam 4
+11.04 J — 2.16 J, 24 % more energy — against 2.00 BLEU-4 (CI [−2.63, −1.41], established at n=976,
+§L6.1). That single trade is the accuracy–energy frontier and it can be plotted without INT8, which is
+why INT8 was dropped (guide row 3.2).
+
+### What this means for the system
+
+For the M1 sentence (8.51 s of video, measured 50.37 J total): pose 4.25 × 8.51 = 36.2 J plus LM
+11.04 J at 30 fps / beam 4. Moving to **16 fps** takes pose to 19.3 J and the LM to 9.89 J — about
+**29 J against 47 J, a ~38 % system saving at no measured accuracy cost.** Going further to greedy adds
+another ~1.3 J of saving for a 2.00 BLEU-4 loss, which is the trade to present rather than to take
+silently.
+
+Raw: `results/p8_pose_fps*.json`/`.csv`, `results/eval_30clip_fps*.json`, `results/ci_fps30_vs_fps*.json`,
+`results/lm_sweep_pruned.json`, board summary `results/logs/p8_summary.txt` (its CI section is empty —
+the board had a stale `bootstrap_ci.py` without `--out`; the CIs above were computed on the Mac).
+
 ## 5.1 / M1: first on-device end-to-end translation (2026-09-28)
 
 `unisign/e2e_translate.py` — pose TensorRT engine and the language model in **one process** on

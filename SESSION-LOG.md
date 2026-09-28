@@ -731,3 +731,28 @@ then the LM — so the stages never overlap. A streaming design would contend an
 
 FP32 end-to-end does not fit (OOM in KV-cache concat), so FP16 is a fitting requirement, not only an
 energy choice.
+
+### Session 10 part 2: P8 + L7 (2026-09-28)
+
+`jetson/p8_l7_sweep.sh` (detached) + `jetson/p8_after.sh` (detached analysis). Three parts: pose energy
+at 30/24/16/12/8 fps from real runs, accuracy at the same rates from subsampled keypoints, and the LM's
+beam × encoder-length matrix.
+
+**16 fps is the operating point**: pose energy 0.53× with Δ BLEU-4 −0.15, CI [−3.20, +2.89]. Only 8 fps
+is an established loss (−7.18, CI [−12.55, −2.13]). 12 fps is *unknown*, not free. 24 fps scoring above
+30 fps is noise.
+
+**L7 answered, and it is a negative result worth stating**: the encoder is 39–50 ms against a decoder of
+1062–1538 ms, so cutting T from 256 to 68 saves the LM only 12 %. Reduced frame rate is a pose saving,
+not an LM saving. Beam width is the LM's real lever (greedy 8.88 J vs beam 4 11.04 J for 2.00 BLEU-4,
+established at n=976) — and that is the whole frontier, which is why INT8 was droppable.
+
+System effect: ~38 % energy saving at 16 fps for no measured accuracy cost.
+
+Two failures in the first sweep pass, both mine: part C got the already-pruned mT5 dir together with the
+pruned checkpoint (keep_ids index the original 250k vocab, so it needs the full mT5), and the 30 fps
+eval hit the masked OOM at MemFree 4215 MB (floor raised to 5200). Both fixed and re-run.
+
+Third silent board failure of the project: the board's CI step produced nothing because the board still
+had the Sep-18 `bootstrap_ci.py` with no `--out` flag. Pushed the current one. **Board-generated
+summaries need verifying, not trusting** — that is now three for three.

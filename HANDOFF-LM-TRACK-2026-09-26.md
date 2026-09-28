@@ -37,6 +37,66 @@ one process: 9052.8 ms ± 335.6 per sentence (pose 6640.7, LM 2386.5), 50.37 J/s
   2 of 30 clips differ, moving BLEU-4 18.52 → 18.64 and ROUGE-L 43.91 → 44.19. Small, but every offline
   BLEU number carries it, so quote the batch size when a number matters.
 
+## 0b. NEW 2026-09-28: your L7 row is measured, and it says encoder length is a weak lever
+
+The pose track ran the LM latency/energy matrix on the board (`unisign/lm_sweep.py`, pruned checkpoint,
+one process, each configuration with its own power window). **This is your L7 row — encoder ms and
+energy vs T — plus the beam axis.** Raw: `results/lm_sweep_pruned.json`.
+
+| beams | requested T | frames used | total ms | **encoder ms** | **decoder ms** | J/sentence | dyn J | avg W |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 256 | 215 | 1372 | **49** | **1228** | 8.88 | 3.62 | 6.48 |
+| 2 | 256 | 215 | 1582 | 50 | 1447 | 10.26 | 4.30 | 6.49 |
+| 4 | 256 | 215 | 1676 | 49 | 1538 | 11.04 | 4.78 | 6.62 |
+| 1 | 137 | 137 | 1351 | 39 | 1236 | 8.55 | 3.49 | 6.35 |
+| 4 | 137 | 137 | 1574 | 41 | 1459 | 9.89 | 3.99 | 6.30 |
+| 1 | 68 | 68 | 1264 | 41 | 1168 | 7.79 | 3.08 | 6.19 |
+| 4 | 68 | 68 | 1465 | 41 | 1370 | 8.94 | 3.47 | 6.14 |
+
+(Full 15-row matrix in the JSON: beams 1/2/4 × T = 256/205/137/103/68.)
+
+**The finding: encoder length is nearly free to grow and nearly useless to shrink.** The encoder is
+**39–50 ms** across the whole range while the decoder is **1062–1538 ms**. Cutting T from 256 to 68 —
+a 73 % reduction in pose frames — saves the LM only 8.88 → 7.79 J (12 %), because the decoder dominates
+and its cost tracks *tokens generated*, not encoder length.
+
+**Consequences for L7 and the frontier:**
+- **Do not present reduced frame count as an LM energy saving.** It is a *pose*-stage saving. The pose
+  side scales properly: 4.25 → 1.17 J per second of video from 30 to 8 fps (0.27×). The LM barely moves.
+- **Beam width is the LM's real lever**, and both of its axes are now measured: greedy 8.88 J vs beam 4
+  11.04 J (2.16 J, 24 % more energy) against the accuracy cost of 2.00 BLEU-4, CI [−2.63, −1.41],
+  established at n=976. **That single trade is the accuracy–energy frontier** and it can be plotted now.
+- If you want the decoder cheaper, the lever is the step loop, not the input length — L8.2 already
+  identified it as host-bound (CUDA graphs, keeping the KV cache device-resident).
+
+## 0c. NEW 2026-09-28: the un-adapted accuracy-vs-frame-rate baseline exists
+
+This is the number your C8/L11 adaptation gains must be measured against, and it did not exist before.
+30 clips, released checkpoint, beam 4, batch 1, poses subsampled from full-rate keypoints (exact, since
+pose extraction is per-frame independent), paired bootstrap against 30 fps:
+
+| fps | BLEU-4 | ROUGE-L | Δ BLEU-4 | 95 % CI | verdict |
+|---:|---:|---:|---:|---|---|
+| 30 | 18.64 | 44.19 | — | — | baseline |
+| 24 | 20.15 | 46.31 | +1.51 | [−2.32, +5.78] | no measured cost |
+| **16** | 18.49 | 43.56 | −0.15 | [−3.20, +2.89] | **no measured cost** |
+| 12 | 15.39 | 43.58 | −3.25 | [−7.22, +0.80] | ambiguous |
+| 8 | 11.46 | 36.28 | −7.18 | [−12.55, −2.13] | **established loss** |
+
+**16 fps is free within noise and halves pose energy (0.53×).** 8 fps is a real loss, so there is a
+floor. 12 fps I would not use: the point estimate is a meaningful −3.25 and n=30 cannot resolve it.
+**24 fps looking better than 30 fps is noise** — do not report it as an improvement.
+
+**What this means for C8 (guide rows 4.2/4.4).** The adaptation's job is to recover the loss at the
+rates where there *is* one, i.e. 12 fps and below. At 16 fps and above there is nothing to recover on
+this evidence, so an adaptation run at 24 fps cannot show a gain and should not be scheduled expecting
+one. And per §5b, if C8 trains on the authors' released train poses it closes the frame-rate gap while
+leaving the extractor gap untouched.
+
+**One practical warning.** The board had a stale Sep-18 `unisign/bootstrap_ci.py` without the `--out`
+flag, which made a board-side CI step fail silently (argparse error, no matching output). It is updated
+now, but if you run analysis on the board, check the file you are running is the current one.
+
 ## 1. Why INT8 was dropped (the original analysis)
 
 **Guide row 3.2 specifies "L9 weight-only INT8 (W8A16) on the pruned mT5". W8A16 keeps activations in
