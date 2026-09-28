@@ -164,11 +164,16 @@ class PrunedTokenizer:
         return len(self.keep)
 
     def _map(self, ids):
+        # old2new/keep are CPU lookup tables built at prune time, but `ids` can arrive on CUDA
+        # (generate() returns device tensors). Index on the table's device, return on the
+        # caller's. CPU-only runs never hit this; the first GPU eval did.
         ids = torch.as_tensor(ids, dtype=torch.long)
-        out = torch.full_like(ids, 2)
-        ok = ids < len(self.old2new)
-        out[ok] = self.old2new[ids[ok]]
-        return out
+        dev = ids.device
+        ids_c = ids.to(self.old2new.device)
+        out = torch.full_like(ids_c, 2)
+        ok = ids_c < len(self.old2new)
+        out[ok] = self.old2new[ids_c[ok]]
+        return out.to(dev)
 
     def __call__(self, text, **kw):
         enc = self.tok(text, **kw)
@@ -177,7 +182,7 @@ class PrunedTokenizer:
         return enc
 
     def decode(self, ids, **kw):
-        ids = torch.as_tensor(ids, dtype=torch.long).reshape(-1)
+        ids = torch.as_tensor(ids, dtype=torch.long).reshape(-1).to(self.keep.device)
         return self.tok.decode(self.keep[ids].tolist(), **kw)
 
     def batch_decode(self, seqs, **kw):
