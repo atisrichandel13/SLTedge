@@ -67,6 +67,10 @@ def main():
     ap.add_argument("--pkl-out", required=True)
     ap.add_argument("--dumps-out", default=None, help="also write the raw keypoint JSON here")
     ap.add_argument("--square-norm", action=argparse.BooleanOptionalAction, default=True)
+    ap.add_argument("--pkl-out-raw", default=None,
+                    help="ALSO write crop-normalised pkls here. The square-frame and crop-frame forms "
+                         "are the same keypoints under two exact normalisations, so writing both costs "
+                         "no GPU work and saves a whole second extraction pass over the split")
     ap.add_argument("--limit-clips", type=int, default=None)
     ap.add_argument("--warmup", type=int, default=20)
     ap.add_argument("--progress-every", type=int, default=10)
@@ -78,6 +82,8 @@ def main():
     if not metas:
         raise SystemExit(f"no <vid>/meta.json under {args.clips_dir}")
     os.makedirs(args.pkl_out, exist_ok=True)
+    if args.pkl_out_raw:
+        os.makedirs(args.pkl_out_raw, exist_ok=True)
     if args.dumps_out:
         os.makedirs(args.dumps_out, exist_ok=True)
 
@@ -87,10 +93,17 @@ def main():
     in_name = runner.inputs[0]
     warmed = False
 
+    def complete(vid):
+        if not os.path.exists(os.path.join(args.pkl_out, vid + ".pkl")):
+            return False
+        if args.pkl_out_raw and not os.path.exists(os.path.join(args.pkl_out_raw, vid + ".pkl")):
+            return False
+        return True
+
     todo = []
     for mp in metas:
         vid = os.path.basename(os.path.dirname(mp))
-        if not os.path.exists(os.path.join(args.pkl_out, vid + ".pkl")):
+        if not complete(vid):
             todo.append((mp, vid))
     print(f"[batch] {args.config}: {len(metas)} clips, {len(todo)} to do, "
           f"{len(metas) - len(todo)} already have a pkl", flush=True)
@@ -116,7 +129,8 @@ def main():
             warmed = True
 
         sqf = square_fn(meta) if args.square_norm else None
-        kps, scs, raw = [], [], []
+        kps, scs, raw, kps_raw = [], [], [], []
+        wh_crop = np.asarray([meta["crop_xywh"][2], meta["crop_xywh"][3]], dtype=np.float32)
         for path in frames:
             img = cv2.imread(path)
             x, center, scale = preprocess(img, None, pp)
@@ -126,21 +140,25 @@ def main():
             if args.dumps_out:
                 raw.append({"frame": os.path.basename(path), "keypoints": k.round(2).tolist(),
                             "scores": s.round(4).tolist()})
-            if sqf is not None:
-                kn = sqf(k)
-            else:
-                wh = np.asarray([meta["crop_xywh"][2], meta["crop_xywh"][3]], dtype=np.float32)
-                kn = (k / wh[None]).astype(np.float32)
+            kn = sqf(k) if sqf is not None else (k / wh_crop[None]).astype(np.float32)
             kps.append(kn.reshape(1, 133, 2).astype(np.float32))
             scs.append(np.asarray(s, dtype=np.float32).reshape(1, 133))
+            if args.pkl_out_raw:
+                kps_raw.append((k / wh_crop[None]).astype(np.float32).reshape(1, 133, 2))
 
         # write to a temp name then rename: a pkl that exists is the resume marker, so it must never
         # exist in a half-written state
-        tmp = os.path.join(args.pkl_out, vid + ".pkl.part")
-        with open(tmp, "wb") as f:
-            pickle.dump({"keypoints": kps, "scores": scs,
-                         "square_norm": bool(sqf is not None), "vid": vid}, f)
-        os.replace(tmp, os.path.join(args.pkl_out, vid + ".pkl"))
+        def save(d, payload):
+            t = os.path.join(d, vid + ".pkl.part")
+            with open(t, "wb") as f:
+                pickle.dump(payload, f)
+            os.replace(t, os.path.join(d, vid + ".pkl"))
+
+        save(args.pkl_out, {"keypoints": kps, "scores": scs,
+                            "square_norm": bool(sqf is not None), "vid": vid})
+        if args.pkl_out_raw:
+            save(args.pkl_out_raw, {"keypoints": kps_raw, "scores": scs,
+                                    "square_norm": False, "vid": vid})
         if args.dumps_out:
             json.dump({"summary": {"n_frames": len(frames)}, "results": raw},
                       open(os.path.join(args.dumps_out, f"{args.config}__{vid}.json"), "w"))

@@ -1,0 +1,30 @@
+{
+ "vid": "dSkoNrtNxwo-00:06:31.500-00:06:37.633",
+ "yid": "dSkoNrtNxwo",
+ "crop_xywh": [
+  273,
+  15,
+  240,
+  384
+ ],
+ "bbox_norm": [
+  0.35203528224873853,
+  0.03103528581224046,
+  0.66100104229136,
+  0.8311954068707991
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "For those who have contacted us, we will get back to you to make sure the community is involved in the process to make strides for education!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  776,
+  480
+ ],
+ "n_frames": 184,
+ "stride": 1,
+ "start": "00:06:31.500",
+ "end": "00:06:37.633",
+ "duration_s": 6.133
+}

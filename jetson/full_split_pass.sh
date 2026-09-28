@@ -15,6 +15,13 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
+# All four configs. I briefly cut the RTMPose-x pair on the grounds that the extractor question is
+# already established at n=30 (RTMW beats RTMPose-x by 7.13 BLEU-4, CI [-10.94, -3.07]) -- but that
+# would leave RTMW at n=974 and RTMPose-x at n=30 in the same report, which is the denominator
+# mismatch this project keeps warning about, and it would also lose the frame-fix consistency check:
+# if the 1.68x coordinate-frame correction is a real mechanism it should help RTMPose-x too, and
+# running only RTMW gives up the chance to falsify that. Board time is cheap and unattended; the
+# comparison being on one footing is not.
 CONFIGS="${SLT_CONFIGS:-rtmw_fp16 rtmw_fp32 rtmposex_fp32 rtmposex_fp16mixed}"
 CLIPS_DIR="${SLT_CLIPS:-data/clips}"
 TAG="${SLT_TAG:-full}"
@@ -69,8 +76,13 @@ for cfg in $CONFIGS; do
     if [ "$have" -ge "$n_clips" ]; then echo "[full] have all ${have} pkls for $cfg"; continue; fi
     prep_mem 3500 || exit 1
     echo "[full] STAGE3 $cfg ($have/$n_clips done)  $(date +%H:%M:%S)"
+    # One pass writes BOTH normalisations: the square-frame form (the deployment path, RESULTS.md
+    # 2.5d) and the crop-frame form. They are the same keypoints under two exact normalisations, so
+    # the second costs no GPU work -- and having both is what establishes the frame-fix effect size,
+    # which is unestablished at n=30 (+0.97 BLEU-4, CI [-2.62, +4.64]).
     "${R[@]}" python3 task1_rtmpose/09_batch_clips.py --engine "$eng" --clips-dir "$CLIPS_DIR" \
-        --config "$cfg" --pkl-out "$pkl" --square-norm --progress-every 25 \
+        --config "$cfg" --pkl-out "$pkl" --pkl-out-raw "results/pkl_${TAG}_${cfg}_raw" \
+        --square-norm --progress-every 25 \
         2>&1 | tail -4 | sed 's/^/[full]   /'
 done
 
@@ -79,8 +91,10 @@ if [ "$DROP_FRAMES" = "1" ]; then
     ok=1
     for cfg in $CONFIGS; do
         [ -z "$(engine_for "$cfg")" ] && continue
-        have=$(ls "results/pkl_${TAG}_${cfg}"/*.pkl 2>/dev/null | wc -l | tr -d ' ')
-        [ "$have" -lt "$n_clips" ] && ok=0
+        for d in "results/pkl_${TAG}_${cfg}" "results/pkl_${TAG}_${cfg}_raw"; do
+            have=$(ls "$d"/*.pkl 2>/dev/null | wc -l | tr -d ' ')
+            [ "$have" -lt "$n_clips" ] && ok=0
+        done
     done
     if [ "$ok" = "1" ]; then
         echo "[full] every config has $n_clips pkls; deleting frames to free the board"
@@ -92,8 +106,12 @@ if [ "$DROP_FRAMES" = "1" ]; then
 fi
 
 # ---- stage 4: evals
+EVAL_SETS=""
 for cfg in $CONFIGS; do
     [ -z "$(engine_for "$cfg")" ] && continue
+    EVAL_SETS="$EVAL_SETS $cfg ${cfg}_raw"
+done
+for cfg in $EVAL_SETS; do
     pkl="results/pkl_${TAG}_${cfg}"
     out="results/eval_${TAG}_${cfg}.json"
     [ -f "$out" ] && { echo "[full] have $out"; continue; }
@@ -109,8 +127,14 @@ done
 
 # ---- ceiling: the authors' released poses through the same checkpoint
 out="results/eval_${TAG}_authors_ceiling.json"
+n_ref=$(ls "$REF_POSE"/*.pkl 2>/dev/null | wc -l | tr -d ' ')
 if [ -f "$out" ]; then
     echo "[full] have $out"
+elif [ "$n_ref" -lt "$n_clips" ]; then
+    # A partial reference set would score the ceiling on a different clip set than our rows, which is
+    # the n=40-vs-n=30 mistake from RESULTS.md 2.5c. Refuse rather than emit a misleading point estimate.
+    echo "[full] SKIP ceiling: only ${n_ref} reference poses for ${n_clips} clips."
+    echo "[full]   run ./data/fetch_full_ref_poses.sh on the Mac first, then re-run this script." >&2
 elif [ -d "$REF_POSE" ]; then
     prep_mem 5200 || exit 1
     echo "[full] STAGE4 eval authors_ceiling  $(date +%H:%M:%S)"

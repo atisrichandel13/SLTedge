@@ -1,0 +1,30 @@
+{
+ "vid": "35N28rtz66I-00:08:05.000-00:08:20.766",
+ "yid": "35N28rtz66I",
+ "crop_xywh": [
+  618,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.4830764971281353,
+  -0.0360774531373736,
+  0.9106534603185821,
+  1.1670352944714284
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The purpose of this blood donation therapy is to help both the younger donor and the older recipient to look and feel younger.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 473,
+ "stride": 1,
+ "start": "00:08:05.000",
+ "end": "00:08:20.766",
+ "duration_s": 15.766
+}

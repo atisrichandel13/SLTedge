@@ -1,0 +1,30 @@
+{
+ "vid": "H7nga4_DWtE-00:00:39.100-00:00:52.133",
+ "yid": "H7nga4_DWtE",
+ "crop_xywh": [
+  387,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.3025997328858839,
+  -0.15231992110812603,
+  0.761646380806774,
+  1.1585397558485013
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now, we begin our celebration of International Week of the Deaf by reminding everyone that we must promote, protect, and preserve our sign languages to the same degree as spoken languages.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 391,
+ "stride": 1,
+ "start": "00:00:39.100",
+ "end": "00:00:52.133",
+ "duration_s": 13.033
+}

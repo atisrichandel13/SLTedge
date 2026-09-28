@@ -1,0 +1,30 @@
+{
+ "vid": "54q7y2npxbM-00:04:25.633-00:04:36.133",
+ "yid": "54q7y2npxbM",
+ "crop_xywh": [
+  666,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.5206785736891327,
+  -0.07063777907885642,
+  0.9197355885985037,
+  1.0181367363949372
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They created these giant pieces using reclaimed granite countertops.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 315,
+ "stride": 1,
+ "start": "00:04:25.633",
+ "end": "00:04:36.133",
+ "duration_s": 10.5
+}

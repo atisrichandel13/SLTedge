@@ -1,0 +1,30 @@
+{
+ "vid": "MJijm9kbdHA-00:08:12.666-00:08:16.600",
+ "yid": "MJijm9kbdHA",
+ "crop_xywh": [
+  639,
+  0,
+  550,
+  720
+ ],
+ "bbox_norm": [
+  0.4995469193709524,
+  -0.16232073228029245,
+  0.9291814285412169,
+  1.1364552693060268
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So, that's a recap of the South Carolina debate.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 95,
+ "stride": 1,
+ "start": "00:08:12.666",
+ "end": "00:08:16.600",
+ "duration_s": 3.934
+}

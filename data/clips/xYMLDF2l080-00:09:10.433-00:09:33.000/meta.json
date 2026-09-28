@@ -1,0 +1,30 @@
+{
+ "vid": "xYMLDF2l080-00:09:10.433-00:09:33.000",
+ "yid": "xYMLDF2l080",
+ "crop_xywh": [
+  772,
+  122,
+  414,
+  598
+ ],
+ "bbox_norm": [
+  0.6035087581943064,
+  0.16942403082754098,
+  0.9267859427367939,
+  1.0698064300749037
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Edwards says many black-owned businesses may not make it through the pandemic and that we have a responsibility to make sure \"\"we all thrive.\"\"\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 677,
+ "stride": 1,
+ "start": "00:09:10.433",
+ "end": "00:09:33.000",
+ "duration_s": 22.567
+}

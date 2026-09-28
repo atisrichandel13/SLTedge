@@ -1,0 +1,30 @@
+{
+ "vid": "5iRIeHAK9b0-00:04:38.333-00:04:43.033",
+ "yid": "5iRIeHAK9b0",
+ "crop_xywh": [
+  633,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.49458058784747944,
+  -0.1570456147955143,
+  0.9549769533091578,
+  1.185048143769285
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The children range in age from 2 to 29 years old.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 141,
+ "stride": 1,
+ "start": "00:04:38.333",
+ "end": "00:04:43.033",
+ "duration_s": 4.7
+}

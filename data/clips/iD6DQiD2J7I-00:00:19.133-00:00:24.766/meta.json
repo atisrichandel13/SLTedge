@@ -1,0 +1,30 @@
+{
+ "vid": "iD6DQiD2J7I-00:00:19.133-00:00:24.766",
+ "yid": "iD6DQiD2J7I",
+ "crop_xywh": [
+  278,
+  27,
+  254,
+  426
+ ],
+ "bbox_norm": [
+  0.4250344099555004,
+  0.05571051298403273,
+  0.8152629229893336,
+  0.9441175535613415
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Over the years we've been used to the Legacy College Bowl trio: Gallaudet University, CSUN and NTID.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 169,
+ "stride": 1,
+ "start": "00:00:19.133",
+ "end": "00:00:24.766",
+ "duration_s": 5.633
+}

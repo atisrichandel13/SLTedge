@@ -1,0 +1,30 @@
+{
+ "vid": "u919vf-yghQ-00:06:05.100-00:06:16.466",
+ "yid": "u919vf-yghQ",
+ "crop_xywh": [
+  599,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.46759220039319693,
+  -0.09676829590654139,
+  0.8711498542401775,
+  1.0446066857050715
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is an update on the White House's push on adding the citizenship question to the 2020 census.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 273,
+ "stride": 1,
+ "start": "00:06:05.100",
+ "end": "00:06:16.466",
+ "duration_s": 11.366
+}

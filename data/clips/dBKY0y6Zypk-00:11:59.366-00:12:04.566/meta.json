@@ -1,0 +1,30 @@
+{
+ "vid": "dBKY0y6Zypk-00:11:59.366-00:12:04.566",
+ "yid": "dBKY0y6Zypk",
+ "crop_xywh": [
+  609,
+  43,
+  204,
+  340
+ ],
+ "bbox_norm": [
+  0.4755796389702039,
+  0.06012208346288089,
+  0.6353993397492629,
+  0.5328563923849339
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thank you all for coming, and thank you for teaching.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 156,
+ "stride": 1,
+ "start": "00:11:59.366",
+ "end": "00:12:04.566",
+ "duration_s": 5.2
+}

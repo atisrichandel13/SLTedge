@@ -1,0 +1,30 @@
+{
+ "vid": "rSiciLyYOyI-00:11:41.600-00:11:48.566",
+ "yid": "rSiciLyYOyI",
+ "crop_xywh": [
+  320,
+  0,
+  648,
+  720
+ ],
+ "bbox_norm": [
+  0.24985665667290782,
+  -0.0565569908790339,
+  0.7570242821001539,
+  1.3399955300723805
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was interesting because after we chatted, it started to feel strange because it became so quiet.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 168,
+ "stride": 1,
+ "start": "00:11:41.600",
+ "end": "00:11:48.566",
+ "duration_s": 6.966
+}

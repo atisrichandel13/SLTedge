@@ -1,0 +1,30 @@
+{
+ "vid": "ZPiRIM1gYLQ-00:01:29.366-00:01:46.133",
+ "yid": "ZPiRIM1gYLQ",
+ "crop_xywh": [
+  644,
+  0,
+  558,
+  720
+ ],
+ "bbox_norm": [
+  0.5032132038854277,
+  -0.20805553956068865,
+  0.9399359695214794,
+  1.142552325340728
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is the first current White House official to testify and ignored a White House directive for staffers to not testify.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 403,
+ "stride": 1,
+ "start": "00:01:29.366",
+ "end": "00:01:46.133",
+ "duration_s": 16.767
+}

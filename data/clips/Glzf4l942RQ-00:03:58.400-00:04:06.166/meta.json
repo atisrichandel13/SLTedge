@@ -1,0 +1,30 @@
+{
+ "vid": "Glzf4l942RQ-00:03:58.400-00:04:06.166",
+ "yid": "Glzf4l942RQ",
+ "crop_xywh": [
+  662,
+  0,
+  550,
+  720
+ ],
+ "bbox_norm": [
+  0.5175074279731047,
+  -0.1618163779929832,
+  0.9467176362977806,
+  1.1381594030381752
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The WHO found on average 1 in every 25 people globally has at least one of these STDs.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 233,
+ "stride": 1,
+ "start": "00:03:58.400",
+ "end": "00:04:06.166",
+ "duration_s": 7.766
+}

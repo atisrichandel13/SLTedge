@@ -1,0 +1,30 @@
+{
+ "vid": "Pfr_DqcuqUY-00:03:47.100-00:03:59.700",
+ "yid": "Pfr_DqcuqUY",
+ "crop_xywh": [
+  323,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.2525472427669324,
+  -0.13584652151513052,
+  0.7187419376875225,
+  1.249025448488678
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I either send a text or head over to their building to check in with them in person to determine what needs to be done.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 378,
+ "stride": 1,
+ "start": "00:03:47.100",
+ "end": "00:03:59.700",
+ "duration_s": 12.6
+}

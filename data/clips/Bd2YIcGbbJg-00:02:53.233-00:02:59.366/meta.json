@@ -1,0 +1,30 @@
+{
+ "vid": "Bd2YIcGbbJg-00:02:53.233-00:02:59.366",
+ "yid": "Bd2YIcGbbJg",
+ "crop_xywh": [
+  625,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.48856737635157127,
+  -0.11916371136456282,
+  0.9042148658821175,
+  1.0872205573875269
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "President Trump possibly killed any chance of immigration bill passing any time soon.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 184,
+ "stride": 1,
+ "start": "00:02:53.233",
+ "end": "00:02:59.366",
+ "duration_s": 6.133
+}

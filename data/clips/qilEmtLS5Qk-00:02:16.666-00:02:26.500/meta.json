@@ -1,0 +1,30 @@
+{
+ "vid": "qilEmtLS5Qk-00:02:16.666-00:02:26.500",
+ "yid": "qilEmtLS5Qk",
+ "crop_xywh": [
+  794,
+  153,
+  304,
+  478
+ ],
+ "bbox_norm": [
+  0.6206419003315461,
+  0.21232914775185435,
+  0.8576119801937006,
+  0.8766214196838205
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In California Los Angeles County has more confirmed cases in any other county in the nation.",
+ "split": "test",
+ "fps": 26.565,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 262,
+ "stride": 1,
+ "start": "00:02:16.666",
+ "end": "00:02:26.500",
+ "duration_s": 9.834
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "5_k1TypH_s8-00:03:42.600-00:03:55.666",
+ "yid": "5_k1TypH_s8",
+ "crop_xywh": [
+  600,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.4688782673847826,
+  -0.12920996160279177,
+  0.9357160996787156,
+  1.2363795214732154
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Centers for Disease Control says that the influenza has already killed 1,800 people since late September.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 392,
+ "stride": 1,
+ "start": "00:03:42.600",
+ "end": "00:03:55.666",
+ "duration_s": 13.066
+}

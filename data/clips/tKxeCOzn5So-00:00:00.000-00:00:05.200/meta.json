@@ -1,0 +1,30 @@
+{
+ "vid": "tKxeCOzn5So-00:00:00.000-00:00:05.200",
+ "yid": "tKxeCOzn5So",
+ "crop_xywh": [
+  195,
+  0,
+  472,
+  470
+ ],
+ "bbox_norm": [
+  0.22787933271439348,
+  -0.18821982982310842,
+  0.7817199565208489,
+  1.4992471920683028
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The information on this page gives you different ideas on how to find a job.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 156,
+ "stride": 1,
+ "start": "00:00:00.000",
+ "end": "00:00:05.200",
+ "duration_s": 5.2
+}
