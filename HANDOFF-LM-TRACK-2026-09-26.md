@@ -97,6 +97,41 @@ leaving the extractor gap untouched.
 flag, which made a board-side CI step fail silently (argparse error, no matching output). It is updated
 now, but if you run analysis on the board, check the file you are running is the current one.
 
+## 0d. NEW 2026-09-28: pose-stage energy vs capture rate — the measured joule saving
+
+This is the second half of "is 24 fps free": the energy, as a measured number rather than an inference
+from accuracy. Real runs at each rate (`task1_rtmpose/04_infer_power.py --keep-fps`), RTMW-l-m FP16 —
+the deployment model — 3 repeats each, board mode 0 (15 W), INA3221 on VDD_IN.
+
+| fps | frames | ms/frame | mJ/frame | dyn mJ | avg W | gpu MHz | cpu MHz | **J per second of video** | **vs 30 fps** |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 30 | 255 | 19.82 | 141.6 | 40.1 | 4.88 | 309 | 897 | **4.25** | 1.00× |
+| 24 | 204 | 21.29 | 139.9 | 33.6 | 4.88 | 308 | 868 | **3.36** | **0.79×** |
+| 16 | 136 | 20.68 | 141.8 | 39.1 | 4.85 | 312 | 882 | **2.27** | **0.53×** |
+| 12 | 102 | 20.54 | 139.5 | 39.1 | 4.90 | 313 | 901 | **1.67** | 0.39× |
+| 8 | 68 | 19.99 | 145.9 | 40.1 | 4.87 | 318 | 1039 | **1.17** | 0.27× |
+
+**So "24 fps is free" is now two measured statements, not one claim:** it costs **21 % less pose energy**
+(0.79×) and has **no measured accuracy cost** (§0c, Δ BLEU-4 +1.51, CI [−2.32, +5.78]). And 16 fps is the
+better operating point — **47 % less energy**, Δ BLEU-4 −0.15, CI [−3.20, +2.89].
+
+Reading the columns:
+- **`J per second of video` is the only comparable column across rates.** `mJ/frame` is flat by
+  construction (139.5–145.9) because every frame costs the same to process; what changes is how many
+  frames exist per second of video. Quoting mJ/frame as if it showed a saving would show nothing.
+- **Do not compare the absolute 141.6 mJ/frame against P2's 127.** Each of the 3 repeats pays 20 warm-up
+  inferences and this clip has 255 frames against P2's 299, so the warm-up amortises differently. The
+  ratios are unaffected and are what matters here.
+- The CPU clock rising at low rates (897 → 1039 MHz) is the 15 W coupling from §3: less sustained GPU
+  work leaves the CPU more of the budget.
+
+**Combined with the LM matrix (§0b), for the M1 sentence** (8.51 s of video, 50.37 J measured
+end-to-end): pose 36.2 J + LM 11.04 J at 30 fps / beam 4 becomes 19.3 J + 9.89 J at **16 fps / beam 4** —
+about **29 J against 47 J, a ~38 % system saving at no measured accuracy cost.** Dropping to greedy saves
+a further ~1.3 J and costs 2.00 BLEU-4, which is a trade to present rather than to take silently.
+
+Raw: `results/p8_pose_fps{30,24,16,12,8}.json` and `.csv`.
+
 ## 1. Why INT8 was dropped (the original analysis)
 
 **Guide row 3.2 specifies "L9 weight-only INT8 (W8A16) on the pruned mT5". W8A16 keeps activations in
