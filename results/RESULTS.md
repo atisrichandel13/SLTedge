@@ -588,6 +588,73 @@ Reading it:
 
 First pass only: single run per cell. Final table needs 3 runs, mean+std, several clips/signers, 30 min sustained.
 
+## 5.1 / M1: first on-device end-to-end translation (2026-09-28)
+
+`unisign/e2e_translate.py` — pose TensorRT engine and the language model in **one process** on
+`jetson-lpcv-03`, mode 0 (15 W). Clip `ixq65EiuJ_c-00:03:47.633-00:03:56.133`, 255 frames (8.51 s of
+video), RTMW-l-m FP16, released checkpoint, beam 4, frame-fix (§2.5d) applied, 3 timed sentences after
+a warm-up. Board occupancy checked first (`jetson/run.sh whoelse`): one other user with an idle shell,
+no foreign process above 1 % CPU, GPU load 0.
+
+| | value |
+|---|---|
+| output text | "When I first moved to Texas two years ago, it was my first time doing a plane invasion." |
+| reference | "When I moved to Texas one year and a half ago, this was my first artwork." |
+| **sentence total** | **9052.8 ms ± 335.6** (runs 9527 / 8811 / 8820) |
+| ├ pose, 255 frames | 6640.7 ms |
+| ├ keypoints → model inputs | 25.7 ms |
+| └ language model | 2386.5 ms |
+| per frame | imread 6.02 + preprocess 5.11 + TRT 12.71 + post 1.26 = **25.10 ms** |
+| **energy** | **50.37 J/sentence** total, **14.68 J/sentence** dynamic |
+| peak GPU | 2.577 GB |
+| startup (outside the window) | LM load **64.4 s**, pose engine 1.1 s |
+
+**Validated against the offline pipeline.** M1's text initially disagreed with the §2.5c eval for the
+same clip, engine and checkpoint. The cause was **batch size**, not the new code path: `eval_openasl.py`
+batches 8 clips and pads them, M1 runs one. Re-running the eval at `--batch-size 1` reproduces M1's
+sentence exactly, and 2 of the 30 clips differ between batch 8 and batch 1 (BLEU-4 18.52 → 18.64,
+ROUGE-L 43.91 → 44.19). So the end-to-end path is correct, **and every offline BLEU number in this
+document carries a small batching dependency** — smaller than any effect we reason about, but it should
+be stated rather than discovered later.
+
+**It is 1.06× slower than real time, and the LM is why.** 9.05 s to process 8.51 s of video. The pose
+stage alone is 6.64 s = **0.78× real time**, comfortably real-time; the LM's 2.39 s per sentence pushes
+the total over. Because LM cost is per *sentence* and pose is per *frame*, longer sentences get better
+and short ones worse. This is a direct link to the decode-knob frontier (§L6.1): beam 2 costs 0.81
+BLEU-4 and greedy 2.00, and either would bring the pipeline under real time.
+
+**The contention I predicted did not appear — because the stages are sequential.** §2.2b found CPU
+stages slow by ×1.281 when the GPU takes more of the 15 W budget, so I expected end-to-end to exceed
+pose-alone plus LM-alone. It does not: per-frame pose is 25.10 ms here against 25.03 ms measured
+standalone (§2.2b), with TRT slightly *faster* (12.71 vs 13.66) and the CPU stages slightly slower.
+The reason is that this implementation runs all frames and *then* the LM, so the two never overlap —
+having the LM merely resident costs nothing. **A streaming pipeline that decodes sentence N while
+extracting frames for N+1 would contend, and that remains unmeasured.** Do not cite this row as
+evidence that a streaming design is free.
+
+**FP16 is now a fitting requirement, not only an energy choice.** The same run with the FP32 engine
+(159 MB vs 68 MB) fails partway through LM decode, out of memory in the KV-cache concat. End-to-end
+fits at FP16 and does not at FP32 on this 8 GB board.
+
+Raw: `results/m1_e2e_rtmw_fp16.json`, `.csv`, log `results/logs/m1_e2e.log`.
+
+### Infrastructure findings from this run
+
+**The NVML assert masks an out-of-memory.** Every failure in this project that printed
+`RuntimeError: NVML_SUCCESS == r INTERNAL ASSERT FAILED at CUDACachingAllocator.cpp:1017` was preceded
+by `NvMapMemAllocInternalTagged: ... error 12` (ENOMEM). nvmap fails, PyTorch tries to build an
+informative OOM message, NVML is only partly supported on Jetson, and the assert replaces the real
+error. **Read that assert as "out of memory", not as a PyTorch bug.** This retroactively explains the
+five evals lost on 2026-09-26 and the two that died under concurrency.
+
+**`posix_fadvise` is not enough on a shared board.** `jetson/drop_file_cache.py` can only drop pages
+backed by files it names, and only when nothing else references them. With another user's desktop
+session active, MemFree sat at 100 MB with 6.2 GB cached and fadvise freed 14 MB. Dropping caches
+properly needs root, which we do not have. Added `--target-free-mb=N`, which briefly allocates
+anonymous memory to make the kernel reclaim page cache, then releases it: MemFree 1555 → 3744 (fadvise)
+→ **4618 MB** (reclaim). The first version of this sized the allocation to the *deficit*, which fits in
+already-free memory and evicts nothing; it must be sized to the target.
+
 ## Track B: Uni-Sign OpenASL pose-only
 
 ### Metric check (B1.3), no model run

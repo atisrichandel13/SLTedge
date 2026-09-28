@@ -699,3 +699,35 @@ Also caught in my own pipeline: the ceiling eval scored n=40 because `data/opena
 reference poses, so its raw 16.79 is not comparable to our n=30 rows. Restricted to the shared 30 it is
 18.17. `bootstrap_ci.py` intersects by clip name so the CIs were unaffected — that name-recording change
 earned itself back the same day.
+
+### Session 10: M1 end-to-end, and INT8 dropped (2026-09-28)
+
+**INT8 dropped** (Tushar's call, guide row 3.2 marked ❌). The premise did not hold: L8.2 had already
+measured mT5 FP16 as numerically broken and BF16 as diverging, and W8A16 keeps activations in FP16 so it
+inherits that; the decoder is also host-bound, so INT8 buys memory not latency. The frontier does not
+need it — its accuracy axis is measured (beam 4 / 2 / greedy, established signs), so beam width is the
+knob and only board energy is outstanding.
+
+**M1 done** — `unisign/e2e_translate.py`, pose TRT + LM in one process, 255-frame clip: **9052.8 ms ±
+335.6 per sentence** (pose 6640.7 + convert 25.7 + LM 2386.5), **50.37 J/sentence**, peak GPU 2.577 GB,
+LM load 64.4 s. **1.06× slower than real time**, and the LM is why — pose alone is 0.78×.
+
+Three things worth keeping:
+1. **The NVML assert is an out-of-memory in disguise.** `NVML_SUCCESS == r INTERNAL ASSERT FAILED at
+   CUDACachingAllocator.cpp:1017` is always preceded by `NvMapMemAllocInternalTagged ... error 12`.
+   nvmap fails, PyTorch tries to report an OOM, NVML is partly unsupported on Jetson, and the assert
+   replaces the real error. This explains the five evals lost on 09-26 as one cause, not two.
+2. **fadvise is not enough on a shared board.** With another user's desktop session active, MemFree sat
+   at 100 MB with 6.2 GB cached and `drop_file_cache.py` freed 14 MB. Added `--target-free-mb=N`, which
+   allocates anonymous memory to force kernel reclaim then releases it (MemFree → 4618 MB). First
+   version sized the allocation to the deficit, which evicts nothing — it must be sized to the target.
+3. **Batch size changes output text.** M1 disagreed with the offline eval on one clip; the cause was
+   batching (eval pads a batch of 8, M1 runs 1). `--batch-size 1` reproduces M1 exactly. 2/30 clips
+   differ, BLEU-4 18.52 → 18.64. Every offline BLEU number carries this, so quote the batch size.
+
+Also corrected a prediction of mine: I expected end-to-end to exceed pose-alone + LM-alone because of
+the 15 W CPU/GPU coupling (§2.2b). It does not, because this implementation is sequential — all frames,
+then the LM — so the stages never overlap. A streaming design would contend and is unmeasured.
+
+FP32 end-to-end does not fit (OOM in KV-cache concat), so FP16 is a fitting requirement, not only an
+energy choice.

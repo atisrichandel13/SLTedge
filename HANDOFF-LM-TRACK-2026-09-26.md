@@ -14,7 +14,30 @@ retraction is kept in place rather than deleted, so nothing gets rebuilt on it.
 
 ---
 
-## 1. The one finding that may invalidate the current LM plan
+## 0. DECISION, 2026-09-28: INT8 is dropped
+
+Tushar's call, on the reasoning in §1. **L9 weight-only INT8 (W8A16) is off the plan.** Nothing needs
+to be produced for it, and the accuracy–energy frontier does not need it: the frontier's accuracy axis
+is already measured at n=976 with established signs (beam 4 → 22.87, beam 2 → 22.06, greedy → 20.88),
+so **beam width is the knob**. The only outstanding piece is board energy per configuration, which the
+pose track owns and does not need anything from the LM track.
+
+If it is ever revisited, the only credible variant is INT8 weights with **FP32** activations (PyTorch
+dynamic quant), for the reason in §1: FP16 activations are what break mT5.
+
+**Also settled 2026-09-28: M1 exists.** First on-device end-to-end translation, pose engine and LM in
+one process: 9052.8 ms ± 335.6 per sentence (pose 6640.7, LM 2386.5), 50.37 J/sentence, peak GPU
+2.577 GB. Two results the LM track should know:
+- **The LM is what breaks real time.** Total is 1.06× slower than real time; the pose stage alone is
+  0.78×. Beam 2 (−0.81 BLEU-4) or greedy (−2.00) would bring the pipeline under real time. That trade
+  is now a measured one on both axes.
+- **The LM takes 64.4 s to load.** For a live demo that is the number people will notice, and it is
+  worth one look at whether it can be cut (safetensors, `low_cpu_mem_usage`, a warm process).
+- **Batch size changes output text.** `eval_openasl.py` batches 8 and pads; the deployed path runs 1.
+  2 of 30 clips differ, moving BLEU-4 18.52 → 18.64 and ROUGE-L 43.91 → 44.19. Small, but every offline
+  BLEU number carries it, so quote the batch size when a number matters.
+
+## 1. Why INT8 was dropped (the original analysis)
 
 **Guide row 3.2 specifies "L9 weight-only INT8 (W8A16) on the pruned mT5". W8A16 keeps activations in
 FP16, and FP16 is already known-broken on this model.**
