@@ -8,7 +8,7 @@ Numbers are copied from `results/RESULTS.md`, and every one of them comes from a
 
 ## 1. Frame rate is the biggest energy lever, and 24 fps is free
 
-The L7.1 sweep caps the encoder input length with no retraining (pruned + W8A16 model, all 976 test
+The L7.1 sweep caps the encoder input length with no retraining (pruned + W8A32 model, all 976 test
 clips, beam 4):
 
 | cap (≈ fps) | BLEU-4 | Δ vs 256 (95% CI) | GCN + encoder ms (Mac CPU, relative only — board numbers come from the Jetson) |

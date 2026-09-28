@@ -1,11 +1,21 @@
-"""Weight-only INT8 (W8A16) for the mT5 part of the standalone Uni-Sign model. Task L9.
+"""Weight-only INT8 (W8A32) for the mT5 part of the standalone Uni-Sign model. Task L9.
+
+PRECISION CONTRACT — read this before assuming anything about activations. Only the WEIGHTS are int8
+and only the per-row SCALE is stored fp16; that scale is cast up before it is ever used. Activations,
+the matmul and the accumulation are all fp32 (`compute_dtype=torch.float32`, see W8Linear). Nothing in
+this module puts an activation in fp16. This matters because mT5 is known to overflow in fp16 — the
+pose track measured the fp16 TensorRT engines returning token 0 at every step with logprob -10.169,
+i.e. exactly -ln(26078), a uniform distribution over the pruned vocabulary (RESULTS.md L8.2). A true
+W8A16 scheme would inherit that failure. This one does not, and the 22.79 BLEU-4 over 976 clips is the
+evidence: the fp16 failure mode cannot produce a working score. The label was "W8A16" until 2026-09-28,
+where the "A16" wrongly referred to scale storage; it was renamed to W8A32 to stop that misreading.
 
 Every 2-D mT5 weight with >= 1e5 elements (q/k/v/o, wi_0/wi_1/wo, shared embedding, lm_head) is
 stored as int8 with one fp16 scale per output row (symmetric, absmax / 127). Layer norms, the
 relative-attention bias and the whole pose stack (5.4 M params) stay in full precision.
 
 Two ways to run a quantised checkpoint (see load_model(..., w8_runtime=...)):
-  "dequant": weights are expanded back to float at load time. Exact W8A16 numerics for accuracy
+  "dequant": weights are expanded back to float at load time. Exact W8A32 numerics for accuracy
              work, but RAM = the float model. Default, and what the accuracy numbers use.
   "int8":    nn.Linear modules are swapped for W8Linear, which keeps the int8 tensor in memory and
              dequantises per forward. Real RAM saving; a little slower. For board memory rows.

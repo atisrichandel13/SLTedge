@@ -11,7 +11,9 @@ data/test_frames/
 data/calib_frames/
 data/clips/
 data/openasl_test_pose/
+data/openasl_dev_pose/
 data/openasl_train_pose/
+data/openasl_train_pose_smoke/
 data/openasl_ref_pose/*.pkl
 
 # ---- bulky results (keep the .json and RESULTS.md, drop raw dumps) ----
@@ -30,3 +32,4 @@ venv/
 .vscode/
 .idea/
 runs/
+scratchpad/

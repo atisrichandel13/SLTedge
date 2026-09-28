@@ -211,7 +211,7 @@ def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=
     model.eval().to(device=device, dtype=dtype)
     if w8_keys and w8_runtime == "int8":
         n = swap_linears_to_w8(model, q_sd, w8_keys)
-        print(f"[load] W8A16 runtime: {n} Linear modules hold int8 weights")
+        print(f"[load] W8A32 runtime: {n} Linear modules hold int8 weights")
     model.w8 = bool(w8_keys)
     return model
 

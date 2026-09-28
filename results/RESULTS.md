@@ -203,8 +203,7 @@ greedy saves ~60% for -2.0.
 
 Three graphs, fp32, opset 17, from `weights/mt5-base-openasl-pruned` (vocab 26,078):
 `encoder.onnx` 340 MB, `decoder_init.onnx` 614 MB, `decoder_step.onnx` 557 MB (50 inputs: ids, mask,
-48 past K/V; 25 outputs). Synthetic verify at T=264, 12 steps: encoder max diff 4.1e-6, per-step
-logits ≤ 2.2e-5, tokens identical. Real-pose verify (`unisign/onnx_decode.py`, Bitcoin clip, greedy):
+48 past K/V; 25 outputs). Verified on real poses only (`unisign/onnx_decode.py`, Bitcoin clip, greedy):
 **tokens identical to PyTorch, max |logprob diff| 2.9e-5**; ORT CPU encoder 62 ms, decoder 178 ms for
 24 tokens (7.4 ms/token) vs PyTorch 191 ms. Export + verification took one attempt (budget was 3 days).
 Remaining for L8: TensorRT engines on the Jetson (queue J4) and the drift check there.
@@ -225,7 +224,14 @@ statistically real but small. The cap only bounds the worst case; the mean sente
 unaffected, so the energy saving is in tail latency, not the average. Beam width (L6.1) remains the
 lever that moves the average decoder cost.
 
-### L9.1 Weight-only INT8 (W8A16) on the pruned mT5 (`unisign/quant.py`), 976 test clips, Mac CPU, beam 4, cap 64
+### L9.1 Weight-only INT8 (W8A32) on the pruned mT5 (`unisign/quant.py`), 976 test clips, Mac CPU, beam 4, cap 64
+
+**Precision, stated explicitly because the name has caused a misreading:** weights are int8, the
+per-row scale is *stored* fp16 and cast up before use, and activations / matmul / accumulation are
+**fp32** (`compute_dtype=torch.float32`). No activation is ever fp16. This is the distinction that
+matters given L8.2's finding that fp16 breaks mT5 outright (uniform logits at −ln(26078)): a genuine
+W8A16 scheme would inherit that failure, this one cannot, and the working 22.79 BLEU-4 below is the
+proof. Labelled "W8A16" until 2026-09-28; renamed W8A32.
 
 Per-row symmetric int8 (absmax/127) + fp16 scale on every mT5 2-D weight ≥ 1e5 elements: 220 tensors,
 278.3 M of 285.2 M stored values (the shared embedding is counted once per copy in the state dict).
@@ -235,7 +241,7 @@ Pose stack, layer norms and relative-attention bias stay fp32. Max per-tensor re
 |---|---|---|---|---|---|
 | released, full vocab (fp32 ref) | 1187 | 23.16 | 43.17 | — | — |
 | pruned vocab, bf16 | 571 | 22.87 | 42.98 | −0.28 [−0.63, +0.05] vs released | — |
-| **pruned + W8A16** | **293** | 22.79 | 43.00 | **−0.09 [−0.34, +0.14]** vs pruned, P=0.77; −0.37 [−0.76, −0.02] vs released | 182 / 976 |
+| **pruned + W8A32** | **293** | 22.79 | 43.00 | **−0.09 [−0.34, +0.14]** vs pruned, P=0.77; −0.37 [−0.76, −0.02] vs released | 182 / 976 |
 
 Files: `results/eval_test_pruned_w8_mac.json`, checkpoint `weights/openasl_pose_only_slt_pruned_w8.pth`.
 Clip check (Bitcoin): tokens identical to pruned fp32 in both load modes, max |logprob diff| 0.078
@@ -245,10 +251,10 @@ model is −0.37 BLEU-4 for a 4.05× smaller file (1187 → 293 MB). 19 % of sen
 the quantisation is not invisible per sentence, only in aggregate. Runtime modes: `--w8-runtime dequant`
 (float weights in RAM, used for these numbers) and `int8` (int8 in RAM, dequantised per forward;
 10× slower decoder on CPU, 2139 vs 197 ms, because 217 layers dequantise per token). Board memory and
-speed for both modes come from a J-request; a fused W8A16 kernel (TensorRT INT8 weights) is the
+speed for both modes come from a J-request; a fused W8A32 kernel (TensorRT INT8 weights) is the
 version that saves both memory and energy.
 
-### L7.1 Encoder input length (frame cap) vs BLEU and LM time, no retraining (pruned + W8A16, 976 clips, Mac CPU, beam 4)
+### L7.1 Encoder input length (frame cap) vs BLEU and LM time, no retraining (pruned + W8A32, 976 clips, Mac CPU, beam 4)
 
 `--max-length L` subsamples any clip longer than L frames uniformly to L; shorter clips are untouched.
 Test clips: mean 217 frames, median 171, p95 545 (30 fps), so a cap of 256 already touches 305/976 clips.
@@ -318,7 +324,7 @@ Reading: 16 fps costs 0.92 BLEU-4 on this subset un-adapted; 2 epochs on 300 cli
 train set on Colab. Open issue: `--src-fps 24` vs the 30 fps assumed in L7.1 must be settled first.
 ~3 min/epoch train. Files: `runs/c8_adapt16/` (not committed).
 
-### L7.2 True per-clip frame-rate emulation vs BLEU (pruned + W8A16, 976 test clips, Mac CPU, beam 4, cap 64)
+### L7.2 True per-clip frame-rate emulation vs BLEU (pruned + W8A32, 976 test clips, Mac CPU, beam 4, cap 64)
 
 Supersedes the "≈ fps" reading of L7.1. OpenASL is **not one frame rate**: measured as frames ÷
 duration (duration from the clip-name timestamps) over 400 test clips, **73 % are 30 fps, 21 % are
@@ -344,3 +350,71 @@ Reading, and this is the headline for the frame-rate axis:
 * **12 fps costs 2.5 BLEU-4**, still large; worth an adaptation run only if 16 fps succeeds.
 Board caveat: BLEU is hardware-independent (same model, same inputs, same sentences), but the ms/W
 that turn a frame-rate cut into an energy saving must come from the Jetson (J-queue), not the Mac.
+
+### L7.3 Does the frame-rate cost depend on INT8? (interaction check, 976 test clips, Mac CPU)
+
+L7.2's deltas were all measured on the quantized model, so the 1.12 could in principle be an artefact of
+INT8 rather than of the frame rate. Repeating 16 fps on the pruned-but-**not**-quantized model and
+comparing the two penalties on identical bootstrap resamples (`unisign/did_ci.py`, difference-in-
+differences, 1000 resamples, N=976):
+
+| 16 fps penalty measured on | BLEU-4 30 → 16 fps | Δ BLEU-4 [95 % CI] |
+|---|---|---|
+| pruned, no INT8 | 22.87 → 21.54 | **−1.33 [−2.00, −0.64]** |
+| pruned + W8A32 | 22.79 → 21.66 | **−1.12 [−1.71, −0.48]** |
+| interaction (difference of the two) | | **+0.21 [−0.14, +0.57]**, P(<0)=0.13 |
+
+Files: `results/eval_test_pruned_truefps16.json`, `results/eval_test_pruned_mac.json`, plus the two L7.2
+rows. Reading: the interaction CI straddles zero and lies entirely within the 0.6 sensitivity band, so
+**quantization does not change the cost of dropping frame rate** — the two knobs can be quoted
+separately for this pair. Caveat: this is one cell of the factorial; pruning × frame rate and decoding ×
+frame rate are still unmeasured, and a CI of ±0.6 cannot rule out an interaction the size of the INT8
+penalty itself. See ABLATION-REPORT.md §3.1.
+
+### L13 Accuracy surface for the frontier plot: decoder strategy × frame rate (pruned FP32, 976 test clips, Mac CPU, cap 64)
+
+The two levers that move both axes of the deliverable plot, measured as a full 3×3 grid so the accuracy
+side is complete before the board's joules arrive. All cells: pruned FP32 (INT8 dropped from the
+deployment config, see L9.1 reading and `REPLY-LM-TRACK-2026-09-28.md` §1), `max_new_tokens` 64, true
+per-clip frame-rate emulation (`fps_ratio_for_clip`, L7.2). Deltas are a paired bootstrap against
+beam 4 at source rate, 1000 resamples, with **one resample draw scoring every cell**, so the cells are
+comparable with each other and not only with the reference (`unisign/grid_table.py`).
+
+| decoder | fps | BLEU-4 | ROUGE-L | Δ BLEU-4 vs beam 4 @ source [95 % CI] |
+|---|---|---|---|---|
+| **beam 4** | source | **22.87** | 42.98 | reference |
+| beam 4 | **24** | **22.80** | 43.13 | **−0.07 [−0.53, +0.39]** |
+| beam 4 | 16 | 21.54 | 41.35 | −1.33 [−2.00, −0.64] |
+| beam 2 | source | 22.06 | 42.22 | −0.81 [−1.29, −0.39] |
+| beam 2 | 24 | 21.93 | 42.29 | −0.94 [−1.45, −0.39] |
+| beam 2 | 16 | 21.19 | 40.89 | −1.68 [−2.35, −0.98] |
+| greedy | source | 20.88 | 41.56 | −2.00 [−2.63, −1.41] |
+| greedy | 24 | 20.66 | 41.18 | −2.22 [−2.83, −1.60] |
+| greedy | 16 | 19.83 | 39.53 | −3.04 [−3.74, −2.36] |
+
+Files: `results/eval_test_pruned_{mac,beam2_mac,greedy_mac,truefps16}.json` and
+`results/eval_test_pruned_b{4,2,1}_fps{24,16}.json`. Protocol note: the three source-rate cells were run
+at `max_new_tokens` 100 and the rest at 64, which is safe to mix because L3.2 measured cap 64 as
+**bit-identical** to cap 100 on this model (0 of 976 sentences changed, 0 predictions at/over cap).
+
+**Reading.**
+
+* **24 fps is free at every decoder setting.** −0.07 at beam 4, and the increments at beam 2 and greedy
+  (−0.13 and −0.22 relative to their own source-rate cells) are all inside the 0.6 noise band. The
+  choice of frame rate and the choice of decoder can therefore be made independently.
+* **beam 4 @ 24 fps is the best accuracy-per-frame cell**: 22.80, statistically tied with the 22.87
+  reference, on ~80 % of the frames. This is the recommended operating point on accuracy grounds alone.
+* **Greedy costs ~2 BLEU-4 at every frame rate** (−1.99 / −2.14 / −1.71). It is the expensive lever for
+  accuracy and, per L6.1, the cheap one for compute (2.7× faster). Which end of that trade wins is
+  exactly what the board's joules decide, and cannot be settled from accuracy alone.
+* **The two levers are close to additive, with a hint of sub-additivity.** Naively adding the beam-4
+  frame-rate cost (−1.33) to the source-rate greedy cost (−1.99) predicts 19.55 for greedy @ 16 fps; the
+  measured value is **19.83, i.e. +0.28 better than additive**. The sign is intuitive — both levers
+  discard information, so the second one has less left to discard — but 0.28 is inside the 0.6 band, so
+  this is *no detectable interaction*, consistent with the INT8 × frame-rate result in L7.3. Treat the
+  grid as additive for planning and quote the measured cell when reporting.
+
+**What this does not settle.** Every cell is accuracy only. The frontier plot needs joules per sentence
+for the same nine cells (five board runs cover it, see `REPLY-LM-TRACK-2026-09-28.md` Appendix A), and
+all nine are measured on the authors' released poses, so each is an upper bound for a deployment that
+uses board-extracted keypoints (pose-track gap: −6.33 BLEU-4 [+0.48, +13.11], their §5).

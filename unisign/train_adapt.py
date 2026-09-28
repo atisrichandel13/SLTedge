@@ -143,6 +143,10 @@ def main():
     ap.add_argument("--limit", type=int, default=None, help="use the first N available train clips")
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--resume", action="store_true", help="continue from <out-dir>/last.pt")
+    ap.add_argument("--save-every", type=int, default=0,
+                    help="also checkpoint every N optimizer steps, mid-epoch, and resume inside the "
+                         "epoch. Needed on Colab, where the session can vanish hours into an epoch. "
+                         "0 = epoch boundaries only.")
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     ap.add_argument("--amp", action="store_true", help="bf16 autocast (CUDA only; authors train in bf16)")
     ap.add_argument("--seed", type=int, default=42)
@@ -192,8 +196,13 @@ def main():
     if not names:
         raise SystemExit(f"no train clips found in {args.poses}")
     ds = PoseTextDataset(args.poses, labels, names, args.max_length, True, args.fps, args.src_fps)
+    # Explicit generator, reseeded per epoch below, so each epoch's batch order is reproducible.
+    # Mid-epoch resume replays the same order and skips the batches already consumed; without this
+    # the shuffle would differ after a restart and "skip 800 batches" would skip the wrong ones.
+    dl_gen = torch.Generator()
     dl = DataLoader(ds, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers,
-                    collate_fn=collate_batch, drop_last=False, persistent_workers=args.num_workers > 0)
+                    collate_fn=collate_batch, drop_last=False, persistent_workers=args.num_workers > 0,
+                    generator=dl_gen)
     print(f"[train] {len(names)} clips, {len(dl)} batches/epoch, batch {args.batch_size} x accum {args.accum}")
 
     params = [p for p in model.parameters() if p.requires_grad]
@@ -209,14 +218,32 @@ def main():
         return 0.5 * (1 + math.cos(math.pi * min(1.0, p)))
     sched = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda)
 
-    start_epoch, step = 0, 0
+    start_epoch, step, skip_batches = 0, 0, 0
     last_path = os.path.join(args.out_dir, "last.pt")
+
+    def save_ckpt(epoch, step, batch_in_epoch, epoch_done):
+        """Atomic: write to .tmp then os.replace. On Drive a session dying mid-write would
+        otherwise leave a truncated last.pt and destroy the run it was meant to protect."""
+        tmp = last_path + ".tmp"
+        torch.save({"trainable": trainable_state(model), "optimizer": opt.state_dict(),
+                    "scheduler": sched.state_dict(), "epoch": epoch, "step": step,
+                    "batch_in_epoch": batch_in_epoch, "epoch_done": epoch_done,
+                    "args": vars(args)}, tmp)
+        os.replace(tmp, last_path)
+
     if args.resume and os.path.exists(last_path):
         ck = torch.load(last_path, map_location="cpu")
         model.load_state_dict(ck["trainable"], strict=False)
         opt.load_state_dict(ck["optimizer"]); sched.load_state_dict(ck["scheduler"])
-        start_epoch, step = ck["epoch"] + 1, ck["step"]
-        print(f"[train] resumed from {last_path}: epoch {start_epoch}, step {step}")
+        step = ck["step"]
+        if ck.get("epoch_done", True):                  # finished that epoch -> start the next
+            start_epoch = ck["epoch"] + 1
+            print(f"[train] resumed from {last_path}: epoch {start_epoch}, step {step}")
+        else:                                           # died mid-epoch -> re-enter it and skip ahead
+            start_epoch = ck["epoch"]
+            skip_batches = ck.get("batch_in_epoch", 0)
+            print(f"[train] resumed from {last_path}: mid-epoch {start_epoch}, step {step}, "
+                  f"skipping {skip_batches} batches already consumed")
 
     eval_names = None
     if args.eval_poses and args.eval_labels:
@@ -237,7 +264,12 @@ def main():
         model.mt5_model.eval()  # frozen LM: no dropout inside mT5
         t0, run_loss, run_tok, n_seen = time.perf_counter(), 0.0, 0, 0
         opt.zero_grad(set_to_none=True)
+        dl_gen.manual_seed(args.seed * 100003 + epoch)   # reproducible order for this epoch
+        if skip_batches:
+            print(f"[train] ep {epoch}: fast-forwarding {skip_batches} batches", flush=True)
         for i, (src, texts) in enumerate(dl):
+            if i < skip_batches:                         # already trained on before the restart
+                continue
             src = to_device(src, args.device)
             with torch.autocast(device_type="cuda", dtype=torch.bfloat16, enabled=use_amp):
                 loss, ntok = compute_loss(model, src, texts, args.label_smoothing)
@@ -254,11 +286,14 @@ def main():
                     print(f"[train] ep {epoch} step {step} loss {msg['loss']:.4f} lr {msg['lr']:.2e} "
                           f"{n_seen}/{len(names)} clips  {el/n_seen:.2f} s/clip  eta {(len(names)-n_seen)*el/n_seen/60:.1f} min", flush=True)
                     log(msg)
+                if args.save_every and step % args.save_every == 0:
+                    save_ckpt(epoch, step, i + 1, epoch_done=False)
+                    print(f"[train] checkpoint at ep {epoch} step {step} (batch {i+1}/{len(dl)})", flush=True)
+        skip_batches = 0                                 # only the resumed epoch skips
         ep_loss = run_loss / max(1, run_tok)
         print(f"[train] epoch {epoch} done: loss {ep_loss:.4f}, {time.perf_counter()-t0:.0f} s")
         log({"epoch_done": epoch, "loss": round(ep_loss, 4), "wall_s": round(time.perf_counter() - t0)})
-        torch.save({"trainable": trainable_state(model), "optimizer": opt.state_dict(), "scheduler": sched.state_dict(),
-                    "epoch": epoch, "step": step, "args": vars(args)}, last_path)
+        save_ckpt(epoch, step, len(dl), epoch_done=True)
         if eval_names:
             r = evaluate(model, args.eval_poses, eval_labels, eval_names, args.max_length, args.fps, args.src_fps,
                          args.eval_batch_size, args.num_beams, args.max_new_tokens)

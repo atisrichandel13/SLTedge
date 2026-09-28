@@ -20,7 +20,8 @@ import time
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from common.pose_to_unisign import collate, load_keypoints_json, load_pkl, to_model_inputs  # noqa: E402
+from common.pose_to_unisign import (collate, fps_ratio_for_clip, load_keypoints_json,  # noqa: E402
+                                     load_pkl, to_model_inputs)
 from common.power_logger import add_power_args, run_with_power  # noqa: E402
 from unisign.model import load_model  # noqa: E402
 
@@ -37,6 +38,12 @@ def main():
     ap.add_argument("--dtype", default="fp32", choices=["fp32", "fp16", "bf16"])
     ap.add_argument("--w8-runtime", default="dequant", choices=["dequant", "int8"], help="for W8 checkpoints (unisign.quant)")
     ap.add_argument("--max-length", type=int, default=256, help="max pose frames fed to the model")
+    ap.add_argument("--fps", type=float, default=None,
+                    help="emulate a slower camera: thin this clip to --fps using ITS OWN source rate "
+                         "(frames/duration from the clip-name timestamps). Same definition as "
+                         "eval_openasl.py --fps, so board energy rows line up with the BLEU rows.")
+    ap.add_argument("--src-fps", type=float, default=30.0,
+                    help="fallback source rate when the filename carries no timestamps")
     ap.add_argument("--max-new-tokens", type=int, default=64)
     ap.add_argument("--num-beams", type=int, default=1)
     ap.add_argument("--repeat", type=int, default=1)
@@ -57,7 +64,12 @@ def main():
         kps, scs, _ = load_keypoints_json(args.keypoints, args.crop_wh)
     else:
         kps, scs, _ = load_pkl(args.pkl)
-    inputs, idx = to_model_inputs(kps, scs, args.max_length)
+    clip_name = os.path.basename(args.pkl or args.keypoints or "")
+    ratio = fps_ratio_for_clip(clip_name, len(scs), args.fps, args.src_fps)
+    if args.fps:
+        print(f"[infer] fps emulation: {len(scs)} frames -> {max(1, round(len(scs) * ratio))} "
+              f"(target {args.fps} fps, ratio {ratio:.3f})")
+    inputs, idx = to_model_inputs(kps, scs, args.max_length, fps_ratio=ratio)
     src = collate([inputs], ["clip"])
     print(f"[infer] frames in={len(scs)} used={len(idx)}")
 
