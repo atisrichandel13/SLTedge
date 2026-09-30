@@ -1,0 +1,30 @@
+{
+ "vid": "Bd2YIcGbbJg-00:06:19.066-00:06:29.266",
+ "yid": "Bd2YIcGbbJg",
+ "crop_xywh": [
+  626,
+  0,
+  520,
+  720
+ ],
+ "bbox_norm": [
+  0.4888346420821323,
+  -0.11464461938454686,
+  0.8959787784084197,
+  1.0602714277652572
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "An odd statement was released expressing regrets of reasons that caused them to be removed from the show.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 306,
+ "stride": 1,
+ "start": "00:06:19.066",
+ "end": "00:06:29.266",
+ "duration_s": 10.2
+}

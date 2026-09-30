@@ -1,0 +1,30 @@
+{
+ "vid": "YAxFqaUqQDo-00:05:27.133-00:05:37.233",
+ "yid": "YAxFqaUqQDo",
+ "crop_xywh": [
+  787,
+  75,
+  448,
+  644
+ ],
+ "bbox_norm": [
+  0.6150322636619944,
+  0.1040663408234254,
+  0.9657618307676472,
+  1.1128903428930619
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As several states in the US have begun lifting stay-at-home restrictions, some countries are beginning to open up as well.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 303,
+ "stride": 1,
+ "start": "00:05:27.133",
+ "end": "00:05:37.233",
+ "duration_s": 10.1
+}

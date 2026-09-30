@@ -1,0 +1,30 @@
+{
+ "vid": "IEf4PpwwHFY-00:19:01.400-00:19:04.733",
+ "yid": "IEf4PpwwHFY",
+ "crop_xywh": [
+  628,
+  0,
+  594,
+  720
+ ],
+ "bbox_norm": [
+  0.4907420195785223,
+  -0.18122827035409433,
+  0.9546934744890998,
+  1.2128988137172456
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Here is a brief video from them on this topic.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 80,
+ "stride": 1,
+ "start": "00:19:01.400",
+ "end": "00:19:04.733",
+ "duration_s": 3.333
+}

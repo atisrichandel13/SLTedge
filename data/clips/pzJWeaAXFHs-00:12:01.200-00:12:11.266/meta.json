@@ -1,0 +1,30 @@
+{
+ "vid": "pzJWeaAXFHs-00:12:01.200-00:12:11.266",
+ "yid": "pzJWeaAXFHs",
+ "crop_xywh": [
+  625,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.4884758155854022,
+  -0.15298432921668437,
+  0.8995404231743734,
+  1.0261976779701496
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The mystery flavor in 2017 was Fruity Pebbles cereal.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 302,
+ "stride": 1,
+ "start": "00:12:01.200",
+ "end": "00:12:11.266",
+ "duration_s": 10.066
+}

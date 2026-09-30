@@ -1,0 +1,30 @@
+{
+ "vid": "IT5vrxsY7kA-00:03:29.533-00:03:37.333",
+ "yid": "IT5vrxsY7kA",
+ "crop_xywh": [
+  605,
+  0,
+  582,
+  720
+ ],
+ "bbox_norm": [
+  0.4725957985465408,
+  -0.161316927104977,
+  0.9273541436973194,
+  1.1655778085274242
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The scooter's popularity is soaring but so are injuries.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 234,
+ "stride": 1,
+ "start": "00:03:29.533",
+ "end": "00:03:37.333",
+ "duration_s": 7.8
+}

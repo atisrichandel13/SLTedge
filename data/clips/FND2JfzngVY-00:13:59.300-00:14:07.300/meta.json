@@ -1,0 +1,30 @@
+{
+ "vid": "FND2JfzngVY-00:13:59.300-00:14:07.300",
+ "yid": "FND2JfzngVY",
+ "crop_xywh": [
+  685,
+  0,
+  500,
+  712
+ ],
+ "bbox_norm": [
+  0.5351008315881093,
+  -0.16000514736881963,
+  0.9262705544630686,
+  0.9891808452429595
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Daylight saving time will return at 2 am on March 8.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 240,
+ "stride": 1,
+ "start": "00:13:59.300",
+ "end": "00:14:07.300",
+ "duration_s": 8.0
+}

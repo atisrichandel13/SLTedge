@@ -1,0 +1,30 @@
+{
+ "vid": "n8wMXAjy-xA-00:00:36.533-00:00:41.633",
+ "yid": "n8wMXAjy-xA",
+ "crop_xywh": [
+  326,
+  0,
+  672,
+  720
+ ],
+ "bbox_norm": [
+  0.25437481890442554,
+  -0.2241678582012582,
+  0.7797131948573615,
+  1.3602745735232264
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Eventually, I changed my course and technically, I\u2019m still a scientist -- I\u2019m a Language Scientist!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 153,
+ "stride": 1,
+ "start": "00:00:36.533",
+ "end": "00:00:41.633",
+ "duration_s": 5.1
+}

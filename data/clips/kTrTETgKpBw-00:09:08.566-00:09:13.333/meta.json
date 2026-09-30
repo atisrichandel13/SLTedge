@@ -1,0 +1,30 @@
+{
+ "vid": "kTrTETgKpBw-00:09:08.566-00:09:13.333",
+ "yid": "kTrTETgKpBw",
+ "crop_xywh": [
+  648,
+  0,
+  608,
+  720
+ ],
+ "bbox_norm": [
+  0.5064053694407146,
+  -0.2024279323624976,
+  0.9818280167049831,
+  1.2593079502199904
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The first store investigation is still ongoing.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 115,
+ "stride": 1,
+ "start": "00:09:08.566",
+ "end": "00:09:13.333",
+ "duration_s": 4.767
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "lLPFTLjYFho-00:02:37.766-00:02:57.400",
+ "yid": "lLPFTLjYFho",
+ "crop_xywh": [
+  780,
+  79,
+  420,
+  640
+ ],
+ "bbox_norm": [
+  0.6090477997973813,
+  0.11026605113975971,
+  0.937260296991316,
+  1.0774499991968303
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The officers' lawyer said they are demanding steps be taken to ensure the discriminatory behavior never happens again and they are seeking compensation for emotional distress and lost earnings.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 589,
+ "stride": 1,
+ "start": "00:02:37.766",
+ "end": "00:02:57.400",
+ "duration_s": 19.634
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "1U-rv8VSGpE-00:04:03.166-00:04:14.066",
+ "yid": "1U-rv8VSGpE",
+ "crop_xywh": [
+  615,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.48065371031713,
+  -0.15292757571613214,
+  0.918787562726724,
+  1.153825392439443
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"A statement saying \"\"Anyone who knows this person or has worked with them, knows that they wouldn't intentionally offend.\"\"\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 327,
+ "stride": 1,
+ "start": "00:04:03.166",
+ "end": "00:04:14.066",
+ "duration_s": 10.9
+}

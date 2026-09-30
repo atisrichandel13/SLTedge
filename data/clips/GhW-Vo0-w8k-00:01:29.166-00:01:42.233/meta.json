@@ -1,0 +1,30 @@
+{
+ "vid": "GhW-Vo0-w8k-00:01:29.166-00:01:42.233",
+ "yid": "GhW-Vo0-w8k",
+ "crop_xywh": [
+  632,
+  0,
+  520,
+  720
+ ],
+ "bbox_norm": [
+  0.4936927623436099,
+  -0.07370164242381388,
+  0.8998448351041867,
+  1.1341523078404272
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thos covered his face with a scarf when he went into the home and swung his knife back and forth, trying to hit people.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 314,
+ "stride": 1,
+ "start": "00:01:29.166",
+ "end": "00:01:42.233",
+ "duration_s": 13.067
+}

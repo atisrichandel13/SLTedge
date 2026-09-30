@@ -1,0 +1,30 @@
+{
+ "vid": "cddgTAQLy_4-00:05:32.700-00:05:41.400",
+ "yid": "cddgTAQLy_4",
+ "crop_xywh": [
+  274,
+  0,
+  318,
+  480
+ ],
+ "bbox_norm": [
+  0.32041276867119667,
+  -0.05917464112335781,
+  0.6934930753267521,
+  1.0236081238812622
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In a per-user system, I was concerned that VRS companies may lose money, so I thought it best to make more calls and was quickly discouraged to do so.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 261,
+ "stride": 1,
+ "start": "00:05:32.700",
+ "end": "00:05:41.400",
+ "duration_s": 8.7
+}

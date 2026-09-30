@@ -1,0 +1,30 @@
+{
+ "vid": "noSF4Y7sGEk-00:04:23.366-00:04:42.000",
+ "yid": "noSF4Y7sGEk",
+ "crop_xywh": [
+  785,
+  184,
+  318,
+  482
+ ],
+ "bbox_norm": [
+  0.6132722387800703,
+  0.2559406920755391,
+  0.8627032257057167,
+  0.9264389717781747
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "And while the White House says progress is being made on vaccines, health experts stress erring on the side of caution could be the difference between life and death.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 559,
+ "stride": 1,
+ "start": "00:04:23.366",
+ "end": "00:04:42.000",
+ "duration_s": 18.634
+}

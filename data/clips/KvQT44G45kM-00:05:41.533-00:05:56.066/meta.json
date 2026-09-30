@@ -1,0 +1,30 @@
+{
+ "vid": "KvQT44G45kM-00:05:41.533-00:05:56.066",
+ "yid": "KvQT44G45kM",
+ "crop_xywh": [
+  561,
+  0,
+  640,
+  720
+ ],
+ "bbox_norm": [
+  0.4379327165512812,
+  -0.1920243488291584,
+  0.93897979645502,
+  1.3406436377227622
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Germany has imposed a ban on groups of two or more people.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 349,
+ "stride": 1,
+ "start": "00:05:41.533",
+ "end": "00:05:56.066",
+ "duration_s": 14.533
+}

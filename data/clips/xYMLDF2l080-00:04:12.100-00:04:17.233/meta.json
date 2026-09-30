@@ -1,0 +1,30 @@
+{
+ "vid": "xYMLDF2l080-00:04:12.100-00:04:17.233",
+ "yid": "xYMLDF2l080",
+ "crop_xywh": [
+  761,
+  126,
+  406,
+  594
+ ],
+ "bbox_norm": [
+  0.5948476852909211,
+  0.1756143535764414,
+  0.9122380041307018,
+  1.0775224883923822
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They said the drug will run out the end of the month, June 30.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 154,
+ "stride": 1,
+ "start": "00:04:12.100",
+ "end": "00:04:17.233",
+ "duration_s": 5.133
+}

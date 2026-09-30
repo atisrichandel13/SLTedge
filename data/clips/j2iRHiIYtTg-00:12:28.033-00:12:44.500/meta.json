@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:12:28.033-00:12:44.500",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  199,
+  0,
+  698,
+  720
+ ],
+ "bbox_norm": [
+  0.15516402183558403,
+  -0.14043721842310913,
+  0.7004914261275269,
+  1.4109684612703735
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "First things first, I\u2019m taking my own risk to speak on behalf of students of color, BIPOC, and other persons of color at Gallaudet.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 494,
+ "stride": 1,
+ "start": "00:12:28.033",
+ "end": "00:12:44.500",
+ "duration_s": 16.467
+}

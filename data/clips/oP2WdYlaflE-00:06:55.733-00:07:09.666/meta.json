@@ -1,0 +1,30 @@
+{
+ "vid": "oP2WdYlaflE-00:06:55.733-00:07:09.666",
+ "yid": "oP2WdYlaflE",
+ "crop_xywh": [
+  712,
+  68,
+  488,
+  652
+ ],
+ "bbox_norm": [
+  0.5562986307833568,
+  0.09498121269256714,
+  0.9379087634833463,
+  1.183166028728766
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It also limits the number of witnesses that primary response agencies, like the Department of Health and Human Services, can provide.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 418,
+ "stride": 1,
+ "start": "00:06:55.733",
+ "end": "00:07:09.666",
+ "duration_s": 13.933
+}

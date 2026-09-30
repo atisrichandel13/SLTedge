@@ -1,0 +1,30 @@
+{
+ "vid": "TUH4q-QBV7k-00:04:24.200-00:04:27.166",
+ "yid": "TUH4q-QBV7k",
+ "crop_xywh": [
+  634,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.4949687710514775,
+  -0.09739028082953559,
+  0.9063558401884856,
+  1.0821831856244875
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Today is the first day of winter.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 89,
+ "stride": 1,
+ "start": "00:04:24.200",
+ "end": "00:04:27.166",
+ "duration_s": 2.966
+}

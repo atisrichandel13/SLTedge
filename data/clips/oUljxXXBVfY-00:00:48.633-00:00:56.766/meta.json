@@ -1,0 +1,30 @@
+{
+ "vid": "oUljxXXBVfY-00:00:48.633-00:00:56.766",
+ "yid": "oUljxXXBVfY",
+ "crop_xywh": [
+  627,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.489567326704661,
+  -0.1653699807767515,
+  0.9362200633684794,
+  1.1756097710574114
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Biden had 150,000 more votes than Bernie.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 196,
+ "stride": 1,
+ "start": "00:00:48.633",
+ "end": "00:00:56.766",
+ "duration_s": 8.133
+}

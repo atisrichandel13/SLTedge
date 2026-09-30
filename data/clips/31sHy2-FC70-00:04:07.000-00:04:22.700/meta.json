@@ -1,0 +1,30 @@
+{
+ "vid": "31sHy2-FC70-00:04:07.000-00:04:22.700",
+ "yid": "31sHy2-FC70",
+ "crop_xywh": [
+  609,
+  0,
+  556,
+  720
+ ],
+ "bbox_norm": [
+  0.47561369904300627,
+  -0.14389440636885792,
+  0.9097924997932033,
+  1.1534571320457532
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thailand's King Maha Vajiralongkorn said he would grant royal funerals to the 29 people who died.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 377,
+ "stride": 1,
+ "start": "00:04:07.000",
+ "end": "00:04:22.700",
+ "duration_s": 15.7
+}

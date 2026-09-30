@@ -1,0 +1,30 @@
+{
+ "vid": "lWRvh9R2Cxg-00:09:07.433-00:09:11.700",
+ "yid": "lWRvh9R2Cxg",
+ "crop_xywh": [
+  672,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.5248145708962092,
+  -0.17585236752895242,
+  0.9701696380736335,
+  1.1206578464945367
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "ABC News reported that jury selection is today, while opening statements will happen tomorrow.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 103,
+ "stride": 1,
+ "start": "00:09:07.433",
+ "end": "00:09:11.700",
+ "duration_s": 4.267
+}

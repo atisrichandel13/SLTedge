@@ -1,0 +1,30 @@
+{
+ "vid": "As6P9wKcyHE-00:08:22.400-00:08:29.733",
+ "yid": "As6P9wKcyHE",
+ "crop_xywh": [
+  587,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.45894710929305466,
+  -0.17303074887750572,
+  0.9101807117462158,
+  1.1899054860872496
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The festival is scheduled for the weekends of April 10-12 and April 17-19.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 176,
+ "stride": 1,
+ "start": "00:08:22.400",
+ "end": "00:08:29.733",
+ "duration_s": 7.333
+}

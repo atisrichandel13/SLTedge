@@ -1,0 +1,30 @@
+{
+ "vid": "hvSB-C04cc4-00:03:05.100-00:03:13.533",
+ "yid": "hvSB-C04cc4",
+ "crop_xywh": [
+  7,
+  0,
+  704,
+  720
+ ],
+ "bbox_norm": [
+  0.005208807053908803,
+  -0.08741439398250982,
+  0.555386866151897,
+  1.4785769025571294
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Then I will copy/paste individual lines from the transcript to the caption creator.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 253,
+ "stride": 1,
+ "start": "00:03:05.100",
+ "end": "00:03:13.533",
+ "duration_s": 8.433
+}

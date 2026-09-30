@@ -1,0 +1,52 @@
+
+[env] python: 3.12.3
+[env] platform: Linux-5.15.148-tegra-aarch64-with-glibc2.39
+[env] jetpack: unknown (nvidia-jetpack package not found)
+[env] l4t: R36.4.7
+[env] nvpmodel: mode 0 (15W) from /var/lib/nvpmodel/status
+[env] gpu_max_MHz: 612.0
+[env] gpu_min_MHz: 306.0
+[env] cpu_max_MHz: 1497.6
+[env] torch: 2.8.0a0+5228986c39.nv25.06
+[env] torch_cuda: 12.9
+[env] cuda_available: True
+[env] gpu: Orin
+[env] tensorrt: 10.11.0.33
+[env] nvcc: V12.9.86
+  input  input                                    (1, 3, 256, 192) DataType.FLOAT
+  output simcc_x                                  (1, 133, 384) DataType.FLOAT
+  output simcc_y                                  (1, 133, 512) DataType.FLOAT
+{
+  "n_frames": 299,
+  "wall_s": 13.491,
+  "fps_end_to_end": 22.16,
+  "preprocess_ms": {
+    "mean": 6.537,
+    "median": 6.781,
+    "p95": 6.846,
+    "min": 3.485,
+    "max": 7.547
+  },
+  "trt_ms": {
+    "mean": 28.859,
+    "median": 30.198,
+    "p95": 30.321,
+    "min": 25.346,
+    "max": 30.597
+  },
+  "postprocess_ms": {
+    "mean": 1.256,
+    "median": 1.258,
+    "p95": 1.337,
+    "min": 0.815,
+    "max": 2.41
+  },
+  "total_ms": {
+    "mean": 36.652,
+    "median": 38.212,
+    "p95": 38.395,
+    "min": 30.083,
+    "max": 38.851
+  }
+}
+[infer] wrote results/rtmw_trt_fp32.json

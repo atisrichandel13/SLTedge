@@ -1,0 +1,30 @@
+{
+ "vid": "hVoU7P_QdUQ-00:03:52.000-00:03:59.666",
+ "yid": "hVoU7P_QdUQ",
+ "crop_xywh": [
+  409,
+  31,
+  214,
+  328
+ ],
+ "bbox_norm": [
+  0.6388078760593496,
+  0.08549070245548906,
+  0.9741334905015661,
+  1.0811848363132341
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If the criteria is met, they will write it down to let them know, and they need to call to schedule an appointment.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 230,
+ "stride": 1,
+ "start": "00:03:52.000",
+ "end": "00:03:59.666",
+ "duration_s": 7.666
+}

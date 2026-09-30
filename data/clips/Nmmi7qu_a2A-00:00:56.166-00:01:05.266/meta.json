@@ -1,0 +1,30 @@
+{
+ "vid": "Nmmi7qu_a2A-00:00:56.166-00:01:05.266",
+ "yid": "Nmmi7qu_a2A",
+ "crop_xywh": [
+  373,
+  0,
+  558,
+  720
+ ],
+ "bbox_norm": [
+  0.29107673384926536,
+  -0.19563229686082012,
+  0.7272416938434947,
+  1.0700058346244221
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hearing interpreters who have full access to English only use ASL up to a certain level.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 273,
+ "stride": 1,
+ "start": "00:00:56.166",
+ "end": "00:01:05.266",
+ "duration_s": 9.1
+}

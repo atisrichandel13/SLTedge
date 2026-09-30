@@ -1,0 +1,30 @@
+{
+ "vid": "wdmj6E_faOo-00:01:42.200-00:01:46.733",
+ "yid": "wdmj6E_faOo",
+ "crop_xywh": [
+  213,
+  56,
+  398,
+  590
+ ],
+ "bbox_norm": [
+  0.16674215881912796,
+  0.07828035236876688,
+  0.47788938946194115,
+  0.8977404331474148
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Ah, many of those countries didn't have their own history.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 136,
+ "stride": 1,
+ "start": "00:01:42.200",
+ "end": "00:01:46.733",
+ "duration_s": 4.533
+}

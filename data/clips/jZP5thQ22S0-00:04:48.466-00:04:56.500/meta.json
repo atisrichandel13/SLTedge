@@ -1,0 +1,30 @@
+{
+ "vid": "jZP5thQ22S0-00:04:48.466-00:04:56.500",
+ "yid": "jZP5thQ22S0",
+ "crop_xywh": [
+  682,
+  0,
+  506,
+  720
+ ],
+ "bbox_norm": [
+  0.5325309933448324,
+  -0.10683620132826895,
+  0.9292895944751038,
+  1.1242598563905746
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "President Trump and the Taliban's chief negotiator spoke on the phone amid the reports.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 242,
+ "stride": 1,
+ "start": "00:04:48.466",
+ "end": "00:04:56.500",
+ "duration_s": 8.034
+}

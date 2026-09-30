@@ -1,0 +1,30 @@
+{
+ "vid": "XS2c07HCdyo-00:00:53.500-00:01:18.266",
+ "yid": "XS2c07HCdyo",
+ "crop_xywh": [
+  350,
+  0,
+  396,
+  584
+ ],
+ "bbox_norm": [
+  0.2737767567936803,
+  -0.07654161468171551,
+  0.5838514065238791,
+  0.8113157140257213
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "And as long as we have our films, we will be able to preserve our beautiful signs in their old purity.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 743,
+ "stride": 1,
+ "start": "00:00:53.500",
+ "end": "00:01:18.266",
+ "duration_s": 24.766
+}

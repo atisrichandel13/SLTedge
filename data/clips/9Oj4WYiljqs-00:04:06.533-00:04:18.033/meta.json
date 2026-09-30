@@ -1,0 +1,30 @@
+{
+ "vid": "9Oj4WYiljqs-00:04:06.533-00:04:18.033",
+ "yid": "9Oj4WYiljqs",
+ "crop_xywh": [
+  828,
+  192,
+  250,
+  380
+ ],
+ "bbox_norm": [
+  0.6470276326844187,
+  0.2660676127732402,
+  0.8425777035530168,
+  0.795457769751415
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But Federal Reserve Chairman Jerome Powell says Americans will just have to ride it out.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 345,
+ "stride": 1,
+ "start": "00:04:06.533",
+ "end": "00:04:18.033",
+ "duration_s": 11.5
+}

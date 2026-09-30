@@ -1,0 +1,30 @@
+{
+ "vid": "syDWIvL6-hk-00:10:56.433-00:11:10.633",
+ "yid": "syDWIvL6-hk",
+ "crop_xywh": [
+  810,
+  154,
+  294,
+  456
+ ],
+ "bbox_norm": [
+  0.6326047794728339,
+  0.21421165305350903,
+  0.86360359855845,
+  0.8480549923645964
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Earlier this week we shared the news that British Prime Minister Boris Johnson and his partner Carrie Symonds welcomed the arrival of their son.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 426,
+ "stride": 1,
+ "start": "00:10:56.433",
+ "end": "00:11:10.633",
+ "duration_s": 14.2
+}

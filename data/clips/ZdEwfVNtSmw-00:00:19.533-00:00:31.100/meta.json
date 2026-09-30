@@ -1,0 +1,29 @@
+{
+ "vid": "ZdEwfVNtSmw-00:00:19.533-00:00:31.100",
+ "yid": "ZdEwfVNtSmw",
+ "crop_xywh": [
+  635,
+  0,
+  530,
+  720
+ ],
+ "bbox_norm": [
+  0.4964331953866141,
+  -0.10704238528297061,
+  0.9108692232767741,
+  1.1261676041537492
+ ],
+ "text": "After nine frantic days of searching, the Thai soccer team trapped in a cave has been found.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 347,
+ "stride": 1,
+ "start": "00:00:19.533",
+ "end": "00:00:31.100",
+ "duration_s": 11.567,
+ "crop_note": "w/h are the delivered JPEG size; ffmpeg rounds crop down to even"
+}

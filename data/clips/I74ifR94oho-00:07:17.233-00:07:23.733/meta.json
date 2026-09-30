@@ -1,0 +1,30 @@
+{
+ "vid": "I74ifR94oho-00:07:17.233-00:07:23.733",
+ "yid": "I74ifR94oho",
+ "crop_xywh": [
+  623,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.4870611997751089,
+  -0.20745896396473942,
+  0.954169882260836,
+  1.2438371842176938
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "His lawyer asked for a sentence of one year and one day in prison.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 195,
+ "stride": 1,
+ "start": "00:07:17.233",
+ "end": "00:07:23.733",
+ "duration_s": 6.5
+}

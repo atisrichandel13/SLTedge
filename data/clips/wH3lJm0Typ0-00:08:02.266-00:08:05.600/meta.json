@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:08:02.266-00:08:05.600",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  585,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.45700522680131217,
+  -0.13491430534887566,
+  0.8996901754348997,
+  1.253450145418682
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Will this movie beat any of the top 3 movies?",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 100,
+ "stride": 1,
+ "start": "00:08:02.266",
+ "end": "00:08:05.600",
+ "duration_s": 3.334
+}

@@ -23,16 +23,20 @@ def main():
     ap.add_argument("--engine", default=None)
     ap.add_argument("--fp16", action="store_true", help="FP16 (not for the FP32 baseline)")
     ap.add_argument("--max-batch", type=int, default=1)
+    ap.add_argument("--fp32-layers", default=None,
+                    help="regex over TRT layer names kept in FP32 inside an --fp16 build (see 08_fp16_range_scan.py)")
+    ap.add_argument("--tag", default=None, help="engine name suffix instead of fp16/fp32, e.g. fp16mixed")
     ap.add_argument("--workspace-gb", type=float, default=2.0)
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args()
 
     pp = json.load(open(os.path.join(os.path.dirname(os.path.abspath(args.onnx)), "preproc.json")))
     w, h = pp["input_size"]
-    engine = args.engine or args.onnx.replace(".onnx", "_fp16.engine" if args.fp16 else "_fp32.engine")
+    tag = args.tag or ("fp16" if args.fp16 else "fp32")
+    engine = args.engine or args.onnx.replace(".onnx", f"_{tag}.engine")
     profile = {"input": ((1, 3, h, w), (1, 3, h, w), (args.max_batch, 3, h, w))}
     build_engine_from_onnx(args.onnx, engine, fp16=args.fp16, workspace_gb=args.workspace_gb,
-                           profiles=[profile], verbose=args.verbose)
+                           profiles=[profile], verbose=args.verbose, fp32_layers=args.fp32_layers)
 
 
 if __name__ == "__main__":

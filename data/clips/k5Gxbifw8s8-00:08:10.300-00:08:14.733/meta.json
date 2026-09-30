@@ -1,0 +1,30 @@
+{
+ "vid": "k5Gxbifw8s8-00:08:10.300-00:08:14.733",
+ "yid": "k5Gxbifw8s8",
+ "crop_xywh": [
+  660,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.5156494122964365,
+  -0.12373790897950222,
+  0.9415785736507839,
+  1.0907527566446689
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Why the increase of young people vaping? Eesh.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 133,
+ "stride": 1,
+ "start": "00:08:10.300",
+ "end": "00:08:14.733",
+ "duration_s": 4.433
+}

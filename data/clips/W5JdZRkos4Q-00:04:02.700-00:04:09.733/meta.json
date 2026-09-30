@@ -1,0 +1,30 @@
+{
+ "vid": "W5JdZRkos4Q-00:04:02.700-00:04:09.733",
+ "yid": "W5JdZRkos4Q",
+ "crop_xywh": [
+  377,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.29443495181179785,
+  -0.15080221407789285,
+  0.7740797508594601,
+  1.3048169683937776
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I prefer to set up a call to have a warm up chat before we start the interview, that way I can figure out a good frame for their story.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 211,
+ "stride": 1,
+ "start": "00:04:02.700",
+ "end": "00:04:09.733",
+ "duration_s": 7.033
+}

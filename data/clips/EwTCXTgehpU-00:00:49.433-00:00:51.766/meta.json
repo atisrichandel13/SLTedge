@@ -1,0 +1,30 @@
+{
+ "vid": "EwTCXTgehpU-00:00:49.433-00:00:51.766",
+ "yid": "EwTCXTgehpU",
+ "crop_xywh": [
+  401,
+  0,
+  446,
+  632
+ ],
+ "bbox_norm": [
+  0.3134982188542684,
+  -0.13432478139429918,
+  0.6615969101587932,
+  0.8788147708516062
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Use good soil.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 56,
+ "stride": 1,
+ "start": "00:00:49.433",
+ "end": "00:00:51.766",
+ "duration_s": 2.333
+}

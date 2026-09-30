@@ -1,0 +1,30 @@
+{
+ "vid": "iFAIfRLaB64-00:08:16.366-00:08:20.433",
+ "yid": "iFAIfRLaB64",
+ "crop_xywh": [
+  367,
+  0,
+  500,
+  720
+ ],
+ "bbox_norm": [
+  0.2870675269762675,
+  -0.018569780985514324,
+  0.677727488676707,
+  1.0357759433322482
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hockey is always one of the most popular sports for the Winter Deaflympics.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 98,
+ "stride": 1,
+ "start": "00:08:16.366",
+ "end": "00:08:20.433",
+ "duration_s": 4.067
+}

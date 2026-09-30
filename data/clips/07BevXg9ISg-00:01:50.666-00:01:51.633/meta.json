@@ -1,0 +1,30 @@
+{
+ "vid": "07BevXg9ISg-00:01:50.666-00:01:51.633",
+ "yid": "07BevXg9ISg",
+ "crop_xywh": [
+  454,
+  0,
+  572,
+  720
+ ],
+ "bbox_norm": [
+  0.354402396414015,
+  -0.16378635123923974,
+  0.801439372698466,
+  1.1080796300629039
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "See you there!",
+ "split": "test",
+ "fps": 59.94,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 58,
+ "stride": 1,
+ "start": "00:01:50.666",
+ "end": "00:01:51.633",
+ "duration_s": 0.967
+}

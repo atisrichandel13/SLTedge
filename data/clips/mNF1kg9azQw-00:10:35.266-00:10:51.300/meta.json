@@ -1,0 +1,30 @@
+{
+ "vid": "mNF1kg9azQw-00:10:35.266-00:10:51.300",
+ "yid": "mNF1kg9azQw",
+ "crop_xywh": [
+  31,
+  0,
+  512,
+  694
+ ],
+ "bbox_norm": [
+  0.024413810530279436,
+  -0.21595475789148924,
+  0.4243398094788576,
+  0.9639653206098
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Lauricella said they saw an incident of Silvay being on top of Ramirez and a small bruise the next day on her lip.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 385,
+ "stride": 1,
+ "start": "00:10:35.266",
+ "end": "00:10:51.300",
+ "duration_s": 16.034
+}

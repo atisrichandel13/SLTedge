@@ -1,0 +1,30 @@
+{
+ "vid": "hL_kvMHjvag-00:04:40.166-00:04:53.366",
+ "yid": "hL_kvMHjvag",
+ "crop_xywh": [
+  605,
+  0,
+  506,
+  720
+ ],
+ "bbox_norm": [
+  0.47256269176801047,
+  -0.12862727624398693,
+  0.868307431936264,
+  1.0897328696427522
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A North Carolina woman named Jeannie Harrison has over 175 Christmas trees inside her house.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 396,
+ "stride": 1,
+ "start": "00:04:40.166",
+ "end": "00:04:53.366",
+ "duration_s": 13.2
+}

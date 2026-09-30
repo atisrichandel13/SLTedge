@@ -1,0 +1,30 @@
+{
+ "vid": "oC8_PahiMVs-00:02:30.500-00:02:32.000",
+ "yid": "oC8_PahiMVs",
+ "crop_xywh": [
+  348,
+  0,
+  616,
+  720
+ ],
+ "bbox_norm": [
+  0.272034813563029,
+  -0.059172589337384264,
+  0.7531840292612711,
+  1.2851955823545103
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "My sign name is k-brush-on-cheek.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 45,
+ "stride": 1,
+ "start": "00:02:30.500",
+ "end": "00:02:32.000",
+ "duration_s": 1.5
+}

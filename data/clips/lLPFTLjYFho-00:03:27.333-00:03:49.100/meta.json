@@ -1,0 +1,30 @@
+{
+ "vid": "lLPFTLjYFho-00:03:27.333-00:03:49.100",
+ "yid": "lLPFTLjYFho",
+ "crop_xywh": [
+  771,
+  80,
+  422,
+  640
+ ],
+ "bbox_norm": [
+  0.6026147787807552,
+  0.11043161452069335,
+  0.9331396747181433,
+  1.0614559050633607
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The researchers looked at the number of people who went to doctors or clinics with influenza-like illnesses that were never diagnosed with coronavirus. During the winter, illnesses like influenza or any other viruses usually circulate.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 653,
+ "stride": 1,
+ "start": "00:03:27.333",
+ "end": "00:03:49.100",
+ "duration_s": 21.767
+}

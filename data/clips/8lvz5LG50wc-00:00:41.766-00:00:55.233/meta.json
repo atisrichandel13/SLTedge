@@ -1,0 +1,30 @@
+{
+ "vid": "8lvz5LG50wc-00:00:41.766-00:00:55.233",
+ "yid": "8lvz5LG50wc",
+ "crop_xywh": [
+  606,
+  0,
+  568,
+  720
+ ],
+ "bbox_norm": [
+  0.4733009328597631,
+  -0.16293853824974125,
+  0.9173950068155925,
+  1.1653546850090353
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The 300 Americans were placed on two charter flights and arrived at military bases in California and Texas.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 324,
+ "stride": 1,
+ "start": "00:00:41.766",
+ "end": "00:00:55.233",
+ "duration_s": 13.467
+}

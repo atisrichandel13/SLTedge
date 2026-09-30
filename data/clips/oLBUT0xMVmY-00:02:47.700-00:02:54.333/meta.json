@@ -1,0 +1,30 @@
+{
+ "vid": "oLBUT0xMVmY-00:02:47.700-00:02:54.333",
+ "yid": "oLBUT0xMVmY",
+ "crop_xywh": [
+  193,
+  0,
+  470,
+  470
+ ],
+ "bbox_norm": [
+  0.22580032320421073,
+  -0.12809837152816414,
+  0.7774704611435134,
+  1.4072977851112638
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Ask your school what you can do for them, not what they can do for you.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 199,
+ "stride": 1,
+ "start": "00:02:47.700",
+ "end": "00:02:54.333",
+ "duration_s": 6.633
+}

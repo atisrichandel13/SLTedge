@@ -1,0 +1,30 @@
+{
+ "vid": "W5m8NDOi6V8-00:09:37.100-00:09:38.300",
+ "yid": "W5m8NDOi6V8",
+ "crop_xywh": [
+  662,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.5168577777014839,
+  -0.08756152023503809,
+  0.9808442804548476,
+  1.2337140566037026
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We need everyone.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 29,
+ "stride": 1,
+ "start": "00:09:37.100",
+ "end": "00:09:38.300",
+ "duration_s": 1.2
+}

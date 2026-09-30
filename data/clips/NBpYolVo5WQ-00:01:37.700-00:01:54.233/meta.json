@@ -1,0 +1,30 @@
+{
+ "vid": "NBpYolVo5WQ-00:01:37.700-00:01:54.233",
+ "yid": "NBpYolVo5WQ",
+ "crop_xywh": [
+  622,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.4860815838972728,
+  -0.186044170944779,
+  0.9463911116123199,
+  1.1864734907503482
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It includes persistent fever, abdominal symptoms, rash, and sometimes serious cardiovascular symptoms.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 397,
+ "stride": 1,
+ "start": "00:01:37.700",
+ "end": "00:01:54.233",
+ "duration_s": 16.533
+}

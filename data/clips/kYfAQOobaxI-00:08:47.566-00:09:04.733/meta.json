@@ -1,0 +1,30 @@
+{
+ "vid": "kYfAQOobaxI-00:08:47.566-00:09:04.733",
+ "yid": "kYfAQOobaxI",
+ "crop_xywh": [
+  685,
+  0,
+  478,
+  688
+ ],
+ "bbox_norm": [
+  0.5348624974489212,
+  -0.06627642639681824,
+  0.9083948715375019,
+  0.9553083420818689
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"This happened after someone noticed the nation from \"\"Black Panther\"\" comics and movie was listed as a free-trade agreement partner.\"",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 516,
+ "stride": 1,
+ "start": "00:08:47.566",
+ "end": "00:09:04.733",
+ "duration_s": 17.167
+}

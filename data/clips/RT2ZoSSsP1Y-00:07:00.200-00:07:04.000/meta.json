@@ -1,0 +1,30 @@
+{
+ "vid": "RT2ZoSSsP1Y-00:07:00.200-00:07:04.000",
+ "yid": "RT2ZoSSsP1Y",
+ "crop_xywh": [
+  696,
+  0,
+  514,
+  720
+ ],
+ "bbox_norm": [
+  0.5438793845798658,
+  -0.08364182747120635,
+  0.945249933436297,
+  1.0421625140400517
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If using one strap, this can cause pain while leaning awkwardly to maintain balance.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 114,
+ "stride": 1,
+ "start": "00:07:00.200",
+ "end": "00:07:04.000",
+ "duration_s": 3.8
+}

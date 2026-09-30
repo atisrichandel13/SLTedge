@@ -1,0 +1,30 @@
+{
+ "vid": "As6P9wKcyHE-00:03:30.600-00:03:36.566",
+ "yid": "As6P9wKcyHE",
+ "crop_xywh": [
+  586,
+  0,
+  568,
+  720
+ ],
+ "bbox_norm": [
+  0.4581524289887527,
+  -0.19190599288063487,
+  0.9018247143975621,
+  1.1673682547772677
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There are results pending for 20 other tests.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 144,
+ "stride": 1,
+ "start": "00:03:30.600",
+ "end": "00:03:36.566",
+ "duration_s": 5.966
+}

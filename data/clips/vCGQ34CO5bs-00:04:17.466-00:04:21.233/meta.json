@@ -1,0 +1,30 @@
+{
+ "vid": "vCGQ34CO5bs-00:04:17.466-00:04:21.233",
+ "yid": "vCGQ34CO5bs",
+ "crop_xywh": [
+  104,
+  0,
+  530,
+  470
+ ],
+ "bbox_norm": [
+  0.12204175878597999,
+  -0.299879545552327,
+  0.7424953636648747,
+  1.5306873806751404
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We are thrilled to inspire young children.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 113,
+ "stride": 1,
+ "start": "00:04:17.466",
+ "end": "00:04:21.233",
+ "duration_s": 3.767
+}

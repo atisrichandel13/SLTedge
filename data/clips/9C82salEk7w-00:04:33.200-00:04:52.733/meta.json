@@ -1,0 +1,30 @@
+{
+ "vid": "9C82salEk7w-00:04:33.200-00:04:52.733",
+ "yid": "9C82salEk7w",
+ "crop_xywh": [
+  652,
+  0,
+  604,
+  720
+ ],
+ "bbox_norm": [
+  0.5097604660277671,
+  -0.17809250578342975,
+  0.9812685110890274,
+  1.2468182236120586
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Doctors said they found a \"\"bag-like mass\"\" that weighed almost half a pound with teeth in various shapes and sizes, from 1 to 15 millimeters.\"",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 469,
+ "stride": 1,
+ "start": "00:04:33.200",
+ "end": "00:04:52.733",
+ "duration_s": 19.533
+}

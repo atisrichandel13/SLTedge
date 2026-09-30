@@ -1,0 +1,49 @@
+{
+ "vid": "ZdEwfVNtSmw-00:00:19.533-00:00:31.100",
+ "yid": "ZdEwfVNtSmw",
+ "crop_xywh": [
+  0,
+  0,
+  224,
+  224
+ ],
+ "bbox_norm": [
+  0.4964331953866141,
+  -0.10704238528297061,
+  0.9108692232767741,
+  1.1261676041537492
+ ],
+ "crop_style": "openasl",
+ "crop_geom": {
+  "square_xywh": [
+   457,
+   -77,
+   887,
+   887
+  ],
+  "inside_frame_xywh": [
+   457,
+   0,
+   823,
+   720
+  ],
+  "pad_xy": [
+   0,
+   77
+  ],
+  "black_pad_px": 194209,
+  "target": 224
+ },
+ "text": "After nine frantic days of searching, the Thai soccer team trapped in a cave has been found.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 347,
+ "stride": 1,
+ "start": "00:00:19.533",
+ "end": "00:00:31.100",
+ "duration_s": 11.567
+}

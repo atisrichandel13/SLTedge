@@ -1,0 +1,30 @@
+{
+ "vid": "6vrfEopSMeo-00:01:01.633-00:01:04.533",
+ "yid": "6vrfEopSMeo",
+ "crop_xywh": [
+  235,
+  0,
+  772,
+  720
+ ],
+ "bbox_norm": [
+  0.18331619633568658,
+  -0.25704069019835674,
+  0.7867797507180108,
+  1.647666887589443
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We have our own boundaries.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:01:01.633",
+ "end": "00:01:04.533",
+ "duration_s": 2.9
+}

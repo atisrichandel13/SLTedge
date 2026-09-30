@@ -1,0 +1,30 @@
+
+[build] decoder_step <- decoder_step.onnx
+        input_ids                                min=(1, 1) opt=(1, 1) max=(1, 1)
+        encoder_attention_mask                   min=(1, 1) opt=(1, 264) max=(1, 512)
+        past_key_values.0.decoder.key            min=(1, 12, 1, 64) opt=(1, 12, 64, 64) max=(1, 12, 127, 64)
+        past_key_values.0.decoder.value          min=(1, 12, 1, 64) opt=(1, 12, 64, 64) max=(1, 12, 127, 64)
+        past_key_values.0.encoder.key            min=(1, 12, 1, 64) opt=(1, 12, 264, 64) max=(1, 12, 512, 64)
+        past_key_values.0.encoder.value          min=(1, 12, 1, 64) opt=(1, 12, 264, 64) max=(1, 12, 512, 64)
+        ... 44 more inputs with the same pattern
+[09/18/2026-23:05:23] [TRT] [I] [MemUsageChange] Init CUDA: CPU +14, GPU +0, now: CPU 137, GPU 1966 (MiB)
+[09/18/2026-23:05:24] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU +421, GPU +420, now: CPU 623, GPU 2454 (MiB)
+[09/18/2026-23:05:25] [TRT] [W] ModelImporter.cpp:516: Make sure input input_ids has Int64 binding.
+[09/18/2026-23:05:25] [TRT] [W] ModelImporter.cpp:516: Make sure input encoder_attention_mask has Int64 binding.
+[trt] TF32 disabled for the FP32 baseline
+[trt] building models/mt5_pruned_onnx/decoder_step_fp32.engine (fp16=False) ... this can take minutes on Orin Nano
+[09/18/2026-23:05:25] [TRT] [W] DLA requests all profiles have same min, max, and opt value. All dla layers are falling back to GPU
+[09/18/2026-23:05:28] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[09/18/2026-23:05:28] [TRT] [I] Compiler backend is used during engine build.
+[09/18/2026-23:05:41] [TRT] [I] Detected 50 inputs and 25 output network tensors.
+[09/18/2026-23:05:41] [TRT] [I] Total Host Persistent Memory: 80 bytes
+[09/18/2026-23:05:41] [TRT] [I] Total Device Persistent Memory: 0 bytes
+[09/18/2026-23:05:41] [TRT] [I] Max Scratch Memory: 70656 bytes
+[09/18/2026-23:05:41] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 2 steps to complete.
+[09/18/2026-23:05:41] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 0.038881ms to assign 2 blocks to 2 nodes requiring 71168 bytes.
+[09/18/2026-23:05:41] [TRT] [I] Total Activation Memory: 71168 bytes
+[09/18/2026-23:05:41] [TRT] [I] Total Weights Memory: 556701184 bytes
+[09/18/2026-23:05:41] [TRT] [I] Compiler backend is used during engine execution.
+[09/18/2026-23:05:41] [TRT] [I] Engine generation completed in 13.4711 seconds.
+[09/18/2026-23:05:41] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 0 MiB, GPU 585 MiB
+[trt] wrote models/mt5_pruned_onnx/decoder_step_fp32.engine (558.3 MB)

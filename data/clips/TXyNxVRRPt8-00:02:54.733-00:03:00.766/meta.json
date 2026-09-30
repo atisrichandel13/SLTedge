@@ -1,0 +1,30 @@
+{
+ "vid": "TXyNxVRRPt8-00:02:54.733-00:03:00.766",
+ "yid": "TXyNxVRRPt8",
+ "crop_xywh": [
+  182,
+  58,
+  464,
+  662
+ ],
+ "bbox_norm": [
+  0.1421666514766109,
+  0.08074713812934028,
+  0.505109486279187,
+  1.1278983107558243
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We are looking forward to Region III monthly meeting.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 181,
+ "stride": 1,
+ "start": "00:02:54.733",
+ "end": "00:03:00.766",
+ "duration_s": 6.033
+}

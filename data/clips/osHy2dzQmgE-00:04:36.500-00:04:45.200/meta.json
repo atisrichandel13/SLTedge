@@ -1,0 +1,30 @@
+{
+ "vid": "osHy2dzQmgE-00:04:36.500-00:04:45.200",
+ "yid": "osHy2dzQmgE",
+ "crop_xywh": [
+  321,
+  0,
+  676,
+  720
+ ],
+ "bbox_norm": [
+  0.2506686345586237,
+  -0.18989058520558993,
+  0.7796066329164325,
+  1.3024297558286655
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Before the meeting, you should share with your captioner what topics will be discussed, so the captioner will be better prepared for your meeting. ",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 261,
+ "stride": 1,
+ "start": "00:04:36.500",
+ "end": "00:04:45.200",
+ "duration_s": 8.7
+}

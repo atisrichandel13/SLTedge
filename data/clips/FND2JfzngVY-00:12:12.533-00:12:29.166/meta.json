@@ -1,0 +1,30 @@
+{
+ "vid": "FND2JfzngVY-00:12:12.533-00:12:29.166",
+ "yid": "FND2JfzngVY",
+ "crop_xywh": [
+  692,
+  0,
+  500,
+  720
+ ],
+ "bbox_norm": [
+  0.5405410881042481,
+  -0.16348836909400094,
+  0.93135977935791,
+  1.0049507333437602
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Beanie Babies, the Hamburglar and Power Rangers are some of the retro toys that will be making a comeback.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 499,
+ "stride": 1,
+ "start": "00:12:12.533",
+ "end": "00:12:29.166",
+ "duration_s": 16.633
+}

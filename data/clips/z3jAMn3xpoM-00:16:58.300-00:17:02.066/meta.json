@@ -1,0 +1,30 @@
+{
+ "vid": "z3jAMn3xpoM-00:16:58.300-00:17:02.066",
+ "yid": "z3jAMn3xpoM",
+ "crop_xywh": [
+  438,
+  15,
+  460,
+  704
+ ],
+ "bbox_norm": [
+  0.34216763178507487,
+  0.021490874113859953,
+  0.701710577978604,
+  1.0806442322170484
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "My wife asked me if I could get pink.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 113,
+ "stride": 1,
+ "start": "00:16:58.300",
+ "end": "00:17:02.066",
+ "duration_s": 3.766
+}

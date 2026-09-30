@@ -1,0 +1,30 @@
+{
+ "vid": "Wv8juaN202w-00:11:25.166-00:11:29.166",
+ "yid": "Wv8juaN202w",
+ "crop_xywh": [
+  628,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.49072058995564777,
+  -0.16203747060563828,
+  0.9286255836486816,
+  1.1543584130428455
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Here are two news related to animals.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 96,
+ "stride": 1,
+ "start": "00:11:25.166",
+ "end": "00:11:29.166",
+ "duration_s": 4.0
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "9VviAP3FNv4-00:02:22.733-00:02:31.100",
+ "yid": "9VviAP3FNv4",
+ "crop_xywh": [
+  251,
+  21,
+  402,
+  458
+ ],
+ "bbox_norm": [
+  0.29393303301805485,
+  0.04364402496736813,
+  0.7661940245368447,
+  1.3765373610203564
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I used to be a YLC camper in 2003, and I have worked for YLC in 2007, 2008, and 2009.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 251,
+ "stride": 1,
+ "start": "00:02:22.733",
+ "end": "00:02:31.100",
+ "duration_s": 8.367
+}

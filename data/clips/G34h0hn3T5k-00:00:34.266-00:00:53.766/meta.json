@@ -1,0 +1,30 @@
+{
+ "vid": "G34h0hn3T5k-00:00:34.266-00:00:53.766",
+ "yid": "G34h0hn3T5k",
+ "crop_xywh": [
+  637,
+  0,
+  562,
+  720
+ ],
+ "bbox_norm": [
+  0.4973482659522523,
+  -0.15806782348969492,
+  0.9376680631164118,
+  1.1734321798650744
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "BBC reported that Turkish warplanes launched bombs in Syrian border towns and that there is a massing of Turkish ground forces at the border.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 468,
+ "stride": 1,
+ "start": "00:00:34.266",
+ "end": "00:00:53.766",
+ "duration_s": 19.5
+}

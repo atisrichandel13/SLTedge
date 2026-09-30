@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:08:27.000-00:08:29.500",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  198,
+  0,
+  730,
+  720
+ ],
+ "bbox_norm": [
+  0.15453738530476888,
+  -0.267779426574707,
+  0.7250895669725207,
+  1.350504168993161
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It showed that these things are a part of the human experience, period.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 75,
+ "stride": 1,
+ "start": "00:08:27.000",
+ "end": "00:08:29.500",
+ "duration_s": 2.5
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "tUnOjApclYI-00:00:00.000-00:00:10.700",
+ "yid": "tUnOjApclYI",
+ "crop_xywh": [
+  346,
+  0,
+  584,
+  720
+ ],
+ "bbox_norm": [
+  0.2700651670113588,
+  -0.11595272814106737,
+  0.7274613505143386,
+  1.046249468442042
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "One of my role models -- Mike Rowe, the \u201cDirty Jobs\u201d TV show host, once said, \u201cIt\u2019s okay to not go to college.\u201d That stuck with me.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 321,
+ "stride": 1,
+ "start": "00:00:00.000",
+ "end": "00:00:10.700",
+ "duration_s": 10.7
+}

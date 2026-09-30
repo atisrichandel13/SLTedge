@@ -1,0 +1,30 @@
+{
+ "vid": "fKp-LcL_C0g-00:03:35.166-00:03:42.533",
+ "yid": "fKp-LcL_C0g",
+ "crop_xywh": [
+  651,
+  0,
+  518,
+  720
+ ],
+ "bbox_norm": [
+  0.5087558195326063,
+  -0.14727522720525293,
+  0.9129227744208442,
+  1.0536343696971
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There is a big battle in Washington, DC right now with President Trump and the White House pitted against Congress.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 221,
+ "stride": 1,
+ "start": "00:03:35.166",
+ "end": "00:03:42.533",
+ "duration_s": 7.367
+}

@@ -1,0 +1,26 @@
+
+[0;93m2026-09-18 23:25:09.218349094 [W:onnxruntime:, graph.cc:5607 CleanUnusedInitializersAndNodeArgs] Removing initializer '1462'. It is not used by any node and should be removed from the model.[m
+[0;93m2026-09-18 23:25:09.218630252 [W:onnxruntime:, graph.cc:5607 CleanUnusedInitializersAndNodeArgs] Removing initializer '1470'. It is not used by any node and should be removed from the model.[m
+[0;93m2026-09-18 23:25:09.218662477 [W:onnxruntime:, graph.cc:5607 CleanUnusedInitializersAndNodeArgs] Removing initializer '1467'. It is not used by any node and should be removed from the model.[m
+[ort] models/rtmw/rtmw-l-m_256x192.onnx: input input ['batch', 3, 256, 192] outputs ['simcc_x', 'simcc_y']
+[ref] f_0001.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 123/133
+[ref] f_0002.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 123/133
+[ref] f_0003.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 123/133
+[ref] f_0004.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 123/133
+[ref] f_0005.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 124/133
+[ref] f_0006.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 124/133
+[ref] f_0007.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 123/133
+[ref] f_0008.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 123/133
+[ref] f_0009.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 123/133
+[ref] f_0010.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 124/133
+[ref] f_0011.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 124/133
+[ref] f_0012.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 123/133
+[ref] f_0013.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 123/133
+[ref] f_0014.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 122/133
+[ref] f_0015.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 122/133
+[ref] f_0016.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 122/133
+[ref] f_0017.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 122/133
+[ref] f_0018.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 122/133
+[ref] f_0019.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 122/133
+[ref] f_0020.jpg: simcc_x (1, 133, 384) simcc_y (1, 133, 512) confident kpts 123/133
+[ref] wrote results/rtmw_reference.npz frames: 20

@@ -1,0 +1,30 @@
+{
+ "vid": "zfumcO72yTs-00:05:09.200-00:05:17.033",
+ "yid": "zfumcO72yTs",
+ "crop_xywh": [
+  611,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.47727298398389884,
+  -0.18108361532032444,
+  0.903064433564531,
+  1.1173528643458541
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "During the interview they waved around a flamethrower.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 235,
+ "stride": 1,
+ "start": "00:05:09.200",
+ "end": "00:05:17.033",
+ "duration_s": 7.833
+}

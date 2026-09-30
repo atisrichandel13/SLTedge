@@ -1,0 +1,30 @@
+{
+ "vid": "zpKzb1SBN3Y-00:05:30.033-00:05:36.700",
+ "yid": "zpKzb1SBN3Y",
+ "crop_xywh": [
+  407,
+  0,
+  594,
+  720
+ ],
+ "bbox_norm": [
+  0.3177272839274833,
+  -0.18137989095879117,
+  0.7829656069840841,
+  1.1217297942550093
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We want to ensure that they recognize deaf children\u2019s need for sign language, starting from birth.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 200,
+ "stride": 1,
+ "start": "00:05:30.033",
+ "end": "00:05:36.700",
+ "duration_s": 6.667
+}

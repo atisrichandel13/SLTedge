@@ -1,0 +1,30 @@
+{
+ "vid": "H4pXPWVvfZ0-00:00:31.700-00:00:34.766",
+ "yid": "H4pXPWVvfZ0",
+ "crop_xywh": [
+  269,
+  0,
+  656,
+  720
+ ],
+ "bbox_norm": [
+  0.21033326450147127,
+  -0.23495595050834076,
+  0.7224938969863088,
+  1.2768543081673962
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We made some changes to the rounds.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 92,
+ "stride": 1,
+ "start": "00:00:31.700",
+ "end": "00:00:34.766",
+ "duration_s": 3.066
+}

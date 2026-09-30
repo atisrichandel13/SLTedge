@@ -1,0 +1,30 @@
+{
+ "vid": "ftjAL7MnqsE-00:00:23.666-00:00:34.133",
+ "yid": "ftjAL7MnqsE",
+ "crop_xywh": [
+  590,
+  0,
+  658,
+  720
+ ],
+ "bbox_norm": [
+  0.4608970662273427,
+  -0.21524145069155953,
+  0.9760013862892433,
+  1.3554577984997693
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Over 2,600 died at the World Trade Center.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 314,
+ "stride": 1,
+ "start": "00:00:23.666",
+ "end": "00:00:34.133",
+ "duration_s": 10.467
+}

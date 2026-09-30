@@ -1,0 +1,30 @@
+{
+ "vid": "rlUUw27_6kM-00:17:43.300-00:17:51.533",
+ "yid": "rlUUw27_6kM",
+ "crop_xywh": [
+  472,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.3687553536891937,
+  -0.1810498301188151,
+  0.7884063947200775,
+  1.0834202720500805
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some schools might cover math, science and STEM, but what about self-advocacy and especially understanding the Deaf experience.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 198,
+ "stride": 1,
+ "start": "00:17:43.300",
+ "end": "00:17:51.533",
+ "duration_s": 8.233
+}

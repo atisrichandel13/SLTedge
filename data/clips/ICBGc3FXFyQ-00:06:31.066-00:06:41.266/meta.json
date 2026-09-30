@@ -1,0 +1,30 @@
+{
+ "vid": "ICBGc3FXFyQ-00:06:31.066-00:06:41.266",
+ "yid": "ICBGc3FXFyQ",
+ "crop_xywh": [
+  204,
+  0,
+  324,
+  480
+ ],
+ "bbox_norm": [
+  0.3112588272629093,
+  -0.05129329466050671,
+  0.8070513964334372,
+  1.049227455098142
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The video provided political, legal, and funding strategies to protect schools for the deaf and keep them open.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 306,
+ "stride": 1,
+ "start": "00:06:31.066",
+ "end": "00:06:41.266",
+ "duration_s": 10.2
+}

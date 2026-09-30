@@ -1,0 +1,30 @@
+{
+ "vid": "Nw07MwFkT2k-00:01:18.666-00:01:24.700",
+ "yid": "Nw07MwFkT2k",
+ "crop_xywh": [
+  392,
+  0,
+  520,
+  720
+ ],
+ "bbox_norm": [
+  0.306460100279914,
+  -0.17074159928310065,
+  0.712627478175693,
+  1.0042841346175582
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Nevertheless, they need a place to go to in order to receive support from the Community just like bees.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 145,
+ "stride": 1,
+ "start": "00:01:18.666",
+ "end": "00:01:24.700",
+ "duration_s": 6.034
+}

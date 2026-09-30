@@ -1,0 +1,30 @@
+{
+ "vid": "31sHy2-FC70-00:02:52.066-00:03:01.033",
+ "yid": "31sHy2-FC70",
+ "crop_xywh": [
+  630,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.49230783274679474,
+  -0.14689927823615798,
+  0.9235357364018758,
+  1.132089010713879
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A security video showed him walking on one of the mall's floors, holding a large rifle.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 216,
+ "stride": 1,
+ "start": "00:02:52.066",
+ "end": "00:03:01.033",
+ "duration_s": 8.967
+}

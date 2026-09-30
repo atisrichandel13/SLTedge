@@ -1,0 +1,30 @@
+{
+ "vid": "e9o20Wskpvw-00:08:25.300-00:08:38.533",
+ "yid": "e9o20Wskpvw",
+ "crop_xywh": [
+  687,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.5368493214249611,
+  -0.11777708265516493,
+  0.9401209655404091,
+  1.142401232984331
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Besides the dog, Lieutenant Dan, there is a mini horse, pig, llama, hamster, duck and two cats.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 397,
+ "stride": 1,
+ "start": "00:08:25.300",
+ "end": "00:08:38.533",
+ "duration_s": 13.233
+}

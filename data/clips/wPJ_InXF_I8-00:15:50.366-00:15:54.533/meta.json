@@ -1,0 +1,30 @@
+{
+ "vid": "wPJ_InXF_I8-00:15:50.366-00:15:54.533",
+ "yid": "wPJ_InXF_I8",
+ "crop_xywh": [
+  0,
+  0,
+  648,
+  720
+ ],
+ "bbox_norm": [
+  -0.040584747302226526,
+  -0.08293344220544538,
+  0.5067163128119249,
+  1.5569707691160022
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He did continue his work almost up until his death.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 125,
+ "stride": 1,
+ "start": "00:15:50.366",
+ "end": "00:15:54.533",
+ "duration_s": 4.167
+}

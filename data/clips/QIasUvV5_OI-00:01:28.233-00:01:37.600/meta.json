@@ -1,0 +1,30 @@
+{
+ "vid": "QIasUvV5_OI-00:01:28.233-00:01:37.600",
+ "yid": "QIasUvV5_OI",
+ "crop_xywh": [
+  826,
+  0,
+  428,
+  678
+ ],
+ "bbox_norm": [
+  0.6455952755889,
+  -0.022466711846166342,
+  0.9800731474893135,
+  0.9413851167258696
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Part of our priority is to increase awareness \u2013 especially for deaf seniors and deaf women aged 40s and up.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 281,
+ "stride": 1,
+ "start": "00:01:28.233",
+ "end": "00:01:37.600",
+ "duration_s": 9.367
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "TMsVV9Y4wRM-00:01:05.366-00:01:17.566",
+ "yid": "TMsVV9Y4wRM",
+ "crop_xywh": [
+  611,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.4772370737952155,
+  -0.15271166208628062,
+  0.9440418909261893,
+  1.1954503468923026
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Sanctions against North Korea will remain in place for now but Trump says he looks forward to being able to one day lifting those sanctions.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 366,
+ "stride": 1,
+ "start": "00:01:05.366",
+ "end": "00:01:17.566",
+ "duration_s": 12.2
+}

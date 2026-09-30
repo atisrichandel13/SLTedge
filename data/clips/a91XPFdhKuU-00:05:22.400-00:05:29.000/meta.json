@@ -1,0 +1,30 @@
+{
+ "vid": "a91XPFdhKuU-00:05:22.400-00:05:29.000",
+ "yid": "a91XPFdhKuU",
+ "crop_xywh": [
+  656,
+  0,
+  504,
+  720
+ ],
+ "bbox_norm": [
+  0.5122709894180297,
+  -0.09711469438340929,
+  0.9069639317194621,
+  1.0918639953048141
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Meteorologists say freeze warnings remain in the South including Florida.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 198,
+ "stride": 1,
+ "start": "00:05:22.400",
+ "end": "00:05:29.000",
+ "duration_s": 6.6
+}

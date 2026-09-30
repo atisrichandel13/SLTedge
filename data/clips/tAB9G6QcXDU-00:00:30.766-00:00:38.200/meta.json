@@ -1,0 +1,30 @@
+{
+ "vid": "tAB9G6QcXDU-00:00:30.766-00:00:38.200",
+ "yid": "tAB9G6QcXDU",
+ "crop_xywh": [
+  373,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.2915450509389242,
+  -0.15945701787501204,
+  0.7099748000392208,
+  1.1320280778358993
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It is very important that it is clean, professional, well organized, and clear.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 223,
+ "stride": 1,
+ "start": "00:00:30.766",
+ "end": "00:00:38.200",
+ "duration_s": 7.434
+}

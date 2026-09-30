@@ -1,0 +1,30 @@
+{
+ "vid": "8lvz5LG50wc-00:12:39.133-00:12:45.766",
+ "yid": "8lvz5LG50wc",
+ "crop_xywh": [
+  613,
+  0,
+  572,
+  720
+ ],
+ "bbox_norm": [
+  0.4790512335420859,
+  -0.14704345206486522,
+  0.926287543171584,
+  1.1895066553494744
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "About 1,000 homes have been flooded and many more are threatened.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 160,
+ "stride": 1,
+ "start": "00:12:39.133",
+ "end": "00:12:45.766",
+ "duration_s": 6.633
+}

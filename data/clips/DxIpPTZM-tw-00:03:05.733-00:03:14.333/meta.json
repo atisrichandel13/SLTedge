@@ -1,0 +1,30 @@
+{
+ "vid": "DxIpPTZM-tw-00:03:05.733-00:03:14.333",
+ "yid": "DxIpPTZM-tw",
+ "crop_xywh": [
+  652,
+  0,
+  492,
+  720
+ ],
+ "bbox_norm": [
+  0.5090504462902363,
+  -0.051324055880902504,
+  0.8934154987335206,
+  1.0675688029014827
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The five adult suspects were not giving a preliminary hearing within the 10 day time frame required by law.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 258,
+ "stride": 1,
+ "start": "00:03:05.733",
+ "end": "00:03:14.333",
+ "duration_s": 8.6
+}

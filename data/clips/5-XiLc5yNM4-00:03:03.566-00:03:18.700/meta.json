@@ -1,0 +1,30 @@
+{
+ "vid": "5-XiLc5yNM4-00:03:03.566-00:03:18.700",
+ "yid": "5-XiLc5yNM4",
+ "crop_xywh": [
+  637,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.4975158083569872,
+  -0.14374790319738517,
+  0.915776453961383,
+  1.077071437730894
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Authorities say the person or group destroyed an airplane's instrument that reported the craft's speed, pitch and other important data.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 454,
+ "stride": 1,
+ "start": "00:03:03.566",
+ "end": "00:03:18.700",
+ "duration_s": 15.134
+}

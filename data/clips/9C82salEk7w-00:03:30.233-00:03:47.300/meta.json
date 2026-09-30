@@ -1,0 +1,30 @@
+{
+ "vid": "9C82salEk7w-00:03:30.233-00:03:47.300",
+ "yid": "9C82salEk7w",
+ "crop_xywh": [
+  639,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.4996062426063103,
+  -0.18327169202961358,
+  0.9626795388818756,
+  1.2206258899581894
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Businessman Andrew Yang talked about his idea of universal basic income, which would guarantee $1,000 a month in payments to all U.S. citizens over 18 years of age.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 410,
+ "stride": 1,
+ "start": "00:03:30.233",
+ "end": "00:03:47.300",
+ "duration_s": 17.067
+}

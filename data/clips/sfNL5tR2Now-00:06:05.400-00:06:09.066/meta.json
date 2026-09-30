@@ -1,0 +1,30 @@
+{
+ "vid": "sfNL5tR2Now-00:06:05.400-00:06:09.066",
+ "yid": "sfNL5tR2Now",
+ "crop_xywh": [
+  630,
+  12,
+  442,
+  708
+ ],
+ "bbox_norm": [
+  0.4918776830037435,
+  0.016209041822743686,
+  0.837404955988345,
+  1.08445715420488
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We're excited for them and appreciate their wonderful progress.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 110,
+ "stride": 1,
+ "start": "00:06:05.400",
+ "end": "00:06:09.066",
+ "duration_s": 3.666
+}

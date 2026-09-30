@@ -1,0 +1,30 @@
+{
+ "vid": "zpKzb1SBN3Y-00:07:36.100-00:07:39.533",
+ "yid": "zpKzb1SBN3Y",
+ "crop_xywh": [
+  428,
+  0,
+  568,
+  720
+ ],
+ "bbox_norm": [
+  0.3343404762328617,
+  -0.16099107059431664,
+  0.7786241523803227,
+  1.0947901068120616
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "First, the ASL English Bilingual Schools and Programs.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 103,
+ "stride": 1,
+ "start": "00:07:36.100",
+ "end": "00:07:39.533",
+ "duration_s": 3.433
+}

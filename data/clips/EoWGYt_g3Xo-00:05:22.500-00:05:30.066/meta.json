@@ -1,0 +1,30 @@
+{
+ "vid": "EoWGYt_g3Xo-00:05:22.500-00:05:30.066",
+ "yid": "EoWGYt_g3Xo",
+ "crop_xywh": [
+  619,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.48359042319698614,
+  -0.13061338661181562,
+  0.921229410862577,
+  1.1663172422399843
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Police are reviewing surveillance tape to see if they can identify a suspect.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 227,
+ "stride": 1,
+ "start": "00:05:22.500",
+ "end": "00:05:30.066",
+ "duration_s": 7.566
+}

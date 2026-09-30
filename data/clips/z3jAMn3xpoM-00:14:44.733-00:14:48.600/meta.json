@@ -1,0 +1,30 @@
+{
+ "vid": "z3jAMn3xpoM-00:14:44.733-00:14:48.600",
+ "yid": "z3jAMn3xpoM",
+ "crop_xywh": [
+  287,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.22417409552468195,
+  -0.08426196133648908,
+  0.6490562213791742,
+  1.1136690999254768
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Growing up, I adopted the thinking that it was a hearing thing and couldn't be a Deaf thing.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 116,
+ "stride": 1,
+ "start": "00:14:44.733",
+ "end": "00:14:48.600",
+ "duration_s": 3.867
+}

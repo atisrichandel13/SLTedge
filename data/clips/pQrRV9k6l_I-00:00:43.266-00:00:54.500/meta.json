@@ -1,0 +1,30 @@
+{
+ "vid": "pQrRV9k6l_I-00:00:43.266-00:00:54.500",
+ "yid": "pQrRV9k6l_I",
+ "crop_xywh": [
+  160,
+  0,
+  612,
+  720
+ ],
+ "bbox_norm": [
+  0.16717405849032932,
+  -0.13717269419584918,
+  0.8041881283903435,
+  1.2272131530287997
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "After a session is completed -- specific people will gather to study the bill and figure out certain things before a bill  is proposed.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  960,
+  720
+ ],
+ "n_frames": 337,
+ "stride": 1,
+ "start": "00:00:43.266",
+ "end": "00:00:54.500",
+ "duration_s": 11.234
+}

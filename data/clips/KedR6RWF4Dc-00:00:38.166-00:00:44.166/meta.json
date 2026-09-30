@@ -1,0 +1,30 @@
+{
+ "vid": "KedR6RWF4Dc-00:00:38.166-00:00:44.166",
+ "yid": "KedR6RWF4Dc",
+ "crop_xywh": [
+  578,
+  0,
+  354,
+  496
+ ],
+ "bbox_norm": [
+  0.4516414924904152,
+  -0.13082311879460212,
+  0.727884942513925,
+  0.6884202504354249
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "And Kansas, they are the first state in the region to pass the LEAD-K!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 180,
+ "stride": 1,
+ "start": "00:00:38.166",
+ "end": "00:00:44.166",
+ "duration_s": 6.0
+}

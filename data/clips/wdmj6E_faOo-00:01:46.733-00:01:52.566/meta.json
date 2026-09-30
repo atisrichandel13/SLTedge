@@ -1,0 +1,30 @@
+{
+ "vid": "wdmj6E_faOo-00:01:46.733-00:01:52.566",
+ "yid": "wdmj6E_faOo",
+ "crop_xywh": [
+  170,
+  45,
+  380,
+  566
+ ],
+ "bbox_norm": [
+  0.13253052164526546,
+  0.06224371093550539,
+  0.43055768924600935,
+  0.8502821342617858
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I felt that they should write their history themselves, not me.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 175,
+ "stride": 1,
+ "start": "00:01:46.733",
+ "end": "00:01:52.566",
+ "duration_s": 5.833
+}

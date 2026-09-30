@@ -1,0 +1,30 @@
+{
+ "vid": "KFnSbd2RKJ0-00:01:01.200-00:01:15.666",
+ "yid": "KFnSbd2RKJ0",
+ "crop_xywh": [
+  0,
+  0,
+  764,
+  720
+ ],
+ "bbox_norm": [
+  -0.025932485380290467,
+  -0.20052605704406543,
+  0.5978475830682511,
+  1.6724955868819122
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Witnesses say a person entered a store around 6:30 Tuesday morning and opened fire, killing one person inside the store and killing another outside as he was fleeing.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 434,
+ "stride": 1,
+ "start": "00:01:01.200",
+ "end": "00:01:15.666",
+ "duration_s": 14.466
+}

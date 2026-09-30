@@ -1,0 +1,30 @@
+{
+ "vid": "YR7BS6l_95E-00:09:31.733-00:09:45.066",
+ "yid": "YR7BS6l_95E",
+ "crop_xywh": [
+  643,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.5028381900568576,
+  -0.10583987924787733,
+  0.9150278749754331,
+  1.0323287555023477
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The company's new ad campaign depicts burly men picking grapes, driving trucks and guzzling down grape juice.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1278,
+  720
+ ],
+ "n_frames": 400,
+ "stride": 1,
+ "start": "00:09:31.733",
+ "end": "00:09:45.066",
+ "duration_s": 13.333
+}

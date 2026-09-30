@@ -1,0 +1,30 @@
+{
+ "vid": "oP2WdYlaflE-00:07:27.466-00:07:49.033",
+ "yid": "oP2WdYlaflE",
+ "crop_xywh": [
+  711,
+  78,
+  496,
+  642
+ ],
+ "bbox_norm": [
+  0.5556752639550429,
+  0.10842486878745576,
+  0.9428064604905936,
+  1.2029426752400194
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They said members of Congress who are deciding what to do with trillions of dollars in coronavirus response money are entitled to know more about the situation so they can make the best decisions.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 648,
+ "stride": 1,
+ "start": "00:07:27.466",
+ "end": "00:07:49.033",
+ "duration_s": 21.567
+}

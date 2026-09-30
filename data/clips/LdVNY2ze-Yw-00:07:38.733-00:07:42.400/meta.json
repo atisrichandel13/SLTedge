@@ -1,0 +1,30 @@
+{
+ "vid": "LdVNY2ze-Yw-00:07:38.733-00:07:42.400",
+ "yid": "LdVNY2ze-Yw",
+ "crop_xywh": [
+  249,
+  0,
+  738,
+  720
+ ],
+ "bbox_norm": [
+  0.1946757662123528,
+  -0.2374374475648054,
+  0.7718486067177592,
+  1.4245430348959904
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There will be an investigation to help children who are in a bad situation.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 110,
+ "stride": 1,
+ "start": "00:07:38.733",
+ "end": "00:07:42.400",
+ "duration_s": 3.667
+}

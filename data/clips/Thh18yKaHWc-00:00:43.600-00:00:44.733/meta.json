@@ -1,0 +1,30 @@
+{
+ "vid": "Thh18yKaHWc-00:00:43.600-00:00:44.733",
+ "yid": "Thh18yKaHWc",
+ "crop_xywh": [
+  223,
+  3,
+  272,
+  452
+ ],
+ "bbox_norm": [
+  0.26139597224327743,
+  0.005610461945229388,
+  0.5804769057181018,
+  0.9691509467127838
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Take a look around.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 34,
+ "stride": 1,
+ "start": "00:00:43.600",
+ "end": "00:00:44.733",
+ "duration_s": 1.133
+}

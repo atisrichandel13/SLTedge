@@ -1,0 +1,40 @@
+{
+ "n": 5,
+ "missing": 971,
+ "bleu": {
+  "bleu1": 42.62392593785637,
+  "bleu2": 23.64743771177021,
+  "bleu3": 14.174743102573217,
+  "bleu4": 9.391152829579447
+ },
+ "rouge_l": 33.76344036645856,
+ "wall_s": 18.615330419968814,
+ "config": {
+  "ckpt": "weights/openasl_pose_only_slt.pth",
+  "mt5": "weights/mt5-base",
+  "poses": "data/poses_rtmposex_fp16mixed",
+  "labels": "data/openasl_labels/labels.test",
+  "device": "cuda",
+  "dtype": "fp32",
+  "batch_size": 8,
+  "max_length": 256,
+  "max_new_tokens": 100,
+  "num_beams": 4,
+  "limit": null,
+  "out": "results/eval_rtmposex_fp16mixed.json"
+ },
+ "refs": [
+  "Meteorologist say some areas might not get relief from the rain and floods until Friday afternoon.",
+  "Crews spent this holiday weekend battling wildfires in several states in the West.",
+  "After nine frantic days of searching, the Thai soccer team trapped in a cave has been found.",
+  "The winter storm that slammed the Midwest, Northern Plains and Northeast has left brutally cold temperatures in its path.",
+  "When I moved to Texas one year and a half ago, this was my first artwork."
+ ],
+ "preds": [
+  "Meteorologists say some areas could see up to a foot of flooding until Wednesday evening.",
+  "During the holiday weekend in the states Hurricane Harvey was a major hurricane.",
+  "After seven days of scouting, scouting and scouting, they finally found a place to live.",
+  "During the storms, Greece has been in a hurricane and the Northeast is a hurricane.",
+  "When I moved to Texas for a year ago, I was able to see my first priority."
+ ]
+}

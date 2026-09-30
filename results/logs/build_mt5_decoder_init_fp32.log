@@ -1,0 +1,26 @@
+
+[build] decoder_init <- decoder_init.onnx
+        input_ids                                min=(1, 1) opt=(1, 1) max=(1, 128)
+        encoder_hidden_states                    min=(1, 1, 768) opt=(1, 264, 768) max=(1, 512, 768)
+        encoder_attention_mask                   min=(1, 1) opt=(1, 264) max=(1, 512)
+[09/18/2026-23:04:02] [TRT] [I] [MemUsageChange] Init CUDA: CPU +14, GPU +0, now: CPU 137, GPU 1440 (MiB)
+[09/18/2026-23:04:05] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU +421, GPU +425, now: CPU 623, GPU 1933 (MiB)
+[09/18/2026-23:04:06] [TRT] [W] ModelImporter.cpp:516: Make sure input input_ids has Int64 binding.
+[09/18/2026-23:04:06] [TRT] [W] ModelImporter.cpp:516: Make sure input encoder_attention_mask has Int64 binding.
+[trt] TF32 disabled for the FP32 baseline
+[trt] building models/mt5_pruned_onnx/decoder_init_fp32.engine (fp16=False) ... this can take minutes on Orin Nano
+[09/18/2026-23:04:06] [TRT] [W] DLA requests all profiles have same min, max, and opt value. All dla layers are falling back to GPU
+[09/18/2026-23:04:09] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[09/18/2026-23:04:10] [TRT] [I] Compiler backend is used during engine build.
+[09/18/2026-23:04:32] [TRT] [I] Detected 3 inputs and 49 output network tensors.
+[09/18/2026-23:04:33] [TRT] [I] Total Host Persistent Memory: 80 bytes
+[09/18/2026-23:04:33] [TRT] [I] Total Device Persistent Memory: 0 bytes
+[09/18/2026-23:04:33] [TRT] [I] Max Scratch Memory: 56623104 bytes
+[09/18/2026-23:04:33] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 1 steps to complete.
+[09/18/2026-23:04:33] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 0.037761ms to assign 1 blocks to 1 nodes requiring 56623104 bytes.
+[09/18/2026-23:04:33] [TRT] [I] Total Activation Memory: 56623104 bytes
+[09/18/2026-23:04:33] [TRT] [I] Total Weights Memory: 613324288 bytes
+[09/18/2026-23:04:33] [TRT] [I] Compiler backend is used during engine execution.
+[09/18/2026-23:04:33] [TRT] [I] Engine generation completed in 23.4583 seconds.
+[09/18/2026-23:04:33] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 0 MiB, GPU 698 MiB
+[trt] wrote models/mt5_pruned_onnx/decoder_init_fp32.engine (615.7 MB)

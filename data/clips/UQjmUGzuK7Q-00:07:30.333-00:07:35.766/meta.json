@@ -1,0 +1,30 @@
+{
+ "vid": "UQjmUGzuK7Q-00:07:30.333-00:07:35.766",
+ "yid": "UQjmUGzuK7Q",
+ "crop_xywh": [
+  640,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.49988848271996084,
+  -0.11484890947438249,
+  0.9121461685257729,
+  1.1206169361752427
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They were recently diagnosed with Stage IV liver cancer.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 163,
+ "stride": 1,
+ "start": "00:07:30.333",
+ "end": "00:07:35.766",
+ "duration_s": 5.433
+}

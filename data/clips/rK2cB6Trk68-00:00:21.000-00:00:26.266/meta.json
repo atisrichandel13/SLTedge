@@ -1,0 +1,30 @@
+{
+ "vid": "rK2cB6Trk68-00:00:21.000-00:00:26.266",
+ "yid": "rK2cB6Trk68",
+ "crop_xywh": [
+  290,
+  0,
+  656,
+  720
+ ],
+ "bbox_norm": [
+  0.22638947616020838,
+  -0.23366295684266974,
+  0.7388655031720798,
+  1.1902194598758662
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Eventually, I started working there and I\u2019m really grateful for that experience and that opportunity.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 158,
+ "stride": 1,
+ "start": "00:00:21.000",
+ "end": "00:00:26.266",
+ "duration_s": 5.266
+}

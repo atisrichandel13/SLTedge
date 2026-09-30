@@ -1,0 +1,30 @@
+{
+ "vid": "CdakPZuyQmU-00:04:06.500-00:04:10.766",
+ "yid": "CdakPZuyQmU",
+ "crop_xywh": [
+  535,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.4177837791442871,
+  -0.08108699544270832,
+  0.8586766522725423,
+  1.1263571234809029
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "DeJoy is a Trump supporter and friend of President Trump.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 128,
+ "stride": 1,
+ "start": "00:04:06.500",
+ "end": "00:04:10.766",
+ "duration_s": 4.266
+}

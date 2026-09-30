@@ -1,0 +1,30 @@
+{
+ "vid": "TN4gzAmuqLI-00:09:25.566-00:09:27.233",
+ "yid": "TN4gzAmuqLI",
+ "crop_xywh": [
+  638,
+  0,
+  630,
+  720
+ ],
+ "bbox_norm": [
+  0.4980631192525228,
+  -0.21436354768798008,
+  0.9904395739237467,
+  1.3483983987108223
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The three men are okay.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 50,
+ "stride": 1,
+ "start": "00:09:25.566",
+ "end": "00:09:27.233",
+ "duration_s": 1.667
+}

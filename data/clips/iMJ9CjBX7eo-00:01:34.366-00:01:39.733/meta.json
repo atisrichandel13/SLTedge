@@ -1,0 +1,30 @@
+{
+ "vid": "iMJ9CjBX7eo-00:01:34.366-00:01:39.733",
+ "yid": "iMJ9CjBX7eo",
+ "crop_xywh": [
+  267,
+  0,
+  726,
+  720
+ ],
+ "bbox_norm": [
+  0.2087964597374502,
+  -0.1140138893684019,
+  0.7763415086148965,
+  1.554268558044091
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Our goal is to unify the community together, deaf and hearing people in one room for the evening.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 161,
+ "stride": 1,
+ "start": "00:01:34.366",
+ "end": "00:01:39.733",
+ "duration_s": 5.367
+}

@@ -1,0 +1,29 @@
+{
+ "vid": "y7KIrON1uco-00:02:58.433-00:03:08.233",
+ "yid": "y7KIrON1uco",
+ "crop_xywh": [
+  697,
+  0,
+  502,
+  702
+ ],
+ "bbox_norm": [
+  0.5443517345493123,
+  -0.09380372353342444,
+  0.93674063763376,
+  0.9758590038512684
+ ],
+ "text": "Meteorologist say some areas might not get relief from the rain and floods until Friday afternoon.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 294,
+ "stride": 1,
+ "start": "00:02:58.433",
+ "end": "00:03:08.233",
+ "duration_s": 9.8,
+ "crop_note": "w/h are the delivered JPEG size; ffmpeg rounds crop down to even"
+}

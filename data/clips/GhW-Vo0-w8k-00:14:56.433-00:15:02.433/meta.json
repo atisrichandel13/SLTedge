@@ -1,0 +1,30 @@
+{
+ "vid": "GhW-Vo0-w8k-00:14:56.433-00:15:02.433",
+ "yid": "GhW-Vo0-w8k",
+ "crop_xywh": [
+  666,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.5205631365721254,
+  -0.14168236490105912,
+  0.9494824880841134,
+  1.1267518512438388
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Visitation was on December 3rd and 4th and the burial was on the 4th.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 144,
+ "stride": 1,
+ "start": "00:14:56.433",
+ "end": "00:15:02.433",
+ "duration_s": 6.0
+}

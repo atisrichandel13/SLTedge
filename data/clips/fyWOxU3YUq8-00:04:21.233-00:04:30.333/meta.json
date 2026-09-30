@@ -1,0 +1,30 @@
+{
+ "vid": "fyWOxU3YUq8-00:04:21.233-00:04:30.333",
+ "yid": "fyWOxU3YUq8",
+ "crop_xywh": [
+  645,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.5038399309100526,
+  -0.11559735667424571,
+  0.9148076803034002,
+  1.0813280082471444
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The students were abducted four years ago by police officers working with criminal gangs.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 273,
+ "stride": 1,
+ "start": "00:04:21.233",
+ "end": "00:04:30.333",
+ "duration_s": 9.1
+}

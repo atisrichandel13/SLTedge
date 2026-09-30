@@ -1,0 +1,30 @@
+{
+ "vid": "kYfAQOobaxI-00:03:14.400-00:03:36.400",
+ "yid": "kYfAQOobaxI",
+ "crop_xywh": [
+  675,
+  0,
+  480,
+  680
+ ],
+ "bbox_norm": [
+  0.5269910633563996,
+  -0.06434165749084267,
+  0.9032245789513442,
+  0.9445305406043826
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The CDC strongly encourages people to avoid consuming lettuce. If the location on the romaine lettuce is not listed, the CDC still warns consumers to avoid it, even if it's in a restaurant.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 660,
+ "stride": 1,
+ "start": "00:03:14.400",
+ "end": "00:03:36.400",
+ "duration_s": 22.0
+}

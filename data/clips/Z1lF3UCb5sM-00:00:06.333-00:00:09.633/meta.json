@@ -1,0 +1,30 @@
+{
+ "vid": "Z1lF3UCb5sM-00:00:06.333-00:00:09.633",
+ "yid": "Z1lF3UCb5sM",
+ "crop_xywh": [
+  409,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.3197376598914464,
+  -0.13355475355077673,
+  0.7426827540000279,
+  1.1102050180788394
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It is Wednesday, March 4.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 80,
+ "stride": 1,
+ "start": "00:00:06.333",
+ "end": "00:00:09.633",
+ "duration_s": 3.3
+}

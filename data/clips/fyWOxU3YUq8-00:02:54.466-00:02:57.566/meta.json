@@ -1,0 +1,30 @@
+{
+ "vid": "fyWOxU3YUq8-00:02:54.466-00:02:57.566",
+ "yid": "fyWOxU3YUq8",
+ "crop_xywh": [
+  650,
+  0,
+  546,
+  720
+ ],
+ "bbox_norm": [
+  0.5080261581822446,
+  -0.09811658134237368,
+  0.934568835141366,
+  1.181352716858624
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Without warning, the man snapped. ",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 93,
+ "stride": 1,
+ "start": "00:02:54.466",
+ "end": "00:02:57.566",
+ "duration_s": 3.1
+}

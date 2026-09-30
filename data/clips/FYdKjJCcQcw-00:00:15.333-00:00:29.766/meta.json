@@ -1,0 +1,30 @@
+{
+ "vid": "FYdKjJCcQcw-00:00:15.333-00:00:29.766",
+ "yid": "FYdKjJCcQcw",
+ "crop_xywh": [
+  217,
+  0,
+  700,
+  720
+ ],
+ "bbox_norm": [
+  0.16992033359191427,
+  -0.2109315073200874,
+  0.7174200450780291,
+  1.313435523040044
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The committee realized that not all children have moms and dads -- some are raised by grandparents, aunts and uncles, LGBTQ parents, or foster parents.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 433,
+ "stride": 1,
+ "start": "00:00:15.333",
+ "end": "00:00:29.766",
+ "duration_s": 14.433
+}

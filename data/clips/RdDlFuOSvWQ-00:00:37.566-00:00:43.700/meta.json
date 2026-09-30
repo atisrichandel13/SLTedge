@@ -1,0 +1,30 @@
+{
+ "vid": "RdDlFuOSvWQ-00:00:37.566-00:00:43.700",
+ "yid": "RdDlFuOSvWQ",
+ "crop_xywh": [
+  491,
+  34,
+  466,
+  686
+ ],
+ "bbox_norm": [
+  0.38340951129122897,
+  0.047548136362681036,
+  0.748382569218541,
+  1.0589601110051703
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Most State Associations focus on LEAD-K, as well as other issues.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 180,
+ "stride": 1,
+ "start": "00:00:37.566",
+ "end": "00:00:43.700",
+ "duration_s": 6.134
+}

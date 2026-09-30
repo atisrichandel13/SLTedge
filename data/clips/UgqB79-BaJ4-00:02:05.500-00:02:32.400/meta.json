@@ -1,0 +1,30 @@
+{
+ "vid": "UgqB79-BaJ4-00:02:05.500-00:02:32.400",
+ "yid": "UgqB79-BaJ4",
+ "crop_xywh": [
+  634,
+  0,
+  608,
+  720
+ ],
+ "bbox_norm": [
+  0.4950499172012011,
+  -0.19991714623239304,
+  0.9712978278597196,
+  1.2590144178381673
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There were viral videos of Phoenix police officers threatening to shoot a couple with small children at an apartment parking lot after the family's 4-year-old girl stole a doll from a Family Dollar store.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 645,
+ "stride": 1,
+ "start": "00:02:05.500",
+ "end": "00:02:32.400",
+ "duration_s": 26.9
+}

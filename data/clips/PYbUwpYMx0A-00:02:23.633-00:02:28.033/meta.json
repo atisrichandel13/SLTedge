@@ -1,0 +1,30 @@
+{
+ "vid": "PYbUwpYMx0A-00:02:23.633-00:02:28.033",
+ "yid": "PYbUwpYMx0A",
+ "crop_xywh": [
+  664,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.5187420079737534,
+  -0.139805592561782,
+  0.929382602079415,
+  1.0675407786428193
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "She was forced into an SUV.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 132,
+ "stride": 1,
+ "start": "00:02:23.633",
+ "end": "00:02:28.033",
+ "duration_s": 4.4
+}

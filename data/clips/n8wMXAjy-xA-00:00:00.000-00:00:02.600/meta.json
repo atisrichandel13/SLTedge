@@ -1,0 +1,30 @@
+{
+ "vid": "n8wMXAjy-xA-00:00:00.000-00:00:02.600",
+ "yid": "n8wMXAjy-xA",
+ "crop_xywh": [
+  348,
+  0,
+  648,
+  720
+ ],
+ "bbox_norm": [
+  0.2718658079703649,
+  -0.21011546276233814,
+  0.7790869106849034,
+  1.2714191754659017
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Growing up, I liked school.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 78,
+ "stride": 1,
+ "start": "00:00:00.000",
+ "end": "00:00:02.600",
+ "duration_s": 2.6
+}

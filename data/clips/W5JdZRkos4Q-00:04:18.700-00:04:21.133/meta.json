@@ -1,0 +1,30 @@
+{
+ "vid": "W5JdZRkos4Q-00:04:18.700-00:04:21.133",
+ "yid": "W5JdZRkos4Q",
+ "crop_xywh": [
+  343,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.26782129075792105,
+  -0.10949564615885417,
+  0.7517231326633029,
+  1.3709146071069034
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I find time to chat with them through meetings.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 73,
+ "stride": 1,
+ "start": "00:04:18.700",
+ "end": "00:04:21.133",
+ "duration_s": 2.433
+}

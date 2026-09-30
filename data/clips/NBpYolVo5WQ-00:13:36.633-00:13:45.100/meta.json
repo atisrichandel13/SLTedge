@@ -1,0 +1,30 @@
+{
+ "vid": "NBpYolVo5WQ-00:13:36.633-00:13:45.100",
+ "yid": "NBpYolVo5WQ",
+ "crop_xywh": [
+  630,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.4921253072537058,
+  -0.17551900007322013,
+  0.9442512845605369,
+  1.1921835953627176
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A third man, who is a neighbor, joined in the chase.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 204,
+ "stride": 1,
+ "start": "00:13:36.633",
+ "end": "00:13:45.100",
+ "duration_s": 8.467
+}

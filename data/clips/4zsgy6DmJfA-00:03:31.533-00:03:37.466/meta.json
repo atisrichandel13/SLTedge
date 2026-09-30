@@ -1,0 +1,30 @@
+{
+ "vid": "4zsgy6DmJfA-00:03:31.533-00:03:37.466",
+ "yid": "4zsgy6DmJfA",
+ "crop_xywh": [
+  665,
+  0,
+  550,
+  720
+ ],
+ "bbox_norm": [
+  0.51950501954114,
+  -0.10487968303539134,
+  0.9490071464467931,
+  1.1474034262292179
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"The third season of \"\"13 Reasons Why\"\" is expected to air later this year.\"",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 178,
+ "stride": 1,
+ "start": "00:03:31.533",
+ "end": "00:03:37.466",
+ "duration_s": 5.933
+}

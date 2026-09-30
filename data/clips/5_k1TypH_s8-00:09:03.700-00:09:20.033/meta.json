@@ -1,0 +1,30 @@
+{
+ "vid": "5_k1TypH_s8-00:09:03.700-00:09:20.033",
+ "yid": "5_k1TypH_s8",
+ "crop_xywh": [
+  610,
+  0,
+  586,
+  720
+ ],
+ "bbox_norm": [
+  0.476661103112357,
+  -0.13223245062795624,
+  0.9352271381689578,
+  1.2148201260166644
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The House of Representatives passed two articles of impeachment: obstruction of Congress and abuse of power.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 490,
+ "stride": 1,
+ "start": "00:09:03.700",
+ "end": "00:09:20.033",
+ "duration_s": 16.333
+}

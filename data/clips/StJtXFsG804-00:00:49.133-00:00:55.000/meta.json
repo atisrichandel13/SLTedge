@@ -1,0 +1,30 @@
+{
+ "vid": "StJtXFsG804-00:00:49.133-00:00:55.000",
+ "yid": "StJtXFsG804",
+ "crop_xywh": [
+  329,
+  0,
+  338,
+  470
+ ],
+ "bbox_norm": [
+  0.3849079559905871,
+  -0.0595945867804489,
+  0.7827351917799892,
+  1.000804787042857
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Two local organizations will host: the New Mexico Commission for Deaf and Hard of Hearing and the New Mexico Association of the Deaf.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 176,
+ "stride": 1,
+ "start": "00:00:49.133",
+ "end": "00:00:55.000",
+ "duration_s": 5.867
+}

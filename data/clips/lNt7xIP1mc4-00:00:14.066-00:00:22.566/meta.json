@@ -1,0 +1,30 @@
+{
+ "vid": "lNt7xIP1mc4-00:00:14.066-00:00:22.566",
+ "yid": "lNt7xIP1mc4",
+ "crop_xywh": [
+  175,
+  0,
+  326,
+  360
+ ],
+ "bbox_norm": [
+  0.2738757197449847,
+  -0.1819331073502538,
+  0.7839273400423004,
+  1.3867876897982465
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Where else will the Deaf be able to access news and information in ASL?",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 255,
+ "stride": 1,
+ "start": "00:00:14.066",
+ "end": "00:00:22.566",
+ "duration_s": 8.5
+}

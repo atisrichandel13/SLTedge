@@ -1,0 +1,30 @@
+{
+ "vid": "1woNMYcqmd4-00:00:35.666-00:00:47.366",
+ "yid": "1woNMYcqmd4",
+ "crop_xywh": [
+  278,
+  0,
+  688,
+  720
+ ],
+ "bbox_norm": [
+  0.21694897642717675,
+  -0.2230779743343825,
+  0.7552952177647694,
+  1.3105208845641008
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The white supremacists were sharing messages full of hate, oppression, racism, bigotry, elitism, and violence.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 351,
+ "stride": 1,
+ "start": "00:00:35.666",
+ "end": "00:00:47.366",
+ "duration_s": 11.7
+}

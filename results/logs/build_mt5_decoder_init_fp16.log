@@ -1,0 +1,28 @@
+
+[cache] fadvise DONTNEED on 19 files (8.89 GB) under ['models', 'weights', 'data', 'results']: MemFree 3579 -> 4069 MB, Cached 2227 -> 1739 MB
+[build] decoder_init <- decoder_init.onnx
+        input_ids                                min=(1, 1) opt=(1, 1) max=(1, 128)
+        encoder_hidden_states                    min=(1, 1, 768) opt=(1, 264, 768) max=(1, 512, 768)
+        encoder_attention_mask                   min=(1, 1) opt=(1, 264) max=(1, 512)
+[09/18/2026-23:14:00] [TRT] [I] [MemUsageChange] Init CUDA: CPU +14, GPU +0, now: CPU 137, GPU 2102 (MiB)
+[09/18/2026-23:14:01] [TRT] [I] [MemUsageChange] Init builder kernel library: CPU +420, GPU +419, now: CPU 622, GPU 2588 (MiB)
+[09/18/2026-23:14:02] [TRT] [W] ModelImporter.cpp:516: Make sure input input_ids has Int64 binding.
+[09/18/2026-23:14:02] [TRT] [W] ModelImporter.cpp:516: Make sure input encoder_attention_mask has Int64 binding.
+[trt] building models/mt5_pruned_onnx/decoder_init_fp16.engine (fp16=True) ... this can take minutes on Orin Nano
+[09/18/2026-23:14:02] [TRT] [W] DLA requests all profiles have same min, max, and opt value. All dla layers are falling back to GPU
+[09/18/2026-23:14:05] [TRT] [W] Detected layernorm nodes in FP16.
+[09/18/2026-23:14:05] [TRT] [W] Running layernorm after self-attention with FP16 Reduce or Pow may cause overflow. Forcing Reduce or Pow Layers in FP32 precision, or exporting the model to use INormalizationLayer (available with ONNX opset >= 17) can help preserving accuracy.
+[09/18/2026-23:14:05] [TRT] [I] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[09/18/2026-23:14:08] [TRT] [I] Compiler backend is used during engine build.
+[09/18/2026-23:14:58] [TRT] [I] Detected 3 inputs and 49 output network tensors.
+[09/18/2026-23:14:59] [TRT] [I] Total Host Persistent Memory: 80 bytes
+[09/18/2026-23:14:59] [TRT] [I] Total Device Persistent Memory: 0 bytes
+[09/18/2026-23:14:59] [TRT] [I] Max Scratch Memory: 25298944 bytes
+[09/18/2026-23:14:59] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 2 steps to complete.
+[09/18/2026-23:14:59] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 0.040001ms to assign 2 blocks to 2 nodes requiring 26085376 bytes.
+[09/18/2026-23:14:59] [TRT] [I] Total Activation Memory: 26085376 bytes
+[09/18/2026-23:14:59] [TRT] [I] Total Weights Memory: 306662272 bytes
+[09/18/2026-23:14:59] [TRT] [I] Compiler backend is used during engine execution.
+[09/18/2026-23:14:59] [TRT] [I] Engine generation completed in 53.8844 seconds.
+[09/18/2026-23:14:59] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 292 MiB, GPU 375 MiB
+[trt] wrote models/mt5_pruned_onnx/decoder_init_fp16.engine (309.2 MB)

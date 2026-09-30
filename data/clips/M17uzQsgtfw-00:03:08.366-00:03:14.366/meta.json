@@ -1,0 +1,30 @@
+{
+ "vid": "M17uzQsgtfw-00:03:08.366-00:03:14.366",
+ "yid": "M17uzQsgtfw",
+ "crop_xywh": [
+  673,
+  0,
+  490,
+  720
+ ],
+ "bbox_norm": [
+  0.5257421081130569,
+  -0.07692609792715079,
+  0.9089042405824403,
+  1.040676155319443
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Officials are urging schools to evacuate and close until further notice.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 180,
+ "stride": 1,
+ "start": "00:03:08.366",
+ "end": "00:03:14.366",
+ "duration_s": 6.0
+}

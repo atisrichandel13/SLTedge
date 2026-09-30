@@ -1,0 +1,30 @@
+{
+ "vid": "mfS4CuaOtxI-00:02:27.566-00:03:01.300",
+ "yid": "mfS4CuaOtxI",
+ "crop_xywh": [
+  576,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.44999265847382725,
+  -0.1800974826263302,
+  0.9102616524009548,
+  1.194333886424319
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Business Insider explained that the Congressional Deaf Caucus was founded in 2013 by Rep. Takano and former Rep. Kevin Yoder to help bridge the communication divide between Members of Congress and their Deaf and Hard of Hearing constituents and to promote equal access.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 810,
+ "stride": 1,
+ "start": "00:02:27.566",
+ "end": "00:03:01.300",
+ "duration_s": 33.734
+}

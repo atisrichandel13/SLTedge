@@ -1,0 +1,30 @@
+{
+ "vid": "wPJ_InXF_I8-00:01:38.133-00:01:52.233",
+ "yid": "wPJ_InXF_I8",
+ "crop_xywh": [
+  599,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.46821617537853766,
+  -0.2140882111426792,
+  0.9514984516069,
+  1.2507875505252082
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "AP also said Barack Obama has declined to endorse him, but Biden said he asked Obama not to endorse him.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 423,
+ "stride": 1,
+ "start": "00:01:38.133",
+ "end": "00:01:52.233",
+ "duration_s": 14.1
+}

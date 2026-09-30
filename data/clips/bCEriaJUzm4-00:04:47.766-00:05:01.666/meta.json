@@ -1,0 +1,30 @@
+{
+ "vid": "bCEriaJUzm4-00:04:47.766-00:05:01.666",
+ "yid": "bCEriaJUzm4",
+ "crop_xywh": [
+  666,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.5206162320242987,
+  -0.15658189161324207,
+  0.9536750373386201,
+  1.122845096773151
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In separate but related news, in Baghdad, there were thousands and thousands of protesters who demanded American soldiers to leave Iraq.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 417,
+ "stride": 1,
+ "start": "00:04:47.766",
+ "end": "00:05:01.666",
+ "duration_s": 13.9
+}

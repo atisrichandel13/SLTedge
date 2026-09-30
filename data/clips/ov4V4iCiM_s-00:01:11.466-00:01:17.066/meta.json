@@ -1,0 +1,30 @@
+{
+ "vid": "ov4V4iCiM_s-00:01:11.466-00:01:17.066",
+ "yid": "ov4V4iCiM_s",
+ "crop_xywh": [
+  70,
+  0,
+  996,
+  720
+ ],
+ "bbox_norm": [
+  0.05459288924631446,
+  -0.4688049701729206,
+  0.8331962098978987,
+  1.820374708250583
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "At the time, I didn't know others and that helped us work together as a team.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 168,
+ "stride": 1,
+ "start": "00:01:11.466",
+ "end": "00:01:17.066",
+ "duration_s": 5.6
+}

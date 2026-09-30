@@ -1,0 +1,30 @@
+{
+ "vid": "Q4ssOiCoEZI-00:00:07.566-00:00:09.766",
+ "yid": "Q4ssOiCoEZI",
+ "crop_xywh": [
+  306,
+  0,
+  816,
+  720
+ ],
+ "bbox_norm": [
+  0.23920522871471586,
+  -0.2973714031239666,
+  0.8768428847903297,
+  1.6422102933207516
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Happy birthday, Alex!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 66,
+ "stride": 1,
+ "start": "00:00:07.566",
+ "end": "00:00:09.766",
+ "duration_s": 2.2
+}

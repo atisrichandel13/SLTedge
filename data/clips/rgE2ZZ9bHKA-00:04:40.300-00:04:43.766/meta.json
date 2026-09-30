@@ -1,0 +1,30 @@
+{
+ "vid": "rgE2ZZ9bHKA-00:04:40.300-00:04:43.766",
+ "yid": "rgE2ZZ9bHKA",
+ "crop_xywh": [
+  402,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.31373324772668265,
+  -0.12071454218035232,
+  0.734378837403797,
+  1.1443737716271132
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You can help - submit your letters!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 104,
+ "stride": 1,
+ "start": "00:04:40.300",
+ "end": "00:04:43.766",
+ "duration_s": 3.466
+}

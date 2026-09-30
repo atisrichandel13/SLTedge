@@ -1,0 +1,30 @@
+{
+ "vid": "wPJ_InXF_I8-00:08:46.133-00:08:48.333",
+ "yid": "wPJ_InXF_I8",
+ "crop_xywh": [
+  340,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.2659521125611805,
+  -0.14276758829752603,
+  0.7555332842327299,
+  1.3242092758259445
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "WHY DO I SUPPORT P. B.?",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 66,
+ "stride": 1,
+ "start": "00:08:46.133",
+ "end": "00:08:48.333",
+ "duration_s": 2.2
+}

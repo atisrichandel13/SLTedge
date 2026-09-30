@@ -1,0 +1,30 @@
+{
+ "vid": "CnBZlJ39ESQ-00:03:54.433-00:05:08.366",
+ "yid": "CnBZlJ39ESQ",
+ "crop_xywh": [
+  382,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.29828687475320875,
+  -0.14202136661089765,
+  0.7822253877792,
+  1.2209999253019792
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The emergency bag can include: Paper and pens; whiteboard and markers, plugs and chargers for your smartphone, laptop, or tablets, a cellular hotspot in case the hospital WiFi is not working, an extension cord or power strip in case your bed is far from an outlet, extra eyewear supplies you might need, such as reading glasses to read the speech to text on a phone app, extra batteries for your hearing aid, cochlear implant, or assistive listening device, if you have an advance medical directive, please put a copy of this in your bag.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 1773,
+ "stride": 1,
+ "start": "00:03:54.433",
+ "end": "00:05:08.366",
+ "duration_s": 73.933
+}

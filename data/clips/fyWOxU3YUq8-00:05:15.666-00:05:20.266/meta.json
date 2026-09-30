@@ -1,0 +1,30 @@
+{
+ "vid": "fyWOxU3YUq8-00:05:15.666-00:05:20.266",
+ "yid": "fyWOxU3YUq8",
+ "crop_xywh": [
+  665,
+  0,
+  504,
+  720
+ ],
+ "bbox_norm": [
+  0.519331617582412,
+  -0.091918986688846,
+  0.9133492912564959,
+  1.065081350134794
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This was his first official decree as president of Mexico.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 138,
+ "stride": 1,
+ "start": "00:05:15.666",
+ "end": "00:05:20.266",
+ "duration_s": 4.6
+}

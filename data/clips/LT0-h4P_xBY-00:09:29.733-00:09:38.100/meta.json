@@ -1,0 +1,30 @@
+{
+ "vid": "LT0-h4P_xBY-00:09:29.733-00:09:38.100",
+ "yid": "LT0-h4P_xBY",
+ "crop_xywh": [
+  808,
+  154,
+  302,
+  468
+ ],
+ "bbox_norm": [
+  0.6313312885496352,
+  0.21442232108410494,
+  0.867644108136495,
+  0.8639780524924949
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As business dried up, owner Jennifer Knox was sitting in her empty bar and looked around.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 252,
+ "stride": 1,
+ "start": "00:09:29.733",
+ "end": "00:09:38.100",
+ "duration_s": 8.367
+}

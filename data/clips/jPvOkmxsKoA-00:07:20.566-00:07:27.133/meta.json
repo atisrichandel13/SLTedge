@@ -1,0 +1,30 @@
+{
+ "vid": "jPvOkmxsKoA-00:07:20.566-00:07:27.133",
+ "yid": "jPvOkmxsKoA",
+ "crop_xywh": [
+  673,
+  0,
+  522,
+  720
+ ],
+ "bbox_norm": [
+  0.5259384330113729,
+  -0.11603095867015698,
+  0.9341865841547647,
+  1.0976001979686596
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Mena Massoud plays Aladdin.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 198,
+ "stride": 1,
+ "start": "00:07:20.566",
+ "end": "00:07:27.133",
+ "duration_s": 6.567
+}

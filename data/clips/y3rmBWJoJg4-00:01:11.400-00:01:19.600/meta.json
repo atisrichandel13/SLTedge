@@ -1,0 +1,30 @@
+{
+ "vid": "y3rmBWJoJg4-00:01:11.400-00:01:19.600",
+ "yid": "y3rmBWJoJg4",
+ "crop_xywh": [
+  788,
+  123,
+  344,
+  546
+ ],
+ "bbox_norm": [
+  0.6156036221251195,
+  0.17031703525119357,
+  0.8848550368328484,
+  0.9303633462815057
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That's likely to fuel interest in urging Americans to wear masks outside their homes.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 246,
+ "stride": 1,
+ "start": "00:01:11.400",
+ "end": "00:01:19.600",
+ "duration_s": 8.2
+}

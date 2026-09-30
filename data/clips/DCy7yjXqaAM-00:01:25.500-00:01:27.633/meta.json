@@ -1,0 +1,30 @@
+{
+ "vid": "DCy7yjXqaAM-00:01:25.500-00:01:27.633",
+ "yid": "DCy7yjXqaAM",
+ "crop_xywh": [
+  226,
+  0,
+  418,
+  470
+ ],
+ "bbox_norm": [
+  0.26450443010118885,
+  -0.22191953955617552,
+  0.7557594259458283,
+  1.2726053731141036
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The interpreter was prefered but not provided.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 64,
+ "stride": 1,
+ "start": "00:01:25.500",
+ "end": "00:01:27.633",
+ "duration_s": 2.133
+}

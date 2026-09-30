@@ -1,0 +1,30 @@
+{
+ "vid": "btdPgAr_4ow-00:10:45.100-00:10:46.566",
+ "yid": "btdPgAr_4ow",
+ "crop_xywh": [
+  715,
+  74,
+  494,
+  646
+ ],
+ "bbox_norm": [
+  0.5583208322525024,
+  0.10336212817533516,
+  0.9454070859485203,
+  1.1644911612993405
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Sign1News.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 44,
+ "stride": 1,
+ "start": "00:10:45.100",
+ "end": "00:10:46.566",
+ "duration_s": 1.466
+}

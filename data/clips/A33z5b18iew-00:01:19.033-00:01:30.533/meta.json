@@ -1,0 +1,30 @@
+{
+ "vid": "A33z5b18iew-00:01:19.033-00:01:30.533",
+ "yid": "A33z5b18iew",
+ "crop_xywh": [
+  782,
+  90,
+  454,
+  630
+ ],
+ "bbox_norm": [
+  0.6110229661499245,
+  0.12515268679018374,
+  0.9660852325135384,
+  1.184603475794892
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some states have been the most hardest-hit areas with Covid and still have not received their medicine.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 345,
+ "stride": 1,
+ "start": "00:01:19.033",
+ "end": "00:01:30.533",
+ "duration_s": 11.5
+}

@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_30clip_fps30.json",
+ "b": "results/eval_30clip_fps12.json",
+ "n_clips": 30,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 18.63914490367855,
+  "b": 15.388766106010062,
+  "delta": -3.2503787976684873,
+  "ci": [
+   -7.218016362621409,
+   0.8008421431090305
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.0505
+ },
+ "rouge_l": {
+  "a": 44.19400345391909,
+  "b": 43.579461737684774,
+  "delta": -0.6145417162343136,
+  "ci": [
+   -4.506802107813084,
+   3.2278633867404425
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.37
+ }
+}

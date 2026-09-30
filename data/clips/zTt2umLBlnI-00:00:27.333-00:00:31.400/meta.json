@@ -1,0 +1,30 @@
+{
+ "vid": "zTt2umLBlnI-00:00:27.333-00:00:31.400",
+ "yid": "zTt2umLBlnI",
+ "crop_xywh": [
+  376,
+  0,
+  664,
+  720
+ ],
+ "bbox_norm": [
+  0.29400432840983076,
+  -0.2351403104994032,
+  0.8123943634033204,
+  1.1414298633999294
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some were successful while others go back to the drawing board.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 122,
+ "stride": 1,
+ "start": "00:00:27.333",
+ "end": "00:00:31.400",
+ "duration_s": 4.067
+}

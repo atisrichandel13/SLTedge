@@ -1,0 +1,30 @@
+{
+ "vid": "XPndROf0Ltg-00:07:11.600-00:07:30.500",
+ "yid": "XPndROf0Ltg",
+ "crop_xywh": [
+  723,
+  0,
+  508,
+  720
+ ],
+ "bbox_norm": [
+  0.5652226063794706,
+  -0.11293996516698543,
+  0.9616664505703546,
+  1.0489180183333016
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "News reports explained that it is normal for  Australia to go through bushfires, but that this year it is a lot worse because of record heat, drought, and strong winds.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 454,
+ "stride": 1,
+ "start": "00:07:11.600",
+ "end": "00:07:30.500",
+ "duration_s": 18.9
+}

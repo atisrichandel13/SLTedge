@@ -1,0 +1,30 @@
+{
+ "vid": "syDWIvL6-hk-00:00:07.066-00:00:08.366",
+ "yid": "syDWIvL6-hk",
+ "crop_xywh": [
+  283,
+  0,
+  664,
+  720
+ ],
+ "bbox_norm": [
+  0.22090060710906984,
+  -0.08188907305399577,
+  0.7409517049789429,
+  1.3454404645495945
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hello everyone.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 39,
+ "stride": 1,
+ "start": "00:00:07.066",
+ "end": "00:00:08.366",
+ "duration_s": 1.3
+}

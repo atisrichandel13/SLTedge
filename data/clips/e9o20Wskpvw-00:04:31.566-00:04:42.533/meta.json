@@ -1,0 +1,30 @@
+{
+ "vid": "e9o20Wskpvw-00:04:31.566-00:04:42.533",
+ "yid": "e9o20Wskpvw",
+ "crop_xywh": [
+  641,
+  0,
+  504,
+  720
+ ],
+ "bbox_norm": [
+  0.5007454929929791,
+  -0.10716026222665703,
+  0.8947657122756496,
+  1.1401545763818501
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The league is asking them to consider what actions they would take in their arenas to play games without fans inside.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 329,
+ "stride": 1,
+ "start": "00:04:31.566",
+ "end": "00:04:42.533",
+ "duration_s": 10.967
+}

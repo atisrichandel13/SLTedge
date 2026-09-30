@@ -1,0 +1,30 @@
+{
+ "vid": "_IiHCdbLKyM-00:00:12.666-00:00:20.766",
+ "yid": "_IiHCdbLKyM",
+ "crop_xywh": [
+  553,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.43180255046507127,
+  -0.23058633090687447,
+  0.9209413703607053,
+  1.230366575510684
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm going to hold off on that and look into who they were as a person.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 243,
+ "stride": 1,
+ "start": "00:00:12.666",
+ "end": "00:00:20.766",
+ "duration_s": 8.1
+}

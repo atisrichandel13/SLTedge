@@ -1,0 +1,30 @@
+{
+ "vid": "2vItFX_gYQE-00:02:19.666-00:02:23.100",
+ "yid": "2vItFX_gYQE",
+ "crop_xywh": [
+  688,
+  0,
+  464,
+  720
+ ],
+ "bbox_norm": [
+  0.537719862801688,
+  -0.1253501776034239,
+  0.9008112317039852,
+  1.0223329450718308
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If the committee approves the charges, ...",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 103,
+ "stride": 1,
+ "start": "00:02:19.666",
+ "end": "00:02:23.100",
+ "duration_s": 3.434
+}

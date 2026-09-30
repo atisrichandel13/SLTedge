@@ -1,0 +1,30 @@
+{
+ "vid": "Eh3k6oJrFgY-00:05:44.366-00:05:56.533",
+ "yid": "Eh3k6oJrFgY",
+ "crop_xywh": [
+  623,
+  0,
+  590,
+  720
+ ],
+ "bbox_norm": [
+  0.4869085786032812,
+  -0.14149025284263672,
+  0.9479095879247633,
+  1.2861947818140675
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The judge said 49 other Governors in the country and the Mayor of New York City provide picture-in-picture interpreting accommodation.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 293,
+ "stride": 1,
+ "start": "00:05:44.366",
+ "end": "00:05:56.533",
+ "duration_s": 12.167
+}

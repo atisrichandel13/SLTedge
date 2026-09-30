@@ -1,0 +1,30 @@
+{
+ "vid": "fgbp9mCQX_g-00:01:45.066-00:01:50.600",
+ "yid": "fgbp9mCQX_g",
+ "crop_xywh": [
+  812,
+  167,
+  300,
+  456
+ ],
+ "bbox_norm": [
+  0.6344770440348872,
+  0.23157075324666845,
+  0.8691053752545956,
+  0.86730117954835
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Authorities are not releasing further information about the killing including the motive.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 167,
+ "stride": 1,
+ "start": "00:01:45.066",
+ "end": "00:01:50.600",
+ "duration_s": 5.534
+}

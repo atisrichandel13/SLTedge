@@ -1,0 +1,30 @@
+{
+ "vid": "fNT8a6e1gx8-00:08:26.766-00:08:28.166",
+ "yid": "fNT8a6e1gx8",
+ "crop_xywh": [
+  596,
+  0,
+  430,
+  618
+ ],
+ "bbox_norm": [
+  0.4657003243764241,
+  -0.03983053631252713,
+  0.8023066679636637,
+  0.8583110909403107
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Marvin Miller.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 42,
+ "stride": 1,
+ "start": "00:08:26.766",
+ "end": "00:08:28.166",
+ "duration_s": 1.4
+}

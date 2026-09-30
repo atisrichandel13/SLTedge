@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:05:00.500-00:05:02.200",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  247,
+  0,
+  1032,
+  720
+ ],
+ "bbox_norm": [
+  0.19318530647842974,
+  -0.3154895044648598,
+  1.0763460318247478,
+  2.3051309279453607
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I do fully understand.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 41,
+ "stride": 1,
+ "start": "00:05:00.500",
+ "end": "00:05:02.200",
+ "duration_s": 1.7
+}

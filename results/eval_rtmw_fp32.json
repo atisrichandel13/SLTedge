@@ -1,0 +1,40 @@
+{
+ "n": 5,
+ "missing": 971,
+ "bleu": {
+  "bleu1": 47.68344772523245,
+  "bleu2": 30.09338453510011,
+  "bleu3": 19.073075299411006,
+  "bleu4": 9.894897055559063
+ },
+ "rouge_l": 43.387546248416534,
+ "wall_s": 17.794201587093994,
+ "config": {
+  "ckpt": "weights/openasl_pose_only_slt.pth",
+  "mt5": "weights/mt5-base",
+  "poses": "data/poses_rtmw_fp32",
+  "labels": "data/openasl_labels/labels.test",
+  "device": "cuda",
+  "dtype": "fp32",
+  "batch_size": 8,
+  "max_length": 256,
+  "max_new_tokens": 100,
+  "num_beams": 4,
+  "limit": null,
+  "out": "results/eval_rtmw_fp32.json"
+ },
+ "refs": [
+  "Meteorologist say some areas might not get relief from the rain and floods until Friday afternoon.",
+  "Crews spent this holiday weekend battling wildfires in several states in the West.",
+  "After nine frantic days of searching, the Thai soccer team trapped in a cave has been found.",
+  "The winter storm that slammed the Midwest, Northern Plains and Northeast has left brutally cold temperatures in its path.",
+  "When I moved to Texas one year and a half ago, this was my first artwork."
+ ],
+ "preds": [
+  "Meteorologists say some areas could see heavy rain until Friday afternoon.",
+  "Firefighters are battling blazes in several states over the weekend.",
+  "After nine days of fighting in Thailand, a shark attack took place on Haiti.",
+  "The storms are expected to make landfall in the Midwest and the Northeast, bringing very high temperatures.",
+  "When I first moved to Texas two years ago, it was my first time doing nothing."
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "ao84QAxcU70-00:00:21.466-00:00:24.533",
+ "yid": "ao84QAxcU70",
+ "crop_xywh": [
+  231,
+  0,
+  340,
+  480
+ ],
+ "bbox_norm": [
+  0.27081147895323043,
+  -0.08385146291632402,
+  0.6686216175930869,
+  1.0828822738245913
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Also, the combo is much cheaper than before.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 92,
+ "stride": 1,
+ "start": "00:00:21.466",
+ "end": "00:00:24.533",
+ "duration_s": 3.067
+}

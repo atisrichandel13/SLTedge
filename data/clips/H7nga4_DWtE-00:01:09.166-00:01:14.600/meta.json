@@ -1,0 +1,30 @@
+{
+ "vid": "H7nga4_DWtE-00:01:09.166-00:01:14.600",
+ "yid": "H7nga4_DWtE",
+ "crop_xywh": [
+  420,
+  0,
+  582,
+  720
+ ],
+ "bbox_norm": [
+  0.32788019710116917,
+  -0.14797492835390583,
+  0.7837958562253701,
+  1.152981962124774
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "At the same time, we deaf people experience discrimination and are often marginalized.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 163,
+ "stride": 1,
+ "start": "00:01:09.166",
+ "end": "00:01:14.600",
+ "duration_s": 5.434
+}

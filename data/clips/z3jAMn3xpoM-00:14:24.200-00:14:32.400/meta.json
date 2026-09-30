@@ -1,0 +1,30 @@
+{
+ "vid": "z3jAMn3xpoM-00:14:24.200-00:14:32.400",
+ "yid": "z3jAMn3xpoM",
+ "crop_xywh": [
+  291,
+  0,
+  530,
+  720
+ ],
+ "bbox_norm": [
+  0.2270403289794922,
+  -0.06018598259819879,
+  0.6410891418457031,
+  1.1553913195574725
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"When it came to music, it never felt that important to me and it's reserved for the hearing world, but then the \"\"Black Drum\"\" was produced.\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 246,
+ "stride": 1,
+ "start": "00:14:24.200",
+ "end": "00:14:32.400",
+ "duration_s": 8.2
+}

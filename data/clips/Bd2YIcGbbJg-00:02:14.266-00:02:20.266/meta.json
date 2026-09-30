@@ -1,0 +1,30 @@
+{
+ "vid": "Bd2YIcGbbJg-00:02:14.266-00:02:20.266",
+ "yid": "Bd2YIcGbbJg",
+ "crop_xywh": [
+  627,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.48955819253568295,
+  -0.13293173636919187,
+  0.908855523886504,
+  1.0773835148830964
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"The words on the jacket read \"\"I don't care. Do you?\"\"\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 180,
+ "stride": 1,
+ "start": "00:02:14.266",
+ "end": "00:02:20.266",
+ "duration_s": 6.0
+}

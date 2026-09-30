@@ -1,0 +1,30 @@
+{
+ "vid": "4TtUxQPu5UM-00:10:15.266-00:10:17.166",
+ "yid": "4TtUxQPu5UM",
+ "crop_xywh": [
+  334,
+  0,
+  214,
+  304
+ ],
+ "bbox_norm": [
+  0.5213447173436483,
+  -0.0317465552577266,
+  0.8575249592463174,
+  0.843951959963198
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The baby died.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 57,
+ "stride": 1,
+ "start": "00:10:15.266",
+ "end": "00:10:17.166",
+ "duration_s": 1.9
+}

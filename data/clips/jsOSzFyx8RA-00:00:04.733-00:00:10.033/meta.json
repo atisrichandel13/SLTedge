@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:00:04.733-00:00:10.033",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  274,
+  0,
+  740,
+  720
+ ],
+ "bbox_norm": [
+  0.21420229226350784,
+  -0.26557691251790083,
+  0.7927161569396655,
+  1.4436623803995274
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Many of us including myself watched all 8 episodes.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 159,
+ "stride": 1,
+ "start": "00:00:04.733",
+ "end": "00:00:10.033",
+ "duration_s": 5.3
+}

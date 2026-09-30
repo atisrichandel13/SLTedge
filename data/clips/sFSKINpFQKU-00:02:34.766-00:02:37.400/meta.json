@@ -1,0 +1,30 @@
+{
+ "vid": "sFSKINpFQKU-00:02:34.766-00:02:37.400",
+ "yid": "sFSKINpFQKU",
+ "crop_xywh": [
+  470,
+  6,
+  446,
+  686
+ ],
+ "bbox_norm": [
+  0.36721926629543306,
+  0.007821427451239692,
+  0.7165367931127549,
+  0.9630143417252435
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "For further information, please contact the NAD.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 79,
+ "stride": 1,
+ "start": "00:02:34.766",
+ "end": "00:02:37.400",
+ "duration_s": 2.634
+}

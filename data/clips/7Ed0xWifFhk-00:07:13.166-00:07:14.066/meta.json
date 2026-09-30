@@ -1,0 +1,30 @@
+{
+ "vid": "7Ed0xWifFhk-00:07:13.166-00:07:14.066",
+ "yid": "7Ed0xWifFhk",
+ "crop_xywh": [
+  696,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.5437964969211155,
+  -0.14164897777416088,
+  0.9528544531928168,
+  1.064711587223006
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm Crystal Cousineau.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 27,
+ "stride": 1,
+ "start": "00:07:13.166",
+ "end": "00:07:14.066",
+ "duration_s": 0.9
+}

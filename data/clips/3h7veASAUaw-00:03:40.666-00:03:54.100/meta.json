@@ -1,0 +1,30 @@
+{
+ "vid": "3h7veASAUaw-00:03:40.666-00:03:54.100",
+ "yid": "3h7veASAUaw",
+ "crop_xywh": [
+  689,
+  0,
+  530,
+  720
+ ],
+ "bbox_norm": [
+  0.5381144361731447,
+  -0.09740529289297933,
+  0.9525182314860968,
+  1.1124706205517176
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The storm knocked out the power and air-conditioning system at the Rehabilitation Center at Hollywood Hills nursing home.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 403,
+ "stride": 1,
+ "start": "00:03:40.666",
+ "end": "00:03:54.100",
+ "duration_s": 13.434
+}

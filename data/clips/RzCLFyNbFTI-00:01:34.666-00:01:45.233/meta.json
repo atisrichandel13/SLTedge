@@ -1,0 +1,30 @@
+{
+ "vid": "RzCLFyNbFTI-00:01:34.666-00:01:45.233",
+ "yid": "RzCLFyNbFTI",
+ "crop_xywh": [
+  236,
+  0,
+  372,
+  480
+ ],
+ "bbox_norm": [
+  0.2759191878227216,
+  -0.15236160779992738,
+  0.7114240966859411,
+  1.130312241986394
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"For example, our biggest concerns are: S. 3304 does not define \"\"advanced communications\"\" as broadly as H. R. 3101.\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 317,
+ "stride": 1,
+ "start": "00:01:34.666",
+ "end": "00:01:45.233",
+ "duration_s": 10.567
+}

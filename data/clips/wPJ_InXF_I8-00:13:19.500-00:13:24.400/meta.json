@@ -1,0 +1,30 @@
+{
+ "vid": "wPJ_InXF_I8-00:13:19.500-00:13:24.400",
+ "yid": "wPJ_InXF_I8",
+ "crop_xywh": [
+  643,
+  0,
+  602,
+  720
+ ],
+ "bbox_norm": [
+  0.5025016657511393,
+  -0.10832126099386333,
+  0.9724225574069554,
+  1.2886013803364318
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They could bring in money and help the movie achieve success.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 147,
+ "stride": 1,
+ "start": "00:13:19.500",
+ "end": "00:13:24.400",
+ "duration_s": 4.9
+}

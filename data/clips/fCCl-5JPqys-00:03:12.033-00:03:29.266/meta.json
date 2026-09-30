@@ -1,0 +1,30 @@
+{
+ "vid": "fCCl-5JPqys-00:03:12.033-00:03:29.266",
+ "yid": "fCCl-5JPqys",
+ "crop_xywh": [
+  590,
+  0,
+  664,
+  720
+ ],
+ "bbox_norm": [
+  0.4611838013697893,
+  -0.2519852088727163,
+  0.9801996833238846,
+  1.3924199096497647
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They said they'd continue to fight for the human rights of female athletes, both on the track and off the track, until we all can run free the way we were born.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 517,
+ "stride": 1,
+ "start": "00:03:12.033",
+ "end": "00:03:29.266",
+ "duration_s": 17.233
+}

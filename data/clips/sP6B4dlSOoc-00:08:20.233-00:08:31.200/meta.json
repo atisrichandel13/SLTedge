@@ -1,0 +1,30 @@
+{
+ "vid": "sP6B4dlSOoc-00:08:20.233-00:08:31.200",
+ "yid": "sP6B4dlSOoc",
+ "crop_xywh": [
+  608,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.4747237407799923,
+  -0.09846732613748707,
+  0.9153612329502299,
+  1.185205730819274
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "On Wednesday President Trump signed an executive order aimed at transforming kidney care.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 329,
+ "stride": 1,
+ "start": "00:08:20.233",
+ "end": "00:08:31.200",
+ "duration_s": 10.967
+}

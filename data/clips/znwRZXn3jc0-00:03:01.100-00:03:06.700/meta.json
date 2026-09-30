@@ -1,0 +1,30 @@
+{
+ "vid": "znwRZXn3jc0-00:03:01.100-00:03:06.700",
+ "yid": "znwRZXn3jc0",
+ "crop_xywh": [
+  584,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.4558865481731938,
+  -0.13485617211701303,
+  0.930651330947876,
+  1.226918481066336
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A vote on immigration failed in the House of Representatives.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 168,
+ "stride": 1,
+ "start": "00:03:01.100",
+ "end": "00:03:06.700",
+ "duration_s": 5.6
+}

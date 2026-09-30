@@ -1,0 +1,29 @@
+{
+ "vid": "ixq65EiuJ_c-00:03:47.633-00:03:56.133",
+ "yid": "ixq65EiuJ_c",
+ "crop_xywh": [
+  297,
+  0,
+  644,
+  720
+ ],
+ "bbox_norm": [
+  0.23173505128958286,
+  -0.20907297025718583,
+  0.7359323162298936,
+  1.2969982056196598
+ ],
+ "text": "When I moved to Texas one year and a half ago, this was my first artwork.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 255,
+ "stride": 1,
+ "start": "00:03:47.633",
+ "end": "00:03:56.133",
+ "duration_s": 8.5,
+ "crop_note": "w/h are the delivered JPEG size; ffmpeg rounds crop down to even"
+}

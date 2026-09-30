@@ -1,0 +1,19 @@
+{
+ "a": "results/eval_test_pruned_mac.json",
+ "b": "results/eval_test_pruned_beam2_mac.json",
+ "n_clips": 976,
+ "n_boot": 1000,
+ "aligned_by": "position",
+ "bleu4": {
+  "a": 22.87417053966081,
+  "b": 22.059541913697537,
+  "delta": -0.8146286259632731,
+  "ci": [
+   -1.292598282388345,
+   -0.3851292006949075
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0
+ }
+}

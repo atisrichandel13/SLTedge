@@ -1,0 +1,30 @@
+{
+ "vid": "Pp_aWq2pNR8-00:07:41.533-00:08:05.533",
+ "yid": "Pp_aWq2pNR8",
+ "crop_xywh": [
+  627,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.49018524158960103,
+  -0.10321973371932029,
+  0.8881566645085126,
+  1.0397350537213634
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They were placed under arrest, but the police say this is becoming a serious issue because there have been more and more instances where animals like ducks, geese and alligators eating the drugs that make it through the sewage system.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 576,
+ "stride": 1,
+ "start": "00:07:41.533",
+ "end": "00:08:05.533",
+ "duration_s": 24.0
+}

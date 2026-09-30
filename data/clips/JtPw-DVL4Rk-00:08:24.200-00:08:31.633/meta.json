@@ -1,0 +1,30 @@
+{
+ "vid": "JtPw-DVL4Rk-00:08:24.200-00:08:31.633",
+ "yid": "JtPw-DVL4Rk",
+ "crop_xywh": [
+  677,
+  0,
+  480,
+  720
+ ],
+ "bbox_norm": [
+  0.5288855524416323,
+  -0.10184142281489117,
+  0.9040813114024975,
+  1.0156094474949464
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So far more than 33,000 people have signed on Change.org.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 223,
+ "stride": 1,
+ "start": "00:08:24.200",
+ "end": "00:08:31.633",
+ "duration_s": 7.433
+}

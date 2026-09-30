@@ -1,0 +1,30 @@
+{
+ "vid": "MJijm9kbdHA-00:17:32.366-00:17:33.266",
+ "yid": "MJijm9kbdHA",
+ "crop_xywh": [
+  336,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.2628019364674886,
+  -0.20155628628200953,
+  0.7008308823903402,
+  1.1560229167231806
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I really love you!",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 22,
+ "stride": 1,
+ "start": "00:17:32.366",
+ "end": "00:17:33.266",
+ "duration_s": 0.9
+}

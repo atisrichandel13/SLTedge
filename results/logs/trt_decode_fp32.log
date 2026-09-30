@@ -1,0 +1,15 @@
+
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[cache] fadvise DONTNEED on 18 files (8.71 GB) under ['models', 'weights', 'data', 'results']: MemFree 349 -> 3015 MB, Cached 3908 -> 1237 MB
+[mem] MemFree before engines 3015 MB
+[mem] MemFree after engines 948 MB
+[trt] warm-up enc 189 ms dec 693 ms
+[trt] fp32 run 1: encoder 102 ms, decoder 507 ms for 24 tokens (21.1 ms/token)
+[trt] fp32 run 2: encoder 86 ms, decoder 459 ms for 24 tokens (19.1 ms/token)
+[trt] fp32 run 3: encoder 82 ms, decoder 460 ms for 24 tokens (19.2 ms/token)
+[trt] text  : The tweet apparently targeted people with donations that were likely part of the Biden campaign.
+[torch] text: The tweet apparently targeted people with donations that were likely part of the Biden campaign.  (torch dec 1784 ms, enc 402 ms)
+[check] tokens identical: True
+[check] max |logprob diff| over shared steps: 5.64e-04
+[mem] torch reference peak 1.03 GB (freed before the engines loaded)
+[trt] wrote results/l8_jetson_trt_fp32.json

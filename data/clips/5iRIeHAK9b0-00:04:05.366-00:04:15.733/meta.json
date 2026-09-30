@@ -1,0 +1,30 @@
+{
+ "vid": "5iRIeHAK9b0-00:04:05.366-00:04:15.733",
+ "yid": "5iRIeHAK9b0",
+ "crop_xywh": [
+  601,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.4693369653489855,
+  -0.15561694100910883,
+  0.9329888384178202,
+  1.215045863470563
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Two parents accused of horrific child abuse pleaded guilty in a California court, Friday.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 312,
+ "stride": 1,
+ "start": "00:04:05.366",
+ "end": "00:04:15.733",
+ "duration_s": 10.367
+}

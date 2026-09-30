@@ -1,0 +1,30 @@
+{
+ "vid": "GTlMzp0KVqk-00:00:08.133-00:00:09.266",
+ "yid": "GTlMzp0KVqk",
+ "crop_xywh": [
+  222,
+  26,
+  378,
+  444
+ ],
+ "bbox_norm": [
+  0.2599033778150092,
+  0.054503179393640765,
+  0.7034728738447223,
+  1.436624423783601
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Stress.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 34,
+ "stride": 1,
+ "start": "00:00:08.133",
+ "end": "00:00:09.266",
+ "duration_s": 1.133
+}

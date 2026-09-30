@@ -1,0 +1,30 @@
+{
+ "vid": "wO-FMbD4MW8-00:02:22.000-00:02:29.166",
+ "yid": "wO-FMbD4MW8",
+ "crop_xywh": [
+  348,
+  0,
+  660,
+  720
+ ],
+ "bbox_norm": [
+  0.271920192334079,
+  -0.1584443656665102,
+  0.7871868355329646,
+  1.3327576869731315
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We need to look with an anti-racism lens to ensure the policies include and are equitable to everyone, especially BIPOC.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 215,
+ "stride": 1,
+ "start": "00:02:22.000",
+ "end": "00:02:29.166",
+ "duration_s": 7.166
+}

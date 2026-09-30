@@ -1,0 +1,30 @@
+{
+ "vid": "HBpGS56KwGk-00:01:16.200-00:01:20.066",
+ "yid": "HBpGS56KwGk",
+ "crop_xywh": [
+  206,
+  0,
+  804,
+  720
+ ],
+ "bbox_norm": [
+  0.16055521501435174,
+  -0.20031123337922274,
+  0.7900822699069977,
+  1.5994959189568037
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You can show the paper for them to accommodate to.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 116,
+ "stride": 1,
+ "start": "00:01:16.200",
+ "end": "00:01:20.066",
+ "duration_s": 3.866
+}

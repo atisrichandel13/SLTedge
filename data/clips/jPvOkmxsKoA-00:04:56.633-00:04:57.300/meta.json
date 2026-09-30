@@ -1,0 +1,30 @@
+{
+ "vid": "jPvOkmxsKoA-00:04:56.633-00:04:57.300",
+ "yid": "jPvOkmxsKoA",
+ "crop_xywh": [
+  185,
+  186,
+  142,
+  224
+ ],
+ "bbox_norm": [
+  0.14446173508961996,
+  0.2583245242083514,
+  0.25577615896860756,
+  0.5691596631650572
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The main stumbling block?",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 21,
+ "stride": 1,
+ "start": "00:04:56.633",
+ "end": "00:04:57.300",
+ "duration_s": 0.667
+}

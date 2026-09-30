@@ -1,0 +1,30 @@
+{
+ "vid": "noSF4Y7sGEk-00:06:09.300-00:06:23.400",
+ "yid": "noSF4Y7sGEk",
+ "crop_xywh": [
+  788,
+  185,
+  310,
+  484
+ ],
+ "bbox_norm": [
+  0.6156509944370814,
+  0.2568235494892854,
+  0.8586278097970145,
+  0.9293389480160237
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Democrats want to set national standards such as banning chokeholds and requiring federal uniformed officers to wear body cameras.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 423,
+ "stride": 1,
+ "start": "00:06:09.300",
+ "end": "00:06:23.400",
+ "duration_s": 14.1
+}

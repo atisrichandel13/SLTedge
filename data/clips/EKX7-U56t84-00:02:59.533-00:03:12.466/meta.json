@@ -1,0 +1,30 @@
+{
+ "vid": "EKX7-U56t84-00:02:59.533-00:03:12.466",
+ "yid": "EKX7-U56t84",
+ "crop_xywh": [
+  582,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.4548977183480548,
+  -0.1259824995528146,
+  0.8980321761889336,
+  1.1934675286411673
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The police chief, Alpharett, says officer was suspended immediately and the incident is under investigation.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 388,
+ "stride": 1,
+ "start": "00:02:59.533",
+ "end": "00:03:12.466",
+ "duration_s": 12.933
+}

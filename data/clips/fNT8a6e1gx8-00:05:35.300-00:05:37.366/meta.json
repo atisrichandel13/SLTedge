@@ -1,0 +1,30 @@
+{
+ "vid": "fNT8a6e1gx8-00:05:35.300-00:05:37.366",
+ "yid": "fNT8a6e1gx8",
+ "crop_xywh": [
+  411,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.3211779227623573,
+  -0.02938359578450521,
+  0.7492615479689377,
+  1.1653761871859558
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Learn from your mistakes.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 62,
+ "stride": 1,
+ "start": "00:05:35.300",
+ "end": "00:05:37.366",
+ "duration_s": 2.066
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "TMsVV9Y4wRM-00:05:39.000-00:05:50.500",
+ "yid": "TMsVV9Y4wRM",
+ "crop_xywh": [
+  608,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.4751218487099173,
+  -0.15729096576979387,
+  0.9444213236011745,
+  1.1760952930583535
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was meant to draw attention to the restaurant's non-breakfast related items in an effort to booze lunch and dinner sales.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 345,
+ "stride": 1,
+ "start": "00:05:39.000",
+ "end": "00:05:50.500",
+ "duration_s": 11.5
+}

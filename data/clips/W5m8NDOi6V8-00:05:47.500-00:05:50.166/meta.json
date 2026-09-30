@@ -1,0 +1,30 @@
+{
+ "vid": "W5m8NDOi6V8-00:05:47.500-00:05:50.166",
+ "yid": "W5m8NDOi6V8",
+ "crop_xywh": [
+  666,
+  0,
+  582,
+  720
+ ],
+ "bbox_norm": [
+  0.520702880468124,
+  -0.043943221480758105,
+  0.9752549293713692,
+  1.1980481085274632
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We can measure how many of them are sick.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 64,
+ "stride": 1,
+ "start": "00:05:47.500",
+ "end": "00:05:50.166",
+ "duration_s": 2.666
+}

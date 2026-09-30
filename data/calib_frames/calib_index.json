@@ -1,0 +1,190 @@
+{
+ "split": "train",
+ "mode": "calib",
+ "requested": 6,
+ "n_ok": 6,
+ "n_failed": 0,
+ "signers": [
+  "A3jlcPSOOJ4",
+  "NRxR15gruTY",
+  "iFm0D933usQ",
+  "uXdL5njDiBU",
+  "OzcY34ZGRJ0",
+  "ZGORceOTG0A"
+ ],
+ "total_frames": 360,
+ "clips": [
+  {
+   "vid": "A3jlcPSOOJ4-00:00:48.920-00:00:54.939",
+   "yid": "A3jlcPSOOJ4",
+   "crop_xywh": [
+    118,
+    0,
+    588,
+    720
+   ],
+   "bbox_norm": [
+    0.09226985783488661,
+    -0.11115741023310909,
+    0.5518029267037357,
+    1.1269579526328255
+   ],
+   "text": "I thought it was a unique job and figured I d never be out of a job, you know   people die everyday!",
+   "split": "train",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 60,
+   "stride": 3,
+   "start": "00:00:48.920",
+   "end": "00:00:54.939",
+   "duration_s": 6.019
+  },
+  {
+   "vid": "NRxR15gruTY-00:02:10.919-00:02:17.199",
+   "yid": "NRxR15gruTY",
+   "crop_xywh": [
+    344,
+    0,
+    572,
+    720
+   ],
+   "bbox_norm": [
+    0.2685260182932803,
+    -0.1884563390274494,
+    0.715358002562272,
+    1.0837263845328466
+   ],
+   "text": "When they hired me, I expected to work for a year or two just to support myself until I went big in film.",
+   "split": "train",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 60,
+   "stride": 3,
+   "start": "00:02:10.919",
+   "end": "00:02:17.199",
+   "duration_s": 6.28
+  },
+  {
+   "vid": "iFm0D933usQ-00:07:55.108-00:08:03.983",
+   "yid": "iFm0D933usQ",
+   "crop_xywh": [
+    592,
+    0,
+    667,
+    720
+   ],
+   "bbox_norm": [
+    0.4624754046216423,
+    -0.23085779470017254,
+    0.9837639584953402,
+    1.4009746216615695
+   ],
+   "text": "On Tuesday night in Chicago, 15 people were shot while attending a funeral.",
+   "split": "train",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 60,
+   "stride": 4,
+   "start": "00:07:55.108",
+   "end": "00:08:03.983",
+   "duration_s": 8.875
+  },
+  {
+   "vid": "uXdL5njDiBU-00:00:31.000-00:00:42.000",
+   "yid": "uXdL5njDiBU",
+   "crop_xywh": [
+    359,
+    0,
+    644,
+    720
+   ],
+   "bbox_norm": [
+    0.28065287070487865,
+    -0.17417556357818653,
+    0.7837254869404123,
+    1.3672139526797369
+   ],
+   "text": "These federal statutes require colleges, including Daytona State College, to provide auxiliary services, ensuring effective communication so that each student is not excluded.",
+   "split": "train",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 60,
+   "stride": 5,
+   "start": "00:00:31.000",
+   "end": "00:00:42.000",
+   "duration_s": 11.0
+  },
+  {
+   "vid": "OzcY34ZGRJ0-00:07:37.800-00:07:45.120",
+   "yid": "OzcY34ZGRJ0",
+   "crop_xywh": [
+    706,
+    0,
+    496,
+    720
+   ],
+   "bbox_norm": [
+    0.5518201604033962,
+    -0.10595740083893541,
+    0.9391478459040324,
+    1.0596977110262271
+   ],
+   "text": "You'll notice salty cravings will start to diminish.",
+   "split": "train",
+   "fps": 30.0,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 60,
+   "stride": 3,
+   "start": "00:07:37.800",
+   "end": "00:07:45.120",
+   "duration_s": 7.32
+  },
+  {
+   "vid": "ZGORceOTG0A-00:06:35.259-00:06:45.259",
+   "yid": "ZGORceOTG0A",
+   "crop_xywh": [
+    569,
+    0,
+    572,
+    720
+   ],
+   "bbox_norm": [
+    0.444319052696228,
+    -0.12299712687362858,
+    0.8914732673433092,
+    1.192853465963293
+   ],
+   "text": "Experts say that also means you should be reaching for the sunblock.",
+   "split": "train",
+   "fps": 29.97,
+   "source_wh": [
+    1280,
+    720
+   ],
+   "n_frames": 60,
+   "stride": 5,
+   "start": "00:06:35.259",
+   "end": "00:06:45.259",
+   "duration_s": 10.0
+  }
+ ],
+ "failures": [],
+ "crop": "OpenASL bbox scaled to frame and clamped (no square/pad/resize)",
+ "height_cap": 720,
+ "seed": 0
+}

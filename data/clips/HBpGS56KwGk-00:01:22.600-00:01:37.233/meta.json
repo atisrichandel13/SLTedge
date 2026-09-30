@@ -1,0 +1,30 @@
+{
+ "vid": "HBpGS56KwGk-00:01:22.600-00:01:37.233",
+ "yid": "HBpGS56KwGk",
+ "crop_xywh": [
+  222,
+  0,
+  798,
+  720
+ ],
+ "bbox_norm": [
+  0.1737507178927913,
+  -0.21472332951195713,
+  0.7975681660753309,
+  1.6045080576681527
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "For example, you can ask to use both mobile phones to communicate by typing messages in big text which you can show to each other.  ",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 439,
+ "stride": 1,
+ "start": "00:01:22.600",
+ "end": "00:01:37.233",
+ "duration_s": 14.633
+}

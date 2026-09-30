@@ -1,0 +1,30 @@
+{
+ "vid": "XQzQ3F81ik8-00:02:56.100-00:03:02.566",
+ "yid": "XQzQ3F81ik8",
+ "crop_xywh": [
+  304,
+  0,
+  632,
+  720
+ ],
+ "bbox_norm": [
+  0.23764004829602361,
+  -0.21853307867095456,
+  0.7317073593791734,
+  1.2508179972540847
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Sometimes I communicate with my co-workers through an internal chat or e-mail, occasionally using Zoom.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 194,
+ "stride": 1,
+ "start": "00:02:56.100",
+ "end": "00:03:02.566",
+ "duration_s": 6.466
+}

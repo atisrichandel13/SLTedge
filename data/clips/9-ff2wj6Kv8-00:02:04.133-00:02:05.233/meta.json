@@ -1,0 +1,30 @@
+{
+ "vid": "9-ff2wj6Kv8-00:02:04.133-00:02:05.233",
+ "yid": "9-ff2wj6Kv8",
+ "crop_xywh": [
+  232,
+  0,
+  370,
+  470
+ ],
+ "bbox_norm": [
+  0.2712631174536125,
+  -0.07312912868511351,
+  0.7051535485460033,
+  1.1712589924821013
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Prizes will be given!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 33,
+ "stride": 1,
+ "start": "00:02:04.133",
+ "end": "00:02:05.233",
+ "duration_s": 1.1
+}

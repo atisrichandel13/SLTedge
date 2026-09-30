@@ -1,0 +1,30 @@
+{
+ "vid": "045-gE1O_hQ-00:06:48.166-00:06:55.333",
+ "yid": "045-gE1O_hQ",
+ "crop_xywh": [
+  0,
+  0,
+  704,
+  720
+ ],
+ "bbox_norm": [
+  -0.0040717792141345115,
+  -0.18572250451639127,
+  0.5497151284254798,
+  1.4736050859594223
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You have to think about the family, are they willing to go through a second trial?",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 215,
+ "stride": 1,
+ "start": "00:06:48.166",
+ "end": "00:06:55.333",
+ "duration_s": 7.167
+}

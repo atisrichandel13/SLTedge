@@ -1,0 +1,34 @@
+
+[scan] 398 tensors over 2 frames; 0 overflow FP16, 0 within 4x of it
+         211.1  mean    92.445  ReduceSum    ReduceSum_365                                                -> 1103  
+          99.6  mean    15.204  MatMul       MatMul_398                                                   -> 1151  
+          87.4  mean     0.481  Mul          Mul_364                                                      -> 1102  
+          74.2  mean    10.619  MatMul       MatMul_393                                                   -> 1146  
+          74.0  mean     0.641  Add          Add_94                                                       -> 743  
+          74.0  mean     0.508  Concat       Concat_95                                                    -> 744  
+          65.4  mean     1.288  Conv         Conv_91                                                      -> 1242  
+          65.4  mean     0.487  Mul          Mul_93                                                       -> 742  
+          64.1  mean     2.278  Mul          Mul_399                                                      -> 1152  
+          45.3  mean     3.390  Conv         Conv_88                                                      -> 1239  
+          45.3  mean     3.221  Mul          Mul_90                                                       -> 738  
+          44.6  mean     2.395  Conv         Conv_3                                                       -> 1164  
+          44.5  mean     6.021  MaxPool      MaxPool_168                                                  -> 836  
+          44.5  mean     5.905  MaxPool      MaxPool_167                                                  -> 835  
+          44.5  mean     5.505  MaxPool      MaxPool_166                                                  -> 834  
+          44.5  mean     5.399  Concat       Concat_169                                                   -> 837  
+          44.5  mean     4.308  Conv         Conv_163                                                     -> 1299  
+          44.5  mean     4.163  Mul          Mul_165                                                      -> 833  
+          43.0  mean     1.049  Mul          Mul_397                                                      -> 1150  
+          36.6  mean     1.865  Conv         Conv_148                                                     -> 1290  
+          36.6  mean     0.556  Mul          Mul_150                                                      -> 815  
+          35.5  mean     1.967  Conv         Conv_6                                                       -> 1167  
+          35.5  mean     0.897  Mul          Mul_8                                                        -> 632  
+          35.5  mean     0.736  Add          Add_151                                                      -> 816  
+          35.5  mean     0.506  Concat       Concat_152                                                   -> 817  
+          35.0  mean     1.608  Conv         Conv_9                                                       -> 1170  
+          34.3  mean    12.744  ReduceSum    ReduceSum_346                                                -> 1073  
+          31.7  mean     1.355  Conv         Conv_12                                                      -> 1173  
+          31.0  mean     1.037  Conv         Conv_34                                                      -> 1194  
+          30.4  mean     2.370  Conv         Conv_135                                                     -> 1278  
+[scan] node-name prefixes of overflow/near tensors: []
+[scan] wrote results/rtmw_fp16_range.json

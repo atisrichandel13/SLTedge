@@ -1,0 +1,30 @@
+{
+ "vid": "DOJ2vhDD7Gg-00:03:53.133-00:04:09.233",
+ "yid": "DOJ2vhDD7Gg",
+ "crop_xywh": [
+  634,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.49546133742709336,
+  -0.11333668575163058,
+  0.9047724183072748,
+  1.081664930039938
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The video of the trainer cutting Johnson's dreadlocks before victory went viral, and sparked outrage accusations of referee's racial bias.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 483,
+ "stride": 1,
+ "start": "00:03:53.133",
+ "end": "00:04:09.233",
+ "duration_s": 16.1
+}

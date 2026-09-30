@@ -1,0 +1,30 @@
+{
+ "vid": "Pp_aWq2pNR8-00:00:53.133-00:01:04.066",
+ "yid": "Pp_aWq2pNR8",
+ "crop_xywh": [
+  655,
+  0,
+  504,
+  720
+ ],
+ "bbox_norm": [
+  0.5114514848721102,
+  -0.09572330850725154,
+  0.9064195105114823,
+  1.0340649586803508
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Also, tonight the House of Representatives are planning to vote on a resolution tonight that will condemn Trump's tweet.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 263,
+ "stride": 1,
+ "start": "00:00:53.133",
+ "end": "00:01:04.066",
+ "duration_s": 10.933
+}

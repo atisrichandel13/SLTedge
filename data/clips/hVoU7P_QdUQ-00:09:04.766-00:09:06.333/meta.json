@@ -1,0 +1,30 @@
+{
+ "vid": "hVoU7P_QdUQ-00:09:04.766-00:09:06.333",
+ "yid": "hVoU7P_QdUQ",
+ "crop_xywh": [
+  407,
+  36,
+  200,
+  324
+ ],
+ "bbox_norm": [
+  0.6366328120231628,
+  0.09996713850233291,
+  0.9496302676200866,
+  1.0546398989359538
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Third, exercise.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 47,
+ "stride": 1,
+ "start": "00:09:04.766",
+ "end": "00:09:06.333",
+ "duration_s": 1.567
+}

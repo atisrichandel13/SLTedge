@@ -1,0 +1,30 @@
+{
+ "vid": "uXdL5njDiBU-00:00:25.566-00:00:31.200",
+ "yid": "uXdL5njDiBU",
+ "crop_xywh": [
+  376,
+  0,
+  628,
+  720
+ ],
+ "bbox_norm": [
+  0.29353543800466203,
+  -0.1764454074934417,
+  0.7851741769734552,
+  1.3425992329915364
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The suit was filed under Title II of the Americans with Disabilities Act and Section 504 of the Rehabilitation Act of 1973.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 169,
+ "stride": 1,
+ "start": "00:00:25.566",
+ "end": "00:00:31.200",
+ "duration_s": 5.634
+}

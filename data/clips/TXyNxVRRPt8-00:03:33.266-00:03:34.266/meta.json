@@ -1,0 +1,30 @@
+{
+ "vid": "TXyNxVRRPt8-00:03:33.266-00:03:34.266",
+ "yid": "TXyNxVRRPt8",
+ "crop_xywh": [
+  501,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.39145465426974824,
+  -0.16487738055947387,
+  0.8606109619140625,
+  1.1226447776511863
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thank you.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 30,
+ "stride": 1,
+ "start": "00:03:33.266",
+ "end": "00:03:34.266",
+ "duration_s": 1.0
+}

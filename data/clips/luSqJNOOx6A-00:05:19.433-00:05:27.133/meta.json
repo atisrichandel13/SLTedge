@@ -1,0 +1,30 @@
+{
+ "vid": "luSqJNOOx6A-00:05:19.433-00:05:27.133",
+ "yid": "luSqJNOOx6A",
+ "crop_xywh": [
+  656,
+  0,
+  472,
+  720
+ ],
+ "bbox_norm": [
+  0.5126727131241602,
+  -0.05062403577439329,
+  0.8812281743854496,
+  1.0857823527451103
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The disease once claimed up to 500 lives in the United States each year.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 231,
+ "stride": 1,
+ "start": "00:05:19.433",
+ "end": "00:05:27.133",
+ "duration_s": 7.7
+}

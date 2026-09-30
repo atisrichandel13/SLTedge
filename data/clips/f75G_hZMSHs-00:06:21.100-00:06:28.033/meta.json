@@ -1,0 +1,30 @@
+{
+ "vid": "f75G_hZMSHs-00:06:21.100-00:06:28.033",
+ "yid": "f75G_hZMSHs",
+ "crop_xywh": [
+  674,
+  0,
+  520,
+  720
+ ],
+ "bbox_norm": [
+  0.5269258249373663,
+  -0.126680203930621,
+  0.9338421556684706,
+  1.143442378304833
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Patterson then shook hands and said \"\"My name is Michael Patterson, sir.\"\"\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 208,
+ "stride": 1,
+ "start": "00:06:21.100",
+ "end": "00:06:28.033",
+ "duration_s": 6.933
+}

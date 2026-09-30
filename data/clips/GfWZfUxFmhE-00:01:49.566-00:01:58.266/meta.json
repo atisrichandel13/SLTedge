@@ -1,0 +1,30 @@
+{
+ "vid": "GfWZfUxFmhE-00:01:49.566-00:01:58.266",
+ "yid": "GfWZfUxFmhE",
+ "crop_xywh": [
+  112,
+  0,
+  282,
+  320
+ ],
+ "bbox_norm": [
+  0.19660808053997877,
+  -0.2025686730378829,
+  0.6950726806035085,
+  1.1754082593527981
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Each board member has been attending various conferences and events in our community, throughout the month, at all levels: local, state, or national.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  568,
+  320
+ ],
+ "n_frames": 261,
+ "stride": 1,
+ "start": "00:01:49.566",
+ "end": "00:01:58.266",
+ "duration_s": 8.7
+}

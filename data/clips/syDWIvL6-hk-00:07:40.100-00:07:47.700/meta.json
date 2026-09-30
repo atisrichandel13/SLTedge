@@ -1,0 +1,30 @@
+{
+ "vid": "syDWIvL6-hk-00:07:40.100-00:07:47.700",
+ "yid": "syDWIvL6-hk",
+ "crop_xywh": [
+  816,
+  151,
+  312,
+  492
+ ],
+ "bbox_norm": [
+  0.6374599976973101,
+  0.20937858928333627,
+  0.8811751192266291,
+  0.8928827358014656
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Washington State agricultural officials are asking residents to report any sightings of the giant hornets.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 228,
+ "stride": 1,
+ "start": "00:07:40.100",
+ "end": "00:07:47.700",
+ "duration_s": 7.6
+}

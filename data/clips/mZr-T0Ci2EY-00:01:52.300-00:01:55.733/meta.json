@@ -1,0 +1,30 @@
+{
+ "vid": "mZr-T0Ci2EY-00:01:52.300-00:01:55.733",
+ "yid": "mZr-T0Ci2EY",
+ "crop_xywh": [
+  240,
+  0,
+  444,
+  470
+ ],
+ "bbox_norm": [
+  0.2805782695458434,
+  -0.23604406996459343,
+  0.8025001346353732,
+  1.3763348242190592
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "TTYs can be burdensome, with technical issues and all.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 103,
+ "stride": 1,
+ "start": "00:01:52.300",
+ "end": "00:01:55.733",
+ "duration_s": 3.433
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:13:11.000-00:13:12.333",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  278,
+  0,
+  718,
+  720
+ ],
+ "bbox_norm": [
+  0.21681739842450176,
+  -0.18909757166732977,
+  0.7781387841259992,
+  1.320689818299847
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I've not really seen any negativity.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 40,
+ "stride": 1,
+ "start": "00:13:11.000",
+ "end": "00:13:12.333",
+ "duration_s": 1.333
+}

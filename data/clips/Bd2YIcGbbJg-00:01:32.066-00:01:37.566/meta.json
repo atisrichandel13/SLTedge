@@ -1,0 +1,30 @@
+{
+ "vid": "Bd2YIcGbbJg-00:01:32.066-00:01:37.566",
+ "yid": "Bd2YIcGbbJg",
+ "crop_xywh": [
+  645,
+  0,
+  540,
+  720
+ ],
+ "bbox_norm": [
+  0.5041730497397628,
+  -0.11559860586860342,
+  0.9265868271098417,
+  1.1031809786046511
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The police say it's the same vehicle that had a broken back window.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 165,
+ "stride": 1,
+ "start": "00:01:32.066",
+ "end": "00:01:37.566",
+ "duration_s": 5.5
+}

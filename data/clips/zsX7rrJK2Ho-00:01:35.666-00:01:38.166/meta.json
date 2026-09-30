@@ -1,0 +1,30 @@
+{
+ "vid": "zsX7rrJK2Ho-00:01:35.666-00:01:38.166",
+ "yid": "zsX7rrJK2Ho",
+ "crop_xywh": [
+  292,
+  0,
+  794,
+  720
+ ],
+ "bbox_norm": [
+  0.22801195356580944,
+  -0.19086851897063078,
+  0.848575816684299,
+  1.6128485973970388
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was delivered from Naples, Italy.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 75,
+ "stride": 1,
+ "start": "00:01:35.666",
+ "end": "00:01:38.166",
+ "duration_s": 2.5
+}

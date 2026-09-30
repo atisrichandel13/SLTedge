@@ -1,0 +1,30 @@
+{
+ "vid": "rAyFScCBavE-00:00:53.466-00:01:00.133",
+ "yid": "rAyFScCBavE",
+ "crop_xywh": [
+  692,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.5404935829038543,
+  -0.05813124397367427,
+  0.944407592556341,
+  1.0460339126655833
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The driver was performing a burnout.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 200,
+ "stride": 1,
+ "start": "00:00:53.466",
+ "end": "00:01:00.133",
+ "duration_s": 6.667
+}

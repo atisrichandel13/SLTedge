@@ -1,0 +1,30 @@
+{
+ "vid": "_2cg2YLx6mg-00:02:51.433-00:02:58.366",
+ "yid": "_2cg2YLx6mg",
+ "crop_xywh": [
+  645,
+  0,
+  540,
+  720
+ ],
+ "bbox_norm": [
+  0.5035593621871051,
+  -0.09615118820423134,
+  0.9259102194916967,
+  1.1743820938409544
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "However, Jonathan was not really paying attention and Bowie was acting weird.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 167,
+ "stride": 1,
+ "start": "00:02:51.433",
+ "end": "00:02:58.366",
+ "duration_s": 6.933
+}

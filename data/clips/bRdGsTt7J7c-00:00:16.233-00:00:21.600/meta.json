@@ -1,0 +1,30 @@
+{
+ "vid": "bRdGsTt7J7c-00:00:16.233-00:00:21.600",
+ "yid": "bRdGsTt7J7c",
+ "crop_xywh": [
+  379,
+  0,
+  550,
+  720
+ ],
+ "bbox_norm": [
+  0.2958793023619989,
+  -0.11850701534386837,
+  0.7265464320327297,
+  1.160758027270453
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I enjoy traveling around other countries and meeting other deaf people; I support CRPD.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 161,
+ "stride": 1,
+ "start": "00:00:16.233",
+ "end": "00:00:21.600",
+ "duration_s": 5.367
+}

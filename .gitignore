@@ -8,8 +8,8 @@ models/*/*.engine
 # ---- data ----
 data/raw/
 data/test_frames/
-data/calib_frames/
-data/clips/
+data/calib_frames/*.jpg
+data/clips/**/frames/
 data/openasl_test_pose/
 data/openasl_dev_pose/
 data/openasl_train_pose/
@@ -19,6 +19,14 @@ data/openasl_ref_pose/*.pkl
 # ---- bulky results (keep the .json and RESULTS.md, drop raw dumps) ----
 results/*.csv
 results/*.npz
+# 46 MB of raw 133-keypoint dumps (4 configs x 5 clips): the input to 2.5 pose->BLEU, and
+# reproducible with jetson/p4_clips.sh. The derived results/kpt_agreement_*.json ARE tracked.
+results/kpts/
+# the OpenASL authors' own released pose pkls for our 5 test clips (35 MB), fetched by
+# data/openasl_pose_fetch.py; they are the ceiling row for the pose->BLEU comparison.
+data/openasl_5clip_pose/
+# the 30-clip superset of the same released poses (25 MB of pkl), fetched the same way
+data/openasl_pose/
 results/*.pkl
 
 # ---- python / envs / editors ----
@@ -31,6 +39,26 @@ venv/
 .DS_Store
 .vscode/
 .idea/
+
+# ---- credentials (never commit) ----
+Jetson-access.md
+
+# ---- local mirror of the shared large-file repo (nested git clone) ----
+model-data-lpcv/
+
+# RTMW SDK export (123 MB); canonical copy on the Mac, re-download from the OpenMMLab SDK zip
+models/rtmw/*.onnx
+
+# OpenASL release tables, re-downloaded by data/openasl_fetch.py (40 MB)
+data/openasl_meta/
+# author-style 224x224 re-crop of the same five clips (crop-recipe experiment); regenerable with
+# data/openasl_fetch.py --crop-style openasl, and verified by data/verify_openasl_crop.py
+data/clips_openasl/*/frames/
+
+# transient fetch log (progress only; the real state is the clip dirs on disk)
+results/logs/fetch_full_split.log
+
+# ---- from the LM track ----
 runs/
 scratchpad/
 weights/adapt_*.pt

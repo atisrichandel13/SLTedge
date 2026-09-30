@@ -1,0 +1,30 @@
+{
+ "vid": "SsQxB7yYxgQ-00:05:10.766-00:05:17.600",
+ "yid": "SsQxB7yYxgQ",
+ "crop_xywh": [
+  617,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.48186682259164204,
+  -0.19781008016557014,
+  0.9707050804200211,
+  1.302321475372728
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We hope that the Camp Taloali site can be spared from the fires.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 205,
+ "stride": 1,
+ "start": "00:05:10.766",
+ "end": "00:05:17.600",
+ "duration_s": 6.834
+}

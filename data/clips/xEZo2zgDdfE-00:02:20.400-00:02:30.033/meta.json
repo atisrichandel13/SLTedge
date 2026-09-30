@@ -1,0 +1,30 @@
+{
+ "vid": "xEZo2zgDdfE-00:02:20.400-00:02:30.033",
+ "yid": "xEZo2zgDdfE",
+ "crop_xywh": [
+  108,
+  0,
+  252,
+  360
+ ],
+ "bbox_norm": [
+  0.22527049437336538,
+  -0.07512138154771593,
+  0.7508603781119161,
+  1.0985752666590314
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The NAD wishes to express its many thanks to the many members and supporters who participated in the successful NAD Legislative Day.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  480,
+  360
+ ],
+ "n_frames": 289,
+ "stride": 1,
+ "start": "00:02:20.400",
+ "end": "00:02:30.033",
+ "duration_s": 9.633
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "OtSXwPwHRx4-00:00:47.233-00:00:48.133",
+ "yid": "OtSXwPwHRx4",
+ "crop_xywh": [
+  293,
+  0,
+  672,
+  720
+ ],
+ "bbox_norm": [
+  0.2292786121368408,
+  -0.25670365934018735,
+  0.7547963937123616,
+  1.314932859679799
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Allow me to explain how.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 27,
+ "stride": 1,
+ "start": "00:00:47.233",
+ "end": "00:00:48.133",
+ "duration_s": 0.9
+}

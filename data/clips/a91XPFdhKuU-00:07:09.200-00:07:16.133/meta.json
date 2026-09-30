@@ -1,0 +1,30 @@
+{
+ "vid": "a91XPFdhKuU-00:07:09.200-00:07:16.133",
+ "yid": "a91XPFdhKuU",
+ "crop_xywh": [
+  681,
+  0,
+  504,
+  720
+ ],
+ "bbox_norm": [
+  0.5317874265095545,
+  -0.09459131365310157,
+  0.9267516325390529,
+  1.0812123707362584
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Last Thursday police reported the mother was no longer cooperating with police.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 208,
+ "stride": 1,
+ "start": "00:07:09.200",
+ "end": "00:07:16.133",
+ "duration_s": 6.933
+}

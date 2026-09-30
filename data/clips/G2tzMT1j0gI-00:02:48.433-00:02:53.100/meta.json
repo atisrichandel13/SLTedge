@@ -1,0 +1,30 @@
+{
+ "vid": "G2tzMT1j0gI-00:02:48.433-00:02:53.100",
+ "yid": "G2tzMT1j0gI",
+ "crop_xywh": [
+  312,
+  0,
+  674,
+  720
+ ],
+ "bbox_norm": [
+  0.24381156421843028,
+  -0.2051204000200544,
+  0.7704020386650449,
+  1.2486211108152199
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This may not provide a smooth meeting experience for you.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 140,
+ "stride": 1,
+ "start": "00:02:48.433",
+ "end": "00:02:53.100",
+ "duration_s": 4.667
+}

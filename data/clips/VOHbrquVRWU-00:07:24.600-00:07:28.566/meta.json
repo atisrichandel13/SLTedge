@@ -1,0 +1,30 @@
+{
+ "vid": "VOHbrquVRWU-00:07:24.600-00:07:28.566",
+ "yid": "VOHbrquVRWU",
+ "crop_xywh": [
+  676,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.5283179402351379,
+  -0.09925980832841662,
+  0.9472648104031881,
+  1.1148757718227527
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Rest peacefully our sweet baby boy.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 119,
+ "stride": 1,
+ "start": "00:07:24.600",
+ "end": "00:07:28.566",
+ "duration_s": 3.966
+}

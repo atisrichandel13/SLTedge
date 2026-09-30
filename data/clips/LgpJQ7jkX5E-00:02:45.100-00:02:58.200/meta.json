@@ -1,0 +1,30 @@
+{
+ "vid": "LgpJQ7jkX5E-00:02:45.100-00:02:58.200",
+ "yid": "LgpJQ7jkX5E",
+ "crop_xywh": [
+  631,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.4928319822383832,
+  -0.03193713401440327,
+  0.9088025310371496,
+  1.1594223455705388
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As a result, the debate over the connection between video game violence and real-world violence has started again.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 393,
+ "stride": 1,
+ "start": "00:02:45.100",
+ "end": "00:02:58.200",
+ "duration_s": 13.1
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "ubC82N6N1bQ-00:01:05.100-00:01:07.033",
+ "yid": "ubC82N6N1bQ",
+ "crop_xywh": [
+  151,
+  0,
+  520,
+  720
+ ],
+ "bbox_norm": [
+  0.1181656645403968,
+  -0.006176830809793355,
+  0.524018814166387,
+  1.089148145840492
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Try my best and if I fail, I'll find something else to do!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 58,
+ "stride": 1,
+ "start": "00:01:05.100",
+ "end": "00:01:07.033",
+ "duration_s": 1.933
+}

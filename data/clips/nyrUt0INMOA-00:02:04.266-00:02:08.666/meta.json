@@ -1,0 +1,30 @@
+{
+ "vid": "nyrUt0INMOA-00:02:04.266-00:02:08.666",
+ "yid": "nyrUt0INMOA",
+ "crop_xywh": [
+  315,
+  0,
+  584,
+  720
+ ],
+ "bbox_norm": [
+  0.24574894772635564,
+  -0.04711778585802871,
+  0.7034871141115825,
+  1.2635240688245482
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Discuss how to invest in youth.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 132,
+ "stride": 1,
+ "start": "00:02:04.266",
+ "end": "00:02:08.666",
+ "duration_s": 4.4
+}

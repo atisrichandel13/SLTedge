@@ -1,0 +1,30 @@
+{
+ "vid": "y0URUVcvrTg-00:01:42.000-00:01:47.733",
+ "yid": "y0URUVcvrTg",
+ "crop_xywh": [
+  412,
+  0,
+  364,
+  470
+ ],
+ "bbox_norm": [
+  0.48233544103036,
+  -0.1463794733760567,
+  0.9087208308516318,
+  1.1165420216847335
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "At that meeting, we\u2019ll be discussing status updates, plans for the months leading up to the Conference!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 172,
+ "stride": 1,
+ "start": "00:01:42.000",
+ "end": "00:01:47.733",
+ "duration_s": 5.733
+}

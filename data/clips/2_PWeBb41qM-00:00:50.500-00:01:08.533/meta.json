@@ -1,0 +1,30 @@
+{
+ "vid": "2_PWeBb41qM-00:00:50.500-00:01:08.533",
+ "yid": "2_PWeBb41qM",
+ "crop_xywh": [
+  812,
+  150,
+  306,
+  476
+ ],
+ "bbox_norm": [
+  0.6343917653245745,
+  0.208270416419711,
+  0.8736131042804358,
+  0.869098740503723
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They are the first interpreting team in the country to be embedded in the state's emergency management operation center alongside other critical personnel.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 541,
+ "stride": 1,
+ "start": "00:00:50.500",
+ "end": "00:01:08.533",
+ "duration_s": 18.033
+}

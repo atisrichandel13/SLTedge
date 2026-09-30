@@ -1,0 +1,30 @@
+{
+ "vid": "pLRXqP1N9W0-00:00:13.733-00:00:17.033",
+ "yid": "pLRXqP1N9W0",
+ "crop_xywh": [
+  205,
+  0,
+  350,
+  470
+ ],
+ "bbox_norm": [
+  0.23988334780833762,
+  -0.06389369558780751,
+  0.650391514798238,
+  1.1164689733626996
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Admittedly, it is a little awkward.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 99,
+ "stride": 1,
+ "start": "00:00:13.733",
+ "end": "00:00:17.033",
+ "duration_s": 3.3
+}

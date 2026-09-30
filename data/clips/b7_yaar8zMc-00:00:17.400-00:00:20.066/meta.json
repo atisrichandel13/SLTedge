@@ -1,0 +1,30 @@
+{
+ "vid": "b7_yaar8zMc-00:00:17.400-00:00:20.066",
+ "yid": "b7_yaar8zMc",
+ "crop_xywh": [
+  111,
+  35,
+  250,
+  432
+ ],
+ "bbox_norm": [
+  0.13055843695380304,
+  0.07299983080695657,
+  0.4221719441490736,
+  0.9727102868697223
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I\u2019m coordinating all the details for the Gala.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 80,
+ "stride": 1,
+ "start": "00:00:17.400",
+ "end": "00:00:20.066",
+ "duration_s": 2.666
+}

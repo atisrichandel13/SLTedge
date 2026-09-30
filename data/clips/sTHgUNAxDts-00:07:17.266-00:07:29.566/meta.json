@@ -1,0 +1,30 @@
+{
+ "vid": "sTHgUNAxDts-00:07:17.266-00:07:29.566",
+ "yid": "sTHgUNAxDts",
+ "crop_xywh": [
+  777,
+  98,
+  406,
+  622
+ ],
+ "bbox_norm": [
+  0.6069147938006634,
+  0.13601244734572218,
+  0.9242844842575693,
+  1.1154872344420836
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The couple spoke with children who showed them paintings they had made of their parents and Easter crafts they had created.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 369,
+ "stride": 1,
+ "start": "00:07:17.266",
+ "end": "00:07:29.566",
+ "duration_s": 12.3
+}

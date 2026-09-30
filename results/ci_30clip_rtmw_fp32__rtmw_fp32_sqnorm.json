@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_30clip_rtmw_fp32.json",
+ "b": "results/eval_30clip_rtmw_fp32_sqnorm.json",
+ "n_clips": 30,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 16.554036954380805,
+  "b": 17.520470984290526,
+  "delta": 0.9664340299097205,
+  "ci": [
+   -2.6224447792564294,
+   4.643755283044573
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.3115
+ },
+ "rouge_l": {
+  "a": 40.7171367379169,
+  "b": 42.728156629194274,
+  "delta": 2.011019891277371,
+  "ci": [
+   -1.808947432199625,
+   5.743610332815923
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.1415
+ }
+}

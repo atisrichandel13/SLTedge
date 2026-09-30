@@ -1,0 +1,30 @@
+{
+ "vid": "7JF1onKatVI-00:01:21.666-00:01:26.566",
+ "yid": "7JF1onKatVI",
+ "crop_xywh": [
+  404,
+  9,
+  468,
+  710
+ ],
+ "bbox_norm": [
+  0.31561748186747235,
+  0.012618974991786627,
+  0.6808674865298802,
+  1.1033032281899158
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The judges will watch for improvements compared to their previous runs.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 118,
+ "stride": 1,
+ "start": "00:01:21.666",
+ "end": "00:01:26.566",
+ "duration_s": 4.9
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "i96QICT6BiU-00:09:08.700-00:09:16.500",
+ "yid": "i96QICT6BiU",
+ "crop_xywh": [
+  737,
+  0,
+  480,
+  716
+ ],
+ "bbox_norm": [
+  0.575825844993887,
+  -0.014729533823885659,
+  0.9518406845802485,
+  0.9946529207714255
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Well, little Manuel was hungry - really, really hungry - last Friday and wanted to order pizza.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 234,
+ "stride": 1,
+ "start": "00:09:08.700",
+ "end": "00:09:16.500",
+ "duration_s": 7.8
+}

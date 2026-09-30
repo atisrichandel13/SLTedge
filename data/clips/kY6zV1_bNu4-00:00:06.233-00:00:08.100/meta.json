@@ -1,0 +1,30 @@
+{
+ "vid": "kY6zV1_bNu4-00:00:06.233-00:00:08.100",
+ "yid": "kY6zV1_bNu4",
+ "crop_xywh": [
+  580,
+  0,
+  630,
+  720
+ ],
+ "bbox_norm": [
+  0.4531511200798882,
+  -0.16439450424885063,
+  0.946295091840956,
+  1.410489018758138
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hope your weekend was good.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 45,
+ "stride": 1,
+ "start": "00:00:06.233",
+ "end": "00:00:08.100",
+ "duration_s": 1.867
+}

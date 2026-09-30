@@ -1,0 +1,30 @@
+{
+ "vid": "z3jAMn3xpoM-00:08:41.000-00:08:49.100",
+ "yid": "z3jAMn3xpoM",
+ "crop_xywh": [
+  640,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.5001398800181694,
+  -0.16733982089065008,
+  0.9691869385388433,
+  1.2571648814690806
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "One of them filmed a Facebook Live video that showed the officer lying on the floor, bleeding.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 243,
+ "stride": 1,
+ "start": "00:08:41.000",
+ "end": "00:08:49.100",
+ "duration_s": 8.1
+}

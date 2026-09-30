@@ -1,0 +1,30 @@
+{
+ "vid": "rzGo6eQvstY-00:03:59.066-00:04:05.366",
+ "yid": "rzGo6eQvstY",
+ "crop_xywh": [
+  603,
+  0,
+  520,
+  720
+ ],
+ "bbox_norm": [
+  0.4707567984597725,
+  -0.06541059319271214,
+  0.8784896716736911,
+  1.1567018594425789
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He testified against and changed his story.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 189,
+ "stride": 1,
+ "start": "00:03:59.066",
+ "end": "00:04:05.366",
+ "duration_s": 6.3
+}

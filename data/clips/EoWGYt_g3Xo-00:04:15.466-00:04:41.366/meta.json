@@ -1,0 +1,30 @@
+{
+ "vid": "EoWGYt_g3Xo-00:04:15.466-00:04:41.366",
+ "yid": "EoWGYt_g3Xo",
+ "crop_xywh": [
+  624,
+  0,
+  568,
+  720
+ ],
+ "bbox_norm": [
+  0.48711590135199395,
+  -0.1460173862272518,
+  0.9319866512575721,
+  1.1474450261278144
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "When asked to choose their preference from among 16 candidates, 33 percent said Biden could win in 2020, compared to 13 percent who backed 2016 Democratic Bernie Sanders.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 777,
+ "stride": 1,
+ "start": "00:04:15.466",
+ "end": "00:04:41.366",
+ "duration_s": 25.9
+}

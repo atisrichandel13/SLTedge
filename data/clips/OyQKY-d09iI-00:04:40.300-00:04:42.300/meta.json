@@ -1,0 +1,30 @@
+{
+ "vid": "OyQKY-d09iI-00:04:40.300-00:04:42.300",
+ "yid": "OyQKY-d09iI",
+ "crop_xywh": [
+  357,
+  0,
+  580,
+  720
+ ],
+ "bbox_norm": [
+  0.27869086583455405,
+  -0.14454765602394384,
+  0.7331438891092936,
+  1.110515407986111
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "USA is now playing Brazil.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 48,
+ "stride": 1,
+ "start": "00:04:40.300",
+ "end": "00:04:42.300",
+ "duration_s": 2.0
+}

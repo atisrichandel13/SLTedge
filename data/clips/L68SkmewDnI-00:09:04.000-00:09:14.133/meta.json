@@ -1,0 +1,30 @@
+{
+ "vid": "L68SkmewDnI-00:09:04.000-00:09:14.133",
+ "yid": "L68SkmewDnI",
+ "crop_xywh": [
+  551,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.4305755430338334,
+  -0.1677914095393474,
+  0.8970040610047424,
+  1.2181140348934711
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He and three other officers involved in with Floyd's arrest and eventual death have been fired.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 244,
+ "stride": 1,
+ "start": "00:09:04.000",
+ "end": "00:09:14.133",
+ "duration_s": 10.133
+}

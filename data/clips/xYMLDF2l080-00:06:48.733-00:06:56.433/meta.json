@@ -1,0 +1,30 @@
+{
+ "vid": "xYMLDF2l080-00:06:48.733-00:06:56.433",
+ "yid": "xYMLDF2l080",
+ "crop_xywh": [
+  781,
+  125,
+  404,
+  594
+ ],
+ "bbox_norm": [
+  0.6104920123485809,
+  0.17428579758808688,
+  0.9257871059661216,
+  1.0573914886366391
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That is Trump's worst approval rating since January 2019.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 231,
+ "stride": 1,
+ "start": "00:06:48.733",
+ "end": "00:06:56.433",
+ "duration_s": 7.7
+}

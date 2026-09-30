@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:06:57.633-00:07:06.600",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  583,
+  0,
+  562,
+  720
+ ],
+ "bbox_norm": [
+  0.45538113087783627,
+  -0.16708510912985466,
+  0.8942262590667347,
+  1.1641930304109969
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Endgame movie also received praise from not only fans, but critics as well.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 269,
+ "stride": 1,
+ "start": "00:06:57.633",
+ "end": "00:07:06.600",
+ "duration_s": 8.967
+}

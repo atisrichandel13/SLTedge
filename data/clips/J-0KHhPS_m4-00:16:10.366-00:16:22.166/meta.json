@@ -1,0 +1,30 @@
+{
+ "vid": "J-0KHhPS_m4-00:16:10.366-00:16:22.166",
+ "yid": "J-0KHhPS_m4",
+ "crop_xywh": [
+  637,
+  0,
+  472,
+  658
+ ],
+ "bbox_norm": [
+  0.4974330858445503,
+  -0.08017438207993485,
+  0.8667106074346623,
+  0.9147525247833539
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So instead of being scared of Friday the 13th, try incorporating some positive changes in your life and see what happens today.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 354,
+ "stride": 1,
+ "start": "00:16:10.366",
+ "end": "00:16:22.166",
+ "duration_s": 11.8
+}

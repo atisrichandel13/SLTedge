@@ -1,0 +1,30 @@
+{
+ "vid": "LT0-h4P_xBY-00:07:54.500-00:08:00.200",
+ "yid": "LT0-h4P_xBY",
+ "crop_xywh": [
+  808,
+  153,
+  306,
+  480
+ ],
+ "bbox_norm": [
+  0.6310192052055807,
+  0.2129716748505636,
+  0.8704289324143353,
+  0.8799706889133827
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was the second largest number of initial unemployment claims in history.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 171,
+ "stride": 1,
+ "start": "00:07:54.500",
+ "end": "00:08:00.200",
+ "duration_s": 5.7
+}

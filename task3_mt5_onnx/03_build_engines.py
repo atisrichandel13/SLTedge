@@ -76,6 +76,7 @@ def main():
     ap.add_argument("--dec-len", type=triple, default=(1, 1, 128), help="decoder length; max = decode budget")
     ap.add_argument("--dim", action="append", default=[], help="extra NAME=min,opt,max")
     ap.add_argument("--fp16", action="store_true")
+    ap.add_argument("--bf16", action="store_true", help="BF16 engines (mT5 overflows in FP16)")
     ap.add_argument("--workspace-gb", type=float, default=3.0)
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args()
@@ -95,6 +96,13 @@ def main():
         dim_ranges[k] = triple(v)
 
     targets = list(CANDIDATES) if args.which == "all" else [args.which]
+    try:  # Jetson: nvmap draws from MemFree only; evict our own files from page cache first
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "jetson"))
+        from drop_file_cache import main as _drop_cache
+        if os.path.exists("/sys/class/devfreq/17000000.gpu"):
+            _drop_cache()
+    except Exception as e:  # noqa: BLE001 - best effort
+        print("[build] page-cache drop skipped:", e)
     for t in targets:
         path = next((os.path.join(args.onnx_dir, c) for c in CANDIDATES[t]
                      if os.path.exists(os.path.join(args.onnx_dir, c))), None)
@@ -107,8 +115,9 @@ def main():
             print(f"        {n:40s} min={a} opt={b} max={c}")
         if len(prof) > 6:
             print(f"        ... {len(prof) - 6} more inputs with the same pattern")
-        engine = os.path.join(args.onnx_dir, f"{t}_{'fp16' if args.fp16 else 'fp32'}.engine")
-        build_engine_from_onnx(path, engine, fp16=args.fp16, workspace_gb=args.workspace_gb,
+        tag = "fp16" if args.fp16 else ("bf16" if args.bf16 else "fp32")
+        engine = os.path.join(args.onnx_dir, f"{t}_{tag}.engine")
+        build_engine_from_onnx(path, engine, fp16=args.fp16, bf16=args.bf16, workspace_gb=args.workspace_gb,
                                profiles=[prof], verbose=args.verbose)
         gc.collect()
 

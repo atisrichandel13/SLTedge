@@ -1,0 +1,30 @@
+{
+ "vid": "4ckqY82422o-00:02:21.333-00:02:33.166",
+ "yid": "4ckqY82422o",
+ "crop_xywh": [
+  747,
+  88,
+  404,
+  632
+ ],
+ "bbox_norm": [
+  0.5836214537973757,
+  0.12286809050006632,
+  0.8999906977017721,
+  1.0904515301739728
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That is a rare, brain destroying amoeba that enters through the nasal passage and it's usually fatal.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 355,
+ "stride": 1,
+ "start": "00:02:21.333",
+ "end": "00:02:33.166",
+ "duration_s": 11.833
+}

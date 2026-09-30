@@ -1,0 +1,30 @@
+{
+ "vid": "uZwKNtHx9FE-00:24:16.033-00:24:17.200",
+ "yid": "uZwKNtHx9FE",
+ "crop_xywh": [
+  415,
+  543,
+  236,
+  176
+ ],
+ "bbox_norm": [
+  0.3242709239323934,
+  0.7547561080367476,
+  0.5089032252629598,
+  1.254084551775897
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That is all for today.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 28,
+ "stride": 1,
+ "start": "00:24:16.033",
+ "end": "00:24:17.200",
+ "duration_s": 1.167
+}

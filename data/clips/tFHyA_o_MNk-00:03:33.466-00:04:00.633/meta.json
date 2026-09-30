@@ -1,0 +1,30 @@
+{
+ "vid": "tFHyA_o_MNk-00:03:33.466-00:04:00.633",
+ "yid": "tFHyA_o_MNk",
+ "crop_xywh": [
+  636,
+  0,
+  550,
+  720
+ ],
+ "bbox_norm": [
+  0.49709893267876626,
+  -0.1569836445841575,
+  0.9274886378805146,
+  1.091638863110293
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Researchers at San Francisco State University said that rates of attempted suicide among LGBTQ youth are more than double if their parents try to change their sexual orientation, and those rates triple if their parents and therapists and religious leaders try to change it.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 653,
+ "stride": 1,
+ "start": "00:03:33.466",
+ "end": "00:04:00.633",
+ "duration_s": 27.167
+}

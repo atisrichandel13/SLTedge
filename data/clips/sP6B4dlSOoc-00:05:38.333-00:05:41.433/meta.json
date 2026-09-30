@@ -1,0 +1,30 @@
+{
+ "vid": "sP6B4dlSOoc-00:05:38.333-00:05:41.433",
+ "yid": "sP6B4dlSOoc",
+ "crop_xywh": [
+  631,
+  0,
+  556,
+  720
+ ],
+ "bbox_norm": [
+  0.49314934078015776,
+  -0.10321152001096491,
+  0.9278729773404305,
+  1.1981531607942042
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's important to do the same for your dog space.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 93,
+ "stride": 1,
+ "start": "00:05:38.333",
+ "end": "00:05:41.433",
+ "duration_s": 3.1
+}

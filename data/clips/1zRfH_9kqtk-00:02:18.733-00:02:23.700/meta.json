@@ -1,0 +1,30 @@
+{
+ "vid": "1zRfH_9kqtk-00:02:18.733-00:02:23.700",
+ "yid": "1zRfH_9kqtk",
+ "crop_xywh": [
+  243,
+  0,
+  780,
+  720
+ ],
+ "bbox_norm": [
+  0.19017338116963703,
+  -0.19376781981668356,
+  0.7996126630571153,
+  1.6470855745857145
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But now... they announced there will be no community captions.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 149,
+ "stride": 1,
+ "start": "00:02:18.733",
+ "end": "00:02:23.700",
+ "duration_s": 4.967
+}

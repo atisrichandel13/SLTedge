@@ -1,0 +1,30 @@
+{
+ "vid": "Nmmi7qu_a2A-00:03:47.233-00:03:55.666",
+ "yid": "Nmmi7qu_a2A",
+ "crop_xywh": [
+  396,
+  0,
+  534,
+  708
+ ],
+ "bbox_norm": [
+  0.3091516310872595,
+  -0.17234086498628948,
+  0.7270912273257386,
+  0.9826609981345714
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I\u2019ve taken different workshops, including medical, legal, and DeafBlind training.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 253,
+ "stride": 1,
+ "start": "00:03:47.233",
+ "end": "00:03:55.666",
+ "duration_s": 8.433
+}

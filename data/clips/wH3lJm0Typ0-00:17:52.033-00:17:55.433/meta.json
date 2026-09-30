@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:17:52.033-00:17:55.433",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  32,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.024916265881250777,
+  -0.05619598200291763,
+  0.47016704044644797,
+  1.2297716534326946
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He saw that I had this potential to succeed.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 102,
+ "stride": 1,
+ "start": "00:17:52.033",
+ "end": "00:17:55.433",
+ "duration_s": 3.4
+}

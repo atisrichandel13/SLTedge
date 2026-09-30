@@ -1,0 +1,30 @@
+{
+ "vid": "y7KIrON1uco-00:02:07.733-00:02:10.133",
+ "yid": "y7KIrON1uco",
+ "crop_xywh": [
+  709,
+  0,
+  492,
+  704
+ ],
+ "bbox_norm": [
+  0.5538430150349936,
+  -0.08432650530779803,
+  0.9379340320163302,
+  0.9780560726589628
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's expected to be arraigned Thursday.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 72,
+ "stride": 1,
+ "start": "00:02:07.733",
+ "end": "00:02:10.133",
+ "duration_s": 2.4
+}

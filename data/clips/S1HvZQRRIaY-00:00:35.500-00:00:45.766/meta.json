@@ -1,0 +1,30 @@
+{
+ "vid": "S1HvZQRRIaY-00:00:35.500-00:00:45.766",
+ "yid": "S1HvZQRRIaY",
+ "crop_xywh": [
+  680,
+  0,
+  518,
+  720
+ ],
+ "bbox_norm": [
+  0.530976471336939,
+  -0.1257071464292465,
+  0.9360467413420318,
+  1.0814221476710968
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "200 people were killed and many more injured all across Sri Lanka as a result of eight explosions.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 308,
+ "stride": 1,
+ "start": "00:00:35.500",
+ "end": "00:00:45.766",
+ "duration_s": 10.266
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "YwHni5MhlAc-00:01:21.400-00:01:28.733",
+ "yid": "YwHni5MhlAc",
+ "crop_xywh": [
+  220,
+  0,
+  418,
+  470
+ ],
+ "bbox_norm": [
+  0.25702647582150173,
+  -0.20795781284974207,
+  0.7473178576834283,
+  1.3404498728377676
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There may be state laws that apply to employers with less than 15 employees, watch out for that.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 220,
+ "stride": 1,
+ "start": "00:01:21.400",
+ "end": "00:01:28.733",
+ "duration_s": 7.333
+}

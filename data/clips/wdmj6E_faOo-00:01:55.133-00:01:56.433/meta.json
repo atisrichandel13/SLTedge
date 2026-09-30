@@ -1,0 +1,30 @@
+{
+ "vid": "wdmj6E_faOo-00:01:55.133-00:01:56.433",
+ "yid": "wdmj6E_faOo",
+ "crop_xywh": [
+  176,
+  37,
+  438,
+  620
+ ],
+ "bbox_norm": [
+  0.13765542060136796,
+  0.05118473900689019,
+  0.4801637247204781,
+  0.9145652612050374
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I needed to write a book.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 39,
+ "stride": 1,
+ "start": "00:01:55.133",
+ "end": "00:01:56.433",
+ "duration_s": 1.3
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "iMJ9CjBX7eo-00:00:25.333-00:00:28.466",
+ "yid": "iMJ9CjBX7eo",
+ "crop_xywh": [
+  450,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.3512324023665043,
+  -0.08683272690800896,
+  0.7971691407655415,
+  1.2077306423968042
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Phoenix, Arizona.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 94,
+ "stride": 1,
+ "start": "00:00:25.333",
+ "end": "00:00:28.466",
+ "duration_s": 3.133
+}

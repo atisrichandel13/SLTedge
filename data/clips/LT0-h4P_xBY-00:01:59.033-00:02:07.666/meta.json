@@ -1,0 +1,30 @@
+{
+ "vid": "LT0-h4P_xBY-00:01:59.033-00:02:07.666",
+ "yid": "LT0-h4P_xBY",
+ "crop_xywh": [
+  799,
+  138,
+  320,
+  500
+ ],
+ "bbox_norm": [
+  0.6239817482359866,
+  0.19207964056208904,
+  0.8751882598755207,
+  0.886729544781624
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The virus attack rate has lowered as has the demand for supplies, such as hospital beds.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 259,
+ "stride": 1,
+ "start": "00:01:59.033",
+ "end": "00:02:07.666",
+ "duration_s": 8.633
+}

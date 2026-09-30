@@ -1,0 +1,30 @@
+{
+ "vid": "gxjb6BJX3w0-00:06:20.500-00:06:33.100",
+ "yid": "gxjb6BJX3w0",
+ "crop_xywh": [
+  652,
+  0,
+  460,
+  660
+ ],
+ "bbox_norm": [
+  0.509186201346548,
+  -0.05337196260864971,
+  0.8684821768810874,
+  0.9174843820214968
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Since pharmacies have evening and weekend hours, and there's no need for an appointment, they are a great alternative for busy parents.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 378,
+ "stride": 1,
+ "start": "00:06:20.500",
+ "end": "00:06:33.100",
+ "duration_s": 12.6
+}

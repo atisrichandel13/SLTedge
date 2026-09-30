@@ -1,0 +1,30 @@
+{
+ "vid": "uRTqnmqIlnQ-00:02:46.300-00:02:52.733",
+ "yid": "uRTqnmqIlnQ",
+ "crop_xywh": [
+  528,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.41270135442415873,
+  -0.2007728903381913,
+  0.8924547692139944,
+  1.3083852975456802
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Finland has 4,200 cases and 170 deaths.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 155,
+ "stride": 1,
+ "start": "00:02:46.300",
+ "end": "00:02:52.733",
+ "duration_s": 6.433
+}

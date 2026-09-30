@@ -1,0 +1,30 @@
+{
+ "vid": "auhv4QGyB-U-00:03:23.733-00:03:37.566",
+ "yid": "auhv4QGyB-U",
+ "crop_xywh": [
+  634,
+  0,
+  530,
+  720
+ ],
+ "bbox_norm": [
+  0.49535606529818005,
+  -0.09117191387893152,
+  0.9094612562034025,
+  1.1265000126713998
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"It said there was a 44 percent increase in smoking depictions in the second season of \"\"Stranger Things\"\".\"",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 415,
+ "stride": 1,
+ "start": "00:03:23.733",
+ "end": "00:03:37.566",
+ "duration_s": 13.833
+}

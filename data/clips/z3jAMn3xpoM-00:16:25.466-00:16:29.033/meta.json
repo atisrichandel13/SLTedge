@@ -1,0 +1,30 @@
+{
+ "vid": "z3jAMn3xpoM-00:16:25.466-00:16:29.033",
+ "yid": "z3jAMn3xpoM",
+ "crop_xywh": [
+  660,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.5157971594068739,
+  -0.15562480072075308,
+  0.9470069658188593,
+  1.146248317563765
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thank you, Otalora, for sending in the video.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 107,
+ "stride": 1,
+ "start": "00:16:25.466",
+ "end": "00:16:29.033",
+ "duration_s": 3.567
+}

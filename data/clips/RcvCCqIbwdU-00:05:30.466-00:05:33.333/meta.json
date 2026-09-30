@@ -1,0 +1,30 @@
+{
+ "vid": "RcvCCqIbwdU-00:05:30.466-00:05:33.333",
+ "yid": "RcvCCqIbwdU",
+ "crop_xywh": [
+  260,
+  0,
+  304,
+  490
+ ],
+ "bbox_norm": [
+  0.20306146214990056,
+  -0.03615345175749336,
+  0.4417419594876907,
+  0.6805826293097602
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Limit salty snacks.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:05:30.466",
+ "end": "00:05:33.333",
+ "duration_s": 2.867
+}

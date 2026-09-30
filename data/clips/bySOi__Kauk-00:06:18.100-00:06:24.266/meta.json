@@ -1,0 +1,30 @@
+{
+ "vid": "bySOi__Kauk-00:06:18.100-00:06:24.266",
+ "yid": "bySOi__Kauk",
+ "crop_xywh": [
+  680,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.530886900961936,
+  -0.12495210817506959,
+  0.9507790969298766,
+  1.0843482169303091
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The officers involved have been placed on desk duty.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 185,
+ "stride": 1,
+ "start": "00:06:18.100",
+ "end": "00:06:24.266",
+ "duration_s": 6.166
+}

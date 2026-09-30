@@ -1,0 +1,30 @@
+{
+ "vid": "TUH4q-QBV7k-00:04:46.066-00:05:03.366",
+ "yid": "TUH4q-QBV7k",
+ "crop_xywh": [
+  657,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.513515763099377,
+  -0.06795515769567245,
+  0.9121300327472197,
+  1.076867079055547
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That's more than a third of the country and the highest figure on record in the 17 years since tracking holiday travel.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 519,
+ "stride": 1,
+ "start": "00:04:46.066",
+ "end": "00:05:03.366",
+ "duration_s": 17.3
+}

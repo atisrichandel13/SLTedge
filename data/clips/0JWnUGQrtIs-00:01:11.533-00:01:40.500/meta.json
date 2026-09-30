@@ -1,0 +1,30 @@
+{
+ "vid": "0JWnUGQrtIs-00:01:11.533-00:01:40.500",
+ "yid": "0JWnUGQrtIs",
+ "crop_xywh": [
+  592,
+  0,
+  630,
+  720
+ ],
+ "bbox_norm": [
+  0.4626453980632212,
+  -0.1650801076844379,
+  0.9544403700992979,
+  1.254254134597551
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They voted 'yes' to nominate Kavanaugh to become judge but with one big stipulation: that the Senate floor delay its final vote until after a one-week investigation by the FBI into Professor Christine Blasey Ford's allegations of sexual assault against Kavanaugh.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 869,
+ "stride": 1,
+ "start": "00:01:11.533",
+ "end": "00:01:40.500",
+ "duration_s": 28.967
+}

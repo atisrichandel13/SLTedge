@@ -1,0 +1,30 @@
+{
+ "vid": "VOHbrquVRWU-00:10:44.100-00:10:51.233",
+ "yid": "VOHbrquVRWU",
+ "crop_xywh": [
+  670,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.5230771469515424,
+  -0.09413403848653,
+  0.9495824664138084,
+  1.1609616622136238
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "People don't often interact with koalas, in fact they usually keep their distance.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 214,
+ "stride": 1,
+ "start": "00:10:44.100",
+ "end": "00:10:51.233",
+ "duration_s": 7.133
+}

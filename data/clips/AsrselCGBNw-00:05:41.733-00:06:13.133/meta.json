@@ -1,0 +1,30 @@
+{
+ "vid": "AsrselCGBNw-00:05:41.733-00:06:13.133",
+ "yid": "AsrselCGBNw",
+ "crop_xywh": [
+  610,
+  0,
+  644,
+  720
+ ],
+ "bbox_norm": [
+  0.47628584093097237,
+  -0.21494362917269721,
+  0.9806583290167377,
+  1.3170446387090426
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A bar owner in Omaha, Nebraska - Jake Gardner - committed suicide after he was indicted by a grand jury with shooting and killing a 22-year-old Black Lives Matter protester named James Scurlock.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 942,
+ "stride": 1,
+ "start": "00:05:41.733",
+ "end": "00:06:13.133",
+ "duration_s": 31.4
+}

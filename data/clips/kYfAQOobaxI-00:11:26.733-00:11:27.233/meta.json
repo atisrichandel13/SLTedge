@@ -1,0 +1,30 @@
+{
+ "vid": "kYfAQOobaxI-00:11:26.733-00:11:27.233",
+ "yid": "kYfAQOobaxI",
+ "crop_xywh": [
+  722,
+  0,
+  478,
+  672
+ ],
+ "bbox_norm": [
+  0.5642805576324463,
+  -0.07587773358380352,
+  0.938528299331665,
+  0.9336730427212185
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your language.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 15,
+ "stride": 1,
+ "start": "00:11:26.733",
+ "end": "00:11:27.233",
+ "duration_s": 0.5
+}

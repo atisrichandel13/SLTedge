@@ -1,0 +1,30 @@
+{
+ "vid": "oUljxXXBVfY-00:08:26.066-00:08:38.333",
+ "yid": "oUljxXXBVfY",
+ "crop_xywh": [
+  603,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.47106850564816577,
+  -0.15956009327804077,
+  0.9126735638763945,
+  1.1539951888405895
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Three of them were from the Kirkland nursing home and the sixth is a person in Snohomish County in the Seattle area.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 295,
+ "stride": 1,
+ "start": "00:08:26.066",
+ "end": "00:08:38.333",
+ "duration_s": 12.267
+}

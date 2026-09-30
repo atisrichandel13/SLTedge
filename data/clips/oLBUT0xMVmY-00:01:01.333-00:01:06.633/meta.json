@@ -1,0 +1,30 @@
+{
+ "vid": "oLBUT0xMVmY-00:01:01.333-00:01:06.633",
+ "yid": "oLBUT0xMVmY",
+ "crop_xywh": [
+  185,
+  0,
+  538,
+  470
+ ],
+ "bbox_norm": [
+  0.2170579037007459,
+  -0.17113685405000728,
+  0.8469659092833901,
+  1.7098362755268177
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Should we focus our energy on supporting these deaf schools?",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 159,
+ "stride": 1,
+ "start": "00:01:01.333",
+ "end": "00:01:06.633",
+ "duration_s": 5.3
+}

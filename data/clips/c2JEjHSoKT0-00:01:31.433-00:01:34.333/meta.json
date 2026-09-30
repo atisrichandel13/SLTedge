@@ -1,0 +1,30 @@
+{
+ "vid": "c2JEjHSoKT0-00:01:31.433-00:01:34.333",
+ "yid": "c2JEjHSoKT0",
+ "crop_xywh": [
+  290,
+  0,
+  772,
+  720
+ ],
+ "bbox_norm": [
+  0.22691482173071967,
+  -0.2851276060190711,
+  0.8299624893400405,
+  1.5355080573156537
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "When you go, you may need accessibility accommodations.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:01:31.433",
+ "end": "00:01:34.333",
+ "duration_s": 2.9
+}

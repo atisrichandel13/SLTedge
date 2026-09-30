@@ -1,0 +1,30 @@
+{
+ "vid": "7JF1onKatVI-00:04:40.433-00:04:44.033",
+ "yid": "7JF1onKatVI",
+ "crop_xywh": [
+  327,
+  88,
+  298,
+  434
+ ],
+ "bbox_norm": [
+  0.25527979797787137,
+  0.12253423777136785,
+  0.48859265203829166,
+  0.7263100659405743
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Competitions tend to announce information, but they haven\u2019t said anything yet.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:04:40.433",
+ "end": "00:04:44.033",
+ "duration_s": 3.6
+}

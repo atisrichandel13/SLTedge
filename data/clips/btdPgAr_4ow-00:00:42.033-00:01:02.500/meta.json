@@ -1,0 +1,30 @@
+{
+ "vid": "btdPgAr_4ow-00:00:42.033-00:01:02.500",
+ "yid": "btdPgAr_4ow",
+ "crop_xywh": [
+  746,
+  76,
+  468,
+  644
+ ],
+ "bbox_norm": [
+  0.5830395614514585,
+  0.10555345017619036,
+  0.9495920316117707,
+  1.159169363497819
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A scientific model by the University of Washington's Institute for Health Metrics and Evaluation predicted that by August over 60-thousand Americans would lose their lives.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 614,
+ "stride": 1,
+ "start": "00:00:42.033",
+ "end": "00:01:02.500",
+ "duration_s": 20.467
+}

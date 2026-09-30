@@ -1,0 +1,30 @@
+{
+ "vid": "S4XbLn_o6OY-00:07:30.466-00:07:40.566",
+ "yid": "S4XbLn_o6OY",
+ "crop_xywh": [
+  626,
+  0,
+  506,
+  720
+ ],
+ "bbox_norm": [
+  0.4889265470817441,
+  -0.0695788437334349,
+  0.885202223746503,
+  1.0923962648666188
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The message was actually about newly canonized Saints.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 303,
+ "stride": 1,
+ "start": "00:07:30.466",
+ "end": "00:07:40.566",
+ "duration_s": 10.1
+}

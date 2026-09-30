@@ -1,0 +1,30 @@
+{
+ "vid": "7BgQM7l2ZY0-00:03:14.766-00:03:24.633",
+ "yid": "7BgQM7l2ZY0",
+ "crop_xywh": [
+  586,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.45763897948794896,
+  -0.14952431619903186,
+  0.88946234120263,
+  1.1403889307563688
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "An informational agency said ISIS claimed responsibility for the attack through its media outlet, AMAQ.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 296,
+ "stride": 1,
+ "start": "00:03:14.766",
+ "end": "00:03:24.633",
+ "duration_s": 9.867
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "sfNL5tR2Now-00:09:39.200-00:09:41.000",
+ "yid": "sfNL5tR2Now",
+ "crop_xywh": [
+  364,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.2843834804766106,
+  -0.15337373752786654,
+  0.6827024358691591,
+  1.0391693892302336
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Please reach out to me if you have any questions.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 54,
+ "stride": 1,
+ "start": "00:09:39.200",
+ "end": "00:09:41.000",
+ "duration_s": 1.8
+}

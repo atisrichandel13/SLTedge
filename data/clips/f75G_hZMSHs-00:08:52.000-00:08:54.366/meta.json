@@ -1,0 +1,30 @@
+{
+ "vid": "f75G_hZMSHs-00:08:52.000-00:08:54.366",
+ "yid": "f75G_hZMSHs",
+ "crop_xywh": [
+  623,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.4870424969991048,
+  -0.12416628425503955,
+  0.9123822085062663,
+  1.184916872566129
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The wedding is this weekend.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 71,
+ "stride": 1,
+ "start": "00:08:52.000",
+ "end": "00:08:54.366",
+ "duration_s": 2.366
+}

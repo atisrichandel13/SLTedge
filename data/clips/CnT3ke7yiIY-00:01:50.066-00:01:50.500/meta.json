@@ -1,0 +1,30 @@
+{
+ "vid": "CnT3ke7yiIY-00:01:50.066-00:01:50.500",
+ "yid": "CnT3ke7yiIY",
+ "crop_xywh": [
+  478,
+  0,
+  690,
+  720
+ ],
+ "bbox_norm": [
+  0.37370079358418784,
+  -0.1929240473994502,
+  0.9136499563852946,
+  1.3545497117219147
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Competitor.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 14,
+ "stride": 1,
+ "start": "00:01:50.066",
+ "end": "00:01:50.500",
+ "duration_s": 0.434
+}

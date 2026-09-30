@@ -1,0 +1,30 @@
+{
+ "vid": "4zsgy6DmJfA-00:08:15.200-00:08:18.066",
+ "yid": "4zsgy6DmJfA",
+ "crop_xywh": [
+  640,
+  0,
+  540,
+  720
+ ],
+ "bbox_norm": [
+  0.500365741164596,
+  -0.10186869617352269,
+  0.9229974640740289,
+  1.1477309796054667
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Senate is controlled by Republicans.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 86,
+ "stride": 1,
+ "start": "00:08:15.200",
+ "end": "00:08:18.066",
+ "duration_s": 2.866
+}

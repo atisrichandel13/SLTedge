@@ -1,0 +1,30 @@
+{
+ "vid": "uZwKNtHx9FE-00:21:14.400-00:21:18.500",
+ "yid": "uZwKNtHx9FE",
+ "crop_xywh": [
+  616,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.4815745655695597,
+  -0.14610581503974066,
+  0.948416288693746,
+  1.2474564117855496
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Mother said it was because of the same situation with the sister.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 99,
+ "stride": 1,
+ "start": "00:21:14.400",
+ "end": "00:21:18.500",
+ "duration_s": 4.1
+}

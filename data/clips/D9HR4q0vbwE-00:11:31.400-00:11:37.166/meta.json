@@ -1,0 +1,30 @@
+{
+ "vid": "D9HR4q0vbwE-00:11:31.400-00:11:37.166",
+ "yid": "D9HR4q0vbwE",
+ "crop_xywh": [
+  615,
+  0,
+  550,
+  720
+ ],
+ "bbox_norm": [
+  0.4802665494737171,
+  -0.16362487752601582,
+  0.910211005665007,
+  1.1123205886316048
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Presidential Scholars Program is a scholarship program, that does not recognize any specific programs.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 139,
+ "stride": 1,
+ "start": "00:11:31.400",
+ "end": "00:11:37.166",
+ "duration_s": 5.766
+}

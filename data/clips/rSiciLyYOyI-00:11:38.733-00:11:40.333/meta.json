@@ -1,0 +1,30 @@
+{
+ "vid": "rSiciLyYOyI-00:11:38.733-00:11:40.333",
+ "yid": "rSiciLyYOyI",
+ "crop_xywh": [
+  293,
+  0,
+  684,
+  720
+ ],
+ "bbox_norm": [
+  0.228554767370224,
+  -0.08724679946899414,
+  0.7632698317368826,
+  1.4095709641774496
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We kept on chatting.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 39,
+ "stride": 1,
+ "start": "00:11:38.733",
+ "end": "00:11:40.333",
+ "duration_s": 1.6
+}

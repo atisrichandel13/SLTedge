@@ -1,0 +1,30 @@
+{
+ "vid": "vmkpE6hQnQM-00:00:29.200-00:00:33.033",
+ "yid": "vmkpE6hQnQM",
+ "crop_xywh": [
+  303,
+  0,
+  766,
+  720
+ ],
+ "bbox_norm": [
+  0.23701311609019404,
+  -0.14679614818038572,
+  0.8351922284001889,
+  1.5133695547131525
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is a historic event for the people who come together here!",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 115,
+ "stride": 1,
+ "start": "00:00:29.200",
+ "end": "00:00:33.033",
+ "duration_s": 3.833
+}

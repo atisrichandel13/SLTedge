@@ -1,0 +1,30 @@
+{
+ "vid": "8OdWDKRJBMI-00:05:00.766-00:05:13.766",
+ "yid": "8OdWDKRJBMI",
+ "crop_xywh": [
+  599,
+  0,
+  662,
+  720
+ ],
+ "bbox_norm": [
+  0.4680698068732889,
+  -0.25611779900357934,
+  0.9862966064713958,
+  1.3550875658323283
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Postmark on the mail to confirm a ballot was sent in time will be a very important feature.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 390,
+ "stride": 1,
+ "start": "00:05:00.766",
+ "end": "00:05:13.766",
+ "duration_s": 13.0
+}

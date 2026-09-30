@@ -50,7 +50,7 @@ def main():
     model = load_model(args.ckpt, args.mt5, device=args.device, dtype=dtype, w8_runtime=args.w8_runtime)
     labels = pickle.load(gzip.open(args.labels, "rb"))
     names = list(labels)[: args.limit] if args.limit else list(labels)
-    refs, preds, missing = [], [], []
+    refs, preds, missing, kept = [], [], [], []
     t0 = time.perf_counter()
     for b in range(0, len(names), args.batch_size):
         batch, batch_names = [], []
@@ -74,7 +74,7 @@ def main():
                                            max_new_tokens=args.max_new_tokens, num_beams=args.num_beams)
         texts = model.mt5_tokenizer.batch_decode(out, skip_special_tokens=True)
         for n, t in zip(batch_names, texts):
-            refs.append(labels[n]["text"]); preds.append(t)
+            refs.append(labels[n]["text"]); preds.append(t); kept.append(n)
         done = len(preds)
         if (b // args.batch_size) % 10 == 0:
             el = time.perf_counter() - t0
@@ -84,7 +84,7 @@ def main():
            "wall_s": time.perf_counter() - t0, "config": vars(args)}
     print(json.dumps({k: v for k, v in res.items() if k != "config"}, indent=2))
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
-    json.dump({**res, "refs": refs, "preds": preds}, open(args.out, "w"), indent=1)
+    json.dump({**res, "names": kept, "refs": refs, "preds": preds}, open(args.out, "w"), indent=1)
     print("[eval] wrote", args.out)
 
 

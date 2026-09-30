@@ -1,0 +1,30 @@
+{
+ "vid": "oP2WdYlaflE-00:01:02.666-00:01:11.766",
+ "yid": "oP2WdYlaflE",
+ "crop_xywh": [
+  724,
+  76,
+  474,
+  644
+ ],
+ "bbox_norm": [
+  0.565669862123636,
+  0.10544456742767595,
+  0.9367440104484558,
+  1.173885068322858
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The forecast is from the Institute of Health Metrics and Evaluation at the University of Washington.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 273,
+ "stride": 1,
+ "start": "00:01:02.666",
+ "end": "00:01:11.766",
+ "duration_s": 9.1
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "YR7BS6l_95E-00:08:15.366-00:08:30.400",
+ "yid": "YR7BS6l_95E",
+ "crop_xywh": [
+  662,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.5183083151182067,
+  -0.0983754817479793,
+  0.9290293261766868,
+  1.031147634919989
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Speculation that she might be pregnant started last week when royal watchers noticed she was wearing a loose fitting outfit at the wedding of Princess Eugenie.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1278,
+  720
+ ],
+ "n_frames": 452,
+ "stride": 1,
+ "start": "00:08:15.366",
+ "end": "00:08:30.400",
+ "duration_s": 15.034
+}

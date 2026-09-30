@@ -1,0 +1,30 @@
+{
+ "vid": "HBpGS56KwGk-00:00:15.100-00:00:16.633",
+ "yid": "HBpGS56KwGk",
+ "crop_xywh": [
+  225,
+  0,
+  848,
+  720
+ ],
+ "bbox_norm": [
+  0.17616949876149496,
+  -0.2897460315845631,
+  0.8386074336369833,
+  1.66351804945204
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Health Care.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 46,
+ "stride": 1,
+ "start": "00:00:15.100",
+ "end": "00:00:16.633",
+ "duration_s": 1.533
+}

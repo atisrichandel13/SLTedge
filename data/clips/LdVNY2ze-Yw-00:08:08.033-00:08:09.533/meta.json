@@ -1,0 +1,30 @@
+{
+ "vid": "LdVNY2ze-Yw-00:08:08.033-00:08:09.533",
+ "yid": "LdVNY2ze-Yw",
+ "crop_xywh": [
+  250,
+  0,
+  738,
+  720
+ ],
+ "bbox_norm": [
+  0.19541273434956868,
+  -0.23442493297435618,
+  0.7717622979482015,
+  1.4203573905097113
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We recognize that as well.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 45,
+ "stride": 1,
+ "start": "00:08:08.033",
+ "end": "00:08:09.533",
+ "duration_s": 1.5
+}

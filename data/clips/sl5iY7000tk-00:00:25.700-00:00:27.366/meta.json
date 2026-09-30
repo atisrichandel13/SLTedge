@@ -1,0 +1,30 @@
+{
+ "vid": "sl5iY7000tk-00:00:25.700-00:00:27.366",
+ "yid": "sl5iY7000tk",
+ "crop_xywh": [
+  376,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.2934004711382317,
+  -0.15625303891371398,
+  0.7031354745229085,
+  1.0857277905499494
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Welcome to Sign1News.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 50,
+ "stride": 1,
+ "start": "00:00:25.700",
+ "end": "00:00:27.366",
+ "duration_s": 1.666
+}

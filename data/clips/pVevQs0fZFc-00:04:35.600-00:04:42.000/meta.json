@@ -1,0 +1,30 @@
+{
+ "vid": "pVevQs0fZFc-00:04:35.600-00:04:42.000",
+ "yid": "pVevQs0fZFc",
+ "crop_xywh": [
+  617,
+  0,
+  512,
+  720
+ ],
+ "bbox_norm": [
+  0.4822187228080554,
+  -0.0680604527139256,
+  0.8822914954943535,
+  1.041234470160938
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The surgery took five hours.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 192,
+ "stride": 1,
+ "start": "00:04:35.600",
+ "end": "00:04:42.000",
+ "duration_s": 6.4
+}

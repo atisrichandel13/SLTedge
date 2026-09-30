@@ -1,0 +1,30 @@
+{
+ "vid": "1U-rv8VSGpE-00:07:12.433-00:07:15.066",
+ "yid": "1U-rv8VSGpE",
+ "crop_xywh": [
+  626,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.48904739022254945,
+  -0.14456911440248843,
+  0.9226293941338857,
+  1.14300739147045
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They eventually died in 1946.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 79,
+ "stride": 1,
+ "start": "00:07:12.433",
+ "end": "00:07:15.066",
+ "duration_s": 2.633
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:00:43.466-00:00:54.100",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  155,
+  0,
+  774,
+  720
+ ],
+ "bbox_norm": [
+  0.12102781509359678,
+  -0.3293889513446225,
+  0.7259888507425785,
+  1.4108409183582773
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I feel like this was a really good way to show the mainstream that Deaf people are really just normal.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 319,
+ "stride": 1,
+ "start": "00:00:43.466",
+ "end": "00:00:54.100",
+ "duration_s": 10.634
+}

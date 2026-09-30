@@ -1,0 +1,30 @@
+{
+ "vid": "352fd8KUcD4-00:00:48.133-00:00:51.466",
+ "yid": "352fd8KUcD4",
+ "crop_xywh": [
+  364,
+  0,
+  446,
+  720
+ ],
+ "bbox_norm": [
+  0.284175700545311,
+  -0.0049280622270372176,
+  0.6332658046483994,
+  1.0273809268739489
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I just toured through the Ali museum and it is inspiring!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 100,
+ "stride": 1,
+ "start": "00:00:48.133",
+ "end": "00:00:51.466",
+ "duration_s": 3.333
+}

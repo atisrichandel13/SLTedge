@@ -1,0 +1,30 @@
+{
+ "vid": "TPGwtrWWZic-00:01:17.033-00:01:26.133",
+ "yid": "TPGwtrWWZic",
+ "crop_xywh": [
+  357,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.2786672508355343,
+  -0.17327984768132168,
+  0.7618100180770412,
+  1.1958065450392186
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I rotated through several jobs, first with the Smithsonian National Postal Museum for about a year until they ran out of grant money and I was let go.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 273,
+ "stride": 1,
+ "start": "00:01:17.033",
+ "end": "00:01:26.133",
+ "duration_s": 9.1
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:05:19.000-00:05:22.400",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  312,
+  0,
+  968,
+  720
+ ],
+ "bbox_norm": [
+  0.24408622442507275,
+  -0.3331459012166607,
+  1.109514924591663,
+  2.1713304931042243
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Try to make sure that everyone understands that this is not a joke.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 82,
+ "stride": 1,
+ "start": "00:05:19.000",
+ "end": "00:05:22.400",
+ "duration_s": 3.4
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "oUaGP-pj30A-00:01:08.133-00:01:12.366",
+ "yid": "oUaGP-pj30A",
+ "crop_xywh": [
+  667,
+  0,
+  488,
+  698
+ ],
+ "bbox_norm": [
+  0.5208084931740393,
+  -0.0744743534642407,
+  0.9023905185552744,
+  0.9696019449804583
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Right now the entire state of Florida is under a state of emergency.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 127,
+ "stride": 1,
+ "start": "00:01:08.133",
+ "end": "00:01:12.366",
+ "duration_s": 4.233
+}

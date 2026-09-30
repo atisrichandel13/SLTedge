@@ -1,0 +1,30 @@
+{
+ "vid": "c-5mKVNHetA-00:02:45.000-00:02:56.200",
+ "yid": "c-5mKVNHetA",
+ "crop_xywh": [
+  612,
+  0,
+  464,
+  652
+ ],
+ "bbox_norm": [
+  0.47850018401644123,
+  -0.06535350774255755,
+  0.8417417839391907,
+  0.9068287490414545
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If approved, they'll go to the House, where a majority is needed to formally impeach Trump.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 336,
+ "stride": 1,
+ "start": "00:02:45.000",
+ "end": "00:02:56.200",
+ "duration_s": 11.2
+}

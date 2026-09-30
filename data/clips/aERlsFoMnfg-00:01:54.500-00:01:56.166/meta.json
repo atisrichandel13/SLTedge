@@ -1,0 +1,30 @@
+{
+ "vid": "aERlsFoMnfg-00:01:54.500-00:01:56.166",
+ "yid": "aERlsFoMnfg",
+ "crop_xywh": [
+  321,
+  0,
+  688,
+  720
+ ],
+ "bbox_norm": [
+  0.2508853276570638,
+  -0.23877095187151876,
+  0.7887890752156576,
+  1.3694061607784696
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "To get information.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 50,
+ "stride": 1,
+ "start": "00:01:54.500",
+ "end": "00:01:56.166",
+ "duration_s": 1.666
+}

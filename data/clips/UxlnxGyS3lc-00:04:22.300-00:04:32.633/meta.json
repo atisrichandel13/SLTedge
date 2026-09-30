@@ -1,0 +1,30 @@
+{
+ "vid": "UxlnxGyS3lc-00:04:22.300-00:04:32.633",
+ "yid": "UxlnxGyS3lc",
+ "crop_xywh": [
+  364,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.28406828848520915,
+  -0.14229082884611907,
+  0.7162852862675985,
+  1.0786537106831868
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Likewise, to ensure accessibility is provided throughout, they can use support services through appropriate technology such as video conferencing platforms.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 248,
+ "stride": 1,
+ "start": "00:04:22.300",
+ "end": "00:04:32.633",
+ "duration_s": 10.333
+}

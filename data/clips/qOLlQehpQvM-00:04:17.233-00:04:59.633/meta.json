@@ -1,0 +1,30 @@
+{
+ "vid": "qOLlQehpQvM-00:04:17.233-00:04:59.633",
+ "yid": "qOLlQehpQvM",
+ "crop_xywh": [
+  412,
+  3,
+  424,
+  678
+ ],
+ "bbox_norm": [
+  0.3221005430371742,
+  0.0035165277783117685,
+  0.652970569653148,
+  0.9456130503634734
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Inspiring Entertaining Deaf Ecosystem, Friendship, Collaborate, Team, Socialize, Motivation, Learn, Grow, Discover, Unity Jr. NAD That",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 1271,
+ "stride": 1,
+ "start": "00:04:17.233",
+ "end": "00:04:59.633",
+ "duration_s": 42.4
+}

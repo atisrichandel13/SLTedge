@@ -1,0 +1,4427 @@
+{
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-5.15.148-tegra-aarch64-with-glibc2.39",
+    "jetpack": "unknown (nvidia-jetpack package not found)",
+    "l4t": "R36.4.7",
+    "nvpmodel": "mode 0 (15W) from /var/lib/nvpmodel/status",
+    "gpu_max_MHz": 612.0,
+    "gpu_min_MHz": 306.0,
+    "cpu_max_MHz": 1497.6,
+    "torch": "2.8.0a0+5228986c39.nv25.06",
+    "torch_cuda": "12.9",
+    "cuda_available": true,
+    "gpu": "Orin",
+    "tensorrt": "10.11.0.33",
+    "nvcc": "V12.9.86"
+  },
+  "summary": {
+    "mode": "pose",
+    "duration_s": 1804.8,
+    "n_iters": 270,
+    "frames_per_iter": 255,
+    "first_fifth": {
+      "n": 54,
+      "total_ms_mean": 6580.1,
+      "pose_ms_mean": 6580.1,
+      "lm_ms_mean": 0.0,
+      "tj_C_mean": 53.0,
+      "tj_C_max": 53.59
+    },
+    "last_fifth": {
+      "n": 54,
+      "total_ms_mean": 6699.6,
+      "pose_ms_mean": 6699.6,
+      "lm_ms_mean": 0.0,
+      "tj_C_mean": 53.45,
+      "tj_C_max": 53.78
+    },
+    "total_ms_drift_pct": 1.82,
+    "tj_C_max_overall": 53.78,
+    "avg_W": 4.91,
+    "idle_W": 3.67,
+    "mJ_per_frame": 128.6,
+    "gpu_MHz_mean": 306.0,
+    "cpu0_MHz_mean": 944.0,
+    "throttled": false
+  },
+  "iters": [
+    {
+      "i": 1,
+      "t_rel_s": 6.58,
+      "pose_ms": 6573.0,
+      "lm_ms": 0.0,
+      "total_ms": 6573.0,
+      "tj_C": 51.97,
+      "thermals": {
+        "cpu-thermal": 51.41,
+        "gpu-thermal": 51.91,
+        "soc0-thermal": 51.66,
+        "soc1-thermal": 50.84,
+        "soc2-thermal": 51.31,
+        "tj-thermal": 51.97
+      }
+    },
+    {
+      "i": 2,
+      "t_rel_s": 13.11,
+      "pose_ms": 6521.7,
+      "lm_ms": 0.0,
+      "total_ms": 6521.7,
+      "tj_C": 51.88,
+      "thermals": {
+        "cpu-thermal": 51.72,
+        "gpu-thermal": 52.06,
+        "soc0-thermal": 51.88,
+        "soc1-thermal": 50.81,
+        "soc2-thermal": 51.44,
+        "tj-thermal": 51.88
+      }
+    },
+    {
+      "i": 3,
+      "t_rel_s": 19.55,
+      "pose_ms": 6435.6,
+      "lm_ms": 0.0,
+      "total_ms": 6435.6,
+      "tj_C": 52.19,
+      "thermals": {
+        "cpu-thermal": 51.78,
+        "gpu-thermal": 52.19,
+        "soc0-thermal": 51.88,
+        "soc1-thermal": 50.97,
+        "soc2-thermal": 51.47,
+        "tj-thermal": 52.19
+      }
+    },
+    {
+      "i": 4,
+      "t_rel_s": 25.98,
+      "pose_ms": 6413.9,
+      "lm_ms": 0.0,
+      "total_ms": 6413.9,
+      "tj_C": 52.44,
+      "thermals": {
+        "cpu-thermal": 51.91,
+        "gpu-thermal": 52.44,
+        "soc0-thermal": 51.97,
+        "soc1-thermal": 51.16,
+        "soc2-thermal": 51.62,
+        "tj-thermal": 52.44
+      }
+    },
+    {
+      "i": 5,
+      "t_rel_s": 32.45,
+      "pose_ms": 6465.5,
+      "lm_ms": 0.0,
+      "total_ms": 6465.5,
+      "tj_C": 52.25,
+      "thermals": {
+        "cpu-thermal": 51.88,
+        "gpu-thermal": 52.22,
+        "soc0-thermal": 52.12,
+        "soc1-thermal": 51.28,
+        "soc2-thermal": 51.69,
+        "tj-thermal": 52.25
+      }
+    },
+    {
+      "i": 6,
+      "t_rel_s": 38.9,
+      "pose_ms": 6444.5,
+      "lm_ms": 0.0,
+      "total_ms": 6444.5,
+      "tj_C": 52.66,
+      "thermals": {
+        "cpu-thermal": 52.0,
+        "gpu-thermal": 52.44,
+        "soc0-thermal": 52.16,
+        "soc1-thermal": 51.56,
+        "soc2-thermal": 51.91,
+        "tj-thermal": 52.66
+      }
+    },
+    {
+      "i": 7,
+      "t_rel_s": 45.39,
+      "pose_ms": 6474.7,
+      "lm_ms": 0.0,
+      "total_ms": 6474.7,
+      "tj_C": 52.44,
+      "thermals": {
+        "cpu-thermal": 52.06,
+        "gpu-thermal": 52.44,
+        "soc0-thermal": 52.31,
+        "soc1-thermal": 51.56,
+        "soc2-thermal": 51.91,
+        "tj-thermal": 52.44
+      }
+    },
+    {
+      "i": 8,
+      "t_rel_s": 51.82,
+      "pose_ms": 6426.1,
+      "lm_ms": 0.0,
+      "total_ms": 6426.1,
+      "tj_C": 52.66,
+      "thermals": {
+        "cpu-thermal": 52.38,
+        "gpu-thermal": 52.66,
+        "soc0-thermal": 52.31,
+        "soc1-thermal": 51.41,
+        "soc2-thermal": 51.94,
+        "tj-thermal": 52.66
+      }
+    },
+    {
+      "i": 9,
+      "t_rel_s": 58.29,
+      "pose_ms": 6466.5,
+      "lm_ms": 0.0,
+      "total_ms": 6466.5,
+      "tj_C": 52.53,
+      "thermals": {
+        "cpu-thermal": 52.12,
+        "gpu-thermal": 52.44,
+        "soc0-thermal": 52.34,
+        "soc1-thermal": 51.66,
+        "soc2-thermal": 51.97,
+        "tj-thermal": 52.53
+      }
+    },
+    {
+      "i": 10,
+      "t_rel_s": 64.91,
+      "pose_ms": 6607.4,
+      "lm_ms": 0.0,
+      "total_ms": 6607.4,
+      "tj_C": 52.81,
+      "thermals": {
+        "cpu-thermal": 52.25,
+        "gpu-thermal": 52.53,
+        "soc0-thermal": 52.41,
+        "soc1-thermal": 51.41,
+        "soc2-thermal": 52.0,
+        "tj-thermal": 52.81
+      }
+    },
+    {
+      "i": 11,
+      "t_rel_s": 71.37,
+      "pose_ms": 6453.1,
+      "lm_ms": 0.0,
+      "total_ms": 6453.1,
+      "tj_C": 52.59,
+      "thermals": {
+        "cpu-thermal": 52.41,
+        "gpu-thermal": 52.59,
+        "soc0-thermal": 52.31,
+        "soc1-thermal": 51.53,
+        "soc2-thermal": 52.0,
+        "tj-thermal": 52.59
+      }
+    },
+    {
+      "i": 12,
+      "t_rel_s": 77.83,
+      "pose_ms": 6449.9,
+      "lm_ms": 0.0,
+      "total_ms": 6449.9,
+      "tj_C": 52.66,
+      "thermals": {
+        "cpu-thermal": 52.22,
+        "gpu-thermal": 52.47,
+        "soc0-thermal": 52.44,
+        "soc1-thermal": 51.38,
+        "soc2-thermal": 52.03,
+        "tj-thermal": 52.66
+      }
+    },
+    {
+      "i": 13,
+      "t_rel_s": 84.31,
+      "pose_ms": 6474.8,
+      "lm_ms": 0.0,
+      "total_ms": 6474.8,
+      "tj_C": 52.66,
+      "thermals": {
+        "cpu-thermal": 52.28,
+        "gpu-thermal": 52.84,
+        "soc0-thermal": 52.41,
+        "soc1-thermal": 51.5,
+        "soc2-thermal": 52.0,
+        "tj-thermal": 52.66
+      }
+    },
+    {
+      "i": 14,
+      "t_rel_s": 90.87,
+      "pose_ms": 6553.6,
+      "lm_ms": 0.0,
+      "total_ms": 6553.6,
+      "tj_C": 52.78,
+      "thermals": {
+        "cpu-thermal": 52.31,
+        "gpu-thermal": 52.69,
+        "soc0-thermal": 52.53,
+        "soc1-thermal": 51.72,
+        "soc2-thermal": 52.25,
+        "tj-thermal": 52.78
+      }
+    },
+    {
+      "i": 15,
+      "t_rel_s": 97.32,
+      "pose_ms": 6443.8,
+      "lm_ms": 0.0,
+      "total_ms": 6443.8,
+      "tj_C": 52.78,
+      "thermals": {
+        "cpu-thermal": 52.47,
+        "gpu-thermal": 52.69,
+        "soc0-thermal": 52.5,
+        "soc1-thermal": 51.78,
+        "soc2-thermal": 52.19,
+        "tj-thermal": 52.78
+      }
+    },
+    {
+      "i": 16,
+      "t_rel_s": 103.79,
+      "pose_ms": 6455.2,
+      "lm_ms": 0.0,
+      "total_ms": 6455.2,
+      "tj_C": 52.78,
+      "thermals": {
+        "cpu-thermal": 52.31,
+        "gpu-thermal": 52.78,
+        "soc0-thermal": 52.69,
+        "soc1-thermal": 51.75,
+        "soc2-thermal": 52.25,
+        "tj-thermal": 52.78
+      }
+    },
+    {
+      "i": 17,
+      "t_rel_s": 110.34,
+      "pose_ms": 6544.6,
+      "lm_ms": 0.0,
+      "total_ms": 6544.6,
+      "tj_C": 52.72,
+      "thermals": {
+        "cpu-thermal": 52.41,
+        "gpu-thermal": 52.72,
+        "soc0-thermal": 52.72,
+        "soc1-thermal": 51.78,
+        "soc2-thermal": 52.34,
+        "tj-thermal": 52.72
+      }
+    },
+    {
+      "i": 18,
+      "t_rel_s": 117.27,
+      "pose_ms": 6930.0,
+      "lm_ms": 0.0,
+      "total_ms": 6930.0,
+      "tj_C": 52.66,
+      "thermals": {
+        "cpu-thermal": 52.62,
+        "gpu-thermal": 52.81,
+        "soc0-thermal": 52.66,
+        "soc1-thermal": 51.78,
+        "soc2-thermal": 52.25,
+        "tj-thermal": 52.66
+      }
+    },
+    {
+      "i": 19,
+      "t_rel_s": 123.73,
+      "pose_ms": 6445.2,
+      "lm_ms": 0.0,
+      "total_ms": 6445.2,
+      "tj_C": 52.69,
+      "thermals": {
+        "cpu-thermal": 52.44,
+        "gpu-thermal": 52.91,
+        "soc0-thermal": 52.69,
+        "soc1-thermal": 51.75,
+        "soc2-thermal": 52.22,
+        "tj-thermal": 52.69
+      }
+    },
+    {
+      "i": 20,
+      "t_rel_s": 130.18,
+      "pose_ms": 6442.8,
+      "lm_ms": 0.0,
+      "total_ms": 6442.8,
+      "tj_C": 53.06,
+      "thermals": {
+        "cpu-thermal": 52.75,
+        "gpu-thermal": 52.88,
+        "soc0-thermal": 52.69,
+        "soc1-thermal": 51.84,
+        "soc2-thermal": 52.34,
+        "tj-thermal": 53.06
+      }
+    },
+    {
+      "i": 21,
+      "t_rel_s": 136.86,
+      "pose_ms": 6668.9,
+      "lm_ms": 0.0,
+      "total_ms": 6668.9,
+      "tj_C": 53.12,
+      "thermals": {
+        "cpu-thermal": 52.44,
+        "gpu-thermal": 52.88,
+        "soc0-thermal": 52.78,
+        "soc1-thermal": 51.91,
+        "soc2-thermal": 52.38,
+        "tj-thermal": 53.12
+      }
+    },
+    {
+      "i": 22,
+      "t_rel_s": 143.82,
+      "pose_ms": 6951.9,
+      "lm_ms": 0.0,
+      "total_ms": 6951.9,
+      "tj_C": 52.88,
+      "thermals": {
+        "cpu-thermal": 52.56,
+        "gpu-thermal": 53.09,
+        "soc0-thermal": 52.78,
+        "soc1-thermal": 51.94,
+        "soc2-thermal": 52.5,
+        "tj-thermal": 52.88
+      }
+    },
+    {
+      "i": 23,
+      "t_rel_s": 150.76,
+      "pose_ms": 6933.9,
+      "lm_ms": 0.0,
+      "total_ms": 6933.9,
+      "tj_C": 53.0,
+      "thermals": {
+        "cpu-thermal": 52.59,
+        "gpu-thermal": 53.19,
+        "soc0-thermal": 52.81,
+        "soc1-thermal": 52.03,
+        "soc2-thermal": 52.56,
+        "tj-thermal": 53.0
+      }
+    },
+    {
+      "i": 24,
+      "t_rel_s": 157.7,
+      "pose_ms": 6934.2,
+      "lm_ms": 0.0,
+      "total_ms": 6934.2,
+      "tj_C": 52.91,
+      "thermals": {
+        "cpu-thermal": 52.72,
+        "gpu-thermal": 53.16,
+        "soc0-thermal": 52.84,
+        "soc1-thermal": 52.03,
+        "soc2-thermal": 52.47,
+        "tj-thermal": 52.91
+      }
+    },
+    {
+      "i": 25,
+      "t_rel_s": 164.66,
+      "pose_ms": 6946.2,
+      "lm_ms": 0.0,
+      "total_ms": 6946.2,
+      "tj_C": 53.16,
+      "thermals": {
+        "cpu-thermal": 52.59,
+        "gpu-thermal": 52.94,
+        "soc0-thermal": 52.94,
+        "soc1-thermal": 51.97,
+        "soc2-thermal": 52.56,
+        "tj-thermal": 53.16
+      }
+    },
+    {
+      "i": 26,
+      "t_rel_s": 171.59,
+      "pose_ms": 6924.7,
+      "lm_ms": 0.0,
+      "total_ms": 6924.7,
+      "tj_C": 53.12,
+      "thermals": {
+        "cpu-thermal": 52.62,
+        "gpu-thermal": 53.0,
+        "soc0-thermal": 52.94,
+        "soc1-thermal": 51.97,
+        "soc2-thermal": 52.56,
+        "tj-thermal": 53.12
+      }
+    },
+    {
+      "i": 27,
+      "t_rel_s": 178.49,
+      "pose_ms": 6896.8,
+      "lm_ms": 0.0,
+      "total_ms": 6896.8,
+      "tj_C": 52.97,
+      "thermals": {
+        "cpu-thermal": 52.56,
+        "gpu-thermal": 53.12,
+        "soc0-thermal": 52.91,
+        "soc1-thermal": 52.0,
+        "soc2-thermal": 52.56,
+        "tj-thermal": 52.97
+      }
+    },
+    {
+      "i": 28,
+      "t_rel_s": 185.45,
+      "pose_ms": 6951.4,
+      "lm_ms": 0.0,
+      "total_ms": 6951.4,
+      "tj_C": 53.19,
+      "thermals": {
+        "cpu-thermal": 52.62,
+        "gpu-thermal": 53.19,
+        "soc0-thermal": 52.91,
+        "soc1-thermal": 51.91,
+        "soc2-thermal": 52.47,
+        "tj-thermal": 53.19
+      }
+    },
+    {
+      "i": 29,
+      "t_rel_s": 192.35,
+      "pose_ms": 6888.9,
+      "lm_ms": 0.0,
+      "total_ms": 6888.9,
+      "tj_C": 53.16,
+      "thermals": {
+        "cpu-thermal": 52.84,
+        "gpu-thermal": 53.09,
+        "soc0-thermal": 52.81,
+        "soc1-thermal": 52.0,
+        "soc2-thermal": 52.47,
+        "tj-thermal": 53.16
+      }
+    },
+    {
+      "i": 30,
+      "t_rel_s": 198.79,
+      "pose_ms": 6433.1,
+      "lm_ms": 0.0,
+      "total_ms": 6433.1,
+      "tj_C": 52.94,
+      "thermals": {
+        "cpu-thermal": 52.62,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 52.97,
+        "soc1-thermal": 51.94,
+        "soc2-thermal": 52.59,
+        "tj-thermal": 52.94
+      }
+    },
+    {
+      "i": 31,
+      "t_rel_s": 205.33,
+      "pose_ms": 6527.3,
+      "lm_ms": 0.0,
+      "total_ms": 6527.3,
+      "tj_C": 53.09,
+      "thermals": {
+        "cpu-thermal": 52.88,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 52.97,
+        "soc1-thermal": 52.16,
+        "soc2-thermal": 52.66,
+        "tj-thermal": 53.09
+      }
+    },
+    {
+      "i": 32,
+      "t_rel_s": 211.78,
+      "pose_ms": 6445.4,
+      "lm_ms": 0.0,
+      "total_ms": 6445.4,
+      "tj_C": 53.19,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.19,
+        "soc0-thermal": 53.06,
+        "soc1-thermal": 52.22,
+        "soc2-thermal": 52.69,
+        "tj-thermal": 53.19
+      }
+    },
+    {
+      "i": 33,
+      "t_rel_s": 218.25,
+      "pose_ms": 6458.1,
+      "lm_ms": 0.0,
+      "total_ms": 6458.1,
+      "tj_C": 53.16,
+      "thermals": {
+        "cpu-thermal": 52.88,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 52.97,
+        "soc1-thermal": 52.16,
+        "soc2-thermal": 52.78,
+        "tj-thermal": 53.16
+      }
+    },
+    {
+      "i": 34,
+      "t_rel_s": 224.69,
+      "pose_ms": 6431.5,
+      "lm_ms": 0.0,
+      "total_ms": 6431.5,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.19,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.78,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 35,
+      "t_rel_s": 231.2,
+      "pose_ms": 6509.2,
+      "lm_ms": 0.0,
+      "total_ms": 6509.2,
+      "tj_C": 53.19,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.19,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.19
+      }
+    },
+    {
+      "i": 36,
+      "t_rel_s": 237.67,
+      "pose_ms": 6463.7,
+      "lm_ms": 0.0,
+      "total_ms": 6463.7,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.56,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 37,
+      "t_rel_s": 244.11,
+      "pose_ms": 6426.0,
+      "lm_ms": 0.0,
+      "total_ms": 6426.0,
+      "tj_C": 53.22,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.22
+      }
+    },
+    {
+      "i": 38,
+      "t_rel_s": 250.57,
+      "pose_ms": 6451.8,
+      "lm_ms": 0.0,
+      "total_ms": 6451.8,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.59,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 39,
+      "t_rel_s": 257.01,
+      "pose_ms": 6432.7,
+      "lm_ms": 0.0,
+      "total_ms": 6432.7,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.62,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 40,
+      "t_rel_s": 263.43,
+      "pose_ms": 6409.8,
+      "lm_ms": 0.0,
+      "total_ms": 6409.8,
+      "tj_C": 53.25,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.25,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.25
+      }
+    },
+    {
+      "i": 41,
+      "t_rel_s": 269.88,
+      "pose_ms": 6447.5,
+      "lm_ms": 0.0,
+      "total_ms": 6447.5,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.12,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 42,
+      "t_rel_s": 276.34,
+      "pose_ms": 6454.3,
+      "lm_ms": 0.0,
+      "total_ms": 6454.3,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.22,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.22,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 43,
+      "t_rel_s": 283.08,
+      "pose_ms": 6730.4,
+      "lm_ms": 0.0,
+      "total_ms": 6730.4,
+      "tj_C": 53.53,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.53
+      }
+    },
+    {
+      "i": 44,
+      "t_rel_s": 289.95,
+      "pose_ms": 6863.4,
+      "lm_ms": 0.0,
+      "total_ms": 6863.4,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 45,
+      "t_rel_s": 296.42,
+      "pose_ms": 6460.6,
+      "lm_ms": 0.0,
+      "total_ms": 6460.6,
+      "tj_C": 53.25,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.25,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.25
+      }
+    },
+    {
+      "i": 46,
+      "t_rel_s": 303.01,
+      "pose_ms": 6585.7,
+      "lm_ms": 0.0,
+      "total_ms": 6585.7,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 47,
+      "t_rel_s": 309.95,
+      "pose_ms": 6930.1,
+      "lm_ms": 0.0,
+      "total_ms": 6930.1,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.22,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.75,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 48,
+      "t_rel_s": 316.87,
+      "pose_ms": 6915.1,
+      "lm_ms": 0.0,
+      "total_ms": 6915.1,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 49,
+      "t_rel_s": 323.55,
+      "pose_ms": 6672.4,
+      "lm_ms": 0.0,
+      "total_ms": 6672.4,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 50,
+      "t_rel_s": 330.03,
+      "pose_ms": 6467.6,
+      "lm_ms": 0.0,
+      "total_ms": 6467.6,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 51,
+      "t_rel_s": 336.45,
+      "pose_ms": 6416.3,
+      "lm_ms": 0.0,
+      "total_ms": 6416.3,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 52,
+      "t_rel_s": 342.83,
+      "pose_ms": 6368.2,
+      "lm_ms": 0.0,
+      "total_ms": 6368.2,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 53,
+      "t_rel_s": 349.3,
+      "pose_ms": 6458.0,
+      "lm_ms": 0.0,
+      "total_ms": 6458.0,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 53.12,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 54,
+      "t_rel_s": 355.75,
+      "pose_ms": 6446.6,
+      "lm_ms": 0.0,
+      "total_ms": 6446.6,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.56,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 55,
+      "t_rel_s": 362.19,
+      "pose_ms": 6430.6,
+      "lm_ms": 0.0,
+      "total_ms": 6430.6,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.56,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 56,
+      "t_rel_s": 368.61,
+      "pose_ms": 6410.3,
+      "lm_ms": 0.0,
+      "total_ms": 6410.3,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 52.84,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 57,
+      "t_rel_s": 375.06,
+      "pose_ms": 6442.7,
+      "lm_ms": 0.0,
+      "total_ms": 6442.7,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 58,
+      "t_rel_s": 381.51,
+      "pose_ms": 6441.4,
+      "lm_ms": 0.0,
+      "total_ms": 6441.4,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 59,
+      "t_rel_s": 388.0,
+      "pose_ms": 6491.7,
+      "lm_ms": 0.0,
+      "total_ms": 6491.7,
+      "tj_C": 53.12,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.09,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.78,
+        "tj-thermal": 53.12
+      }
+    },
+    {
+      "i": 60,
+      "t_rel_s": 394.92,
+      "pose_ms": 6903.9,
+      "lm_ms": 0.0,
+      "total_ms": 6903.9,
+      "tj_C": 53.25,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.22,
+        "soc2-thermal": 52.75,
+        "tj-thermal": 53.25
+      }
+    },
+    {
+      "i": 61,
+      "t_rel_s": 401.4,
+      "pose_ms": 6469.8,
+      "lm_ms": 0.0,
+      "total_ms": 6469.8,
+      "tj_C": 53.25,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.25,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.25
+      }
+    },
+    {
+      "i": 62,
+      "t_rel_s": 407.81,
+      "pose_ms": 6410.9,
+      "lm_ms": 0.0,
+      "total_ms": 6410.9,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.09,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 63,
+      "t_rel_s": 414.25,
+      "pose_ms": 6431.7,
+      "lm_ms": 0.0,
+      "total_ms": 6431.7,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 64,
+      "t_rel_s": 420.68,
+      "pose_ms": 6416.0,
+      "lm_ms": 0.0,
+      "total_ms": 6416.0,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.56,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 53.06,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 65,
+      "t_rel_s": 427.32,
+      "pose_ms": 6639.8,
+      "lm_ms": 0.0,
+      "total_ms": 6639.8,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 66,
+      "t_rel_s": 434.27,
+      "pose_ms": 6939.9,
+      "lm_ms": 0.0,
+      "total_ms": 6939.9,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.69,
+        "soc0-thermal": 53.47,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 67,
+      "t_rel_s": 441.25,
+      "pose_ms": 6970.2,
+      "lm_ms": 0.0,
+      "total_ms": 6970.2,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 68,
+      "t_rel_s": 448.21,
+      "pose_ms": 6949.4,
+      "lm_ms": 0.0,
+      "total_ms": 6949.4,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.22,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 69,
+      "t_rel_s": 455.16,
+      "pose_ms": 6947.7,
+      "lm_ms": 0.0,
+      "total_ms": 6947.7,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 70,
+      "t_rel_s": 462.11,
+      "pose_ms": 6935.5,
+      "lm_ms": 0.0,
+      "total_ms": 6935.5,
+      "tj_C": 53.16,
+      "thermals": {
+        "cpu-thermal": 53.28,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.16
+      }
+    },
+    {
+      "i": 71,
+      "t_rel_s": 469.03,
+      "pose_ms": 6917.5,
+      "lm_ms": 0.0,
+      "total_ms": 6917.5,
+      "tj_C": 53.22,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.22,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.22
+      }
+    },
+    {
+      "i": 72,
+      "t_rel_s": 475.8,
+      "pose_ms": 6757.3,
+      "lm_ms": 0.0,
+      "total_ms": 6757.3,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 73,
+      "t_rel_s": 482.74,
+      "pose_ms": 6933.7,
+      "lm_ms": 0.0,
+      "total_ms": 6933.7,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 74,
+      "t_rel_s": 489.67,
+      "pose_ms": 6928.6,
+      "lm_ms": 0.0,
+      "total_ms": 6928.6,
+      "tj_C": 53.53,
+      "thermals": {
+        "cpu-thermal": 53.34,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.53
+      }
+    },
+    {
+      "i": 75,
+      "t_rel_s": 496.61,
+      "pose_ms": 6930.1,
+      "lm_ms": 0.0,
+      "total_ms": 6930.1,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.56,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 76,
+      "t_rel_s": 503.2,
+      "pose_ms": 6583.9,
+      "lm_ms": 0.0,
+      "total_ms": 6583.9,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 77,
+      "t_rel_s": 509.61,
+      "pose_ms": 6398.2,
+      "lm_ms": 0.0,
+      "total_ms": 6398.2,
+      "tj_C": 53.25,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.25,
+        "soc0-thermal": 53.09,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.78,
+        "tj-thermal": 53.25
+      }
+    },
+    {
+      "i": 78,
+      "t_rel_s": 516.1,
+      "pose_ms": 6475.8,
+      "lm_ms": 0.0,
+      "total_ms": 6475.8,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.25,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.09,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 79,
+      "t_rel_s": 522.52,
+      "pose_ms": 6417.2,
+      "lm_ms": 0.0,
+      "total_ms": 6417.2,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.59,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.19,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 80,
+      "t_rel_s": 528.96,
+      "pose_ms": 6433.4,
+      "lm_ms": 0.0,
+      "total_ms": 6433.4,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 81,
+      "t_rel_s": 535.42,
+      "pose_ms": 6450.0,
+      "lm_ms": 0.0,
+      "total_ms": 6450.0,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 82,
+      "t_rel_s": 542.25,
+      "pose_ms": 6823.9,
+      "lm_ms": 0.0,
+      "total_ms": 6823.9,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.56,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 83,
+      "t_rel_s": 549.2,
+      "pose_ms": 6936.6,
+      "lm_ms": 0.0,
+      "total_ms": 6936.6,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.25,
+        "soc0-thermal": 53.09,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 84,
+      "t_rel_s": 556.15,
+      "pose_ms": 6941.2,
+      "lm_ms": 0.0,
+      "total_ms": 6941.2,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.78,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 85,
+      "t_rel_s": 563.09,
+      "pose_ms": 6939.2,
+      "lm_ms": 0.0,
+      "total_ms": 6939.2,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 86,
+      "t_rel_s": 570.04,
+      "pose_ms": 6935.4,
+      "lm_ms": 0.0,
+      "total_ms": 6935.4,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 87,
+      "t_rel_s": 576.95,
+      "pose_ms": 6900.8,
+      "lm_ms": 0.0,
+      "total_ms": 6900.8,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 88,
+      "t_rel_s": 583.89,
+      "pose_ms": 6929.2,
+      "lm_ms": 0.0,
+      "total_ms": 6929.2,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.25,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 89,
+      "t_rel_s": 590.83,
+      "pose_ms": 6939.0,
+      "lm_ms": 0.0,
+      "total_ms": 6939.0,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 90,
+      "t_rel_s": 597.77,
+      "pose_ms": 6929.5,
+      "lm_ms": 0.0,
+      "total_ms": 6929.5,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.25,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 91,
+      "t_rel_s": 604.71,
+      "pose_ms": 6928.0,
+      "lm_ms": 0.0,
+      "total_ms": 6928.0,
+      "tj_C": 53.62,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.62
+      }
+    },
+    {
+      "i": 92,
+      "t_rel_s": 611.67,
+      "pose_ms": 6951.0,
+      "lm_ms": 0.0,
+      "total_ms": 6951.0,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 93,
+      "t_rel_s": 618.61,
+      "pose_ms": 6936.1,
+      "lm_ms": 0.0,
+      "total_ms": 6936.1,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 94,
+      "t_rel_s": 625.57,
+      "pose_ms": 6949.7,
+      "lm_ms": 0.0,
+      "total_ms": 6949.7,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 95,
+      "t_rel_s": 632.52,
+      "pose_ms": 6941.5,
+      "lm_ms": 0.0,
+      "total_ms": 6941.5,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 96,
+      "t_rel_s": 639.39,
+      "pose_ms": 6867.2,
+      "lm_ms": 0.0,
+      "total_ms": 6867.2,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 97,
+      "t_rel_s": 645.88,
+      "pose_ms": 6474.3,
+      "lm_ms": 0.0,
+      "total_ms": 6474.3,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.22,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 98,
+      "t_rel_s": 652.3,
+      "pose_ms": 6415.5,
+      "lm_ms": 0.0,
+      "total_ms": 6415.5,
+      "tj_C": 53.53,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.25,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.53
+      }
+    },
+    {
+      "i": 99,
+      "t_rel_s": 658.75,
+      "pose_ms": 6441.9,
+      "lm_ms": 0.0,
+      "total_ms": 6441.9,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 100,
+      "t_rel_s": 665.18,
+      "pose_ms": 6422.0,
+      "lm_ms": 0.0,
+      "total_ms": 6422.0,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 101,
+      "t_rel_s": 671.68,
+      "pose_ms": 6491.7,
+      "lm_ms": 0.0,
+      "total_ms": 6491.7,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 102,
+      "t_rel_s": 678.17,
+      "pose_ms": 6485.5,
+      "lm_ms": 0.0,
+      "total_ms": 6485.5,
+      "tj_C": 53.53,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.53
+      }
+    },
+    {
+      "i": 103,
+      "t_rel_s": 684.61,
+      "pose_ms": 6431.0,
+      "lm_ms": 0.0,
+      "total_ms": 6431.0,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.56,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 104,
+      "t_rel_s": 691.1,
+      "pose_ms": 6476.1,
+      "lm_ms": 0.0,
+      "total_ms": 6476.1,
+      "tj_C": 53.78,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.78
+      }
+    },
+    {
+      "i": 105,
+      "t_rel_s": 697.55,
+      "pose_ms": 6451.3,
+      "lm_ms": 0.0,
+      "total_ms": 6451.3,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.47,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 106,
+      "t_rel_s": 704.18,
+      "pose_ms": 6618.7,
+      "lm_ms": 0.0,
+      "total_ms": 6618.7,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.62,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 107,
+      "t_rel_s": 711.15,
+      "pose_ms": 6965.0,
+      "lm_ms": 0.0,
+      "total_ms": 6965.0,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.59,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 108,
+      "t_rel_s": 717.7,
+      "pose_ms": 6539.4,
+      "lm_ms": 0.0,
+      "total_ms": 6539.4,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 109,
+      "t_rel_s": 724.13,
+      "pose_ms": 6421.9,
+      "lm_ms": 0.0,
+      "total_ms": 6421.9,
+      "tj_C": 53.25,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.25
+      }
+    },
+    {
+      "i": 110,
+      "t_rel_s": 730.63,
+      "pose_ms": 6487.3,
+      "lm_ms": 0.0,
+      "total_ms": 6487.3,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 111,
+      "t_rel_s": 737.11,
+      "pose_ms": 6471.0,
+      "lm_ms": 0.0,
+      "total_ms": 6471.0,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 112,
+      "t_rel_s": 743.58,
+      "pose_ms": 6462.3,
+      "lm_ms": 0.0,
+      "total_ms": 6462.3,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.59,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 113,
+      "t_rel_s": 750.06,
+      "pose_ms": 6471.3,
+      "lm_ms": 0.0,
+      "total_ms": 6471.3,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 114,
+      "t_rel_s": 756.57,
+      "pose_ms": 6505.0,
+      "lm_ms": 0.0,
+      "total_ms": 6505.0,
+      "tj_C": 53.53,
+      "thermals": {
+        "cpu-thermal": 53.28,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.53
+      }
+    },
+    {
+      "i": 115,
+      "t_rel_s": 763.52,
+      "pose_ms": 6939.2,
+      "lm_ms": 0.0,
+      "total_ms": 6939.2,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 116,
+      "t_rel_s": 770.47,
+      "pose_ms": 6948.4,
+      "lm_ms": 0.0,
+      "total_ms": 6948.4,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 117,
+      "t_rel_s": 777.43,
+      "pose_ms": 6949.3,
+      "lm_ms": 0.0,
+      "total_ms": 6949.3,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 118,
+      "t_rel_s": 784.37,
+      "pose_ms": 6927.2,
+      "lm_ms": 0.0,
+      "total_ms": 6927.2,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 119,
+      "t_rel_s": 791.16,
+      "pose_ms": 6787.5,
+      "lm_ms": 0.0,
+      "total_ms": 6787.5,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 120,
+      "t_rel_s": 798.0,
+      "pose_ms": 6823.9,
+      "lm_ms": 0.0,
+      "total_ms": 6823.9,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.28,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 121,
+      "t_rel_s": 804.5,
+      "pose_ms": 6497.5,
+      "lm_ms": 0.0,
+      "total_ms": 6497.5,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 53.03,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 122,
+      "t_rel_s": 810.98,
+      "pose_ms": 6467.2,
+      "lm_ms": 0.0,
+      "total_ms": 6467.2,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 123,
+      "t_rel_s": 817.65,
+      "pose_ms": 6663.7,
+      "lm_ms": 0.0,
+      "total_ms": 6663.7,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 124,
+      "t_rel_s": 824.59,
+      "pose_ms": 6936.8,
+      "lm_ms": 0.0,
+      "total_ms": 6936.8,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.69,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 125,
+      "t_rel_s": 831.53,
+      "pose_ms": 6922.9,
+      "lm_ms": 0.0,
+      "total_ms": 6922.9,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 126,
+      "t_rel_s": 838.47,
+      "pose_ms": 6936.3,
+      "lm_ms": 0.0,
+      "total_ms": 6936.3,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 53.28,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 127,
+      "t_rel_s": 845.36,
+      "pose_ms": 6885.4,
+      "lm_ms": 0.0,
+      "total_ms": 6885.4,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 128,
+      "t_rel_s": 852.0,
+      "pose_ms": 6633.2,
+      "lm_ms": 0.0,
+      "total_ms": 6633.2,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 129,
+      "t_rel_s": 858.45,
+      "pose_ms": 6434.7,
+      "lm_ms": 0.0,
+      "total_ms": 6434.7,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 130,
+      "t_rel_s": 864.95,
+      "pose_ms": 6499.4,
+      "lm_ms": 0.0,
+      "total_ms": 6499.4,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.62,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 131,
+      "t_rel_s": 871.41,
+      "pose_ms": 6447.3,
+      "lm_ms": 0.0,
+      "total_ms": 6447.3,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.25,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 132,
+      "t_rel_s": 877.9,
+      "pose_ms": 6484.8,
+      "lm_ms": 0.0,
+      "total_ms": 6484.8,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.25,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 133,
+      "t_rel_s": 884.66,
+      "pose_ms": 6749.8,
+      "lm_ms": 0.0,
+      "total_ms": 6749.8,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.75,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 134,
+      "t_rel_s": 891.61,
+      "pose_ms": 6935.6,
+      "lm_ms": 0.0,
+      "total_ms": 6935.6,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 135,
+      "t_rel_s": 898.53,
+      "pose_ms": 6915.5,
+      "lm_ms": 0.0,
+      "total_ms": 6915.5,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 136,
+      "t_rel_s": 905.46,
+      "pose_ms": 6919.1,
+      "lm_ms": 0.0,
+      "total_ms": 6919.1,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 137,
+      "t_rel_s": 912.39,
+      "pose_ms": 6925.4,
+      "lm_ms": 0.0,
+      "total_ms": 6925.4,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.56,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 138,
+      "t_rel_s": 919.33,
+      "pose_ms": 6929.5,
+      "lm_ms": 0.0,
+      "total_ms": 6929.5,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 139,
+      "t_rel_s": 926.27,
+      "pose_ms": 6933.9,
+      "lm_ms": 0.0,
+      "total_ms": 6933.9,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.75,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 140,
+      "t_rel_s": 933.19,
+      "pose_ms": 6909.7,
+      "lm_ms": 0.0,
+      "total_ms": 6909.7,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 141,
+      "t_rel_s": 940.12,
+      "pose_ms": 6924.2,
+      "lm_ms": 0.0,
+      "total_ms": 6924.2,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 142,
+      "t_rel_s": 946.68,
+      "pose_ms": 6546.1,
+      "lm_ms": 0.0,
+      "total_ms": 6546.1,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.81,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 53.03,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 143,
+      "t_rel_s": 953.48,
+      "pose_ms": 6794.6,
+      "lm_ms": 0.0,
+      "total_ms": 6794.6,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 144,
+      "t_rel_s": 960.42,
+      "pose_ms": 6927.7,
+      "lm_ms": 0.0,
+      "total_ms": 6927.7,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 145,
+      "t_rel_s": 967.37,
+      "pose_ms": 6948.1,
+      "lm_ms": 0.0,
+      "total_ms": 6948.1,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 146,
+      "t_rel_s": 974.18,
+      "pose_ms": 6799.0,
+      "lm_ms": 0.0,
+      "total_ms": 6799.0,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.28,
+        "gpu-thermal": 53.62,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 147,
+      "t_rel_s": 980.65,
+      "pose_ms": 6463.0,
+      "lm_ms": 0.0,
+      "total_ms": 6463.0,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 53.12,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 148,
+      "t_rel_s": 987.1,
+      "pose_ms": 6443.8,
+      "lm_ms": 0.0,
+      "total_ms": 6443.8,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.47,
+        "soc1-thermal": 52.66,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 149,
+      "t_rel_s": 993.58,
+      "pose_ms": 6470.4,
+      "lm_ms": 0.0,
+      "total_ms": 6470.4,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.25,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 150,
+      "t_rel_s": 1000.1,
+      "pose_ms": 6507.8,
+      "lm_ms": 0.0,
+      "total_ms": 6507.8,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 151,
+      "t_rel_s": 1006.96,
+      "pose_ms": 6851.2,
+      "lm_ms": 0.0,
+      "total_ms": 6851.2,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.16,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.78,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 152,
+      "t_rel_s": 1013.86,
+      "pose_ms": 6889.3,
+      "lm_ms": 0.0,
+      "total_ms": 6889.3,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 153,
+      "t_rel_s": 1020.82,
+      "pose_ms": 6953.4,
+      "lm_ms": 0.0,
+      "total_ms": 6953.4,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.25,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 154,
+      "t_rel_s": 1027.76,
+      "pose_ms": 6936.5,
+      "lm_ms": 0.0,
+      "total_ms": 6936.5,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 155,
+      "t_rel_s": 1034.68,
+      "pose_ms": 6910.1,
+      "lm_ms": 0.0,
+      "total_ms": 6910.1,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 156,
+      "t_rel_s": 1041.66,
+      "pose_ms": 6967.0,
+      "lm_ms": 0.0,
+      "total_ms": 6967.0,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.56,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 157,
+      "t_rel_s": 1048.47,
+      "pose_ms": 6802.9,
+      "lm_ms": 0.0,
+      "total_ms": 6802.9,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 158,
+      "t_rel_s": 1054.96,
+      "pose_ms": 6487.9,
+      "lm_ms": 0.0,
+      "total_ms": 6487.9,
+      "tj_C": 53.53,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.06,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.78,
+        "tj-thermal": 53.53
+      }
+    },
+    {
+      "i": 159,
+      "t_rel_s": 1061.45,
+      "pose_ms": 6478.8,
+      "lm_ms": 0.0,
+      "total_ms": 6478.8,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 160,
+      "t_rel_s": 1067.9,
+      "pose_ms": 6441.3,
+      "lm_ms": 0.0,
+      "total_ms": 6441.3,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 161,
+      "t_rel_s": 1074.35,
+      "pose_ms": 6443.2,
+      "lm_ms": 0.0,
+      "total_ms": 6443.2,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.38,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 162,
+      "t_rel_s": 1080.78,
+      "pose_ms": 6420.4,
+      "lm_ms": 0.0,
+      "total_ms": 6420.4,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 163,
+      "t_rel_s": 1087.24,
+      "pose_ms": 6459.0,
+      "lm_ms": 0.0,
+      "total_ms": 6459.0,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.59,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 164,
+      "t_rel_s": 1093.7,
+      "pose_ms": 6446.0,
+      "lm_ms": 0.0,
+      "total_ms": 6446.0,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.56,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 165,
+      "t_rel_s": 1100.5,
+      "pose_ms": 6792.5,
+      "lm_ms": 0.0,
+      "total_ms": 6792.5,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 53.03,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 166,
+      "t_rel_s": 1107.41,
+      "pose_ms": 6902.9,
+      "lm_ms": 0.0,
+      "total_ms": 6902.9,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 167,
+      "t_rel_s": 1113.92,
+      "pose_ms": 6502.6,
+      "lm_ms": 0.0,
+      "total_ms": 6502.6,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 168,
+      "t_rel_s": 1120.44,
+      "pose_ms": 6513.9,
+      "lm_ms": 0.0,
+      "total_ms": 6513.9,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 169,
+      "t_rel_s": 1126.88,
+      "pose_ms": 6432.9,
+      "lm_ms": 0.0,
+      "total_ms": 6432.9,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 170,
+      "t_rel_s": 1133.36,
+      "pose_ms": 6468.9,
+      "lm_ms": 0.0,
+      "total_ms": 6468.9,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.25,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 171,
+      "t_rel_s": 1140.23,
+      "pose_ms": 6862.5,
+      "lm_ms": 0.0,
+      "total_ms": 6862.5,
+      "tj_C": 53.19,
+      "thermals": {
+        "cpu-thermal": 52.88,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.12,
+        "soc1-thermal": 52.25,
+        "soc2-thermal": 52.72,
+        "tj-thermal": 53.19
+      }
+    },
+    {
+      "i": 172,
+      "t_rel_s": 1147.11,
+      "pose_ms": 6866.5,
+      "lm_ms": 0.0,
+      "total_ms": 6866.5,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.25,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 173,
+      "t_rel_s": 1153.61,
+      "pose_ms": 6497.8,
+      "lm_ms": 0.0,
+      "total_ms": 6497.8,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.56,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 174,
+      "t_rel_s": 1160.37,
+      "pose_ms": 6750.2,
+      "lm_ms": 0.0,
+      "total_ms": 6750.2,
+      "tj_C": 53.53,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.53
+      }
+    },
+    {
+      "i": 175,
+      "t_rel_s": 1167.31,
+      "pose_ms": 6931.8,
+      "lm_ms": 0.0,
+      "total_ms": 6931.8,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 176,
+      "t_rel_s": 1174.23,
+      "pose_ms": 6915.2,
+      "lm_ms": 0.0,
+      "total_ms": 6915.2,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 177,
+      "t_rel_s": 1181.18,
+      "pose_ms": 6936.3,
+      "lm_ms": 0.0,
+      "total_ms": 6936.3,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.59,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 178,
+      "t_rel_s": 1188.12,
+      "pose_ms": 6933.9,
+      "lm_ms": 0.0,
+      "total_ms": 6933.9,
+      "tj_C": 53.22,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.25,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.22
+      }
+    },
+    {
+      "i": 179,
+      "t_rel_s": 1195.05,
+      "pose_ms": 6917.0,
+      "lm_ms": 0.0,
+      "total_ms": 6917.0,
+      "tj_C": 53.62,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.62
+      }
+    },
+    {
+      "i": 180,
+      "t_rel_s": 1201.99,
+      "pose_ms": 6929.2,
+      "lm_ms": 0.0,
+      "total_ms": 6929.2,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.28,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 181,
+      "t_rel_s": 1208.93,
+      "pose_ms": 6939.2,
+      "lm_ms": 0.0,
+      "total_ms": 6939.2,
+      "tj_C": 53.72,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.47,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.72
+      }
+    },
+    {
+      "i": 182,
+      "t_rel_s": 1215.85,
+      "pose_ms": 6909.6,
+      "lm_ms": 0.0,
+      "total_ms": 6909.6,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.72,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 53.06,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 183,
+      "t_rel_s": 1222.78,
+      "pose_ms": 6913.5,
+      "lm_ms": 0.0,
+      "total_ms": 6913.5,
+      "tj_C": 53.62,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.62
+      }
+    },
+    {
+      "i": 184,
+      "t_rel_s": 1229.66,
+      "pose_ms": 6876.9,
+      "lm_ms": 0.0,
+      "total_ms": 6876.9,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 185,
+      "t_rel_s": 1236.6,
+      "pose_ms": 6930.2,
+      "lm_ms": 0.0,
+      "total_ms": 6930.2,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 186,
+      "t_rel_s": 1243.42,
+      "pose_ms": 6814.1,
+      "lm_ms": 0.0,
+      "total_ms": 6814.1,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 53.25,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 187,
+      "t_rel_s": 1249.91,
+      "pose_ms": 6479.7,
+      "lm_ms": 0.0,
+      "total_ms": 6479.7,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 188,
+      "t_rel_s": 1256.43,
+      "pose_ms": 6517.1,
+      "lm_ms": 0.0,
+      "total_ms": 6517.1,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.5,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.56,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 189,
+      "t_rel_s": 1262.91,
+      "pose_ms": 6464.8,
+      "lm_ms": 0.0,
+      "total_ms": 6464.8,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 190,
+      "t_rel_s": 1269.36,
+      "pose_ms": 6444.5,
+      "lm_ms": 0.0,
+      "total_ms": 6444.5,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 191,
+      "t_rel_s": 1275.83,
+      "pose_ms": 6460.0,
+      "lm_ms": 0.0,
+      "total_ms": 6460.0,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 192,
+      "t_rel_s": 1282.4,
+      "pose_ms": 6562.7,
+      "lm_ms": 0.0,
+      "total_ms": 6562.7,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 193,
+      "t_rel_s": 1289.32,
+      "pose_ms": 6912.6,
+      "lm_ms": 0.0,
+      "total_ms": 6912.6,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 194,
+      "t_rel_s": 1296.25,
+      "pose_ms": 6918.4,
+      "lm_ms": 0.0,
+      "total_ms": 6918.4,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 195,
+      "t_rel_s": 1303.17,
+      "pose_ms": 6914.5,
+      "lm_ms": 0.0,
+      "total_ms": 6914.5,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 196,
+      "t_rel_s": 1310.12,
+      "pose_ms": 6941.1,
+      "lm_ms": 0.0,
+      "total_ms": 6941.1,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 197,
+      "t_rel_s": 1317.04,
+      "pose_ms": 6921.5,
+      "lm_ms": 0.0,
+      "total_ms": 6921.5,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.28,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 198,
+      "t_rel_s": 1323.97,
+      "pose_ms": 6917.3,
+      "lm_ms": 0.0,
+      "total_ms": 6917.3,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.59,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 199,
+      "t_rel_s": 1330.84,
+      "pose_ms": 6864.7,
+      "lm_ms": 0.0,
+      "total_ms": 6864.7,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.44,
+        "soc1-thermal": 52.62,
+        "soc2-thermal": 53.03,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 200,
+      "t_rel_s": 1337.38,
+      "pose_ms": 6529.5,
+      "lm_ms": 0.0,
+      "total_ms": 6529.5,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.28,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 201,
+      "t_rel_s": 1343.8,
+      "pose_ms": 6414.9,
+      "lm_ms": 0.0,
+      "total_ms": 6414.9,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.25,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 202,
+      "t_rel_s": 1350.52,
+      "pose_ms": 6713.1,
+      "lm_ms": 0.0,
+      "total_ms": 6713.1,
+      "tj_C": 53.53,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.19,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.53
+      }
+    },
+    {
+      "i": 203,
+      "t_rel_s": 1357.08,
+      "pose_ms": 6551.0,
+      "lm_ms": 0.0,
+      "total_ms": 6551.0,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 53.31,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 204,
+      "t_rel_s": 1363.81,
+      "pose_ms": 6717.8,
+      "lm_ms": 0.0,
+      "total_ms": 6717.8,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.25,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 205,
+      "t_rel_s": 1370.33,
+      "pose_ms": 6519.7,
+      "lm_ms": 0.0,
+      "total_ms": 6519.7,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 206,
+      "t_rel_s": 1376.82,
+      "pose_ms": 6481.5,
+      "lm_ms": 0.0,
+      "total_ms": 6481.5,
+      "tj_C": 53.53,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.53
+      }
+    },
+    {
+      "i": 207,
+      "t_rel_s": 1383.29,
+      "pose_ms": 6457.1,
+      "lm_ms": 0.0,
+      "total_ms": 6457.1,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.56,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 208,
+      "t_rel_s": 1389.81,
+      "pose_ms": 6519.5,
+      "lm_ms": 0.0,
+      "total_ms": 6519.5,
+      "tj_C": 53.19,
+      "thermals": {
+        "cpu-thermal": 53.44,
+        "gpu-thermal": 53.59,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.19
+      }
+    },
+    {
+      "i": 209,
+      "t_rel_s": 1396.28,
+      "pose_ms": 6458.5,
+      "lm_ms": 0.0,
+      "total_ms": 6458.5,
+      "tj_C": 53.22,
+      "thermals": {
+        "cpu-thermal": 52.88,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.06,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.22
+      }
+    },
+    {
+      "i": 210,
+      "t_rel_s": 1402.76,
+      "pose_ms": 6472.9,
+      "lm_ms": 0.0,
+      "total_ms": 6472.9,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 211,
+      "t_rel_s": 1409.26,
+      "pose_ms": 6490.6,
+      "lm_ms": 0.0,
+      "total_ms": 6490.6,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 212,
+      "t_rel_s": 1415.71,
+      "pose_ms": 6443.3,
+      "lm_ms": 0.0,
+      "total_ms": 6443.3,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 213,
+      "t_rel_s": 1422.16,
+      "pose_ms": 6442.3,
+      "lm_ms": 0.0,
+      "total_ms": 6442.3,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 214,
+      "t_rel_s": 1428.79,
+      "pose_ms": 6627.1,
+      "lm_ms": 0.0,
+      "total_ms": 6627.1,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 215,
+      "t_rel_s": 1435.73,
+      "pose_ms": 6929.6,
+      "lm_ms": 0.0,
+      "total_ms": 6929.6,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 216,
+      "t_rel_s": 1442.56,
+      "pose_ms": 6822.6,
+      "lm_ms": 0.0,
+      "total_ms": 6822.6,
+      "tj_C": 53.62,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.41,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.62
+      }
+    },
+    {
+      "i": 217,
+      "t_rel_s": 1449.17,
+      "pose_ms": 6602.4,
+      "lm_ms": 0.0,
+      "total_ms": 6602.4,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 52.91,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 218,
+      "t_rel_s": 1456.11,
+      "pose_ms": 6930.0,
+      "lm_ms": 0.0,
+      "total_ms": 6930.0,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 219,
+      "t_rel_s": 1463.06,
+      "pose_ms": 6941.7,
+      "lm_ms": 0.0,
+      "total_ms": 6941.7,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 220,
+      "t_rel_s": 1470.01,
+      "pose_ms": 6944.1,
+      "lm_ms": 0.0,
+      "total_ms": 6944.1,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 221,
+      "t_rel_s": 1476.77,
+      "pose_ms": 6755.2,
+      "lm_ms": 0.0,
+      "total_ms": 6755.2,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.25,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 222,
+      "t_rel_s": 1483.32,
+      "pose_ms": 6532.9,
+      "lm_ms": 0.0,
+      "total_ms": 6532.9,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 223,
+      "t_rel_s": 1490.05,
+      "pose_ms": 6722.7,
+      "lm_ms": 0.0,
+      "total_ms": 6722.7,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 224,
+      "t_rel_s": 1496.97,
+      "pose_ms": 6917.7,
+      "lm_ms": 0.0,
+      "total_ms": 6917.7,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.25,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 225,
+      "t_rel_s": 1503.91,
+      "pose_ms": 6929.0,
+      "lm_ms": 0.0,
+      "total_ms": 6929.0,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.22,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 226,
+      "t_rel_s": 1510.87,
+      "pose_ms": 6952.4,
+      "lm_ms": 0.0,
+      "total_ms": 6952.4,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.22,
+        "soc0-thermal": 53.12,
+        "soc1-thermal": 52.31,
+        "soc2-thermal": 52.75,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 227,
+      "t_rel_s": 1517.51,
+      "pose_ms": 6629.3,
+      "lm_ms": 0.0,
+      "total_ms": 6629.3,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.31,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 228,
+      "t_rel_s": 1524.02,
+      "pose_ms": 6501.4,
+      "lm_ms": 0.0,
+      "total_ms": 6501.4,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 229,
+      "t_rel_s": 1530.96,
+      "pose_ms": 6936.0,
+      "lm_ms": 0.0,
+      "total_ms": 6936.0,
+      "tj_C": 53.62,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.62
+      }
+    },
+    {
+      "i": 230,
+      "t_rel_s": 1537.9,
+      "pose_ms": 6934.7,
+      "lm_ms": 0.0,
+      "total_ms": 6934.7,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.62,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 231,
+      "t_rel_s": 1544.76,
+      "pose_ms": 6851.9,
+      "lm_ms": 0.0,
+      "total_ms": 6851.9,
+      "tj_C": 53.41,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.44,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 53.03,
+        "tj-thermal": 53.41
+      }
+    },
+    {
+      "i": 232,
+      "t_rel_s": 1551.71,
+      "pose_ms": 6932.9,
+      "lm_ms": 0.0,
+      "total_ms": 6932.9,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.59,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 233,
+      "t_rel_s": 1558.5,
+      "pose_ms": 6784.2,
+      "lm_ms": 0.0,
+      "total_ms": 6784.2,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 234,
+      "t_rel_s": 1564.97,
+      "pose_ms": 6462.2,
+      "lm_ms": 0.0,
+      "total_ms": 6462.2,
+      "tj_C": 53.47,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.28,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.47
+      }
+    },
+    {
+      "i": 235,
+      "t_rel_s": 1571.41,
+      "pose_ms": 6440.3,
+      "lm_ms": 0.0,
+      "total_ms": 6440.3,
+      "tj_C": 53.25,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.25
+      }
+    },
+    {
+      "i": 236,
+      "t_rel_s": 1577.86,
+      "pose_ms": 6435.9,
+      "lm_ms": 0.0,
+      "total_ms": 6435.9,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 237,
+      "t_rel_s": 1584.33,
+      "pose_ms": 6463.9,
+      "lm_ms": 0.0,
+      "total_ms": 6463.9,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.25,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 238,
+      "t_rel_s": 1590.76,
+      "pose_ms": 6423.1,
+      "lm_ms": 0.0,
+      "total_ms": 6423.1,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.56,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 239,
+      "t_rel_s": 1597.16,
+      "pose_ms": 6392.6,
+      "lm_ms": 0.0,
+      "total_ms": 6392.6,
+      "tj_C": 53.72,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.72,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.72
+      }
+    },
+    {
+      "i": 240,
+      "t_rel_s": 1603.59,
+      "pose_ms": 6429.6,
+      "lm_ms": 0.0,
+      "total_ms": 6429.6,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 241,
+      "t_rel_s": 1610.04,
+      "pose_ms": 6436.3,
+      "lm_ms": 0.0,
+      "total_ms": 6436.3,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 242,
+      "t_rel_s": 1616.93,
+      "pose_ms": 6886.6,
+      "lm_ms": 0.0,
+      "total_ms": 6886.6,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 52.88,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 243,
+      "t_rel_s": 1623.81,
+      "pose_ms": 6867.7,
+      "lm_ms": 0.0,
+      "total_ms": 6867.7,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 53.03,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 244,
+      "t_rel_s": 1630.31,
+      "pose_ms": 6496.9,
+      "lm_ms": 0.0,
+      "total_ms": 6496.9,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 245,
+      "t_rel_s": 1636.79,
+      "pose_ms": 6465.0,
+      "lm_ms": 0.0,
+      "total_ms": 6465.0,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 246,
+      "t_rel_s": 1643.23,
+      "pose_ms": 6437.9,
+      "lm_ms": 0.0,
+      "total_ms": 6437.9,
+      "tj_C": 53.22,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.22,
+        "soc0-thermal": 53.12,
+        "soc1-thermal": 52.34,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.22
+      }
+    },
+    {
+      "i": 247,
+      "t_rel_s": 1649.67,
+      "pose_ms": 6435.9,
+      "lm_ms": 0.0,
+      "total_ms": 6435.9,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.03,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.81,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 248,
+      "t_rel_s": 1656.14,
+      "pose_ms": 6452.1,
+      "lm_ms": 0.0,
+      "total_ms": 6452.1,
+      "tj_C": 53.19,
+      "thermals": {
+        "cpu-thermal": 53.19,
+        "gpu-thermal": 53.16,
+        "soc0-thermal": 53.19,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.78,
+        "tj-thermal": 53.19
+      }
+    },
+    {
+      "i": 249,
+      "t_rel_s": 1662.6,
+      "pose_ms": 6452.2,
+      "lm_ms": 0.0,
+      "total_ms": 6452.2,
+      "tj_C": 53.75,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.75,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.62,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.75
+      }
+    },
+    {
+      "i": 250,
+      "t_rel_s": 1669.03,
+      "pose_ms": 6430.4,
+      "lm_ms": 0.0,
+      "total_ms": 6430.4,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 53.06,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 251,
+      "t_rel_s": 1675.47,
+      "pose_ms": 6428.7,
+      "lm_ms": 0.0,
+      "total_ms": 6428.7,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.31,
+        "gpu-thermal": 53.34,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 252,
+      "t_rel_s": 1681.94,
+      "pose_ms": 6467.1,
+      "lm_ms": 0.0,
+      "total_ms": 6467.1,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.09,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 253,
+      "t_rel_s": 1688.53,
+      "pose_ms": 6576.9,
+      "lm_ms": 0.0,
+      "total_ms": 6576.9,
+      "tj_C": 53.72,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.47,
+        "soc1-thermal": 52.44,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.72
+      }
+    },
+    {
+      "i": 254,
+      "t_rel_s": 1695.35,
+      "pose_ms": 6812.2,
+      "lm_ms": 0.0,
+      "total_ms": 6812.2,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.47,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 255,
+      "t_rel_s": 1701.78,
+      "pose_ms": 6427.6,
+      "lm_ms": 0.0,
+      "total_ms": 6427.6,
+      "tj_C": 53.78,
+      "thermals": {
+        "cpu-thermal": 53.31,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.78
+      }
+    },
+    {
+      "i": 256,
+      "t_rel_s": 1708.24,
+      "pose_ms": 6447.4,
+      "lm_ms": 0.0,
+      "total_ms": 6447.4,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.94,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 257,
+      "t_rel_s": 1714.8,
+      "pose_ms": 6549.0,
+      "lm_ms": 0.0,
+      "total_ms": 6549.0,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.38,
+        "soc1-thermal": 52.59,
+        "soc2-thermal": 53.0,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 258,
+      "t_rel_s": 1721.51,
+      "pose_ms": 6703.2,
+      "lm_ms": 0.0,
+      "total_ms": 6703.2,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.66,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 259,
+      "t_rel_s": 1728.41,
+      "pose_ms": 6898.3,
+      "lm_ms": 0.0,
+      "total_ms": 6898.3,
+      "tj_C": 53.56,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.38,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.56
+      }
+    },
+    {
+      "i": 260,
+      "t_rel_s": 1735.34,
+      "pose_ms": 6920.6,
+      "lm_ms": 0.0,
+      "total_ms": 6920.6,
+      "tj_C": 53.28,
+      "thermals": {
+        "cpu-thermal": 53.28,
+        "gpu-thermal": 53.59,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.28
+      }
+    },
+    {
+      "i": 261,
+      "t_rel_s": 1742.3,
+      "pose_ms": 6947.9,
+      "lm_ms": 0.0,
+      "total_ms": 6947.9,
+      "tj_C": 53.66,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.66
+      }
+    },
+    {
+      "i": 262,
+      "t_rel_s": 1749.24,
+      "pose_ms": 6931.4,
+      "lm_ms": 0.0,
+      "total_ms": 6931.4,
+      "tj_C": 53.5,
+      "thermals": {
+        "cpu-thermal": 52.94,
+        "gpu-thermal": 53.47,
+        "soc0-thermal": 53.25,
+        "soc1-thermal": 52.41,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.5
+      }
+    },
+    {
+      "i": 263,
+      "t_rel_s": 1756.18,
+      "pose_ms": 6934.6,
+      "lm_ms": 0.0,
+      "total_ms": 6934.6,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 53.12,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 264,
+      "t_rel_s": 1763.14,
+      "pose_ms": 6944.5,
+      "lm_ms": 0.0,
+      "total_ms": 6944.5,
+      "tj_C": 53.34,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.5,
+        "soc0-thermal": 53.34,
+        "soc1-thermal": 52.22,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.34
+      }
+    },
+    {
+      "i": 265,
+      "t_rel_s": 1770.08,
+      "pose_ms": 6932.6,
+      "lm_ms": 0.0,
+      "total_ms": 6932.6,
+      "tj_C": 53.38,
+      "thermals": {
+        "cpu-thermal": 53.0,
+        "gpu-thermal": 53.28,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.88,
+        "tj-thermal": 53.38
+      }
+    },
+    {
+      "i": 266,
+      "t_rel_s": 1777.04,
+      "pose_ms": 6949.4,
+      "lm_ms": 0.0,
+      "total_ms": 6949.4,
+      "tj_C": 53.31,
+      "thermals": {
+        "cpu-thermal": 53.06,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.22,
+        "soc1-thermal": 52.53,
+        "soc2-thermal": 52.84,
+        "tj-thermal": 53.31
+      }
+    },
+    {
+      "i": 267,
+      "t_rel_s": 1783.98,
+      "pose_ms": 6931.3,
+      "lm_ms": 0.0,
+      "total_ms": 6931.3,
+      "tj_C": 53.59,
+      "thermals": {
+        "cpu-thermal": 53.22,
+        "gpu-thermal": 53.44,
+        "soc0-thermal": 53.31,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.59
+      }
+    },
+    {
+      "i": 268,
+      "t_rel_s": 1790.93,
+      "pose_ms": 6941.4,
+      "lm_ms": 0.0,
+      "total_ms": 6941.4,
+      "tj_C": 53.53,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.53,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.5,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.53
+      }
+    },
+    {
+      "i": 269,
+      "t_rel_s": 1797.84,
+      "pose_ms": 6899.7,
+      "lm_ms": 0.0,
+      "total_ms": 6899.7,
+      "tj_C": 53.44,
+      "thermals": {
+        "cpu-thermal": 52.97,
+        "gpu-thermal": 53.31,
+        "soc0-thermal": 53.28,
+        "soc1-thermal": 52.62,
+        "soc2-thermal": 52.97,
+        "tj-thermal": 53.44
+      }
+    },
+    {
+      "i": 270,
+      "t_rel_s": 1804.77,
+      "pose_ms": 6928.6,
+      "lm_ms": 0.0,
+      "total_ms": 6928.6,
+      "tj_C": 53.62,
+      "thermals": {
+        "cpu-thermal": 53.16,
+        "gpu-thermal": 53.41,
+        "soc0-thermal": 53.16,
+        "soc1-thermal": 52.38,
+        "soc2-thermal": 52.91,
+        "tj-thermal": 53.62
+      }
+    }
+  ],
+  "power": {
+    "n_samples": 18048,
+    "duration_s": 1804.7,
+    "rails_mW_avg": {
+      "VDD_CPU_GPU_CV": 1372.3,
+      "VDD_IN": 4907.0,
+      "VDD_SOC": 1293.6
+    },
+    "rails_mW_max": {
+      "VDD_CPU_GPU_CV": 1607.7,
+      "VDD_IN": 5354.0,
+      "VDD_SOC": 1366.5
+    },
+    "aux_avg": {
+      "GR3D_FREQ_pct": 47.96,
+      "cpu0_MHz": 944.16,
+      "fan_pwm": 80.55,
+      "fan_rpm": 1889.28,
+      "gpu_MHz": 306.0,
+      "temp_cpu_C": 53.0,
+      "temp_gpu_C": 53.33,
+      "temp_soc0_C": 53.18,
+      "temp_soc1_C": 52.32,
+      "temp_soc2_C": 52.82,
+      "temp_tj_C": 53.33
+    },
+    "total_rail": "VDD_IN",
+    "avg_watts": 4.907,
+    "energy_mJ": 8855683.4,
+    "baseline_watts": 3.672,
+    "dynamic_energy_mJ": 2228863.6,
+    "n_frames": 68850,
+    "mJ_per_frame": 128.62,
+    "dynamic_mJ_per_frame": 32.37
+  },
+  "config": {
+    "mode": "pose",
+    "duration_s": 1800.0,
+    "engine": "models/rtmw/rtmw-l-m_256x192_fp16.engine",
+    "frames": "data/clips/ixq65EiuJ_c-00:03:47.633-00:03:56.133/frames",
+    "preproc": null,
+    "meta": null,
+    "ckpt": null,
+    "mt5": null,
+    "num_beams": 4,
+    "max_length": 256,
+    "max_new_tokens": 64,
+    "warmup": 20,
+    "limit": null,
+    "out": "results/c9_sustained_pose_iters.json",
+    "power_backend": "auto",
+    "power_interval_ms": 100,
+    "power_sudo": false,
+    "idle_seconds": 3.0,
+    "power_csv": "results/c9_sustained_pose.csv",
+    "power_json": "results/c9_sustained_pose.json"
+  }
+}

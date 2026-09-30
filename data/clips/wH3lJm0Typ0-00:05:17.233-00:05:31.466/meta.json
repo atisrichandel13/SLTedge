@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:05:17.233-00:05:31.466",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  613,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.47910861636317054,
+  -0.16734851636730524,
+  0.9160582738329274,
+  1.164130992051551
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "His friend and teammate, Corey, from Washburn University, who was with him, Dwane Simmons, was killed in the shooting.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 427,
+ "stride": 1,
+ "start": "00:05:17.233",
+ "end": "00:05:31.466",
+ "duration_s": 14.233
+}

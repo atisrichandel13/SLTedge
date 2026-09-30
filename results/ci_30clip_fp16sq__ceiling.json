@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_30clip_rtmw_fp16_sqnorm.json",
+ "b": "results/eval_30clip_authors_ceiling.json",
+ "n_clips": 30,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 18.519042259230375,
+  "b": 18.16877128576567,
+  "delta": -0.35027097346470626,
+  "ci": [
+   -4.226474990678882,
+   3.168544879953785
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.4065
+ },
+ "rouge_l": {
+  "a": 43.90607674898207,
+  "b": 45.034747694366494,
+  "delta": 1.128670945384421,
+  "ci": [
+   -2.252911349669173,
+   4.57295140856914
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.264
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "uZwKNtHx9FE-00:08:35.133-00:08:58.000",
+ "yid": "uZwKNtHx9FE",
+ "crop_xywh": [
+  664,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.5183807838324345,
+  -0.17702818218706431,
+  0.9814313694925019,
+  1.2193365548515962
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There have been a lot of news coverage about overcrowding on the mountain that may have caused the spike in deaths, because people are forced to wait for longer periods of time in very high altitudes, which can damage and exhaust the human body.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 549,
+ "stride": 1,
+ "start": "00:08:35.133",
+ "end": "00:08:58.000",
+ "duration_s": 22.867
+}

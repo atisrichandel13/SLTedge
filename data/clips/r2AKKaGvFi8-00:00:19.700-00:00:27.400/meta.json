@@ -1,0 +1,30 @@
+{
+ "vid": "r2AKKaGvFi8-00:00:19.700-00:00:27.400",
+ "yid": "r2AKKaGvFi8",
+ "crop_xywh": [
+  329,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.257207650326668,
+  -0.20300586300632725,
+  0.7083855990822433,
+  1.1128178072689647
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I met many deaf people who wouldn\u2019t help me because I was a European immigrant.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 231,
+ "stride": 1,
+ "start": "00:00:19.700",
+ "end": "00:00:27.400",
+ "duration_s": 7.7
+}

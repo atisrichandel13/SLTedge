@@ -1,0 +1,30 @@
+{
+ "vid": "qvN9q5kPC74-00:00:43.566-00:00:50.733",
+ "yid": "qvN9q5kPC74",
+ "crop_xywh": [
+  255,
+  0,
+  708,
+  720
+ ],
+ "bbox_norm": [
+  0.19891965555590252,
+  -0.22185279121694637,
+  0.7532339273497116,
+  1.398727019627889
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There are a diverse methods of communication such as American Sign Language, cued speech, and Signing Exact English.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 215,
+ "stride": 1,
+ "start": "00:00:43.566",
+ "end": "00:00:50.733",
+ "duration_s": 7.167
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "YtkTyOyA9_0-00:02:13.433-00:02:34.000",
+ "yid": "YtkTyOyA9_0",
+ "crop_xywh": [
+  336,
+  23,
+  276,
+  432
+ ],
+ "bbox_norm": [
+  0.5136200079871339,
+  0.04714349316012475,
+  0.9370743957651994,
+  0.9504670652010108
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Doctor say Jade DeLucia did not receive a flu shot this season, caught the flu a few days before Christmas and spent nearly 2 weeks in intensive care.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 617,
+ "stride": 1,
+ "start": "00:02:13.433",
+ "end": "00:02:34.000",
+ "duration_s": 20.567
+}

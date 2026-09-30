@@ -1,0 +1,30 @@
+{
+ "vid": "YAxFqaUqQDo-00:07:32.666-00:07:47.600",
+ "yid": "YAxFqaUqQDo",
+ "crop_xywh": [
+  768,
+  59,
+  474,
+  660
+ ],
+ "bbox_norm": [
+  0.6002378084924487,
+  0.08150322996539834,
+  0.9702108576562669,
+  1.153942357757945
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Two million chickens in Delaware and Maryland are being euthanized because chicken processing plants are short-staffed.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 448,
+ "stride": 1,
+ "start": "00:07:32.666",
+ "end": "00:07:47.600",
+ "duration_s": 14.934
+}

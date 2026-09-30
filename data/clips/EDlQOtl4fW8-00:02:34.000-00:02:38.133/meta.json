@@ -1,0 +1,30 @@
+{
+ "vid": "EDlQOtl4fW8-00:02:34.000-00:02:38.133",
+ "yid": "EDlQOtl4fW8",
+ "crop_xywh": [
+  315,
+  0,
+  574,
+  720
+ ],
+ "bbox_norm": [
+  0.24625017929077148,
+  -0.06718740618670428,
+  0.6945293642679851,
+  1.2769656151665583
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A few things to keep in mind as you make your proposal.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 124,
+ "stride": 1,
+ "start": "00:02:34.000",
+ "end": "00:02:38.133",
+ "duration_s": 4.133
+}

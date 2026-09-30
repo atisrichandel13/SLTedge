@@ -1,0 +1,30 @@
+{
+ "vid": "mnwCQzmi-pg-00:00:51.600-00:01:14.266",
+ "yid": "mnwCQzmi-pg",
+ "crop_xywh": [
+  568,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.44401548834751137,
+  -0.20554404509865504,
+  0.9324281599178956,
+  1.2702020094907491
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Although those numbers are very high and are bad news, there are positive reports from many countries that they are seeing the numbers of new hospitalizations and deaths reach their peak point and going into a plateau.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 544,
+ "stride": 1,
+ "start": "00:00:51.600",
+ "end": "00:01:14.266",
+ "duration_s": 22.666
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "31sHy2-FC70-00:23:53.300-00:23:59.466",
+ "yid": "31sHy2-FC70",
+ "crop_xywh": [
+  599,
+  0,
+  558,
+  720
+ ],
+ "bbox_norm": [
+  0.4677795643276638,
+  -0.15128511358190466,
+  0.9039449289109972,
+  1.1597481388515896
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In the interview process, they knows what issues are going on at MSD.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 148,
+ "stride": 1,
+ "start": "00:23:53.300",
+ "end": "00:23:59.466",
+ "duration_s": 6.166
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "bySOi__Kauk-00:09:11.100-00:09:20.166",
+ "yid": "bySOi__Kauk",
+ "crop_xywh": [
+  688,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.5372530128016616,
+  -0.1221952799273661,
+  0.955090125690807,
+  1.0767329391325362
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The 39-year-old Connecticut man was arrested Sunday at JFK International Airport in New York.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 272,
+ "stride": 1,
+ "start": "00:09:11.100",
+ "end": "00:09:20.166",
+ "duration_s": 9.066
+}

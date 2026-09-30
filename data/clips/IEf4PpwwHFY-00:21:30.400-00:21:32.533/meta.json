@@ -1,0 +1,30 @@
+{
+ "vid": "IEf4PpwwHFY-00:21:30.400-00:21:32.533",
+ "yid": "IEf4PpwwHFY",
+ "crop_xywh": [
+  573,
+  0,
+  706,
+  720
+ ],
+ "bbox_norm": [
+  0.4473902586734656,
+  -0.19540554008098565,
+  1.0154082760666356,
+  1.5250344453034577
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We're here for a purpose.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 52,
+ "stride": 1,
+ "start": "00:21:30.400",
+ "end": "00:21:32.533",
+ "duration_s": 2.133
+}

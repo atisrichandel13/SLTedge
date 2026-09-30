@@ -1,0 +1,30 @@
+{
+ "vid": "iD6DQiD2J7I-00:04:42.466-00:04:45.200",
+ "yid": "iD6DQiD2J7I",
+ "crop_xywh": [
+  284,
+  66,
+  144,
+  224
+ ],
+ "bbox_norm": [
+  0.4348788740909835,
+  0.1366994801689597,
+  0.6564474159017015,
+  0.6070578958473953
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We have wonderful new experiences for our team.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 82,
+ "stride": 1,
+ "start": "00:04:42.466",
+ "end": "00:04:45.200",
+ "duration_s": 2.734
+}

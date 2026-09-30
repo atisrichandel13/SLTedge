@@ -1,0 +1,30 @@
+{
+ "vid": "7JF1onKatVI-00:00:42.066-00:00:47.033",
+ "yid": "7JF1onKatVI",
+ "crop_xywh": [
+  367,
+  0,
+  500,
+  720
+ ],
+ "bbox_norm": [
+  0.28706228335698447,
+  -0.06073701293380172,
+  0.677369815773434,
+  1.0971953492105742
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They have 3 runs and each run will be judged by 3 judges.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 120,
+ "stride": 1,
+ "start": "00:00:42.066",
+ "end": "00:00:47.033",
+ "duration_s": 4.967
+}

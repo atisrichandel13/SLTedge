@@ -1,0 +1,30 @@
+{
+ "vid": "cux9_CWO_t0-00:04:24.700-00:04:35.333",
+ "yid": "cux9_CWO_t0",
+ "crop_xywh": [
+  734,
+  110,
+  398,
+  610
+ ],
+ "bbox_norm": [
+  0.5731380138546228,
+  0.1525887966156006,
+  0.8845294181257486,
+  1.1058631896972657
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "On Tuesday 800 new coronavirus deaths were reported in the US, the most reported deaths in a single day.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 319,
+ "stride": 1,
+ "start": "00:04:24.700",
+ "end": "00:04:35.333",
+ "duration_s": 10.633
+}

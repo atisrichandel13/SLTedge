@@ -1,0 +1,30 @@
+{
+ "vid": "4TtUxQPu5UM-00:06:40.466-00:06:44.733",
+ "yid": "4TtUxQPu5UM",
+ "crop_xywh": [
+  326,
+  0,
+  212,
+  300
+ ],
+ "bbox_norm": [
+  0.5091888580322266,
+  -0.022617440117730033,
+  0.8428928833007813,
+  0.835703232659234
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Meghan the Duchess of Sussex will not be involved.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 129,
+ "stride": 1,
+ "start": "00:06:40.466",
+ "end": "00:06:44.733",
+ "duration_s": 4.267
+}

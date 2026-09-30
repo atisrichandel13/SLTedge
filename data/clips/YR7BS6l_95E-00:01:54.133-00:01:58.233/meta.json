@@ -1,0 +1,30 @@
+{
+ "vid": "YR7BS6l_95E-00:01:54.133-00:01:58.233",
+ "yid": "YR7BS6l_95E",
+ "crop_xywh": [
+  553,
+  0,
+  194,
+  316
+ ],
+ "bbox_norm": [
+  0.43298469230296743,
+  -0.00021943275374595566,
+  0.5848017833686935,
+  0.44043637975699174
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A warm welcome to you all. So friendly and sociable.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1278,
+  720
+ ],
+ "n_frames": 123,
+ "stride": 1,
+ "start": "00:01:54.133",
+ "end": "00:01:58.233",
+ "duration_s": 4.1
+}

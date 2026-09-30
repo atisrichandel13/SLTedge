@@ -1,0 +1,18 @@
+
+NvMapMemAllocInternalTagged: 1075072515 error 12
+NvMapMemHandleAlloc: error 0
+NvMapMemAllocInternalTagged: 1075072515 error 12
+NvMapMemHandleAlloc: error 0
+NvMapMemAllocInternalTagged: 1075072515 error 12
+NvMapMemHandleAlloc: error 0
+[infer] model loaded in 32.1s on cuda/fp32: 587.7M params, mT5 582.4M, pose stack 5.35M
+[infer] frames in=300 used=256
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[infer] warm-up: 6626 ms
+[infer] run 1: {"gcn": 89.7, "encoder": 58.1, "decoder": 1663.7, "total": 1811.5, "encoder_len": 264, "decoded_tokens": 24}
+[infer] run 2: {"gcn": 79.2, "encoder": 57.2, "decoder": 1656.8, "total": 1793.1, "encoder_len": 264, "decoded_tokens": 24}
+[infer] run 3: {"gcn": 78.8, "encoder": 57.1, "decoder": 1652.8, "total": 1788.7, "encoder_len": 264, "decoded_tokens": 24}
+[infer] text: The tweet apparently targeted people with donations that were likely part of the Biden campaign.
+[infer] 24 tokens, mean logprob -0.749, min -1.792
+[infer] peak GPU mem 2.41 GB
+[infer] wrote results/l4_jetson_full_fp32.json

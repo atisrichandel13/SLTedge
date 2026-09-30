@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:00:59.000-00:01:11.666",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  123,
+  0,
+  794,
+  720
+ ],
+ "bbox_norm": [
+  0.09635849773109734,
+  -0.3337264592169339,
+  0.7160293433573339,
+  1.4710896955997455
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The show doesn't focus much on audism but rather who you are as a person and how you navigate through life as a person who is Deaf.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 380,
+ "stride": 1,
+ "start": "00:00:59.000",
+ "end": "00:01:11.666",
+ "duration_s": 12.666
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "gALXtpV4IY8-00:00:49.000-00:00:59.666",
+ "yid": "gALXtpV4IY8",
+ "crop_xywh": [
+  590,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.4610839426517487,
+  -0.21765475869178771,
+  0.9439355432987213,
+  1.2287778327862422
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A second police officer who was involved, Devin Brosnan, was charged with assault.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 320,
+ "stride": 1,
+ "start": "00:00:49.000",
+ "end": "00:00:59.666",
+ "duration_s": 10.666
+}

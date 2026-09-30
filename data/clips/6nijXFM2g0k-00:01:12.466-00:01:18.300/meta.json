@@ -1,0 +1,30 @@
+{
+ "vid": "6nijXFM2g0k-00:01:12.466-00:01:18.300",
+ "yid": "6nijXFM2g0k",
+ "crop_xywh": [
+  406,
+  0,
+  584,
+  720
+ ],
+ "bbox_norm": [
+  0.3171723620096843,
+  -0.18575750683981274,
+  0.7733684548877534,
+  1.1375009344999123
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If there is a video that you know is not captioned, you can reach out to DCMP to request captioning for the video.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 175,
+ "stride": 1,
+ "start": "00:01:12.466",
+ "end": "00:01:18.300",
+ "duration_s": 5.834
+}

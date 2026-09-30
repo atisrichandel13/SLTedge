@@ -1,0 +1,30 @@
+{
+ "vid": "pOeF3ReSqoM-00:00:18.700-00:00:23.200",
+ "yid": "pOeF3ReSqoM",
+ "crop_xywh": [
+  675,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.5274624279567174,
+  -0.13501365247857633,
+  0.9384769485110328,
+  1.0956439384076961
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A powerful storm and a tornado moved through the Tampa area.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 135,
+ "stride": 1,
+ "start": "00:00:18.700",
+ "end": "00:00:23.200",
+ "duration_s": 4.5
+}

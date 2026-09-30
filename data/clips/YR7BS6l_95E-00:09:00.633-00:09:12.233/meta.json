@@ -1,0 +1,30 @@
+{
+ "vid": "YR7BS6l_95E-00:09:00.633-00:09:12.233",
+ "yid": "YR7BS6l_95E",
+ "crop_xywh": [
+  650,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.5084155051590664,
+  -0.09532051348812366,
+  0.9194165188172669,
+  1.0297142835142752
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They got an aerial tour over the devastated areas, then landed and stopped by a shelter to help hand out supplies to people.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1278,
+  720
+ ],
+ "n_frames": 348,
+ "stride": 1,
+ "start": "00:09:00.633",
+ "end": "00:09:12.233",
+ "duration_s": 11.6
+}

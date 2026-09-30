@@ -1,0 +1,30 @@
+{
+ "vid": "mdRh7UiZjQM-00:00:24.000-00:00:27.533",
+ "yid": "mdRh7UiZjQM",
+ "crop_xywh": [
+  224,
+  0,
+  390,
+  470
+ ],
+ "bbox_norm": [
+  0.2627259007357069,
+  -0.13269475793008417,
+  0.7194387920364207,
+  1.2222258982852074
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It\u2019s required for them to meet my needs as a deaf  individual.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 106,
+ "stride": 1,
+ "start": "00:00:24.000",
+ "end": "00:00:27.533",
+ "duration_s": 3.533
+}

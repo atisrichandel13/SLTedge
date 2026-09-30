@@ -1,0 +1,238 @@
+{
+ "onnx": "models/rtmpose-x.onnx",
+ "frames": 2,
+ "fp16_max": 65504.0,
+ "overflow": [
+  {
+   "max": 142292.75,
+   "mean": 66277.9140625,
+   "tensor": "/mlp/mlp.0/ReduceSum_output_0",
+   "node": "/mlp/mlp.0/ReduceSum",
+   "op": "ReduceSum"
+  }
+ ],
+ "near": [
+  {
+   "max": 23565.392578125,
+   "mean": 616.4369506835938,
+   "tensor": "/mlp/mlp.0/Pow_output_0",
+   "node": "/mlp/mlp.0/Pow",
+   "op": "Pow"
+  }
+ ],
+ "top": [
+  {
+   "max": 142292.75,
+   "mean": 66277.9140625,
+   "tensor": "/mlp/mlp.0/ReduceSum_output_0",
+   "node": "/mlp/mlp.0/ReduceSum",
+   "op": "ReduceSum"
+  },
+  {
+   "max": 23565.392578125,
+   "mean": 616.4369506835938,
+   "tensor": "/mlp/mlp.0/Pow_output_0",
+   "node": "/mlp/mlp.0/Pow",
+   "op": "Pow"
+  },
+  {
+   "max": 377.21710205078125,
+   "mean": 245.30526733398438,
+   "tensor": "/mlp/mlp.0/Pow_1_output_0",
+   "node": "/mlp/mlp.0/Pow_1",
+   "op": "Pow"
+  },
+  {
+   "max": 174.25726318359375,
+   "mean": 2.3489246368408203,
+   "tensor": "/backbone/stage2/stage2.1/blocks/blocks.7/conv2/pointwise_conv/conv/Conv_output_0",
+   "node": "/backbone/stage2/stage2.1/blocks/blocks.7/conv2/pointwise_conv/conv/Conv",
+   "op": "Conv"
+  },
+  {
+   "max": 167.0664520263672,
+   "mean": 1.037136197090149,
+   "tensor": "/backbone/stage2/stage2.1/blocks/blocks.7/Add_output_0",
+   "node": "/backbone/stage2/stage2.1/blocks/blocks.7/Add",
+   "op": "Add"
+  },
+  {
+   "max": 167.0664520263672,
+   "mean": 0.7296052575111389,
+   "tensor": "/backbone/stage2/stage2.1/Concat_output_0",
+   "node": "/backbone/stage2/stage2.1/Concat",
+   "op": "Concat"
+  },
+  {
+   "max": 166.363037109375,
+   "mean": 0.6707714200019836,
+   "tensor": "/backbone/stage2/stage2.1/blocks/blocks.7/conv2/pointwise_conv/activate/Mul_output_0",
+   "node": "/backbone/stage2/stage2.1/blocks/blocks.7/conv2/pointwise_conv/activate/Mul",
+   "op": "Mul"
+  },
+  {
+   "max": 153.51023864746094,
+   "mean": 15.307283401489258,
+   "tensor": "/mlp/mlp.0/Abs_output_0",
+   "node": "/mlp/mlp.0/Abs",
+   "op": "Abs"
+  },
+  {
+   "max": 153.51023864746094,
+   "mean": 15.307283401489258,
+   "tensor": "/final_layer/Conv_output_0",
+   "node": "/final_layer/Conv",
+   "op": "Conv"
+  },
+  {
+   "max": 153.51023864746094,
+   "mean": 15.307283401489258,
+   "tensor": "/Reshape_output_0",
+   "node": "/Reshape",
+   "op": "Reshape"
+  },
+  {
+   "max": 109.78022766113281,
+   "mean": 8.2213134765625,
+   "tensor": "/backbone/stage4/stage4.1/poolings.2/MaxPool_output_0",
+   "node": "/backbone/stage4/stage4.1/poolings.2/MaxPool",
+   "op": "MaxPool"
+  },
+  {
+   "max": 109.78022766113281,
+   "mean": 7.881633281707764,
+   "tensor": "/backbone/stage4/stage4.1/poolings.1/MaxPool_output_0",
+   "node": "/backbone/stage4/stage4.1/poolings.1/MaxPool",
+   "op": "MaxPool"
+  },
+  {
+   "max": 109.78022766113281,
+   "mean": 7.112427234649658,
+   "tensor": "/backbone/stage4/stage4.1/Concat_output_0",
+   "node": "/backbone/stage4/stage4.1/Concat",
+   "op": "Concat"
+  },
+  {
+   "max": 109.78022766113281,
+   "mean": 7.096582889556885,
+   "tensor": "/backbone/stage4/stage4.1/poolings.0/MaxPool_output_0",
+   "node": "/backbone/stage4/stage4.1/poolings.0/MaxPool",
+   "op": "MaxPool"
+  },
+  {
+   "max": 109.78022766113281,
+   "mean": 5.371685028076172,
+   "tensor": "/backbone/stage4/stage4.1/conv1/conv/Conv_output_0",
+   "node": "/backbone/stage4/stage4.1/conv1/conv/Conv",
+   "op": "Conv"
+  },
+  {
+   "max": 109.78022766113281,
+   "mean": 5.250180244445801,
+   "tensor": "/backbone/stage4/stage4.1/conv1/activate/Mul_output_0",
+   "node": "/backbone/stage4/stage4.1/conv1/activate/Mul",
+   "op": "Mul"
+  },
+  {
+   "max": 109.00081634521484,
+   "mean": 1.5494577884674072,
+   "tensor": "/backbone/stage1/stage1.1/blocks/blocks.3/conv2/pointwise_conv/conv/Conv_output_0",
+   "node": "/backbone/stage1/stage1.1/blocks/blocks.3/conv2/pointwise_conv/conv/Conv",
+   "op": "Conv"
+  },
+  {
+   "max": 109.00081634521484,
+   "mean": 0.4030516743659973,
+   "tensor": "/backbone/stage1/stage1.1/blocks/blocks.3/conv2/pointwise_conv/activate/Mul_output_0",
+   "node": "/backbone/stage1/stage1.1/blocks/blocks.3/conv2/pointwise_conv/activate/Mul",
+   "op": "Mul"
+  },
+  {
+   "max": 108.13347625732422,
+   "mean": 0.5692809820175171,
+   "tensor": "/backbone/stage1/stage1.1/blocks/blocks.3/Add_output_0",
+   "node": "/backbone/stage1/stage1.1/blocks/blocks.3/Add",
+   "op": "Add"
+  },
+  {
+   "max": 108.13347625732422,
+   "mean": 0.5429289937019348,
+   "tensor": "/backbone/stage1/stage1.1/Concat_output_0",
+   "node": "/backbone/stage1/stage1.1/Concat",
+   "op": "Concat"
+  },
+  {
+   "max": 100.69622802734375,
+   "mean": 2.9862608909606934,
+   "tensor": "/backbone/stage3/stage3.1/blocks/blocks.7/conv2/pointwise_conv/conv/Conv_output_0",
+   "node": "/backbone/stage3/stage3.1/blocks/blocks.7/conv2/pointwise_conv/conv/Conv",
+   "op": "Conv"
+  },
+  {
+   "max": 90.0931396484375,
+   "mean": 3.8992631435394287,
+   "tensor": "/backbone/stage3/stage3.1/blocks/blocks.3/conv2/depthwise_conv/conv/Conv_output_0",
+   "node": "/backbone/stage3/stage3.1/blocks/blocks.3/conv2/depthwise_conv/conv/Conv",
+   "op": "Conv"
+  },
+  {
+   "max": 90.0931396484375,
+   "mean": 3.1991915702819824,
+   "tensor": "/backbone/stage3/stage3.1/blocks/blocks.3/conv2/depthwise_conv/activate/Mul_output_0",
+   "node": "/backbone/stage3/stage3.1/blocks/blocks.3/conv2/depthwise_conv/activate/Mul",
+   "op": "Mul"
+  },
+  {
+   "max": 88.02259063720703,
+   "mean": 4.075140953063965,
+   "tensor": "/backbone/stage2/stage2.1/blocks/blocks.5/conv2/depthwise_conv/conv/Conv_output_0",
+   "node": "/backbone/stage2/stage2.1/blocks/blocks.5/conv2/depthwise_conv/conv/Conv",
+   "op": "Conv"
+  },
+  {
+   "max": 88.02259063720703,
+   "mean": 3.2955148220062256,
+   "tensor": "/backbone/stage2/stage2.1/blocks/blocks.5/conv2/depthwise_conv/activate/Mul_output_0",
+   "node": "/backbone/stage2/stage2.1/blocks/blocks.5/conv2/depthwise_conv/activate/Mul",
+   "op": "Mul"
+  },
+  {
+   "max": 82.64147186279297,
+   "mean": 67.86856842041016,
+   "tensor": "/gau/ln/ReduceSum_output_0",
+   "node": "/gau/ln/ReduceSum",
+   "op": "ReduceSum"
+  },
+  {
+   "max": 78.32976531982422,
+   "mean": 5.692617416381836,
+   "tensor": "/backbone/stage2/stage2.1/blocks/blocks.6/conv2/depthwise_conv/conv/Conv_output_0",
+   "node": "/backbone/stage2/stage2.1/blocks/blocks.6/conv2/depthwise_conv/conv/Conv",
+   "op": "Conv"
+  },
+  {
+   "max": 78.32976531982422,
+   "mean": 5.157385349273682,
+   "tensor": "/backbone/stage2/stage2.1/blocks/blocks.6/conv2/depthwise_conv/activate/Mul_output_0",
+   "node": "/backbone/stage2/stage2.1/blocks/blocks.6/conv2/depthwise_conv/activate/Mul",
+   "op": "Mul"
+  },
+  {
+   "max": 76.84062194824219,
+   "mean": 2.3977560997009277,
+   "tensor": "/backbone/stage4/stage4.0/conv/Conv_output_0",
+   "node": "/backbone/stage4/stage4.0/conv/Conv",
+   "op": "Conv"
+  },
+  {
+   "max": 76.84062194824219,
+   "mean": 0.8370329737663269,
+   "tensor": "/backbone/stage4/stage4.0/activate/Mul_output_0",
+   "node": "/backbone/stage4/stage4.0/activate/Mul",
+   "op": "Mul"
+  }
+ ],
+ "prefixes": [
+  "/mlp/mlp.0"
+ ]
+}

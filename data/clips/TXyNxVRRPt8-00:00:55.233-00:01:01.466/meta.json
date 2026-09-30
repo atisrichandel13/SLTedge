@@ -1,0 +1,30 @@
+{
+ "vid": "TXyNxVRRPt8-00:00:55.233-00:01:01.466",
+ "yid": "TXyNxVRRPt8",
+ "crop_xywh": [
+  192,
+  62,
+  460,
+  658
+ ],
+ "bbox_norm": [
+  0.14969561769251236,
+  0.08598748740629379,
+  0.5101403089991787,
+  1.1102883931953773
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We met with the people there and did a community forum just like the one we did in South Carolina.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 187,
+ "stride": 1,
+ "start": "00:00:55.233",
+ "end": "00:01:01.466",
+ "duration_s": 6.233
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "_gAnLlibJso-00:03:59.666-00:04:02.366",
+ "yid": "_gAnLlibJso",
+ "crop_xywh": [
+  386,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.3012768997865565,
+  -0.14748481551026987,
+  0.7687457673689899,
+  1.2063809588064556
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Also, it is important to share this with your friends.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 81,
+ "stride": 1,
+ "start": "00:03:59.666",
+ "end": "00:04:02.366",
+ "duration_s": 2.7
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "HlYvjMBYyag-00:01:33.633-00:01:39.166",
+ "yid": "HlYvjMBYyag",
+ "crop_xywh": [
+  261,
+  0,
+  354,
+  480
+ ],
+ "bbox_norm": [
+  0.3061754121844771,
+  -0.0969829662173402,
+  0.7210883137805022,
+  1.087040577215307
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I am thrilled to be working on this project because it fits with NAD's goals of advocating for accessibility.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 166,
+ "stride": 1,
+ "start": "00:01:33.633",
+ "end": "00:01:39.166",
+ "duration_s": 5.533
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "lWRvh9R2Cxg-00:11:37.466-00:11:50.366",
+ "yid": "lWRvh9R2Cxg",
+ "crop_xywh": [
+  658,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.5144223788427928,
+  -0.17465395223807054,
+  0.9517576525451014,
+  1.1729191148232039
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The sports are curling, alpine skiing, cross country skiing, snowboard, ice hockey, and chess.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 310,
+ "stride": 1,
+ "start": "00:11:37.466",
+ "end": "00:11:50.366",
+ "duration_s": 12.9
+}

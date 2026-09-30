@@ -1,0 +1,30 @@
+{
+ "vid": "sO31dRRabiE-00:00:04.333-00:00:13.233",
+ "yid": "sO31dRRabiE",
+ "crop_xywh": [
+  320,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.24993415967917737,
+  -0.1886393974837943,
+  0.716349619111897,
+  1.1587030739123603
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "All NAD programs and services are available to all deaf and hard of hearing people and their families -- membership is not required.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 267,
+ "stride": 1,
+ "start": "00:00:04.333",
+ "end": "00:00:13.233",
+ "duration_s": 8.9
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:06:39.633-00:06:45.166",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  623,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.48700896524915505,
+  -0.1587331547456629,
+  0.928300916447359,
+  1.1226301432175314
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Which country had the highest gross from the debut?",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 166,
+ "stride": 1,
+ "start": "00:06:39.633",
+ "end": "00:06:45.166",
+ "duration_s": 5.533
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "smq7BzXmIkE-00:04:52.200-00:05:01.133",
+ "yid": "smq7BzXmIkE",
+ "crop_xywh": [
+  663,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.5180707019052387,
+  -0.12128061469853825,
+  0.9335005259808199,
+  1.0765391701696996
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They were arrested after getting off the bus and charged with disorderly conduct.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 268,
+ "stride": 1,
+ "start": "00:04:52.200",
+ "end": "00:05:01.133",
+ "duration_s": 8.933
+}

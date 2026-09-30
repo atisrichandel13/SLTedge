@@ -1,0 +1,30 @@
+{
+ "vid": "oqsiLgMkqIU-00:04:30.500-00:04:41.066",
+ "yid": "oqsiLgMkqIU",
+ "crop_xywh": [
+  678,
+  0,
+  508,
+  720
+ ],
+ "bbox_norm": [
+  0.529551000443716,
+  -0.07984090330739502,
+  0.9276410763856595,
+  1.02585069901939
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Many Flint residents say they are outraged, horrified, blindsided and retraumatized by the decision.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 317,
+ "stride": 1,
+ "start": "00:04:30.500",
+ "end": "00:04:41.066",
+ "duration_s": 10.566
+}

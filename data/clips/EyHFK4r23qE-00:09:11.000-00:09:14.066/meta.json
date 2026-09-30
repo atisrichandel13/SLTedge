@@ -1,0 +1,30 @@
+{
+ "vid": "EyHFK4r23qE-00:09:11.000-00:09:14.066",
+ "yid": "EyHFK4r23qE",
+ "crop_xywh": [
+  595,
+  0,
+  576,
+  720
+ ],
+ "bbox_norm": [
+  0.46510261067172937,
+  -0.16401046916522943,
+  0.914623779163026,
+  1.2042643121343841
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They have been with Pepsi for 24 years.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 92,
+ "stride": 1,
+ "start": "00:09:11.000",
+ "end": "00:09:14.066",
+ "duration_s": 3.066
+}

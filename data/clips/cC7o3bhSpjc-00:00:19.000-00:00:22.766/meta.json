@@ -1,0 +1,30 @@
+{
+ "vid": "cC7o3bhSpjc-00:00:19.000-00:00:22.766",
+ "yid": "cC7o3bhSpjc",
+ "crop_xywh": [
+  415,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.324008207735808,
+  -0.16502717305304732,
+  0.7556534214296203,
+  1.1007198766809732
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We have all of the information ready for you on the website!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 113,
+ "stride": 1,
+ "start": "00:00:19.000",
+ "end": "00:00:22.766",
+ "duration_s": 3.766
+}

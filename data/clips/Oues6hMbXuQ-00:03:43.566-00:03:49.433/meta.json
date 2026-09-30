@@ -1,0 +1,30 @@
+{
+ "vid": "Oues6hMbXuQ-00:03:43.566-00:03:49.433",
+ "yid": "Oues6hMbXuQ",
+ "crop_xywh": [
+  662,
+  0,
+  492,
+  720
+ ],
+ "bbox_norm": [
+  0.5172025274347376,
+  -0.07500034928812412,
+  0.9024145144003409,
+  1.062306950416094
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "30,000 teachers and staff went on strike.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 176,
+ "stride": 1,
+ "start": "00:03:43.566",
+ "end": "00:03:49.433",
+ "duration_s": 5.867
+}

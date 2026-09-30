@@ -1,0 +1,30 @@
+{
+ "vid": "Wv8juaN202w-00:13:06.366-00:13:12.233",
+ "yid": "Wv8juaN202w",
+ "crop_xywh": [
+  634,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.4952950028167374,
+  -0.16724612113007487,
+  0.9285600749925635,
+  1.1624671397690267
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The penalty can include a fine, a prison term of up to seven years, or both.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 141,
+ "stride": 1,
+ "start": "00:13:06.366",
+ "end": "00:13:12.233",
+ "duration_s": 5.867
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "gJeM5T7uW_k-00:00:53.233-00:01:06.000",
+ "yid": "gJeM5T7uW_k",
+ "crop_xywh": [
+  249,
+  0,
+  380,
+  544
+ ],
+ "bbox_norm": [
+  0.19466169902256558,
+  -0.004284618060252826,
+  0.49130589827830656,
+  0.7574202173773402
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Students lived in various parts of the state and used carriages, horseback riding, and the train to get to the Schools for the Deaf.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 383,
+ "stride": 1,
+ "start": "00:00:53.233",
+ "end": "00:01:06.000",
+ "duration_s": 12.767
+}

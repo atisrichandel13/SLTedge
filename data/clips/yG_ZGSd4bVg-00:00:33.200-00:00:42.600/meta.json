@@ -1,0 +1,30 @@
+{
+ "vid": "yG_ZGSd4bVg-00:00:33.200-00:00:42.600",
+ "yid": "yG_ZGSd4bVg",
+ "crop_xywh": [
+  522,
+  0,
+  494,
+  720
+ ],
+ "bbox_norm": [
+  0.4077782182466416,
+  -0.13307282016390845,
+  0.7939694728170122,
+  1.004039074945702
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "At eleven years old, it was informed that there was a deaf school in Hartford.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 282,
+ "stride": 1,
+ "start": "00:00:33.200",
+ "end": "00:00:42.600",
+ "duration_s": 9.4
+}

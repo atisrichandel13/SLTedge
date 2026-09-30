@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:16:11.200-00:16:17.433",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  199,
+  0,
+  722,
+  720
+ ],
+ "bbox_norm": [
+  0.155444568081906,
+  -0.16293889393351,
+  0.7195787877367255,
+  1.4042984205844573
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Second is Dr. Glenn Anderson.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 187,
+ "stride": 1,
+ "start": "00:16:11.200",
+ "end": "00:16:17.433",
+ "duration_s": 6.233
+}

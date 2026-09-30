@@ -1,0 +1,30 @@
+{
+ "vid": "t386fjyHvkE-00:02:04.000-00:02:08.000",
+ "yid": "t386fjyHvkE",
+ "crop_xywh": [
+  143,
+  0,
+  238,
+  360
+ ],
+ "bbox_norm": [
+  0.2968887074788411,
+  -0.11072896915011936,
+  0.7961058095296224,
+  1.000322157965766
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Deaf community should have a say at the table.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  480,
+  360
+ ],
+ "n_frames": 120,
+ "stride": 1,
+ "start": "00:02:04.000",
+ "end": "00:02:08.000",
+ "duration_s": 4.0
+}

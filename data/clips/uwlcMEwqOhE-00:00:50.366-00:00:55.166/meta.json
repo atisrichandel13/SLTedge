@@ -1,0 +1,30 @@
+{
+ "vid": "uwlcMEwqOhE-00:00:50.366-00:00:55.166",
+ "yid": "uwlcMEwqOhE",
+ "crop_xywh": [
+  796,
+  93,
+  292,
+  494
+ ],
+ "bbox_norm": [
+  0.6220477876992061,
+  0.1292070586105873,
+  0.8511235681073419,
+  0.8168308075360411
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's extremely important that if you feel sick or have a cold that you refrain from going outside at all.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 144,
+ "stride": 1,
+ "start": "00:00:50.366",
+ "end": "00:00:55.166",
+ "duration_s": 4.8
+}

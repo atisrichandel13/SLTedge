@@ -1,0 +1,30 @@
+{
+ "vid": "mrTrAkEC1Sc-00:03:23.500-00:03:30.066",
+ "yid": "mrTrAkEC1Sc",
+ "crop_xywh": [
+  283,
+  0,
+  714,
+  720
+ ],
+ "bbox_norm": [
+  0.22082497278849283,
+  -0.21594974588464808,
+  0.7794399388631185,
+  1.3257299472667552
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "First, the group attended conferences that focused on parents, they were also involved with the conferences themselves.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 197,
+ "stride": 1,
+ "start": "00:03:23.500",
+ "end": "00:03:30.066",
+ "duration_s": 6.566
+}

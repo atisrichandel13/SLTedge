@@ -1,0 +1,30 @@
+{
+ "vid": "op3k0tUi40k-00:01:18.100-00:01:25.600",
+ "yid": "op3k0tUi40k",
+ "crop_xywh": [
+  352,
+  0,
+  624,
+  720
+ ],
+ "bbox_norm": [
+  0.2748831515842014,
+  -0.1339463724520962,
+  0.7626282868561921,
+  1.2784382180421932
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I went to mainstream school with no special education services, it was very tough.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 225,
+ "stride": 1,
+ "start": "00:01:18.100",
+ "end": "00:01:25.600",
+ "duration_s": 7.5
+}

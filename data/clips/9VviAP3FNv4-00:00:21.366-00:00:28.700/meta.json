@@ -1,0 +1,30 @@
+{
+ "vid": "9VviAP3FNv4-00:00:21.366-00:00:28.700",
+ "yid": "9VviAP3FNv4",
+ "crop_xywh": [
+  139,
+  0,
+  500,
+  480
+ ],
+ "bbox_norm": [
+  0.16254845529120013,
+  -0.23443161257991083,
+  0.7478955167859227,
+  1.4775303464465672
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This summer will be my fourth straight summer working at YLC - second as Camp Director.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 220,
+ "stride": 1,
+ "start": "00:00:21.366",
+ "end": "00:00:28.700",
+ "duration_s": 7.334
+}

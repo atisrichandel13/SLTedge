@@ -1,0 +1,30 @@
+{
+ "vid": "auhv4QGyB-U-00:06:25.100-00:06:36.066",
+ "yid": "auhv4QGyB-U",
+ "crop_xywh": [
+  638,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.4981069651517001,
+  -0.09370742224148494,
+  0.9115665657351715,
+  1.135144254254171
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The man who accused Kevin Spacey of groping him has dropped his civil case against the actor.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 329,
+ "stride": 1,
+ "start": "00:06:25.100",
+ "end": "00:06:36.066",
+ "duration_s": 10.966
+}

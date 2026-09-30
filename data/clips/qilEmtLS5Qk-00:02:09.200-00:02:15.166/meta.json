@@ -1,0 +1,30 @@
+{
+ "vid": "qilEmtLS5Qk-00:02:09.200-00:02:15.166",
+ "yid": "qilEmtLS5Qk",
+ "crop_xywh": [
+  790,
+  157,
+  300,
+  464
+ ],
+ "bbox_norm": [
+  0.6173674106597901,
+  0.21815538194444445,
+  0.851589322619968,
+  0.8620977510051963
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Other states like North Carolina, Kansas and Arizona are pausing too.",
+ "split": "test",
+ "fps": 26.565,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 159,
+ "stride": 1,
+ "start": "00:02:09.200",
+ "end": "00:02:15.166",
+ "duration_s": 5.966
+}

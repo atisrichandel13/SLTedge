@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_30clip_rtmw_fp32.json",
+ "b": "results/eval_30clip_rtmposex_fp32.json",
+ "n_clips": 30,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 16.554036954380805,
+  "b": 9.42321530809254,
+  "delta": -7.130821646288265,
+  "ci": [
+   -10.941686037086995,
+   -3.0743303689798953
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0005
+ },
+ "rouge_l": {
+  "a": 40.7171367379169,
+  "b": 32.98631756437403,
+  "delta": -7.730819173542869,
+  "ci": [
+   -12.101278722337687,
+   -3.5709437946099167
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0005
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "iMJ9CjBX7eo-00:04:08.000-00:04:15.000",
+ "yid": "iMJ9CjBX7eo",
+ "crop_xywh": [
+  624,
+  0,
+  474,
+  664
+ ],
+ "bbox_norm": [
+  0.48788826503450905,
+  -0.11335381031877359,
+  0.8577410758487762,
+  0.9233020525130015
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We look forward to seeing you there with your cash, credit card, or check!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 210,
+ "stride": 1,
+ "start": "00:04:08.000",
+ "end": "00:04:15.000",
+ "duration_s": 7.0
+}

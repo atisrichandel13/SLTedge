@@ -1,0 +1,30 @@
+{
+ "vid": "NbOzUYY98bI-00:03:08.233-00:03:10.666",
+ "yid": "NbOzUYY98bI",
+ "crop_xywh": [
+  196,
+  58,
+  466,
+  662
+ ],
+ "bbox_norm": [
+  0.1532933701409234,
+  0.07996730851538388,
+  0.5182390997144911,
+  1.1461142250343606
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "These are like other Jr. NAD chapters at schools for the deaf.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 73,
+ "stride": 1,
+ "start": "00:03:08.233",
+ "end": "00:03:10.666",
+ "duration_s": 2.433
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "TUH4q-QBV7k-00:08:31.333-00:08:32.566",
+ "yid": "TUH4q-QBV7k",
+ "crop_xywh": [
+  636,
+  0,
+  504,
+  720
+ ],
+ "bbox_norm": [
+  0.49700469970703126,
+  -0.07101594783641674,
+  0.8909304300944011,
+  1.096792044462981
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now it's your turn.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 37,
+ "stride": 1,
+ "start": "00:08:31.333",
+ "end": "00:08:32.566",
+ "duration_s": 1.233
+}

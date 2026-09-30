@@ -1,0 +1,30 @@
+{
+ "vid": "tDmD1ZeYeNQ-00:01:48.566-00:02:02.200",
+ "yid": "tDmD1ZeYeNQ",
+ "crop_xywh": [
+  449,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.3510443935549356,
+  -0.17874484962456486,
+  0.8171596162687472,
+  1.1264876876958556
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Due to a change of leadership within the FCC, with feedback from many consumers groups like NAD and others, the FCC realized that video clips shared online should be captioned as well.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 409,
+ "stride": 1,
+ "start": "00:01:48.566",
+ "end": "00:02:02.200",
+ "duration_s": 13.634
+}

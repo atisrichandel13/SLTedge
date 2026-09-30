@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:08:20.600-00:08:23.366",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  319,
+  0,
+  874,
+  720
+ ],
+ "bbox_norm": [
+  0.24948320762783874,
+  -0.19976999453210104,
+  0.9325401025659897,
+  1.8210135865055657
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "When will that statement get through their head?",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 83,
+ "stride": 1,
+ "start": "00:08:20.600",
+ "end": "00:08:23.366",
+ "duration_s": 2.766
+}

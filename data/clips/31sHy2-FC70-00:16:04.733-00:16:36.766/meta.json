@@ -1,0 +1,30 @@
+{
+ "vid": "31sHy2-FC70-00:16:04.733-00:16:36.766",
+ "yid": "31sHy2-FC70",
+ "crop_xywh": [
+  613,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.4787468959758808,
+  -0.15404519589833768,
+  0.9191466835154084,
+  1.1777005146076152
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Sondland testified in November that Trump directed him to work with Rudy Giuliani and that Giuliani sought a quid pro quo of giving U.S. military aid to Ukraine in exchange for a promise of an investigation Joe Biden and his son, Hunter.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 769,
+ "stride": 1,
+ "start": "00:16:04.733",
+ "end": "00:16:36.766",
+ "duration_s": 32.033
+}

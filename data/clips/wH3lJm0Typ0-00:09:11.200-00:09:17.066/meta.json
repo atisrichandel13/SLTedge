@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:09:11.200-00:09:17.066",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  613,
+  0,
+  628,
+  720
+ ],
+ "bbox_norm": [
+  0.47918718655904136,
+  -0.21405327192549842,
+  0.9695678481349238,
+  1.252306863113686
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Saudi Arabia usually executes people with beheading.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 176,
+ "stride": 1,
+ "start": "00:09:11.200",
+ "end": "00:09:17.066",
+ "duration_s": 5.866
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "qilEmtLS5Qk-00:00:15.666-00:00:17.133",
+ "yid": "qilEmtLS5Qk",
+ "crop_xywh": [
+  281,
+  0,
+  692,
+  720
+ ],
+ "bbox_norm": [
+  0.2193402926127116,
+  -0.0879505369398329,
+  0.760106627146403,
+  1.3883981616408736
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm Jethro Wooddall.",
+ "split": "test",
+ "fps": 26.565,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 39,
+ "stride": 1,
+ "start": "00:00:15.666",
+ "end": "00:00:17.133",
+ "duration_s": 1.467
+}

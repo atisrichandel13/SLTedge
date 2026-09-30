@@ -1,0 +1,30 @@
+{
+ "vid": "QBlOz5OjdRE-00:00:36.666-00:00:39.366",
+ "yid": "QBlOz5OjdRE",
+ "crop_xywh": [
+  614,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.47931159150366687,
+  -0.12315094642389834,
+  0.9132556055106369,
+  1.0747648671301882
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "NAD finally approved 2018.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 81,
+ "stride": 1,
+ "start": "00:00:36.666",
+ "end": "00:00:39.366",
+ "duration_s": 2.7
+}

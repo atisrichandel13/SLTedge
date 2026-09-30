@@ -1,0 +1,30 @@
+{
+ "vid": "aWYgWpsTAjo-00:00:53.400-00:01:12.533",
+ "yid": "aWYgWpsTAjo",
+ "crop_xywh": [
+  607,
+  0,
+  582,
+  720
+ ],
+ "bbox_norm": [
+  0.4741525199447853,
+  -0.12575255155947282,
+  0.9292027788576873,
+  1.2181716710703385
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "More evacuations are underway as firefighters continue to fight the massive CARR fire, which is now the 6th most destructive fire in the states history and has burned about 200 square miles.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 574,
+ "stride": 1,
+ "start": "00:00:53.400",
+ "end": "00:01:12.533",
+ "duration_s": 19.133
+}

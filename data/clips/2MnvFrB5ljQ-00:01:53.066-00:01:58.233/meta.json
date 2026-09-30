@@ -1,0 +1,30 @@
+{
+ "vid": "2MnvFrB5ljQ-00:01:53.066-00:01:58.233",
+ "yid": "2MnvFrB5ljQ",
+ "crop_xywh": [
+  435,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.3398201747607159,
+  -0.06788649017807974,
+  0.7600478982412686,
+  1.1166878252473782
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hello, I\u2019m Alicia and I\u2019ve been working with the Outreach committee.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 155,
+ "stride": 1,
+ "start": "00:01:53.066",
+ "end": "00:01:58.233",
+ "duration_s": 5.167
+}

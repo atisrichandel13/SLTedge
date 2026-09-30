@@ -1,0 +1,40 @@
+{
+ "n": 5,
+ "missing": 971,
+ "bleu": {
+  "bleu1": 44.895589480137204,
+  "bleu2": 28.338951729082634,
+  "bleu3": 15.98734331419055,
+  "bleu4": 8.638699536299715
+ },
+ "rouge_l": 36.773711228501526,
+ "wall_s": 19.310714407125488,
+ "config": {
+  "ckpt": "weights/openasl_pose_only_slt.pth",
+  "mt5": "weights/mt5-base",
+  "poses": "data/poses_oa_rtmw_fp16",
+  "labels": "data/openasl_labels/labels.test",
+  "device": "cuda",
+  "dtype": "fp32",
+  "batch_size": 8,
+  "max_length": 256,
+  "max_new_tokens": 100,
+  "num_beams": 4,
+  "limit": null,
+  "out": "results/eval_oa_rtmw_fp16.json"
+ },
+ "refs": [
+  "Meteorologist say some areas might not get relief from the rain and floods until Friday afternoon.",
+  "Crews spent this holiday weekend battling wildfires in several states in the West.",
+  "After nine frantic days of searching, the Thai soccer team trapped in a cave has been found.",
+  "The winter storm that slammed the Midwest, Northern Plains and Northeast has left brutally cold temperatures in its path.",
+  "When I moved to Texas one year and a half ago, this was my first artwork."
+ ],
+ "preds": [
+  "Meteorologists say some areas could see heavy rain until Friday evening.",
+  "During the holiday weekend in several states, firefighters are battling blazes.",
+  "After nine days of flocking to the Thai cave, they finally survived.",
+  "A massive storm is threatening the Midwest and the upper Midwest, sending temperatures to reach the East Coast with temperatures topping 100 degrees below zero.",
+  "When I moved to Italy a few years ago, I wasn t sure about my original destination."
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "ftjAL7MnqsE-00:00:00.233-00:00:02.333",
+ "yid": "ftjAL7MnqsE",
+ "crop_xywh": [
+  619,
+  0,
+  658,
+  720
+ ],
+ "bbox_norm": [
+  0.4835143358279497,
+  -0.2051329044874577,
+  0.9978682004488432,
+  1.3621436605426323
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It is September 11.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 63,
+ "stride": 1,
+ "start": "00:00:00.233",
+ "end": "00:00:02.333",
+ "duration_s": 2.1
+}

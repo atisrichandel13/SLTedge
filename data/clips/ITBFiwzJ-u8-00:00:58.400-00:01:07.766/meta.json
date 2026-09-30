@@ -1,0 +1,30 @@
+{
+ "vid": "ITBFiwzJ-u8-00:00:58.400-00:01:07.766",
+ "yid": "ITBFiwzJ-u8",
+ "crop_xywh": [
+  386,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.3016382660782128,
+  -0.17618563858389155,
+  0.729414649595294,
+  1.085295897385298
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I made an appearance at Delta Zeta Sorority\u2019s Mr. Killarney Rose Pageant and crowned the winner.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 281,
+ "stride": 1,
+ "start": "00:00:58.400",
+ "end": "00:01:07.766",
+ "duration_s": 9.366
+}

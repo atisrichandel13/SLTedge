@@ -1,0 +1,30 @@
+{
+ "vid": "2O6QUmPT0gM-00:01:15.200-00:01:31.600",
+ "yid": "2O6QUmPT0gM",
+ "crop_xywh": [
+  185,
+  0,
+  316,
+  360
+ ],
+ "bbox_norm": [
+  0.28872974448733857,
+  -0.20626215693926572,
+  0.7827671665133852,
+  1.2824760613618074
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The U.S. Congress intended to make telephone communication services accessible to our community, using the very best technologies available.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 492,
+ "stride": 1,
+ "start": "00:01:15.200",
+ "end": "00:01:31.600",
+ "duration_s": 16.4
+}

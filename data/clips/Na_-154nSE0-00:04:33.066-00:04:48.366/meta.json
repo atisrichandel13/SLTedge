@@ -1,0 +1,30 @@
+{
+ "vid": "Na_-154nSE0-00:04:33.066-00:04:48.366",
+ "yid": "Na_-154nSE0",
+ "crop_xywh": [
+  601,
+  0,
+  620,
+  720
+ ],
+ "bbox_norm": [
+  0.46915409703185595,
+  -0.20545315089817018,
+  0.9538075284681458,
+  1.2853779817356963
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The governor supports the bill and when it is signed, the flag must come down within 15 days at all government buildings.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 459,
+ "stride": 1,
+ "start": "00:04:33.066",
+ "end": "00:04:48.366",
+ "duration_s": 15.3
+}

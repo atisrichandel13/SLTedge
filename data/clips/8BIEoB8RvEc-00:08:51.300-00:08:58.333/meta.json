@@ -1,0 +1,30 @@
+{
+ "vid": "8BIEoB8RvEc-00:08:51.300-00:08:58.333",
+ "yid": "8BIEoB8RvEc",
+ "crop_xywh": [
+  314,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.24499012777047563,
+  -0.1444219295163282,
+  0.7278631306433863,
+  1.2326497645546504
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Our esteemed judges will score the contestants based on their ability to pitch and present their ideas.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 211,
+ "stride": 1,
+ "start": "00:08:51.300",
+ "end": "00:08:58.333",
+ "duration_s": 7.033
+}

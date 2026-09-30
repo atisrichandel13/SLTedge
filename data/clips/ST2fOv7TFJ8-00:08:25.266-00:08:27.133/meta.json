@@ -1,0 +1,30 @@
+{
+ "vid": "ST2fOv7TFJ8-00:08:25.266-00:08:27.133",
+ "yid": "ST2fOv7TFJ8",
+ "crop_xywh": [
+  623,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.4869688153266907,
+  -0.1220758632377342,
+  0.8857128262519837,
+  1.0002013012214943
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thank you for watching Sign1News live.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 56,
+ "stride": 1,
+ "start": "00:08:25.266",
+ "end": "00:08:27.133",
+ "duration_s": 1.867
+}

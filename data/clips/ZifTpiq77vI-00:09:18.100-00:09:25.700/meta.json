@@ -1,0 +1,30 @@
+{
+ "vid": "ZifTpiq77vI-00:09:18.100-00:09:25.700",
+ "yid": "ZifTpiq77vI",
+ "crop_xywh": [
+  548,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.427880336927331,
+  -0.21110158204648424,
+  0.9017960119938505,
+  1.198990211394674
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Taylor\u2019s family has filed a wrongful death lawsuit against the three officers.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 228,
+ "stride": 1,
+ "start": "00:09:18.100",
+ "end": "00:09:25.700",
+ "duration_s": 7.6
+}

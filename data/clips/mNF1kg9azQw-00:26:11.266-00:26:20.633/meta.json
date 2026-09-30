@@ -1,0 +1,30 @@
+{
+ "vid": "mNF1kg9azQw-00:26:11.266-00:26:20.633",
+ "yid": "mNF1kg9azQw",
+ "crop_xywh": [
+  618,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.4831788705896448,
+  -0.1292084160949958,
+  0.9059231242427119,
+  1.1363307893227157
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you are interested, an article by MTV lists out all the various ways of how you can support the Native Hawaiians. ",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 225,
+ "stride": 1,
+ "start": "00:26:11.266",
+ "end": "00:26:20.633",
+ "duration_s": 9.367
+}

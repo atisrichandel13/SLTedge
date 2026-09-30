@@ -1,0 +1,30 @@
+{
+ "vid": "L68SkmewDnI-00:08:46.366-00:08:52.266",
+ "yid": "L68SkmewDnI",
+ "crop_xywh": [
+  563,
+  0,
+  610,
+  720
+ ],
+ "bbox_norm": [
+  0.43961500847476653,
+  -0.20320151951425683,
+  0.9165855846185793,
+  1.2283678220454153
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The FBI is investigating Floyd's death.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 142,
+ "stride": 1,
+ "start": "00:08:46.366",
+ "end": "00:08:52.266",
+ "duration_s": 5.9
+}

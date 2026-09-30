@@ -1,0 +1,30 @@
+{
+ "vid": "KWiU6b05W7Y-00:00:53.500-00:01:04.100",
+ "yid": "KWiU6b05W7Y",
+ "crop_xywh": [
+  155,
+  0,
+  632,
+  720
+ ],
+ "bbox_norm": [
+  0.17732568290255485,
+  -0.1718984027703603,
+  0.9020690272707458,
+  1.213614214791192
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "People older than 20 years old should have an oral cancer exam every three years while those over 40 years old should have an annual exam.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  872,
+  720
+ ],
+ "n_frames": 318,
+ "stride": 1,
+ "start": "00:00:53.500",
+ "end": "00:01:04.100",
+ "duration_s": 10.6
+}

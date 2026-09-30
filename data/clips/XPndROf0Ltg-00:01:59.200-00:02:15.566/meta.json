@@ -1,0 +1,30 @@
+{
+ "vid": "XPndROf0Ltg-00:01:59.200-00:02:15.566",
+ "yid": "XPndROf0Ltg",
+ "crop_xywh": [
+  710,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.5545997213210737,
+  -0.12523224978619096,
+  0.9584326357781132,
+  1.0682085710571116
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now the U.S. Embassy in Baghdad said all American citizens should leave Iraq immediately because of heightened tensions.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 393,
+ "stride": 1,
+ "start": "00:01:59.200",
+ "end": "00:02:15.566",
+ "duration_s": 16.366
+}

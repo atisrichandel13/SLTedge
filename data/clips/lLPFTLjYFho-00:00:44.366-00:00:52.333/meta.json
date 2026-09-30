@@ -1,0 +1,30 @@
+{
+ "vid": "lLPFTLjYFho-00:00:44.366-00:00:52.333",
+ "yid": "lLPFTLjYFho",
+ "crop_xywh": [
+  768,
+  76,
+  418,
+  644
+ ],
+ "bbox_norm": [
+  0.5996260578433673,
+  0.10622347814065439,
+  0.9265806570649147,
+  1.06350160351506
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is according to discrimination charges filed with the Minnesota Department of Human Rights.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 239,
+ "stride": 1,
+ "start": "00:00:44.366",
+ "end": "00:00:52.333",
+ "duration_s": 7.967
+}

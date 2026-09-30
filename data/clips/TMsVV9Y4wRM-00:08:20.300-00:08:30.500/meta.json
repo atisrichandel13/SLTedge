@@ -1,0 +1,30 @@
+{
+ "vid": "TMsVV9Y4wRM-00:08:20.300-00:08:30.500",
+ "yid": "TMsVV9Y4wRM",
+ "crop_xywh": [
+  610,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.4761826105015252,
+  -0.14461513391674774,
+  0.9391276749231482,
+  1.1839241842500055
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Check out this true act of sportsmanship at a high school baseball game in Minnesota.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 306,
+ "stride": 1,
+ "start": "00:08:20.300",
+ "end": "00:08:30.500",
+ "duration_s": 10.2
+}

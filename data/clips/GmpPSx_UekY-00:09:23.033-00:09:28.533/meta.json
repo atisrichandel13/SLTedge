@@ -1,0 +1,30 @@
+{
+ "vid": "GmpPSx_UekY-00:09:23.033-00:09:28.533",
+ "yid": "GmpPSx_UekY",
+ "crop_xywh": [
+  647,
+  0,
+  512,
+  708
+ ],
+ "bbox_norm": [
+  0.505197712019378,
+  -0.09838411210668892,
+  0.9057996562882966,
+  0.9848545205359366
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The movie producer is again James Cameron.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 165,
+ "stride": 1,
+ "start": "00:09:23.033",
+ "end": "00:09:28.533",
+ "duration_s": 5.5
+}
