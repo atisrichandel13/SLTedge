@@ -618,7 +618,10 @@ ratios across rates are what P8 needs and they are unaffected.
 > **SUPERSEDED 2026-09-30 by the LM track at n=976/967** (`lm-track-report-2026-09-30.md` §3.6, §7.1).
 > The conclusion below — "16 fps at no measured accuracy cost" — was **n=30 with a CI ~6 BLEU-4 wide**
 > and does not survive. At n=976 the 30→16 fps cost is **BLEU-4 −1.33 [−2.00, −0.64], ROUGE-L −1.63**;
-> at n=967 on dev, ROUGE-L **−1.30**. ROUGE-L replicates on both splits, BLEU-4 does not, because a
+> at n=967 on dev, ROUGE-L **−1.34 [−2.42, −0.30]** against BLEU-4 **−0.35 [−1.00, +0.45]** on the
+> *same* clips and the *same* resample draws (`unisign/adapt_ci.py`, leak-free checkpoint, paired
+> bootstrap — the metric-power argument demonstrated rather than asserted). ROUGE-L replicates on both
+> splits and excludes zero; BLEU-4 does not, because a
 > handful of sentences flipping one 4-gram match is the whole effect at n≈1000. **Effects below ~1
 > BLEU-4 at n≈1000 must be carried by ROUGE-L.** At n=300 the same model scored +1.10 BLEU-4 *higher*
 > at 16 fps than at source — the opposite sign — so n=30 was far inside the unreliable regime.
