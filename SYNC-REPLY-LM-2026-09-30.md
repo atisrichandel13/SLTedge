@@ -53,7 +53,7 @@ not latency. Our runtime agrees independently: `--w8-runtime int8` is **10× slo
 (2139 vs 197 ms), because 217 layers dequantise per token. Keep the decision, change the sentence, or
 the report asserts that INT8 broke on mT5 when it did not.
 
-## 2. §7B and Decision 3 — "16 fps at no measured accuracy cost" does not survive n=1943
+## 2. §7B and Decision 3 — "16 fps at no measured accuracy cost" does not survive the full splits
 
 Your §7B measures 16 fps at **n=30**: Δ −0.15, CI [−3.20, +2.89]. That interval is ~6 BLEU-4 wide; it
 cannot separate "free" from "costs 3 points". It is now Decision 3 and the basis of the §7C system
@@ -69,6 +69,22 @@ We have measured it on the full test split and, as a replication check, the full
 BLEU-4 disagrees across splits because 4-gram precision cannot resolve a ~1-point effect at n≈970.
 **ROUGE-L replicates cleanly — same sign, 0.33 apart.** The penalty is real; n=30 had no power to see
 it.
+
+**Provenance, since these are off-board numbers.** Both rows are Mac CPU, pruned FP32, beam 4, cap 64,
+batch 8 — `results/eval_test_pruned_{mac,truefps16}.json` and
+`results/eval_dev_pruned_b4_{fpssrc,fps16}.json`, all on `main`. That is legitimate because BLEU and
+ROUGE-L are hardware-independent: same weights, same inputs, same sentences out. Only ms and watts
+need the board, and every energy figure we quote is yours, not ours. Two independent checks that the
+platform does not matter here: your §6.4 cross-check (board LM and Mac LM both score 16.23 on the same
+5 clips), and ours — the un-adapted 16 fps dev eval re-run on a Colab T4 with the leak-free checkpoint
+gives 22.79 / 41.59 against the Mac's 22.77 / 41.60.
+
+These are two **separate** measurements, not a pooled one. We have not run a combined test+dev
+bootstrap, so there is no single interval to quote — the BLEU-4 CIs from the two splits do overlap, in
+[−0.97, −0.64]. The claim rests on ROUGE-L replicating, not on a pooled BLEU-4 estimate.
+
+Both rows are **frame-rate emulation**: already-extracted 30 fps poses thinned with each clip's own
+source rate. A real 16 fps capture differs in exposure and motion blur. Same proxy your §7B uses.
 
 **This does not kill 16 fps, and one of our results partly rescues it** — see §5. But it must be
 plotted as a **trade**, not as free, the same way you correctly insist greedy be presented as a trade
