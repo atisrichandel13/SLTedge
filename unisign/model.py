@@ -57,6 +57,7 @@ class PoseOnlyUniSign(nn.Module):
         self.pose_proj = nn.Linear(256 * 4, 768)
 
         load_kw = {"device_map": str(device)} if device is not None and str(device) != "cpu" else {}
+        self._mt5_path = mt5_path  # kept so attach_pruned_tokenizer can find keep_ids.json
         self.mt5_model = MT5ForConditionalGeneration.from_pretrained(mt5_path, **load_kw)
         self.mt5_tokenizer = T5Tokenizer.from_pretrained(mt5_path, legacy=False)
         self.prefix = f"Translate sign language video to {self.lang}: "
@@ -64,7 +65,7 @@ class PoseOnlyUniSign(nn.Module):
         if keep_ids is not None:
             self.prune_vocab(keep_ids)
 
-    def attach_pruned_tokenizer(self, keep_ids):
+    def attach_pruned_tokenizer(self, keep_ids=None):
         """For mT5 weights that are ALREADY pruned on disk (a pre-pruned HF directory).
 
         prune_and_save() writes a checkpoint file, not an HF directory, and PrunedTokenizer is a
@@ -76,6 +77,22 @@ class PoseOnlyUniSign(nn.Module):
         Refuses to run if the weights are not in fact already pruned, so a wrong assumption about the
         directory fails loudly instead of silently mistranslating.
         """
+        if keep_ids is None:
+            # The remap data ships inside a pre-pruned directory, so read it from there rather than
+            # making every caller pass it. Hard-fail if absent: a pre-pruned directory whose keep set
+            # we cannot recover is unusable, because spiece.model is the ORIGINAL 250k sentencepiece
+            # (byte-identical to google/mt5-base's) and every id would be wrong with no error raised.
+            kp = os.path.join(self._mt5_path, "keep_ids.json")
+            if not os.path.exists(kp):
+                raise RuntimeError(
+                    f"attach_pruned_tokenizer: no keep_ids passed and no keep_ids.json in "
+                    f"{self._mt5_path}. Refusing to proceed: the directory's tokenizer is the "
+                    f"original 250k vocabulary, so without the remap every token id is wrong and the "
+                    f"model would emit fluent, incorrect text silently.")
+            with open(kp) as f:
+                keep_ids = json.load(f)
+            if isinstance(keep_ids, dict):
+                keep_ids = keep_ids.get("keep_ids", keep_ids)
         keep = torch.as_tensor(sorted(int(i) for i in keep_ids), dtype=torch.long)
         assert keep[:3].tolist() == [0, 1, 2], "keep_ids must contain pad/eos/unk = 0/1/2"
         m = self.mt5_model
@@ -84,7 +101,8 @@ class PoseOnlyUniSign(nn.Module):
             raise RuntimeError(
                 f"attach_pruned_tokenizer: mT5 embedding has {have} rows but keep_ids has "
                 f"{len(keep)}. This directory is not pre-pruned to match the checkpoint; use "
-                f"prune_vocab() instead.")
+                f"prune_vocab() instead. (The 26,078-id keep set was superseded by 26,025 on "
+                f"2026-09-30 when the test-set leak was fixed, so a stale directory lands here.)")
         m.config.vocab_size = len(keep)
         if getattr(m, "generation_config", None) is not None:
             m.generation_config.pad_token_id, m.generation_config.eos_token_id = 0, 1
@@ -259,7 +277,20 @@ def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=
         # MemFree cannot reach ~5 GB, which it often cannot (MemAvailable caps around 5.3 GB).
         if _mt5_vocab_size(mt5_path) == len(ckpt_keep):
             model = PoseOnlyUniSign(mt5_path, device=device)
+            # pass the CHECKPOINT's keep_ids, and let attach_pruned_tokenizer cross-check them against
+            # the directory's keep_ids.json. Matching counts are not enough -- two different keep sets
+            # of the same size would remap every id wrongly and emit fluent nonsense without error.
             model.attach_pruned_tokenizer(ckpt_keep)
+            _dir_kp = os.path.join(mt5_path, "keep_ids.json")
+            if os.path.exists(_dir_kp):
+                with open(_dir_kp) as f:
+                    _d = json.load(f)
+                _d = _d.get("keep_ids", _d) if isinstance(_d, dict) else _d
+                if sorted(int(i) for i in _d) != sorted(int(i) for i in ckpt_keep):
+                    raise RuntimeError(
+                        f"{mt5_path}/keep_ids.json disagrees with the checkpoint's keep_ids "
+                        f"({len(_d)} vs {len(ckpt_keep)} ids, or same count but different ids). "
+                        f"These must be the same vocabulary or every token id is wrong.")
         else:
             # pruned: build on CPU and slice first (peak 1.0 GB on the GPU instead of 2.6 GB)
             model = PoseOnlyUniSign(mt5_path, keep_ids=ckpt_keep)
