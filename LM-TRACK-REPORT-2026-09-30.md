@@ -442,40 +442,75 @@ harness actually trains rather than merely runs.
 rate) was killed by a Colab disconnect after 10 log lines. "Label smoothing was the problem" is the
 best available reading, not an isolated result — the working recipe changed three things at once.
 
-### 8.4 Adapted vs un-adapted at 16 fps (967 dev clips, seed 42)
+### 8.4 Adapted vs un-adapted at 16 fps — 967 dev clips, 3 seeds, paired bootstrap
 
-| | un-adapted | adapted | Δ BLEU-4 | Δ ROUGE-L |
+Final measurement. Leak-free checkpoint (§8.1), ls 0.0 / lr 1e-5 / warmup 0.1, 20,000 train clips,
+1 epoch, mT5 frozen, 5.35 M trainable. Evaluated through `eval_openasl.py` so full predictions exist;
+CIs from `unisign/adapt_ci.py`, 1000 resamples, **every cell scored on one shared set of draws** so the
+deltas and the difference-in-differences are mutually comparable. Colab A100. The 16 fps row is the
+mean of seeds 42/43/44.
+
+| | BLEU-4 | ROUGE-L |
+|---|---|---|
+| source, un-adapted | 23.13 | 42.93 |
+| source, adapted | 23.25 | 43.53 |
+| 16 fps, un-adapted | 22.79 | 41.59 |
+| **16 fps, adapted** | **23.27** | **42.60** |
+
+| comparison | BLEU-4 | ROUGE-L | verdict |
+|---|---|---|---|
+| un-adapted, source → 16 fps | −0.35 [−0.97, +0.52] | **−1.34 [−2.35, −0.33]** | **established** (P=0.994) |
+| 16 fps, un-adapted → adapted | +0.46 [−0.17, +1.06] | **+1.04 [+0.25, +1.80]** | **established** (P=0.996) |
+| source, un-adapted → adapted | +0.12 [−0.54, +0.78] | +0.60 [−0.10, +1.37] | borderline, misses zero by 0.10 |
+| difference-in-differences | +0.32 [−0.55, +1.18] | +0.42 [−0.58, +1.53] | **not established** |
+
+**What is established.**
+
+* **16 fps costs real accuracy: −1.34 ROUGE-L, CI excluding zero.** This is the number that retires
+  "16 fps at no measured accuracy cost", which came from an n=30 run with a CI ~6 BLEU-4 wide.
+* **Adaptation recovers it: +1.04 ROUGE-L, CI excluding zero.** The adapted 16 fps model sits
+  **−0.33 ROUGE-L** below the un-adapted full-rate baseline, i.e. **~75 % of the loss recovered**,
+  while running at 16 fps for a 38 % system energy saving (§6).
+* **BLEU-4 establishes none of it.** Same clips, same resample draws: −0.35 and +0.46, both spanning
+  zero. This is the metric-power point demonstrated rather than asserted — see §7.1.
+
+**What is NOT established, and was claimed too strongly in an earlier draft.**
+
+~~Adaptation helps more under frame-rate shift than it does in general.~~ The difference-in-differences
+is **+0.42 ROUGE-L [−0.58, +1.53], P(>0) = 0.78**. The +1.04 gain at 16 fps and the +0.60 gain at
+source rate are **not statistically distinguishable**. So the data support *"fine-tuning helps, and at
+16 fps that help is established"* — they do **not** support *"adaptation is specifically a frame-rate
+correction"*. Those are different contributions and the report must not conflate them.
+
+**Seed variance (guide row 4.3), seeds 42/43/44 at 16 fps.**
+
+| | min | max | spread | mean |
 |---|---|---|---|---|
-| source rate | 23.13 / 42.93 | 23.31 / 43.63 | +0.18 | +0.70 |
-| **16 fps** | 22.79 / 41.59 | **23.19 / 42.60** | **+0.40** | **+1.01** |
+| BLEU-4 | 23.25 | 23.30 | **0.05** | 23.27 |
+| ROUGE-L | 42.50 | 42.65 | **0.15** | 42.60 |
 
-- **Adaptation helps more under frame-rate shift than without it.** Difference-in-differences
-  **+0.22 BLEU-4, +0.31 ROUGE-L** — the part attributable to frame-rate adaptation specifically.
-- **It recovers most of the frame-rate loss.** Un-adapted, 16 fps costs **−1.34 ROUGE-L**. Adapted,
-  the 16 fps model sits **−0.33 ROUGE-L** below the un-adapted full-rate baseline — about **75 %
-  recovered** — and **+0.06 BLEU-4 above** it.
-- **This moves the frontier.** 16 fps / beam 4 is a **38 % system energy saving** (§6). Un-adapted
-  that carries a real accuracy cost; adapted, the cost nearly vanishes.
-- The un-adapted 16 fps figure independently reproduces the Mac result (22.79 / 41.59 vs 22.77 /
-  41.60) on different hardware with a different checkpoint.
+The adaptation gain is **~7× the seed spread**, so the gate the guide sets before any adaptation claim
+is passed comfortably. Caveat: this spread bundles seed effects with GPU non-determinism, which is
+non-zero here — three runs at the *identical* seed 43 (an accident of concurrent launches) gave final
+losses 0.3765 / 0.3742 / 0.3788.
 
-**Output truncation — hypothesised, then measured, then refuted.** One adapted prediction ends
-mid-phrase — *"where they can establish a"* — at `max_new_tokens 64`, while the un-adapted version
-completes the sentence. Since §3.5's cap equivalence was measured on the un-adapted model only, this
-suggested the adapted numbers were depressed by truncation. **Tested by scoring the same adapted
-checkpoint at cap 64 and cap 100: 23.2522 / 42.6339 versus 23.2522 / 42.6339 — bit-identical to four
-decimals, not one sentence changed.** So §3.5's equivalence does extend to adapted models, and
-~~+0.40 / +1.01 may be an underestimate~~ **is not an underestimate**. The truncated sample was real
-in that run but does not move corpus-level metrics.
+**Output-length cap, hypothesised and refuted.** An adapted sample ended mid-phrase at
+`max_new_tokens 64` (*"where they can establish a"*), suggesting truncation was depressing the adapted
+scores, since §3.5's cap equivalence was measured only on the un-adapted model. Scoring the same
+adapted checkpoint at both caps gives **23.2522 / 42.6339 versus 23.2522 / 42.6339 — bit-identical,
+not one sentence changed.** §3.5 extends to adapted models; the gain is not an underestimate.
+
+Files: `results/block4/eval_dev_*.json` (7 evals, full predictions), `results/adapt_ci_dev.json`,
+logs in `results/colab_runs/`.
 
 ### 8.5 What is NOT established about §8.4
 
-1. **No confidence intervals.** `train_adapt.py`'s built-in eval logs summary metrics, not the 967
-   predictions, so none of these deltas can be bootstrapped. Every other comparison in this document
-   carries a paired CI; these do not.
-2. **One seed.** Guide row 4.3 (seed variance) has not run. "+0.40 vs +0.18" is uninterpretable
-   without the seed-to-seed spread, which is a *different* noise source from the clip-resampling CI.
-3. 20,000 of 96,477 train clips, one epoch.
+1. ~~No confidence intervals.~~ **Resolved** — all deltas above carry paired bootstrap CIs.
+2. ~~One seed.~~ **Resolved** — three seeds, spread 0.05 BLEU-4 / 0.15 ROUGE-L.
+3. **Whether the gain is frame-rate-specific.** The difference-in-differences is not established, so
+   "adaptation fixes the frame-rate shift" is not supported; only "fine-tuning helps, measurably at
+   16 fps" is.
+4. 20,000 of 96,477 train clips, one epoch. The gain may grow with more data or epochs, untested.
 4. Frame-rate emulation is a proxy for a real slower camera.
 
 ---
