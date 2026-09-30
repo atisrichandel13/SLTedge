@@ -788,3 +788,34 @@ crop is at the 83rd percentile, so a median clip is ~7 % cheaper per frame; (c) 
 composition gap is probably not contention, since M1 found none — the stages are sequential.
 
 Jetson still unreachable: tunnel up, routes installed, but no host on the lab subnet answers.
+
+### Session 12 (LM track, 2026-09-30): M4 frontier plot, and the week-4 gate
+
+**Row 5.3, week-4 gate — PASSED.** The gate asks for M1 plus one compressed row on each side with
+measured energy; L13/P14 get cut only if that is missing.
+
+* Pose side: M1 end-to-end done (§5.1, 50.37 J/sentence, RTMW FP16) plus the P8 rate sweep with
+  measured pose energy at 30/24/16 fps.
+* LM side: vocabulary-pruned FP32 with the measured beam × T energy grid (§C), 976-clip accuracy.
+
+So **nothing is cut.** INT8 was already dropped for its own reason (mT5 FP16 overflow; the pruned FP32
+config is what deploys), not because of this gate.
+
+**Row 5.4 / M4 done** — `results/frontier.png` + `results/frontier.csv` from
+`results/plot_frontier.py`. 6 of 9 cells Pareto-optimal; the knee is beam 4 @ 24 fps at
+36.1 J for BLEU-4 22.80, i.e. **−17 % system energy for −0.07 BLEU-4**, and that −0.07 sits inside
+[−0.53, +0.39] so it is not a measurable accuracy cost. Details in RESULTS.md L16.
+
+**Row 4.3 done** — `results/l10_seeds.json`. Training-seed spread 0.05 BLEU-4 / 0.15 ROUGE-L over
+3 seeds, so the +1.04 ROUGE-L adaptation gain is ~7× the noise band.
+
+**The one gap the frontier still has, and the run that closes it.** Every cell's system energy is
+**composed** (pose J/s × clip s + LM J), not measured end-to-end. Row 5.4 asks for measured. The only
+true end-to-end measurement is M1, at beam 4 on a source-rate clip — and the cell we are recommending,
+beam 4 @ 24 fps, has never been run end-to-end. The composition is known to be ~6 % low against M1 and
+~7 % high for a median-crop clip; those are assumed to roughly cancel, and that assumption is untested
+at the operating point we recommend. **One `e2e_translate.py` run at 24 fps, beam 4, would settle it.**
+
+Still open on the LM side and deliberately not being done: 12 fps and 8 fps adaptation, the P9
+face-group drop, the full 96 K-clip run, and the L14 stretch. All are extra rows for a report that is
+not yet written; the report (5.5) is the critical path.
