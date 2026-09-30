@@ -620,7 +620,11 @@ ratios across rates are what P8 needs and they are unaffected.
 > and does not survive. At n=976 the 30→16 fps cost is **BLEU-4 −1.33 [−2.00, −0.64], ROUGE-L −1.63**;
 > at n=967 on dev, ROUGE-L **−1.34 [−2.42, −0.30]** against BLEU-4 **−0.35 [−1.00, +0.45]** on the
 > *same* clips and the *same* resample draws (`unisign/adapt_ci.py`, leak-free checkpoint, paired
-> bootstrap — the metric-power argument demonstrated rather than asserted). ROUGE-L replicates on both
+> bootstrap — the metric-power argument demonstrated rather than asserted). **Independently reproduced
+> on the Mac at four seeds** (`results/block4/adapt_ci_mac_repro_4seeds.json`): point estimates identical,
+> CI bounds stable to ±0.06, and ROUGE-L P(delta<0) = 0.991–0.998. The bounds our run and theirs report
+> differ by ~0.03, which is inside that seed-to-seed spread, so **n=1000 resamples is already adequate**
+> — the CI width is set by the 967 clips, not by the number of draws. ROUGE-L replicates on both
 > splits and excludes zero; BLEU-4 does not, because a
 > handful of sentences flipping one 4-gram match is the whole effect at n≈1000. **Effects below ~1
 > BLEU-4 at n≈1000 must be carried by ROUGE-L.** At n=300 the same model scored +1.10 BLEU-4 *higher*
@@ -631,6 +635,13 @@ ratios across rates are what P8 needs and they are unaffected.
 > ~30 fps, 22.2 % ~24, 7 are 59.94 — and `subsample_pkl.py` / `--keep-fps` hardcoded `src_fps=29.97`,
 > so a 24 fps clip labelled "16 fps" was really subsampled to ~12.8. **6 of these 30 clips were
 > off-rate.** Fixed by deriving each clip's rate from frames ÷ duration.
+>
+> **One caution on the adaptation half of that 2x2.** The same four-seed run puts adaptation's gain at
+> *source* rate at ROUGE-L **+0.60**, with P(delta<0) spanning **0.044–0.056** across seeds — it sits
+> exactly on the 0.05 line, so "established" flips with the resample draw. It must not be quoted as
+> either established or null. Whether adaptation specifically repairs frame-rate shift, as opposed to
+> helping everywhere, is the difference-in-differences that `adapt_ci.py` computes and that is still
+> waiting on one eval JSON (`adapt_fps16_s42_cap100`, quoted in L15.3 but not yet pushed).
 >
 > **Revised operating point: 24 fps, not 16.** Free on both metrics (test −0.07 BLEU-4, dev +0.26;
 > ROUGE-L +0.15) for 21 % less pose energy. 16 fps buys 47 % but costs ~1.3–1.6 ROUGE-L. **Table A
