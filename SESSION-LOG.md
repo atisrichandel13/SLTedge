@@ -756,3 +756,35 @@ eval hit the masked OOM at MemFree 4215 MB (floor raised to 5200). Both fixed an
 Third silent board failure of the project: the board's CI step produced nothing because the board still
 had the Sep-18 `bootstrap_ci.py` with no `--out` flag. Pushed the current one. **Board-generated
 summaries need verifying, not trusting** — that is now three for three.
+
+### Session 11: Atisri's report corrects three of my claims (2026-09-30)
+
+Read `lm-track-report-2026-09-30.md`. Three corrections, all of them right.
+
+1. **"16 fps is free" is retracted.** My n=30 curve (Δ −0.15, CI [−3.20, +2.89]) is superseded by her
+   n=976/967: 30→16 fps costs **ROUGE-L −1.63 (test) / −1.30 (dev)**, replicating on both splits, while
+   BLEU-4 cannot resolve it at n≈1000. She also showed that at n=300 the same model scored +1.10 BLEU-4
+   *higher* at 16 fps — the opposite sign — so n=30 was far inside the unreliable regime. I wrote "not
+   established" (correct) and then reported it as "no measured cost" (not correct). **Operating point is
+   now 24 fps**, free on both metrics for 21 % less pose energy.
+2. **A real bug she found independently:** OpenASL is not one frame rate. 76.5 % of our 931 clips are
+   ~30 fps, 22.2 % ~24, 7 are 59.94 — and `subsample_pkl.py` / `--keep-fps` assumed 29.97, so a 24 fps
+   clip labelled "16 fps" was subsampled to ~12.8. 6 of my 30 clips were affected. Now derived per clip
+   from frames ÷ duration.
+3. **My INT8 justification was wrong.** I argued W8A16 inherits mT5's fp16 failure; their implementation
+   is W8A32 (fp32 activations, matmul and accumulation). The guide row said W8A16 until 09-28, but I
+   should have checked the implementation, not the label. Her disproof is cleaner: the INT8 config scores
+   22.79 BLEU-4, impossible under the fp16 failure mode. My second reason — host-bound decoder — was
+   correct and sufficient. Right decision, wrong justification.
+4. **"Beam width is the frontier" was LM-local.** Per BLEU-4 point: 30→24 fps costs 103.5 J, beam 4→2
+   costs 1.0 J. Beam is the LM's lever and the *worst* system lever, since the LM is only ~25 % of system
+   energy. Frame rate is 10–100× more efficient.
+
+Sent back to her: (a) her test figures carry her own §8.1 vocabulary-leakage caveat, which reaches my
+restatement of her pruning and decode rows — 53 keep-ids occur only in test, including `▁Bitcoin`, our
+demo clip's key word; (b) her composed frontier's absolute system-J is anchored to my single clip, whose
+crop is at the 83rd percentile, so a median clip is ~7 % cheaper per frame; (c) "memory is not binding at
+2.577 GB peak" is true in steady state but not at load, where the pruned path peaks ~4.2 GB; (d) her 6 %
+composition gap is probably not contention, since M1 found none — the stages are sequential.
+
+Jetson still unreachable: tunnel up, routes installed, but no host on the lab subnet answers.

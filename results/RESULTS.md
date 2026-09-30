@@ -615,6 +615,25 @@ ratios across rates are what P8 needs and they are unaffected.
 
 ### B. Accuracy vs capture rate (30 clips, beam 4, batch 1, released checkpoint)
 
+> **SUPERSEDED 2026-09-30 by the LM track at n=976/967** (`lm-track-report-2026-09-30.md` §3.6, §7.1).
+> The conclusion below — "16 fps at no measured accuracy cost" — was **n=30 with a CI ~6 BLEU-4 wide**
+> and does not survive. At n=976 the 30→16 fps cost is **BLEU-4 −1.33 [−2.00, −0.64], ROUGE-L −1.63**;
+> at n=967 on dev, ROUGE-L **−1.30**. ROUGE-L replicates on both splits, BLEU-4 does not, because a
+> handful of sentences flipping one 4-gram match is the whole effect at n≈1000. **Effects below ~1
+> BLEU-4 at n≈1000 must be carried by ROUGE-L.** At n=300 the same model scored +1.10 BLEU-4 *higher*
+> at 16 fps than at source — the opposite sign — so n=30 was far inside the unreliable regime.
+>
+> **Two separate errors of mine here.** First, "not established" meant *unknown* and I wrote it up as
+> "no cost". Second, a real bug: OpenASL is **not one frame rate** — of our 931 clips, 76.5 % are
+> ~30 fps, 22.2 % ~24, 7 are 59.94 — and `subsample_pkl.py` / `--keep-fps` hardcoded `src_fps=29.97`,
+> so a 24 fps clip labelled "16 fps" was really subsampled to ~12.8. **6 of these 30 clips were
+> off-rate.** Fixed by deriving each clip's rate from frames ÷ duration.
+>
+> **Revised operating point: 24 fps, not 16.** Free on both metrics (test −0.07 BLEU-4, dev +0.26;
+> ROUGE-L +0.15) for 21 % less pose energy. 16 fps buys 47 % but costs ~1.3–1.6 ROUGE-L. **Table A
+> (energy) is unaffected** — it is one clip at 29.97 fps, so the ratios hold.
+
+
 Poses subsampled from the full-rate keypoints. **This is exact, not an approximation**: pose extraction
 is per-frame independent, so a frame kept at a reduced rate receives exactly the keypoints it would have
 received at 30 fps (`common/subsample_pkl.py`). Confirmed by the 30 fps row reproducing the unsubsampled
@@ -628,8 +647,9 @@ batch-1 eval to two decimals. Paired bootstrap against 30 fps, 2000 resamples:
 | 12 | 15.39 | 43.58 | −3.25 | [−7.22, +0.80] | ambiguous |
 | 8 | 11.46 | 36.28 | −7.18 | **[−12.55, −2.13]** | **established loss** |
 
-**16 fps is the operating point: 47 % less pose energy at no measured accuracy cost.** 8 fps is an
-established loss, so there is a floor. 12 fps should not be used — the point estimate is a meaningful
+~~**16 fps is the operating point: 47 % less pose energy at no measured accuracy cost.**~~ **RETRACTED
+— see the note above; 24 fps is the free operating point.** 8 fps is an established loss even at n=30,
+so there is a floor. 12 fps should not be used — the point estimate is a meaningful
 −3.25 and n=30 cannot resolve it, so "ambiguous" here means *unknown*, not *free*. **24 fps scoring
 above 30 fps is noise and must not be reported as an improvement.**
 
@@ -658,16 +678,23 @@ LM only 8.88 → 7.79 J, **12 %**, because the decoder dominates and its cost tr
 rather than input length. **Reduced frame rate is a pose-stage saving, not an LM saving**, and a report
 that presents it as the latter is claiming ~12 % where the pose side delivers 47–73 %.
 
-**Beam width is the LM's real lever, and both of its axes are now measured.** Greedy 8.88 J vs beam 4
-11.04 J — 2.16 J, 24 % more energy — against 2.00 BLEU-4 (CI [−2.63, −1.41], established at n=976,
-§L6.1). That single trade is the accuracy–energy frontier and it can be plotted without INT8, which is
+**Beam width is the LM's real lever — but the worst SYSTEM lever.** Greedy 8.88 J vs beam 4 11.04 J
+— 2.16 J, 24 % more *LM* energy — against 2.00 BLEU-4 (CI [−2.63, −1.41], n=976, §L6.1). **Corrected
+2026-09-30:** because the LM is only ~25 % of system energy, that is just 5 % of system joules for
+2 BLEU-4, i.e. ~1.1 J per BLEU-4 point, against **103.5** for 30→24 fps. Frame rate is 10–100× the more
+efficient lever at the system level, and calling beam width "the frontier" was true only of the LM in
+isolation. That single trade is the *LM's* accuracy–energy tradeoff and it can be plotted without INT8, which is
 why INT8 was dropped (guide row 3.2).
 
 ### What this means for the system
 
 For the M1 sentence (8.51 s of video, measured 50.37 J total): pose 4.25 × 8.51 = 36.2 J plus LM
-11.04 J at 30 fps / beam 4. Moving to **16 fps** takes pose to 19.3 J and the LM to 9.89 J — about
-**29 J against 47 J, a ~38 % system saving at no measured accuracy cost.** Going further to greedy adds
+11.04 J at 30 fps / beam 4. Moving to **24 fps** gives ~36 J, a **17 % system saving that is free on
+both metrics**; 16 fps gives ~29 J, a ~38 % saving, but **costs ~1.3–1.6 ROUGE-L** (corrected
+2026-09-30 — the earlier "at no measured accuracy cost" was an n=30 artifact). **Caveat on the absolute
+joules:** this clip's 644×720 crop is at the **83rd percentile** of crop area across the 931 clips
+(9k–770k px, median 395k). ~11.1 of the 25.1 ms/frame scales with crop area, so a median clip is ~7 %
+cheaper and a p10 clip ~27 % cheaper. Ratios across rates hold; the absolute J is clip-specific. Going further to greedy adds
 another ~1.3 J of saving for a 2.00 BLEU-4 loss, which is the trade to present rather than to take
 silently.
 
