@@ -416,6 +416,17 @@ because it appears in the test split.
 So removing the 53 test-only tokens costs **0.03 BLEU-4** and *gains* 0.01 ROUGE-L — far inside the
 noise, and cap 64 is again bit-identical to cap 100.
 
+Paired bootstrap on the 976 test clips (1000 resamples, `unisign/bootstrap_ci.py`):
+
+| | leaky → leak-free | 95 % CI | verdict |
+|---|---|---|---|
+| BLEU-4 | −0.03 | [−0.11, +0.01] | not established |
+| ROUGE-L | +0.01 | [−0.02, +0.04] | not established |
+
+The intervals are unusually tight because the two models differ by only 53 of 26,078 rows, so most
+sentences are word-identical. That makes this a **precise** null rather than an underpowered one: the
+leak's effect on the test score is bounded at roughly 0.1 BLEU-4.
+
 **The right way to report this is as a methodology finding, not a results correction.** The leak
 channel is real and generalisable: the vocabulary was selected using the test split, so the deployed
 model's output layer had seen data it should not have, with nothing in the training loop touching test

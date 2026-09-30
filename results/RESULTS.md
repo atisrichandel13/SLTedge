@@ -1264,6 +1264,17 @@ expected since none of the 53 tokens occur in dev. This confirms the re-prune br
 | leak-free, 26,025 | 64 | 22.84 | 42.99 |
 
 **The leak was worth 0.03 BLEU-4** (ROUGE-L rose 0.01). Report it as a methodology finding — the
+
+Paired bootstrap on the 976 test clips (1000 resamples, `unisign/bootstrap_ci.py`):
+
+| | leaky → leak-free | 95 % CI | verdict |
+|---|---|---|---|
+| BLEU-4 | −0.03 | [−0.11, +0.01] | not established |
+| ROUGE-L | +0.01 | [−0.02, +0.04] | not established |
+
+The intervals are unusually tight because the two models differ by only 53 of 26,078 rows, so most
+sentences are word-identical. That makes this a **precise** null rather than an underpowered one: the
+leak's effect on the test score is bounded at roughly 0.1 BLEU-4.
 selection channel is real, generalisable and unchecked by most work — rather than as a results
 correction, because its magnitude here is inside the noise. Every other test-split figure in this file
 uses the leaky keep set; the difference does not change any relative conclusion.
