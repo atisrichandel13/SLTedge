@@ -459,10 +459,14 @@ best available reading, not an isolated result — the working recipe changed th
 - The un-adapted 16 fps figure independently reproduces the Mac result (22.79 / 41.59 vs 22.77 /
   41.60) on different hardware with a different checkpoint.
 
-**Output truncation, found by reading the samples.** One adapted prediction ends mid-phrase — *"where
-they can establish a"* — at `max_new_tokens 64`, while the un-adapted version completes the sentence.
-§3.5's cap equivalence was measured on the un-adapted model only. Truncation costs n-gram matches, so
-**+0.40 / +1.01 may be an underestimate.** A cap-100 re-evaluation is queued.
+**Output truncation — hypothesised, then measured, then refuted.** One adapted prediction ends
+mid-phrase — *"where they can establish a"* — at `max_new_tokens 64`, while the un-adapted version
+completes the sentence. Since §3.5's cap equivalence was measured on the un-adapted model only, this
+suggested the adapted numbers were depressed by truncation. **Tested by scoring the same adapted
+checkpoint at cap 64 and cap 100: 23.2522 / 42.6339 versus 23.2522 / 42.6339 — bit-identical to four
+decimals, not one sentence changed.** So §3.5's equivalence does extend to adapted models, and
+~~+0.40 / +1.01 may be an underestimate~~ **is not an underestimate**. The truncated sample was real
+in that run but does not move corpus-level metrics.
 
 ### 8.5 What is NOT established about §8.4
 
@@ -555,9 +559,9 @@ they can establish a"* — at `max_new_tokens 64`, while the un-adapted version 
 | # | what | cost | why |
 |---|---|---|---|
 | 1 | Paired CIs for the §8.4 2×2 (`eval_openasl.py` → `bootstrap_ci.py`) | ~20 min | the only result here without error bars |
-| 2 | Seed variance, 3 more seeds (row 4.3) | ~55 min | "+0.40 vs +0.18" is one draw |
+| ~~2~~ | ~~Seed variance, 3 more seeds (row 4.3)~~ | done | spread 0.05 BLEU-4 / 0.15 ROUGE-L across seeds 42/43/44 — the gain is ~7x the seed noise |
 | 3 | Test-split eval of the leak-free checkpoint | ~15 min | every test figure above uses the leaky keep set |
-| 4 | Cap-100 re-eval of adapted models | ~5 min | §8.4 may be an underestimate |
+| ~~4~~ | ~~Cap-100 re-eval of adapted models~~ | done | measured bit-identical to cap 64; §8.4 is not an underestimate |
 | 5 | Measured end-to-end board energy at a second corner | pose track | our frontier is composed and ~6 % optimistic |
 | 6 | Adaptation at 12 fps | ~20 min | 12 fps costs 2.5 BLEU-4 un-adapted; worth trying if 16 fps holds |
 | 7 | Full 96 K clips / multiple epochs | ~65 min/epoch | may increase the gain |
