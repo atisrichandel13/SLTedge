@@ -1,0 +1,30 @@
+{
+ "vid": "SsQxB7yYxgQ-00:00:37.566-00:00:43.233",
+ "yid": "SsQxB7yYxgQ",
+ "crop_xywh": [
+  340,
+  0,
+  722,
+  720
+ ],
+ "bbox_norm": [
+  0.2659900754105811,
+  -0.29221031130788633,
+  0.8295424120098936,
+  1.3948903399614987
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I work as the campground host for Camp Taloali.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 170,
+ "stride": 1,
+ "start": "00:00:37.566",
+ "end": "00:00:43.233",
+ "duration_s": 5.667
+}

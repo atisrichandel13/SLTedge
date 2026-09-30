@@ -1,0 +1,30 @@
+{
+ "vid": "GvkCfTMdL7E-00:01:57.500-00:02:10.266",
+ "yid": "GvkCfTMdL7E",
+ "crop_xywh": [
+  636,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.4972382999601818,
+  -0.12461818568462246,
+  0.9160274608826741,
+  1.153898789413621
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Chicago officials were shocked and upset by the level of violence so they pledged to deploy more officers in neighborhoods that have seen a surge in shootings.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 383,
+ "stride": 1,
+ "start": "00:01:57.500",
+ "end": "00:02:10.266",
+ "duration_s": 12.766
+}

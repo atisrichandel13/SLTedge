@@ -1,0 +1,30 @@
+{
+ "vid": "tDEWkD8lxlo-00:03:00.300-00:03:01.566",
+ "yid": "tDEWkD8lxlo",
+ "crop_xywh": [
+  492,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.3840478479862213,
+  -0.15269870228237575,
+  0.801692110300064,
+  1.0840989157005592
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We are not done yet.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 38,
+ "stride": 1,
+ "start": "00:03:00.300",
+ "end": "00:03:01.566",
+ "duration_s": 1.266
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "zfumcO72yTs-00:04:00.300-00:04:08.133",
+ "yid": "zfumcO72yTs",
+ "crop_xywh": [
+  616,
+  0,
+  550,
+  720
+ ],
+ "bbox_norm": [
+  0.48134561633387357,
+  -0.1705524727150246,
+  0.9110660255378019,
+  1.1548831697708983
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The couple has repeatedly denied any wrongdoing, but a court ordered a deadline for them to hand over the money.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 235,
+ "stride": 1,
+ "start": "00:04:00.300",
+ "end": "00:04:08.133",
+ "duration_s": 7.833
+}

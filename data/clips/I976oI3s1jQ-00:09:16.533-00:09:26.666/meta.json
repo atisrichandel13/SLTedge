@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:09:16.533-00:09:26.666",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  605,
+  0,
+  622,
+  720
+ ],
+ "bbox_norm": [
+  0.47231305959273356,
+  -0.1734536214930851,
+  0.9583158298414581,
+  1.3125507089466375
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "She said the swab was really invasive and  went deep into the back of her nasal cavity, causing her to cough.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 244,
+ "stride": 1,
+ "start": "00:09:16.533",
+ "end": "00:09:26.666",
+ "duration_s": 10.133
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "rK2cB6Trk68-00:00:13.466-00:00:18.166",
+ "yid": "rK2cB6Trk68",
+ "crop_xywh": [
+  289,
+  0,
+  652,
+  720
+ ],
+ "bbox_norm": [
+  0.22555459230795674,
+  -0.2105924898637209,
+  0.7349374233991249,
+  1.2267428707497938
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I don't know how to use Excel or manage email, it was tough.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 141,
+ "stride": 1,
+ "start": "00:00:13.466",
+ "end": "00:00:18.166",
+ "duration_s": 4.7
+}

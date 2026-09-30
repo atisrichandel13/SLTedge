@@ -1,0 +1,30 @@
+{
+ "vid": "cfpYnacUBGY-00:03:36.433-00:03:44.300",
+ "yid": "cfpYnacUBGY",
+ "crop_xywh": [
+  677,
+  0,
+  484,
+  690
+ ],
+ "bbox_norm": [
+  0.5289212450385093,
+  -0.07290890923252813,
+  0.9080315455794334,
+  0.9599278774526384
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The sheriff's office said Williams stopped cooperating with police two days later.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 237,
+ "stride": 1,
+ "start": "00:03:36.433",
+ "end": "00:03:44.300",
+ "duration_s": 7.867
+}

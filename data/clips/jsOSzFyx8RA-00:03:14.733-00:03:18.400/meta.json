@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:03:14.733-00:03:18.400",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  579,
+  0,
+  692,
+  720
+ ],
+ "bbox_norm": [
+  0.452105462723884,
+  -0.25502995999346995,
+  0.994132137298584,
+  1.2912302273675056
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We were truly authentic.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 110,
+ "stride": 1,
+ "start": "00:03:14.733",
+ "end": "00:03:18.400",
+ "duration_s": 3.667
+}

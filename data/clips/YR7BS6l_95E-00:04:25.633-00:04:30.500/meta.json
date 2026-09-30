@@ -1,0 +1,30 @@
+{
+ "vid": "YR7BS6l_95E-00:04:25.633-00:04:30.500",
+ "yid": "YR7BS6l_95E",
+ "crop_xywh": [
+  259,
+  0,
+  630,
+  720
+ ],
+ "bbox_norm": [
+  0.20267663451172552,
+  -0.1508643819078987,
+  0.6955830467629855,
+  1.2274984473946655
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I met so many diverse people with so much talent.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1278,
+  720
+ ],
+ "n_frames": 147,
+ "stride": 1,
+ "start": "00:04:25.633",
+ "end": "00:04:30.500",
+ "duration_s": 4.867
+}

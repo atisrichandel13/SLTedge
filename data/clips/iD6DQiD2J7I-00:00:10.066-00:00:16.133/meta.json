@@ -1,0 +1,30 @@
+{
+ "vid": "iD6DQiD2J7I-00:00:10.066-00:00:16.133",
+ "yid": "iD6DQiD2J7I",
+ "crop_xywh": [
+  298,
+  17,
+  270,
+  436
+ ],
+ "bbox_norm": [
+  0.45628627137375605,
+  0.03489631446632179,
+  0.8681410280217098,
+  0.9468606824273461
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The NAD is excited about this new generation of the College Bowl.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 182,
+ "stride": 1,
+ "start": "00:00:10.066",
+ "end": "00:00:16.133",
+ "duration_s": 6.067
+}

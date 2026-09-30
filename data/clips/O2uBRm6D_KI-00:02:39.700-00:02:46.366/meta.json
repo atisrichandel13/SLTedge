@@ -1,0 +1,30 @@
+{
+ "vid": "O2uBRm6D_KI-00:02:39.700-00:02:46.366",
+ "yid": "O2uBRm6D_KI",
+ "crop_xywh": [
+  332,
+  0,
+  648,
+  720
+ ],
+ "bbox_norm": [
+  0.2593957932397662,
+  -0.23064366887026747,
+  0.7665233494322977,
+  1.1832609880880836
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Board is taking this into serious consideration. We are looking into other interpreting issues as well.",
+ "split": "test",
+ "fps": 59.94,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 400,
+ "stride": 1,
+ "start": "00:02:39.700",
+ "end": "00:02:46.366",
+ "duration_s": 6.666
+}

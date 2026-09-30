@@ -1,0 +1,30 @@
+{
+ "vid": "7JF1onKatVI-00:08:55.333-00:08:55.766",
+ "yid": "7JF1onKatVI",
+ "crop_xywh": [
+  572,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.4468857659233941,
+  -0.08408751311125578,
+  0.8803396436903212,
+  1.0153325587143132
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was worth it.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 11,
+ "stride": 1,
+ "start": "00:08:55.333",
+ "end": "00:08:55.766",
+ "duration_s": 0.433
+}

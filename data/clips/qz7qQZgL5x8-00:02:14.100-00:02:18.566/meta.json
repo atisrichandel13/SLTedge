@@ -1,0 +1,30 @@
+{
+ "vid": "qz7qQZgL5x8-00:02:14.100-00:02:18.566",
+ "yid": "qz7qQZgL5x8",
+ "crop_xywh": [
+  286,
+  0,
+  830,
+  720
+ ],
+ "bbox_norm": [
+  0.22377729599292462,
+  -0.2133163930344106,
+  0.8724193273446499,
+  1.6024914429058716
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The bottom line - what I wanted to share - is that you are you.",
+ "split": "test",
+ "fps": 29.94,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 134,
+ "stride": 1,
+ "start": "00:02:14.100",
+ "end": "00:02:18.566",
+ "duration_s": 4.466
+}

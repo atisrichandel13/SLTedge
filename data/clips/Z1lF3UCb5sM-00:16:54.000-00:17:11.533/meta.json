@@ -1,0 +1,30 @@
+{
+ "vid": "Z1lF3UCb5sM-00:16:54.000-00:17:11.533",
+ "yid": "Z1lF3UCb5sM",
+ "crop_xywh": [
+  611,
+  0,
+  576,
+  720
+ ],
+ "bbox_norm": [
+  0.4776926145366594,
+  -0.1716024233417054,
+  0.9272340909172507,
+  1.177922968064518
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"The third news - President Trump announced yesterday that he spoke with \"\"the leader of the Taliban\"\" on a phone call in which they discussed a peace deal to stop violence in Afghanistan.\"",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 421,
+ "stride": 1,
+ "start": "00:16:54.000",
+ "end": "00:17:11.533",
+ "duration_s": 17.533
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "JtPw-DVL4Rk-00:00:34.666-00:00:44.266",
+ "yid": "JtPw-DVL4Rk",
+ "crop_xywh": [
+  709,
+  0,
+  476,
+  720
+ ],
+ "bbox_norm": [
+  0.5536150488360174,
+  -0.08777968795211227,
+  0.926026829357805,
+  1.0067170168704913
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The first was a woman 75-year-old Joyce Fienberg, a retired research specialist at the University of Pittsburgh.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 288,
+ "stride": 1,
+ "start": "00:00:34.666",
+ "end": "00:00:44.266",
+ "duration_s": 9.6
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "0JWnUGQrtIs-00:02:56.733-00:03:11.266",
+ "yid": "0JWnUGQrtIs",
+ "crop_xywh": [
+  589,
+  0,
+  630,
+  720
+ ],
+ "bbox_norm": [
+  0.4599889939481562,
+  -0.1632811785547019,
+  0.9523720520915407,
+  1.2524814893902352
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was right after that emotional and heated encounter that Flake left the room to hold private discussions with other senators.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 436,
+ "stride": 1,
+ "start": "00:02:56.733",
+ "end": "00:03:11.266",
+ "duration_s": 14.533
+}

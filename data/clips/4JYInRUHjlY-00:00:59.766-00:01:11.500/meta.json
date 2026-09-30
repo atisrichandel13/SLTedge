@@ -1,0 +1,30 @@
+{
+ "vid": "4JYInRUHjlY-00:00:59.766-00:01:11.500",
+ "yid": "4JYInRUHjlY",
+ "crop_xywh": [
+  686,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.5363139850992552,
+  -0.08230008367579246,
+  0.9528211472739636,
+  1.1196106173933702
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Friends say Nicolai was in the midst of an ugly divorce and custody battle with her estranged husband.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 352,
+ "stride": 1,
+ "start": "00:00:59.766",
+ "end": "00:01:11.500",
+ "duration_s": 11.734
+}

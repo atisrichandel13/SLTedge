@@ -1,0 +1,30 @@
+{
+ "vid": "2_PWeBb41qM-00:08:52.600-00:09:07.133",
+ "yid": "2_PWeBb41qM",
+ "crop_xywh": [
+  812,
+  147,
+  314,
+  496
+ ],
+ "bbox_norm": [
+  0.6344278611332538,
+  0.20383590994430195,
+  0.8794873088239188,
+  0.893676735853734
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "On Monday a popular Florida pastor was arrested for holding large church services despite social distancing orders.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 436,
+ "stride": 1,
+ "start": "00:08:52.600",
+ "end": "00:09:07.133",
+ "duration_s": 14.533
+}

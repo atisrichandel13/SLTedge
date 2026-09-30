@@ -1,0 +1,30 @@
+{
+ "vid": "Mci9oyb5V2E-00:00:05.333-00:00:11.166",
+ "yid": "Mci9oyb5V2E",
+ "crop_xywh": [
+  57,
+  0,
+  508,
+  480
+ ],
+ "bbox_norm": [
+  0.08954505688614316,
+  -0.31624487428753467,
+  0.8836676124069426,
+  1.4675237304082625
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I am Ed Bosson, and I am 67 years old and now retired.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  480
+ ],
+ "n_frames": 175,
+ "stride": 1,
+ "start": "00:00:05.333",
+ "end": "00:00:11.166",
+ "duration_s": 5.833
+}

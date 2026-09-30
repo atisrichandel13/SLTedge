@@ -1,0 +1,30 @@
+{
+ "vid": "bCEriaJUzm4-00:00:07.133-00:00:09.633",
+ "yid": "bCEriaJUzm4",
+ "crop_xywh": [
+  627,
+  0,
+  562,
+  720
+ ],
+ "bbox_norm": [
+  0.48989836586846247,
+  -0.13550835597662278,
+  0.9287788285149469,
+  1.1692378079449688
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hello, welcome to the Daily Moth!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 75,
+ "stride": 1,
+ "start": "00:00:07.133",
+ "end": "00:00:09.633",
+ "duration_s": 2.5
+}

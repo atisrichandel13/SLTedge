@@ -1,0 +1,30 @@
+{
+ "vid": "WMoeSSvCyTU-00:08:49.233-00:08:57.100",
+ "yid": "WMoeSSvCyTU",
+ "crop_xywh": [
+  660,
+  0,
+  602,
+  720
+ ],
+ "bbox_norm": [
+  0.515325755543179,
+  -0.222308290887762,
+  0.9869549194971721,
+  1.275121259615745
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The drug hydroxychde continues to be controversial.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 236,
+ "stride": 1,
+ "start": "00:08:49.233",
+ "end": "00:08:57.100",
+ "duration_s": 7.867
+}

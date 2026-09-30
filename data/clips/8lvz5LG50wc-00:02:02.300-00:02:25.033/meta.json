@@ -1,0 +1,30 @@
+{
+ "vid": "8lvz5LG50wc-00:02:02.300-00:02:25.033",
+ "yid": "8lvz5LG50wc",
+ "crop_xywh": [
+  608,
+  0,
+  572,
+  720
+ ],
+ "bbox_norm": [
+  0.4748803135842988,
+  -0.15291064021563291,
+  0.9220931778532085,
+  1.187426275002836
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There is another ship that is impacted by COVID-19 - a Holland America ship that finally docked in Cambodia after being denied by five Asian countries.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 546,
+ "stride": 1,
+ "start": "00:02:02.300",
+ "end": "00:02:25.033",
+ "duration_s": 22.733
+}

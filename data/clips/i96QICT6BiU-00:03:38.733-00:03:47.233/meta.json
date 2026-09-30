@@ -1,0 +1,30 @@
+{
+ "vid": "i96QICT6BiU-00:03:38.733-00:03:47.233",
+ "yid": "i96QICT6BiU",
+ "crop_xywh": [
+  725,
+  0,
+  506,
+  720
+ ],
+ "bbox_norm": [
+  0.5663285756722475,
+  -0.015921811704282408,
+  0.9621184899256779,
+  1.0871681243266136
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Unfortunately that means criminals want to take advantage of people's kindness.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 255,
+ "stride": 1,
+ "start": "00:03:38.733",
+ "end": "00:03:47.233",
+ "duration_s": 8.5
+}

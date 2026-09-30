@@ -1,0 +1,30 @@
+{
+ "vid": "1-bCws7TnBs-00:00:29.000-00:00:33.533",
+ "yid": "1-bCws7TnBs",
+ "crop_xywh": [
+  209,
+  0,
+  450,
+  470
+ ],
+ "bbox_norm": [
+  0.24507391321176508,
+  -0.26749205400878534,
+  0.7725794349637227,
+  1.345325722882813
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They might think that lipreading or writing is effective when it isn\u2019t.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 136,
+ "stride": 1,
+ "start": "00:00:29.000",
+ "end": "00:00:33.533",
+ "duration_s": 4.533
+}

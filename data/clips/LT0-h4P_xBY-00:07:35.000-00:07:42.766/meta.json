@@ -1,0 +1,30 @@
+{
+ "vid": "LT0-h4P_xBY-00:07:35.000-00:07:42.766",
+ "yid": "LT0-h4P_xBY",
+ "crop_xywh": [
+  798,
+  153,
+  304,
+  470
+ ],
+ "bbox_norm": [
+  0.6231624218550595,
+  0.21246028861614188,
+  0.8605976543643259,
+  0.8663697416132147
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Of course the coronavirus pandemic is the reason of the spike in unemployment.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 233,
+ "stride": 1,
+ "start": "00:07:35.000",
+ "end": "00:07:42.766",
+ "duration_s": 7.766
+}

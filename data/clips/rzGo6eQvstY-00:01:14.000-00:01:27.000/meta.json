@@ -1,0 +1,30 @@
+{
+ "vid": "rzGo6eQvstY-00:01:14.000-00:01:27.000",
+ "yid": "rzGo6eQvstY",
+ "crop_xywh": [
+  596,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.4657670697595319,
+  -0.07511526073372489,
+  0.878053205441206,
+  1.1413915693929733
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Trump's Summit with Putin is Monday, but Democrats say the meeting should not happen.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 390,
+ "stride": 1,
+ "start": "00:01:14.000",
+ "end": "00:01:27.000",
+ "duration_s": 13.0
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "bxITvkIvXL0-00:02:16.500-00:02:20.166",
+ "yid": "bxITvkIvXL0",
+ "crop_xywh": [
+  333,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.2600527033661351,
+  -0.16932037623241694,
+  0.7278724778782237,
+  1.1760055487404768
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Please send those in by May 15th!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 110,
+ "stride": 1,
+ "start": "00:02:16.500",
+ "end": "00:02:20.166",
+ "duration_s": 3.666
+}

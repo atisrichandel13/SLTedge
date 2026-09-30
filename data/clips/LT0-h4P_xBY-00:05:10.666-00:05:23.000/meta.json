@@ -1,0 +1,30 @@
+{
+ "vid": "LT0-h4P_xBY-00:05:10.666-00:05:23.000",
+ "yid": "LT0-h4P_xBY",
+ "crop_xywh": [
+  785,
+  138,
+  334,
+  510
+ ],
+ "bbox_norm": [
+  0.613391127720685,
+  0.19188417724227308,
+  0.8751464370270851,
+  0.8994830150932586
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Although it may take several months for your lungs to clear out all the gunk from smoking, it is a change you'll be glad you made.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 371,
+ "stride": 1,
+ "start": "00:05:10.666",
+ "end": "00:05:23.000",
+ "duration_s": 12.334
+}

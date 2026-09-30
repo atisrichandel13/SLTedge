@@ -1,0 +1,30 @@
+{
+ "vid": "JFpUT5qmgUM-00:07:31.133-00:07:32.000",
+ "yid": "JFpUT5qmgUM",
+ "crop_xywh": [
+  162,
+  0,
+  300,
+  360
+ ],
+ "bbox_norm": [
+  0.25274449586868286,
+  -0.16908197932773167,
+  0.7218427459398906,
+  1.1471283144421047
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Fourth",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 26,
+ "stride": 1,
+ "start": "00:07:31.133",
+ "end": "00:07:32.000",
+ "duration_s": 0.867
+}

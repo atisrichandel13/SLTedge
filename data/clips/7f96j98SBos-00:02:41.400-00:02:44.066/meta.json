@@ -1,0 +1,30 @@
+{
+ "vid": "7f96j98SBos-00:02:41.400-00:02:44.066",
+ "yid": "7f96j98SBos",
+ "crop_xywh": [
+  687,
+  0,
+  484,
+  720
+ ],
+ "bbox_norm": [
+  0.5370405495166779,
+  -0.004776101642184788,
+  0.9158787230650584,
+  1.023449499518783
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They were happy to tell their side of the story.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 80,
+ "stride": 1,
+ "start": "00:02:41.400",
+ "end": "00:02:44.066",
+ "duration_s": 2.666
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "nyrUt0INMOA-00:01:24.600-00:01:28.166",
+ "yid": "nyrUt0INMOA",
+ "crop_xywh": [
+  159,
+  0,
+  376,
+  360
+ ],
+ "bbox_norm": [
+  0.24773867672139946,
+  -0.2717377489263361,
+  0.8361304055560719,
+  1.4129736481290875
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's made my journey worth it.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 108,
+ "stride": 1,
+ "start": "00:01:24.600",
+ "end": "00:01:28.166",
+ "duration_s": 3.566
+}

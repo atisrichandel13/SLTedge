@@ -1,0 +1,30 @@
+{
+ "vid": "8Uba2tgT1nA-00:01:20.633-00:01:27.766",
+ "yid": "8Uba2tgT1nA",
+ "crop_xywh": [
+  571,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.44609865439954655,
+  -0.20591169105943785,
+  0.9085523220919823,
+  1.2382005864848975
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He lost the 1992 Presidential election to Bill Clinton.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 214,
+ "stride": 1,
+ "start": "00:01:20.633",
+ "end": "00:01:27.766",
+ "duration_s": 7.133
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "rzGo6eQvstY-00:00:46.300-00:00:53.766",
+ "yid": "rzGo6eQvstY",
+ "crop_xywh": [
+  608,
+  0,
+  530,
+  720
+ ],
+ "bbox_norm": [
+  0.4749761327107747,
+  -0.0726568308386783,
+  0.8899962630095305,
+  1.135402310532307
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They spear-phish by emailing 5,000 voters.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 224,
+ "stride": 1,
+ "start": "00:00:46.300",
+ "end": "00:00:53.766",
+ "duration_s": 7.466
+}

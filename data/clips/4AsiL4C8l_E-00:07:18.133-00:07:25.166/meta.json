@@ -1,0 +1,30 @@
+{
+ "vid": "4AsiL4C8l_E-00:07:18.133-00:07:25.166",
+ "yid": "4AsiL4C8l_E",
+ "crop_xywh": [
+  677,
+  0,
+  522,
+  720
+ ],
+ "bbox_norm": [
+  0.5286174258520437,
+  -0.09531097954249813,
+  0.93760205368663,
+  1.0765522715349223
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The rescue took several minutes but the efforts paid off when the deer ran free.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 211,
+ "stride": 1,
+ "start": "00:07:18.133",
+ "end": "00:07:25.166",
+ "duration_s": 7.033
+}

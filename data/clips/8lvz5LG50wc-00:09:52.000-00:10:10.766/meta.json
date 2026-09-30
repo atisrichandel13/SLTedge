@@ -1,0 +1,30 @@
+{
+ "vid": "8lvz5LG50wc-00:09:52.000-00:10:10.766",
+ "yid": "8lvz5LG50wc",
+ "crop_xywh": [
+  635,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.4960711524600075,
+  -0.1567285313371434,
+  0.9419413751734919,
+  1.1892033983354022
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Bloomberg has said as recently as January that the \"\"stop and frisk\"\" policy was effective and helped to reduce the city's murder rate by taking away guns.\"",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 451,
+ "stride": 1,
+ "start": "00:09:52.000",
+ "end": "00:10:10.766",
+ "duration_s": 18.766
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "LT0-h4P_xBY-00:00:12.500-00:00:14.000",
+ "yid": "LT0-h4P_xBY",
+ "crop_xywh": [
+  293,
+  0,
+  706,
+  720
+ ],
+ "bbox_norm": [
+  0.2288518879148695,
+  -0.09395668123975211,
+  0.7808898899290296,
+  1.3375986829216098
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm Jethro Wooddall.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 45,
+ "stride": 1,
+ "start": "00:00:12.500",
+ "end": "00:00:14.000",
+ "duration_s": 1.5
+}

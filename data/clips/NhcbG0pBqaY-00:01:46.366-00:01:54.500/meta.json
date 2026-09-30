@@ -1,0 +1,30 @@
+{
+ "vid": "NhcbG0pBqaY-00:01:46.366-00:01:54.500",
+ "yid": "NhcbG0pBqaY",
+ "crop_xywh": [
+  110,
+  0,
+  626,
+  480
+ ],
+ "bbox_norm": [
+  0.1288921441859755,
+  -0.2270890002157174,
+  0.86209700800266,
+  1.8497729792314417
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Happy Holidays, Merry Christmas and Happy New Year!",
+ "split": "test",
+ "fps": 25.0,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 204,
+ "stride": 1,
+ "start": "00:01:46.366",
+ "end": "00:01:54.500",
+ "duration_s": 8.134
+}

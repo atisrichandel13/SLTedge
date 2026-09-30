@@ -1,0 +1,30 @@
+{
+ "vid": "5iRIeHAK9b0-00:04:43.300-00:04:48.133",
+ "yid": "5iRIeHAK9b0",
+ "crop_xywh": [
+  620,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.4843304951985677,
+  -0.15450444519900422,
+  0.9477921847639412,
+  1.1847212078927578
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The deal will keep the children from being called to testify.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 145,
+ "stride": 1,
+ "start": "00:04:43.300",
+ "end": "00:04:48.133",
+ "duration_s": 4.833
+}

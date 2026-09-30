@@ -1,0 +1,30 @@
+{
+ "vid": "K1bsZiByzTs-00:03:03.400-00:03:13.166",
+ "yid": "K1bsZiByzTs",
+ "crop_xywh": [
+  694,
+  0,
+  514,
+  720
+ ],
+ "bbox_norm": [
+  0.5423690476660001,
+  -0.13203032955162494,
+  0.9447785106755919,
+  1.0308129914960842
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A year ago, they walked into Botham Jean's apartment, later saying they mistook it for their own, and killed Jean.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 293,
+ "stride": 1,
+ "start": "00:03:03.400",
+ "end": "00:03:13.166",
+ "duration_s": 9.766
+}

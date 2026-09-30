@@ -1,0 +1,30 @@
+{
+ "vid": "9oAD9JRPPIQ-00:06:10.700-00:06:15.633",
+ "yid": "9oAD9JRPPIQ",
+ "crop_xywh": [
+  629,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.49151389969719783,
+  -0.17232615953610267,
+  0.9332224347856309,
+  1.244377628608986
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But they were also hit by a sixth bullet by a CPH officer.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 148,
+ "stride": 1,
+ "start": "00:06:10.700",
+ "end": "00:06:15.633",
+ "duration_s": 4.933
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "jZP5thQ22S0-00:02:46.066-00:02:52.633",
+ "yid": "jZP5thQ22S0",
+ "crop_xywh": [
+  653,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.5098263943195344,
+  -0.1175395859612359,
+  0.9233848202228547,
+  1.1280076583226522
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The US the death has risen to nine, all in Washington state.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 198,
+ "stride": 1,
+ "start": "00:02:46.066",
+ "end": "00:02:52.633",
+ "duration_s": 6.567
+}

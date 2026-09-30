@@ -1,0 +1,30 @@
+{
+ "vid": "EDlQOtl4fW8-00:07:34.466-00:07:37.133",
+ "yid": "EDlQOtl4fW8",
+ "crop_xywh": [
+  344,
+  0,
+  646,
+  720
+ ],
+ "bbox_norm": [
+  0.26887276873869054,
+  -0.07842777227264604,
+  0.7743494548049628,
+  1.3479629948767702
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There may be shipping costs involved.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 81,
+ "stride": 1,
+ "start": "00:07:34.466",
+ "end": "00:07:37.133",
+ "duration_s": 2.667
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "sP6B4dlSOoc-00:05:41.666-00:05:47.233",
+ "yid": "sP6B4dlSOoc",
+ "crop_xywh": [
+  598,
+  0,
+  562,
+  720
+ ],
+ "bbox_norm": [
+  0.4674182985343185,
+  -0.10045421907844627,
+  0.9061306542041254,
+  1.1840463276782067
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Something as simple as walking along the sidewalk can be potentially dangerous.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 167,
+ "stride": 1,
+ "start": "00:05:41.666",
+ "end": "00:05:47.233",
+ "duration_s": 5.567
+}

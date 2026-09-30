@@ -1,0 +1,30 @@
+{
+ "vid": "wUEiLfHtMxY-00:01:50.266-00:02:02.666",
+ "yid": "wUEiLfHtMxY",
+ "crop_xywh": [
+  362,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.28285477913177764,
+  -0.17167447808984523,
+  0.7249358868813729,
+  1.1502875165777044
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Every government leader and health officers must provide sign language access during their press briefings about our health and threats.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 372,
+ "stride": 1,
+ "start": "00:01:50.266",
+ "end": "00:02:02.666",
+ "duration_s": 12.4
+}

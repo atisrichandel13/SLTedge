@@ -1,0 +1,30 @@
+{
+ "vid": "XPndROf0Ltg-00:07:46.733-00:08:12.400",
+ "yid": "XPndROf0Ltg",
+ "crop_xywh": [
+  709,
+  0,
+  506,
+  720
+ ],
+ "bbox_norm": [
+  0.5541517611472837,
+  -0.11127325055704608,
+  0.949785885246851,
+  1.058761594059077
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The heat is blamed on a climate system in the Indian Ocean called a dipole, which has caused heavy rainfall in eastern Africa and dry conditions in Australia.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 617,
+ "stride": 1,
+ "start": "00:07:46.733",
+ "end": "00:08:12.400",
+ "duration_s": 25.667
+}

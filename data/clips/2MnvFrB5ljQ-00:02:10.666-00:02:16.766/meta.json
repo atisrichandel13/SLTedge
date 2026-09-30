@@ -1,0 +1,30 @@
+{
+ "vid": "2MnvFrB5ljQ-00:02:10.666-00:02:16.766",
+ "yid": "2MnvFrB5ljQ",
+ "crop_xywh": [
+  422,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.3299821991104263,
+  -0.07283520015987667,
+  0.745764515850995,
+  1.1215977394783698
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The purpose of the data is to help develop recommendations for the NAD board and headquarters.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 183,
+ "stride": 1,
+ "start": "00:02:10.666",
+ "end": "00:02:16.766",
+ "duration_s": 6.1
+}

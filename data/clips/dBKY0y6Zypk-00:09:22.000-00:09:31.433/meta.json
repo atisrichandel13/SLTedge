@@ -1,0 +1,30 @@
+{
+ "vid": "dBKY0y6Zypk-00:09:22.000-00:09:31.433",
+ "yid": "dBKY0y6Zypk",
+ "crop_xywh": [
+  538,
+  0,
+  604,
+  720
+ ],
+ "bbox_norm": [
+  0.4202161961828756,
+  -0.13271198681688215,
+  0.892322982542696,
+  1.1673163614155335
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "When I open up the curriculum, it provides me with activities that I provide to the students.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 283,
+ "stride": 1,
+ "start": "00:09:22.000",
+ "end": "00:09:31.433",
+ "duration_s": 9.433
+}

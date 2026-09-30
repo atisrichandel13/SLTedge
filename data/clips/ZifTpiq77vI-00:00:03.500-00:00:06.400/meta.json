@@ -1,0 +1,30 @@
+{
+ "vid": "ZifTpiq77vI-00:00:03.500-00:00:06.400",
+ "yid": "ZifTpiq77vI",
+ "crop_xywh": [
+  599,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.46834674411349825,
+  -0.19255794870510023,
+  0.9575025770399306,
+  1.2656332726341215
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hello, welcome to The Daily Moth!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:00:03.500",
+ "end": "00:00:06.400",
+ "duration_s": 2.9
+}

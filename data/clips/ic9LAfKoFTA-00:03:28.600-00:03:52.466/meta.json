@@ -1,0 +1,30 @@
+{
+ "vid": "ic9LAfKoFTA-00:03:28.600-00:03:52.466",
+ "yid": "ic9LAfKoFTA",
+ "crop_xywh": [
+  641,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.5004685338338216,
+  -0.16143284660990495,
+  0.926670908720597,
+  1.0983079696507845
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So we see that Biden has maintained his frontrunner status, Buttigieg has surged from someone who was unknown to a serious contender, Warren is falling behind, and Sanders is up and down.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 573,
+ "stride": 1,
+ "start": "00:03:28.600",
+ "end": "00:03:52.466",
+ "duration_s": 23.866
+}

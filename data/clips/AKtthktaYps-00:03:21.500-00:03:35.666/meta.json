@@ -1,0 +1,30 @@
+{
+ "vid": "AKtthktaYps-00:03:21.500-00:03:35.666",
+ "yid": "AKtthktaYps",
+ "crop_xywh": [
+  612,
+  0,
+  546,
+  720
+ ],
+ "bbox_norm": [
+  0.4784200500039493,
+  -0.1390639334618396,
+  0.9043041412503111,
+  1.1254030499427148
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Steven Hymphrey says his family stopped giving gifts years ago but they do buy gifts for the children under 18 years old.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 425,
+ "stride": 1,
+ "start": "00:03:21.500",
+ "end": "00:03:35.666",
+ "duration_s": 14.166
+}

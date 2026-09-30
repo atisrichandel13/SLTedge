@@ -1,0 +1,30 @@
+{
+ "vid": "sITlRZ-tnqw-00:00:34.233-00:00:39.300",
+ "yid": "sITlRZ-tnqw",
+ "crop_xywh": [
+  280,
+  0,
+  664,
+  720
+ ],
+ "bbox_norm": [
+  0.2187257362950233,
+  -0.23821568984711897,
+  0.7381402842460141,
+  1.3424019280300346
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We are closer because of YAP.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 153,
+ "stride": 1,
+ "start": "00:00:34.233",
+ "end": "00:00:39.300",
+ "duration_s": 5.067
+}

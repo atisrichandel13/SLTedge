@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:11:33.600-00:11:38.433",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  330,
+  0,
+  624,
+  720
+ ],
+ "bbox_norm": [
+  0.2574303674697876,
+  -0.08291922392668548,
+  0.7459451744291516,
+  1.3532999114048334
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some might or might not have enjoyed it but I'm still thankful to have watched it.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 145,
+ "stride": 1,
+ "start": "00:11:33.600",
+ "end": "00:11:38.433",
+ "duration_s": 4.833
+}

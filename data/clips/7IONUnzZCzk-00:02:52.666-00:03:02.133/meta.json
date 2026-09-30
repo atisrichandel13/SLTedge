@@ -1,0 +1,30 @@
+{
+ "vid": "7IONUnzZCzk-00:02:52.666-00:03:02.133",
+ "yid": "7IONUnzZCzk",
+ "crop_xywh": [
+  596,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.4658599736397726,
+  -0.15246915191392607,
+  0.8975320219296461,
+  1.1576228318391022
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A year earlier a local magazine named him Orange County, California's most eligible bachelor.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 284,
+ "stride": 1,
+ "start": "00:02:52.666",
+ "end": "00:03:02.133",
+ "duration_s": 9.467
+}

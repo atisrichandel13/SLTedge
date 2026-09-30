@@ -1,0 +1,30 @@
+{
+ "vid": "eOjjLnOdgow-00:00:32.333-00:00:37.400",
+ "yid": "eOjjLnOdgow",
+ "crop_xywh": [
+  357,
+  0,
+  664,
+  720
+ ],
+ "bbox_norm": [
+  0.2787753100036293,
+  -0.21394504105033554,
+  0.7981940756561935,
+  1.3106409667640604
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Thank those who voted \"\"nay\"\", meaning those who support our ADA rights.\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 152,
+ "stride": 1,
+ "start": "00:00:32.333",
+ "end": "00:00:37.400",
+ "duration_s": 5.067
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "n3f7LSYur4s-00:01:45.400-00:01:51.466",
+ "yid": "n3f7LSYur4s",
+ "crop_xywh": [
+  323,
+  0,
+  676,
+  720
+ ],
+ "bbox_norm": [
+  0.25196408607341625,
+  -0.13774270658139828,
+  0.7803100347518921,
+  1.3161597628652315
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We moved into the Frederick, MD school.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 182,
+ "stride": 1,
+ "start": "00:01:45.400",
+ "end": "00:01:51.466",
+ "duration_s": 6.066
+}

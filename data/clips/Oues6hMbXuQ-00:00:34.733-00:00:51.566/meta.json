@@ -1,0 +1,30 @@
+{
+ "vid": "Oues6hMbXuQ-00:00:34.733-00:00:51.566",
+ "yid": "Oues6hMbXuQ",
+ "crop_xywh": [
+  666,
+  0,
+  496,
+  720
+ ],
+ "bbox_norm": [
+  0.5202599509714461,
+  -0.09045309242329669,
+  0.9077885196547303,
+  1.0470618386123485
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Isis has claimed responsibility for a suicide bombing attack in the Syrian city Manbji that has taken the lives of US service members.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 505,
+ "stride": 1,
+ "start": "00:00:34.733",
+ "end": "00:00:51.566",
+ "duration_s": 16.833
+}

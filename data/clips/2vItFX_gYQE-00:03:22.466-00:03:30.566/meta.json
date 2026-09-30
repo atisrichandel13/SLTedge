@@ -1,0 +1,30 @@
+{
+ "vid": "2vItFX_gYQE-00:03:22.466-00:03:30.566",
+ "yid": "2vItFX_gYQE",
+ "crop_xywh": [
+  695,
+  0,
+  462,
+  720
+ ],
+ "bbox_norm": [
+  0.5431383230248276,
+  -0.1136697916216861,
+  0.9041511126926967,
+  1.0037856549632793
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Police believe the suspects targeted the Jewish supermarket, and that they apparently held a hatred for Jewish law enforcement.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 243,
+ "stride": 1,
+ "start": "00:03:22.466",
+ "end": "00:03:30.566",
+ "duration_s": 8.1
+}

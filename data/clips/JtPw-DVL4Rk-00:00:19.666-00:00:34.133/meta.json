@@ -1,0 +1,30 @@
+{
+ "vid": "JtPw-DVL4Rk-00:00:19.666-00:00:34.133",
+ "yid": "JtPw-DVL4Rk",
+ "crop_xywh": [
+  713,
+  0,
+  464,
+  718
+ ],
+ "bbox_norm": [
+  0.5566488876196617,
+  -0.08949971529918814,
+  0.9192855707073577,
+  0.9989128096553302
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Funerals were held today in Pittsburgh to mourn the deaths of three of the 11 victims of Saturday's synagogue shooting.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 434,
+ "stride": 1,
+ "start": "00:00:19.666",
+ "end": "00:00:34.133",
+ "duration_s": 14.467
+}

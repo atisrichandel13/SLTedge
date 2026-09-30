@@ -1,0 +1,30 @@
+{
+ "vid": "eOjjLnOdgow-00:03:24.566-00:03:28.233",
+ "yid": "eOjjLnOdgow",
+ "crop_xywh": [
+  378,
+  0,
+  636,
+  720
+ ],
+ "bbox_norm": [
+  0.2950307658224395,
+  -0.20128551251960525,
+  0.7924954371018843,
+  1.2770216774860215
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Senate should do what?",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 110,
+ "stride": 1,
+ "start": "00:03:24.566",
+ "end": "00:03:28.233",
+ "duration_s": 3.667
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "oUljxXXBVfY-00:14:30.700-00:14:37.233",
+ "yid": "oUljxXXBVfY",
+ "crop_xywh": [
+  609,
+  0,
+  576,
+  720
+ ],
+ "bbox_norm": [
+  0.47582169572512306,
+  -0.1831103461760062,
+  0.9265148421128591,
+  1.1917491870897787
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Xinhua said both the patients are in stable condition.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 157,
+ "stride": 1,
+ "start": "00:14:30.700",
+ "end": "00:14:37.233",
+ "duration_s": 6.533
+}

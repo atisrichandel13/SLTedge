@@ -1,0 +1,30 @@
+{
+ "vid": "7IONUnzZCzk-00:04:52.533-00:05:00.033",
+ "yid": "7IONUnzZCzk",
+ "crop_xywh": [
+  608,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.47504347649173456,
+  -0.15079309399001264,
+  0.9176169353982677,
+  1.2016564945091948
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Eighteen people who ate the meat became sick and one person died.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 225,
+ "stride": 1,
+ "start": "00:04:52.533",
+ "end": "00:05:00.033",
+ "duration_s": 7.5
+}

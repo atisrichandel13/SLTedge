@@ -1,0 +1,30 @@
+{
+ "vid": "daTPNSQet08-00:09:16.566-00:09:24.066",
+ "yid": "daTPNSQet08",
+ "crop_xywh": [
+  202,
+  0,
+  812,
+  720
+ ],
+ "bbox_norm": [
+  0.15815180672539605,
+  -0.19213656044791266,
+  0.7923448315373174,
+  1.7207136931242766
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The goal is to make all students feel welcome, supported, recognized and that they feel validated.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 180,
+ "stride": 1,
+ "start": "00:09:16.566",
+ "end": "00:09:24.066",
+ "duration_s": 7.5
+}

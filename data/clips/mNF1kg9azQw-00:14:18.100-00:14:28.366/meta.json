@@ -1,0 +1,30 @@
+{
+ "vid": "mNF1kg9azQw-00:14:18.100-00:14:28.366",
+ "yid": "mNF1kg9azQw",
+ "crop_xywh": [
+  41,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.031724032878875735,
+  -0.05232423796477141,
+  0.4557628626823425,
+  1.2313254298457394
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "How would you recommend people to respond to others who create a vlog that reveals previous experiences?",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 247,
+ "stride": 1,
+ "start": "00:14:18.100",
+ "end": "00:14:28.366",
+ "duration_s": 10.266
+}

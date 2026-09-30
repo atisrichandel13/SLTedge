@@ -1,0 +1,30 @@
+{
+ "vid": "PYbUwpYMx0A-00:07:12.000-00:07:17.033",
+ "yid": "PYbUwpYMx0A",
+ "crop_xywh": [
+  628,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.490370673518027,
+  -0.15139956571152846,
+  0.9225187352908555,
+  1.0301632427685008
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Most importantly my mentor and friend.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 151,
+ "stride": 1,
+ "start": "00:07:12.000",
+ "end": "00:07:17.033",
+ "duration_s": 5.033
+}

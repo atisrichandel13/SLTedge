@@ -1,0 +1,30 @@
+{
+ "vid": "LifhWQwUvMg-00:00:42.733-00:01:05.366",
+ "yid": "LifhWQwUvMg",
+ "crop_xywh": [
+  620,
+  0,
+  584,
+  720
+ ],
+ "bbox_norm": [
+  0.4845678699550344,
+  -0.11580410826067822,
+  0.9416495878305008,
+  1.1455415104159077
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Kirstjen Nielsen resigned Sunday evening after repeated clashes with the President over his immigration policy and after he expressed his frustration over the situation at the southern border with Mexico.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 679,
+ "stride": 1,
+ "start": "00:00:42.733",
+ "end": "00:01:05.366",
+ "duration_s": 22.633
+}

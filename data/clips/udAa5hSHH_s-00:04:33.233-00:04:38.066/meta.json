@@ -1,0 +1,30 @@
+{
+ "vid": "udAa5hSHH_s-00:04:33.233-00:04:38.066",
+ "yid": "udAa5hSHH_s",
+ "crop_xywh": [
+  373,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.2914912443051393,
+  -0.11220744146393329,
+  0.7071221285852893,
+  1.0554774312376216
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your involvement in this process is important and we welcome your ideas and passion.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 145,
+ "stride": 1,
+ "start": "00:04:33.233",
+ "end": "00:04:38.066",
+ "duration_s": 4.833
+}

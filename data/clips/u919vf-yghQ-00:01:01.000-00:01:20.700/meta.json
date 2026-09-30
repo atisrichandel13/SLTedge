@@ -1,0 +1,30 @@
+{
+ "vid": "u919vf-yghQ-00:01:01.000-00:01:20.700",
+ "yid": "u919vf-yghQ",
+ "crop_xywh": [
+  626,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.4892665033173143,
+  -0.09808585704186273,
+  0.8925454082823637,
+  1.0334697838647557
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"President Trump tweeted responding to the article saying this is \"\"great news for the Republican Party\"\" and that Amash \"\"knew he wouldn't get the nomination to run again\"\" in Michigan because he's \"\"already being challenged for his seat as House Representative.\"\"\"",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 473,
+ "stride": 1,
+ "start": "00:01:01.000",
+ "end": "00:01:20.700",
+ "duration_s": 19.7
+}

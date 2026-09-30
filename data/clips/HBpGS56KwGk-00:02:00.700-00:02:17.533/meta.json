@@ -1,0 +1,30 @@
+{
+ "vid": "HBpGS56KwGk-00:02:00.700-00:02:17.533",
+ "yid": "HBpGS56KwGk",
+ "crop_xywh": [
+  232,
+  0,
+  810,
+  720
+ ],
+ "bbox_norm": [
+  0.18127958790149562,
+  -0.21923273871926702,
+  0.8141794394823462,
+  1.6329073944036392
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The CDC has guidance on voting in-person that includes where to vote. It's important to bring your own black ink pens or touch-screen pens to use on the voting machine.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 505,
+ "stride": 1,
+ "start": "00:02:00.700",
+ "end": "00:02:17.533",
+ "duration_s": 16.833
+}

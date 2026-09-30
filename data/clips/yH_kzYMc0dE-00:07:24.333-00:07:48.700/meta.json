@@ -1,0 +1,30 @@
+{
+ "vid": "yH_kzYMc0dE-00:07:24.333-00:07:48.700",
+ "yid": "yH_kzYMc0dE",
+ "crop_xywh": [
+  633,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.494205025264195,
+  -0.11291787466374534,
+  0.9153962429418585,
+  1.1277224199271496
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Their letter said that they do not feel safe among faculty, staff, and administrators on campus. It said that a certain percentage of faculty already has a mindset that students of color are more likely to not succeed or fail, and that there\u2019s not enough POCs in the faculty to reflect the diversity of the student body.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 731,
+ "stride": 1,
+ "start": "00:07:24.333",
+ "end": "00:07:48.700",
+ "duration_s": 24.367
+}

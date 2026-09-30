@@ -1,0 +1,30 @@
+{
+ "vid": "gALXtpV4IY8-00:04:25.333-00:04:32.666",
+ "yid": "gALXtpV4IY8",
+ "crop_xywh": [
+  641,
+  0,
+  610,
+  720
+ ],
+ "bbox_norm": [
+  0.5006400871276856,
+  -0.20664173958232862,
+  0.9781484568560564,
+  1.238779480859576
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Dr. Fauci said he has not talked with President Trump in two weeks.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 220,
+ "stride": 1,
+ "start": "00:04:25.333",
+ "end": "00:04:32.666",
+ "duration_s": 7.333
+}

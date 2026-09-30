@@ -1,0 +1,30 @@
+{
+ "vid": "2HCnifZR1pw-00:02:02.433-00:02:12.066",
+ "yid": "2HCnifZR1pw",
+ "crop_xywh": [
+  668,
+  0,
+  488,
+  720
+ ],
+ "bbox_norm": [
+  0.5218616982986187,
+  -0.09289473135352591,
+  0.903437970013454,
+  1.0747947734891228
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's a day to recognize teachers, students, parents and the progress that has been made in special education.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 289,
+ "stride": 1,
+ "start": "00:02:02.433",
+ "end": "00:02:12.066",
+ "duration_s": 9.633
+}

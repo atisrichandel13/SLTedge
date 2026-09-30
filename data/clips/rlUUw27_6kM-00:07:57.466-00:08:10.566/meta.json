@@ -1,0 +1,30 @@
+{
+ "vid": "rlUUw27_6kM-00:07:57.466-00:08:10.566",
+ "yid": "rlUUw27_6kM",
+ "crop_xywh": [
+  627,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.48982874098278223,
+  -0.17449566741889536,
+  0.9029899349919073,
+  1.1036464249365894
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In separate but related news, an American Special Forces soldier in eastern Afghanistan was killed in action today.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 315,
+ "stride": 1,
+ "start": "00:07:57.466",
+ "end": "00:08:10.566",
+ "duration_s": 13.1
+}

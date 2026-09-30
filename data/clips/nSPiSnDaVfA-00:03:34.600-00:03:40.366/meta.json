@@ -1,0 +1,30 @@
+{
+ "vid": "nSPiSnDaVfA-00:03:34.600-00:03:40.366",
+ "yid": "nSPiSnDaVfA",
+ "crop_xywh": [
+  491,
+  0,
+  696,
+  720
+ ],
+ "bbox_norm": [
+  0.38395625523158483,
+  -0.24357343966368014,
+  0.9277960786365327,
+  1.4305464067408649
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"The tentacles are called \"\"filopodia.\"\"\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 173,
+ "stride": 1,
+ "start": "00:03:34.600",
+ "end": "00:03:40.366",
+ "duration_s": 5.766
+}

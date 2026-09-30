@@ -1,0 +1,30 @@
+{
+ "vid": "7Ed0xWifFhk-00:06:47.033-00:06:53.500",
+ "yid": "7Ed0xWifFhk",
+ "crop_xywh": [
+  640,
+  0,
+  506,
+  720
+ ],
+ "bbox_norm": [
+  0.49985210630628796,
+  -0.14245495338838438,
+  0.8956092435070592,
+  1.0699145133225894
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In Oregon it is also illegal to lure wild animals by leaving behind food or garbage.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 194,
+ "stride": 1,
+ "start": "00:06:47.033",
+ "end": "00:06:53.500",
+ "duration_s": 6.467
+}

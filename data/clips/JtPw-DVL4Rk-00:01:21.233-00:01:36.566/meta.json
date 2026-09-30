@@ -1,0 +1,30 @@
+{
+ "vid": "JtPw-DVL4Rk-00:01:21.233-00:01:36.566",
+ "yid": "JtPw-DVL4Rk",
+ "crop_xywh": [
+  707,
+  0,
+  474,
+  720
+ ],
+ "bbox_norm": [
+  0.5522664726644322,
+  -0.08684705697395952,
+  0.92374412495157,
+  1.0025531589888912
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The suspect in the case, 46-year-old Robert Bowers, is in jail and a federal grand jury today issued a 44 count indictment.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 460,
+ "stride": 1,
+ "start": "00:01:21.233",
+ "end": "00:01:36.566",
+ "duration_s": 15.333
+}

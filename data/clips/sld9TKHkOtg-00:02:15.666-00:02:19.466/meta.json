@@ -1,0 +1,30 @@
+{
+ "vid": "sld9TKHkOtg-00:02:15.666-00:02:19.466",
+ "yid": "sld9TKHkOtg",
+ "crop_xywh": [
+  471,
+  0,
+  514,
+  720
+ ],
+ "bbox_norm": [
+  0.36807497928017063,
+  -0.09972376349376656,
+  0.7695486169112356,
+  1.084943229273746
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I love the traditional Kentucky Derby roots here.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 92,
+ "stride": 1,
+ "start": "00:02:15.666",
+ "end": "00:02:19.466",
+ "duration_s": 3.8
+}

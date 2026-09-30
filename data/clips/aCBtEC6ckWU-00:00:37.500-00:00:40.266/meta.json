@@ -1,0 +1,30 @@
+{
+ "vid": "aCBtEC6ckWU-00:00:37.500-00:00:40.266",
+ "yid": "aCBtEC6ckWU",
+ "crop_xywh": [
+  159,
+  0,
+  922,
+  720
+ ],
+ "bbox_norm": [
+  0.12415963751929146,
+  -0.26868323977031405,
+  0.8447285805429731,
+  1.7422131053985113
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Jr. NAD and Youth Ambassador Program.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 67,
+ "stride": 1,
+ "start": "00:00:37.500",
+ "end": "00:00:40.266",
+ "duration_s": 2.766
+}

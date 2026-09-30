@@ -1,0 +1,30 @@
+{
+ "vid": "UoHKrFL9g0g-00:00:03.733-00:00:06.300",
+ "yid": "UoHKrFL9g0g",
+ "crop_xywh": [
+  443,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.34601561177161433,
+  -0.09250513347958436,
+  0.8260380873116113,
+  1.1885731335894039
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Recently, on March 6th, it was Deaf Youth Day!",
+ "split": "test",
+ "fps": 59.94,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 154,
+ "stride": 1,
+ "start": "00:00:03.733",
+ "end": "00:00:06.300",
+ "duration_s": 2.567
+}

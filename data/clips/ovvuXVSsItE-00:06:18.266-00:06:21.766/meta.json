@@ -1,0 +1,30 @@
+{
+ "vid": "ovvuXVSsItE-00:06:18.266-00:06:21.766",
+ "yid": "ovvuXVSsItE",
+ "crop_xywh": [
+  623,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.48642888447595023,
+  -0.17586979739880435,
+  0.9283712508186461,
+  1.0669337193591675
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Tribal police have declined to comment.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 105,
+ "stride": 1,
+ "start": "00:06:18.266",
+ "end": "00:06:21.766",
+ "duration_s": 3.5
+}

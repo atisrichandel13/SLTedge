@@ -1,0 +1,30 @@
+{
+ "vid": "mgEXz0K9O6U-00:00:19.333-00:00:31.100",
+ "yid": "mgEXz0K9O6U",
+ "crop_xywh": [
+  410,
+  0,
+  594,
+  720
+ ],
+ "bbox_norm": [
+  0.3204169974080833,
+  -0.12118880361955989,
+  0.7843701015615687,
+  1.161088441521411
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We were able to get together and discuss the top five priorities which are: Preservation and Advocacy for Relay Services, Memory, Education, FEMA and Youth.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 353,
+ "stride": 1,
+ "start": "00:00:19.333",
+ "end": "00:00:31.100",
+ "duration_s": 11.767
+}

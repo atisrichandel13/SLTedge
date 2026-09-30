@@ -1,0 +1,30 @@
+{
+ "vid": "7f96j98SBos-00:02:31.366-00:02:35.033",
+ "yid": "7f96j98SBos",
+ "crop_xywh": [
+  656,
+  0,
+  500,
+  720
+ ],
+ "bbox_norm": [
+  0.5126326975615129,
+  -0.02320920664715114,
+  0.904166048851566,
+  1.0302883221907315
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"The boy said, \"\"Look, I told you!\"\"\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 110,
+ "stride": 1,
+ "start": "00:02:31.366",
+ "end": "00:02:35.033",
+ "duration_s": 3.667
+}

@@ -36,7 +36,7 @@ def meminfo(key):
 DEFAULT_ROOTS = ["models", "weights", "data", "results"]
 
 
-def force_reclaim(target_mb, cap_mb=4096, chunk_mb=256):
+def force_reclaim(target_mb, cap_mb=6144, chunk_mb=256):
     """Make the kernel evict page cache by briefly allocating anonymous memory.
 
     fadvise DONTNEED only drops pages backed by files we name, and only when nothing else references

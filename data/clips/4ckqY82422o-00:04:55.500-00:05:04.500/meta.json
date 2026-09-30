@@ -1,0 +1,30 @@
+{
+ "vid": "4ckqY82422o-00:04:55.500-00:05:04.500",
+ "yid": "4ckqY82422o",
+ "crop_xywh": [
+  738,
+  95,
+  400,
+  624
+ ],
+ "bbox_norm": [
+  0.5766060758520055,
+  0.13170561509204334,
+  0.8886909991134833,
+  1.0567470105750734
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A plane crashed in Utah near Box Elder Peak on Friday.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 270,
+ "stride": 1,
+ "start": "00:04:55.500",
+ "end": "00:05:04.500",
+ "duration_s": 9.0
+}

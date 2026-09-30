@@ -1,0 +1,30 @@
+{
+ "vid": "LifhWQwUvMg-00:03:25.166-00:03:40.300",
+ "yid": "LifhWQwUvMg",
+ "crop_xywh": [
+  615,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.4804872932014884,
+  -0.11469925541580814,
+  0.9408672661135049,
+  1.1608713649179958
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Southeast states potentially affected by the storm are Georgia, North and South Carolina, Virginia, Mississippi and Alabama.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 454,
+ "stride": 1,
+ "start": "00:03:25.166",
+ "end": "00:03:40.300",
+ "duration_s": 15.134
+}

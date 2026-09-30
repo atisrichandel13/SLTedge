@@ -1,0 +1,30 @@
+{
+ "vid": "aWYgWpsTAjo-00:06:25.333-00:06:37.433",
+ "yid": "aWYgWpsTAjo",
+ "crop_xywh": [
+  598,
+  0,
+  590,
+  720
+ ],
+ "bbox_norm": [
+  0.4668091708666658,
+  -0.1246843137697542,
+  0.9285771113008124,
+  1.2359458501420004
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "According to the FDA, an unused package of Fresh Express salad mix tested positive for Cyclospra.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 363,
+ "stride": 1,
+ "start": "00:06:25.333",
+ "end": "00:06:37.433",
+ "duration_s": 12.1
+}

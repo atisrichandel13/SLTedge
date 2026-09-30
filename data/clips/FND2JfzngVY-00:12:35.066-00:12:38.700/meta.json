@@ -1,0 +1,30 @@
+{
+ "vid": "FND2JfzngVY-00:12:35.066-00:12:38.700",
+ "yid": "FND2JfzngVY",
+ "crop_xywh": [
+  688,
+  0,
+  504,
+  720
+ ],
+ "bbox_norm": [
+  0.5371268391609192,
+  -0.15506412140046708,
+  0.9311162721027028,
+  1.0324923558668657
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you want one, you better act fast.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 109,
+ "stride": 1,
+ "start": "00:12:35.066",
+ "end": "00:12:38.700",
+ "duration_s": 3.634
+}

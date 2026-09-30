@@ -1,0 +1,30 @@
+{
+ "vid": "daTPNSQet08-00:05:24.100-00:05:31.466",
+ "yid": "daTPNSQet08",
+ "crop_xywh": [
+  196,
+  0,
+  816,
+  720
+ ],
+ "bbox_norm": [
+  0.15326061425385654,
+  -0.2147541171729319,
+  0.7905105608480948,
+  1.633553181557989
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Then we got an email confirming that we would be getting an one-week extension for our spring break and we would be getting alternative instruction through online instead of in-person.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 177,
+ "stride": 1,
+ "start": "00:05:24.100",
+ "end": "00:05:31.466",
+ "duration_s": 7.366
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "uRTqnmqIlnQ-00:11:49.233-00:11:52.133",
+ "yid": "uRTqnmqIlnQ",
+ "crop_xywh": [
+  547,
+  0,
+  638,
+  720
+ ],
+ "bbox_norm": [
+  0.42751018206278485,
+  -0.18775550902835908,
+  0.9255977290017264,
+  1.3426862640986368
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "See you tomorrow and stay with the light!",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 70,
+ "stride": 1,
+ "start": "00:11:49.233",
+ "end": "00:11:52.133",
+ "duration_s": 2.9
+}

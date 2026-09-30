@@ -1,0 +1,30 @@
+{
+ "vid": "HlYvjMBYyag-00:01:19.733-00:01:22.133",
+ "yid": "HlYvjMBYyag",
+ "crop_xywh": [
+  256,
+  0,
+  372,
+  480
+ ],
+ "bbox_norm": [
+  0.29970705149975907,
+  -0.11616986168755425,
+  0.7353080243267741,
+  1.1272485987345378
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I am working on a grant proposal.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 72,
+ "stride": 1,
+ "start": "00:01:19.733",
+ "end": "00:01:22.133",
+ "duration_s": 2.4
+}

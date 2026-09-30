@@ -1,0 +1,30 @@
+{
+ "vid": "4zsgy6DmJfA-00:07:14.666-00:07:28.000",
+ "yid": "4zsgy6DmJfA",
+ "crop_xywh": [
+  684,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.5344692261621294,
+  -0.08625923997471743,
+  0.9513274377265585,
+  1.135250722800535
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "After the US House of Representatives passed the vote, Representative Al Green introduced an impeachment resolution on the floor based on Trump's comments.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 401,
+ "stride": 1,
+ "start": "00:07:14.666",
+ "end": "00:07:28.000",
+ "duration_s": 13.334
+}

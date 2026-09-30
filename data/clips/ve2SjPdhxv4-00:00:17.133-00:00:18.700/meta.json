@@ -1,0 +1,30 @@
+{
+ "vid": "ve2SjPdhxv4-00:00:17.133-00:00:18.700",
+ "yid": "ve2SjPdhxv4",
+ "crop_xywh": [
+  475,
+  0,
+  690,
+  720
+ ],
+ "bbox_norm": [
+  0.37072327931722004,
+  -0.2312149030190927,
+  0.9108243306477865,
+  1.3777986217428138
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Deaf Film Camp!",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 38,
+ "stride": 1,
+ "start": "00:00:17.133",
+ "end": "00:00:18.700",
+ "duration_s": 1.567
+}

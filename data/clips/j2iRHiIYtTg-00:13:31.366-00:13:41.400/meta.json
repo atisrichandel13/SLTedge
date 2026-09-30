@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:13:31.366-00:13:41.400",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  189,
+  0,
+  698,
+  720
+ ],
+ "bbox_norm": [
+  0.14784318765004476,
+  -0.14446395520810726,
+  0.6931313625971477,
+  1.4022430479968035
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Much has been said about this, and President Bobbi, you have failed us and you have failed our community for four years now.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 301,
+ "stride": 1,
+ "start": "00:13:31.366",
+ "end": "00:13:41.400",
+ "duration_s": 10.034
+}

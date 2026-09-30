@@ -1,0 +1,30 @@
+{
+ "vid": "bpkFrbslLbU-00:11:04.366-00:11:10.066",
+ "yid": "bpkFrbslLbU",
+ "crop_xywh": [
+  585,
+  0,
+  574,
+  720
+ ],
+ "bbox_norm": [
+  0.4570056586038499,
+  -0.1743839016667119,
+  0.9063169695082165,
+  1.185116706575666
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Gallaudet is not the only university to respond to the coronavirus crisis in this way.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 137,
+ "stride": 1,
+ "start": "00:11:04.366",
+ "end": "00:11:10.066",
+ "duration_s": 5.7
+}

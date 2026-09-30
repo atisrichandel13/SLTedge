@@ -1,0 +1,30 @@
+{
+ "vid": "CIl6r9nP-VA-00:04:22.366-00:04:31.266",
+ "yid": "CIl6r9nP-VA",
+ "crop_xywh": [
+  586,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.45780129785890933,
+  -0.14186912060438034,
+  0.9235437858251878,
+  1.239250943559351
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They said the tariffs for them are equal in value to the US tariffs.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 267,
+ "stride": 1,
+ "start": "00:04:22.366",
+ "end": "00:04:31.266",
+ "duration_s": 8.9
+}

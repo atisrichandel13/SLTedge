@@ -1,0 +1,30 @@
+{
+ "vid": "9pk8Y3m6qfs-00:01:42.500-00:01:53.233",
+ "yid": "9pk8Y3m6qfs",
+ "crop_xywh": [
+  567,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.44316075447278147,
+  -0.21056263002574954,
+  0.9235398297432141,
+  1.2660790347237871
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "At least 14 states are reporting record highs of Covid-19 cases.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 322,
+ "stride": 1,
+ "start": "00:01:42.500",
+ "end": "00:01:53.233",
+ "duration_s": 10.733
+}

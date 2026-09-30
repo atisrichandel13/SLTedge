@@ -1,0 +1,30 @@
+{
+ "vid": "fgbp9mCQX_g-00:04:47.400-00:05:01.033",
+ "yid": "fgbp9mCQX_g",
+ "crop_xywh": [
+  827,
+  163,
+  292,
+  446
+ ],
+ "bbox_norm": [
+  0.6461790509845899,
+  0.22653528112144283,
+  0.8740214067956675,
+  0.8473175226970188
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "According to Johns Hopkins University, the virus continues to spread with more than 1.5 million confirmed cases in the US.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 409,
+ "stride": 1,
+ "start": "00:04:47.400",
+ "end": "00:05:01.033",
+ "duration_s": 13.633
+}

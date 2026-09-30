@@ -1,0 +1,30 @@
+{
+ "vid": "QY0paRttZZ0-00:00:30.100-00:00:33.533",
+ "yid": "QY0paRttZZ0",
+ "crop_xywh": [
+  349,
+  0,
+  466,
+  720
+ ],
+ "bbox_norm": [
+  0.2729105376061939,
+  -0.06303561377146888,
+  0.6369680467106047,
+  1.0386500595738648
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "She made the first American flag.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 103,
+ "stride": 1,
+ "start": "00:00:30.100",
+ "end": "00:00:33.533",
+ "duration_s": 3.433
+}

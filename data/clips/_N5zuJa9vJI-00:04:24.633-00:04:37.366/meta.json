@@ -1,0 +1,30 @@
+{
+ "vid": "_N5zuJa9vJI-00:04:24.633-00:04:37.366",
+ "yid": "_N5zuJa9vJI",
+ "crop_xywh": [
+  147,
+  57,
+  296,
+  506
+ ],
+ "bbox_norm": [
+  0.11509336406985919,
+  0.0794932821650564,
+  0.34595044958922594,
+  0.7814405978461842
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Whitney tells the story of Houston's rise to fame as a teenager and her slow fall from grace.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 382,
+ "stride": 1,
+ "start": "00:04:24.633",
+ "end": "00:04:37.366",
+ "duration_s": 12.733
+}

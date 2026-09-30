@@ -1,0 +1,30 @@
+{
+ "vid": "pimixabgzlc-00:01:58.266-00:02:03.066",
+ "yid": "pimixabgzlc",
+ "crop_xywh": [
+  531,
+  0,
+  562,
+  720
+ ],
+ "bbox_norm": [
+  0.4150531692066412,
+  -0.20202055829999394,
+  0.8544256769377611,
+  1.1520915547245458
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We are a sponsor for this Deaf studies conference because next year it will be our 40th anniversary.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 144,
+ "stride": 1,
+ "start": "00:01:58.266",
+ "end": "00:02:03.066",
+ "duration_s": 4.8
+}

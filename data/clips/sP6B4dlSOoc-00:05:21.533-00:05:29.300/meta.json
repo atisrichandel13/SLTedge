@@ -1,0 +1,30 @@
+{
+ "vid": "sP6B4dlSOoc-00:05:21.533-00:05:29.300",
+ "yid": "sP6B4dlSOoc",
+ "crop_xywh": [
+  637,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.4978333195896013,
+  -0.10124531137933873,
+  0.9315854796281098,
+  1.1919965940915853
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Those activities can pose a threat to your dog if you're taking them along.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 233,
+ "stride": 1,
+ "start": "00:05:21.533",
+ "end": "00:05:29.300",
+ "duration_s": 7.767
+}

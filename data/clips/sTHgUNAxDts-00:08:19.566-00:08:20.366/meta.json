@@ -1,0 +1,30 @@
+{
+ "vid": "sTHgUNAxDts-00:08:19.566-00:08:20.366",
+ "yid": "sTHgUNAxDts",
+ "crop_xywh": [
+  762,
+  83,
+  436,
+  636
+ ],
+ "bbox_norm": [
+  0.5954611158370972,
+  0.11523965623643663,
+  0.936831088066101,
+  1.1550991312662762
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your language.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 24,
+ "stride": 1,
+ "start": "00:08:19.566",
+ "end": "00:08:20.366",
+ "duration_s": 0.8
+}

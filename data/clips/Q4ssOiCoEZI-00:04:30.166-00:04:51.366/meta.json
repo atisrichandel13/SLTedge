@@ -1,0 +1,30 @@
+{
+ "vid": "Q4ssOiCoEZI-00:04:30.166-00:04:51.366",
+ "yid": "Q4ssOiCoEZI",
+ "crop_xywh": [
+  463,
+  0,
+  726,
+  720
+ ],
+ "bbox_norm": [
+  0.36163446518282094,
+  -0.24945258007005408,
+  0.9291417192667722,
+  1.4642760501139693
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The city has partnered up with hotels, train, bus, and car rental companies to require anyone who booked a stay in New York City to fill out a travel form so the Test & Trace corp can locate the travelers and monitor them.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 636,
+ "stride": 1,
+ "start": "00:04:30.166",
+ "end": "00:04:51.366",
+ "duration_s": 21.2
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "fNT8a6e1gx8-00:07:01.066-00:07:02.400",
+ "yid": "fNT8a6e1gx8",
+ "crop_xywh": [
+  219,
+  0,
+  342,
+  516
+ ],
+ "bbox_norm": [
+  0.17084687418407865,
+  -0.025137011210123697,
+  0.43807312515046865,
+  0.7163441858173889
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's close to my home.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 40,
+ "stride": 1,
+ "start": "00:07:01.066",
+ "end": "00:07:02.400",
+ "duration_s": 1.334
+}

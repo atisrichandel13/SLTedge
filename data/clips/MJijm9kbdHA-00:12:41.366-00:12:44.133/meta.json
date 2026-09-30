@@ -1,0 +1,30 @@
+{
+ "vid": "MJijm9kbdHA-00:12:41.366-00:12:44.133",
+ "yid": "MJijm9kbdHA",
+ "crop_xywh": [
+  328,
+  0,
+  756,
+  720
+ ],
+ "bbox_norm": [
+  0.2559406723294939,
+  -0.2481316097198971,
+  0.8465365807215373,
+  1.5225875975593688
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I signed an agreement to keep it confidential.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 67,
+ "stride": 1,
+ "start": "00:12:41.366",
+ "end": "00:12:44.133",
+ "duration_s": 2.767
+}

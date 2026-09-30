@@ -1,0 +1,30 @@
+{
+ "vid": "8BIEoB8RvEc-00:00:38.000-00:00:45.033",
+ "yid": "8BIEoB8RvEc",
+ "crop_xywh": [
+  229,
+  154,
+  374,
+  566
+ ],
+ "bbox_norm": [
+  0.17908053582952926,
+  0.2136551573603036,
+  0.4712580939596014,
+  1.060378076124561
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I am working on it and developing an app that brings me to you to deliver a blow-out that is done in 20 minutes!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 211,
+ "stride": 1,
+ "start": "00:00:38.000",
+ "end": "00:00:45.033",
+ "duration_s": 7.033
+}

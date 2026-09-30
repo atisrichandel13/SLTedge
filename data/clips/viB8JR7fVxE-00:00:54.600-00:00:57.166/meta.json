@@ -1,0 +1,30 @@
+{
+ "vid": "viB8JR7fVxE-00:00:54.600-00:00:57.166",
+ "yid": "viB8JR7fVxE",
+ "crop_xywh": [
+  202,
+  0,
+  896,
+  720
+ ],
+ "bbox_norm": [
+  0.15795334205031394,
+  -0.3596302648385366,
+  0.8575828455388546,
+  1.7219650556643804
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That is what makes me fearless.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 77,
+ "stride": 1,
+ "start": "00:00:54.600",
+ "end": "00:00:57.166",
+ "duration_s": 2.566
+}

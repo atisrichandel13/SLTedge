@@ -1,0 +1,30 @@
+{
+ "vid": "fCCl-5JPqys-00:06:51.033-00:07:08.000",
+ "yid": "fCCl-5JPqys",
+ "crop_xywh": [
+  601,
+  0,
+  658,
+  720
+ ],
+ "bbox_norm": [
+  0.4694945145276637,
+  -0.2221964363092604,
+  0.9840473676818647,
+  1.3803217756981943
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Three former U.S. presidents received the award: Woodrow Wilson in 1920, Jimmy Carter in 2002, and Barack Obama in 2009.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 509,
+ "stride": 1,
+ "start": "00:06:51.033",
+ "end": "00:07:08.000",
+ "duration_s": 16.967
+}

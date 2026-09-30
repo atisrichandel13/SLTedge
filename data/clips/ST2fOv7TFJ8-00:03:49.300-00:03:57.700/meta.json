@@ -1,0 +1,30 @@
+{
+ "vid": "ST2fOv7TFJ8-00:03:49.300-00:03:57.700",
+ "yid": "ST2fOv7TFJ8",
+ "crop_xywh": [
+  622,
+  0,
+  492,
+  676
+ ],
+ "bbox_norm": [
+  0.48597032275854374,
+  -0.11915085715665796,
+  0.8713071463154811,
+  0.9399152459661946
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The NYPD says protesters swarmed Manhattan Saturday afternoon.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 252,
+ "stride": 1,
+ "start": "00:03:49.300",
+ "end": "00:03:57.700",
+ "duration_s": 8.4
+}

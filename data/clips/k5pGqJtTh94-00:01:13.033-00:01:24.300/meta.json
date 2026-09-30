@@ -1,0 +1,30 @@
+{
+ "vid": "k5pGqJtTh94-00:01:13.033-00:01:24.300",
+ "yid": "k5pGqJtTh94",
+ "crop_xywh": [
+  638,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.4983625151894309,
+  -0.157240095812865,
+  0.9240360427625252,
+  1.0816154208969988
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"President Trump said this morning he had his suspicions that \"\"someone could have made a mistake on the other side.\"\"\"",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 271,
+ "stride": 1,
+ "start": "00:01:13.033",
+ "end": "00:01:24.300",
+ "duration_s": 11.267
+}

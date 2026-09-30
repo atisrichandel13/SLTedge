@@ -1,0 +1,30 @@
+{
+ "vid": "iFAIfRLaB64-00:10:32.100-00:10:35.600",
+ "yid": "iFAIfRLaB64",
+ "crop_xywh": [
+  361,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.28203296193889543,
+  -0.19561443869065095,
+  0.7345690998376585,
+  1.1170965693355386
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We have a lot of respect for our Canadian neighbors.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 84,
+ "stride": 1,
+ "start": "00:10:32.100",
+ "end": "00:10:35.600",
+ "duration_s": 3.5
+}

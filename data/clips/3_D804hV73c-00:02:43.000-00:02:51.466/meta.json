@@ -1,0 +1,30 @@
+{
+ "vid": "3_D804hV73c-00:02:43.000-00:02:51.466",
+ "yid": "3_D804hV73c",
+ "crop_xywh": [
+  223,
+  0,
+  436,
+  470
+ ],
+ "bbox_norm": [
+  0.26085046064964795,
+  -0.18922830962816475,
+  0.771235675026126,
+  1.2432312708772317
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "ASL usage is increasing, as ASL courses are among the most popular classes in high schools and colleges across the country, as well as in community programs.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 254,
+ "stride": 1,
+ "start": "00:02:43.000",
+ "end": "00:02:51.466",
+ "duration_s": 8.466
+}

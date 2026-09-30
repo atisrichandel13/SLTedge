@@ -1,0 +1,30 @@
+{
+ "vid": "vTs4UBTvly8-00:05:19.266-00:05:41.766",
+ "yid": "vTs4UBTvly8",
+ "crop_xywh": [
+  677,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.5287473596172568,
+  -0.1236091818894542,
+  0.9716717329143006,
+  1.1994091828271685
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Pre-cut melon sold at Whole Foods, Kroger, Target, Walmart, Trader Joe's and other stores has been voluntarily recalled due to the possibility of salmonella contamination.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 675,
+ "stride": 1,
+ "start": "00:05:19.266",
+ "end": "00:05:41.766",
+ "duration_s": 22.5
+}

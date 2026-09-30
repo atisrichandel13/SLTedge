@@ -1,0 +1,30 @@
+{
+ "vid": "lIE16P1LVhc-00:09:09.700-00:09:16.366",
+ "yid": "lIE16P1LVhc",
+ "crop_xywh": [
+  276,
+  145,
+  170,
+  298
+ ],
+ "bbox_norm": [
+  0.21576334089040755,
+  0.20200584906118887,
+  0.34804985374212266,
+  0.6155677287666886
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm really excited to be a part of this event, to see everyone's energy that they exude.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 160,
+ "stride": 1,
+ "start": "00:09:09.700",
+ "end": "00:09:16.366",
+ "duration_s": 6.666
+}

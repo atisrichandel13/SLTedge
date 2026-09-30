@@ -1,0 +1,30 @@
+{
+ "vid": "0QgDWB3M47g-00:05:20.033-00:05:29.133",
+ "yid": "0QgDWB3M47g",
+ "crop_xywh": [
+  766,
+  95,
+  412,
+  624
+ ],
+ "bbox_norm": [
+  0.5986382220008156,
+  0.13160717357288707,
+  0.9200055655566128,
+  1.1088426092899206
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"They answered they will \"\"never agree with anybody disrespecting the flag.\"\"\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 273,
+ "stride": 1,
+ "start": "00:05:20.033",
+ "end": "00:05:29.133",
+ "duration_s": 9.1
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "FaELOA6h-ec-00:01:50.333-00:01:59.500",
+ "yid": "FaELOA6h-ec",
+ "crop_xywh": [
+  115,
+  0,
+  664,
+  720
+ ],
+ "bbox_norm": [
+  0.13242303340806874,
+  -0.22447892950038717,
+  0.8947119785210209,
+  1.4054548096897626
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It is important to let the caregiver know what the patient truly needs, so the caregiver can adapt and do their job well.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  872,
+  720
+ ],
+ "n_frames": 275,
+ "stride": 1,
+ "start": "00:01:50.333",
+ "end": "00:01:59.500",
+ "duration_s": 9.167
+}

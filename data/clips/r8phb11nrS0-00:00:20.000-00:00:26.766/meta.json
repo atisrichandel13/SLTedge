@@ -1,0 +1,30 @@
+{
+ "vid": "r8phb11nrS0-00:00:20.000-00:00:26.766",
+ "yid": "r8phb11nrS0",
+ "crop_xywh": [
+  245,
+  0,
+  732,
+  720
+ ],
+ "bbox_norm": [
+  0.19114576171084147,
+  -0.2069082280807702,
+  0.7629433070741048,
+  1.4166210797421008
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"But I have a feeling it\u2019s because some weeks ago, I talked with Peta and I said some \"\"The Mask\"\" quotes.\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 203,
+ "stride": 1,
+ "start": "00:00:20.000",
+ "end": "00:00:26.766",
+ "duration_s": 6.766
+}

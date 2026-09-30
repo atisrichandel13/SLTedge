@@ -1,0 +1,30 @@
+{
+ "vid": "_IiHCdbLKyM-00:04:45.733-00:04:56.233",
+ "yid": "_IiHCdbLKyM",
+ "crop_xywh": [
+  553,
+  0,
+  634,
+  720
+ ],
+ "bbox_norm": [
+  0.43164136707782746,
+  -0.21749258151760809,
+  0.927142400542895,
+  1.2831690045418562
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Ginsburg herself was diagnosed with cancer multiple times, beginning in 1999.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 315,
+ "stride": 1,
+ "start": "00:04:45.733",
+ "end": "00:04:56.233",
+ "duration_s": 10.5
+}

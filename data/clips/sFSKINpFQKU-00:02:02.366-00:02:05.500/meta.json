@@ -1,0 +1,30 @@
+{
+ "vid": "sFSKINpFQKU-00:02:02.366-00:02:05.500",
+ "yid": "sFSKINpFQKU",
+ "crop_xywh": [
+  472,
+  0,
+  444,
+  702
+ ],
+ "bbox_norm": [
+  0.36840561189149557,
+  -0.008592842057434439,
+  0.7154691683618646,
+  0.9763323967916924
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Each college/university is eligible to send one team.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 94,
+ "stride": 1,
+ "start": "00:02:02.366",
+ "end": "00:02:05.500",
+ "duration_s": 3.134
+}

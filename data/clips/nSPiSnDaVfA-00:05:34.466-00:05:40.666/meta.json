@@ -1,0 +1,30 @@
+{
+ "vid": "nSPiSnDaVfA-00:05:34.466-00:05:40.666",
+ "yid": "nSPiSnDaVfA",
+ "crop_xywh": [
+  522,
+  0,
+  692,
+  720
+ ],
+ "bbox_norm": [
+  0.4075847416593318,
+  -0.22939854002835458,
+  0.9486719156566419,
+  1.4461406603658873
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There are people trying to stop or contain it, somewhere in China.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 186,
+ "stride": 1,
+ "start": "00:05:34.466",
+ "end": "00:05:40.666",
+ "duration_s": 6.2
+}

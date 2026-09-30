@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:02:45.466-00:02:52.600",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  289,
+  0,
+  990,
+  720
+ ],
+ "bbox_norm": [
+  0.2257686696733747,
+  -0.503186769132261,
+  1.156875665755499,
+  2.1489662523118276
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The nurse wrote notes for me, but I had to type down text messages and show them to the nurse.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 172,
+ "stride": 1,
+ "start": "00:02:45.466",
+ "end": "00:02:52.600",
+ "duration_s": 7.134
+}

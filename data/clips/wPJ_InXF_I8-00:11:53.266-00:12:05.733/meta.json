@@ -1,0 +1,30 @@
+{
+ "vid": "wPJ_InXF_I8-00:11:53.266-00:12:05.733",
+ "yid": "wPJ_InXF_I8",
+ "crop_xywh": [
+  237,
+  0,
+  838,
+  720
+ ],
+ "bbox_norm": [
+  0.18506971210903592,
+  -0.3030552405840085,
+  0.8405851624806722,
+  1.7141232614399473
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I\u2019ll show you an interview with Marlee Matlin about Mark Medoff, who wrote the play \u201cChildren of a Lesser God.\u201d He passed away at 79.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 374,
+ "stride": 1,
+ "start": "00:11:53.266",
+ "end": "00:12:05.733",
+ "duration_s": 12.467
+}

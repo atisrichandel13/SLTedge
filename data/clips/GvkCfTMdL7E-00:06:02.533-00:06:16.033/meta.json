@@ -1,0 +1,30 @@
+{
+ "vid": "GvkCfTMdL7E-00:06:02.533-00:06:16.033",
+ "yid": "GvkCfTMdL7E",
+ "crop_xywh": [
+  615,
+  0,
+  540,
+  720
+ ],
+ "bbox_norm": [
+  0.4806055572943959,
+  -0.12323094999456362,
+  0.9032413319843572,
+  1.171240864558164
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But after going back for another search of the compound, deputies made another horrible discovery: the body of a young boy.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 405,
+ "stride": 1,
+ "start": "00:06:02.533",
+ "end": "00:06:16.033",
+ "duration_s": 13.5
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "UQjmUGzuK7Q-00:06:46.633-00:06:50.200",
+ "yid": "UQjmUGzuK7Q",
+ "crop_xywh": [
+  657,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.513281908902255,
+  -0.1132757154779402,
+  0.9228889118541371,
+  1.1490087566953717
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Let us know on our Sign1News Facebook page.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 108,
+ "stride": 1,
+ "start": "00:06:46.633",
+ "end": "00:06:50.200",
+ "duration_s": 3.567
+}

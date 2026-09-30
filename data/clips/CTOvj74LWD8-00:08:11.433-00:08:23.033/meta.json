@@ -1,0 +1,30 @@
+{
+ "vid": "CTOvj74LWD8-00:08:11.433-00:08:23.033",
+ "yid": "CTOvj74LWD8",
+ "crop_xywh": [
+  657,
+  0,
+  476,
+  720
+ ],
+ "bbox_norm": [
+  0.5129684070178441,
+  -0.0835211678156777,
+  0.8858783153125218,
+  1.0802582052018908
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Democrats are demanding to know the parameters of the trial before sending over their articles of impeachment.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 348,
+ "stride": 1,
+ "start": "00:08:11.433",
+ "end": "00:08:23.033",
+ "duration_s": 11.6
+}

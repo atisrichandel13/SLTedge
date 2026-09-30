@@ -1,0 +1,30 @@
+{
+ "vid": "NBpYolVo5WQ-00:05:19.033-00:05:38.666",
+ "yid": "NBpYolVo5WQ",
+ "crop_xywh": [
+  619,
+  0,
+  582,
+  720
+ ],
+ "bbox_norm": [
+  0.48377033601727404,
+  -0.17713378861633658,
+  0.9385769589742025,
+  1.1916033748901842
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now some countries are re-testing samples of patients who had respiratory symptoms in December and January to better understand how the virus spread.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 472,
+ "stride": 1,
+ "start": "00:05:19.033",
+ "end": "00:05:38.666",
+ "duration_s": 19.633
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:16:01.033-00:16:03.700",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  681,
+  0,
+  582,
+  720
+ ],
+ "bbox_norm": [
+  0.5321367338591931,
+  -0.12193286205948307,
+  0.9876715155208813,
+  1.2340212279675054
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "What does this moment mean to you?",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 80,
+ "stride": 1,
+ "start": "00:16:01.033",
+ "end": "00:16:03.700",
+ "duration_s": 2.667
+}

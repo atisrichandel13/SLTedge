@@ -1,0 +1,30 @@
+{
+ "vid": "7MVtn8T13Lc-00:01:32.300-00:01:35.466",
+ "yid": "7MVtn8T13Lc",
+ "crop_xywh": [
+  345,
+  0,
+  722,
+  720
+ ],
+ "bbox_norm": [
+  0.269355192937349,
+  -0.28481372476321215,
+  0.8334092102552715,
+  1.408206091429058
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I feel there\u2019s a great need for the young generation to become involved with NAD again.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 95,
+ "stride": 1,
+ "start": "00:01:32.300",
+ "end": "00:01:35.466",
+ "duration_s": 3.166
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "bxei0aUphCw-00:08:20.166-00:08:37.633",
+ "yid": "bxei0aUphCw",
+ "crop_xywh": [
+  605,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.4729161201961457,
+  -0.06846669730265516,
+  0.8855728860885378,
+  1.142783790198163
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"The first change, \"\"Experian Boost,\"\" can potentially get you a higher credit score based on your internet, utility and cable bill payment history.\"",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 525,
+ "stride": 1,
+ "start": "00:08:20.166",
+ "end": "00:08:37.633",
+ "duration_s": 17.467
+}

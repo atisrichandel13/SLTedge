@@ -1,0 +1,30 @@
+{
+ "vid": "tUnOjApclYI-00:01:54.366-00:01:57.033",
+ "yid": "tUnOjApclYI",
+ "crop_xywh": [
+  364,
+  0,
+  652,
+  720
+ ],
+ "bbox_norm": [
+  0.2847395479679108,
+  -0.18289622377466272,
+  0.7946434716383616,
+  1.1297540179005376
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Once I saw there was a job opening and applied.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 80,
+ "stride": 1,
+ "start": "00:01:54.366",
+ "end": "00:01:57.033",
+ "duration_s": 2.667
+}

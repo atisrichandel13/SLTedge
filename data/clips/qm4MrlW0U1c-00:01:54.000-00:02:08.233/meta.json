@@ -1,0 +1,30 @@
+{
+ "vid": "qm4MrlW0U1c-00:01:54.000-00:02:08.233",
+ "yid": "qm4MrlW0U1c",
+ "crop_xywh": [
+  335,
+  0,
+  584,
+  720
+ ],
+ "bbox_norm": [
+  0.2614753477333128,
+  -0.17021147919358312,
+  0.7181333355201307,
+  1.2707331822516075
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Unfortunately, one small provider, Star VRS, has closed as of March 2016, and we need to ensure other providers do not also go out of business.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 427,
+ "stride": 1,
+ "start": "00:01:54.000",
+ "end": "00:02:08.233",
+ "duration_s": 14.233
+}

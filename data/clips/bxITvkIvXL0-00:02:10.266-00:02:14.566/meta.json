@@ -1,0 +1,30 @@
+{
+ "vid": "bxITvkIvXL0-00:02:10.266-00:02:14.566",
+ "yid": "bxITvkIvXL0",
+ "crop_xywh": [
+  377,
+  0,
+  580,
+  720
+ ],
+ "bbox_norm": [
+  0.2943452841196305,
+  -0.17848760056020188,
+  0.7475529310030815,
+  1.1620336836899108
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Priority proposals can be in ASL or English.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 129,
+ "stride": 1,
+ "start": "00:02:10.266",
+ "end": "00:02:14.566",
+ "duration_s": 4.3
+}

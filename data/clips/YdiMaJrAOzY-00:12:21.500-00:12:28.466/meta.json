@@ -1,0 +1,30 @@
+{
+ "vid": "YdiMaJrAOzY-00:12:21.500-00:12:28.466",
+ "yid": "YdiMaJrAOzY",
+ "crop_xywh": [
+  251,
+  0,
+  694,
+  720
+ ],
+ "bbox_norm": [
+  0.19644736776164934,
+  -0.21218422866854533,
+  0.738351951860914,
+  1.3773382585812237
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Ivana said that Williams even went to watch one of Musign's performances in San Francisco.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 168,
+ "stride": 1,
+ "start": "00:12:21.500",
+ "end": "00:12:28.466",
+ "duration_s": 6.966
+}

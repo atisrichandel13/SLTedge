@@ -1,0 +1,30 @@
+{
+ "vid": "uZwKNtHx9FE-00:14:26.733-00:14:37.466",
+ "yid": "uZwKNtHx9FE",
+ "crop_xywh": [
+  603,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.4710530458352505,
+  -0.19845045475538642,
+  0.9536335780070379,
+  1.2543834235253837
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "For Deaf Canadian activists, this is a huge achievement and something that they have fought for many months.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 258,
+ "stride": 1,
+ "start": "00:14:26.733",
+ "end": "00:14:37.466",
+ "duration_s": 10.733
+}

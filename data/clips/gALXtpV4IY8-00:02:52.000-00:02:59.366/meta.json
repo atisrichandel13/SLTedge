@@ -1,0 +1,30 @@
+{
+ "vid": "gALXtpV4IY8-00:02:52.000-00:02:59.366",
+ "yid": "gALXtpV4IY8",
+ "crop_xywh": [
+  594,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.464298127636765,
+  -0.20264403651459048,
+  0.9384081183057843,
+  1.210905205521118
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some residential areas and schools were locked down and closed.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 221,
+ "stride": 1,
+ "start": "00:02:52.000",
+ "end": "00:02:59.366",
+ "duration_s": 7.366
+}

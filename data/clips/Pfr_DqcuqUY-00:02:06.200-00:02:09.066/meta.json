@@ -1,0 +1,30 @@
+{
+ "vid": "Pfr_DqcuqUY-00:02:06.200-00:02:09.066",
+ "yid": "Pfr_DqcuqUY",
+ "crop_xywh": [
+  164,
+  0,
+  290,
+  360
+ ],
+ "bbox_norm": [
+  0.2563207714645951,
+  -0.11207327195155768,
+  0.7087635057943839,
+  1.2411337149977193
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I\u2019m the only deaf person here, ever!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:02:06.200",
+ "end": "00:02:09.066",
+ "duration_s": 2.866
+}

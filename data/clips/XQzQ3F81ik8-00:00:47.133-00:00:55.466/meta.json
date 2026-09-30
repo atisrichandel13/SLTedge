@@ -1,0 +1,30 @@
+{
+ "vid": "XQzQ3F81ik8-00:00:47.133-00:00:55.466",
+ "yid": "XQzQ3F81ik8",
+ "crop_xywh": [
+  286,
+  0,
+  694,
+  720
+ ],
+ "bbox_norm": [
+  0.2236137015024821,
+  -0.24130884763929578,
+  0.7653482799530029,
+  1.392295712435687
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I didn\u2019t have a clear idea on what I wanted to do in the future, I just went along with everyone else in elementary, middle school, high school, and college.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 250,
+ "stride": 1,
+ "start": "00:00:47.133",
+ "end": "00:00:55.466",
+ "duration_s": 8.333
+}

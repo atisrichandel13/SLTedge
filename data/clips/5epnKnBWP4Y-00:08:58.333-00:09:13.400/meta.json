@@ -1,0 +1,30 @@
+{
+ "vid": "5epnKnBWP4Y-00:08:58.333-00:09:13.400",
+ "yid": "5epnKnBWP4Y",
+ "crop_xywh": [
+  768,
+  71,
+  406,
+  648
+ ],
+ "bbox_norm": [
+  0.6000390626571991,
+  0.09872796194893974,
+  0.918111926644713,
+  1.0795909620757795
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The basketball player will provides money to life insurance company, EquiTrust, of which he owns a majority.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 452,
+ "stride": 1,
+ "start": "00:08:58.333",
+ "end": "00:09:13.400",
+ "duration_s": 15.067
+}

@@ -29,6 +29,7 @@ import json
 import os
 import pickle
 import random
+import signal
 import shutil
 import subprocess
 import sys
@@ -39,8 +40,29 @@ BBOX_URL = "https://raw.githubusercontent.com/chevalierNoir/OpenASL/main/data/bb
 
 
 def sh(cmd, timeout=900):
-    p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
-    return p.returncode, p.stdout, p.stderr
+    """Run cmd and, on timeout, kill the whole process GROUP.
+
+    subprocess.run(timeout=...) kills only the direct child. yt-dlp spawns ffmpeg, which inherits the
+    stdout/stderr pipes, so once the timeout fires and yt-dlp is killed, communicate() blocks again
+    waiting for EOF on pipes the surviving grandchild still holds. That is how a dropped network turned
+    into a six-hour hang on 2026-09-28 with a 900 s timeout already in place. start_new_session puts the
+    child in its own group so killpg reaches ffmpeg too.
+    """
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                         start_new_session=True)
+    try:
+        out, err = p.communicate(timeout=timeout)
+        return p.returncode, out, err
+    except subprocess.TimeoutExpired:
+        try:
+            os.killpg(os.getpgid(p.pid), signal.SIGKILL)
+        except (ProcessLookupError, PermissionError):
+            p.kill()
+        try:
+            p.communicate(timeout=30)
+        except subprocess.TimeoutExpired:
+            pass
+        raise
 
 
 def fetch_meta(cache_dir):
@@ -133,7 +155,9 @@ def openasl_square_crop(bbox_norm, W, H, target=224):
 
 def download_section(yt_dlp, yid, start_s, end_s, dest, height=720, cookies=None):
     """yt-dlp section download. Returns (ok, reason)."""
+    # --socket-timeout makes a dead socket fail instead of blocking forever; --retries covers a blip
     cmd = [yt_dlp, "-q", "--no-warnings", "--no-playlist",
+           "--socket-timeout", "30", "--retries", "3",
            "-f", f"bv*[height<={height}]+ba/b[height<={height}]/bv*+ba/b",
            "--download-sections", f"*{start_s:.3f}-{end_s:.3f}", "--force-keyframes-at-cuts",
            "--merge-output-format", "mp4", "-o", dest, f"https://www.youtube.com/watch?v={yid}"]

@@ -1,0 +1,30 @@
+{
+ "vid": "2HCnifZR1pw-00:08:19.133-00:08:24.466",
+ "yid": "2HCnifZR1pw",
+ "crop_xywh": [
+  676,
+  0,
+  506,
+  720
+ ],
+ "bbox_norm": [
+  0.528466709703207,
+  -0.1079029659430186,
+  0.9237097524106502,
+  1.0798267559872734
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Chicago police do not have a suspect in custody and the investigation is ongoing.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 160,
+ "stride": 1,
+ "start": "00:08:19.133",
+ "end": "00:08:24.466",
+ "duration_s": 5.333
+}

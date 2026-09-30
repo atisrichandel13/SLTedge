@@ -1,0 +1,30 @@
+{
+ "vid": "PY8a3Q_GB1c-00:09:11.066-00:09:12.066",
+ "yid": "PY8a3Q_GB1c",
+ "crop_xywh": [
+  317,
+  0,
+  710,
+  720
+ ],
+ "bbox_norm": [
+  0.24763543492271786,
+  -0.22675408459214308,
+  0.8030740124838692,
+  1.4196268162399373
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I couldn't stand.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 30,
+ "stride": 1,
+ "start": "00:09:11.066",
+ "end": "00:09:12.066",
+ "duration_s": 1.0
+}

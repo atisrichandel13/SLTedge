@@ -1,0 +1,30 @@
+{
+ "vid": "L68SkmewDnI-00:04:38.266-00:04:54.766",
+ "yid": "L68SkmewDnI",
+ "crop_xywh": [
+  582,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.45494261185328166,
+  -0.20874476379818388,
+  0.9225135970115661,
+  1.2090151363831978
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Dr. Fauci did not say if he thinks the drug should be banned, but said that the data is clear that it may cause heart issues.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 396,
+ "stride": 1,
+ "start": "00:04:38.266",
+ "end": "00:04:54.766",
+ "duration_s": 16.5
+}

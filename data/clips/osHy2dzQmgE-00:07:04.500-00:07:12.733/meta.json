@@ -1,0 +1,30 @@
+{
+ "vid": "osHy2dzQmgE-00:07:04.500-00:07:12.733",
+ "yid": "osHy2dzQmgE",
+ "crop_xywh": [
+  248,
+  0,
+  724,
+  720
+ ],
+ "bbox_norm": [
+  0.1939938869476318,
+  -0.2133690798724139,
+  0.7599307511647543,
+  1.35833933017872
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Online trainings or workshops may not be ideal due to struggles that participants experience. ",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 247,
+ "stride": 1,
+ "start": "00:07:04.500",
+ "end": "00:07:12.733",
+ "duration_s": 8.233
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "35N28rtz66I-00:07:19.433-00:07:33.100",
+ "yid": "35N28rtz66I",
+ "crop_xywh": [
+  630,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.49205119784285384,
+  -0.03429788143223433,
+  0.9178614612517318,
+  1.1447298966556814
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But the winner did say when they bought their ticket last October, they allowed another person to go ahead of them in line at the store.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 411,
+ "stride": 1,
+ "start": "00:07:19.433",
+ "end": "00:07:33.100",
+ "duration_s": 13.667
+}

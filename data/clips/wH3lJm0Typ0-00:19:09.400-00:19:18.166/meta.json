@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:19:09.400-00:19:18.166",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  22,
+  0,
+  604,
+  720
+ ],
+ "bbox_norm": [
+  0.016883433839809968,
+  -0.0697461446126302,
+  0.4895814775670849,
+  1.278745195933941
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "She brought two young students who were Black to my dissertation defense.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 263,
+ "stride": 1,
+ "start": "00:19:09.400",
+ "end": "00:19:18.166",
+ "duration_s": 8.766
+}

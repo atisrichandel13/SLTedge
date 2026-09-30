@@ -1,0 +1,30 @@
+{
+ "vid": "iFAIfRLaB64-00:05:38.466-00:05:40.766",
+ "yid": "iFAIfRLaB64",
+ "crop_xywh": [
+  277,
+  0,
+  690,
+  720
+ ],
+ "bbox_norm": [
+  0.21639621257781982,
+  -0.23170024907147443,
+  0.7558699369430542,
+  1.340037828904611
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We lost our most recent game.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 56,
+ "stride": 1,
+ "start": "00:05:38.466",
+ "end": "00:05:40.766",
+ "duration_s": 2.3
+}

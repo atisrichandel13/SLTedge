@@ -1,0 +1,30 @@
+{
+ "vid": "y0URUVcvrTg-00:01:58.633-00:02:01.500",
+ "yid": "y0URUVcvrTg",
+ "crop_xywh": [
+  167,
+  0,
+  406,
+  470
+ ],
+ "bbox_norm": [
+  0.1952165781523771,
+  -0.19007483758078947,
+  0.6713675890338046,
+  1.281809947905463
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There will be more information about the conference!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 86,
+ "stride": 1,
+ "start": "00:01:58.633",
+ "end": "00:02:01.500",
+ "duration_s": 2.867
+}

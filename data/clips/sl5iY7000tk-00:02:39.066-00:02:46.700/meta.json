@@ -1,0 +1,30 @@
+{
+ "vid": "sl5iY7000tk-00:02:39.066-00:02:46.700",
+ "yid": "sl5iY7000tk",
+ "crop_xywh": [
+  682,
+  0,
+  502,
+  720
+ ],
+ "bbox_norm": [
+  0.5325906670611837,
+  -0.13024610927907357,
+  0.924920471854832,
+  1.0057537201714017
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "These new aerial images show the scale of devastation on Java's western coast.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 229,
+ "stride": 1,
+ "start": "00:02:39.066",
+ "end": "00:02:46.700",
+ "duration_s": 7.634
+}

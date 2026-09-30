@@ -1,0 +1,30 @@
+{
+ "vid": "4zsgy6DmJfA-00:08:48.100-00:09:00.733",
+ "yid": "4zsgy6DmJfA",
+ "crop_xywh": [
+  682,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.5324295616986459,
+  -0.09448152025308294,
+  0.9645505608173839,
+  1.171570718032807
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Nestle says it created a 70 percent dark chocolate made entirely from the beans of the cacao fruit.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 379,
+ "stride": 1,
+ "start": "00:08:48.100",
+ "end": "00:09:00.733",
+ "duration_s": 12.633
+}

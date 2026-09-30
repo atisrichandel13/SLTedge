@@ -1,0 +1,30 @@
+{
+ "vid": "YtkTyOyA9_0-00:08:52.400-00:09:02.166",
+ "yid": "YtkTyOyA9_0",
+ "crop_xywh": [
+  331,
+  21,
+  276,
+  438
+ ],
+ "bbox_norm": [
+  0.5068341208080145,
+  0.04298907996570997,
+  0.9289169750471654,
+  0.9575654646771102
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The alert level has been raised to Level 4, meaning an explosive eruption could happen in the coming days.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 293,
+ "stride": 1,
+ "start": "00:08:52.400",
+ "end": "00:09:02.166",
+ "duration_s": 9.766
+}

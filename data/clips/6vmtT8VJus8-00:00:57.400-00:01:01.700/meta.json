@@ -1,0 +1,30 @@
+{
+ "vid": "6vmtT8VJus8-00:00:57.400-00:01:01.700",
+ "yid": "6vmtT8VJus8",
+ "crop_xywh": [
+  345,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.26979567943475186,
+  -0.18475065340004074,
+  0.6941438063597067,
+  1.1246475517240344
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "After I graduated, I went to Gallaudet University and double majored in Biology and Chemistry.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 129,
+ "stride": 1,
+ "start": "00:00:57.400",
+ "end": "00:01:01.700",
+ "duration_s": 4.3
+}

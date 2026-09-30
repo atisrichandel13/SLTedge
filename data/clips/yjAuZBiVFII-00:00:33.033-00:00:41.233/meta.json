@@ -1,0 +1,30 @@
+{
+ "vid": "yjAuZBiVFII-00:00:33.033-00:00:41.233",
+ "yid": "yjAuZBiVFII",
+ "crop_xywh": [
+  245,
+  0,
+  610,
+  720
+ ],
+ "bbox_norm": [
+  0.2553487353854709,
+  -0.12136259432192202,
+  0.8915725445217556,
+  1.1739018849973326
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I met with the various state Governor\u2019s offices about what their states have and don\u2019t have\u2026 Gathering information.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  960,
+  720
+ ],
+ "n_frames": 246,
+ "stride": 1,
+ "start": "00:00:33.033",
+ "end": "00:00:41.233",
+ "duration_s": 8.2
+}

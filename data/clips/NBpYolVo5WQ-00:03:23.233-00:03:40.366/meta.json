@@ -1,0 +1,30 @@
+{
+ "vid": "NBpYolVo5WQ-00:03:23.233-00:03:40.366",
+ "yid": "NBpYolVo5WQ",
+ "crop_xywh": [
+  620,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.48422843481163425,
+  -0.18425354589473344,
+  0.9464868097420198,
+  1.1913464295550256
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They received a citation, a cease and desist letter, and a restraining order, but still kept the business open.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 412,
+ "stride": 1,
+ "start": "00:03:23.233",
+ "end": "00:03:40.366",
+ "duration_s": 17.133
+}

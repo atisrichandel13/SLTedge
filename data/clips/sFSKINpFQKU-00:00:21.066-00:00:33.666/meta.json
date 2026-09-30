@@ -1,0 +1,30 @@
+{
+ "vid": "sFSKINpFQKU-00:00:21.066-00:00:33.666",
+ "yid": "sFSKINpFQKU",
+ "crop_xywh": [
+  479,
+  0,
+  442,
+  692
+ ],
+ "bbox_norm": [
+  0.37407569383320055,
+  -0.003416778609069467,
+  0.7203772996601305,
+  0.9606293393854509
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "NAD is pleased to announce that the 2012 College Bowl competition will expand to include any new colleges and universities with deaf participants.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 378,
+ "stride": 1,
+ "start": "00:00:21.066",
+ "end": "00:00:33.666",
+ "duration_s": 12.6
+}

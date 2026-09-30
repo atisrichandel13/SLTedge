@@ -1,0 +1,30 @@
+{
+ "vid": "zpKzb1SBN3Y-00:01:13.500-00:01:18.633",
+ "yid": "zpKzb1SBN3Y",
+ "crop_xywh": [
+  434,
+  0,
+  546,
+  720
+ ],
+ "bbox_norm": [
+  0.33903186244349326,
+  -0.14613126118977865,
+  0.7664993152823499,
+  1.0526113104506918
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I visited 22 mainstream, deaf programs, and schools for the deaf.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 154,
+ "stride": 1,
+ "start": "00:01:13.500",
+ "end": "00:01:18.633",
+ "duration_s": 5.133
+}

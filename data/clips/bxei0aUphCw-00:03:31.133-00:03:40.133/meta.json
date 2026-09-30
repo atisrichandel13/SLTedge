@@ -1,0 +1,30 @@
+{
+ "vid": "bxei0aUphCw-00:03:31.133-00:03:40.133",
+ "yid": "bxei0aUphCw",
+ "crop_xywh": [
+  609,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.47549869337199646,
+  -0.0701218682225022,
+  0.8865623185664048,
+  1.122088374228144
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They want the Space Force to be the sixth branch of the armed forces.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 270,
+ "stride": 1,
+ "start": "00:03:31.133",
+ "end": "00:03:40.133",
+ "duration_s": 9.0
+}

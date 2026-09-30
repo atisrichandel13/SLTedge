@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:12:45.133-00:12:50.000",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  222,
+  0,
+  694,
+  720
+ ],
+ "bbox_norm": [
+  0.17374129719204373,
+  -0.14317998344515578,
+  0.7152444405025906,
+  1.3823087122410904
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There\u2019s been a lot of dialogue and frustration around everything going on.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 146,
+ "stride": 1,
+ "start": "00:12:45.133",
+ "end": "00:12:50.000",
+ "duration_s": 4.867
+}

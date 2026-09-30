@@ -1,0 +1,30 @@
+{
+ "vid": "OCljaCDxpb0-00:03:41.233-00:03:44.666",
+ "yid": "OCljaCDxpb0",
+ "crop_xywh": [
+  368,
+  0,
+  292,
+  436
+ ],
+ "bbox_norm": [
+  0.43104192555728427,
+  -0.03811037805345323,
+  0.7729790514098025,
+  0.9082023775766767
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We will partner with NAD for 2012.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 103,
+ "stride": 1,
+ "start": "00:03:41.233",
+ "end": "00:03:44.666",
+ "duration_s": 3.433
+}

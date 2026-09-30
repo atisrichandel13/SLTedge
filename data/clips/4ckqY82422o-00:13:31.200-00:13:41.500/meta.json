@@ -1,0 +1,30 @@
+{
+ "vid": "4ckqY82422o-00:13:31.200-00:13:41.500",
+ "yid": "4ckqY82422o",
+ "crop_xywh": [
+  746,
+  86,
+  404,
+  634
+ ],
+ "bbox_norm": [
+  0.5828698173646003,
+  0.11994722792467051,
+  0.898602650242467,
+  1.074117652318811
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A fragrance called Eau de Space brings the scent of outer space down to earth.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 309,
+ "stride": 1,
+ "start": "00:13:31.200",
+ "end": "00:13:41.500",
+ "duration_s": 10.3
+}

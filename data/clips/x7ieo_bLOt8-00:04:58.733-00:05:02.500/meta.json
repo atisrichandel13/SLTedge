@@ -1,0 +1,30 @@
+{
+ "vid": "x7ieo_bLOt8-00:04:58.733-00:05:02.500",
+ "yid": "x7ieo_bLOt8",
+ "crop_xywh": [
+  626,
+  0,
+  540,
+  720
+ ],
+ "bbox_norm": [
+  0.4893784688866657,
+  -0.09176720943235929,
+  0.9107479496278625,
+  1.1884337466696036
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Baby bottle and smiley emojis.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 113,
+ "stride": 1,
+ "start": "00:04:58.733",
+ "end": "00:05:02.500",
+ "duration_s": 3.767
+}

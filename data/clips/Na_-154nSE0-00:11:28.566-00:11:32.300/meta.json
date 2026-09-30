@@ -1,0 +1,30 @@
+{
+ "vid": "Na_-154nSE0-00:11:28.566-00:11:32.300",
+ "yid": "Na_-154nSE0",
+ "crop_xywh": [
+  607,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.47401605274366293,
+  -0.19343485502037258,
+  0.9408675387285758,
+  1.2215072254051909
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The mayor shared the names and home addresses.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 112,
+ "stride": 1,
+ "start": "00:11:28.566",
+ "end": "00:11:32.300",
+ "duration_s": 3.734
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "f75G_hZMSHs-00:05:58.666-00:06:06.400",
+ "yid": "f75G_hZMSHs",
+ "crop_xywh": [
+  616,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.4815055231676034,
+  -0.10163661815502026,
+  0.9024222874472326,
+  1.1323909636272793
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They started talking and discovered one of them had worked as an officer in their hometown.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 232,
+ "stride": 1,
+ "start": "00:05:58.666",
+ "end": "00:06:06.400",
+ "duration_s": 7.734
+}

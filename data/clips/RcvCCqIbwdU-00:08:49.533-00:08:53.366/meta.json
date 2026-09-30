@@ -1,0 +1,30 @@
+{
+ "vid": "RcvCCqIbwdU-00:08:49.533-00:08:53.366",
+ "yid": "RcvCCqIbwdU",
+ "crop_xywh": [
+  650,
+  0,
+  436,
+  586
+ ],
+ "bbox_norm": [
+  0.5080888924391374,
+  -0.05120219262901711,
+  0.8484684332557346,
+  0.8143391609191895
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Rest in peace Pete Frates.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 115,
+ "stride": 1,
+ "start": "00:08:49.533",
+ "end": "00:08:53.366",
+ "duration_s": 3.833
+}

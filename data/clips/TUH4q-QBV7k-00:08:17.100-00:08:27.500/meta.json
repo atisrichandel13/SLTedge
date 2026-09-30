@@ -1,0 +1,30 @@
+{
+ "vid": "TUH4q-QBV7k-00:08:17.100-00:08:27.500",
+ "yid": "TUH4q-QBV7k",
+ "crop_xywh": [
+  639,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.49890554284536714,
+  -0.0868557028730568,
+  0.9146472643780452,
+  1.0819772637161018
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's not 1 million lights but it's still spectacular.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 312,
+ "stride": 1,
+ "start": "00:08:17.100",
+ "end": "00:08:27.500",
+ "duration_s": 10.4
+}

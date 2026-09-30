@@ -1,0 +1,30 @@
+{
+ "vid": "ITBFiwzJ-u8-00:01:33.000-00:01:42.566",
+ "yid": "ITBFiwzJ-u8",
+ "crop_xywh": [
+  376,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.2937885781814312,
+  -0.1587935453173758,
+  0.7150795842039174,
+  1.0883224596008945
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I also traveled to Chicago, IL for the first time and made an appearance at a Signing Santa event at Woodfield Mall.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 287,
+ "stride": 1,
+ "start": "00:01:33.000",
+ "end": "00:01:42.566",
+ "duration_s": 9.566
+}

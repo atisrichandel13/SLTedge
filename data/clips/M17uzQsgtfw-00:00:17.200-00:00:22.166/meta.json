@@ -1,0 +1,30 @@
+{
+ "vid": "M17uzQsgtfw-00:00:17.200-00:00:22.166",
+ "yid": "M17uzQsgtfw",
+ "crop_xywh": [
+  701,
+  0,
+  480,
+  720
+ ],
+ "bbox_norm": [
+  0.5479319402906629,
+  -0.08752068507818528,
+  0.9225858879089356,
+  1.0421620559692382
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This cell phone video is going viral on social media.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 149,
+ "stride": 1,
+ "start": "00:00:17.200",
+ "end": "00:00:22.166",
+ "duration_s": 4.966
+}

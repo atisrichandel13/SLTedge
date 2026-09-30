@@ -1,0 +1,30 @@
+{
+ "vid": "mNF1kg9azQw-00:12:10.633-00:12:22.000",
+ "yid": "mNF1kg9azQw",
+ "crop_xywh": [
+  50,
+  0,
+  568,
+  720
+ ],
+ "bbox_norm": [
+  0.0394392191988867,
+  -0.052032385398923395,
+  0.4825429531013441,
+  1.3020366596725752
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There was a viral story by a woman, Hazel, who described her experiences of being in a violent relationship.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 273,
+ "stride": 1,
+ "start": "00:12:10.633",
+ "end": "00:12:22.000",
+ "duration_s": 11.367
+}

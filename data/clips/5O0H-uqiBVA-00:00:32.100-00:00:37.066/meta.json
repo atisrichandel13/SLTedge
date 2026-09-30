@@ -1,0 +1,30 @@
+{
+ "vid": "5O0H-uqiBVA-00:00:32.100-00:00:37.066",
+ "yid": "5O0H-uqiBVA",
+ "crop_xywh": [
+  383,
+  0,
+  464,
+  654
+ ],
+ "bbox_norm": [
+  0.299089535607232,
+  -0.12075548996160061,
+  0.661941081153022,
+  0.9088948944468557
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "While you work for a month, you will be experiencing major personal growth alongside them.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 149,
+ "stride": 1,
+ "start": "00:00:32.100",
+ "end": "00:00:37.066",
+ "duration_s": 4.966
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "pJ8TyVN7HE0-00:00:36.666-00:00:50.333",
+ "yid": "pJ8TyVN7HE0",
+ "crop_xywh": [
+  648,
+  0,
+  498,
+  720
+ ],
+ "bbox_norm": [
+  0.5058785182673756,
+  -0.055102727557477804,
+  0.8962314031957611,
+  1.0342816643167856
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Authorities say the killings began Thursday when forensic psychiatrist Steven Pitt was found shot to death in Phoenix.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 410,
+ "stride": 1,
+ "start": "00:00:36.666",
+ "end": "00:00:50.333",
+ "duration_s": 13.667
+}

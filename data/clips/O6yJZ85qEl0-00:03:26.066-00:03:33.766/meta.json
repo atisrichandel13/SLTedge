@@ -1,0 +1,30 @@
+{
+ "vid": "O6yJZ85qEl0-00:03:26.066-00:03:33.766",
+ "yid": "O6yJZ85qEl0",
+ "crop_xywh": [
+  588,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.4597067219145755,
+  -0.1319750682118373,
+  0.8783682331125787,
+  1.0599123385499274
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The death toll from hurricane Dorian is rising in the Bahamas.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 231,
+ "stride": 1,
+ "start": "00:03:26.066",
+ "end": "00:03:33.766",
+ "duration_s": 7.7
+}

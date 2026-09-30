@@ -1,0 +1,30 @@
+{
+ "vid": "4TtUxQPu5UM-00:07:16.566-00:07:27.233",
+ "yid": "4TtUxQPu5UM",
+ "crop_xywh": [
+  325,
+  0,
+  216,
+  318
+ ],
+ "bbox_norm": [
+  0.5072243100120908,
+  -0.022189217353834258,
+  0.8459002176920573,
+  0.8826455136455557
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "However Harry and Meghan's decision to step down so they can lead financially independent lives is uncharted territory.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 320,
+ "stride": 1,
+ "start": "00:07:16.566",
+ "end": "00:07:27.233",
+ "duration_s": 10.667
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "sTHgUNAxDts-00:04:24.633-00:04:32.600",
+ "yid": "sTHgUNAxDts",
+ "crop_xywh": [
+  784,
+  89,
+  406,
+  630
+ ],
+ "bbox_norm": [
+  0.6123385384678841,
+  0.12364654276106092,
+  0.9299245273073515,
+  1.11064356830385
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Truck drivers are among the \"\"essential employees\"\" whose responsibilities haven't changed much, if at all, during the pandemic.\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 239,
+ "stride": 1,
+ "start": "00:04:24.633",
+ "end": "00:04:32.600",
+ "duration_s": 7.967
+}

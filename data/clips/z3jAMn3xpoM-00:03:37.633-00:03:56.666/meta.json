@@ -1,0 +1,30 @@
+{
+ "vid": "z3jAMn3xpoM-00:03:37.633-00:03:56.666",
+ "yid": "z3jAMn3xpoM",
+ "crop_xywh": [
+  632,
+  0,
+  610,
+  720
+ ],
+ "bbox_norm": [
+  0.49369357592817664,
+  -0.20126150404581508,
+  0.9714038707899011,
+  1.2568484452841937
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The second news - an author, E. Jean Carroll, accused Donald Trump of raping her in a dressing room in New York City in the 1990's.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 571,
+ "stride": 1,
+ "start": "00:03:37.633",
+ "end": "00:03:56.666",
+ "duration_s": 19.033
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "wPJ_InXF_I8-00:00:10.166-00:00:12.166",
+ "yid": "wPJ_InXF_I8",
+ "crop_xywh": [
+  208,
+  0,
+  820,
+  720
+ ],
+ "bbox_norm": [
+  0.16260360611809627,
+  -0.19532733728856216,
+  0.802965603934394,
+  1.6937844653188447
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Ready for news?",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 60,
+ "stride": 1,
+ "start": "00:00:10.166",
+ "end": "00:00:12.166",
+ "duration_s": 2.0
+}

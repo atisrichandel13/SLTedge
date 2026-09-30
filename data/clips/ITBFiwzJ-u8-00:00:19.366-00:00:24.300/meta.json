@@ -1,0 +1,30 @@
+{
+ "vid": "ITBFiwzJ-u8-00:00:19.366-00:00:24.300",
+ "yid": "ITBFiwzJ-u8",
+ "crop_xywh": [
+  457,
+  0,
+  514,
+  720
+ ],
+ "bbox_norm": [
+  0.35668208440144855,
+  -0.12953858481513128,
+  0.7588196627298991,
+  1.0388566218482125
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I hope you all have been keeping track of my whereabouts and what I\u2019ve been doing as Miss Deaf America.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 132,
+ "stride": 1,
+ "start": "00:00:19.366",
+ "end": "00:00:24.300",
+ "duration_s": 4.934
+}

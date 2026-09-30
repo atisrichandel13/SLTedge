@@ -1,0 +1,30 @@
+{
+ "vid": "mNF1kg9azQw-00:20:58.266-00:21:01.733",
+ "yid": "mNF1kg9azQw",
+ "crop_xywh": [
+  221,
+  0,
+  914,
+  720
+ ],
+ "bbox_norm": [
+  0.1724158941530714,
+  -0.26905638667752796,
+  0.8865131602567785,
+  1.7824458731025912
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There could be rain, cold, hot, then cold again.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 84,
+ "stride": 1,
+ "start": "00:20:58.266",
+ "end": "00:21:01.733",
+ "duration_s": 3.467
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "h9Pdy9Mf6so-00:02:36.066-00:02:46.233",
+ "yid": "h9Pdy9Mf6so",
+ "crop_xywh": [
+  278,
+  0,
+  632,
+  720
+ ],
+ "bbox_norm": [
+  0.21714229711922264,
+  -0.23539847324968383,
+  0.7119706525597521,
+  1.2263616103852522
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Many people knew and respected this person for their intellect and advocacy for deaf women's right to equality.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 305,
+ "stride": 1,
+ "start": "00:02:36.066",
+ "end": "00:02:46.233",
+ "duration_s": 10.167
+}

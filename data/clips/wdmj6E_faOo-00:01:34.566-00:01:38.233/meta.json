@@ -1,0 +1,30 @@
+{
+ "vid": "wdmj6E_faOo-00:01:34.566-00:01:38.233",
+ "yid": "wdmj6E_faOo",
+ "crop_xywh": [
+  164,
+  17,
+  422,
+  618
+ ],
+ "bbox_norm": [
+  0.12797082351601644,
+  0.023091543814986223,
+  0.45879499134810076,
+  0.8839672254479449
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I was alone in the world and would write in the quiet.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 110,
+ "stride": 1,
+ "start": "00:01:34.566",
+ "end": "00:01:38.233",
+ "duration_s": 3.667
+}

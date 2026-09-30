@@ -1,0 +1,30 @@
+{
+ "vid": "uZwKNtHx9FE-00:04:45.433-00:05:07.233",
+ "yid": "uZwKNtHx9FE",
+ "crop_xywh": [
+  653,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.5102777926127116,
+  -0.1907847974666212,
+  0.9706798471723285,
+  1.1832078042274219
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The comment was referring to Mueller's public appearance yesterday in which he said he couldn't bring indictments against Trump concerning obstruction, that he couldn't do this because it was the Department of Justice's policy to not indict a sitting president.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 523,
+ "stride": 1,
+ "start": "00:04:45.433",
+ "end": "00:05:07.233",
+ "duration_s": 21.8
+}

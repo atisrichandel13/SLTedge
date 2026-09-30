@@ -1,0 +1,30 @@
+{
+ "vid": "iMJ9CjBX7eo-00:03:06.066-00:03:14.600",
+ "yid": "iMJ9CjBX7eo",
+ "crop_xywh": [
+  366,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.28610059787065556,
+  -0.15950435681900066,
+  0.7191813786824545,
+  1.1858911677303479
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's an initiative that recognizes women, men, LGBT, and so on I'm thrilled to be involved.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 256,
+ "stride": 1,
+ "start": "00:03:06.066",
+ "end": "00:03:14.600",
+ "duration_s": 8.534
+}

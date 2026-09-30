@@ -1,0 +1,30 @@
+{
+ "vid": "FCcLqY-Nezo-00:00:23.233-00:00:42.733",
+ "yid": "FCcLqY-Nezo",
+ "crop_xywh": [
+  205,
+  97,
+  124,
+  228
+ ],
+ "bbox_norm": [
+  0.16043236220060889,
+  0.1343675627110082,
+  0.2566931446986412,
+  0.45305513579124507
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Trump's former lawyer Michael Cohen turned himself into the FBI, agreeing to a plea deal on charges of campaign finance violations, tax fraud and bank fraud.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 585,
+ "stride": 1,
+ "start": "00:00:23.233",
+ "end": "00:00:42.733",
+ "duration_s": 19.5
+}

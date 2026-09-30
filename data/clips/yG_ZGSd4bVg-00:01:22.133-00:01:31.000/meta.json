@@ -1,0 +1,30 @@
+{
+ "vid": "yG_ZGSd4bVg-00:01:22.133-00:01:31.000",
+ "yid": "yG_ZGSd4bVg",
+ "crop_xywh": [
+  512,
+  0,
+  488,
+  708
+ ],
+ "bbox_norm": [
+  0.39992484928649147,
+  -0.12965067705172734,
+  0.7810503206135314,
+  0.9836292145837646
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "While they were teaching, along with a few others, founded a newspaper for deaf people.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 266,
+ "stride": 1,
+ "start": "00:01:22.133",
+ "end": "00:01:31.000",
+ "duration_s": 8.867
+}

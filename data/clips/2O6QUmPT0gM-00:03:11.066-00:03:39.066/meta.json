@@ -1,0 +1,30 @@
+{
+ "vid": "2O6QUmPT0gM-00:03:11.066-00:03:39.066",
+ "yid": "2O6QUmPT0gM",
+ "crop_xywh": [
+  180,
+  0,
+  314,
+  360
+ ],
+ "bbox_norm": [
+  0.2815844167619062,
+  -0.20432099198762088,
+  0.7737075871969822,
+  1.2817229931798129
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The deaf and hard of hearing community continues to struggle to achieve this goal because our equipment is often stuck at one location or the connection is not strong enough to carry our call.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 840,
+ "stride": 1,
+ "start": "00:03:11.066",
+ "end": "00:03:39.066",
+ "duration_s": 28.0
+}

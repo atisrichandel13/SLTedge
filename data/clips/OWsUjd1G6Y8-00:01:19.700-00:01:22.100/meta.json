@@ -1,0 +1,30 @@
+{
+ "vid": "OWsUjd1G6Y8-00:01:19.700-00:01:22.100",
+ "yid": "OWsUjd1G6Y8",
+ "crop_xywh": [
+  119,
+  0,
+  892,
+  720
+ ],
+ "bbox_norm": [
+  0.09258628209431966,
+  -0.3338281136971933,
+  0.7902990659077962,
+  1.7547583332768193
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We are looking forward to making a change.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 72,
+ "stride": 1,
+ "start": "00:01:19.700",
+ "end": "00:01:22.100",
+ "duration_s": 2.4
+}

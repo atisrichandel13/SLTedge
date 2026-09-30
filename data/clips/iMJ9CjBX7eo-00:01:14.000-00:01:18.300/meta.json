@@ -1,0 +1,30 @@
+{
+ "vid": "iMJ9CjBX7eo-00:01:14.000-00:01:18.300",
+ "yid": "iMJ9CjBX7eo",
+ "crop_xywh": [
+  208,
+  0,
+  770,
+  720
+ ],
+ "bbox_norm": [
+  0.16222320397694906,
+  -0.1943160934665604,
+  0.7651767235535841,
+  1.6192154033910855
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Join us at the Community Forum, where I will be hosting.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 129,
+ "stride": 1,
+ "start": "00:01:14.000",
+ "end": "00:01:18.300",
+ "duration_s": 4.3
+}

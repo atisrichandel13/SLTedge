@@ -1,0 +1,30 @@
+{
+ "vid": "k5Gxbifw8s8-00:09:33.433-00:09:38.433",
+ "yid": "k5Gxbifw8s8",
+ "crop_xywh": [
+  658,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.5141224678357442,
+  -0.12844286388821072,
+  0.9345533951123555,
+  1.0058675776587591
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Snickers is giving away candy anyway.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 150,
+ "stride": 1,
+ "start": "00:09:33.433",
+ "end": "00:09:38.433",
+ "duration_s": 5.0
+}

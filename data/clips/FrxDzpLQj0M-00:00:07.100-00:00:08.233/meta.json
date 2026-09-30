@@ -1,0 +1,30 @@
+{
+ "vid": "FrxDzpLQj0M-00:00:07.100-00:00:08.233",
+ "yid": "FrxDzpLQj0M",
+ "crop_xywh": [
+  478,
+  0,
+  456,
+  720
+ ],
+ "bbox_norm": [
+  0.3734915370032901,
+  7.0158135954034385e-06,
+  0.7305268923441569,
+  1.0049031716805916
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's coming!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 34,
+ "stride": 1,
+ "start": "00:00:07.100",
+ "end": "00:00:08.233",
+ "duration_s": 1.133
+}

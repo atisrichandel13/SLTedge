@@ -1,0 +1,30 @@
+{
+ "vid": "n8nuUYDZ7Hc-00:14:23.666-00:14:29.166",
+ "yid": "n8nuUYDZ7Hc",
+ "crop_xywh": [
+  355,
+  0,
+  632,
+  720
+ ],
+ "bbox_norm": [
+  0.2772492301230337,
+  -0.17990360218455329,
+  0.7707081275827744,
+  1.2914248680497047
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We have also reached out to NTID and asked for their response.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 165,
+ "stride": 1,
+ "start": "00:14:23.666",
+ "end": "00:14:29.166",
+ "duration_s": 5.5
+}

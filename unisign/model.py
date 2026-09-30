@@ -16,6 +16,8 @@ Architecture (pose-only):
 Note: left and right hand share weights (the repo aliases the modules), so 3 of everything, not 4.
 """
 import gc
+import json
+import os
 import time
 
 import torch
@@ -61,6 +63,34 @@ class PoseOnlyUniSign(nn.Module):
         self.keep_ids = None
         if keep_ids is not None:
             self.prune_vocab(keep_ids)
+
+    def attach_pruned_tokenizer(self, keep_ids):
+        """For mT5 weights that are ALREADY pruned on disk (a pre-pruned HF directory).
+
+        prune_and_save() writes a checkpoint file, not an HF directory, and PrunedTokenizer is a
+        runtime wrapper with no save_pretrained -- so a pre-pruned directory carries pruned WEIGHTS
+        next to the ORIGINAL 250k tokenizer. Loading it without this call produces fluent but wrong
+        text, because every token id is off. This does the non-weight half of prune_vocab: the
+        tokenizer remap, the generation ids, and keep_ids.
+
+        Refuses to run if the weights are not in fact already pruned, so a wrong assumption about the
+        directory fails loudly instead of silently mistranslating.
+        """
+        keep = torch.as_tensor(sorted(int(i) for i in keep_ids), dtype=torch.long)
+        assert keep[:3].tolist() == [0, 1, 2], "keep_ids must contain pad/eos/unk = 0/1/2"
+        m = self.mt5_model
+        have = m.shared.weight.data.shape[0]
+        if have != len(keep):
+            raise RuntimeError(
+                f"attach_pruned_tokenizer: mT5 embedding has {have} rows but keep_ids has "
+                f"{len(keep)}. This directory is not pre-pruned to match the checkpoint; use "
+                f"prune_vocab() instead.")
+        m.config.vocab_size = len(keep)
+        if getattr(m, "generation_config", None) is not None:
+            m.generation_config.pad_token_id, m.generation_config.eos_token_id = 0, 1
+            m.generation_config.decoder_start_token_id = 0
+        self.keep_ids = keep
+        self.mt5_tokenizer = PrunedTokenizer(self.mt5_tokenizer, keep)
 
     # ------------------------------------------------------------------ vocabulary pruning (L5)
     def prune_vocab(self, keep_ids):
@@ -189,6 +219,15 @@ class PrunedTokenizer:
         return [self.decode(s, **kw) for s in seqs]
 
 
+def _mt5_vocab_size(mt5_path):
+    """vocab_size from the directory's config.json, without loading any weights. None if unknown."""
+    try:
+        with open(os.path.join(mt5_path, "config.json")) as f:
+            return int(json.load(f)["vocab_size"])
+    except Exception:  # noqa: BLE001 -- a hub id, a missing file, anything: fall back to slicing
+        return None
+
+
 def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=None):
     """keep_ids: list of old token ids -> build the model, load the full checkpoint, then prune.
     A checkpoint saved by prune_and_save() carries its own keep_ids and is loaded pruned."""
@@ -198,8 +237,17 @@ def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=
     ckpt_keep = sd.get("keep_ids", None)
     sd = sd.get("model", sd)
     if ckpt_keep is not None:
-        # pruned: build on CPU and slice first (peak 1.0 GB on the GPU instead of 2.6 GB)
-        model = PoseOnlyUniSign(mt5_path, keep_ids=ckpt_keep)
+        # If mt5_path is ALREADY pruned to this vocabulary, materialise it straight onto the device and
+        # only remap the tokenizer. The alternative below builds the full 250k-vocab mT5 first and
+        # slices it, which on this unified-memory board peaks near 4.2 GB (2.3 full + 0.95 sliced +
+        # 0.95 device copy) -- more than loading the FULL checkpoint costs -- and fails whenever
+        # MemFree cannot reach ~5 GB, which it often cannot (MemAvailable caps around 5.3 GB).
+        if _mt5_vocab_size(mt5_path) == len(ckpt_keep):
+            model = PoseOnlyUniSign(mt5_path, device=device)
+            model.attach_pruned_tokenizer(ckpt_keep)
+        else:
+            # pruned: build on CPU and slice first (peak 1.0 GB on the GPU instead of 2.6 GB)
+            model = PoseOnlyUniSign(mt5_path, keep_ids=ckpt_keep)
     else:
         # full: materialise mT5 on the target device; CPU copy + GPU copy OOMs the Jetson
         model = PoseOnlyUniSign(mt5_path, device=device)

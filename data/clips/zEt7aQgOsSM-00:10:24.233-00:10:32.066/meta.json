@@ -1,0 +1,30 @@
+{
+ "vid": "zEt7aQgOsSM-00:10:24.233-00:10:32.066",
+ "yid": "zEt7aQgOsSM",
+ "crop_xywh": [
+  813,
+  160,
+  292,
+  424
+ ],
+ "bbox_norm": [
+  0.6348085993528366,
+  0.2224095492892795,
+  0.8632403057813643,
+  0.8128660827212865
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The story of the 100-year-old woman arrested on her birthday apparently amused many viewers.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 235,
+ "stride": 1,
+ "start": "00:10:24.233",
+ "end": "00:10:32.066",
+ "duration_s": 7.833
+}

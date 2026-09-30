@@ -1,0 +1,30 @@
+{
+ "vid": "4b-evcJm2JQ-00:08:06.300-00:08:18.000",
+ "yid": "4b-evcJm2JQ",
+ "crop_xywh": [
+  659,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.5149083775533756,
+  -0.07883675893147786,
+  0.9428002673135676,
+  1.1449834828085743
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Every year about 245,000 new cases of breast cancer are diagnosed in women in the US and 2,200 cases in men.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 351,
+ "stride": 1,
+ "start": "00:08:06.300",
+ "end": "00:08:18.000",
+ "duration_s": 11.7
+}

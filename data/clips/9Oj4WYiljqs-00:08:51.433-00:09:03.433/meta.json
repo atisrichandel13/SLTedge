@@ -1,0 +1,30 @@
+{
+ "vid": "9Oj4WYiljqs-00:08:51.433-00:09:03.433",
+ "yid": "9Oj4WYiljqs",
+ "crop_xywh": [
+  831,
+  187,
+  260,
+  394
+ ],
+ "bbox_norm": [
+  0.6490081116005226,
+  0.25960254512206027,
+  0.8531263669331869,
+  0.8071462701868128
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So Candace gathered a diverse group of her friends to sign the same song, hoping it will uplift and inspire the Deaf community.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 360,
+ "stride": 1,
+ "start": "00:08:51.433",
+ "end": "00:09:03.433",
+ "duration_s": 12.0
+}

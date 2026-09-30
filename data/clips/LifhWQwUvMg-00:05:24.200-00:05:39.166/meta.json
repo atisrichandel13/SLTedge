@@ -1,0 +1,30 @@
+{
+ "vid": "LifhWQwUvMg-00:05:24.200-00:05:39.166",
+ "yid": "LifhWQwUvMg",
+ "crop_xywh": [
+  610,
+  0,
+  590,
+  720
+ ],
+ "bbox_norm": [
+  0.476943572362264,
+  -0.11859722137451172,
+  0.9382597305156567,
+  1.1490498268064648
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "She said she never considered fostering or adoption but when Gisele crossed her path in a stroller, the two locked eyes and that was it.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 449,
+ "stride": 1,
+ "start": "00:05:24.200",
+ "end": "00:05:39.166",
+ "duration_s": 14.966
+}

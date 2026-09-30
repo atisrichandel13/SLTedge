@@ -1,0 +1,30 @@
+{
+ "vid": "NFGiPziWZi0-00:01:22.633-00:01:28.600",
+ "yid": "NFGiPziWZi0",
+ "crop_xywh": [
+  294,
+  0,
+  760,
+  720
+ ],
+ "bbox_norm": [
+  0.22933563258912829,
+  -0.295635470833798,
+  0.8244416055855928,
+  1.3925311177846336
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I look forward to learning more at Jr. NAD and bringing all that back to my school.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 179,
+ "stride": 1,
+ "start": "00:01:22.633",
+ "end": "00:01:28.600",
+ "duration_s": 5.967
+}

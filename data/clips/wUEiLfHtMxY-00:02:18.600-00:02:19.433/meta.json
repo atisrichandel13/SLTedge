@@ -1,0 +1,30 @@
+{
+ "vid": "wUEiLfHtMxY-00:02:18.600-00:02:19.433",
+ "yid": "wUEiLfHtMxY",
+ "crop_xywh": [
+  290,
+  0,
+  612,
+  720
+ ],
+ "bbox_norm": [
+  0.22683051427205403,
+  -0.22623124723081237,
+  0.7053373908996582,
+  1.1843535734105994
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thank you!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 25,
+ "stride": 1,
+ "start": "00:02:18.600",
+ "end": "00:02:19.433",
+ "duration_s": 0.833
+}

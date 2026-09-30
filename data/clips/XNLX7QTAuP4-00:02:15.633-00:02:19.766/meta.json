@@ -1,0 +1,30 @@
+{
+ "vid": "XNLX7QTAuP4-00:02:15.633-00:02:19.766",
+ "yid": "XNLX7QTAuP4",
+ "crop_xywh": [
+  378,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.29546187784936695,
+  -0.12849326251465598,
+  0.706475889020496,
+  1.0431000235639971
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We had lunch and visited with the students.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 124,
+ "stride": 1,
+ "start": "00:02:15.633",
+ "end": "00:02:19.766",
+ "duration_s": 4.133
+}

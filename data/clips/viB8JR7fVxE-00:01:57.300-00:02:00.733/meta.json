@@ -1,0 +1,30 @@
+{
+ "vid": "viB8JR7fVxE-00:01:57.300-00:02:00.733",
+ "yid": "viB8JR7fVxE",
+ "crop_xywh": [
+  219,
+  0,
+  864,
+  720
+ ],
+ "bbox_norm": [
+  0.17109918083463396,
+  -0.3348731495085217,
+  0.8463932985351199,
+  1.723859220585495
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": " I think that says a lot about our abilities.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 103,
+ "stride": 1,
+ "start": "00:01:57.300",
+ "end": "00:02:00.733",
+ "duration_s": 3.433
+}

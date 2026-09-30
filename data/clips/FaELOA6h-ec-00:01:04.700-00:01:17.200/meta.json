@@ -1,0 +1,30 @@
+{
+ "vid": "FaELOA6h-ec-00:01:04.700-00:01:17.200",
+ "yid": "FaELOA6h-ec",
+ "crop_xywh": [
+  118,
+  0,
+  662,
+  720
+ ],
+ "bbox_norm": [
+  0.13579642812967416,
+  -0.22362438879514993,
+  0.8943848423425959,
+  1.381383332662415
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you or your family cannot help, don\u2019t worry, there may be caregivers in your area to provide support to the family member with needs.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  872,
+  720
+ ],
+ "n_frames": 375,
+ "stride": 1,
+ "start": "00:01:04.700",
+ "end": "00:01:17.200",
+ "duration_s": 12.5
+}

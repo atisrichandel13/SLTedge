@@ -1,0 +1,30 @@
+{
+ "vid": "EyHFK4r23qE-00:01:36.700-00:01:44.233",
+ "yid": "EyHFK4r23qE",
+ "crop_xywh": [
+  599,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.46782285925270856,
+  -0.1612989717443592,
+  0.9104277479475823,
+  1.1719788313295914
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Johnson also announced that 46 people were arrested this past weekend on gun charges.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 226,
+ "stride": 1,
+ "start": "00:01:36.700",
+ "end": "00:01:44.233",
+ "duration_s": 7.533
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "H7nga4_DWtE-00:00:08.366-00:00:13.500",
+ "yid": "H7nga4_DWtE",
+ "crop_xywh": [
+  349,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.2727740113453198,
+  -0.17537654753654233,
+  0.755192260332005,
+  1.239728767641129
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There are over 200 sign languages used around the world.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 154,
+ "stride": 1,
+ "start": "00:00:08.366",
+ "end": "00:00:13.500",
+ "duration_s": 5.134
+}

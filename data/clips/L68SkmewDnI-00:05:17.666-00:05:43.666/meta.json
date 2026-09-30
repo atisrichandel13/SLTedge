@@ -1,0 +1,30 @@
+{
+ "vid": "L68SkmewDnI-00:05:17.666-00:05:43.666",
+ "yid": "L68SkmewDnI",
+ "crop_xywh": [
+  564,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.4407338094075521,
+  -0.2037998312490958,
+  0.9138410359700521,
+  1.2171534370139794
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The tweets by Trump claimed that mail-in ballots would be a massive fraud with mailboxes being robbed.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 624,
+ "stride": 1,
+ "start": "00:05:17.666",
+ "end": "00:05:43.666",
+ "duration_s": 26.0
+}

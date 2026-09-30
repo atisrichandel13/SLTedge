@@ -1,0 +1,30 @@
+{
+ "vid": "ubC82N6N1bQ-00:01:52.033-00:01:54.233",
+ "yid": "ubC82N6N1bQ",
+ "crop_xywh": [
+  233,
+  4,
+  520,
+  716
+ ],
+ "bbox_norm": [
+  0.18191765035901752,
+  0.005980393747804026,
+  0.5890198264803206,
+  1.1083657552325537
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If it's rainy with rough weather, I don\u2019t go out.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 66,
+ "stride": 1,
+ "start": "00:01:52.033",
+ "end": "00:01:54.233",
+ "duration_s": 2.2
+}

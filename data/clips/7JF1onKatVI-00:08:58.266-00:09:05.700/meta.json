@@ -1,0 +1,30 @@
+{
+ "vid": "7JF1onKatVI-00:08:58.266-00:09:05.700",
+ "yid": "7JF1onKatVI",
+ "crop_xywh": [
+  456,
+  0,
+  512,
+  720
+ ],
+ "bbox_norm": [
+  0.35663278323632697,
+  -0.03387520087599264,
+  0.7562265356381734,
+  1.0568792818014512
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Wow, very emotional moment with two gold medals in the snowboard slopestyle for the U.S. for both a man and a woman.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 179,
+ "stride": 1,
+ "start": "00:08:58.266",
+ "end": "00:09:05.700",
+ "duration_s": 7.434
+}

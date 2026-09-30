@@ -1,0 +1,30 @@
+{
+ "vid": "sld9TKHkOtg-00:02:24.000-00:02:24.733",
+ "yid": "sld9TKHkOtg",
+ "crop_xywh": [
+  476,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.37197873592376707,
+  -0.13459032906426324,
+  0.7827534437179565,
+  1.0679756164550782
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I love people.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 18,
+ "stride": 1,
+ "start": "00:02:24.000",
+ "end": "00:02:24.733",
+ "duration_s": 0.733
+}

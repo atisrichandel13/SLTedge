@@ -1,0 +1,30 @@
+{
+ "vid": "UBHIPWeJzUE-00:06:03.200-00:06:12.433",
+ "yid": "UBHIPWeJzUE",
+ "crop_xywh": [
+  620,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.484367793514615,
+  -0.21753716002065668,
+  0.9679720657212394,
+  1.2273124166897365
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Biden said if he loses the election, he will go back to being a professor at the University of Pennsylvania.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 277,
+ "stride": 1,
+ "start": "00:06:03.200",
+ "end": "00:06:12.433",
+ "duration_s": 9.233
+}

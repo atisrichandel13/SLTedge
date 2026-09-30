@@ -1,0 +1,30 @@
+{
+ "vid": "PYbUwpYMx0A-00:00:28.600-00:00:31.466",
+ "yid": "PYbUwpYMx0A",
+ "crop_xywh": [
+  414,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.32367391409697355,
+  -0.12901472790251053,
+  0.7330209255218506,
+  1.073631053893164
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Here are your top stories for today.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 86,
+ "stride": 1,
+ "start": "00:00:28.600",
+ "end": "00:00:31.466",
+ "duration_s": 2.866
+}

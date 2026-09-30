@@ -1,0 +1,30 @@
+{
+ "vid": "lIE16P1LVhc-00:06:35.200-00:06:39.700",
+ "yid": "lIE16P1LVhc",
+ "crop_xywh": [
+  399,
+  76,
+  194,
+  342
+ ],
+ "bbox_norm": [
+  0.31200935798778867,
+  0.105005500005235,
+  0.4644297767103764,
+  0.5813424130861754
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The teacher can make edits and watch your student's progress to ensure they understand the content.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 108,
+ "stride": 1,
+ "start": "00:06:35.200",
+ "end": "00:06:39.700",
+ "duration_s": 4.5
+}

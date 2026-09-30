@@ -1,0 +1,30 @@
+{
+ "vid": "EHwZDbs8rHI-00:07:33.366-00:07:40.400",
+ "yid": "EHwZDbs8rHI",
+ "crop_xywh": [
+  600,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.46850792753930187,
+  -0.17474593908438754,
+  0.9151001462749406,
+  1.19707597948627
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But with this Ukraine situation, it seems like it's going down that road.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 169,
+ "stride": 1,
+ "start": "00:07:33.366",
+ "end": "00:07:40.400",
+ "duration_s": 7.034
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "tTeiyqt1GCY-00:00:49.166-00:00:54.066",
+ "yid": "tTeiyqt1GCY",
+ "crop_xywh": [
+  250,
+  0,
+  800,
+  720
+ ],
+ "bbox_norm": [
+  0.19565011766221788,
+  -0.22009527324158468,
+  0.8199776289198134,
+  1.6213385603162977
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Not to worry, we\u2019ll take good care of them and have fun!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 147,
+ "stride": 1,
+ "start": "00:00:49.166",
+ "end": "00:00:54.066",
+ "duration_s": 4.9
+}

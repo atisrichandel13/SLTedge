@@ -1,0 +1,30 @@
+{
+ "vid": "Eh3k6oJrFgY-00:04:01.033-00:04:24.366",
+ "yid": "Eh3k6oJrFgY",
+ "crop_xywh": [
+  575,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.4492447827543531,
+  -0.15384128282940576,
+  0.9018410225709279,
+  1.197792469761359
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Cuomo was \"\"cavalier\"\" because he argued that deaf people did not take advantage of various methods of access they provided.\"",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 560,
+ "stride": 1,
+ "start": "00:04:01.033",
+ "end": "00:04:24.366",
+ "duration_s": 23.333
+}

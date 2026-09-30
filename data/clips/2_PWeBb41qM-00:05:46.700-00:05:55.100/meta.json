@@ -1,0 +1,30 @@
+{
+ "vid": "2_PWeBb41qM-00:05:46.700-00:05:55.100",
+ "yid": "2_PWeBb41qM",
+ "crop_xywh": [
+  808,
+  138,
+  316,
+  506
+ ],
+ "bbox_norm": [
+  0.6310220419191847,
+  0.19200485661658329,
+  0.8779710620057349,
+  0.8943910511490567
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As of Tuesday morning, more than 3-thousand people have died of coronavirus in the US.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 252,
+ "stride": 1,
+ "start": "00:05:46.700",
+ "end": "00:05:55.100",
+ "duration_s": 8.4
+}

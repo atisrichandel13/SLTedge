@@ -1,0 +1,30 @@
+{
+ "vid": "pimixabgzlc-00:03:09.066-00:03:14.333",
+ "yid": "pimixabgzlc",
+ "crop_xywh": [
+  175,
+  0,
+  456,
+  646
+ ],
+ "bbox_norm": [
+  0.13702551629808213,
+  -0.04479955979335455,
+  0.49395164171854655,
+  0.8973137773113485
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We are thankful to be here, and also to the Saudi club for their help.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 158,
+ "stride": 1,
+ "start": "00:03:09.066",
+ "end": "00:03:14.333",
+ "duration_s": 5.267
+}

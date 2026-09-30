@@ -1,0 +1,30 @@
+{
+ "vid": "mq2dPNCiRoI-00:01:55.766-00:01:57.166",
+ "yid": "mq2dPNCiRoI",
+ "crop_xywh": [
+  334,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.2611647492363339,
+  -0.05525580108481109,
+  0.7439298561641149,
+  1.2318612961542037
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It\u2019s just not fair!",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 34,
+ "stride": 1,
+ "start": "00:01:55.766",
+ "end": "00:01:57.166",
+ "duration_s": 1.4
+}

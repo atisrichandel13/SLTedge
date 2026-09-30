@@ -1,0 +1,30 @@
+{
+ "vid": "3h7veASAUaw-00:07:29.766-00:07:38.433",
+ "yid": "3h7veASAUaw",
+ "crop_xywh": [
+  691,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.5399635709249055,
+  -0.08362388896127032,
+  0.9503952494034401,
+  1.1167212771554278
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "New technology rolled out Tuesday after being tested in select cities over the past year.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 260,
+ "stride": 1,
+ "start": "00:07:29.766",
+ "end": "00:07:38.433",
+ "duration_s": 8.667
+}

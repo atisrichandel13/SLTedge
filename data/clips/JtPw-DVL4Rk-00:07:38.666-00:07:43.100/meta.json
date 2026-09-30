@@ -1,0 +1,30 @@
+{
+ "vid": "JtPw-DVL4Rk-00:07:38.666-00:07:43.100",
+ "yid": "JtPw-DVL4Rk",
+ "crop_xywh": [
+  683,
+  0,
+  488,
+  720
+ ],
+ "bbox_norm": [
+  0.5335722405233501,
+  -0.09103715998645673,
+  0.9156649683728629,
+  1.0562724381644375
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We have everything you need to know this Halloween.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 133,
+ "stride": 1,
+ "start": "00:07:38.666",
+ "end": "00:07:43.100",
+ "duration_s": 4.434
+}

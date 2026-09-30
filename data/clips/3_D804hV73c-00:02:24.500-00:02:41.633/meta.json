@@ -1,0 +1,30 @@
+{
+ "vid": "3_D804hV73c-00:02:24.500-00:02:41.633",
+ "yid": "3_D804hV73c",
+ "crop_xywh": [
+  222,
+  0,
+  432,
+  470
+ ],
+ "bbox_norm": [
+  0.2602238148882494,
+  -0.18659452624715966,
+  0.7670807811443636,
+  1.245761465676632
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In fact, an article was recently published in the American Academy of Pediatrics\u2019 journal outlining the clear benefits of learning sign language with speech over an oral-only approach for babies.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 514,
+ "stride": 1,
+ "start": "00:02:24.500",
+ "end": "00:02:41.633",
+ "duration_s": 17.133
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "QwyYZ37YL-g-00:01:57.133-00:02:29.333",
+ "yid": "QwyYZ37YL-g",
+ "crop_xywh": [
+  605,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.47259383457963183,
+  -0.19852970446879434,
+  0.9626249100059591,
+  1.280019077861608
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Trump also received a steroid called dexamethasone, which can help with breathing problems, and for the last few days he's been on of a drug called remdesivir, which can stop the virus' ability to multiply.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 773,
+ "stride": 1,
+ "start": "00:01:57.133",
+ "end": "00:02:29.333",
+ "duration_s": 32.2
+}

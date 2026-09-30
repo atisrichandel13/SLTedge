@@ -1,0 +1,30 @@
+{
+ "vid": "y3rmBWJoJg4-00:09:27.666-00:09:38.100",
+ "yid": "y3rmBWJoJg4",
+ "crop_xywh": [
+  796,
+  133,
+  326,
+  530
+ ],
+ "bbox_norm": [
+  0.6221569911126168,
+  0.1844907890511243,
+  0.8776063630657811,
+  0.9216002590767371
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's suggested upon birth, to separate the baby and mother  to protect the infant's weak immune system.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 314,
+ "stride": 1,
+ "start": "00:09:27.666",
+ "end": "00:09:38.100",
+ "duration_s": 10.434
+}

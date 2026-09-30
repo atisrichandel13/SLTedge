@@ -1,0 +1,30 @@
+{
+ "vid": "vJdxYw1i2QM-00:04:26.000-00:04:43.333",
+ "yid": "vJdxYw1i2QM",
+ "crop_xywh": [
+  793,
+  140,
+  320,
+  504
+ ],
+ "bbox_norm": [
+  0.6198305279317529,
+  0.19481657522696036,
+  0.8691831160073329,
+  0.8965235711214384
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"A message on the AMS website says \"\"Do not let the virus prevent you from seeking refuge from a tornado.\"\"\"",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 520,
+ "stride": 1,
+ "start": "00:04:26.000",
+ "end": "00:04:43.333",
+ "duration_s": 17.333
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "NJQ7M-rFtFQ-00:00:04.633-00:00:08.366",
+ "yid": "NJQ7M-rFtFQ",
+ "crop_xywh": [
+  191,
+  0,
+  714,
+  720
+ ],
+ "bbox_norm": [
+  0.14910072796586632,
+  -0.2060936772688959,
+  0.7068682255952256,
+  1.4613487851792488
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I\u2019ve always loved reading and writing.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 112,
+ "stride": 1,
+ "start": "00:00:04.633",
+ "end": "00:00:08.366",
+ "duration_s": 3.733
+}

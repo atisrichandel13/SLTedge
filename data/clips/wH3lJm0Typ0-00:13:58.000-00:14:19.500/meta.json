@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:13:58.000-00:14:19.500",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  615,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.48059277251093274,
+  -0.16885866235803676,
+  0.9487569887816751,
+  1.2348451049239546
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"The person also said that Hicks was in a \"\"boyfriend/girlfriend\"\" relationship with the former superintendent of ISD, Marybeth Lauderdale, who is currently the Director of the Western Pennsylvania School for the Deaf.\"",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 645,
+ "stride": 1,
+ "start": "00:13:58.000",
+ "end": "00:14:19.500",
+ "duration_s": 21.5
+}

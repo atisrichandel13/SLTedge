@@ -1,0 +1,30 @@
+{
+ "vid": "35N28rtz66I-00:09:53.100-00:09:58.666",
+ "yid": "35N28rtz66I",
+ "crop_xywh": [
+  628,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.49082383174522254,
+  -0.035285897348441335,
+  0.9240799885170132,
+  1.1832444030994422
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Why did Ciara get this welcome?",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 167,
+ "stride": 1,
+ "start": "00:09:53.100",
+ "end": "00:09:58.666",
+ "duration_s": 5.566
+}

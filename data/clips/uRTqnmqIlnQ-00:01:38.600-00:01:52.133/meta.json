@@ -1,0 +1,30 @@
+{
+ "vid": "uRTqnmqIlnQ-00:01:38.600-00:01:52.133",
+ "yid": "uRTqnmqIlnQ",
+ "crop_xywh": [
+  552,
+  0,
+  612,
+  720
+ ],
+ "bbox_norm": [
+  0.43161292750426017,
+  -0.1996870263524596,
+  0.9090425621379505,
+  1.2472248904766592
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Sweden has told residents to stay home as much as possible and be socially responsible when going out.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 325,
+ "stride": 1,
+ "start": "00:01:38.600",
+ "end": "00:01:52.133",
+ "duration_s": 13.533
+}

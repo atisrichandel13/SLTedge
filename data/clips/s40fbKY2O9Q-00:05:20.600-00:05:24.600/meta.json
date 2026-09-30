@@ -1,0 +1,30 @@
+{
+ "vid": "s40fbKY2O9Q-00:05:20.600-00:05:24.600",
+ "yid": "s40fbKY2O9Q",
+ "crop_xywh": [
+  684,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.5340812136332195,
+  -0.11071861549660011,
+  0.9590956891377768,
+  1.1501948519106264
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is a composite sketch of that man.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 120,
+ "stride": 1,
+ "start": "00:05:20.600",
+ "end": "00:05:24.600",
+ "duration_s": 4.0
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "btdPgAr_4ow-00:08:05.200-00:08:12.533",
+ "yid": "btdPgAr_4ow",
+ "crop_xywh": [
+  739,
+  79,
+  476,
+  640
+ ],
+ "bbox_norm": [
+  0.5776066406206651,
+  0.10996281305948893,
+  0.9502973052588375,
+  1.1828476939538513
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Then ask about repayment options.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 220,
+ "stride": 1,
+ "start": "00:08:05.200",
+ "end": "00:08:12.533",
+ "duration_s": 7.333
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "TXyNxVRRPt8-00:02:40.700-00:02:45.166",
+ "yid": "TXyNxVRRPt8",
+ "crop_xywh": [
+  549,
+  0,
+  568,
+  720
+ ],
+ "bbox_norm": [
+  0.42919239350307137,
+  -0.19740157997330193,
+  0.8731190846290118,
+  1.1425142861197515
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Most people do not realize that is a NAD program.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 134,
+ "stride": 1,
+ "start": "00:02:40.700",
+ "end": "00:02:45.166",
+ "duration_s": 4.466
+}

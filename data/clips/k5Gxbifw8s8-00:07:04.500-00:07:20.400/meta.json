@@ -1,0 +1,30 @@
+{
+ "vid": "k5Gxbifw8s8-00:07:04.500-00:07:20.400",
+ "yid": "k5Gxbifw8s8",
+ "crop_xywh": [
+  664,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.5187818686167399,
+  -0.11874683190275122,
+  0.9380038698514304,
+  1.0454272983250794
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Trump Administration has claimed the House is not conducting a valid impeachment inquiry since there's been no formal vote to authorize it.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 477,
+ "stride": 1,
+ "start": "00:07:04.500",
+ "end": "00:07:20.400",
+ "duration_s": 15.9
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "qilEmtLS5Qk-00:03:33.566-00:03:50.266",
+ "yid": "qilEmtLS5Qk",
+ "crop_xywh": [
+  798,
+  159,
+  304,
+  470
+ ],
+ "bbox_norm": [
+  0.6237837960448446,
+  0.22032470667356624,
+  0.861170781212014,
+  0.8754829435352981
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They say if measures for containment, surveillance, and contact tracing are not done, the US could be in for a very rough time.",
+ "split": "test",
+ "fps": 26.565,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 444,
+ "stride": 1,
+ "start": "00:03:33.566",
+ "end": "00:03:50.266",
+ "duration_s": 16.7
+}

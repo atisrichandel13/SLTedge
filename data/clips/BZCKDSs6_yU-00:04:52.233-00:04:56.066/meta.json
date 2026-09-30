@@ -1,0 +1,30 @@
+{
+ "vid": "BZCKDSs6_yU-00:04:52.233-00:04:56.066",
+ "yid": "BZCKDSs6_yU",
+ "crop_xywh": [
+  534,
+  0,
+  640,
+  720
+ ],
+ "bbox_norm": [
+  0.417549931375604,
+  -0.21791356627704106,
+  0.9176998824403998,
+  1.3201054277475814
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "One can stay home. They do not need to go if they are concerned about Covid-19.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 92,
+ "stride": 1,
+ "start": "00:04:52.233",
+ "end": "00:04:56.066",
+ "duration_s": 3.833
+}

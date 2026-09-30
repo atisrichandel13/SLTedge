@@ -1,0 +1,30 @@
+{
+ "vid": "r7FVWOs--Nw-00:02:35.000-00:02:38.766",
+ "yid": "r7FVWOs--Nw",
+ "crop_xywh": [
+  349,
+  0,
+  572,
+  720
+ ],
+ "bbox_norm": [
+  0.27266981981802674,
+  -0.20740292774882294,
+  0.7192879414212876,
+  1.1709860915339128
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Usually my clients prefer me at night because most of them work during the day.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 113,
+ "stride": 1,
+ "start": "00:02:35.000",
+ "end": "00:02:38.766",
+ "duration_s": 3.766
+}

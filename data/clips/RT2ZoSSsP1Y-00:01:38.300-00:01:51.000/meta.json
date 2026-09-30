@@ -1,0 +1,30 @@
+{
+ "vid": "RT2ZoSSsP1Y-00:01:38.300-00:01:51.000",
+ "yid": "RT2ZoSSsP1Y",
+ "crop_xywh": [
+  668,
+  0,
+  506,
+  718
+ ],
+ "bbox_norm": [
+  0.5218426254404572,
+  -0.06489281592431007,
+  0.9173536416256066,
+  0.9989852340133102
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In Florida police body cam footage shows the arrest of Tristan Scott Wix outside of a Daytona Beach grocery store.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 8,
+ "stride": 1,
+ "start": "00:01:38.300",
+ "end": "00:01:51.000",
+ "duration_s": 12.7
+}

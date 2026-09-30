@@ -1,0 +1,30 @@
+{
+ "vid": "ImwA3Ctckfk-00:08:08.233-00:08:31.333",
+ "yid": "ImwA3Ctckfk",
+ "crop_xywh": [
+  653,
+  0,
+  556,
+  720
+ ],
+ "bbox_norm": [
+  0.5101306666001427,
+  -0.12905182781265223,
+  0.9455891815020884,
+  1.0773437652974138
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The historic Ebenezer Baptist Church is part of the national park in Atlanta along with Martin Luther King's birth home, his tomb and the visitor center to learn about people involved in civil rights.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 693,
+ "stride": 1,
+ "start": "00:08:08.233",
+ "end": "00:08:31.333",
+ "duration_s": 23.1
+}

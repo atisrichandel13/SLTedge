@@ -1,0 +1,30 @@
+{
+ "vid": "VvpFqAynbOc-00:01:04.200-00:01:06.066",
+ "yid": "VvpFqAynbOc",
+ "crop_xywh": [
+  551,
+  0,
+  494,
+  720
+ ],
+ "bbox_norm": [
+  0.43028663655985955,
+  -0.06136405410398032,
+  0.8171866759009984,
+  1.0366955416214063
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As soon as they get in, it\u2019s go time.",
+ "split": "test",
+ "fps": 59.94,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 112,
+ "stride": 1,
+ "start": "00:01:04.200",
+ "end": "00:01:06.066",
+ "duration_s": 1.866
+}

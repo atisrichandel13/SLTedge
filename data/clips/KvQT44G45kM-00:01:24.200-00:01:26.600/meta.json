@@ -1,0 +1,30 @@
+{
+ "vid": "KvQT44G45kM-00:01:24.200-00:01:26.600",
+ "yid": "KvQT44G45kM",
+ "crop_xywh": [
+  578,
+  0,
+  634,
+  720
+ ],
+ "bbox_norm": [
+  0.4512651046117147,
+  -0.19660910735895604,
+  0.9478996303346422,
+  1.3451325210524194
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Senator to test positive.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 58,
+ "stride": 1,
+ "start": "00:01:24.200",
+ "end": "00:01:26.600",
+ "duration_s": 2.4
+}

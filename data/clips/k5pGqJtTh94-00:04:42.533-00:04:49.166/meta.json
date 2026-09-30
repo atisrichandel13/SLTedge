@@ -1,0 +1,30 @@
+{
+ "vid": "k5pGqJtTh94-00:04:42.533-00:04:49.166",
+ "yid": "k5pGqJtTh94",
+ "crop_xywh": [
+  623,
+  0,
+  546,
+  720
+ ],
+ "bbox_norm": [
+  0.48695409496625264,
+  -0.14514514914265386,
+  0.9143971224625905,
+  1.0761141726264247
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thomas was quickly arrested by two responding officers.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 160,
+ "stride": 1,
+ "start": "00:04:42.533",
+ "end": "00:04:49.166",
+ "duration_s": 6.633
+}

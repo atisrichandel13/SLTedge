@@ -1,0 +1,30 @@
+{
+ "vid": "IsEzvnueFQk-00:00:33.000-00:00:39.366",
+ "yid": "IsEzvnueFQk",
+ "crop_xywh": [
+  428,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.33454583844830915,
+  -0.12071438656058361,
+  0.7721032681003693,
+  1.1025269019561001
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "NLTC is incredible because without this opportunity, we can\u2019t learn.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 153,
+ "stride": 1,
+ "start": "00:00:33.000",
+ "end": "00:00:39.366",
+ "duration_s": 6.366
+}

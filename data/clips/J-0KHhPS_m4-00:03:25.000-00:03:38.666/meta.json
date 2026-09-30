@@ -1,0 +1,30 @@
+{
+ "vid": "J-0KHhPS_m4-00:03:25.000-00:03:38.666",
+ "yid": "J-0KHhPS_m4",
+ "crop_xywh": [
+  675,
+  0,
+  450,
+  636
+ ],
+ "bbox_norm": [
+  0.5270857802251491,
+  -0.08824477441265653,
+  0.8792373043734854,
+  0.8842310530706473
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In addition some other retired players participated in the scheme for kickbacks and bribes.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 410,
+ "stride": 1,
+ "start": "00:03:25.000",
+ "end": "00:03:38.666",
+ "duration_s": 13.666
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "4i0Y_mFJejI-00:05:31.633-00:05:35.366",
+ "yid": "4i0Y_mFJejI",
+ "crop_xywh": [
+  372,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.29060768182726876,
+  -0.20548570482435244,
+  0.7712329560431882,
+  1.2643225140041776
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Because the body's antibodies degrade over time.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 112,
+ "stride": 1,
+ "start": "00:05:31.633",
+ "end": "00:05:35.366",
+ "duration_s": 3.733
+}

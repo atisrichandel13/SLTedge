@@ -1,0 +1,30 @@
+{
+ "vid": "CTOvj74LWD8-00:01:12.400-00:01:21.000",
+ "yid": "CTOvj74LWD8",
+ "crop_xywh": [
+  692,
+  0,
+  476,
+  720
+ ],
+ "bbox_norm": [
+  0.5408591013688308,
+  -0.08124173604525052,
+  0.9131868399106539,
+  1.0669673369481012
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Police say a pregnant 24-year-old woman was fatally shot by the father of her two other children.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 258,
+ "stride": 1,
+ "start": "00:01:12.400",
+ "end": "00:01:21.000",
+ "duration_s": 8.6
+}

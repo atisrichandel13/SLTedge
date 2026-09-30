@@ -1,0 +1,30 @@
+{
+ "vid": "wdmj6E_faOo-00:02:24.366-00:02:26.233",
+ "yid": "wdmj6E_faOo",
+ "crop_xywh": [
+  795,
+  57,
+  330,
+  564
+ ],
+ "bbox_norm": [
+  0.6210116346677144,
+  0.07869778739081489,
+  0.8793490052223205,
+  0.8619664704358135
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I said yes, do you mind if I borrow it.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 56,
+ "stride": 1,
+ "start": "00:02:24.366",
+ "end": "00:02:26.233",
+ "duration_s": 1.867
+}

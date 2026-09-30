@@ -1,0 +1,30 @@
+{
+ "vid": "YR7BS6l_95E-00:04:35.500-00:04:39.666",
+ "yid": "YR7BS6l_95E",
+ "crop_xywh": [
+  205,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.1607026540300769,
+  -0.14105274963378908,
+  0.6244426440098736,
+  1.1622539867824977
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I feel so blessed and grateful for the Atlanta community.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1278,
+  720
+ ],
+ "n_frames": 125,
+ "stride": 1,
+ "start": "00:04:35.500",
+ "end": "00:04:39.666",
+ "duration_s": 4.166
+}

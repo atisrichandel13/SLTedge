@@ -1,0 +1,30 @@
+{
+ "vid": "k5Gxbifw8s8-00:02:14.066-00:02:18.733",
+ "yid": "k5Gxbifw8s8",
+ "crop_xywh": [
+  669,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.5229759553383136,
+  -0.12017992319275136,
+  0.9389488491518744,
+  1.0565906539273902
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There are more and more opportunities for Deaf people to become CDIs.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 141,
+ "stride": 1,
+ "start": "00:02:14.066",
+ "end": "00:02:18.733",
+ "duration_s": 4.667
+}

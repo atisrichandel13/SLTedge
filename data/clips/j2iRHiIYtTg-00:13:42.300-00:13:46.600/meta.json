@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:13:42.300-00:13:46.600",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  186,
+  0,
+  740,
+  720
+ ],
+ "bbox_norm": [
+  0.14552241777762387,
+  -0.17738543453379574,
+  0.7236779206838364,
+  1.493539289056066
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We have called you out to stop racism.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 129,
+ "stride": 1,
+ "start": "00:13:42.300",
+ "end": "00:13:46.600",
+ "duration_s": 4.3
+}

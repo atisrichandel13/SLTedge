@@ -1,0 +1,30 @@
+{
+ "vid": "N29DdjIj5rw-00:00:11.400-00:00:19.200",
+ "yid": "N29DdjIj5rw",
+ "crop_xywh": [
+  270,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.21092019757480485,
+  -0.21491449865607223,
+  0.6562321862430437,
+  1.1785499297698903
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It keeps things fresh for me, I mean -- I get bored easily, that\u2019s why I love conference planning because of the many things that come up.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 4,
+ "stride": 1,
+ "start": "00:00:11.400",
+ "end": "00:00:19.200",
+ "duration_s": 7.8
+}

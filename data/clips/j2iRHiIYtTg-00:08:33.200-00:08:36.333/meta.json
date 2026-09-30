@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:08:33.200-00:08:36.333",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  324,
+  0,
+  784,
+  720
+ ],
+ "bbox_norm": [
+  0.2533576772924055,
+  -0.17521264000013326,
+  0.8653242019184849,
+  1.6277107052868105
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "President Bobbi confirmed it with the five-year contract.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 94,
+ "stride": 1,
+ "start": "00:08:33.200",
+ "end": "00:08:36.333",
+ "duration_s": 3.133
+}

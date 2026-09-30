@@ -34,12 +34,44 @@ if [ ! -x "$YT/python" ]; then
 fi
 
 mkdir -p "$(dirname "$LOG")"
-echo "=== $(date) starting/resuming full-split fetch" >> "$LOG"
-PATH="$YT:$PATH" "$YT/python" data/openasl_fetch.py \
-    --split test --n-clips "$WANT" --max-per-video 0 \
-    --min-dur 0 --max-dur 1e9 --seed 0 --max-attempts 1200 \
-    --out "$OUT" >> "$LOG" 2>&1
-rc=$?
-echo "=== $(date) fetch exited rc=$rc" >> "$LOG"
+
+count_clips() { find "$OUT" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' '; }
+
+# SUPERVISOR with a stall watchdog. Resumable is not the same as hang-proof: on 2026-09-28 a dropped
+# network left yt-dlp blocked on a socket and the fetch sat at 397 clips for six hours without dying,
+# so the resume logic never got a chance to run. The download path is fixed (process-group kill plus
+# --socket-timeout), but a supervisor is the belt to that braces: if the clip count stops advancing for
+# STALL_S, kill the whole thing and start again from disk state.
+ATTEMPTS="${SLT_ATTEMPTS:-40}"
+STALL_S="${SLT_STALL_S:-600}"
+
+for attempt in $(seq 1 "$ATTEMPTS"); do
+    have=$(count_clips)
+    if [ "$have" -ge "$WANT" ]; then echo "[fetch] complete: ${have}/${WANT}"; break; fi
+    echo "=== $(date) attempt ${attempt}, ${have}/${WANT} on disk" >> "$LOG"
+    PATH="$YT:$PATH" "$YT/python" data/openasl_fetch.py \
+        --split test --n-clips "$WANT" --max-per-video 0 \
+        --min-dur 0 --max-dur 1e9 --seed 0 --max-attempts 1200 \
+        --out "$OUT" >> "$LOG" 2>&1 &
+    pid=$!
+
+    last=$(count_clips); idle=0
+    while kill -0 "$pid" 2>/dev/null; do
+        sleep 30
+        now=$(count_clips)
+        if [ "$now" -gt "$last" ]; then last=$now; idle=0; else idle=$((idle + 30)); fi
+        if [ "$idle" -ge "$STALL_S" ]; then
+            echo "=== $(date) STALLED at ${now} clips for ${idle}s; killing attempt ${attempt}" >> "$LOG"
+            # kill the process group so yt-dlp's ffmpeg children go too
+            kill -- "-$(ps -o pgid= "$pid" | tr -d ' ')" 2>/dev/null || kill -9 "$pid" 2>/dev/null
+            pkill -9 -f 'yt-dlp' 2>/dev/null; pkill -9 -f 'ffmpeg' 2>/dev/null
+            break
+        fi
+    done
+    wait "$pid" 2>/dev/null
+    echo "=== $(date) attempt ${attempt} ended, $(count_clips)/${WANT} on disk" >> "$LOG"
+    [ "$(count_clips)" -ge "$WANT" ] && break
+    sleep 10
+done
+
 ./data/fetch_full_split.sh status
-exit $rc

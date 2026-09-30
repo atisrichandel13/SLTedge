@@ -1,0 +1,30 @@
+{
+ "vid": "tAB9G6QcXDU-00:01:03.333-00:01:06.166",
+ "yid": "tAB9G6QcXDU",
+ "crop_xywh": [
+  328,
+  0,
+  630,
+  720
+ ],
+ "bbox_norm": [
+  0.25631516332979554,
+  -0.1682988461153007,
+  0.7490922106636896,
+  1.2035898848325628
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Prior to professional type of work. ",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 85,
+ "stride": 1,
+ "start": "00:01:03.333",
+ "end": "00:01:06.166",
+ "duration_s": 2.833
+}

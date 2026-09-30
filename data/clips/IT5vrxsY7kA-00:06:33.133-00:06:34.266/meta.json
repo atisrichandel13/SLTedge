@@ -1,0 +1,30 @@
+{
+ "vid": "IT5vrxsY7kA-00:06:33.133-00:06:34.266",
+ "yid": "IT5vrxsY7kA",
+ "crop_xywh": [
+  372,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.29040077300298783,
+  -0.18801571275822068,
+  0.7700772648765927,
+  1.171076562669542
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm Candace Jones.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 34,
+ "stride": 1,
+ "start": "00:06:33.133",
+ "end": "00:06:34.266",
+ "duration_s": 1.133
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "O6yJZ85qEl0-00:06:01.500-00:06:08.633",
+ "yid": "O6yJZ85qEl0",
+ "crop_xywh": [
+  577,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.4511506102805914,
+  -0.12582259017983766,
+  0.8765039488326671,
+  1.0750294325579661
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Pregnant mothers giving birth in the US is at a historical death rate. ",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 214,
+ "stride": 1,
+ "start": "00:06:01.500",
+ "end": "00:06:08.633",
+ "duration_s": 7.133
+}

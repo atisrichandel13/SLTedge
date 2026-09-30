@@ -1,0 +1,30 @@
+{
+ "vid": "SsQxB7yYxgQ-00:04:33.700-00:04:36.600",
+ "yid": "SsQxB7yYxgQ",
+ "crop_xywh": [
+  586,
+  0,
+  648,
+  720
+ ],
+ "bbox_norm": [
+  0.4575135734346178,
+  -0.1750070618994442,
+  0.9643730137083266,
+  1.3619876221864802
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thank you for your time, Randall.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:04:33.700",
+ "end": "00:04:36.600",
+ "duration_s": 2.9
+}

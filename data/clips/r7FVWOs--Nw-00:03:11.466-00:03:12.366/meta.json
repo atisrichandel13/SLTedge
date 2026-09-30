@@ -1,0 +1,30 @@
+{
+ "vid": "r7FVWOs--Nw-00:03:11.466-00:03:12.366",
+ "yid": "r7FVWOs--Nw",
+ "crop_xywh": [
+  325,
+  0,
+  632,
+  720
+ ],
+ "bbox_norm": [
+  0.25373530917697484,
+  -0.21980233015837491,
+  0.7477825164794922,
+  1.2164259021664843
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You may be surprised.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 27,
+ "stride": 1,
+ "start": "00:03:11.466",
+ "end": "00:03:12.366",
+ "duration_s": 0.9
+}

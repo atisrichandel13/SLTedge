@@ -1,0 +1,30 @@
+{
+ "vid": "lIE16P1LVhc-00:02:23.733-00:02:27.066",
+ "yid": "lIE16P1LVhc",
+ "crop_xywh": [
+  710,
+  0,
+  398,
+  662
+ ],
+ "bbox_norm": [
+  0.5549992674872989,
+  -0.07580264863513765,
+  0.865637713386899,
+  0.9198368405538893
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is our Master of Ceremony for this evening, Persus!",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 80,
+ "stride": 1,
+ "start": "00:02:23.733",
+ "end": "00:02:27.066",
+ "duration_s": 3.333
+}

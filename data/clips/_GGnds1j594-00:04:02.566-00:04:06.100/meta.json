@@ -1,0 +1,30 @@
+{
+ "vid": "_GGnds1j594-00:04:02.566-00:04:06.100",
+ "yid": "_GGnds1j594",
+ "crop_xywh": [
+  383,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.299053778070392,
+  -0.10720181705975775,
+  0.7232627312342326,
+  1.1513608271024043
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now, I\u2019m no longer shy and I overcame challenges growing up.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 106,
+ "stride": 1,
+ "start": "00:04:02.566",
+ "end": "00:04:06.100",
+ "duration_s": 3.534
+}

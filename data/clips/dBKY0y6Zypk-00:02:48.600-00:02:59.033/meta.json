@@ -1,0 +1,30 @@
+{
+ "vid": "dBKY0y6Zypk-00:02:48.600-00:02:59.033",
+ "yid": "dBKY0y6Zypk",
+ "crop_xywh": [
+  358,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.2796976346818228,
+  -0.22640438864751117,
+  0.7594705637169894,
+  1.1993209719447653
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As we were developing it, we brought in experts such as Dr. Carol Padden, Dr. Ted Supalla, and others, who provided advice.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 313,
+ "stride": 1,
+ "start": "00:02:48.600",
+ "end": "00:02:59.033",
+ "duration_s": 10.433
+}

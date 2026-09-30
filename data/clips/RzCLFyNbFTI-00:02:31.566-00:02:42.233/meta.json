@@ -1,0 +1,30 @@
+{
+ "vid": "RzCLFyNbFTI-00:02:31.566-00:02:42.233",
+ "yid": "RzCLFyNbFTI",
+ "crop_xywh": [
+  242,
+  0,
+  374,
+  480
+ ],
+ "bbox_norm": [
+  0.2831571964804406,
+  -0.1574823873738448,
+  0.7228253940229393,
+  1.128519974524776
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We believe our recent hearing was a big success and a step in the right direction - and it would not have been possible without you!",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 320,
+ "stride": 1,
+ "start": "00:02:31.566",
+ "end": "00:02:42.233",
+ "duration_s": 10.667
+}

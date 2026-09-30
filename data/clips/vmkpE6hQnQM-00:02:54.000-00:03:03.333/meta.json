@@ -1,0 +1,30 @@
+{
+ "vid": "vmkpE6hQnQM-00:02:54.000-00:03:03.333",
+ "yid": "vmkpE6hQnQM",
+ "crop_xywh": [
+  301,
+  0,
+  738,
+  720
+ ],
+ "bbox_norm": [
+  0.23493738727910177,
+  -0.12353959461999317,
+  0.8120109988110406,
+  1.505059384164356
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Another major event: NAD CEO Nancy Bloch will be leaving her position soon.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 280,
+ "stride": 1,
+ "start": "00:02:54.000",
+ "end": "00:03:03.333",
+ "duration_s": 9.333
+}

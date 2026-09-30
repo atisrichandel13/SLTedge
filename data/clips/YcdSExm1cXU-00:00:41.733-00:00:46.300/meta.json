@@ -1,0 +1,30 @@
+{
+ "vid": "YcdSExm1cXU-00:00:41.733-00:00:46.300",
+ "yid": "YcdSExm1cXU",
+ "crop_xywh": [
+  397,
+  0,
+  590,
+  720
+ ],
+ "bbox_norm": [
+  0.31047047944295975,
+  -0.1437362832367105,
+  0.7711798015094938,
+  1.1073379294582146
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Nonetheless, since February I have made several appearances and I have done a lot of volunteering.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 137,
+ "stride": 1,
+ "start": "00:00:41.733",
+ "end": "00:00:46.300",
+ "duration_s": 4.567
+}

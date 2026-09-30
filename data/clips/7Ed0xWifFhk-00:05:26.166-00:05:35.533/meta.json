@@ -1,0 +1,30 @@
+{
+ "vid": "7Ed0xWifFhk-00:05:26.166-00:05:35.533",
+ "yid": "7Ed0xWifFhk",
+ "crop_xywh": [
+  670,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.523229171797546,
+  -0.14663743830253892,
+  0.9228830739071494,
+  1.0612545863616922
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Trump's political advisors hope he'll spotlight his accomplishments and 4 more years of promises kept.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 281,
+ "stride": 1,
+ "start": "00:05:26.166",
+ "end": "00:05:35.533",
+ "duration_s": 9.367
+}

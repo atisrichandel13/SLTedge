@@ -1,0 +1,30 @@
+{
+ "vid": "BZCKDSs6_yU-00:02:39.333-00:02:54.533",
+ "yid": "BZCKDSs6_yU",
+ "crop_xywh": [
+  515,
+  0,
+  650,
+  720
+ ],
+ "bbox_norm": [
+  0.4024645881565739,
+  -0.221028504161167,
+  0.9104704967916829,
+  1.3368886275076128
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The river is expected to crest at 8 p.m. Over 40,000 people live in Midland.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 365,
+ "stride": 1,
+ "start": "00:02:39.333",
+ "end": "00:02:54.533",
+ "duration_s": 15.2
+}

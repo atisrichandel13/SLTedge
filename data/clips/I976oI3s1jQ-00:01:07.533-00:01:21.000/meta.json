@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:01:07.533-00:01:21.000",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  615,
+  0,
+  628,
+  720
+ ],
+ "bbox_norm": [
+  0.4805784245026417,
+  -0.18385451444533477,
+  0.971004035167205,
+  1.3002347125626699
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He said he still went to work for two days, but after struggling with high fevers and chills, he decided to stay home to recover.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 324,
+ "stride": 1,
+ "start": "00:01:07.533",
+ "end": "00:01:21.000",
+ "duration_s": 13.467
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "Wv8juaN202w-00:18:44.500-00:18:47.166",
+ "yid": "Wv8juaN202w",
+ "crop_xywh": [
+  0,
+  0,
+  740,
+  720
+ ],
+ "bbox_norm": [
+  -0.005331766299712352,
+  -0.216976315751035,
+  0.5787602076163658,
+  1.5738622290456397
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's really annoying, the pain.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 64,
+ "stride": 1,
+ "start": "00:18:44.500",
+ "end": "00:18:47.166",
+ "duration_s": 2.666
+}

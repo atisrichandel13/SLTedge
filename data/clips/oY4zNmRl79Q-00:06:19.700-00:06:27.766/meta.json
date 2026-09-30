@@ -1,0 +1,30 @@
+{
+ "vid": "oY4zNmRl79Q-00:06:19.700-00:06:27.766",
+ "yid": "oY4zNmRl79Q",
+ "crop_xywh": [
+  667,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.5214459600902739,
+  -0.08993180578437973,
+  0.9403710261494124,
+  1.1202435511490294
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "At one point the girl stepped on the accelerator and then struck a tree, a man,  and one of his dogs.",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 242,
+ "stride": 1,
+ "start": "00:06:19.700",
+ "end": "00:06:27.766",
+ "duration_s": 8.066
+}

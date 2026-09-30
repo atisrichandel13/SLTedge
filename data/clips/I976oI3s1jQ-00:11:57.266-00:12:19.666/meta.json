@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:11:57.266-00:12:19.666",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  588,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.45922988108646723,
+  -0.17468600018034255,
+  0.94843853344152,
+  1.2926220500093102
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They said they encourage deaf people out there, if you think you might have the virus, to be sure to talk with healthcare workers who will take the time to sit down and have patience with your communication needs and delays.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 538,
+ "stride": 1,
+ "start": "00:11:57.266",
+ "end": "00:12:19.666",
+ "duration_s": 22.4
+}

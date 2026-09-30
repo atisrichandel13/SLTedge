@@ -1,0 +1,30 @@
+{
+ "vid": "MJijm9kbdHA-00:09:15.233-00:09:31.033",
+ "yid": "MJijm9kbdHA",
+ "crop_xywh": [
+  636,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.49664043418148107,
+  -0.16286329674674288,
+  0.9300475417521963,
+  1.1282689670837878
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Johnson is credited with making the mathematical calculations that helped to put men on the moon in 1969.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 380,
+ "stride": 1,
+ "start": "00:09:15.233",
+ "end": "00:09:31.033",
+ "duration_s": 15.8
+}

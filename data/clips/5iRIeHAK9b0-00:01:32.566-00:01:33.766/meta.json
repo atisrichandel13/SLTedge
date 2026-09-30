@@ -1,0 +1,30 @@
+{
+ "vid": "5iRIeHAK9b0-00:01:32.566-00:01:33.766",
+ "yid": "5iRIeHAK9b0",
+ "crop_xywh": [
+  641,
+  0,
+  580,
+  720
+ ],
+ "bbox_norm": [
+  0.5005775292714437,
+  -0.15996355127405237,
+  0.9537589232126872,
+  1.1382888087519893
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was really cool!",
+ "split": "test",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 36,
+ "stride": 1,
+ "start": "00:01:32.566",
+ "end": "00:01:33.766",
+ "duration_s": 1.2
+}

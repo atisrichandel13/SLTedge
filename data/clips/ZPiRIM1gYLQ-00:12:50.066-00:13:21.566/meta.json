@@ -1,0 +1,30 @@
+{
+ "vid": "ZPiRIM1gYLQ-00:12:50.066-00:13:21.566",
+ "yid": "ZPiRIM1gYLQ",
+ "crop_xywh": [
+  673,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.5256716681273458,
+  -0.18509589187428632,
+  0.9631186805315466,
+  1.154293062578467
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Des Moines Register did a nice analysis on how much money Democratic presidential candidates spent on ASL interpreting services from July 1 to September 30, according to Federal Election Commission filings.",
+ "split": "test",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 756,
+ "stride": 1,
+ "start": "00:12:50.066",
+ "end": "00:13:21.566",
+ "duration_s": 31.5
+}

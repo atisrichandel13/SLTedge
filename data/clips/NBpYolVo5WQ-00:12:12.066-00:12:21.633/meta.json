@@ -1,0 +1,30 @@
+{
+ "vid": "NBpYolVo5WQ-00:12:12.066-00:12:21.633",
+ "yid": "NBpYolVo5WQ",
+ "crop_xywh": [
+  650,
+  0,
+  584,
+  720
+ ],
+ "bbox_norm": [
+  0.5079614038052767,
+  -0.18298473926366046,
+  0.9639088540837385,
+  1.1876477339033535
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Gregory used to be a police officer and once worked for a local prosecutor.",
+ "split": "test",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 230,
+ "stride": 1,
+ "start": "00:12:12.066",
+ "end": "00:12:21.633",
+ "duration_s": 9.567
+}

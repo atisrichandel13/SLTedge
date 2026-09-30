@@ -1,0 +1,30 @@
+{
+ "vid": "_N5zuJa9vJI-00:01:47.000-00:01:52.700",
+ "yid": "_N5zuJa9vJI",
+ "crop_xywh": [
+  641,
+  0,
+  496,
+  720
+ ],
+ "bbox_norm": [
+  0.5005340385437012,
+  -0.10413617694188677,
+  0.8886815416245233,
+  1.033097885172203
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Security was extremely tight but it didn't stop the fun from happening.",
+ "split": "test",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 171,
+ "stride": 1,
+ "start": "00:01:47.000",
+ "end": "00:01:52.700",
+ "duration_s": 5.7
+}
