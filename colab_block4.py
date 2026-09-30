@@ -28,6 +28,10 @@ import os
 import subprocess
 import sys
 
+# Line-buffer stdout: these run under nohup with output redirected to a file, where
+# Python block-buffers by default and progress is invisible for minutes at a time.
+sys.stdout.reconfigure(line_buffering=True)
+
 R = "/content/runs"
 E = f"{R}/evals"
 P = sys.executable

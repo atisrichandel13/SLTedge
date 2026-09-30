@@ -22,6 +22,10 @@ import os
 import sys
 import zipfile
 
+# Line-buffer stdout: these run under nohup with output redirected to a file, where
+# Python block-buffers by default and progress is invisible for minutes at a time.
+sys.stdout.reconfigure(line_buffering=True)
+
 W = "/content/weights"
 POSES = "/content/poses_train"
 CKPT = "/content/pruned_traindev.pth"
