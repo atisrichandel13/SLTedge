@@ -25,6 +25,7 @@ import json
 import os
 import pickle
 import random
+import re
 
 import numpy as np
 import torch
@@ -136,9 +137,45 @@ def save_pkl(path, kps, scs):
                      "scores": [s.astype(np.float32) for s in scs]}, f)
 
 
-def subsample(kps, scs, max_length, random_subsample=False):
-    """Mirror of S2T_Dataset.load_pose: keep at most max_length frames."""
+_TS_RE = re.compile(r"(\d\d):(\d\d):(\d\d\.\d+)")
+
+
+def clip_duration_s(name):
+    """OpenASL clip names end in -HH:MM:SS.mmm-HH:MM:SS.mmm; returns the clip's duration or None."""
+    m = _TS_RE.findall(name)
+    if len(m) != 2:
+        return None
+    t = [int(h) * 3600 + int(mi) * 60 + float(s) for h, mi, s in m]
+    d = t[1] - t[0]
+    return d if d > 0 else None
+
+
+def fps_ratio_for_clip(name, n_frames, target_fps, fallback_src_fps=30.0):
+    """Thinning ratio that lands the clip at target_fps, using the clip's OWN source rate.
+
+    OpenASL is not one frame rate: over 400 test clips, 73 % are 30 fps, 21 % are 24 fps, with a few
+    at 25/31/60, so a single --src-fps mis-thins a fifth of the data. The clip name carries its
+    duration, so the source rate is n_frames / duration and the target frame count is
+    round(duration * target_fps). Falls back to fallback_src_fps when the name has no timestamps.
+    """
+    if not target_fps:
+        return 1.0
+    d = clip_duration_s(name)
+    src = (n_frames / d) if d else fallback_src_fps
+    return min(1.0, target_fps / src)
+
+
+def subsample(kps, scs, max_length, random_subsample=False, fps_ratio=1.0):
+    """Mirror of S2T_Dataset.load_pose: keep at most max_length frames.
+    fps_ratio < 1 first thins EVERY clip uniformly to round(T * fps_ratio) frames (emulates a lower
+    camera rate, e.g. 16/24 for 16 fps from 24 fps source); the max_length cap then applies as usual."""
     T = len(scs)
+    if fps_ratio < 1.0:
+        keep = max(1, int(round(T * fps_ratio)))
+        idx0 = np.round(np.linspace(0, T - 1, keep)).astype(int).tolist()
+        kps, scs = [kps[i] for i in idx0], [scs[i] for i in idx0]
+        k2, s2, idx1 = subsample(kps, scs, max_length, random_subsample)
+        return k2, s2, [idx0[i] for i in idx1]
     if T <= max_length:
         return kps, scs, list(range(T))
     if random_subsample:
@@ -148,8 +185,8 @@ def subsample(kps, scs, max_length, random_subsample=False):
     return [kps[i] for i in idx], [scs[i] for i in idx], idx
 
 
-def to_model_inputs(kps, scs, max_length=256, random_subsample=False):
-    kps, scs, idx = subsample(kps, scs, max_length, random_subsample)
+def to_model_inputs(kps, scs, max_length=256, random_subsample=False, fps_ratio=1.0):
+    kps, scs, idx = subsample(kps, scs, max_length, random_subsample, fps_ratio)
     return load_part_kp(kps, scs, force_ok=True), idx
 
 

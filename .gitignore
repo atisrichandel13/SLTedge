@@ -11,7 +11,9 @@ data/test_frames/
 data/calib_frames/*.jpg
 data/clips/**/frames/
 data/openasl_test_pose/
+data/openasl_dev_pose/
 data/openasl_train_pose/
+data/openasl_train_pose_smoke/
 data/openasl_ref_pose/*.pkl
 
 # ---- bulky results (keep the .json and RESULTS.md, drop raw dumps) ----
@@ -55,3 +57,8 @@ data/clips_openasl/*/frames/
 
 # transient fetch log (progress only; the real state is the clip dirs on disk)
 results/logs/fetch_full_split.log
+
+# ---- from the LM track ----
+runs/
+scratchpad/
+weights/adapt_*.pt

@@ -118,6 +118,14 @@ def main():
     if args.limit:
         names = names[:args.limit]
     by_base = {os.path.basename(n)[:-4]: n for n in z.namelist() if n.endswith(".pkl")}
+
+    # Fetch in ARCHIVE-OFFSET order, not label order. HttpConcatFile keeps a single 4 MB
+    # read-ahead buffer and drops it on any non-adjacent seek, so a label-ordered walk of a
+    # 32 GB archive pays a full 4 MB range request per ~0.5 MB member -- measured at 4.22 MB
+    # transferred per clip on both the dev split (967 clips, 4069.5 MB) and the first 441 train
+    # clips (1863 MB). Sorting by header_offset makes consecutive members buffer hits instead.
+    names.sort(key=lambda n: z.getinfo(by_base[n]).header_offset if n in by_base else -1)
+
     os.makedirs(args.out, exist_ok=True)
     ok, missing = 0, []
     for i, name in enumerate(names):

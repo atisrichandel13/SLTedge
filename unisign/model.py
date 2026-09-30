@@ -199,11 +199,16 @@ class PrunedTokenizer:
         return len(self.keep)
 
     def _map(self, ids):
+        # old2new/keep are CPU lookup tables built at prune time, but `ids` can arrive on CUDA
+        # (generate() returns device tensors). Index on the table's device, return on the
+        # caller's. CPU-only runs never hit this; the first GPU eval did.
         ids = torch.as_tensor(ids, dtype=torch.long)
-        out = torch.full_like(ids, 2)
-        ok = ids < len(self.old2new)
-        out[ok] = self.old2new[ids[ok]]
-        return out
+        dev = ids.device
+        ids_c = ids.to(self.old2new.device)
+        out = torch.full_like(ids_c, 2)
+        ok = ids_c < len(self.old2new)
+        out[ok] = self.old2new[ids_c[ok]]
+        return out.to(dev)
 
     def __call__(self, text, **kw):
         enc = self.tok(text, **kw)
@@ -212,8 +217,10 @@ class PrunedTokenizer:
         return enc
 
     def decode(self, ids, **kw):
-        ids = torch.as_tensor(ids, dtype=torch.long).reshape(-1)
-        return self.tok.decode(self.keep[ids.cpu()].tolist(), **kw)  # ids may live on CUDA
+        # index on the lookup table's own device and return on the caller's: generate() hands back
+        # ids on CUDA while keep/old2new are CPU tables built at prune time
+        ids = torch.as_tensor(ids, dtype=torch.long).reshape(-1).to(self.keep.device)
+        return self.tok.decode(self.keep[ids].tolist(), **kw)
 
     def batch_decode(self, seqs, **kw):
         return [self.decode(s, **kw) for s in seqs]
@@ -228,14 +235,22 @@ def _mt5_vocab_size(mt5_path):
         return None
 
 
-def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=None):
+def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=None,
+               w8_runtime="dequant"):
     """keep_ids: list of old token ids -> build the model, load the full checkpoint, then prune.
-    A checkpoint saved by prune_and_save() carries its own keep_ids and is loaded pruned."""
+    A checkpoint saved by prune_and_save() carries its own keep_ids and is loaded pruned.
+    A checkpoint saved by unisign.quant carries w8_keys; w8_runtime = "dequant" (float weights in
+    RAM) or "int8" (W8Linear modules, int8 in RAM, dequantised per forward)."""
     # mmap: the 2.3 GB full checkpoint stays page-cache backed instead of anonymous RAM, which
     # matters on the 8 GB unified-memory Jetson where CPU + GPU copies share one pool.
     sd = torch.load(ckpt_path, map_location="cpu", mmap=True)
     ckpt_keep = sd.get("keep_ids", None)
+    w8_keys = sd.get("w8_keys", None)
     sd = sd.get("model", sd)
+    if w8_keys:
+        from .quant import dequantize_state_dict, swap_linears_to_w8
+        q_sd = sd
+        sd = dequantize_state_dict(sd, w8_keys)
     if ckpt_keep is not None:
         # If mt5_path is ALREADY pruned to this vocabulary, materialise it straight onto the device and
         # only remap the tokenizer. The alternative below builds the full 250k-vocab mT5 first and
@@ -261,6 +276,10 @@ def load_model(ckpt_path, mt5_path, device="cpu", dtype=torch.float32, keep_ids=
     del sd, missing, unexpected  # free the checkpoint before the device copy (OOMed on the Jetson)
     gc.collect()
     model.eval().to(device=device, dtype=dtype)
+    if w8_keys and w8_runtime == "int8":
+        n = swap_linears_to_w8(model, q_sd, w8_keys)
+        print(f"[load] W8A32 runtime: {n} Linear modules hold int8 weights")
+    model.w8 = bool(w8_keys)
     return model
 
 

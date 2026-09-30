@@ -1,0 +1,76 @@
+Loading weights:   0%|          | 0/284 [00:00<?, ?it/s]Loading weights: 100%|██████████| 284/284 [00:00<00:00, 23917.88it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+[train] trainable 5.35 M of 243.5 M params; target fps source; max_length 256
+[train] 20000 clips, 5000 batches/epoch, batch 4 x accum 2
+{'bleu1': 43.15381104518485, 'bleu2': 29.87062439779524, 'bleu3': 22.283323917006527, 'bleu4': 17.165405290601022}
+Rouge: 36.82
+[eval] before: BLEU-4 17.17 on 300 clips
+[train] ep 0 step 50 loss 3.3850 lr 9.99e-05 400/20000 clips  0.04 s/clip  eta 12.7 min
+[train] ep 0 step 100 loss 3.3805 lr 9.96e-05 800/20000 clips  0.04 s/clip  eta 12.6 min
+[train] ep 0 step 150 loss 3.3892 lr 9.91e-05 1200/20000 clips  0.04 s/clip  eta 12.3 min
+[train] ep 0 step 200 loss 3.3867 lr 9.84e-05 1600/20000 clips  0.04 s/clip  eta 12.1 min
+[train] ep 0 step 250 loss 3.3808 lr 9.76e-05 2000/20000 clips  0.04 s/clip  eta 11.8 min
+[train] ep 0 step 300 loss 3.3762 lr 9.65e-05 2400/20000 clips  0.04 s/clip  eta 11.5 min
+[train] checkpoint at ep 0 step 300 (batch 600/5000)
+[train] ep 0 step 350 loss 3.3737 lr 9.52e-05 2800/20000 clips  0.04 s/clip  eta 11.3 min
+[train] ep 0 step 400 loss 3.3704 lr 9.38e-05 3200/20000 clips  0.04 s/clip  eta 11.0 min
+[train] ep 0 step 450 loss 3.3682 lr 9.22e-05 3600/20000 clips  0.04 s/clip  eta 10.7 min
+[train] ep 0 step 500 loss 3.3655 lr 9.05e-05 4000/20000 clips  0.04 s/clip  eta 10.4 min
+[train] ep 0 step 550 loss 3.3635 lr 8.85e-05 4400/20000 clips  0.04 s/clip  eta 10.1 min
+[train] ep 0 step 600 loss 3.3637 lr 8.64e-05 4800/20000 clips  0.04 s/clip  eta 9.9 min
+[train] checkpoint at ep 0 step 600 (batch 1200/5000)
+[train] ep 0 step 650 loss 3.3634 lr 8.42e-05 5200/20000 clips  0.04 s/clip  eta 9.6 min
+[train] ep 0 step 700 loss 3.3616 lr 8.19e-05 5600/20000 clips  0.04 s/clip  eta 9.4 min
+[train] ep 0 step 750 loss 3.3618 lr 7.94e-05 6000/20000 clips  0.04 s/clip  eta 9.1 min
+[train] ep 0 step 800 loss 3.3590 lr 7.68e-05 6400/20000 clips  0.04 s/clip  eta 8.8 min
+[train] ep 0 step 850 loss 3.3577 lr 7.41e-05 6800/20000 clips  0.04 s/clip  eta 8.6 min
+[train] ep 0 step 900 loss 3.3555 lr 7.13e-05 7200/20000 clips  0.04 s/clip  eta 8.3 min
+[train] checkpoint at ep 0 step 900 (batch 1800/5000)
+[train] ep 0 step 950 loss 3.3538 lr 6.84e-05 7600/20000 clips  0.04 s/clip  eta 8.0 min
+[train] ep 0 step 1000 loss 3.3532 lr 6.55e-05 8000/20000 clips  0.04 s/clip  eta 7.8 min
+[train] ep 0 step 1050 loss 3.3511 lr 6.24e-05 8400/20000 clips  0.04 s/clip  eta 7.5 min
+[train] ep 0 step 1100 loss 3.3506 lr 5.94e-05 8800/20000 clips  0.04 s/clip  eta 7.2 min
+[train] ep 0 step 1150 loss 3.3492 lr 5.63e-05 9200/20000 clips  0.04 s/clip  eta 7.0 min
+[train] ep 0 step 1200 loss 3.3482 lr 5.31e-05 9600/20000 clips  0.04 s/clip  eta 6.7 min
+[train] checkpoint at ep 0 step 1200 (batch 2400/5000)
+[train] ep 0 step 1250 loss 3.3477 lr 5.00e-05 10000/20000 clips  0.04 s/clip  eta 6.5 min
+[train] ep 0 step 1300 loss 3.3485 lr 4.69e-05 10400/20000 clips  0.04 s/clip  eta 6.2 min
+[train] ep 0 step 1350 loss 3.3480 lr 4.37e-05 10800/20000 clips  0.04 s/clip  eta 5.9 min
+[train] ep 0 step 1400 loss 3.3471 lr 4.06e-05 11200/20000 clips  0.04 s/clip  eta 5.7 min
+[train] ep 0 step 1450 loss 3.3457 lr 3.76e-05 11600/20000 clips  0.04 s/clip  eta 5.4 min
+[train] ep 0 step 1500 loss 3.3451 lr 3.45e-05 12000/20000 clips  0.04 s/clip  eta 5.2 min
+[train] checkpoint at ep 0 step 1500 (batch 3000/5000)
+[train] ep 0 step 1550 loss 3.3443 lr 3.16e-05 12400/20000 clips  0.04 s/clip  eta 4.9 min
+[train] ep 0 step 1600 loss 3.3443 lr 2.87e-05 12800/20000 clips  0.04 s/clip  eta 4.6 min
+[train] ep 0 step 1650 loss 3.3437 lr 2.59e-05 13200/20000 clips  0.04 s/clip  eta 4.4 min
+[train] ep 0 step 1700 loss 3.3432 lr 2.32e-05 13600/20000 clips  0.04 s/clip  eta 4.1 min
+[train] ep 0 step 1750 loss 3.3419 lr 2.06e-05 14000/20000 clips  0.04 s/clip  eta 3.9 min
+[train] ep 0 step 1800 loss 3.3414 lr 1.81e-05 14400/20000 clips  0.04 s/clip  eta 3.6 min
+[train] checkpoint at ep 0 step 1800 (batch 3600/5000)
+[train] ep 0 step 1850 loss 3.3403 lr 1.58e-05 14800/20000 clips  0.04 s/clip  eta 3.3 min
+[train] ep 0 step 1900 loss 3.3398 lr 1.36e-05 15200/20000 clips  0.04 s/clip  eta 3.1 min
+[train] ep 0 step 1950 loss 3.3389 lr 1.15e-05 15600/20000 clips  0.04 s/clip  eta 2.8 min
+[train] ep 0 step 2000 loss 3.3380 lr 9.55e-06 16000/20000 clips  0.04 s/clip  eta 2.6 min
+[train] ep 0 step 2050 loss 3.3377 lr 7.78e-06 16400/20000 clips  0.04 s/clip  eta 2.3 min
+[train] ep 0 step 2100 loss 3.3369 lr 6.18e-06 16800/20000 clips  0.04 s/clip  eta 2.1 min
+[train] checkpoint at ep 0 step 2100 (batch 4200/5000)
+[train] ep 0 step 2150 loss 3.3363 lr 4.76e-06 17200/20000 clips  0.04 s/clip  eta 1.8 min
+[train] ep 0 step 2200 loss 3.3358 lr 3.51e-06 17600/20000 clips  0.04 s/clip  eta 1.5 min
+[train] ep 0 step 2250 loss 3.3358 lr 2.45e-06 18000/20000 clips  0.04 s/clip  eta 1.3 min
+[train] ep 0 step 2300 loss 3.3356 lr 1.57e-06 18400/20000 clips  0.04 s/clip  eta 1.0 min
+[train] ep 0 step 2350 loss 3.3354 lr 8.86e-07 18800/20000 clips  0.04 s/clip  eta 0.8 min
+[train] ep 0 step 2400 loss 3.3348 lr 3.94e-07 19200/20000 clips  0.04 s/clip  eta 0.5 min
+[train] checkpoint at ep 0 step 2400 (batch 4800/5000)
+[train] ep 0 step 2450 loss 3.3346 lr 9.87e-08 19600/20000 clips  0.04 s/clip  eta 0.3 min
+[train] ep 0 step 2500 loss 3.3337 lr 0.00e+00 20000/20000 clips  0.04 s/clip  eta 0.0 min
+[train] epoch 0 done: loss 3.3337, 768 s
+{'bleu1': 41.87072578866094, 'bleu2': 28.65300373969678, 'bleu3': 21.115318475555995, 'bleu4': 16.132013046562804}
+Rouge: 36.10
+[eval] epoch 0: BLEU-4 16.13 ROUGE-L 36.10 on 300 clips
+        ref : Are you all bored being stuck at home?
+        pred: All of us are now stuck at home.
+        ref : There might be some songs you know.
+        pred: Maybe you know the best song.
+        ref : So, we are granting complementary membership fees for all Jr. NAD chapters… and for those who want to establish a new Jr. NAD chapter!
+        pred: Each year we will be excused from not having to pay their annual membership fee and that includes an opportunity for those who want to establish a new chapter at the conference, 
+[train] wrote /content/runs/nofps_seed42/last.pt and /content/runs/nofps_seed42/adapted_full.pth (570 MB)
