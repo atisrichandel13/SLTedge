@@ -11,10 +11,28 @@ IMPORTANT - what kind of number each column is:
                 beam width and encoder length T. HANDOFF s0b.
   * SYSTEM J  : *** COMPOSED ***, not measured end-to-end. pose_J_per_s * clip_seconds + LM_J.
                 Validated against the single measured end-to-end run (M1): composition
-                predicts 47.2 J where 50.37 J was measured, i.e. the composition runs ~6% LOW,
-                presumably the CPU/GPU contention effect the pose track documents in s3.
-                Every composed cell inherits that ~6% optimism. Do not quote a composed cell
-                as a measured one.
+                predicts 47.2 J where 50.37 J was measured, i.e. the composition runs ~6% LOW.
+                Every composed cell inherits that. Do not quote a composed cell as a measured one.
+
+TWO BIASES IN THE ABSOLUTE COLUMN, IN OPPOSITE DIRECTIONS. Neither affects the RELATIVE
+comparisons across cells -- every cell shares the same clip and the same rates -- and the
+relative ordering is the deliverable. But the absolute joules are not a typical clip's.
+
+  1. ~6% LOW (optimistic). The composition misses the 3.16 J between 47.2 predicted and 50.37
+     measured. Originally attributed here to the CPU/GPU contention in the pose track's s3; that
+     was wrong, and they corrected it. Their M1 run measured NO contention (25.10 ms/frame
+     end-to-end vs 25.03 standalone) because the implementation is sequential -- all frames, then
+     the LM -- so the stages never overlap. Likelier causes: the convert step (25.7 ms, which this
+     composition does not model at all), the idle floor during the 64 s LM load, or the warm-up
+     sentence. Untested; the 16 fps/greedy end-to-end run is the experiment that would settle it.
+
+  2. ~7% HIGH (pessimistic) for a median clip. POSE_J_PER_S was measured on one clip whose crop
+     is at the 83rd percentile of crop area across the 931-clip split (9k to 770k px, median
+     395k). Per-frame pose cost is ~13.97 ms fixed (TRT runs at a fixed 256x192 input) plus
+     ~11.13 ms that scales with crop area, so a median clip is ~7% cheaper per frame and a p10
+     clip ~27% cheaper. Meanwhile CLIP_S below is the MEAN TEST CLIP duration, not that clip's --
+     so the absolute column already mixes a duration from our split with an energy rate from
+     their clip. Fixing it needs pose energy over clips spanning the crop range (their C9 work).
 
 Two interpolations are flagged in the output:
   * beam 2 was not measured at T=137 or T=68, so it is placed at the same fraction of the
@@ -88,8 +106,10 @@ for r in rows:
 
 name = {4: "beam 4", 2: "beam 2", 1: "greedy"}
 print(f"\nComposed accuracy-energy frontier, mean test clip ({CLIP_S} s, {SRC_FPS} fps source)")
-print("System J is COMPOSED from two separately measured stages, not measured end-to-end;")
-print("it runs ~6% low against the one real end-to-end run (M1). * = interpolated LM cell.\n")
+print("System J is COMPOSED from two separately measured stages, not measured end-to-end.")
+print("Absolute J carries two opposing biases (see docstring): ~6% low from the unmodelled")
+print("convert/load/warm-up, ~7% high because the pose energy rate came from an 83rd-percentile")
+print("crop. RELATIVE comparisons across cells are unaffected. * = interpolated LM cell.\n")
 print(f"{'decoder':<9}{'fps':>7}{'frames':>8}{'BLEU-4':>8}{'ROUGE-L':>9}"
       f"{'pose J':>8}{'LM J':>7}{'sys J':>8}  {'vs best':>8}  frontier")
 best = max(r["sys_J"] for r in rows)

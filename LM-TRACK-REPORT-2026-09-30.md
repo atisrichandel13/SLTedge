@@ -101,7 +101,20 @@ aggregate.
 on the board the encoder is 39–50 ms while the decoder is 1062–1538 ms, dominated by per-step
 binding overhead rather than the 238 M-parameter matmuls. Our own runtime agrees — `--w8-runtime
 int8` is **10× slower** per decoder step (2139 vs 197 ms) because 217 layers dequantize per token.
-Quantizing weights buys memory, and memory is not binding at 2.577 GB peak on an 8 GB board.
+Quantizing weights buys memory.
+
+~~And memory is not binding at 2.577 GB peak on an 8 GB board.~~ **CORRECTED by the pose track
+2026-09-30: memory IS binding, at load rather than in steady state.** The pruned-checkpoint load path
+peaks near **4.2 GB** — more than loading the *full* checkpoint costs, because `load_model`
+materialises the 250 K-vocab mT5 and then slices it — against `MemAvailable` capping around 5.3 GB.
+Four probes: the TRT engine alone works at 3988 MB free; **the LM alone fails** at 3863 MB and again
+at 4641 MB after maximum reclaim. It is why their end-to-end sustained run has never completed.
+
+**This partly reopens INT8.** Our justification was "buys memory, and memory isn't binding". The
+second clause is wrong, so a 293 MB W8A32 checkpoint would help materially — *if* loaded from a
+pre-pruned directory that avoids the 250 K materialisation. That is exactly what their
+`attach_pruned_tokenizer` fast path does, and it is unverified. The host-bound-decoder argument
+against INT8 *for latency* still stands; the memory argument does not.
 
 **Correction to the pose track's stated reason.** Their handoff argued INT8 was dead because W8A16
 keeps activations in fp16 and fp16 breaks mT5. The premise is wrong about our implementation (see
@@ -268,8 +281,22 @@ suffers when the CPU downclocks.
 
 System joules are **composed** from two separately measured stages — `pose_J_per_s × clip_seconds +
 LM_J` — **not measured end to end**. Validated against the one real end-to-end run: composition
-predicts 47.2 J where **50.37 J** was measured, so it runs **~6 % low**, presumably the contention in
-§5.4. Every composed cell inherits that optimism.
+predicts 47.2 J where **50.37 J** was measured, so it runs **~6 % low**.
+
+**Two biases in the absolute column, in opposite directions.** Neither affects the *relative*
+comparisons across cells — every cell shares the same clip and rates — and the relative ordering is
+the deliverable. But these joules are not a typical clip's:
+
+1. **~6 % low.** The 3.16 J the composition misses. ~~Attributed to the §5.4 contention.~~
+   **CORRECTED by the pose track 2026-09-30:** their M1 run measured *no* contention (25.10 ms/frame
+   end-to-end vs 25.03 standalone), because the implementation is sequential — all frames, then the
+   LM — so the stages never overlap. Likelier: the convert step (25.7 ms, unmodelled here), the idle
+   floor during the 64 s LM load, or warm-up. Untested.
+2. **~7 % high for a median clip.** The pose energy rate came from one clip whose crop is at the
+   **83rd percentile** of crop area across the 931-clip split. Pose cost is ~13.97 ms fixed plus
+   ~11.13 ms scaling with crop area, so a median clip is ~7 % cheaper per frame and a p10 clip ~27 %.
+   Meanwhile `CLIP_S` is our split's *mean duration* — so the absolute column already mixes a duration
+   from our data with an energy rate from their clip.
 
 | decoder | fps | BLEU-4 | ROUGE-L | system J | vs ref | |
 |---|---|---|---|---|---|---|
@@ -559,3 +586,35 @@ track), `PROJECT-GUIDE.md` (row numbering), `WORKSPLIT.md`.
 **Checkpoints** (gitignored) — `weights/openasl_pose_only_slt_pruned_traindev.pth` (leak-free base),
 `weights/adapt_fps16_lr1e5_seed42.pt` (the §8.4 adapted model; GPU reductions are non-deterministic,
 so a retrain is similar but not identical, and this file is the one that produced those numbers).
+
+---
+
+## 13. Corrections received from the pose track, 2026-09-30
+
+Their `SYNC-REPLY-POSE-2026-09-30.md` accepted four of our five corrections and returned five. Three
+changed results above and are applied in place (§3.2 memory, §6 the two frontier biases). The other
+two are recorded here.
+
+**Our "98,419 poses extracted" unblocks less than we implied.** Those are the **authors'** poses. They
+unblock the **frame-rate** and **face-group** adaptations immediately. They do **not** touch the
+extractor gap: adapting around that needs train-split poses from *our* extractor, which requires the
+~97 K source **videos** — pose pkls do not substitute, and at their measured ~8 s/clip that is still
+days of fetching. Keep the two separate in the report.
+
+**We cannot ask them to verify loader changes.** Their Mac has no torch, transformers, cv2 or
+safetensors, and their board has been unreachable since 2026-09-28. Anything needing a Python
+environment is ours to run.
+
+**Their ask 4, answered:** the pruned TensorRT engines **do** need re-exporting. `results/RESULTS.md`
+L8.1 records the three ONNX graphs as exported from `weights/mt5-base-openasl-pruned`, **vocab
+26,078** — the leaky keep set (§8.1). Their L8.2 *latency* rows (19.2 ms/token, 2.9× the pruned
+PyTorch decoder, tokens identical to PyTorch) are unaffected, because token-identity was checked
+against a PyTorch model with the same leaky vocabulary. Any claim about that engine's **output
+quality** describes a model whose vocabulary was selected using the test set.
+
+**What they found that we had missed, in both codebases:** the hardcoded source frame rate. Their
+`subsample_pkl.py` and `03_infer_frames.py --keep-fps` assumed `src_fps=29.97`, so **6 of the 30 clips
+in their frame-rate curve were off-rate** — rows labelled "16 fps" contained clips thinned to 12.8.
+Their split measures 76.5 % at ~30 fps and 22.2 % at ~24, replicating our 73/21. They also verified
+our two `--fps` definitions are the same function (`round(duration × target)`) on five cases, so the
+frontier's cells line up across tracks.
