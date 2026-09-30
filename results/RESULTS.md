@@ -1369,3 +1369,41 @@ Checkpoint: `weights/adapt_fps16_lr1e5_seed42.pt` (trainable params + optimizer 
 570 MB model reconstructs from it plus the L5.4 base). GPU reductions are non-deterministic, so a
 re-run produces a similar but not identical model — this file is the one that produced the numbers
 above.
+
+### L16 Milestone M4 / C10: the accuracy–energy frontier plot (`results/frontier.png`, `results/frontier.csv`)
+
+The project deliverable. `results/plot_frontier.py` builds it from two files rather than from any
+number typed into the script:
+
+* **Accuracy** from `results/frontier_accuracy.json`, which `unisign/grid_table.py --out` writes by
+  scoring the nine eval JSONs over all 976 test clips. Regenerate with
+  `python -m unisign.grid_table -n 1000 --out results/frontier_accuracy.json` (~12 min on the Mac).
+  It reproduces the L13 table exactly.
+* **Energy** by importing `unisign.frontier`, which composes the pose track's two measured board
+  stages. `frontier.py` was refactored into `build_rows()` / `mark_pareto()` behind a `__main__`
+  guard so it can be imported without printing its report; its printed output is unchanged.
+
+**Error bars.** The bootstrap estimates the *delta* from the beam-4/source reference under draws
+shared by every cell, so a cell's bar is drawn at `[ref + lo, ref + hi]`, i.e. half-widths
+`(d − lo)` and `(hi − d)` around that cell's own point. The reference cell has no bar **by
+construction**, which is not missing data. (The first version of the script re-centred the raw
+`[lo, hi]` on the cell's own score, which put every bar entirely below its point and raised a
+negative-`yerr` error from matplotlib — the endpoints are now checked against `ref + CI` directly.)
+
+**What the plot says.** 6 of 9 cells are Pareto-optimal.
+
+| | cell | system J | BLEU-4 | vs reference |
+|---|---|---:|---:|---|
+| reference | beam 4 @ source | 43.4 | 22.87 | — |
+| **knee** | **beam 4 @ 24 fps** | **36.1** | **22.80** | **−17 % J for −0.07 BLEU-4** |
+| cheapest | greedy @ 16 fps | 25.7 | 19.83 | −41 % J for −3.04 BLEU-4 |
+
+The knee is the recommendation: the −0.07 sits inside [−0.53, +0.39], so it is not a measurable
+accuracy cost, and it buys 17 % of system energy. Below that the frontier gets expensive — the
+remaining 24 % costs ~3 BLEU-4.
+
+**Three things the figure is not**, all annotated on the figure itself so a reader cannot take it
+for more than it is: system joules are **composed, not measured end-to-end** (~6 % low against the
+one M1 end-to-end run, ~7 % high for a median-crop clip — opposing biases, neither of which reorders
+the cells); the reduced frame rates are **emulated** by thinning 30 fps keypoints; and every cell
+carries the −0.03 BLEU-4 test-set vocabulary leak, uniformly, so it cannot reorder them either.

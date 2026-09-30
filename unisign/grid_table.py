@@ -35,7 +35,10 @@ def bleu4(refs, hyps):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("-n", type=int, default=1000)
-    ap.add_argument("--seed", type=int, default=0); args = ap.parse_args()
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--out", default=None,
+                    help="write the surface + CIs here as JSON, for plot_frontier.py to consume")
+    args = ap.parse_args()
 
     have = {k: json.load(open(R + f)) for k, f in CELLS.items() if os.path.exists(R + f)}
     missing = [k for k in CELLS if k not in have]
@@ -80,6 +83,23 @@ def main():
             print(f"{NAME[b]:9s} {lab:>7s} {bl:7.2f} {rg:8.2f}   {dd}")
     if missing:
         print("\nmissing cells:", ", ".join(f"{NAME[b]}@{f or 'source'}" for b, f in missing))
+
+    if args.out:
+        # Keyed "beams,fps" because JSON has no tuple keys; fps "source" = unthinned.
+        out = {"n_clips": N, "n_boot": args.n, "seed": args.seed,
+               "ref": "4,source", "cap": 64,
+               "shared_draws": True,
+               "note": "delta/ci are paired-bootstrap BLEU-4 vs the reference cell; one resample "
+                       "draw scores every cell, so cells are comparable with each other too.",
+               "cells": {}}
+        for (b, f), (bl, rg, d) in stats.items():
+            out["cells"][f"{b},{f or 'source'}"] = {
+                "beams": b, "fps": f or "source", "bleu4": bl, "rouge_l": rg,
+                "source_json": CELLS[(b, f)],
+                "delta_bleu4": None if d is None else d[0],
+                "ci": None if d is None else [d[1], d[2]]}
+        json.dump(out, open(args.out, "w"), indent=1)
+        print(f"\nwrote {args.out}")
 
 
 if __name__ == "__main__":

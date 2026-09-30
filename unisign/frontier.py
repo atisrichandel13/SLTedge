@@ -91,43 +91,64 @@ def lm_energy(beams, frames):
     raise AssertionError
 
 
-rows = []
-for (beams, fps), (bleu, rouge) in ACC.items():
-    fr = frames_for(fps)
-    lm, itp = lm_energy(beams, fr)
-    pose = POSE_J_PER_S[fps] * CLIP_S
-    rows.append({"beams": beams, "fps": fps, "frames": fr, "bleu": bleu, "rouge": rouge,
-                 "pose_J": pose, "lm_J": lm, "sys_J": pose + lm, "interp": itp})
+def build_rows(acc=None):
+    """The nine cells with composed system energy. Pure; no printing.
 
-# Pareto: maximise BLEU-4, minimise system joules.
-for r in rows:
-    r["pareto"] = not any(o["bleu"] >= r["bleu"] and o["sys_J"] <= r["sys_J"]
-                          and (o["bleu"] > r["bleu"] or o["sys_J"] < r["sys_J"]) for o in rows)
+    `acc` maps (beams, fps) -> (bleu4, rouge_l); it defaults to this module's transcribed ACC,
+    but plot_frontier.py passes values read straight out of the eval JSONs instead.
+    """
+    rows = []
+    for (beams, fps), (bleu, rouge) in (acc or ACC).items():
+        fr = frames_for(fps)
+        lm, itp = lm_energy(beams, fr)
+        pose = POSE_J_PER_S[fps] * CLIP_S
+        rows.append({"beams": beams, "fps": fps, "frames": fr, "bleu": bleu, "rouge": rouge,
+                     "pose_J": pose, "lm_J": lm, "sys_J": pose + lm, "interp": itp})
+    mark_pareto(rows)
+    return rows
 
-name = {4: "beam 4", 2: "beam 2", 1: "greedy"}
-print(f"\nComposed accuracy-energy frontier, mean test clip ({CLIP_S} s, {SRC_FPS} fps source)")
-print("System J is COMPOSED from two separately measured stages, not measured end-to-end.")
-print("Absolute J carries two opposing biases (see docstring): ~6% low from the unmodelled")
-print("convert/load/warm-up, ~7% high because the pose energy rate came from an 83rd-percentile")
-print("crop. RELATIVE comparisons across cells are unaffected. * = interpolated LM cell.\n")
-print(f"{'decoder':<9}{'fps':>7}{'frames':>8}{'BLEU-4':>8}{'ROUGE-L':>9}"
-      f"{'pose J':>8}{'LM J':>7}{'sys J':>8}  {'vs best':>8}  frontier")
-best = max(r["sys_J"] for r in rows)
-for r in sorted(rows, key=lambda x: -x["sys_J"]):
-    print(f"{name[r['beams']]:<9}{str(r['fps']):>7}{r['frames']:>8}{r['bleu']:>8.2f}{r['rouge']:>9.2f}"
-          f"{r['pose_J']:>8.1f}{r['lm_J']:>6.1f}{'*' if r['interp'] else ' '}{r['sys_J']:>8.1f}"
-          f"{100*(r['sys_J']/best-1):>+8.0f}%  {'PARETO' if r['pareto'] else '-- dominated'}")
 
-print("\nFrontier, cheapest first:")
-for r in sorted([x for x in rows if x["pareto"]], key=lambda x: x["sys_J"]):
-    print(f"  {r['sys_J']:6.1f} J   BLEU-4 {r['bleu']:5.2f}   ROUGE-L {r['rouge']:5.2f}   "
-          f"{name[r['beams']]} @ {r['fps']} fps")
+def mark_pareto(rows):
+    """Pareto: maximise BLEU-4, minimise system joules. Mutates rows in place."""
+    for r in rows:
+        r["pareto"] = not any(o["bleu"] >= r["bleu"] and o["sys_J"] <= r["sys_J"]
+                              and (o["bleu"] > r["bleu"] or o["sys_J"] < r["sys_J"]) for o in rows)
+    return rows
 
-ref = next(r for r in rows if r["beams"] == 4 and r["fps"] == "source")
-print("\nThe two levers, priced from the reference cell (beam 4 @ source):")
-for beams, fps, label in [(4, 24, "frame rate 30 -> 24"), (4, 16, "frame rate 30 -> 16"),
-                          (2, "source", "beam 4 -> beam 2"), (1, "source", "beam 4 -> greedy")]:
-    r = next(x for x in rows if x["beams"] == beams and x["fps"] == fps)
-    dj, db, dr = r["sys_J"] - ref["sys_J"], r["bleu"] - ref["bleu"], r["rouge"] - ref["rouge"]
-    print(f"  {label:<22} {dj:+6.1f} J ({100*dj/ref['sys_J']:+5.1f}%)   "
-          f"BLEU-4 {db:+5.2f}   ROUGE-L {dr:+5.2f}   -> {abs(dj)/max(abs(db),1e-9):5.1f} J per BLEU-4 point")
+
+NAME = {4: "beam 4", 2: "beam 2", 1: "greedy"}
+
+
+def main():
+    rows = build_rows()
+    name = NAME
+    print(f"\nComposed accuracy-energy frontier, mean test clip ({CLIP_S} s, {SRC_FPS} fps source)")
+    print("System J is COMPOSED from two separately measured stages, not measured end-to-end.")
+    print("Absolute J carries two opposing biases (see docstring): ~6% low from the unmodelled")
+    print("convert/load/warm-up, ~7% high because the pose energy rate came from an 83rd-percentile")
+    print("crop. RELATIVE comparisons across cells are unaffected. * = interpolated LM cell.\n")
+    print(f"{'decoder':<9}{'fps':>7}{'frames':>8}{'BLEU-4':>8}{'ROUGE-L':>9}"
+          f"{'pose J':>8}{'LM J':>7}{'sys J':>8}  {'vs best':>8}  frontier")
+    best = max(r["sys_J"] for r in rows)
+    for r in sorted(rows, key=lambda x: -x["sys_J"]):
+        print(f"{name[r['beams']]:<9}{str(r['fps']):>7}{r['frames']:>8}{r['bleu']:>8.2f}{r['rouge']:>9.2f}"
+              f"{r['pose_J']:>8.1f}{r['lm_J']:>6.1f}{'*' if r['interp'] else ' '}{r['sys_J']:>8.1f}"
+              f"{100*(r['sys_J']/best-1):>+8.0f}%  {'PARETO' if r['pareto'] else '-- dominated'}")
+
+    print("\nFrontier, cheapest first:")
+    for r in sorted([x for x in rows if x["pareto"]], key=lambda x: x["sys_J"]):
+        print(f"  {r['sys_J']:6.1f} J   BLEU-4 {r['bleu']:5.2f}   ROUGE-L {r['rouge']:5.2f}   "
+              f"{name[r['beams']]} @ {r['fps']} fps")
+
+    ref = next(r for r in rows if r["beams"] == 4 and r["fps"] == "source")
+    print("\nThe two levers, priced from the reference cell (beam 4 @ source):")
+    for beams, fps, label in [(4, 24, "frame rate 30 -> 24"), (4, 16, "frame rate 30 -> 16"),
+                              (2, "source", "beam 4 -> beam 2"), (1, "source", "beam 4 -> greedy")]:
+        r = next(x for x in rows if x["beams"] == beams and x["fps"] == fps)
+        dj, db, dr = r["sys_J"] - ref["sys_J"], r["bleu"] - ref["bleu"], r["rouge"] - ref["rouge"]
+        print(f"  {label:<22} {dj:+6.1f} J ({100*dj/ref['sys_J']:+5.1f}%)   "
+              f"BLEU-4 {db:+5.2f}   ROUGE-L {dr:+5.2f}   -> {abs(dj)/max(abs(db),1e-9):5.1f} J per BLEU-4 point")
+
+
+if __name__ == "__main__":
+    main()
