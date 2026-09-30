@@ -1255,10 +1255,19 @@ test split*. Diff in `results/vocab_keep_diff.json`; new keep set in
 42.93 ROUGE-L**, against **23.11 / 42.90** for the leaky one. Identical within noise, exactly as
 expected since none of the 53 tokens occur in dev. This confirms the re-prune broke nothing.
 
-**Not yet measured:** the test-split score of the corrected checkpoint. That is where the 53 tokens
-actually occur (55 occurrences across 46 of 976 sentences), so a small drop from 22.87 is expected and
-would be the true, unleaked number. **Every test-split figure elsewhere in this file still comes from
-the leaky keep set** and should be re-stated once that eval is run.
+**Measured on the test split (2026-09-30, Colab A100, 976 clips, beam 4):**
+
+| keep set | cap | BLEU-4 | ROUGE-L |
+|---|---|---|---|
+| leaky, 26,078 | 100 | 22.87 | 42.98 |
+| **leak-free, 26,025** | 100 | **22.84** | **42.99** |
+| leak-free, 26,025 | 64 | 22.84 | 42.99 |
+
+**The leak was worth 0.03 BLEU-4** (ROUGE-L rose 0.01). Report it as a methodology finding — the
+selection channel is real, generalisable and unchecked by most work — rather than as a results
+correction, because its magnitude here is inside the noise. Every other test-split figure in this file
+uses the leaky keep set; the difference does not change any relative conclusion.
+Files: `results/block5/eval_test_pruned_traindev_cap{100,64}.json`.
 
 ---
 

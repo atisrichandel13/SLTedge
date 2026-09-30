@@ -1,0 +1,64 @@
+2026-09-30 21:28:09.913212: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-09-30 21:28:09.986907: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[eval] 8/976  0.18 s/clip  eta 2.9 min
+[eval] 88/976  0.14 s/clip  eta 2.1 min
+[eval] 168/976  0.13 s/clip  eta 1.8 min
+[eval] 248/976  0.13 s/clip  eta 1.6 min
+[eval] 328/976  0.14 s/clip  eta 1.5 min
+[eval] 408/976  0.14 s/clip  eta 1.3 min
+[eval] 488/976  0.14 s/clip  eta 1.1 min
+[eval] 568/976  0.13 s/clip  eta 0.9 min
+[eval] 648/976  0.14 s/clip  eta 0.7 min
+[eval] 728/976  0.14 s/clip  eta 0.6 min
+[eval] 808/976  0.14 s/clip  eta 0.4 min
+[eval] 888/976  0.14 s/clip  eta 0.2 min
+[eval] 968/976  0.14 s/clip  eta 0.0 min
+{'bleu1': 49.24376237780017, 'bleu2': 36.147666847087514, 'bleu3': 28.306824721196726, 'bleu4': 22.839886265057817}
+Rouge: 42.99
+{
+  "n": 976,
+  "missing": 0,
+  "bleu": {
+    "bleu1": 49.24376237780017,
+    "bleu2": 36.147666847087514,
+    "bleu3": 28.306824721196726,
+    "bleu4": 22.839886265057817
+  },
+  "rouge_l": 42.98805448962636,
+  "wall_s": 137.13596409400088
+}
+[eval] wrote /content/runs/block5/eval_test_pruned_traindev_cap100.json
+2026-09-30 21:30:42.711878: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-09-30 21:30:42.784857: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[eval] 8/976  0.17 s/clip  eta 2.8 min
+[eval] 88/976  0.14 s/clip  eta 2.0 min
+[eval] 168/976  0.13 s/clip  eta 1.7 min
+[eval] 248/976  0.13 s/clip  eta 1.6 min
+[eval] 328/976  0.13 s/clip  eta 1.4 min
+[eval] 408/976  0.13 s/clip  eta 1.2 min
+[eval] 488/976  0.13 s/clip  eta 1.1 min
+[eval] 568/976  0.13 s/clip  eta 0.9 min
+[eval] 648/976  0.13 s/clip  eta 0.7 min
+[eval] 728/976  0.13 s/clip  eta 0.5 min
+[eval] 808/976  0.13 s/clip  eta 0.4 min
+[eval] 888/976  0.13 s/clip  eta 0.2 min
+[eval] 968/976  0.14 s/clip  eta 0.0 min
+{'bleu1': 49.24376237780017, 'bleu2': 36.147666847087514, 'bleu3': 28.306824721196726, 'bleu4': 22.839886265057817}
+Rouge: 42.99
+{
+  "n": 976,
+  "missing": 0,
+  "bleu": {
+    "bleu1": 49.24376237780017,
+    "bleu2": 36.147666847087514,
+    "bleu3": 28.306824721196726,
+    "bleu4": 22.839886265057817
+  },
+  "rouge_l": 42.98805448962636,
+  "wall_s": 132.53804004199992
+}
+[eval] wrote /content/runs/block5/eval_test_pruned_traindev_cap64.json

@@ -405,9 +405,28 @@ because it appears in the test split.
 **Validated on dev:** corrected checkpoint scores 23.13 / 42.93 against the leaky one's 23.11 /
 42.90. Identical within noise, as expected since none of the 53 occur in dev.
 
-**Still outstanding: the test-split score of the corrected checkpoint.** Those 53 tokens occur 55
-times across 46 of 976 test sentences, so a small drop from 22.87 is expected, and that would be the
-true unleaked number. **Every test figure in this document still comes from the leaky keep set.**
+**Measured on the test split, 2026-09-30 — the leak was real and worth 0.03 BLEU-4.**
+
+| test split, 976 clips, beam 4 | BLEU-4 | ROUGE-L |
+|---|---|---|
+| leaky keep set (26,078), cap 100 | 22.87 | 42.98 |
+| **leak-free keep set (26,025), cap 100** | **22.84** | **42.99** |
+| leak-free, cap 64 | 22.84 | 42.99 |
+
+So removing the 53 test-only tokens costs **0.03 BLEU-4** and *gains* 0.01 ROUGE-L — far inside the
+noise, and cap 64 is again bit-identical to cap 100.
+
+**The right way to report this is as a methodology finding, not a results correction.** The leak
+channel is real and generalisable: the vocabulary was selected using the test split, so the deployed
+model's output layer had seen data it should not have, with nothing in the training loop touching test
+data. Most people do not check for it. Its *magnitude here* happened to be negligible, which is worth
+saying plainly rather than implying we caught something that mattered numerically. It could easily
+have been larger with a smaller keep set or a more specialised domain — `▁Bitcoin`, the content word of
+this project's own demo clip, was in the deployed vocabulary only because it appears in test.
+
+Every figure elsewhere in this document comes from the **leaky** keep set (22.87). The difference is
+0.03 BLEU-4, so the relative conclusions are unaffected; the corrected absolute number is 22.84.
+Files: `results/block5/eval_test_pruned_traindev_cap{100,64}.json`.
 
 ### 8.2 The first adaptation runs made the model worse — and the control proved why
 
@@ -595,7 +614,7 @@ logs in `results/colab_runs/`.
 |---|---|---|---|
 | 1 | Paired CIs for the §8.4 2×2 (`eval_openasl.py` → `bootstrap_ci.py`) | ~20 min | the only result here without error bars |
 | ~~2~~ | ~~Seed variance, 3 more seeds (row 4.3)~~ | done | spread 0.05 BLEU-4 / 0.15 ROUGE-L across seeds 42/43/44 — the gain is ~7x the seed noise |
-| 3 | Test-split eval of the leak-free checkpoint | ~15 min | every test figure above uses the leaky keep set |
+| ~~3~~ | ~~Test-split eval of the leak-free checkpoint~~ | done | 22.84 / 42.99 vs the leaky 22.87 / 42.98 — the leak was worth 0.03 BLEU-4 |
 | ~~4~~ | ~~Cap-100 re-eval of adapted models~~ | done | measured bit-identical to cap 64; §8.4 is not an underestimate |
 | 5 | Measured end-to-end board energy at a second corner | pose track | our frontier is composed and ~6 % optimistic |
 | 6 | Adaptation at 12 fps | ~20 min | 12 fps costs 2.5 BLEU-4 un-adapted; worth trying if 16 fps holds |
