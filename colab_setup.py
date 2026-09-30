@@ -108,25 +108,34 @@ class Concat(io.RawIOBase):
 
 
 def extract(parts):
+    """Extract every pose pkl, validating against the size the archive records for each member.
+
+    An existence check is not enough. A killed writer (an interrupted download, a recycled
+    runtime) leaves a truncated or zero-byte file behind, and skipping it because the path
+    exists hides the corruption until a DataLoader worker reaches that clip and dies with
+    "EOFError: Ran out of input" -- which happened ~2250 steps into a training run. Comparing
+    against ZipInfo.file_size costs nothing (the index is already in memory) and makes the
+    step genuinely idempotent.
+    """
     os.makedirs(POSES, exist_ok=True)
-    have = len(os.listdir(POSES))
-    if have >= 98419:
-        print(f"[setup] poses already extracted ({have})")
-        return
     z = zipfile.ZipFile(Concat(parts))
     members = [m for m in z.namelist() if m.endswith(".pkl")]
-    n = 0
+    written, repaired = 0, 0
     for m in members:
         # Flatten: the archive nests under pose-rtmpose-192/, train_adapt --poses wants flat.
+        info = z.getinfo(m)
         dst = os.path.join(POSES, os.path.basename(m))
         if os.path.exists(dst):
-            continue
+            if os.path.getsize(dst) == info.file_size:
+                continue
+            repaired += 1          # present but wrong size -> truncated, rewrite it
         with z.open(m) as src, open(dst, "wb") as f:
             f.write(src.read())
-        n += 1
-        if n % 10000 == 0:
-            print(f"[setup]   {n} extracted")
-    print(f"[setup] poses: {len(os.listdir(POSES))} files")
+        written += 1
+        if written % 10000 == 0:
+            print(f"[setup]   {written} written")
+    print(f"[setup] poses: {len(os.listdir(POSES))} files "
+          f"({written} written, of which {repaired} were corrupt and rewritten)")
 
 
 def weights():
