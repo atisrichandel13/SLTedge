@@ -418,3 +418,121 @@ at `max_new_tokens` 100 and the rest at 64, which is safe to mix because L3.2 me
 for the same nine cells (five board runs cover it, see `REPLY-LM-TRACK-2026-09-28.md` Appendix A), and
 all nine are measured on the authors' released poses, so each is an upper bound for a deployment that
 uses board-extracted keypoints (pose-track gap: −6.33 BLEU-4 [+0.48, +13.11], their §5).
+
+---
+
+### L5.4 Vocabulary re-pruned from train+dev only (test-token leak fixed) — `unisign/vocab_census.py`
+
+L5.1's keep set was built from a census over **train+dev+test** (98,419 sentences). A model whose
+embedding matrix and LM head were *selected using the test set* has, in a real sense, seen the test
+set. `unisign/vocab_census.py` rebuilds the keep set from **train+dev only** (97,443 sentences).
+
+| | keep ids | checkpoint (bf16) |
+|---|---|---|
+| L5.1, train+dev+**test** census | 26,078 | 571 MB |
+| **L5.4, train+dev census** | **26,025** | **570 MB** |
+
+**53 tokens dropped, 0 added.** Each of the 53 occurs **zero** times in train+dev — they were purely
+test-set tokens. They include `▁Bitcoin`, the key content word of the clip used as this project's
+standard single-clip demo, which existed in the deployed vocabulary *only because it appears in the
+test split*. Diff in `results/vocab_keep_diff.json`; new keep set in
+`results/openasl_vocab_keep_ids_traindev.json`.
+
+**Validation (967 dev clips, beam 4, cap 64):** the corrected checkpoint scores **23.13 BLEU-4 /
+42.93 ROUGE-L**, against **23.11 / 42.90** for the leaky one. Identical within noise, exactly as
+expected since none of the 53 tokens occur in dev. This confirms the re-prune broke nothing.
+
+**Not yet measured:** the test-split score of the corrected checkpoint. That is where the 53 tokens
+actually occur (55 occurrences across 46 of 976 sentences), so a small drop from 22.87 is expected and
+would be the true, unleaked number. **Every test-split figure elsewhere in this file still comes from
+the leaky keep set** and should be re-stated once that eval is run.
+
+---
+
+### L15 Adaptation harness: recipe diagnosis, and adapted vs un-adapted at 16 fps
+
+All runs: Colab Tesla T4, FP32 (no AMP — T4 is Turing, no bf16, and fp16 would push mT5 activations
+toward the overflow documented in L8.2), pose stack + `pose_proj` + `part_para` trainable (5.35 M of
+243.5 M), mT5 frozen, 20,000 train clips, 1 epoch, batch 4 × accum 2, `--freeze-bn`, seed 42,
+starting from the L5.4 checkpoint. Evaluated on **967 dev clips**, beam 4, cap 64. Logs in
+`results/colab_runs/`.
+
+#### L15.1 The first recipe made the model worse, and the control proved it was the recipe
+
+Initial runs used the authors' `--label-smoothing 0.2` with `--warmup-epochs 0` (300 dev clips):
+
+| run | train/eval rate | before | after | Δ BLEU-4 |
+|---|---|---|---|---|
+| `fps16_seed42` | 16 fps | 18.27 | 16.57 | **−1.70** |
+| `nofps_seed42` | **source (control)** | 17.17 | 16.13 | **−1.04** |
+
+The **control also degraded**. With no distribution shift to adapt to, fine-tuning still cost 1.04
+BLEU-4 — so the 16 fps number was never evidence about adaptation, only about a broken recipe. Running
+the no-shift control is what separated the two, and it should precede any adaptation claim.
+
+Note also that the two *un-adapted* baselines differ by frame rate alone on the same 300 clips:
+16 fps scores **+1.10 higher** than source rate, the opposite sign from L7.2's n=976 result. At n=300
+BLEU-4 cannot resolve effects of this size — it flipped the sign of a known effect. All later runs use
+the full 967-clip dev split.
+
+#### L15.2 Recipe sweep (control condition, no frame-rate shift, 967 dev clips)
+
+Un-adapted baseline: **23.13 BLEU-4 / 42.93 ROUGE-L**.
+
+| recipe | BLEU-4 | ROUGE-L | Δ BLEU-4 | Δ ROUGE-L |
+|---|---|---|---|---|
+| ls 0.2, lr 1e-4, no warmup | — | — | −1.04 *(at n=300)* | not measured |
+| ls 0.0, lr 1e-4, warmup 0.1 | 22.75 | 43.51 | −0.38 | +0.58 |
+| **ls 0.0, lr 1e-5, warmup 0.1** | **23.31** | **43.63** | **+0.18** | **+0.70** |
+
+**Label smoothing was the problem.** With `--label-smoothing 0.2` over a 26 K vocabulary the reported
+training loss sits at ~3.35 and barely moves; at 0.0 the true cross-entropy is ~0.36. The 3.35 was
+mostly the smoothing floor, not the model's fit — a constant being read as a training curve.
+
+`lr 1e-5` is the working recipe: fine-tuning now **improves** the model on both metrics. This is the
+first evidence the C8 harness trains rather than merely runs (L4.2/C8.1 only established that the
+script executes and checkpoints round-trip).
+
+**Caveat:** the intended isolating control (ls 0.2 at lr 1e-5, which would separate smoothing from
+learning rate) was killed by a Colab disconnect after 10 log lines and has **not** been run. So
+"label smoothing was the problem" is the best available reading, not an isolated result — the working
+recipe changed smoothing, learning rate and warmup together.
+
+#### L15.3 Adapted vs un-adapted at 16 fps (967 dev clips, ls 0.0, lr 1e-5, warmup 0.1, seed 42)
+
+| | un-adapted | adapted | Δ BLEU-4 | Δ ROUGE-L |
+|---|---|---|---|---|
+| source rate | 23.13 / 42.93 | 23.31 / 43.63 | +0.18 | +0.70 |
+| **16 fps** | 22.79 / 41.59 | **23.19 / 42.60** | **+0.40** | **+1.01** |
+
+**Reading.**
+
+* **Adaptation helps more under frame-rate shift than without it.** Difference-in-differences:
+  **+0.22 BLEU-4, +0.31 ROUGE-L** — the part attributable to frame-rate adaptation rather than to
+  fine-tuning in general.
+* **It recovers most of the frame-rate loss.** Un-adapted, 16 fps costs **−1.34 ROUGE-L** (42.93 →
+  41.59). Adapted, the 16 fps model sits **−0.33 ROUGE-L** below the un-adapted full-rate baseline —
+  roughly **75 % of the loss recovered** — and **+0.06 BLEU-4 above** it.
+* **This moves the frontier point.** `unisign/frontier.py` puts 16 fps / beam 4 at 27.0 J against
+  43.4 J for the reference, a **38 % system energy saving**. Un-adapted that carries a real accuracy
+  cost; adapted, the cost nearly vanishes.
+* The un-adapted 16 fps figure (22.79 / 41.59) independently reproduces the Mac result (22.77 / 41.60)
+  on different hardware with a different checkpoint.
+
+**What is NOT established.**
+
+1. **No confidence intervals.** `train_adapt.py`'s built-in eval logs summary metrics only, not the
+   967 predictions, so none of these deltas can be bootstrapped. Every other comparison in this file
+   carries a paired CI; these do not. `eval_openasl.py` must be re-run against the adapted checkpoints
+   to produce eval JSONs before any of this is quotable.
+2. **One seed.** Guide row 4.3 (L10 seed variance) has not been run. "+0.40 vs +0.18" is
+   uninterpretable without the seed-to-seed spread, and that is a different noise source from the
+   clip-resampling CI.
+3. 20,000 of 96,477 train clips, one epoch.
+4. Frame-rate emulation thins already-extracted 30 fps poses; a real 16 fps capture differs in
+   exposure and motion blur.
+
+Checkpoint: `weights/adapt_fps16_lr1e5_seed42.pt` (trainable params + optimizer state; the full
+570 MB model reconstructs from it plus the L5.4 base). GPU reductions are non-deterministic, so a
+re-run produces a similar but not identical model — this file is the one that produced the numbers
+above.

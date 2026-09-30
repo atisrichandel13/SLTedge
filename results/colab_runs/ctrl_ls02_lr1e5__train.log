@@ -1,0 +1,8 @@
+Loading weights:   0%|          | 0/284 [00:00<?, ?it/s]Loading weights: 100%|██████████| 284/284 [00:00<00:00, 22520.60it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+[train] trainable 5.35 M of 243.5 M params; target fps source; max_length 256
+[train] 20000 clips, 5000 batches/epoch, batch 4 x accum 2
+[train] ep 0 step 100 loss 3.3925 lr 4.04e-06 800/20000 clips  0.04 s/clip  eta 12.8 min
+[train] ep 0 step 200 loss 3.3993 lr 8.04e-06 1600/20000 clips  0.04 s/clip  eta 12.1 min
+[train] ep 0 step 300 loss 3.3908 lr 9.99e-06 2400/20000 clips  0.04 s/clip  eta 11.5 min
+[train] ep 0 step 400 loss 3.3865 lr 9.89e-06 3200/20000 clips  0.04 s/clip  eta 10.9 min

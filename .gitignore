@@ -33,3 +33,4 @@ venv/
 .idea/
 runs/
 scratchpad/
+weights/adapt_*.pt

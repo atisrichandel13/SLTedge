@@ -1,0 +1,27 @@
+{"epoch": 0, "step": 100, "loss": 0.3705, "lr": 4.04e-06, "clips": 800, "s_per_clip": 0.04, "time": 1790637847.7}
+{"epoch": 0, "step": 200, "loss": 0.3741, "lr": 8.040000000000001e-06, "clips": 1600, "s_per_clip": 0.039, "time": 1790637878.6}
+{"epoch": 0, "step": 300, "loss": 0.3644, "lr": 9.987820251299121e-06, "clips": 2400, "s_per_clip": 0.039, "time": 1790637909.5}
+{"epoch": 0, "step": 400, "loss": 0.3616, "lr": 9.890738003669029e-06, "clips": 3200, "s_per_clip": 0.039, "time": 1790637940.3}
+{"epoch": 0, "step": 500, "loss": 0.3587, "lr": 9.698463103929542e-06, "clips": 4000, "s_per_clip": 0.039, "time": 1790637970.5}
+{"epoch": 0, "step": 600, "loss": 0.3589, "lr": 9.414737964294636e-06, "clips": 4800, "s_per_clip": 0.039, "time": 1790638001.1}
+{"epoch": 0, "step": 700, "loss": 0.3583, "lr": 9.045084971874738e-06, "clips": 5600, "s_per_clip": 0.039, "time": 1790638031.8}
+{"epoch": 0, "step": 800, "loss": 0.3578, "lr": 8.596699001693257e-06, "clips": 6400, "s_per_clip": 0.038, "time": 1790638062.0}
+{"epoch": 0, "step": 900, "loss": 0.3556, "lr": 8.078307376628292e-06, "clips": 7200, "s_per_clip": 0.038, "time": 1790638092.1}
+{"epoch": 0, "step": 1000, "loss": 0.355, "lr": 7.500000000000001e-06, "clips": 8000, "s_per_clip": 0.038, "time": 1790638122.4}
+{"epoch": 0, "step": 1100, "loss": 0.3544, "lr": 6.873032967079562e-06, "clips": 8800, "s_per_clip": 0.038, "time": 1790638152.9}
+{"epoch": 0, "step": 1200, "loss": 0.3532, "lr": 6.209609477998339e-06, "clips": 9600, "s_per_clip": 0.038, "time": 1790638183.2}
+{"epoch": 0, "step": 1300, "loss": 0.3547, "lr": 5.522642316338268e-06, "clips": 10400, "s_per_clip": 0.038, "time": 1790638213.4}
+{"epoch": 0, "step": 1400, "loss": 0.3546, "lr": 4.825502516487497e-06, "clips": 11200, "s_per_clip": 0.038, "time": 1790638243.4}
+{"epoch": 0, "step": 1500, "loss": 0.3541, "lr": 4.131759111665349e-06, "clips": 12000, "s_per_clip": 0.038, "time": 1790638273.3}
+{"epoch": 0, "step": 1600, "loss": 0.3542, "lr": 3.4549150281252635e-06, "clips": 12800, "s_per_clip": 0.038, "time": 1790638303.1}
+{"epoch": 0, "step": 1700, "loss": 0.3547, "lr": 2.8081442660546126e-06, "clips": 13600, "s_per_clip": 0.038, "time": 1790638332.9}
+{"epoch": 0, "step": 1800, "loss": 0.3541, "lr": 2.204035482646267e-06, "clips": 14400, "s_per_clip": 0.038, "time": 1790638362.5}
+{"epoch": 0, "step": 1900, "loss": 0.3537, "lr": 1.6543469682057105e-06, "clips": 15200, "s_per_clip": 0.038, "time": 1790638392.3}
+{"epoch": 0, "step": 2000, "loss": 0.3526, "lr": 1.1697777844051105e-06, "clips": 16000, "s_per_clip": 0.038, "time": 1790638422.3}
+{"epoch": 0, "step": 2100, "loss": 0.3523, "lr": 7.597595192178702e-07, "clips": 16800, "s_per_clip": 0.038, "time": 1790638452.2}
+{"epoch": 0, "step": 2200, "loss": 0.3521, "lr": 4.322727117869951e-07, "clips": 17600, "s_per_clip": 0.038, "time": 1790638482.0}
+{"epoch": 0, "step": 2300, "loss": 0.353, "lr": 1.9369152030840553e-07, "clips": 18400, "s_per_clip": 0.038, "time": 1790638511.8}
+{"epoch": 0, "step": 2400, "loss": 0.3529, "lr": 4.865965629214819e-08, "clips": 19200, "s_per_clip": 0.038, "time": 1790638541.4}
+{"epoch": 0, "step": 2500, "loss": 0.3523, "lr": 0.0, "clips": 20000, "s_per_clip": 0.038, "time": 1790638571.1}
+{"epoch_done": 0, "loss": 0.3523, "wall_s": 756, "time": 1790638571.3}
+{"eval": 0, "n": 967, "bleu": {"bleu1": 50.49859019324669, "bleu2": 37.201219293870246, "bleu3": 29.12248105094383, "bleu4": 23.313257075543106}, "rouge_l": 43.62511781962717, "sample": [["Are you all bored being stuck at home?", "All boring now, I m stuck at home!"], ["There might be some songs you know.", "Maybe you know the majority of them."], ["So, we are granting complementary membership fees for all Jr. NAD chapters\u2026 and for those who want to establish a new Jr. NAD chapter!", "Each year we will be exempt from paying annual membership fees and that includes funds for those who want to establish a new chapter at the NAD."]], "time": 1790638710.4}
