@@ -56,14 +56,41 @@ from unisign.model import load_model  # noqa: E402
 import cv2  # noqa: E402
 from rtmpose_utils import load_preproc, postprocess, preprocess  # noqa: E402
 
+from common.subsample_pkl import keep_idx  # noqa: E402
+
 EXTS = (".jpg", ".jpeg", ".png", ".bmp")
 
 
-def list_frames(d, limit=None):
+def list_frames(d, limit=None, keep_fps=None, meta_path=None, src_fps=None):
+    """Frames on disk, optionally thinned to simulate a lower capture rate.
+
+    The source rate comes from the clip's own meta.json as frames / duration, NOT from a constant.
+    OpenASL is not one frame rate (76.5 % ~30, 22.2 % ~24, a few 59.94), and assuming 29.97 for
+    everything is what invalidated the first accuracy-vs-rate curve on both tracks -- a 24 fps clip
+    labelled "16 fps" was really thinned to 12.8. See RESULTS.md 2.9B.
+
+    Selection is delegated to common.subsample_pkl.keep_idx so the energy path here and the accuracy
+    path there cannot drift apart: a rate means the same set of frames in both.
+    """
     fs = sorted(os.path.join(d, f) for f in os.listdir(d) if f.lower().endswith(EXTS))
     if not fs:
         raise SystemExit(f"no frames under {d}")
-    return fs[:limit] if limit else fs
+    if limit:
+        fs = fs[:limit]
+    info = {"keep_fps": None, "src_fps": None, "frames_in": len(fs), "frames_kept": len(fs)}
+    if not keep_fps:
+        return fs, info
+    src = src_fps
+    if src is None:
+        if not meta_path:
+            raise SystemExit("--keep-fps needs --meta (or an explicit --src-fps) to read the clip's "
+                             "own frame rate; a hardcoded rate is the bug this flag exists to avoid")
+        m = json.load(open(meta_path))
+        src = (m["n_frames"] / m["duration_s"]) if m.get("duration_s") else float(m["fps"])
+    idx = keep_idx(len(fs), keep_fps, src)
+    fs = [fs[i] for i in idx]
+    info.update(keep_fps=float(keep_fps), src_fps=round(float(src), 3), frames_kept=len(fs))
+    return fs, info
 
 
 def square_norm_fn(meta_path):
@@ -106,6 +133,11 @@ def main():
     ap.add_argument("--warmup", type=int, default=20)
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--repeat", type=int, default=1, help="timed sentences after one warm-up")
+    ap.add_argument("--keep-fps", type=float, default=None,
+                    help="thin frames to this capture rate; the source rate is read per clip from "
+                         "--meta as frames/duration, never assumed")
+    ap.add_argument("--src-fps", type=float, default=None,
+                    help="override the clip's own rate; normally leave unset")
     ap.add_argument("--out", default=None)
     add_power_args(ap)
     args = ap.parse_args()
@@ -113,7 +145,8 @@ def main():
     if args.square_norm and not args.meta:
         raise SystemExit("--square-norm needs --meta (the clip's bbox and source resolution)")
 
-    frames = list_frames(args.frames, args.limit)
+    frames, fps_info = list_frames(args.frames, args.limit, keep_fps=args.keep_fps,
+                                   meta_path=args.meta, src_fps=args.src_fps)
     pp = load_preproc(args.preproc or os.path.join(os.path.dirname(os.path.abspath(args.engine)),
                                                    "preproc.json"))
     sqf, geom = (square_norm_fn(args.meta) if args.square_norm else (None, None))
@@ -132,6 +165,9 @@ def main():
     load_lm_s = time.perf_counter() - t0
     print(f"[m1] pose engine {load_pose_s:.1f}s, LM {load_lm_s:.1f}s, {len(frames)} frames, "
           f"square_norm={args.square_norm}")
+    if args.keep_fps:
+        print(f"[m1] rate {fps_info['src_fps']} -> {fps_info['keep_fps']} fps: "
+              f"{fps_info['frames_in']} -> {fps_info['frames_kept']} frames")
 
     x0, _, _ = preprocess(cv2.imread(frames[0]), None, pp)
     for _ in range(args.warmup):
@@ -216,6 +252,7 @@ def main():
         "J_per_sentence": round(j_per_sentence, 2),
         "dyn_J_per_sentence": round(dyn_j_per_sentence, 2),
         "square_norm": args.square_norm, "square_geom": geom,
+        "fps": fps_info, "num_beams": args.num_beams,
         "load_pose_s": round(load_pose_s, 2), "load_lm_s": round(load_lm_s, 2),
     }
     if args.device == "cuda":
