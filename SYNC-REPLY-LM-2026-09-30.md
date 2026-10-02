@@ -229,3 +229,73 @@ Priority, given the board is down and the frontier is currently composed:
 2. `cpu0_MHz` logged on any new LM power run, per your §4.
 
 Neither blocks us. Our accuracy axis is complete.
+
+---
+
+# Addendum, same day — your four asks are done
+
+**Ask 1 — the fast path is verified.** `attach_pruned_tokenizer` reproduces the ordinary load path's
+text **exactly** on real dev clips: string-equal sentences, **0 missing and 0 unexpected state-dict
+keys**. Run on a Colab A100 against a freshly built pre-pruned directory. Raw:
+`results/block5/fastpath_verify.json`. The check requires exact string equality rather than a metric
+match, because the failure mode you identified is fluent wrong text with no error, and a corpus metric
+could absorb that.
+
+**Ask 2 — pre-pruned directory regenerated at 26,025.** `config.json` `vocab_size=26025`,
+`keep_ids.json` alongside with 26,025 ids. Built by `colab_block5.py`, reproducible from git plus
+public downloads. Note it carries the original 250 K `spiece.model`, necessarily — `PrunedTokenizer`
+has no `save_pretrained`, which is the trap you flagged — so `keep_ids.json` is what makes it usable
+and your elementwise cross-check is the right guard.
+
+**Ask 3 — the corrected test number, and it is smaller than either of us expected.**
+
+| test split, 976 clips, beam 4 | BLEU-4 | ROUGE-L |
+|---|---|---|
+| leaky keep set (26,078), cap 100 | 22.87 | 42.98 |
+| **leak-free (26,025), cap 100** | **22.84** | **42.99** |
+| leak-free (26,025), cap 64 | 22.84 | 42.99 |
+
+**The leak was worth 0.03 BLEU-4**, and ROUGE-L rose 0.01. So your §9.1 can cite **22.84** instead of
+carrying a caveat, and the difference changes nothing relative.
+
+**We would rather you treat this as a methodology finding than a results correction.** The channel is
+real — the vocabulary was selected using the test split, so the deployed output layer had seen data it
+should not have, with nothing in the training loop touching test data — and almost nobody checks for
+it. Its magnitude *here* was negligible. Saying "we found a leak and it cost 0.03" is the honest
+version; implying we caught something that moved the numbers is not.
+
+**Ask 4 — confirmed, the pruned TensorRT engines need re-exporting.** `results/RESULTS.md` L8.1
+records the three ONNX graphs as exported from `weights/mt5-base-openasl-pruned`, **vocab 26,078**.
+Your L8.2 *latency* rows stand (19.2 ms/token, 2.9× the pruned PyTorch decoder) — token-identity was
+checked against a PyTorch model with the same vocabulary, so the comparison is internally valid. Any
+claim about that engine's **output quality** describes a leaky-vocabulary model. Given the leak is
+worth 0.03 BLEU-4, re-exporting is bookkeeping rather than urgent; the row just needs the stamp.
+
+## One correction to our own §5, and one to the earlier draft
+
+**We told you the 16 fps adaptation gain might be an underestimate** because an adapted sample ended
+mid-phrase at `max_new_tokens 64`. Measured: the same checkpoint at cap 64 and cap 100 scores
+**23.2522 / 42.6339 both ways — bit-identical, not one sentence changed.** So L3.2's cap equivalence
+does extend to adapted models and the gain is not understated. Withdrawn.
+
+**Block 4 is finished, with CIs and three seeds** (967 dev clips, 1000 resamples, shared draws):
+
+| comparison | BLEU-4 | ROUGE-L | verdict |
+|---|---|---|---|
+| un-adapted, source → 16 fps | −0.35 [−0.97, +0.52] | **−1.34 [−2.35, −0.33]** | **established** |
+| 16 fps, un-adapted → adapted | +0.46 [−0.17, +1.06] | **+1.04 [+0.25, +1.80]** | **established** |
+| source, un-adapted → adapted | +0.12 [−0.54, +0.78] | +0.60 [−0.10, +1.37] | borderline |
+| difference-in-differences | +0.32 [−0.55, +1.18] | +0.42 [−0.58, +1.53] | **not established** |
+
+Seed spread across 42/43/44: **0.05 BLEU-4, 0.15 ROUGE-L** — the gain is ~7× the seed noise, so your
+row 4.3 gate is passed.
+
+**The one thing to not overstate, which we did in conversation before the CIs landed:** the
+difference-in-differences does **not** clear zero. The +1.04 gain at 16 fps and the +0.60 gain at
+source rate are not statistically distinguishable, so the data support *"fine-tuning helps, and at
+16 fps that help is established"* but **not** *"adaptation is specifically a frame-rate correction"*.
+Worth keeping those apart in the report.
+
+**Net for your Decision 3:** 16 fps costs an established −1.34 ROUGE-L un-adapted, and adaptation
+recovers an established +1.04, leaving the adapted 16 fps model 0.33 ROUGE-L below the un-adapted
+full-rate baseline for a 38 % system energy saving. That is the strongest cell on the frontier.

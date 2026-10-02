@@ -405,9 +405,39 @@ because it appears in the test split.
 **Validated on dev:** corrected checkpoint scores 23.13 / 42.93 against the leaky one's 23.11 /
 42.90. Identical within noise, as expected since none of the 53 occur in dev.
 
-**Still outstanding: the test-split score of the corrected checkpoint.** Those 53 tokens occur 55
-times across 46 of 976 test sentences, so a small drop from 22.87 is expected, and that would be the
-true unleaked number. **Every test figure in this document still comes from the leaky keep set.**
+**Measured on the test split, 2026-09-30 — the leak was real and worth 0.03 BLEU-4.**
+
+| test split, 976 clips, beam 4 | BLEU-4 | ROUGE-L |
+|---|---|---|
+| leaky keep set (26,078), cap 100 | 22.87 | 42.98 |
+| **leak-free keep set (26,025), cap 100** | **22.84** | **42.99** |
+| leak-free, cap 64 | 22.84 | 42.99 |
+
+So removing the 53 test-only tokens costs **0.03 BLEU-4** and *gains* 0.01 ROUGE-L — far inside the
+noise, and cap 64 is again bit-identical to cap 100.
+
+Paired bootstrap on the 976 test clips (1000 resamples, `unisign/bootstrap_ci.py`):
+
+| | leaky → leak-free | 95 % CI | verdict |
+|---|---|---|---|
+| BLEU-4 | −0.03 | [−0.11, +0.01] | not established |
+| ROUGE-L | +0.01 | [−0.02, +0.04] | not established |
+
+The intervals are unusually tight because the two models differ by only 53 of 26,078 rows, so most
+sentences are word-identical. That makes this a **precise** null rather than an underpowered one: the
+leak's effect on the test score is bounded at roughly 0.1 BLEU-4.
+
+**The right way to report this is as a methodology finding, not a results correction.** The leak
+channel is real and generalisable: the vocabulary was selected using the test split, so the deployed
+model's output layer had seen data it should not have, with nothing in the training loop touching test
+data. Most people do not check for it. Its *magnitude here* happened to be negligible, which is worth
+saying plainly rather than implying we caught something that mattered numerically. It could easily
+have been larger with a smaller keep set or a more specialised domain — `▁Bitcoin`, the content word of
+this project's own demo clip, was in the deployed vocabulary only because it appears in test.
+
+Every figure elsewhere in this document comes from the **leaky** keep set (22.87). The difference is
+0.03 BLEU-4, so the relative conclusions are unaffected; the corrected absolute number is 22.84.
+Files: `results/block5/eval_test_pruned_traindev_cap{100,64}.json`.
 
 ### 8.2 The first adaptation runs made the model worse — and the control proved why
 
@@ -442,36 +472,75 @@ harness actually trains rather than merely runs.
 rate) was killed by a Colab disconnect after 10 log lines. "Label smoothing was the problem" is the
 best available reading, not an isolated result — the working recipe changed three things at once.
 
-### 8.4 Adapted vs un-adapted at 16 fps (967 dev clips, seed 42)
+### 8.4 Adapted vs un-adapted at 16 fps — 967 dev clips, 3 seeds, paired bootstrap
 
-| | un-adapted | adapted | Δ BLEU-4 | Δ ROUGE-L |
+Final measurement. Leak-free checkpoint (§8.1), ls 0.0 / lr 1e-5 / warmup 0.1, 20,000 train clips,
+1 epoch, mT5 frozen, 5.35 M trainable. Evaluated through `eval_openasl.py` so full predictions exist;
+CIs from `unisign/adapt_ci.py`, 1000 resamples, **every cell scored on one shared set of draws** so the
+deltas and the difference-in-differences are mutually comparable. Colab A100. The 16 fps row is the
+mean of seeds 42/43/44.
+
+| | BLEU-4 | ROUGE-L |
+|---|---|---|
+| source, un-adapted | 23.13 | 42.93 |
+| source, adapted | 23.25 | 43.53 |
+| 16 fps, un-adapted | 22.79 | 41.59 |
+| **16 fps, adapted** | **23.27** | **42.60** |
+
+| comparison | BLEU-4 | ROUGE-L | verdict |
+|---|---|---|---|
+| un-adapted, source → 16 fps | −0.35 [−0.97, +0.52] | **−1.34 [−2.35, −0.33]** | **established** (P=0.994) |
+| 16 fps, un-adapted → adapted | +0.46 [−0.17, +1.06] | **+1.04 [+0.25, +1.80]** | **established** (P=0.996) |
+| source, un-adapted → adapted | +0.12 [−0.54, +0.78] | +0.60 [−0.10, +1.37] | borderline, misses zero by 0.10 |
+| difference-in-differences | +0.32 [−0.55, +1.18] | +0.42 [−0.58, +1.53] | **not established** |
+
+**What is established.**
+
+* **16 fps costs real accuracy: −1.34 ROUGE-L, CI excluding zero.** This is the number that retires
+  "16 fps at no measured accuracy cost", which came from an n=30 run with a CI ~6 BLEU-4 wide.
+* **Adaptation recovers it: +1.04 ROUGE-L, CI excluding zero.** The adapted 16 fps model sits
+  **−0.33 ROUGE-L** below the un-adapted full-rate baseline, i.e. **~75 % of the loss recovered**,
+  while running at 16 fps for a 38 % system energy saving (§6).
+* **BLEU-4 establishes none of it.** Same clips, same resample draws: −0.35 and +0.46, both spanning
+  zero. This is the metric-power point demonstrated rather than asserted — see §7.1.
+
+**What is NOT established, and was claimed too strongly in an earlier draft.**
+
+~~Adaptation helps more under frame-rate shift than it does in general.~~ The difference-in-differences
+is **+0.42 ROUGE-L [−0.58, +1.53], P(>0) = 0.78**. The +1.04 gain at 16 fps and the +0.60 gain at
+source rate are **not statistically distinguishable**. So the data support *"fine-tuning helps, and at
+16 fps that help is established"* — they do **not** support *"adaptation is specifically a frame-rate
+correction"*. Those are different contributions and the report must not conflate them.
+
+**Seed variance (guide row 4.3), seeds 42/43/44 at 16 fps.**
+
+| | min | max | spread | mean |
 |---|---|---|---|---|
-| source rate | 23.13 / 42.93 | 23.31 / 43.63 | +0.18 | +0.70 |
-| **16 fps** | 22.79 / 41.59 | **23.19 / 42.60** | **+0.40** | **+1.01** |
+| BLEU-4 | 23.25 | 23.30 | **0.05** | 23.27 |
+| ROUGE-L | 42.50 | 42.65 | **0.15** | 42.60 |
 
-- **Adaptation helps more under frame-rate shift than without it.** Difference-in-differences
-  **+0.22 BLEU-4, +0.31 ROUGE-L** — the part attributable to frame-rate adaptation specifically.
-- **It recovers most of the frame-rate loss.** Un-adapted, 16 fps costs **−1.34 ROUGE-L**. Adapted,
-  the 16 fps model sits **−0.33 ROUGE-L** below the un-adapted full-rate baseline — about **75 %
-  recovered** — and **+0.06 BLEU-4 above** it.
-- **This moves the frontier.** 16 fps / beam 4 is a **38 % system energy saving** (§6). Un-adapted
-  that carries a real accuracy cost; adapted, the cost nearly vanishes.
-- The un-adapted 16 fps figure independently reproduces the Mac result (22.79 / 41.59 vs 22.77 /
-  41.60) on different hardware with a different checkpoint.
+The adaptation gain is **~7× the seed spread**, so the gate the guide sets before any adaptation claim
+is passed comfortably. Caveat: this spread bundles seed effects with GPU non-determinism, which is
+non-zero here — three runs at the *identical* seed 43 (an accident of concurrent launches) gave final
+losses 0.3765 / 0.3742 / 0.3788.
 
-**Output truncation, found by reading the samples.** One adapted prediction ends mid-phrase — *"where
-they can establish a"* — at `max_new_tokens 64`, while the un-adapted version completes the sentence.
-§3.5's cap equivalence was measured on the un-adapted model only. Truncation costs n-gram matches, so
-**+0.40 / +1.01 may be an underestimate.** A cap-100 re-evaluation is queued.
+**Output-length cap, hypothesised and refuted.** An adapted sample ended mid-phrase at
+`max_new_tokens 64` (*"where they can establish a"*), suggesting truncation was depressing the adapted
+scores, since §3.5's cap equivalence was measured only on the un-adapted model. Scoring the same
+adapted checkpoint at both caps gives **23.2522 / 42.6339 versus 23.2522 / 42.6339 — bit-identical,
+not one sentence changed.** §3.5 extends to adapted models; the gain is not an underestimate.
+
+Files: `results/block4/eval_dev_*.json` (7 evals, full predictions), `results/adapt_ci_dev.json`,
+logs in `results/colab_runs/`.
 
 ### 8.5 What is NOT established about §8.4
 
-1. **No confidence intervals.** `train_adapt.py`'s built-in eval logs summary metrics, not the 967
-   predictions, so none of these deltas can be bootstrapped. Every other comparison in this document
-   carries a paired CI; these do not.
-2. **One seed.** Guide row 4.3 (seed variance) has not run. "+0.40 vs +0.18" is uninterpretable
-   without the seed-to-seed spread, which is a *different* noise source from the clip-resampling CI.
-3. 20,000 of 96,477 train clips, one epoch.
+1. ~~No confidence intervals.~~ **Resolved** — all deltas above carry paired bootstrap CIs.
+2. ~~One seed.~~ **Resolved** — three seeds, spread 0.05 BLEU-4 / 0.15 ROUGE-L.
+3. **Whether the gain is frame-rate-specific.** The difference-in-differences is not established, so
+   "adaptation fixes the frame-rate shift" is not supported; only "fine-tuning helps, measurably at
+   16 fps" is.
+4. 20,000 of 96,477 train clips, one epoch. The gain may grow with more data or epochs, untested.
 4. Frame-rate emulation is a proxy for a real slower camera.
 
 ---
@@ -555,9 +624,9 @@ they can establish a"* — at `max_new_tokens 64`, while the un-adapted version 
 | # | what | cost | why |
 |---|---|---|---|
 | 1 | Paired CIs for the §8.4 2×2 (`eval_openasl.py` → `bootstrap_ci.py`) | ~20 min | the only result here without error bars |
-| 2 | Seed variance, 3 more seeds (row 4.3) | ~55 min | "+0.40 vs +0.18" is one draw |
-| 3 | Test-split eval of the leak-free checkpoint | ~15 min | every test figure above uses the leaky keep set |
-| 4 | Cap-100 re-eval of adapted models | ~5 min | §8.4 may be an underestimate |
+| ~~2~~ | ~~Seed variance, 3 more seeds (row 4.3)~~ | done | spread 0.05 BLEU-4 / 0.15 ROUGE-L across seeds 42/43/44 — the gain is ~7x the seed noise |
+| ~~3~~ | ~~Test-split eval of the leak-free checkpoint~~ | done | 22.84 / 42.99 vs the leaky 22.87 / 42.98 — the leak was worth 0.03 BLEU-4 |
+| ~~4~~ | ~~Cap-100 re-eval of adapted models~~ | done | measured bit-identical to cap 64; §8.4 is not an underestimate |
 | 5 | Measured end-to-end board energy at a second corner | pose track | our frontier is composed and ~6 % optimistic |
 | 6 | Adaptation at 12 fps | ~20 min | 12 fps costs 2.5 BLEU-4 un-adapted; worth trying if 16 fps holds |
 | 7 | Full 96 K clips / multiple epochs | ~65 min/epoch | may increase the gain |
