@@ -783,6 +783,60 @@ anonymous memory to make the kernel reclaim page cache, then releases it: MemFre
 → **4618 MB** (reclaim). The first version of this sized the allocation to the *deficit*, which fits in
 already-free memory and evicts nothing; it must be sized to the target.
 
+## 5.2 / The LM-load memory ceiling was an occupancy artefact (2026-10-02)
+
+> **This section WITHDRAWS a claim this track made and sent to the LM track.** On 2026-09-29 four
+> probes concluded "the LM load alone exhausts the board — memory IS binding at load". The LM track
+> adopted it, struck their own "memory is not binding" line, and **partly reopened INT8** on the
+> strength of it. It does not replicate.
+
+**The process failure first.** Those probes were run with **no occupancy check**. `jetson/run.sh
+whoelse` exists (added 09-26) and was used correctly before M1 — §5.1 records "one other user with an
+idle shell, no foreign process above 1 % CPU, GPU load 0" — but there is no occupancy check anywhere
+between 09-28T15:55Z and 09-30T19:54Z, which brackets every one of these probes. The board is shared
+scratch; an unrecorded co-tenant is exactly the variable that invalidates an allocation measurement.
+
+**Re-run 2026-10-02 on a verified-empty board** (0 users, 0 foreign processes >1 % CPU, no foreign
+containers, no `/dev/nvidia*` clients, checked before *and* after every run), `probe2.py` unchanged,
+and with **no** cache reclaim at all. Full data in `results/mem_probe_2026-10-02.json`.
+
+| mode | MemFree at start | 2026-09-29 (occupancy unknown) | 2026-10-02 (empty) |
+|---|---:|---|---|
+| `lm_only` | 3863 → 4034 MB | ❌ fail | ✅ **success**, peak torch 0.98 GB |
+| `lm_only`, max reclaim | 4641 MB | ❌ fail | — |
+| `lm_only` | 1508–2014 MB | — | ✅ **success ×4** (Cached 3791–4255 MB) |
+| `lm_only` | 1084 MB | — | ❌ fail |
+| `trt_then_lm` | 3926 → 1258 MB | ❌ fail | ✅ **success** |
+| `lm_then_trt` | 4058 → 1470 MB | ❌ fail | ✅ **success** |
+| `trt_only` | 3988 → 1283 MB | ✅ success | ✅ success |
+
+**Seven successes at 1508–4034 MB free against one failure at 1084 MB.** The 09-29 failures at
+3863–4641 MB are not reproducible on an empty board, and the ordering is impossible to explain with a
+MemFree threshold: 09-29 failed at 4641 MB while 10-02 succeeded at 4034 MB and again at 1508 MB.
+
+**Three further claims fall with it:**
+
+1. ~~"The board physically cannot give much more than ~5 GB free."~~ That came from `MemAvailable`
+   capping at 5304 MB on 09-29. Empty, it is **6692–6732 MB** — about 1.4 GB higher, which is the
+   scale of a co-tenant's resident set.
+2. ~~"The pruned load path peaks near 4.2 GB."~~ **Never measured.** It was arithmetic over an assumed
+   250k materialisation (2.3 full + 0.95 sliced + 0.95 device). Measured peak torch device allocation
+   is **0.98 GB on every run**, and host consumption is ~1.1–1.6 GB of MemFree.
+3. ~~"nvmap allocates only from MemFree and never reclaims page cache."~~ `lm_only` succeeds with
+   **Cached at 3791–4255 MB and MemFree at 1508 MB**, so the load does not require the cache to be
+   evicted first. The `--target-free-mb` reclaim above is still a useful tool; it was not the
+   precondition it was described as.
+
+**What is still true.** The load is tight: MemFree falls to 132–699 MB at peak, and it did fail once
+near 1.1 GB free. So "keep ~1.5 GB free and do not share the board during a load" is supported.
+"The 8 GB board cannot hold the co-resident pipeline" is not — `trt_then_lm` and `lm_then_trt` **both
+load**, which is the configuration the end-to-end sustained run needs, and that run's repeated
+failures must now be re-attributed rather than explained by memory.
+
+**Why M1 stood up anyway.** M1's occupancy *was* checked and recorded, and its one co-tenant held an
+idle shell. The result is unaffected. What was wrong was calling one success robust, and then
+explaining the sustained run's failures with an uncontrolled measurement instead of re-testing.
+
 ## Track B: Uni-Sign OpenASL pose-only
 
 ### Metric check (B1.3), no model run
