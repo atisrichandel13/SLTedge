@@ -827,11 +827,19 @@ MemFree threshold: 09-29 failed at 4641 MB while 10-02 succeeded at 4034 MB and 
    evicted first. The `--target-free-mb` reclaim above is still a useful tool; it was not the
    precondition it was described as.
 
-**What is still true.** The load is tight: MemFree falls to 132–699 MB at peak, and it did fail once
-near 1.1 GB free. So "keep ~1.5 GB free and do not share the board during a load" is supported.
-"The 8 GB board cannot hold the co-resident pipeline" is not — `trt_then_lm` and `lm_then_trt` **both
-load**, which is the configuration the end-to-end sustained run needs, and that run's repeated
-failures must now be re-attributed rather than explained by memory.
+**What is still true, and the limit of this result.** `probe2.py` loads the **pruned** checkpoint
+(545 MB on disk, 0.98 GB device peak). The end-to-end and sustained runs load the **full** released
+checkpoint (1.2 GB on disk, **2.577 GB** device peak per §5.1), so this probe does not speak for them,
+and an earlier draft of this section wrongly said it did. Measured the same day: the 2x2 driver
+(§5.3) failed all four configs with the same NVML assert at **1654–1830 MB free on a verifiably empty
+board**, and M1 succeeded at 4625 MB after a reclaim. **The full-checkpoint path needs roughly 4 GB of
+MemFree; the pruned path needs ~1.5 GB.** Both numbers are now measured rather than assumed.
+
+So the corrected statement is narrower than the withdrawal above might suggest. For the **pruned**
+path the 09-29 ceiling does not exist. For the **full** checkpoint memory is genuinely tight, the
+reclaim step is mandatory rather than precautionary, and the sustained run's failures are not yet
+explained — but they must be re-diagnosed against a reclaim-and-verify protocol, not against the
+09-29 numbers.
 
 **Why M1 stood up anyway.** M1's occupancy *was* checked and recorded, and its one co-tenant held an
 idle shell. The result is unaffected. What was wrong was calling one success robust, and then

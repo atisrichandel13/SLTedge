@@ -27,7 +27,18 @@ for rate in src 16; do
     users=$(who | wc -l)
     foreign=$(ps -eo user,pcpu,comm --sort=-pcpu | awk 'NR>1 && $1!="tgoyal" && $1!="root" && $2+0>1.0' | wc -l)
     free=$(awk '/MemFree/{printf "%d", $2/1024}' /proc/meminfo)
-    echo "[2x2] === $tag  (users=$users foreign=$foreign memfree=${free}MB)"
+    echo "[2x2] === $tag  (users=$users foreign=$foreign memfree=${free}MB before reclaim)"
+    # The FULL checkpoint needs ~4 GB of MemFree: its device peak is 2.577 GB (M1), against ~0.98 GB
+    # for the pruned one that probe2.py uses. Loading it at the ~1.7 GB free left over after a
+    # previous load fails with the NVML assert, which is an OOM in disguise. Reclaim to the TARGET,
+    # not the deficit.
+    python3 jetson/drop_file_cache.py --target-free-mb=5000 2>&1 | tail -1
+    free=$(awk '/MemFree/{printf "%d", $2/1024}' /proc/meminfo)
+    echo "[2x2] $tag memfree=${free}MB after reclaim"
+    if [ "$free" -lt 3800 ]; then
+      echo "[2x2] $tag SKIPPED: only ${free}MB free, full checkpoint needs ~4 GB"
+      continue
+    fi
     fpsarg=""
     [ "$rate" != "src" ] && fpsarg="--keep-fps $rate"
     ./jetson/run.sh exec-batch python3 -m unisign.e2e_translate \
