@@ -33,6 +33,12 @@ Context files: `sign-language-project-context-v2.md`, `jetson-setup-handoff.md`,
 | C10 | **Milestone M4 — accuracy–energy frontier.** J per sentence (pose + LM, measured) vs BLEU-4 across all configs. The plot the report is built around | both | ✅ 2026-09-30 `results/frontier.png` + `.csv`, RESULTS §L16. **Energy is composed, not measured end-to-end** | report |
 | C11 | Report + demo video (record early), written against both rubrics | both | ⬜ **last step by agreement**: drafted only once both tracks' experiments are done and the results combined | — |
 
+
+> **Withdrawn claim, do not resurrect (RESULTS.md §5.2, 2026-10-02).** The "LM load peaks near 4.2 GB
+> and memory is binding at load" finding was an occupancy artefact — the probes ran on a shared board
+> with no `whoelse` check. Measured peak device allocation is 0.98 GB. The LM track's original
+> "memory is not binding at 2.577 GB peak" line is **restored**, and **INT8 is not reopened**.
+
 ---
 
 ## 1. Pose track (teammate) — in order
@@ -100,16 +106,15 @@ Things the LM track needs run on the board. Results come back via git or scp.
 
 ### Outstanding (as of 2026-10-03)
 
-**The board has been unreachable since 2026-09-28.** Everything below is blocked on access, and the
-demo video for C11 is blocked on it too.
+**Board access restored 2026-10-02** — the pose track ran the §5.2 memory probes on a verified-empty
+board. The demo video for C11 still needs board time.
 
 | # | Request | Why it matters | Priority |
 |---|---|---|---|
-| J5 | **End-to-end run at the frontier knee**: `unisign/e2e_translate.py`, beam 4, **24 fps**, RTMW FP16, `--batch-size 1`, 3 repeats. Log M1's fields plus `cpu0_MHz` | The frontier recommends beam 4 @ 24 fps and **that cell has never been run end-to-end**. Row 5.4 asks for *measured* J/sentence; every cell is currently composed. Full write-up in `ASK-E2E-KNEE-2026-09-30.md` | **highest** |
+| J5 | **Add 24 fps to `jetson/e2e_2x2.sh`** (3x2), or at minimum the single cell `24 fps x beam 4` | The 2x2 covers {source, 16 fps}, built on our pre-frontier priority. The frontier puts the operating point at **beam 4 @ 24 fps** (free within noise); **16 fps is an established loss**, CI [-2.00, -0.64]. So the grid measures the residual at one cell we recommend and one we don't, and never at the one we do. `--keep-fps` already supports it. See `ASK-E2E-KNEE-2026-09-30.md` | **highest** |
 | J6 | C9 ≥3-clip rows spanning the crop range | `POSE_J_PER_S` came from one clip at the 83rd percentile of crop area, which is the frontier's ~7 % high bias. Fixes a precision issue, not a correctness one | medium |
-| J7 | `cpu0_MHz` on any new LM power run | Rules out a DVFS confound between runs | medium (free if done with J5) |
-| J8 | Multi-clip board accuracy, ~100 clips end-to-end | **We have never produced a board-measured BLEU.** Accuracy is offline (n=976, Mac); the board↔offline bridge is a 30-clip agreement. ~15 min at 9.05 s/sentence | medium |
-| J9 | C9 protocol applied to the final rows: 3 runs mean ± std, DVFS logged, 30-min sustained for FP32 and the best compressed config | Row 5.2; the report's rigor rubric keys off it | high |
+| J7 | Multi-clip board accuracy, ~100 clips end-to-end | **We have never produced a board-measured BLEU.** Accuracy is offline (n=976, Mac); the board↔offline bridge is a 30-clip agreement. ~15 min at 9.05 s/sentence | medium |
+| J8 | C9 protocol applied to the final rows: 3 runs mean ± std, DVFS logged, 30-min sustained for FP32 and the best compressed config | Row 5.2; the report's rigor rubric keys off it | high |
 
 ### Delivered
 
@@ -120,6 +125,8 @@ demo video for C11 is blocked on it too.
 | J3 | Power-logged versions of the J2 runs | ✅ folded into §L4 / §C |
 | J4 (= L8) | TensorRT engines from the pruned mT5 ONNX + cached decode loop | ✅ §L8.2. **FP16 overflows** (token 0 every step at −ln 26078); FP32 engines are the usable ones |
 | — | M1 end-to-end | ✅ §5.1 |
+| — | `cpu0_MHz` on LM power runs | ✅ withdrawn as an ask: `power_logger` already samples it into `aux_avg`; M1 carries 866.76 MHz, below the 897 MHz downclock point |
+| — | `--keep-fps` on `e2e_translate.py` + `jetson/e2e_2x2.sh` | ✅ 2026-10-02, pose track |
 
 ### Note on re-exporting the TRT engines
 
