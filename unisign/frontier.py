@@ -55,6 +55,13 @@ Two interpolations are flagged in the output:
 # --- measured: pose stage, J per second of video (HANDOFF s0d) ---
 POSE_J_PER_S = {"source": 4.25, 24: 3.36, 16: 2.27}
 
+# *** DO NOT QUOTE THE BEAM-WIDTH ENERGY COST FROM THIS TABLE UNTIL THE PRUNED GRID LANDS. ***
+# These rows are the PRUNED checkpoint (vocab 26,078). Every on-board end-to-end run so far loaded
+# the FULL released checkpoint (vocab 250,112), where the measured greedy->beam-4 penalty is 3-5x
+# larger (+7.02 J at T=204, +6.95 J at T=136, RESULTS.md 5.3). The output projection costs
+# beams x vocab, so the two models genuinely differ here; the pruned numbers below are the right
+# ones for the DEPLOYED system, but they are unvalidated end-to-end. The frame-rate term IS
+# validated: -16.7% measured vs -17% composed. See REPLY-PRUNED-GRID-2026-10-03.md.
 # --- measured: LM stage, J per sentence, by (beams, frames used) (HANDOFF s0b) ---
 LM_J = {(1, 215): 8.88, (2, 215): 10.26, (4, 215): 11.04,
         (1, 137): 8.55,                  (4, 137): 9.89,
