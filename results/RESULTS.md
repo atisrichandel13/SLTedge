@@ -1613,3 +1613,37 @@ for more than it is: system joules are **composed, not measured end-to-end** (~6
 one M1 end-to-end run, ~7 % high for a median-crop clip — opposing biases, neither of which reorders
 the cells); the reduced frame rates are **emulated** by thinning 30 fps keypoints; and every cell
 carries the −0.03 BLEU-4 test-set vocabulary leak, uniformly, so it cannot reorder them either.
+
+#### L16 addendum (2026-10-03): the grid validated the frame-rate term and falsified the beam-width term
+
+The pose track ran the composition grid end to end on the board (§5.3), including **24 fps × beam 4 —
+the cell L16 recommends, measured for the first time: 7728.7 ms, 42.94 J/sentence.**
+
+* **Frame-rate term: validated.** Source → 24 fps at greedy measures **−16.7 %** system energy against
+  the **−17 %** `frontier.py` predicts. The pose side of the composition can be trusted.
+* **Decoder-width term: not validated, and not quotable.** Measured greedy → beam 4 costs **+7.02 J**
+  at 24 fps and **+6.95 J** at 16 fps, against composed +2.04 and +1.34 — understated 3–5×.
+
+**The cause is a checkpoint mismatch.** `LM_J` comes from §2.9C, measured on the **pruned** checkpoint
+(vocab 26,078); every end-to-end run so far loads the **full released** checkpoint (vocab 250,112).
+The output projection costs `beams × vocab`, so the full model's beam penalty is genuinely larger.
+Since the pruned checkpoint is what deploys, the composition is right for the deployed system and the
+end-to-end runs used the wrong model. **The pruned grid is queued and is the decisive experiment.**
+
+**Our prediction for it, recorded before it runs.** §5.3 reads the constant absolute penalty as
+theory-confirming, on the grounds that decoder cost tracks tokens generated rather than input length.
+That holds for the output projection (`beams × vocab`) but not for cross-attention, where each beam
+attends over all `T` encoder states every step (`beams × T`). On the full model the 250 K projection
+swamps the T term; on the pruned model it is 9.6× smaller and the T term should become visible. Our
+own §2.9C rows already show it — the penalty is 1.15 / 1.34 / 2.16 J at T = 68 / 137 / 215, growing
+**1.88×** across a 3.2× change in T, and those are measured rows, not interpolation.
+
+**So: the pruned grid should show a penalty that RISES with frame count, landing near 1.3–2.0 J, not a
+flat ~7 J.** If it does, the only error was the checkpoint. If the pruned penalty is also flat near
+7 J, then §2.9C and the end-to-end runs disagree about the *same* model, which would be a more serious
+problem. Written down in advance so the prediction cannot be fitted afterwards.
+
+**What does not change.** The lever ordering survives even at the full-checkpoint penalty: frame rate
+is 102.9 J per BLEU-4 point against 3.5 for beam width, so frame rate remains the better lever by
+~29× instead of ~94×. The recommendation of beam 4 @ 24 fps rests on the frame-rate term, which is
+the validated one.
