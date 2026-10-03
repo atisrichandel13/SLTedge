@@ -553,6 +553,25 @@ column is better read as **~2 BLEU-4 below** the plotted cells, not ~0.35, with 
 term is unestablished. Relative ordering is unaffected, for the reason given there — every cell shares
 one pose source.
 
+**4. One marginally "established" result that must NOT be promoted.** The fifth comparison — 24 fps
+vs source on the **authors'** poses at n=100 — came out at BLEU-4 −0.67 [−2.24, +1.29] and ROUGE-L
+**−1.30 [−2.71, −0.00]**, which the CI script flags as sign established.
+
+It should not be read as one, for two reasons.
+
+* **A better-powered measurement of the identical comparison disagrees.** The same pose source, same
+  pruned checkpoint, same beam 4 at n=976 gives ROUGE-L **+0.15** (42.98 → 43.13, L13/frontier) and
+  BLEU-4 −0.07. n=976 governs over n=100 on the same quantity, so the −1.30 here is a subset
+  fluctuation in these particular 100 clips, not a frame-rate effect.
+* **The bound is −0.00.** "Established" at an upper bound that rounds to zero is a threshold artefact,
+  and this document's own rule is that a marginal P-value straddling the line must not be quoted as
+  either established or null (§2.9B, L15.3).
+
+Recorded rather than dropped, because the asymmetry is real and might matter later: on *our* poses the
+same comparison is a null (+0.17 [−1.23, +1.64]) while on *theirs* it is −1.30. A tempting story is
+that our keypoints are already noisy enough that thinning them adds relatively little — but with these
+intervals that is speculation, and it is written here as speculation.
+
 **What would settle it:** the remaining 831 test clips. The interval narrowed from ±3.7 to ±2.3
 BLEU-4 going from n=30 to n=100, i.e. roughly as 1/√n, so n≈400 would bring it to about ±1.2 and
 n=931 to ±0.75 — enough to establish or kill a 2-point effect. The frames are on the Mac and the

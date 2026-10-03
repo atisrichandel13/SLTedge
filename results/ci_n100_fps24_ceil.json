@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_n100_pruned_ceil_src.json",
+ "b": "results/eval_n100_pruned_ceil_fps24.json",
+ "n_clips": 100,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 25.55640742727728,
+  "b": 24.888326894844003,
+  "delta": -0.6680805324332759,
+  "ci": [
+   -2.2366280268122085,
+   1.2921942477710635
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.2115
+ },
+ "rouge_l": {
+  "a": 45.240775566153914,
+  "b": 43.939582550892474,
+  "delta": -1.3011930152614397,
+  "ci": [
+   -2.714452070077605,
+   -0.004546112011446133
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.025
+ }
+}
