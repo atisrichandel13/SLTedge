@@ -4,6 +4,12 @@
 to look up a number. Every figure here is measured; where something is composed, emulated or
 estimated, it says so. The lookup tables live in `results/RESULTS.md`.*
 
+*Companion: [ORIENTATION.md](ORIENTATION.md) was written the same day from the pose/board side. This
+file is the **narrative** — how the research got where it did, in order, with the dead ends. That one
+is the **map** — what data flows into which system, every choice with its evidence, and the hardware
+facts that keep biting. Read this one first if you want the story; that one if you want to find your
+bearings quickly. Where they disagree, `results/RESULTS.md` is authoritative over both.*
+
 ---
 
 ## 1. The problem, in one page
@@ -412,9 +418,18 @@ and the frontier plot.
 **Open, and mostly on the board:**
 
 - **The recommended cell has never been run end to end.** The frontier recommends beam 4 @ 24 fps;
-  the only true end-to-end measurement is at source rate. The teammate built a 2×2 driver for this,
-  but it covers `{source, 16 fps}` — built on our *pre-frontier* priority — and as of 2026-10-02 it
-  **failed all four configs** on memory (the full checkpoint needs ~4 GB free).
+  the only true end-to-end measurement is at source rate. *Updated 2026-10-03 by the pose track:* the
+  2×2's first launch did fail all four configs on memory, but that was a missing reclaim step. Re-run
+  with reclaim-to-target, **three of the four cells landed** (RESULTS.md §5.3) and the grid has been
+  extended to `{source, 24 fps, 16 fps}` per `ASK-E2E-KNEE`, so 24 fps × beam 4 is now in flight.
+  The one cell that still failed is `source × beam 4` — and **not** because it does not fit: M1 ran
+  that exact cell at *less* free memory. The real finding is that MemFree is not a sufficient
+  readiness check. §5.3 has it.
+  - What the grid already settles, on the board rather than in the composition model: **frame rate is
+    the big knob and beam width the small one.** Source → 16 fps at greedy cuts latency 41.2 % and
+    energy 40.2 %; greedy → beam 4 at 16 fps costs 19.3 % latency and 26.9 % energy. It also shows
+    `mJ_per_frame` *rises* under subsampling (169 → 190), because the per-sentence LM cost is spread
+    over fewer frames — so **end-to-end energy must be quoted per sentence**, not per frame.
 - **We have never produced a board-measured BLEU.** All accuracy is offline on the Mac; the only
   bridge to the board is a 30-clip agreement check.
 - **The C9 rigor protocol** (3 runs each, DVFS logged, 30-minute sustained thermal run) is not yet

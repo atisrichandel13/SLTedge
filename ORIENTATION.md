@@ -4,6 +4,12 @@
 `results/RESULTS.md` or `PROJECT-GUIDE.md`; if the two ever disagree, RESULTS.md wins and this file
 is stale. Nothing in here is new evidence.*
 
+*Companion: [RESEARCH-STORY-2026-10-03.md](RESEARCH-STORY-2026-10-03.md) was written the same day
+from the LM side. That one is the **narrative** — how the research got here, in order, including the
+dead ends and the retractions. This one is the **map** — what flows into which system, every choice
+with the evidence under it, and the hardware behaviour that keeps catching us out. They were written
+independently and overlap on purpose; `results/RESULTS.md` is authoritative over both.*
+
 ---
 
 ## 1. The system in one paragraph
