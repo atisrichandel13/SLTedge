@@ -438,3 +438,23 @@ and the frontier plot.
   training run, and the context-conditioning stretch.
 
 **The report comes last**, once both tracks' results are combined.
+
+---
+
+## 9. Correction to the work-split premise (2026-10-03)
+
+Two constraints this document and `LM-TRACK-REPORT-2026-09-30.md` planned around have both expired,
+and one was never true.
+
+**"Anything needing a Python environment is ours to run."** False. The pose track's Mac runs torch
+2.8.0, transformers 4.57.6, numpy, safetensors, rouge and portalocker with MPS available — it has
+already executed `bootstrap_ci.py` and every paired CI in §2.5f and §2.5g. The claim originated with
+them and they have withdrawn it. Only `sentencepiece` (needed for an mT5 tokenizer load) and `cv2`
+(needed for any frame or pose path) are genuinely absent, and both are plain pip installs.
+
+**"The board has been unreachable since 2026-09-28."** Expired 2026-10-02.
+
+Consequence for how the remaining work is divided: **verification work that needs a Python
+environment but not a GPU can be shared rather than being ours by default.** What is still genuinely
+ours alone is GPU training (Colab) and anything touching the adaptation checkpoints; what is still
+genuinely theirs is anything on the board.

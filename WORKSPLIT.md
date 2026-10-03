@@ -62,7 +62,7 @@ Context files: `sign-language-project-context-v2.md`, `jetson-setup-handoff.md`,
 | P10 | PTQ vs QAT on the pose front-end (QAT on the 4x24 rig, via C8-style loop on the pose model) | P5, C8 | ⬜ not started |
 | P11 | Preprocess cost: CPU JPEG decode + affine is 19 % of frame time; move affine + normalize to GPU (torch) and re-measure; report separately | P1 | ⬜ not started (§2.2b quantifies the cost: imread 6.02 + preprocess 5.11 ms/frame) |
 | P12 | Segmentation heuristic for the live demo: hands-return-to-rest on pose velocity | P1 | ⬜ not started |
-| P13 | Board runs for the LM track when asked: C6, L4 (PyTorch mT5 on Jetson), L8 (TRT mT5 engines), plus the C9 protocol runs and the 30-min thermal runs | as requested | 🔄 J1/J2/J4 and M1 delivered; **board unreachable since 2026-09-28** |
+| P13 | Board runs for the LM track when asked: C6, L4 (PyTorch mT5 on Jetson), L8 (TRT mT5 engines), plus the C9 protocol runs and the 30-min thermal runs | as requested | 🔄 J1/J2/J4, M1, J5 and J7 delivered; board access restored 2026-10-02. J6 and J8 (C9 protocol) outstanding |
 | P14 | iOS capture app streaming frames to the Jetson, MetricKit from day one (plan §2). Cut at the week-4 gate if behind | — | ⬜ optional; gate passed so not forced, but nothing built |
 
 ---
