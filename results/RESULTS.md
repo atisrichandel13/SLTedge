@@ -1837,3 +1837,26 @@ loaded.** Not yet done.
 * Pruned peak GPU is **1.02–1.09 GB** against 2.39–2.56 GB, mT5 load **28.6–29.0 s** against
   56.7–58.2 s, and it **clears the working-set failure** that blocked `source × beam 4` on the full
   checkpoint — succeeding at 4238 MB where the full model failed at 5768 MB.
+
+#### L16 addendum 3 (2026-10-03): the accuracy axis is on the authors' keypoints, now labelled
+
+§2.5f measured the deployable config — pruned checkpoint on **our own** RTMW FP16 keypoints — for the
+first time, and in doing so exposed an assumption the frontier had never stated.
+
+**The frontier's nine accuracy cells are scored on the AUTHORS' released keypoints.** The deployed
+system feeds poses from our own extractor. Substituting them is worth **−0.35 BLEU-4 [−4.23, +3.17]**
+at n=30 (§2.5c), so the deployed system's absolute accuracy is a *composed* estimate of ~22.8 BLEU-4 /
+~43.1 ROUGE-L whose interval is dominated by that n=30 pose term at **±4 BLEU-4** — far wider than
+most differences the plot resolves.
+
+**Pruning does not add to it.** On our own keypoints pruning costs **−0.46 BLEU-4 [−3.82, +2.03]**,
+consistent with the **−0.28 [−0.63, +0.05]** we measured on the authors' at n=976. The two pose
+sources agree about pruning, which is the question §2.5f existed to ask.
+
+**Relative ordering is unaffected**, because every cell uses the same poses — the same argument that
+protects the ordering from the energy biases. The absolute column was already the weak one and this
+widens it further. `unisign/frontier.py`, `results/plot_frontier.py` and the figure's caption now say
+so explicitly; the plot carries it as a fourth caveat paragraph.
+
+**What narrows it:** the n=100 pass (§2.5g, `jetson/p10_n100.sh`), which takes the pose-substitution
+comparison to 100 distinct videos with the authors' reference poses restricted to the same 100 clips.

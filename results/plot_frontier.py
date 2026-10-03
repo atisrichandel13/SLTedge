@@ -90,7 +90,7 @@ with open(CSV, "w", newline="") as f:
 print(f"wrote {CSV}")
 
 # ---------------------------------------------------------------------------- plot
-fig, ax = plt.subplots(figsize=(9.2, 6.4))
+fig, ax = plt.subplots(figsize=(9.2, 7.1))
 
 # one colour per frame rate, one marker per decoder: the two levers read independently
 COL = {"source": "#1f4e79", 24: "#2e8b57", 16: "#c0504d"}
@@ -155,13 +155,18 @@ paras = [
     "Reduced frame rates are EMULATED by thinning 30 fps keypoints -- exact for the pose model, "
     "but not equivalent to a real low-rate camera. All cells carry a -0.03 BLEU-4 test-set "
     "vocabulary leak, uniform across cells and so unable to reorder them.",
+    "Accuracy is scored on the AUTHORS' released keypoints. The deployed system uses our own RTMW "
+    "FP16 extractor; substituting it is worth -0.35 BLEU-4 [-4.23, +3.17] at n=30, so the deployed "
+    "system's ABSOLUTE accuracy carries roughly +-4 BLEU-4. Every cell shares the same poses, so "
+    "the relative ordering -- the deliverable -- is unaffected.",
 ]
 # Wrap to the figure width in characters, or the caveats get clipped off the right edge.
 import textwrap  # noqa: E402
 width = int(fig.get_figwidth() * 100 / 6.0)
 foot = "\n".join(textwrap.fill(p, width) for p in paras)
-fig.text(0.010, 0.012, foot, fontsize=6.4, color="0.35", va="bottom", linespacing=1.45)
-fig.tight_layout(rect=(0, 0.105, 1, 1))
+fig.text(0.010, 0.010, foot, fontsize=6.3, color="0.35", va="bottom", linespacing=1.4)
+# four caveat paragraphs need real room, or they ride up over the x-axis label
+fig.tight_layout(rect=(0, 0.165, 1, 1))
 fig.savefig(PNG, dpi=200)
 print(f"wrote {PNG}")
 
