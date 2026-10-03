@@ -2001,3 +2001,39 @@ discrepancy is that §2.9C measured the LM *standalone* while every end-to-end r
 resident. A resident engine evidently changes the operating condition enough to move a memory cliff by
 over a gigabyte, which makes it more plausible that it also moves energy. Still unverified; the clean
 test remains re-running the §2.9C sweep in-process.
+
+#### L16 addendum 5 (2026-10-03): run-to-run variation is large enough to explain the composition residual
+
+§J8's C9 audit found that "3 runs, mean ± std" was never actually met for the energy rows: where
+repeats exist they are **three passes inside one process**, not three processes. The five pose-engine
+rows have no repeat at all.
+
+**This matters directly to the frontier**, because `POSE_J_PER_S`, `LM_J` and the end-to-end runs come
+from **three different processes**, and L16 addendum 2 already concluded the ~6.3 % composition
+residual must be an across-run effect rather than a within-run accounting gap.
+
+§2.2b measured that across-run term: between two runs of the *same* config, `imread` went 5.33 → 6.83
+ms and `preprocess` 4.76 → 6.10 ms, both **×1.281**. Pricing that against M1's own per-frame
+breakdown:
+
+| | value |
+|---|---|
+| CPU stages per frame (imread + preprocess + post) | 12.39 ms — **49.4 %** of frame time |
+| TRT per frame | 12.71 ms |
+| frame time if CPU stages move ×1.281 | 25.10 → **28.58 ms (+13.9 %)** |
+| pose share of system energy at source rate | ~72 % (32.3 of 43.4 J composed) |
+| **resulting shift in system J** | **~10 %** |
+
+**A ~10 % swing comfortably brackets the +6.3 % residual.** So the across-run hypothesis is not just
+the remaining candidate by elimination — it is *sufficient in magnitude*, using a variation the pose
+track measured directly rather than one we assumed.
+
+This does not identify which run drifted, and it is not a correction to the composition's structure:
+the frame-rate term still validates at −16.7 % measured against −17 % composed. What it says is that
+**the absolute column should never have been quoted to better than ~10 %**, and that
+`c9_process_repeats.sh` — three *separate* processes per config — is the measurement that will put a
+real interval on it.
+
+It also leaves L16 addendum 2's other open question untouched: the 2.1–2.3× beam-width discrepancy is
+a *systematic* sign-consistent error across four cells (greedy overestimated, beam 4 underestimated),
+which run-to-run noise does not produce. That one still needs the in-process §2.9C re-run.
