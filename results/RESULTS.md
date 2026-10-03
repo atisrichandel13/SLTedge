@@ -1278,9 +1278,22 @@ original, unpickles, and leaves no `.part` behind.
 | `data/openasl_5clip_pose` | 5 | 0 mismatches |
 
 **So no result in this document is affected.** That is the outcome worth stating plainly: the bug was
-real, the exposure was total — every BLEU and ROUGE number rests on these files — and it happens not
-to have fired. It is recorded as a latent defect that was caught before it cost anything, not as a
-correction, and the audit is cheap enough to re-run whenever the fetch path is used again.
+real, the exposure was total — every BLEU and ROUGE number rests on these files — and in *this* path
+it happens not to have fired. The audit is cheap enough to re-run whenever the fetch path is used
+again.
+
+**It is not a latent defect, though: the same defect fired on the LM track and cost a training run.**
+Defect 1 — resume trusting existence rather than size — also existed in `colab_setup.py`, the parallel
+path that extracts poses from the archive on Colab. It fired on 2026-09-29: a pose pkl truncated by a
+killed download passed the bare existence check, and the adaptation run died at **step 2250** with
+`EOFError: Ran out of input`. Fixed there by the same means, validating against `ZipInfo.file_size`
+(commit `60a6000`).
+
+Two consequences worth carrying. **The defect class is demonstrated, not hypothetical**, which raises
+rather than lowers the value of the audit above. And **the failure mode was loud rather than silent**
+in that instance — an unpickling error that stopped the run — whereas a truncation that still
+unpickles would degrade an accuracy number without any error at all. The audit covers the silent case;
+the EOFError only ever covered the loud one.
 
 ## Track B: Uni-Sign OpenASL pose-only
 
