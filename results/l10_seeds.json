@@ -1,0 +1,51 @@
+{
+ "what": "L10 seed variance: TRAINING-seed spread, the noise band adaptation deltas are judged against.",
+ "deviations_from_guide_row_4_3": [
+  "3 seeds (42/43/44), not the 4 the row specifies.",
+  "Run on Colab A100, not the 4x24 rig; the rig was never used for this.",
+  "Config is the adapted 16 fps run evaluated on the dev split at cap 100 -- i.e. the spread is measured at the operating point the adaptation claim is made at, not at a separate control config.",
+  "This is TRAINING-seed spread. results/block4/adapt_ci_mac_repro_4seeds.json is a different quantity: bootstrap RESAMPLING seeds 0-3 over one fixed model."
+ ],
+ "config": {
+  "shift": "16 fps (emulated)",
+  "split": "dev",
+  "max_new_tokens": 100,
+  "train_clips": 20000,
+  "epochs": 1,
+  "lr": 1e-05
+ },
+ "runs": [
+  {
+   "train_seed": 42,
+   "n_clips": 967,
+   "bleu4": 23.252211215445517,
+   "rouge_l": 42.63393721879485,
+   "source_json": "results/block4/eval_dev_adapt_fps16_s42_cap100.json"
+  },
+  {
+   "train_seed": 43,
+   "n_clips": 967,
+   "bleu4": 23.256719666092714,
+   "rouge_l": 42.50328945940206,
+   "source_json": "results/block4/eval_dev_adapt_fps16_s43_cap100.json"
+  },
+  {
+   "train_seed": 44,
+   "n_clips": 967,
+   "bleu4": 23.30115578982332,
+   "rouge_l": 42.654093803713,
+   "source_json": "results/block4/eval_dev_adapt_fps16_s44_cap100.json"
+  }
+ ],
+ "bleu4": {
+  "mean": 23.27002889045385,
+  "sd": 0.027050775036537484,
+  "spread": 0.04894457437780275
+ },
+ "rouge_l": {
+  "mean": 42.59710682730331,
+  "sd": 0.08187090978380868,
+  "spread": 0.15080434431094147
+ },
+ "reading": "Seed noise is 0.05 BLEU-4 / 0.15 ROUGE-L (max-min). The adaptation gain of +1.04 ROUGE-L is ~7x this spread, so it is not a seed artefact. Any claimed delta below ~0.2 ROUGE-L or ~0.05 BLEU-4 is indistinguishable from retraining the same config."
+}

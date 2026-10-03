@@ -18,6 +18,8 @@ data/openasl_ref_pose/*.pkl
 
 # ---- bulky results (keep the .json and RESULTS.md, drop raw dumps) ----
 results/*.csv
+# ...except the M4/C10 deliverable named in PROJECT-GUIDE row 5.4, which is 728 bytes.
+!results/frontier.csv
 results/*.npz
 # 46 MB of raw 133-keypoint dumps (4 configs x 5 clips): the input to 2.5 pose->BLEU, and
 # reproducible with jetson/p4_clips.sh. The derived results/kpt_agreement_*.json ARE tracked.

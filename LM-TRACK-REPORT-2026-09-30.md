@@ -103,18 +103,27 @@ binding overhead rather than the 238 M-parameter matmuls. Our own runtime agrees
 int8` is **10× slower** per decoder step (2139 vs 197 ms) because 217 layers dequantize per token.
 Quantizing weights buys memory.
 
-~~And memory is not binding at 2.577 GB peak on an 8 GB board.~~ **CORRECTED by the pose track
-2026-09-30: memory IS binding, at load rather than in steady state.** The pruned-checkpoint load path
-peaks near **4.2 GB** — more than loading the *full* checkpoint costs, because `load_model`
-materialises the 250 K-vocab mT5 and then slices it — against `MemAvailable` capping around 5.3 GB.
-Four probes: the TRT engine alone works at 3988 MB free; **the LM alone fails** at 3863 MB and again
-at 4641 MB after maximum reclaim. It is why their end-to-end sustained run has never completed.
+**And memory is not binding at 2.577 GB peak on an 8 GB board.** This line was struck on
+2026-09-30 and is now **restored at the pose track's own request** (RESULTS.md §5.2, 2026-10-02).
 
-**This partly reopens INT8.** Our justification was "buys memory, and memory isn't binding". The
-second clause is wrong, so a 293 MB W8A32 checkpoint would help materially — *if* loaded from a
-pre-pruned directory that avoids the 250 K materialisation. That is exactly what their
-`attach_pruned_tokenizer` fast path does, and it is unverified. The host-bound-decoder argument
-against INT8 *for latency* still stands; the memory argument does not.
+The history is worth keeping, because the failure mode is instructive. The pose track reported that
+memory *was* binding at load — that the pruned load path peaked near 4.2 GB against a ~5.3 GB
+`MemAvailable` ceiling — and we adopted it, struck the line above, and **partly reopened INT8** on
+it. They then re-ran the probes on a verified-empty board and withdrew all of it: the original
+probes had run on a *shared* board with no occupancy check. Seven successes between 1508 and 4034 MB
+free against one failure at 1084 MB, and the ordering cannot be a MemFree threshold — the old run
+failed at 4641 MB where the new one succeeds at 1508 MB. `MemAvailable` on an empty board is
+6692–6732 MB, not 5304. The "4.2 GB peak" was never measured at all: it was arithmetic over an
+assumed 250 K materialisation, and **measured peak device allocation is 0.98 GB every run**.
+
+**So INT8 is not reopened.** Our original justification stands in full: quantizing weights buys
+memory, and memory is not binding. The host-bound-decoder argument against INT8 *for latency* was
+always the load-bearing one and is unaffected.
+
+**The lesson we take from it, which cuts both ways.** We adopted a measurement from the other track
+and retracted a correct finding of our own without asking what conditions it was taken under. The
+board is shared; `whoelse` exists for exactly this; and an uncontrolled measurement is not evidence
+merely because it came from the track that owns the hardware.
 
 **Correction to the pose track's stated reason.** Their handoff argued INT8 was dead because W8A16
 keeps activations in fp16 and fp16 breaks mT5. The premise is wrong about our implementation (see

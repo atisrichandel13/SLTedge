@@ -1,0 +1,116 @@
+{
+ "n_clips": 976,
+ "n_boot": 1000,
+ "seed": 0,
+ "ref": "4,source",
+ "cap": 64,
+ "shared_draws": true,
+ "note": "delta/ci are paired-bootstrap BLEU-4 vs the reference cell; one resample draw scores every cell, so cells are comparable with each other too.",
+ "cells": {
+  "4,source": {
+   "beams": 4,
+   "fps": "source",
+   "bleu4": 22.87417053966081,
+   "rouge_l": 42.98198401962099,
+   "source_json": "eval_test_pruned_mac.json",
+   "delta_bleu4": null,
+   "ci": null
+  },
+  "4,24": {
+   "beams": 4,
+   "fps": 24,
+   "bleu4": 22.800039769405846,
+   "rouge_l": 43.12729246182512,
+   "source_json": "eval_test_pruned_b4_fps24.json",
+   "delta_bleu4": -0.07413077025496406,
+   "ci": [
+    -0.5260620432263867,
+    0.3937101859243123
+   ]
+  },
+  "4,16": {
+   "beams": 4,
+   "fps": 16,
+   "bleu4": 21.54327511507115,
+   "rouge_l": 41.34609274798255,
+   "source_json": "eval_test_pruned_truefps16.json",
+   "delta_bleu4": -1.3308954245896594,
+   "ci": [
+    -1.99540402265243,
+    -0.6441764059545888
+   ]
+  },
+  "2,source": {
+   "beams": 2,
+   "fps": "source",
+   "bleu4": 22.059541913697537,
+   "rouge_l": 42.21545399154437,
+   "source_json": "eval_test_pruned_beam2_mac.json",
+   "delta_bleu4": -0.8146286259632731,
+   "ci": [
+    -1.292598282388345,
+    -0.3851292006949075
+   ]
+  },
+  "2,24": {
+   "beams": 2,
+   "fps": 24,
+   "bleu4": 21.932147830932106,
+   "rouge_l": 42.29093864612014,
+   "source_json": "eval_test_pruned_b2_fps24.json",
+   "delta_bleu4": -0.9420227087287039,
+   "ci": [
+    -1.4458650605922945,
+    -0.38866013644968844
+   ]
+  },
+  "2,16": {
+   "beams": 2,
+   "fps": 16,
+   "bleu4": 21.19375704426578,
+   "rouge_l": 40.89233707306284,
+   "source_json": "eval_test_pruned_b2_fps16.json",
+   "delta_bleu4": -1.6804134953950296,
+   "ci": [
+    -2.3516660900916118,
+    -0.9822476441011204
+   ]
+  },
+  "1,source": {
+   "beams": 1,
+   "fps": "source",
+   "bleu4": 20.875927850914426,
+   "rouge_l": 41.558864983431775,
+   "source_json": "eval_test_pruned_greedy_mac.json",
+   "delta_bleu4": -1.9982426887463838,
+   "ci": [
+    -2.627875290419405,
+    -1.4096959464387588
+   ]
+  },
+  "1,24": {
+   "beams": 1,
+   "fps": 24,
+   "bleu4": 20.658409619283226,
+   "rouge_l": 41.17575071294915,
+   "source_json": "eval_test_pruned_b1_fps24.json",
+   "delta_bleu4": -2.2157609203775834,
+   "ci": [
+    -2.82554399340892,
+    -1.5970717552674742
+   ]
+  },
+  "1,16": {
+   "beams": 1,
+   "fps": 16,
+   "bleu4": 19.834676751287358,
+   "rouge_l": 39.53382407431151,
+   "source_json": "eval_test_pruned_b1_fps16.json",
+   "delta_bleu4": -3.039493788373452,
+   "ci": [
+    -3.74065309154727,
+    -2.3608086865855396
+   ]
+  }
+ }
+}
