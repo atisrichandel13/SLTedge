@@ -20,40 +20,44 @@ Context files: `sign-language-project-context-v2.md`, `jetson-setup-handoff.md`,
 
 | # | Task | Who | Status | Unblocks |
 |---|---|---|---|---|
-| C0 | Put the repo in git (private GitHub), `.gitignore` for `weights/ models/*.onnx models/*.engine data/raw data/test_frames data/calib_frames results/*.csv results/*.npz venv/`. Large files on a shared Drive folder mirroring repo paths. Branches `pose/...` and `lm/...`, PRs to `main` | Atisri | ⬜ | everything |
-| C1 | Copy Jetson results to the Mac and commit `results/rtmpose_trt_fp32.json` (the keypoints JSON for the Bitcoin clip). Schema: per frame `{"frame", "keypoints": 133x2 px in the cropped frame, "scores": 133}` plus `summary` | Atisri (has the board today), then teammate | ⬜ | C2 |
+| C0 | Put the repo in git (private GitHub), `.gitignore` for `weights/ models/*.onnx models/*.engine data/raw data/test_frames data/calib_frames results/*.csv results/*.npz venv/`. Large files on a shared Drive folder mirroring repo paths. Branches `pose/...` and `lm/...`, PRs to `main` | Atisri | ✅ | everything |
+| C1 | Copy Jetson results to the Mac and commit `results/rtmpose_trt_fp32.json` (the keypoints JSON for the Bitcoin clip). Schema: per frame `{"frame", "keypoints": 133x2 px in the cropped frame, "scores": 133}` plus `summary` | Atisri (has the board today), then teammate | ✅ `results/rtmpose_trt_fp32.json` | C2 |
 | C2 | **Which extractor made the released poses.** Run `task1_rtmpose/08_compare_extractors.py` with the authors' pkl for the Bitcoin clip (download from Drive `unisign/openasl_test_pose/`), the Jetson RTMPose-x JSON, and the two rtmlib pkls already in `results/`. Write the answer in `RESULTS.md`. Decides the Jetson baseline pose model (P1) | Atisri runs it, both read the result | ✅ answer: 256x192 RTMW-l-m (see RESULTS.md); Jetson RTMPose-x row added when C1 lands | P1, P4, L3 |
 | C3 | `common/pose_to_unisign.py`: keypoints JSON → Uni-Sign input tensors (body/left/right/face groups, root-normalised, thr 0.3), lifted from `datasets.py: load_part_kp / crop_scale`. Unit test: our JSON → pkl → their loader gives the same tensors as their pkl. Also writes the authors' pkl format so any keypoints file can be scored | Atisri | ✅ bit-exact vs their loader on 2 pose files | C4, L2, P-everything that needs BLEU |
-| C4 | Round-trip on Colab: Jetson keypoints (C3) through the released checkpoint → sentence for the Bitcoin clip, next to the sentence from the authors' pkl for the same clip | Atisri | ⬜ | C5 |
-| C5 | `unisign/unisign_infer.py`: plain PyTorch, no mmpose/mmcv/mmdet/deepspeed/decord, `--keypoints --ckpt --mt5 --out`, greedy, `max_new_tokens` cap, per-stage timing, output `{"text","tokens","token_logprobs","timing_ms":{gcn,encoder,decoder}}`. Must import in the Jetson container (Python 3.12, torch 2.8; pin a transformers version that installs there) | Atisri | ✅ runs on Mac CPU, transformers 4.44; Jetson import check pending | C6, P-Phase-2 |
-| C6 | **Milestone M1 — first on-device translation.** Pose TRT engine → C3 → C5 on the Jetson for the Bitcoin clip. Save text + per-stage latency + power for the whole pipeline. This is the Stage 0 baseline every optimization is compared to | Teammate runs on the board, Atisri supports | ⬜ | all optimization rows |
-| C7 | Keypoint-scoring path: any pose engine output → C3 → BLEU on the 976 test clips on Colab (~5 min/T4). Needs the pose owner to run the engine over the test clips' frames, which needs the test clips' video (P3). Without it, pose ablations are scored by keypoint agreement only | both | ⬜ | pose accuracy column |
-| C8 | Adaptation-training harness: `fine_tuning.py` with mT5 frozen, pose stack + projection trainable (~4.5 M params), checkpoint-resume, sharded pose data on local disk. Needs OpenASL **train** poses (97 K files, redo the 32 GB archive extraction for train). Used by both tracks for input-distribution shifts | Atisri builds; runs for pose shifts are triggered by the pose owner | ⬜ | P8, P9, P10, L9 |
-| C9 | Results protocol: every final row = 3 runs, mean ± std, DVFS state logged; ≥3 clips / ≥3 signers; one 30-min sustained run for FP32 and for the best compressed config. One shared table in `RESULTS.md` with fixed columns | both, teammate owns board runs | ⬜ | report |
-| C10 | **Milestone M4 — accuracy–energy frontier.** J per sentence (pose + LM, measured) vs BLEU-4 across all configs. The plot the report is built around | both | ⬜ | report |
-| C11 | Report + demo video (record early), written against both rubrics | both | ⬜ | — |
+| C4 | Round-trip on Colab: Jetson keypoints (C3) through the released checkpoint → sentence for the Bitcoin clip, next to the sentence from the authors' pkl for the same clip | Atisri | ✅ RESULTS §2.5 / §2.5c | C5 |
+| C5 | `unisign/unisign_infer.py`: plain PyTorch, no mmpose/mmcv/mmdet/deepspeed/decord, `--keypoints --ckpt --mt5 --out`, greedy, `max_new_tokens` cap, per-stage timing, output `{"text","tokens","token_logprobs","timing_ms":{gcn,encoder,decoder}}`. Must import in the Jetson container (Python 3.12, torch 2.8; pin a transformers version that installs there) | Atisri | ✅ runs on Mac CPU, transformers 4.44; Jetson import confirmed by M1 (§5.1) | C6, P-Phase-2 |
+| C6 | **Milestone M1 — first on-device translation.** Pose TRT engine → C3 → C5 on the Jetson for the Bitcoin clip. Save text + per-stage latency + power for the whole pipeline. This is the Stage 0 baseline every optimization is compared to | Teammate runs on the board, Atisri supports | ✅ 2026-09-28, RESULTS §5.1: 9052.8 ms, 50.37 J/sentence | all optimization rows |
+| C7 | Keypoint-scoring path: any pose engine output → C3 → BLEU on the 976 test clips on Colab (~5 min/T4). Needs the pose owner to run the engine over the test clips' frames, which needs the test clips' video (P3). Without it, pose ablations are scored by keypoint agreement only | both | 🔄 path works (§C7); pose→BLEU done at n=30 (§2.5c), never at n=976 | pose accuracy column |
+| C8 | Adaptation-training harness: `fine_tuning.py` with mT5 frozen, pose stack + projection trainable (~4.5 M params), checkpoint-resume, sharded pose data on local disk. Needs OpenASL **train** poses (97 K files, redo the 32 GB archive extraction for train). Used by both tracks for input-distribution shifts | Atisri builds; runs for pose shifts are triggered by the pose owner | ✅ `unisign/train_adapt.py`, §C8.1 / §C8.2 | P8, P9, P10, L9 |
+| C9 | Results protocol: every final row = 3 runs, mean ± std, DVFS state logged; ≥3 clips / ≥3 signers; one 30-min sustained run for FP32 and for the best compressed config. One shared table in `RESULTS.md` with fixed columns | both, teammate owns board runs | 🔄 `results/c9_sustained_pose.json` exists; protocol not yet applied to every final row | report |
+| C10 | **Milestone M4 — accuracy–energy frontier.** J per sentence (pose + LM, measured) vs BLEU-4 across all configs. The plot the report is built around | both | ✅ 2026-09-30 `results/frontier.png` + `.csv`, RESULTS §L16. **Energy is composed, not measured end-to-end** | report |
+| C11 | Report + demo video (record early), written against both rubrics | both | ⬜ **last step by agreement**: drafted only once both tracks' experiments are done and the results combined | — |
 
 ---
 
 ## 1. Pose track (teammate) — in order
 
+> **Statuses below are inferred by the LM track from artifacts committed to this repo and from
+> `results/RESULTS.md`, not reported by the pose owner. Please correct them.** Where a row is marked
+> done, the evidence file is named so a wrong call is easy to spot.
+
 | # | Task | Depends on | Status |
 |---|---|---|---|
-| P0 | Read `SESSION-LOG.md`, rebuild the Mac `mmpose` env on their own machine if needed (steps in SESSION-LOG §1); get container access on the Jetson | — | ⬜ |
-| P1 | **Pick the baseline pose model from C2.** If the checkpoint was trained on RTMW 256x192 (likely), export that model to ONNX (rtmlib ships the ONNX; or export from MMPose), build FP32 engine (TF32 off), reference check vs its own PyTorch/ORT run, latency + power row. RTMPose-x 384x288 (already measured: 56 ms, 11.6 W, 754 mJ/frame) becomes the "oversized" comparison row | C2 | ⬜ |
-| P2 | FP16 engine for the baseline model: build, compare (`--simcc-atol 0.05 --kpt-atol-px 2`), power row | P1 | ⬜ (RTMPose-x FP16 build was queued, never run) |
-| P3 | Data: `data/openasl_fetch.py` — download N test clips (distinct signers) and ≥300 train frames from ≥5 signers for calibration; crop to bbox; frames + meta. Reuse the yt-dlp section download in SESSION-LOG §3. Many videos are private, iterate | — | ⬜ |
-| P4 | Keypoint-agreement metric `07_kpt_agreement.py`: % confident keypoints within 1/2/5 px of the FP32 engine, per group, over all frames. The pose accuracy axis when BLEU is not available | P1 | ⬜ |
-| P5 | INT8 PTQ: entropy calibrator in `trt_runner.py` fed from `data/calib_frames/`; INT8 row (latency, power, P4 agreement, and BLEU via C7 when P3 test clips exist) | P2, P3, P4 | ⬜ |
-| P6 | Variant sweep: RTMW-x-l 384x288 / RTMW-l-m 256x192 / RTMPose-x / RTMPose-l / RTMPose-m wholebody. Each: FP32 correctness vs own reference, then FP16, then rows | P1, P4 | ⬜ |
-| P7 | Resolution row: same model at 384x288 vs 256x192 where checkpoints exist | P6 | ⬜ |
-| P8 | Temporal subsampling: run the engine at 24/16/12/8 fps input (drop frames before extraction). Cost is linear in T, biggest energy lever. Accuracy needs a C8 adaptation pass per rate (LM-side encoder length shrinks too, see L7) | P1, C8 | ⬜ |
-| P9 | Drop the face group: 51 fewer keypoints, enables a body+hands-only model; needs C8 adaptation (feature width 4C → 3C) | C8 | ⬜ |
-| P10 | PTQ vs QAT on the pose front-end (QAT on the 4x24 rig, via C8-style loop on the pose model) | P5, C8 | ⬜ |
-| P11 | Preprocess cost: CPU JPEG decode + affine is 19 % of frame time; move affine + normalize to GPU (torch) and re-measure; report separately | P1 | ⬜ |
-| P12 | Segmentation heuristic for the live demo: hands-return-to-rest on pose velocity | P1 | ⬜ |
-| P13 | Board runs for the LM track when asked: C6, L4 (PyTorch mT5 on Jetson), L8 (TRT mT5 engines), plus the C9 protocol runs and the 30-min thermal runs | as requested | ⬜ |
-| P14 | iOS capture app streaming frames to the Jetson, MetricKit from day one (plan §2). Cut at the week-4 gate if behind | — | ⬜ |
+| P0 | Read `SESSION-LOG.md`, rebuild the Mac `mmpose` env on their own machine if needed (steps in SESSION-LOG §1); get container access on the Jetson | — | ✅ |
+| P1 | **Pick the baseline pose model from C2.** If the checkpoint was trained on RTMW 256x192 (likely), export that model to ONNX (rtmlib ships the ONNX; or export from MMPose), build FP32 engine (TF32 off), reference check vs its own PyTorch/ORT run, latency + power row. RTMPose-x 384x288 (already measured: 56 ms, 11.6 W, 754 mJ/frame) becomes the "oversized" comparison row | C2 | ✅ RTMW-l-m 256x192 baseline, `results/rtmw_trt_fp32.json` |
+| P2 | FP16 engine for the baseline model: build, compare (`--simcc-atol 0.05 --kpt-atol-px 2`), power row | P1 | ✅ `results/rtmw_trt_fp16.json`, `rtmw_fp16_15W_power.json`; RTMPose-x FP16 also built |
+| P3 | Data: `data/openasl_fetch.py` — download N test clips (distinct signers) and ≥300 train frames from ≥5 signers for calibration; crop to bbox; frames + meta. Reuse the yt-dlp section download in SESSION-LOG §3. Many videos are private, iterate | — | ✅ 30 clips / 5 signers used in §2.5c |
+| P4 | Keypoint-agreement metric `07_kpt_agreement.py`: % confident keypoints within 1/2/5 px of the FP32 engine, per group, over all frames. The pose accuracy axis when BLEU is not available | P1 | ✅ §P4 |
+| P5 | INT8 PTQ: entropy calibrator in `trt_runner.py` fed from `data/calib_frames/`; INT8 row (latency, power, P4 agreement, and BLEU via C7 when P3 test clips exist) | P2, P3, P4 | ⬜ no INT8 pose artifact in the repo |
+| P6 | Variant sweep: RTMW-x-l 384x288 / RTMW-l-m 256x192 / RTMPose-x / RTMPose-l / RTMPose-m wholebody. Each: FP32 correctness vs own reference, then FP16, then rows | P1, P4 | ✅ RTMW / RTMPose-x / rtmlib lightweight+performance, §2.5c |
+| P7 | Resolution row: same model at 384x288 vs 256x192 where checkpoints exist | P6 | 🔄 across models (RTMPose-x 384 vs RTMW 256), not same-model |
+| P8 | Temporal subsampling: run the engine at 24/16/12/8 fps input (drop frames before extraction). Cost is linear in T, biggest energy lever. Accuracy needs a C8 adaptation pass per rate (LM-side encoder length shrinks too, see L7) | P1, C8 | ✅ §2.9/P8 at 30/24/16/12/8 fps |
+| P9 | Drop the face group: 51 fewer keypoints, enables a body+hands-only model; needs C8 adaptation (feature width 4C → 3C) | C8 | ⬜ neither side has run it |
+| P10 | PTQ vs QAT on the pose front-end (QAT on the 4x24 rig, via C8-style loop on the pose model) | P5, C8 | ⬜ not started |
+| P11 | Preprocess cost: CPU JPEG decode + affine is 19 % of frame time; move affine + normalize to GPU (torch) and re-measure; report separately | P1 | ⬜ not started (§2.2b quantifies the cost: imread 6.02 + preprocess 5.11 ms/frame) |
+| P12 | Segmentation heuristic for the live demo: hands-return-to-rest on pose velocity | P1 | ⬜ not started |
+| P13 | Board runs for the LM track when asked: C6, L4 (PyTorch mT5 on Jetson), L8 (TRT mT5 engines), plus the C9 protocol runs and the 30-min thermal runs | as requested | 🔄 J1/J2/J4 and M1 delivered; **board unreachable since 2026-09-28** |
+| P14 | iOS capture app streaming frames to the Jetson, MetricKit from day one (plan §2). Cut at the week-4 gate if behind | — | ⬜ optional; gate passed so not forced, but nothing built |
 
 ---
 
@@ -64,18 +68,18 @@ Context files: `sign-language-project-context-v2.md`, `jetson-setup-handoff.md`,
 | L0 | Colab env, checkpoint + mT5 on Drive, metric sanity, test poses extracted | — | ✅ |
 | L1 | Reproduce OpenASL pose-only eval: **22.53 BLEU-4 / 42.68 ROUGE-L** vs paper 22.67 / 42.77 | L0 | ✅ |
 | L2 | C3 converter + C4 round-trip + C5 inference script (the common items above; they are LM-track work) | C1 | ✅ (C4 Jetson row pending J1) |
-| L3 | Baseline LM cost, off-board: params, checkpoint MB, peak memory, encoder ms / decoder ms per sentence on a T4 for greedy and beam-4, tokens generated per sentence. Also `max_new_tokens` sweep (100 → 64 → 48) vs BLEU: the cap is a free energy lever | L1 | ⬜ |
-| L4 | Baseline LM cost, on-board: C5 in plain PyTorch on the Jetson (via P13): latency, power, peak memory, no OOM. Establishes the hybrid runtime | C5 | ⬜ |
+| L3 | Baseline LM cost, off-board: params, checkpoint MB, peak memory, encoder ms / decoder ms per sentence on a T4 for greedy and beam-4, tokens generated per sentence. Also `max_new_tokens` sweep (100 → 64 → 48) vs BLEU: the cap is a free energy lever | L1 | ✅ §L3, §L3.2 (cap 64 bit-identical to cap 100) |
+| L4 | Baseline LM cost, on-board: C5 in plain PyTorch on the Jetson (via P13): latency, power, peak memory, no OOM. Establishes the hybrid runtime | C5 | ✅ §L4 (J2, 2026-09-18) |
 | L5 | **Vocabulary pruning.** Token set from OpenASL train+dev+test + specials + prefix prompt; slice `shared` embedding + `lm_head`; remap tokenizer; BLEU / params / MB / peak mem before vs after. Expect ~10–20 K of 250 K tokens kept and ~0 BLEU change. Do before any export so downstream numbers use the pruned model | L1 | ✅ -0.28 BLEU-4 [CI -0.63,+0.05], 587.7M→243.6M, 1187→571 MB |
-| L6 | Decode-time knobs, no retraining: greedy vs beam-4 (BLEU vs decode energy ×N), `max_new_tokens` cap, INT8 KV cache. Rows via L4-style board runs | L4, L5 | ⬜ |
-| L7 | Encoder input length: with temporal subsampling (P8) the encoder sequence shrinks; measure encoder ms/energy vs T at 30/24/16/12/8 fps-equivalent lengths. One knob, two payoffs | L3 | ⬜ |
-| L8 | **mT5 ONNX with KV cache → TensorRT.** `task3_mt5_onnx/02_export_manual.py --verify` on the pruned model; ORT vs PyTorch logits ≥12 steps at 3 encoder lengths; then engines on the Jetson (`03_build_engines.py`, one per process) via P13; single-step, then multi-step drift check. **3-day budget**; fallback is the hybrid runtime (TRT pose + PyTorch mT5), written up as a deployment reality | L5 | ⬜ |
-| L9 | Weight-only INT8 for mT5 (W8A16) in whichever runtime survives L8; BLEU + memory + power. Activation quant only if W8A16 is clean | L8 | ⬜ |
-| L10 | C8 training harness (frozen mT5, trainable pose stack) + **seed variance**: 4 seeds in parallel on the 4x24 rig, BLEU spread → the noise band every later delta is judged against. Needs OpenASL train poses (re-extract from the archive, ~30 GB again) | L1 | ⬜ |
-| L11 | Adaptation runs for the pose owner's shifts (P8 frame rates, P9 face drop, P6 variant swap if C2 says the baseline changed). One short pass each; report BLEU vs the un-adapted number so the value of adaptation is itself a result | L10, P8/P9 | ⬜ |
+| L6 | Decode-time knobs, no retraining: greedy vs beam-4 (BLEU vs decode energy ×N), `max_new_tokens` cap, INT8 KV cache. Rows via L4-style board runs | L4, L5 | ✅ §L6.1; board energy grid in §C |
+| L7 | Encoder input length: with temporal subsampling (P8) the encoder sequence shrinks; measure encoder ms/energy vs T at 30/24/16/12/8 fps-equivalent lengths. One knob, two payoffs | L3 | ✅ §L7.1 / §L7.2 / §L7.3 |
+| L8 | **mT5 ONNX with KV cache → TensorRT.** `task3_mt5_onnx/02_export_manual.py --verify` on the pruned model; ORT vs PyTorch logits ≥12 steps at 3 encoder lengths; then engines on the Jetson (`03_build_engines.py`, one per process) via P13; single-step, then multi-step drift check. **3-day budget**; fallback is the hybrid runtime (TRT pose + PyTorch mT5), written up as a deployment reality | L5 | ✅ §L8.1 ONNX, §L8.2 TRT on board. **FP16 mT5 overflows**, so the hybrid runtime is what deploys |
+| L9 | Weight-only INT8 for mT5 (W8A16) in whichever runtime survives L8; BLEU + memory + power. Activation quant only if W8A16 is clean | L8 | ✅ §L9.1 W8A32. **Dropped from the deployment config**; pruned FP32 deploys |
+| L10 | C8 training harness (frozen mT5, trainable pose stack) + **seed variance**: 4 seeds in parallel on the 4x24 rig, BLEU spread → the noise band every later delta is judged against. Needs OpenASL train poses (re-extract from the archive, ~30 GB again) | L1 | ✅ `results/l10_seeds.json`: 0.05 BLEU-4 / 0.15 ROUGE-L over 3 seeds |
+| L11 | Adaptation runs for the pose owner's shifts (P8 frame rates, P9 face drop, P6 variant swap if C2 says the baseline changed). One short pass each; report BLEU vs the un-adapted number so the value of adaptation is itself a result | L10, P8/P9 | 🔄 16 fps done (§L15: +1.04 ROUGE-L [+0.25, +1.80]). **12 fps, 8 fps and the P9 face drop not run** |
 | L12 | Bootstrap CIs on BLEU for every accuracy number (mandatory for anything under ~1 BLEU) | L1 | ✅ `unisign/bootstrap_ci.py`, paired, 1000 resamples |
-| L13 | LLM correction stage (Course B): confidence-gated on token logprobs from C5, minimal-edit prompt, three-condition ablation (none / single sentence / N prior turns), edit distance + BLEU + tokens-in vs joules. Text-only API, no VLM. Last; cut without regret | C5, L12 | ⬜ |
-| L14 | Optional stretch: context-conditioned encoder `[text_emb(prior turns); proj(F_sign)]`, mT5 frozen, trained with C8. Most likely a null result; week 6 only if everything above is done | L10 | ⬜ |
+| L13-llm | LLM correction stage (Course B): confidence-gated on token logprobs from C5, minimal-edit prompt, three-condition ablation (none / single sentence / N prior turns), edit distance + BLEU + tokens-in vs joules. Text-only API, no VLM. Last; cut without regret | C5, L12 | ⬜ cuttable |
+| L14 | Optional stretch: context-conditioned encoder `[text_emb(prior turns); proj(F_sign)]`, mT5 frozen, trained with C8. Most likely a null result; week 6 only if everything above is done | L10 | ⬜ not started |
 
 ---
 
@@ -92,14 +96,59 @@ Context files: `sign-language-project-context-v2.md`, `jetson-setup-handoff.md`,
 
 ## 5. Jetson request queue (LM track → pose owner, P13)
 
-Things the LM track needs run on the board. Each is copy-paste; results come back via git or scp.
+Things the LM track needs run on the board. Results come back via git or scp.
 
-| # | Request | Commands | Send back |
+### Outstanding (as of 2026-10-03)
+
+**The board has been unreachable since 2026-09-28.** Everything below is blocked on access, and the
+demo video for C11 is blocked on it too.
+
+| # | Request | Why it matters | Priority |
 |---|---|---|---|
-| J1 (= C1) | Copy the existing RTMPose-x keypoints JSON off the board | on the Jetson host: `scp ~/atisri-cv-jetson/results/rtmpose_* <mac>:~/atisri-cv-jetson/results/` or commit it | `results/rtmpose_trt_fp32.json` |
-| J2 (= L4) | First on-board LM run, full and pruned checkpoint | copy `unisign/ common/ data/openasl_ref_pose/ weights/mt5-base weights/openasl_pose_only_slt*.pth` to the board; in the container: `pip3 install "transformers>=4.45,<5" sentencepiece`; then `python3 -m unisign.unisign_infer --pkl data/openasl_ref_pose/Ads-4j06eJY-00:07:37.233-00:07:47.200.pkl --ckpt weights/openasl_pose_only_slt.pth --mt5 weights/mt5-base --device cuda --repeat 3 --out results/l4_jetson_full_fp32.json` and the same with `_pruned.pth` → `l4_jetson_pruned_fp32.json` | the two JSONs + the printed `[infer]` lines (per-stage ms, text, peak GPU mem) |
-| J4 (= L8 board half) | Build TensorRT engines from the pruned mT5 ONNX and run the cached decode loop on the board | copy `models/mt5_pruned_onnx/` (1.5 GB) to the board; in the container, one engine per process: `python3 task3_mt5_onnx/03_build_engines.py --onnx-dir models/mt5_pruned_onnx --which encoder`, then `--which decoder_init`, then `--which decoder_step --enc-len 1,264,512 --dec-len 1,1,128`; then `python3 -m unisign.trt_decode --engine-dir models/mt5_pruned_onnx --ckpt weights/openasl_pose_only_slt_pruned.pth --mt5 weights/mt5-base --pkl data/openasl_ref_pose/Ads-4j06eJY-00:07:37.233-00:07:47.200.pkl` (FP32 first; then `--fp16` engines) | printed `[trt]`/`[check]` lines; PASS = tokens identical to PyTorch (FP32) |
-| J3 | Same two runs wrapped in the power logger (once J2 works) | `04`-style wrapper to be added to `unisign_infer.py` (`--power-json`) | JSONs |
+| J5 | **End-to-end run at the frontier knee**: `unisign/e2e_translate.py`, beam 4, **24 fps**, RTMW FP16, `--batch-size 1`, 3 repeats. Log M1's fields plus `cpu0_MHz` | The frontier recommends beam 4 @ 24 fps and **that cell has never been run end-to-end**. Row 5.4 asks for *measured* J/sentence; every cell is currently composed. Full write-up in `ASK-E2E-KNEE-2026-09-30.md` | **highest** |
+| J6 | C9 ≥3-clip rows spanning the crop range | `POSE_J_PER_S` came from one clip at the 83rd percentile of crop area, which is the frontier's ~7 % high bias. Fixes a precision issue, not a correctness one | medium |
+| J7 | `cpu0_MHz` on any new LM power run | Rules out a DVFS confound between runs | medium (free if done with J5) |
+| J8 | Multi-clip board accuracy, ~100 clips end-to-end | **We have never produced a board-measured BLEU.** Accuracy is offline (n=976, Mac); the board↔offline bridge is a 30-clip agreement. ~15 min at 9.05 s/sentence | medium |
+| J9 | C9 protocol applied to the final rows: 3 runs mean ± std, DVFS logged, 30-min sustained for FP32 and the best compressed config | Row 5.2; the report's rigor rubric keys off it | high |
+
+### Delivered
+
+| # | Request | Result |
+|---|---|---|
+| J1 (= C1) | RTMPose-x keypoints JSON off the board | ✅ `results/rtmpose_trt_fp32.json` |
+| J2 (= L4) | First on-board LM run, full and pruned checkpoint | ✅ §L4 |
+| J3 | Power-logged versions of the J2 runs | ✅ folded into §L4 / §C |
+| J4 (= L8) | TensorRT engines from the pruned mT5 ONNX + cached decode loop | ✅ §L8.2. **FP16 overflows** (token 0 every step at −ln 26078); FP32 engines are the usable ones |
+| — | M1 end-to-end | ✅ §5.1 |
+
+### Note on re-exporting the TRT engines
+
+The engines were built at the old 26,078 keep set; the leak-free set is 26,025. Re-export is
+bookkeeping — the leak is worth −0.03 BLEU-4 [−0.11, +0.01] — and the latency rows stand either way.
+A pre-pruned directory at 26,025 with `keep_ids.json` is ready (Block 5).
+
+---
+
+## 6. Week-4 gate (row 5.3) — PASSED, 2026-09-30
+
+The gate asks for M1 plus one compressed row with measured energy on each side; L13 and P14 get cut
+only if that is missing.
+
+* Pose side: M1 (§5.1) plus the P8 rate sweep with measured pose energy at 30/24/16 fps.
+* LM side: vocabulary-pruned FP32 with the measured beam × T energy grid (§C) and 976-clip accuracy.
+
+**Nothing is cut.** INT8 was dropped for its own reason (mT5 FP16 overflow), not by this gate.
+
+---
+
+## 7. Naming collision to be aware of when merging
+
+**`L13` means two different things in this project.** In this file it is the LLM correction stage
+(Course B), now renamed **`L13-llm`**. In `results/RESULTS.md` §L13 it is the *accuracy surface for
+the frontier plot* (decoder strategy × frame rate). They are unrelated. The RESULTS.md numbering
+(L15 adaptation, L16 frontier) is the one the report should follow.
+
+---
 
 ## 4. Rules
 
