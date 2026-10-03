@@ -1791,3 +1791,49 @@ problem. Written down in advance so the prediction cannot be fitted afterwards.
 is 102.9 J per BLEU-4 point against 3.5 for beam width, so frame rate remains the better lever by
 ~29× instead of ~94×. The recommendation of beam 4 @ 24 fps rests on the frame-rate term, which is
 the validated one.
+
+#### L16 addendum 2 (2026-10-03): our prediction was falsified
+
+The pruned grid ran (§5.4). The prediction recorded in the previous addendum — *"the pruned grid
+should show a penalty that RISES with frame count, landing near 1.3–2.0 J"* — is **wrong on both
+counts.**
+
+| | predicted | measured (§5.4, LM stage integrated from its own power samples) |
+|---|---|---|
+| direction vs T | rises | **flat**: 4.65 J at T=204, 4.50 J at T=263 |
+| magnitude | 1.3–2.0 J | **4.5–4.65 J** |
+
+**The cross-attention argument is not supported.** We reasoned that beam cost has a T-linear
+cross-attention term (`beams × T`) which the 250 K output projection swamps on the full model and
+which should re-emerge once pruning shrinks that projection 9.6×. If that were the mechanism, the
+pruned penalty would grow with T. It does not. **Two checkpoints and four frame counts now agree
+that decoder-width energy is a per-sentence constant**, and `frontier.py` is wrong to interpolate it
+in T.
+
+**The checkpoint mismatch explains about half the gap, not all of it.** 7.02 J (full) → 4.65 J
+(pruned) against our composed 2.04 J, so a **2.1–2.3× discrepancy survives on the pruned checkpoint
+— the configuration `frontier.py` claims to describe.** Our §2.9C rows showing 1.15 / 1.34 / 2.16 J
+at T = 68 / 137 / 215 are therefore not simply reproduced end to end, and the growth in them is the
+thing now in doubt.
+
+**The leading candidate is ours to test, not theirs.** §2.9C measured the LM **standalone** — one
+process, no pose engine resident, no TensorRT context in the shared 8 GB pool, its own thermal state.
+The end-to-end error has a consistent sign at all four cells: the composition **overestimates greedy
+(−9.4%, −18.4%) and underestimates beam 4 (+8.3%, +9.0%)**, compressing the spread from both ends,
+which is what a different resident footprint would do. Four cells with a consistent sign is a pattern,
+not a cause. **The clean test is to re-run the §2.9C beam × T sweep in-process with the pose engine
+loaded.** Not yet done.
+
+**What this does and does not change.**
+
+* The **recommendation is unaffected**: beam 4 @ 24 fps rests on the frame-rate term, which board
+  measurement confirms (−16.7% measured vs −17% composed).
+* The **beam-width energy numbers in `frontier.py` remain not quotable**, now for a reason that
+  survives the checkpoint fix.
+* **Pruning is a bigger win than we claimed.** §5.4 measures it at **−5.19 J, −12.1% of system
+  energy** at the recommended cell — we had only ever argued pruning on memory and accuracy. The
+  saving is 3–4× larger at beam 4 than greedy, because the layer pruning shrinks is the output
+  projection, evaluated once per beam per token. The mechanism confirms itself.
+* Pruned peak GPU is **1.02–1.09 GB** against 2.39–2.56 GB, mT5 load **28.6–29.0 s** against
+  56.7–58.2 s, and it **clears the working-set failure** that blocked `source × beam 4` on the full
+  checkpoint — succeeding at 4238 MB where the full model failed at 5768 MB.
