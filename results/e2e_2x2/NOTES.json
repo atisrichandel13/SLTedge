@@ -1,0 +1,68 @@
+{
+  "run": "e2e 2x2: frame rate x decoder width, one clip, M1 pipeline",
+  "date_utc": "2026-10-02T21:03Z..21:14Z",
+  "board": "jetson-lpcv-03 (192.168.1.73), L4T R36.4.7, JetPack 6.2.1, TRT 10.11, nvpmodel 0 (15 W)",
+  "clip": "ixq65EiuJ_c-00:03:47.633-00:03:56.133",
+  "clip_split": "test",
+  "clip_frames": 255,
+  "clip_src_fps": 30.0,
+  "reference": "When I moved to Texas one year and a half ago, this was my first artwork.",
+  "checkpoint": "full released Uni-Sign OpenASL pose-only (FP32 reference), unpruned mT5-base",
+  "repeats": 3,
+  "occupancy": "driver logged users/foreign/memfree before every config; 0 users and 0 foreign processes throughout",
+  "reclaim": "jetson/drop_file_cache.py --target-free-mb=5000 before each config (reclaim to TARGET, not deficit)",
+  "cells": {
+    "src_beam4": {
+      "status": "FAILED",
+      "frames": 255, "num_beams": 4,
+      "memfree_mb_after_reclaim": 5691,
+      "failure": "RuntimeError NVML_SUCCESS == r INTERNAL ASSERT FAILED (CUDACachingAllocator.cpp:1017), preceded by NvMapMemAllocInternalTagged error 12 (ENOMEM)",
+      "failure_site": "transformers generation/utils.py:3279 _beam_search, during the warm-up sentence",
+      "note": "pose engine and mT5 both loaded successfully (1.1 s / 59.3 s); the failure is in beam search, not at load"
+    },
+    "src_beam1": {
+      "status": "OK", "frames": 255, "num_beams": 1, "memfree_mb_after_reclaim": 5478,
+      "total_ms_mean": 7998.0, "total_ms_std": 201.7,
+      "pose_ms": 6260.7, "convert_ms": 24.66, "lm_ms": 1712.6,
+      "encoder_len": 263, "decoded_tokens": 21,
+      "J_per_sentence": 43.11, "dyn_J_per_sentence": 11.32,
+      "avg_watts": 5.411, "baseline_watts": 3.99,
+      "mJ_per_frame": 169.07, "dynamic_mJ_per_frame": 44.41,
+      "peak_gpu_GB": 2.406, "cpu0_MHz": 1159.36,
+      "text": "When I moved to Texas two years ago, it was my first Airbnb subscription."
+    },
+    "16_beam4": {
+      "status": "OK", "frames": 136, "num_beams": 4, "keep_fps": 16.0, "memfree_mb_after_reclaim": 5473,
+      "total_ms_mean": 5616.1, "total_ms_std": 393.8,
+      "pose_ms": 3414.3, "convert_ms": 17.57, "lm_ms": 2184.2,
+      "encoder_len": 144, "decoded_tokens": 18,
+      "J_per_sentence": 32.75, "dyn_J_per_sentence": 10.70,
+      "avg_watts": 5.846, "baseline_watts": 3.938,
+      "mJ_per_frame": 240.80, "dynamic_mJ_per_frame": 78.65,
+      "peak_gpu_GB": 2.530, "cpu0_MHz": 1119.05,
+      "text": "When I moved to Texas two years ago, it was my first trip."
+    },
+    "16_beam1": {
+      "status": "OK", "frames": 136, "num_beams": 1, "keep_fps": 16.0, "memfree_mb_after_reclaim": 5292,
+      "total_ms_mean": 4705.7, "total_ms_std": 121.4,
+      "pose_ms": 3336.7, "convert_ms": 13.33, "lm_ms": 1355.6,
+      "encoder_len": 144, "decoded_tokens": 16,
+      "J_per_sentence": 25.80, "dyn_J_per_sentence": 7.27,
+      "avg_watts": 5.487, "baseline_watts": 3.943,
+      "mJ_per_frame": 189.70, "dynamic_mJ_per_frame": 53.42,
+      "peak_gpu_GB": 2.390, "cpu0_MHz": 1067.63,
+      "text": "I moved to Texas two years ago and it was my first time."
+    }
+  },
+  "findings": [
+    "Within a run the stages are exactly additive: pose + convert + lm = total to 0.04 ms, so the earlier end-to-end residual is not a within-run accounting gap.",
+    "Pose time is invariant to decoder width (3336.7 -> 3414.3 ms, +2.3%, inside run-to-run std) -- the expected independence, and a working internal consistency check.",
+    "Pose time is linear in frame count at ~23.7 ms/frame (imread 5.3-5.7, preprocess 4.6-4.9, TRT 11.9-12.8, postprocess 1.19), with ~3% fixed overhead.",
+    "Frame rate is the dominant knob: source -> 16 fps at greedy cuts total latency 41.2% (7998 -> 4706 ms) and energy 40.2% (43.11 -> 25.80 J/sentence).",
+    "Decoder width is the smaller knob: beam 1 -> beam 4 at 16 fps costs 19.3% latency (+910 ms) and 26.9% energy (+6.95 J/sentence); it lands almost entirely in the LM (+61.1%).",
+    "mJ_per_frame RISES under subsampling (169.07 -> 189.70) because the per-sentence LM cost is amortised over fewer frames. Per-frame energy is the wrong denominator for the end-to-end system; per-sentence is the right one.",
+    "The pose share of latency falls from 78.3% (src/beam1) to 70.9% (16/beam1) to 60.8% (16/beam4): subsampling moves the bottleneck toward the LM."
+  ],
+  "memory_finding": "255 frames x beam 4 does not fit in the 8 GB unified pool even with 5691 MB MemFree on a verified-empty board. This is the first memory limit we have measured that is NOT an occupancy artefact, and it is a beam-search working-set limit, not a load-time limit. Frame subsampling is therefore a feasibility requirement for beam search at source rate, not only an efficiency choice.",
+  "scope_limit": "n=1 clip, so NO accuracy claim is made. The three outputs are reported only to show that the source-rate decode tracks the reference clause structure most closely; all three miss the content word 'artwork'. The 2x2 interaction term cannot be computed because src_beam4 is missing."
+}

@@ -834,6 +834,10 @@ and an earlier draft of this section wrongly said it did. Measured the same day:
 (§5.3) failed all four configs with the same NVML assert at **1654–1830 MB free on a verifiably empty
 board**, and M1 succeeded at 4625 MB after a reclaim. **The full-checkpoint path needs roughly 4 GB of
 MemFree; the pruned path needs ~1.5 GB.** Both numbers are now measured rather than assumed.
+Re-run with reclaim-to-target, three of those four configs then passed at 5292–5478 MB -- and the
+fourth, 255 frames at beam 4, still failed at **5691 MB on an empty board**. So ~4 GB is the figure
+for *loading* the full checkpoint; the widest decode needs more than the board has, for reasons §5.3
+localises to beam search rather than to load.
 
 So the corrected statement is narrower than the withdrawal above might suggest. For the **pruned**
 path the 09-29 ceiling does not exist. For the **full** checkpoint memory is genuinely tight, the
@@ -844,6 +848,76 @@ explained — but they must be re-diagnosed against a reclaim-and-verify protoco
 **Why M1 stood up anyway.** M1's occupancy *was* checked and recorded, and its one co-tenant held an
 idle shell. The result is unaffected. What was wrong was calling one success robust, and then
 explaining the sustained run's failures with an uncontrolled measurement instead of re-testing.
+
+## 5.3 / The composition 2x2: frame rate x decoder width, on-device (2026-10-02)
+
+`jetson/e2e_2x2.sh`, `results/e2e_2x2/` (raw summaries + `NOTES.json`). One test clip,
+`ixq65EiuJ_c-00:03:47.633-00:03:56.133`, 255 frames at 30 fps, full released checkpoint, unpruned
+mT5-base, nvpmodel 0 (15 W), 3 repeats per cell. The driver logged `users` / `foreign` / `MemFree`
+before every cell (0 and 0 throughout) and reclaimed to a 5000 MB target first -- the protocol §5.2
+says is mandatory for the full checkpoint.
+
+M1 gave one point. One extra point cannot attribute a composition residual, so this varies frame
+count and decoder width independently on a shared clip instead of taking the single corner.
+
+| cell | frames | beams | total ms (±std) | pose ms | convert ms | LM ms | J/sentence | dyn J | peak GPU GB |
+|---|---|---|---|---|---|---|---|---|---|
+| source, beam 4 | 255 | 4 | **OOM** | — | — | — | — | — | — |
+| source, greedy | 255 | 1 | 7998.0 ± 201.7 | 6260.7 | 24.66 | 1712.6 | 43.11 | 11.32 | 2.406 |
+| 16 fps, beam 4 | 136 | 4 | 5616.1 ± 393.8 | 3414.3 | 17.57 | 2184.2 | 32.75 | 10.70 | 2.530 |
+| 16 fps, greedy | 136 | 1 | 4705.7 ± 121.4 | 3336.7 | 13.33 | 1355.6 | 25.80 | 7.27 | 2.390 |
+
+**The stages are exactly additive.** pose + convert + LM = total to within 0.04 ms in every cell, so
+the end-to-end residual noted at M1 is not a within-run accounting gap. It has to come from the
+comparison across runs, which is where it will have to be chased.
+
+**Pose is invariant to decoder width** (3336.7 → 3414.3 ms, +2.3%, inside the run-to-run std) and
+**linear in frame count** at ~23.7 ms/frame: imread 5.3–5.7, preprocess 4.6–4.9, TRT 11.9–12.8,
+postprocess 1.19, plus ~3% fixed overhead. Both are the independence the pipeline is supposed to
+have, so this doubles as a consistency check that passed.
+
+**Frame rate is the big knob, decoder width the small one.** Source → 16 fps at greedy cuts latency
+**41.2%** and energy **40.2%**. Greedy → beam 4 at 16 fps costs **19.3%** latency and **26.9%**
+energy, landing almost entirely in the LM (+61.1%). Subsampling also shifts the bottleneck: the pose
+share of latency falls 78.3% → 70.9% → 60.8% across the three cells.
+
+**`mJ_per_frame` is the wrong denominator and this run proves it.** It *rises* under subsampling,
+169.07 → 189.70 mJ/frame, because the per-sentence LM cost is amortised over fewer frames. Any
+end-to-end energy claim must be per sentence. The per-frame basis stays valid for the pose stage
+alone, which is where it was defined.
+
+### The first real memory ceiling, and it is not at load time
+
+`source × beam 4` failed with **5691 MB of MemFree on a verified-empty board after reclaim**. Both
+models loaded fine (pose engine 1.1 s, mT5 59.3 s); the failure came during the warm-up sentence
+inside `transformers` `generation/utils.py:3279` `_beam_search`, preceded by
+`NvMapMemAllocInternalTagged ... error 12` (ENOMEM) and surfacing as the usual
+`NVML_SUCCESS == r INTERNAL ASSERT FAILED`.
+
+This one is **not** an occupancy artefact -- unlike the claim withdrawn in §5.2, the board was
+checked, empty, and reclaimed, and it still failed. It is a **beam-search working-set** limit, not a
+load-time limit: 255 frames give a 263-step encoder output, which beam search expands ×4, on top of
+the 2.4–2.5 GB the loaded models already hold in the shared 8 GB pool.
+
+The consequence is a stronger claim than the efficiency story alone: at source rate on this board,
+**frame subsampling is a feasibility requirement for beam search, not only an optimisation.** What is
+not yet established is *where* the working set actually goes -- the obvious tensors are far too small
+to account for a multi-GB shortfall, so fragmentation in the unified pool is the suspicion and not
+the finding. One retry under `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` would discriminate.
+
+### Scope
+
+**n = 1 clip, so no accuracy claim is made here.** The reference is *"When I moved to Texas one year
+and a half ago, this was my first artwork."* The decodes were:
+
+- source, greedy -- "When I moved to Texas two years ago, it was my first Airbnb subscription."
+- 16 fps, beam 4 -- "When I moved to Texas two years ago, it was my first trip."
+- 16 fps, greedy -- "I moved to Texas two years ago and it was my first time."
+
+All three recover the clause structure and all three miss the content word. The source-rate decode
+tracks the reference most closely, which is *consistent with* L7.2 and nothing more -- one clip
+cannot separate that from chance. The 2×2 interaction term is **not computable** because the
+`source × beam 4` cell does not exist.
 
 ## Track B: Uni-Sign OpenASL pose-only
 

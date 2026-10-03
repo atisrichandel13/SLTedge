@@ -1,0 +1,241 @@
+{
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-5.15.148-tegra-aarch64-with-glibc2.39",
+    "jetpack": "unknown (nvidia-jetpack package not found)",
+    "l4t": "R36.4.7",
+    "nvpmodel": "mode 0 (15W) from /var/lib/nvpmodel/status",
+    "gpu_max_MHz": 612.0,
+    "gpu_min_MHz": 306.0,
+    "cpu_max_MHz": 1497.6,
+    "torch": "2.8.0a0+5228986c39.nv25.06",
+    "torch_cuda": "12.9",
+    "cuda_available": true,
+    "gpu": "Orin",
+    "tensorrt": "10.11.0.33",
+    "nvcc": "V12.9.86"
+  },
+  "summary": {
+    "text": "When I moved to Texas two years ago, it was my first trip.",
+    "n_sentences": 3,
+    "frames_in": 136,
+    "frames_used": 136,
+    "sentence_total_ms": {
+      "mean": 5616.1,
+      "std": 393.8,
+      "runs": [
+        6168.2,
+        5277.4,
+        5402.6
+      ]
+    },
+    "pose_total_ms": 3414.3,
+    "convert_ms": 17.57,
+    "lm_total_ms": 2184.2,
+    "per_frame_ms": {
+      "imread_ms": {
+        "mean": 5.53,
+        "p95": 6.73
+      },
+      "preprocess_ms": {
+        "mean": 4.752,
+        "p95": 5.47
+      },
+      "trt_ms": {
+        "mean": 11.915,
+        "p95": 14.293
+      },
+      "postprocess_ms": {
+        "mean": 1.191,
+        "p95": 1.563
+      }
+    },
+    "J_per_sentence": 32.75,
+    "dyn_J_per_sentence": 10.7,
+    "square_norm": true,
+    "square_geom": {
+      "crop_xywh": [
+        297,
+        0,
+        644,
+        720
+      ],
+      "square_xywh": [
+        77,
+        -150,
+        1083
+      ],
+      "scale_vs_crop": 0.5946445060018467
+    },
+    "fps": {
+      "keep_fps": 16.0,
+      "src_fps": 30.0,
+      "frames_in": 255,
+      "frames_kept": 136
+    },
+    "num_beams": 4,
+    "load_pose_s": 1.2,
+    "load_lm_s": 58.24,
+    "peak_gpu_GB": 2.53
+  },
+  "runs": [
+    {
+      "text": "When I moved to Texas two years ago, it was my first trip.",
+      "lm_ms": {
+        "gcn": 80.70878700527828,
+        "encoder": 53.71243800618686,
+        "decoder": 2065.9024490014417,
+        "total": 2200.323674012907,
+        "encoder_len": 144,
+        "decoded_tokens": 18
+      },
+      "convert_ms": 17.91779900668189,
+      "pose_total_ms": 3950.002690005931,
+      "frames_in": 136,
+      "frames_used": 136,
+      "sentence_total_ms": 6168.24416302552,
+      "imread_ms": {
+        "mean": 7.047,
+        "p95": 9.344
+      },
+      "preprocess_ms": {
+        "mean": 5.465,
+        "p95": 6.988
+      },
+      "trt_ms": {
+        "mean": 14.991,
+        "p95": 23.144
+      },
+      "postprocess_ms": {
+        "mean": 1.438,
+        "p95": 1.983
+      }
+    },
+    {
+      "text": "When I moved to Texas two years ago, it was my first trip.",
+      "lm_ms": {
+        "gcn": 78.36262798809912,
+        "encoder": 36.84006699768361,
+        "decoder": 2047.185816001729,
+        "total": 2162.388510987512,
+        "encoder_len": 144,
+        "decoded_tokens": 18
+      },
+      "convert_ms": 14.486850996036083,
+      "pose_total_ms": 3100.4851610050537,
+      "frames_in": 136,
+      "frames_used": 136,
+      "sentence_total_ms": 5277.360522988602,
+      "imread_ms": {
+        "mean": 5.132,
+        "p95": 6.049
+      },
+      "preprocess_ms": {
+        "mean": 4.426,
+        "p95": 5.176
+      },
+      "trt_ms": {
+        "mean": 11.998,
+        "p95": 14.295
+      },
+      "postprocess_ms": {
+        "mean": 1.16,
+        "p95": 1.442
+      }
+    },
+    {
+      "text": "When I moved to Texas two years ago, it was my first trip.",
+      "lm_ms": {
+        "gcn": 82.75679599319119,
+        "encoder": 48.52529399795458,
+        "decoder": 2058.518361998722,
+        "total": 2189.8004519898677,
+        "encoder_len": 144,
+        "decoded_tokens": 18
+      },
+      "convert_ms": 20.297879993449897,
+      "pose_total_ms": 3192.4717410001904,
+      "frames_in": 136,
+      "frames_used": 136,
+      "sentence_total_ms": 5402.570072983508,
+      "imread_ms": {
+        "mean": 5.53,
+        "p95": 6.73
+      },
+      "preprocess_ms": {
+        "mean": 4.752,
+        "p95": 5.47
+      },
+      "trt_ms": {
+        "mean": 11.915,
+        "p95": 14.293
+      },
+      "postprocess_ms": {
+        "mean": 1.191,
+        "p95": 1.563
+      }
+    }
+  ],
+  "power": {
+    "n_samples": 169,
+    "duration_s": 16.8,
+    "rails_mW_avg": {
+      "VDD_CPU_GPU_CV": 1712.5,
+      "VDD_IN": 5845.9,
+      "VDD_SOC": 1542.5
+    },
+    "rails_mW_max": {
+      "VDD_CPU_GPU_CV": 2360.0,
+      "VDD_IN": 7331.7,
+      "VDD_SOC": 1883.0
+    },
+    "aux_avg": {
+      "GR3D_FREQ_pct": 51.31,
+      "cpu0_MHz": 1119.05,
+      "fan_pwm": 71.01,
+      "fan_rpm": 1579.93,
+      "gpu_MHz": 366.36,
+      "temp_cpu_C": 50.11,
+      "temp_gpu_C": 50.58,
+      "temp_soc0_C": 50.14,
+      "temp_soc1_C": 49.23,
+      "temp_soc2_C": 49.66,
+      "temp_tj_C": 50.58
+    },
+    "total_rail": "VDD_IN",
+    "avg_watts": 5.846,
+    "energy_mJ": 98247.9,
+    "baseline_watts": 3.938,
+    "dynamic_energy_mJ": 32089.8,
+    "n_frames": 408,
+    "mJ_per_frame": 240.8,
+    "dynamic_mJ_per_frame": 78.65
+  },
+  "config": {
+    "engine": "models/rtmw/rtmw-l-m_256x192_fp16.engine",
+    "frames": "data/clips/ixq65EiuJ_c-00:03:47.633-00:03:56.133/frames",
+    "meta": "data/clips/ixq65EiuJ_c-00:03:47.633-00:03:56.133/meta.json",
+    "preproc": null,
+    "ckpt": "weights/openasl_pose_only_slt.pth",
+    "mt5": "weights/mt5-base",
+    "square_norm": true,
+    "crop_wh": null,
+    "device": "cuda",
+    "dtype": "fp32",
+    "max_length": 256,
+    "max_new_tokens": 64,
+    "num_beams": 4,
+    "warmup": 20,
+    "limit": null,
+    "repeat": 3,
+    "keep_fps": 16.0,
+    "src_fps": null,
+    "out": "results/e2e_2x2/e2e_16_beam4.json",
+    "power_backend": "auto",
+    "power_interval_ms": 100,
+    "power_sudo": false,
+    "idle_seconds": 3.0,
+    "power_csv": null,
+    "power_json": "results/e2e_2x2/power_16_beam4.json"
+  }
+}
