@@ -863,10 +863,16 @@ count and decoder width independently on a shared clip instead of taking the sin
 
 | cell | frames | beams | total ms (±std) | pose ms | convert ms | LM ms | J/sentence | dyn J | peak GPU GB |
 |---|---|---|---|---|---|---|---|---|---|
-| source, beam 4 | 255 | 4 | **OOM** | — | — | — | — | — | — |
+| source, beam 4 | 255 | 4 | **OOM** (ran once as M1, §5.1) | — | — | — | — | — | — |
 | source, greedy | 255 | 1 | 7998.0 ± 201.7 | 6260.7 | 24.66 | 1712.6 | 43.11 | 11.32 | 2.406 |
+| **24 fps, beam 4** | **204** | **4** | **7728.7 ± 320.7** | **5349.5** | **21.00** | **2358.2** | **42.94** | **12.95** | **2.555** |
+| 24 fps, greedy | 204 | 1 | 6672.1 ± 347.0 | 5102.2 | 18.99 | 1550.9 | 35.92 | 9.43 | 2.399 |
 | 16 fps, beam 4 | 136 | 4 | 5616.1 ± 393.8 | 3414.3 | 17.57 | 2184.2 | 32.75 | 10.70 | 2.530 |
 | 16 fps, greedy | 136 | 1 | 4705.7 ± 121.4 | 3336.7 | 13.33 | 1355.6 | 25.80 | 7.27 | 2.390 |
+
+The **24 fps row is the frontier's recommended operating point (L16), measured end to end on the board
+for the first time** — it had only ever been composed. The 16 fps row was the pre-frontier priority and
+is kept because three frame counts constrain the per-frame term better than two.
 
 **The stages are exactly additive.** pose + convert + LM = total to within 0.04 ms in every cell, so
 the end-to-end residual noted at M1 is not a within-run accounting gap. It has to come from the
@@ -882,45 +888,92 @@ have, so this doubles as a consistency check that passed.
 energy, landing almost entirely in the LM (+61.1%). Subsampling also shifts the bottleneck: the pose
 share of latency falls 78.3% → 70.9% → 60.8% across the three cells.
 
+### What the grid says about the frontier's energy model
+
+This is the reason the grid was run, and it splits cleanly in two.
+
+**The frame-rate term is well calibrated.** Source → 24 fps at greedy measures **−16.7%** system
+energy (43.11 → 35.92 J); `frontier.py` predicts **−17%**. The pose side of the composition can be
+trusted.
+
+**The decoder-width term is understated by 3–5×, and now replicated at two frame rates.**
+
+| | measured Δ J/sentence | composed Δ (`frontier.py` `LM_J`) | ratio |
+|---|---:|---:|---:|
+| greedy → beam 4 at 24 fps (T=204) | **+7.02** | +2.04 | 3.4× |
+| greedy → beam 4 at 16 fps (T=136) | **+6.95** | +1.34 | 5.2× |
+
+Note that **the measured penalty is essentially constant in absolute joules** (7.02 vs 6.95 J) across a
+1.5× change in frame count — exactly what theory predicts, since decoder cost tracks tokens generated
+rather than input length. The composition instead makes it grow with T, because it interpolates `LM_J`
+in T.
+
+**The cause is a model mismatch, not a measurement error.** `frontier.py` composes `LM_J` from §2.9C,
+which is headed *"(pruned checkpoint)"* — vocabulary 26,078. Every end-to-end run here loads the
+**full released** checkpoint with unpruned `mt5-base` — vocabulary **250,112**. The output projection
+cost scales with `beams × vocab`, so the full model's beam-4 penalty is far larger than the pruned
+model's. §L4 had already measured the per-token consequence (full 69 ms/token vs pruned 55) but it was
+never carried into the energy model.
+
+Applying a flat 1.255 factor (69/55) to `LM_J` brings **all three beam-4 cells** inside ±3% — M1
+−1.1%, 24 fps +1.3%, 16 fps +2.8% — and makes **both greedy cells worse** (−9.4%, −14.2%). A flat
+factor is therefore the wrong correction, which is itself consistent with the penalty scaling with
+beam count rather than being constant.
+
+**What follows.** The deployable model is the pruned checkpoint (4× smaller, −0.28 BLEU-4
+[−0.63, +0.05], and it loads in ~1.5 GB against the >5.3 GB below). If that is the intended
+deployment then the frontier's energy model is right and **these end-to-end runs used the wrong
+checkpoint** — M1 chose the released one because it is the FP32 reference rung, correct for a first
+run and wrong as a basis for validating the frontier. **Re-running this grid on the pruned checkpoint
+is the decisive experiment**, and it is queued. Until it lands, do not quote the composition's
+beam-width energy cost: it is a pruned-model number, and on the full model we measure 3–5× more.
+
 **`mJ_per_frame` is the wrong denominator and this run proves it.** It *rises* under subsampling,
 169.07 → 189.70 mJ/frame, because the per-sentence LM cost is amortised over fewer frames. Any
 end-to-end energy claim must be per sentence. The per-frame basis stays valid for the pose stage
 alone, which is where it was defined.
 
-### The missing cell is a reproducibility failure, not a ceiling
+### Two separate memory problems, and the thresholds we had were both wrong
 
-`source × beam 4` failed with **5691 MB of MemFree on a verified-empty board after reclaim**. Both
-models loaded fine (pose engine 1.1 s, mT5 59.3 s); the failure came during the warm-up sentence
-inside `transformers` `generation/utils.py:3279` `_beam_search`, preceded by
-`NvMapMemAllocInternalTagged ... error 12` (ENOMEM) and surfacing as the usual
-`NVML_SUCCESS == r INTERNAL ASSERT FAILED`.
+**(a) The load threshold was wrong by 1.3 GB.** §5.2 put the full checkpoint's requirement at ~4 GB of
+MemFree, inferred from M1's single success at 4625 MB. That does not reproduce. Measured 2026-10-03,
+loading the full checkpoint:
 
-**It is tempting to call this a working-set ceiling. That would be wrong, and §5.1 is the refutation:
-M1 ran this exact cell** -- 255 frames, beam 4, same FP16 engine, same released checkpoint, 3 timed
-sentences -- **successfully on 2026-09-28**, at 2.577 GB peak and with *less* MemFree (4625 MB after
-reclaim) than the run that failed. Same cell, more headroom, opposite outcome.
+| MemFree after reclaim | outcome |
+|---:|---|
+| 5214 MB | **fails** in `_load_state_dict_into_meta_model` |
+| 5268 MB | succeeds |
+| 5292–5478 MB | succeeds (the three cells of 10-02) |
+| 5726–5768 MB | succeeds |
 
-So what this measures is **run-to-run variance in whether the configuration fits**, not a limit of the
-configuration. The honest statement is that `source × beam 4` is feasible on this board and **not
-reliably so**, and that nothing we have yet distinguishes the candidate causes:
+There is a **cliff just above 5.2 GB**. `drop_file_cache.py --target-free-mb=5000` reclaims to only
+~5200, so it straddles the cliff — which is why three cells failed *at load* on 10-03 while the
+identical 16 fps/greedy cell reproduced exactly at 5268 MB. The driver now targets **6200** with the
+guard at **5400**, and every cell has passed since. **A single success is not a threshold**, which is
+the same error shape as the occupancy episode in §5.2.
 
-- **Fragmentation of the unified pool.** The tensors beam search adds here are far too small for a
-  multi-GB shortfall (a 263-step encoder output expanded ×4 is tens of MB), so a contiguous-block
-  failure at high MemFree is the leading suspicion. `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`
-  lets the allocator grow a segment instead, which discriminates this from a true working-set need.
-- **What `drop_file_cache.py` leaves behind.** Reclaiming by touching 5120 MB of file pages raises
-  MemFree but says nothing about the *shape* of what is free. MemFree may simply be the wrong
-  readiness check, in which case the §5.2 protocol needs a better one.
-- **Residue from the preceding process.** The failing attempt was the first config of its driver
-  invocation, but an earlier container process may not have fully released device memory.
+**(b) `source × beam 4` is genuinely marginal, and this time the evidence supports it.** It has now
+failed three times — at 5691 MB (in `_beam_search`), and twice more at 5768 MB with
+`PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`, which only moved the failure site to
+`cache_utils.py:120`, the **KV-cache concat**. That is the same site where §5.1's FP32-engine attempt
+died. Meanwhile `24 fps × beam 4` passes reliably at effectively the same MemFree (5757 MB), so this
+is a working-set limit specific to 255 frames at beam 4, not a reclaim problem.
 
-A retry under `expandable_segments` is queued in `jetson/e2e_2x2.sh`, scoped to this one cell so it
-cannot change the allocator under the cells already measured.
+Against that stands **M1, which ran this exact cell at 4625 MB on 09-28**. The configurations match on
+every field we can still compare (`max_new_tokens` 64 and `max_length` 256 are the script defaults
+that both runs took; M1's own summary JSON was never saved, only its power JSON, so the comparison is
+not airtight). The honest reading is that the cell sits **right at the edge**: it fits sometimes.
 
-**The claim this does *not* support.** An earlier draft of this section said frame subsampling is a
-feasibility requirement for beam search at source rate. §5.1 contradicts that outright and the
-sentence has been removed. The efficiency argument for subsampling stands on the latency and energy
-numbers above and needs no help from a memory argument.
+**An earlier draft of this section got this wrong twice** — first by calling it a hard ceiling and
+concluding that frame subsampling is a *feasibility* requirement for beam search, then by swinging to
+"reproducibility failure, not a ceiling" on the strength of M1 alone. With `expandable_segments` ruling
+out simple fragmentation and 24 fps passing at the same MemFree, a real working-set limit is the better
+explanation, and M1 is the outlier to be explained rather than the refutation.
+
+**It does not block the deliverable.** `source × beam 4` is the frontier's *accuracy* reference, and
+that was measured on the Mac at n=976; nothing requires it to run on the board. The recommended cell,
+24 fps × beam 4, runs reliably. The pruned checkpoint would also almost certainly clear it, with ~1.5 GB
+to load instead of >5.3 GB — another reason the pruned re-run is the right next step.
 
 ### Scope
 

@@ -13,13 +13,30 @@
   "reclaim": "jetson/drop_file_cache.py --target-free-mb=5000 before each config (reclaim to TARGET, not deficit)",
   "cells": {
     "src_beam4": {
-      "status": "FAILED",
+      "status": "FAILED x3",
       "frames": 255,
       "num_beams": 4,
       "memfree_mb_after_reclaim": 5691,
       "failure": "RuntimeError NVML_SUCCESS == r INTERNAL ASSERT FAILED (CUDACachingAllocator.cpp:1017), preceded by NvMapMemAllocInternalTagged error 12 (ENOMEM)",
       "failure_site": "transformers generation/utils.py:3279 _beam_search, during the warm-up sentence",
-      "note": "pose engine and mT5 both loaded successfully (1.1 s / 59.3 s); the failure is in beam search, not at load. The same cell SUCCEEDED as M1 on 2026-09-28 at 4625 MB free, so this is not a feasibility limit."
+      "note": "pose engine and mT5 both loaded successfully (1.1 s / 59.3 s); the failure is in beam search, not at load. The same cell SUCCEEDED as M1 on 2026-09-28 at 4625 MB free, so this is not a feasibility limit.",
+      "attempts": [
+        {
+          "memfree_mb": 5691,
+          "alloc_conf": "default",
+          "site": "generation/utils.py:3279 _beam_search"
+        },
+        {
+          "memfree_mb": 5768,
+          "alloc_conf": "expandable_segments:True",
+          "site": "cache_utils.py:120 update (KV-cache concat)"
+        },
+        {
+          "memfree_mb": 5768,
+          "alloc_conf": "expandable_segments:True",
+          "site": "cache_utils.py:120 update (KV-cache concat)"
+        }
+      ]
     },
     "src_beam1": {
       "status": "OK",
@@ -88,6 +105,66 @@
       "peak_gpu_GB": 2.39,
       "cpu0_MHz": 1067.63,
       "text": "I moved to Texas two years ago and it was my first time."
+    },
+    "24_beam4": {
+      "status": "OK",
+      "frames": 204,
+      "num_beams": 4,
+      "keep_fps": 24.0,
+      "memfree_mb_after_reclaim": 5757,
+      "total_ms_mean": 7728.7,
+      "total_ms_std": 320.7,
+      "pose_ms": 5349.5,
+      "convert_ms": 21.0,
+      "lm_ms": 2358.2,
+      "encoder_len": 212,
+      "decoded_tokens": 19,
+      "J_per_sentence": 42.94,
+      "dyn_J_per_sentence": 12.95,
+      "avg_watts": 5.576,
+      "baseline_watts": 3.895,
+      "mJ_per_frame": 210.49,
+      "dynamic_mJ_per_frame": 63.47,
+      "peak_gpu_GB": 2.555,
+      "cpu0_MHz": 852.08,
+      "text": "When I moved to Texas two years ago, it was my first priority.",
+      "note": "the frontier's recommended operating point (L16), measured end to end for the first time"
+    },
+    "24_beam1": {
+      "status": "OK",
+      "frames": 204,
+      "num_beams": 1,
+      "keep_fps": 24.0,
+      "memfree_mb_after_reclaim": 5726,
+      "total_ms_mean": 6672.1,
+      "total_ms_std": 347.0,
+      "pose_ms": 5102.2,
+      "convert_ms": 18.99,
+      "lm_ms": 1550.9,
+      "encoder_len": 212,
+      "decoded_tokens": 19,
+      "J_per_sentence": 35.92,
+      "dyn_J_per_sentence": 9.43,
+      "mJ_per_frame": 176.08,
+      "peak_gpu_GB": 2.399,
+      "cpu0_MHz": 1099.08,
+      "text": "When I moved to Texas two years ago, it was my first priority."
+    },
+    "ctrl_16_beam1": {
+      "status": "OK",
+      "frames": 136,
+      "num_beams": 1,
+      "keep_fps": 16.0,
+      "repeats": 1,
+      "memfree_mb_after_reclaim": 5268,
+      "total_ms_mean": 5024.7,
+      "pose_ms": 3648.7,
+      "convert_ms": 19.22,
+      "lm_ms": 1356.8,
+      "J_per_sentence": 24.98,
+      "peak_gpu_GB": 2.39,
+      "text": "I moved to Texas two years ago and it was my first time.",
+      "note": "reproducibility control, re-run hours after 16_beam1. LM reproduced to 0.1% (1356.8 vs 1355.6 ms) and the text exactly; pose moved +9% (3648.7 vs 3336.7). Treat single-run pose timings as +-10%."
     }
   },
   "findings": [
@@ -99,7 +176,8 @@
     "mJ_per_frame RISES under subsampling (169.07 -> 189.70) because the per-sentence LM cost is amortised over fewer frames. Per-frame energy is the wrong denominator for the end-to-end system; per-sentence is the right one.",
     "The pose share of latency falls from 78.3% (src/beam1) to 70.9% (16/beam1) to 60.8% (16/beam4): subsampling moves the bottleneck toward the LM."
   ],
-  "memory_finding": "255 frames x beam 4 failed at 5691 MB MemFree on a verified-empty board, inside _beam_search rather than at load. This is NOT a working-set ceiling: M1 (RESULTS.md 5.1) ran the identical cell successfully on 2026-09-28 at 2.577 GB peak with LESS MemFree (4625 MB). It is run-to-run variance in whether the configuration fits. Candidate causes, none yet discriminated: fragmentation of the unified pool (leading suspicion, since the added tensors are tens of MB not GB); MemFree being the wrong readiness check after drop_file_cache.py; device memory not fully released by a preceding container process. A retry scoped to this cell under PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True is queued.",
+  "memory_finding": "TWO separate problems. (a) The LOAD threshold was wrong by 1.3 GB: the full checkpoint load fails at 5214 MB and succeeds from 5268 MB up, a cliff just above 5.2 GB, not the ~4 GB inferred from M1's single success at 4625. A reclaim target of 5000 reaches only ~5200 and straddles it, which failed three cells at load on 10-03. Target is now 6200, guard 5400, and every cell has passed since. (b) source x beam 4 is a genuine working-set limit: three failures, two of them with expandable_segments, which only moved the site to the KV-cache concat, while 24 fps x beam 4 passes at effectively the same MemFree (5757). M1's single success at 4625 MB is the outlier to explain, not a refutation. It does not block the deliverable: that cell is the frontier's ACCURACY reference, measured on the Mac.",
   "scope_limit": "n=1 clip, so NO accuracy claim is made. The three outputs are reported only to show that the source-rate decode tracks the reference clause structure most closely; all three miss the content word 'artwork'. The 2x2 interaction term cannot be computed because src_beam4 is missing.",
-  "retracted_claim": "An earlier draft called this the first real memory ceiling and concluded that frame subsampling is a feasibility requirement for beam search at source rate. RESULTS.md 5.1 refutes that: M1 ran source x beam 4. Retracted."
+  "retracted_claim": "Two wrong drafts, both recorded. First: 'the first real memory ceiling', concluding frame subsampling is a feasibility requirement for beam search -- refuted by M1. Second: 'a reproducibility failure, not a ceiling' -- too strong in the other direction, since expandable_segments ruled out simple fragmentation and 24 fps passes at the same MemFree. Current reading: a real working-set limit at 255 frames x beam 4, with M1 as the outlier.",
+  "frontier_finding": "The composition's frame-rate term is well calibrated (source -> 24 fps at greedy measures -16.7% system energy vs -17% predicted), but its decoder-width term is understated 3-5x: measured greedy -> beam 4 costs +7.02 J at 24 fps and +6.95 J at 16 fps, against composed +2.04 and +1.34. The measured penalty is constant in absolute joules across frame rate, as theory says it should be, while the composition makes it grow with T. Cause: frontier.py composes LM_J from RESULTS 2.9C, measured on the PRUNED checkpoint (vocab 26,078), while every end-to-end run loads the FULL released checkpoint (vocab 250,112), and the output projection scales with beams x vocab. A flat 1.255 factor (L4's 69 vs 55 ms/token) puts all three beam-4 cells within +-3% and makes both greedy cells worse, so the right correction is not flat. Decisive experiment: re-run this grid on the pruned checkpoint."
 }

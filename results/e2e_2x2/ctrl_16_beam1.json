@@ -1,0 +1,175 @@
+{
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-5.15.148-tegra-aarch64-with-glibc2.39",
+    "jetpack": "unknown (nvidia-jetpack package not found)",
+    "l4t": "R36.4.7",
+    "nvpmodel": "mode 0 (15W) from /var/lib/nvpmodel/status",
+    "gpu_max_MHz": 612.0,
+    "gpu_min_MHz": 306.0,
+    "cpu_max_MHz": 1497.6,
+    "torch": "2.8.0a0+5228986c39.nv25.06",
+    "torch_cuda": "12.9",
+    "cuda_available": true,
+    "gpu": "Orin",
+    "tensorrt": "10.11.0.33",
+    "nvcc": "V12.9.86"
+  },
+  "summary": {
+    "text": "I moved to Texas two years ago and it was my first time.",
+    "n_sentences": 1,
+    "frames_in": 136,
+    "frames_used": 136,
+    "sentence_total_ms": {
+      "mean": 5024.7,
+      "std": 0.0,
+      "runs": [
+        5024.7
+      ]
+    },
+    "pose_total_ms": 3648.7,
+    "convert_ms": 19.22,
+    "lm_total_ms": 1356.8,
+    "per_frame_ms": {
+      "imread_ms": {
+        "mean": 6.005,
+        "p95": 7.322
+      },
+      "preprocess_ms": {
+        "mean": 5.153,
+        "p95": 6.196
+      },
+      "trt_ms": {
+        "mean": 14.227,
+        "p95": 16.087
+      },
+      "postprocess_ms": {
+        "mean": 1.35,
+        "p95": 1.569
+      }
+    },
+    "J_per_sentence": 24.98,
+    "dyn_J_per_sentence": 5.73,
+    "square_norm": true,
+    "square_geom": {
+      "crop_xywh": [
+        297,
+        0,
+        644,
+        720
+      ],
+      "square_xywh": [
+        77,
+        -150,
+        1083
+      ],
+      "scale_vs_crop": 0.5946445060018467
+    },
+    "fps": {
+      "keep_fps": 16.0,
+      "src_fps": 30.0,
+      "frames_in": 255,
+      "frames_kept": 136
+    },
+    "num_beams": 1,
+    "load_pose_s": 1.12,
+    "load_lm_s": 56.83,
+    "peak_gpu_GB": 2.39
+  },
+  "runs": [
+    {
+      "text": "I moved to Texas two years ago and it was my first time.",
+      "lm_ms": {
+        "gcn": 92.50170399900526,
+        "encoder": 44.86831300891936,
+        "decoder": 1219.420727022225,
+        "total": 1356.7907440301497,
+        "encoder_len": 144,
+        "decoded_tokens": 16
+      },
+      "convert_ms": 19.221277005271986,
+      "pose_total_ms": 3648.709149012575,
+      "frames_in": 136,
+      "frames_used": 136,
+      "sentence_total_ms": 5024.721170047997,
+      "imread_ms": {
+        "mean": 6.005,
+        "p95": 7.322
+      },
+      "preprocess_ms": {
+        "mean": 5.153,
+        "p95": 6.196
+      },
+      "trt_ms": {
+        "mean": 14.227,
+        "p95": 16.087
+      },
+      "postprocess_ms": {
+        "mean": 1.35,
+        "p95": 1.569
+      }
+    }
+  ],
+  "power": {
+    "n_samples": 50,
+    "duration_s": 4.9,
+    "rails_mW_avg": {
+      "VDD_CPU_GPU_CV": 1402.4,
+      "VDD_IN": 5100.0,
+      "VDD_SOC": 1366.0
+    },
+    "rails_mW_max": {
+      "VDD_CPU_GPU_CV": 2006.4,
+      "VDD_IN": 6861.9,
+      "VDD_SOC": 1805.8
+    },
+    "aux_avg": {
+      "GR3D_FREQ_pct": 55.5,
+      "cpu0_MHz": 960.0,
+      "fan_pwm": 62.0,
+      "fan_rpm": 1329.1,
+      "gpu_MHz": 338.64,
+      "temp_cpu_C": 47.65,
+      "temp_gpu_C": 48.21,
+      "temp_soc0_C": 47.77,
+      "temp_soc1_C": 46.89,
+      "temp_soc2_C": 47.11,
+      "temp_tj_C": 48.21
+    },
+    "total_rail": "VDD_IN",
+    "avg_watts": 5.1,
+    "energy_mJ": 24979.1,
+    "baseline_watts": 3.929,
+    "dynamic_energy_mJ": 5729.4,
+    "n_frames": 136,
+    "mJ_per_frame": 183.67,
+    "dynamic_mJ_per_frame": 42.13
+  },
+  "config": {
+    "engine": "models/rtmw/rtmw-l-m_256x192_fp16.engine",
+    "frames": "data/clips/ixq65EiuJ_c-00:03:47.633-00:03:56.133/frames",
+    "meta": "data/clips/ixq65EiuJ_c-00:03:47.633-00:03:56.133/meta.json",
+    "preproc": null,
+    "ckpt": "weights/openasl_pose_only_slt.pth",
+    "mt5": "weights/mt5-base",
+    "square_norm": true,
+    "crop_wh": null,
+    "device": "cuda",
+    "dtype": "fp32",
+    "max_length": 256,
+    "max_new_tokens": 64,
+    "num_beams": 1,
+    "warmup": 20,
+    "limit": null,
+    "repeat": 1,
+    "keep_fps": 16.0,
+    "src_fps": null,
+    "out": "results/e2e_2x2/ctrl_16_beam1.json",
+    "power_backend": "auto",
+    "power_interval_ms": 100,
+    "power_sudo": false,
+    "idle_seconds": 3.0,
+    "power_csv": null,
+    "power_json": null
+  }
+}
