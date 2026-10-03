@@ -2021,7 +2021,7 @@ breakdown:
 | CPU stages per frame (imread + preprocess + post) | 12.39 ms — **49.4 %** of frame time |
 | TRT per frame | 12.71 ms |
 | frame time if CPU stages move ×1.281 | 25.10 → **28.58 ms (+13.9 %)** |
-| pose share of system energy at source rate | ~72 % (32.3 of 43.4 J composed) |
+| pose share of system energy at source rate | **74.4 %** (32.3 of 43.4 J composed) |
 | **resulting shift in system J** | **~10 %** |
 
 **A ~10 % swing comfortably brackets the +6.3 % residual.** So the across-run hypothesis is not just
@@ -2034,6 +2034,15 @@ the frame-rate term still validates at −16.7 % measured against −17 % compos
 `c9_process_repeats.sh` — three *separate* processes per config — is the measurement that will put a
 real interval on it.
 
-It also leaves L16 addendum 2's other open question untouched: the 2.1–2.3× beam-width discrepancy is
-a *systematic* sign-consistent error across four cells (greedy overestimated, beam 4 underestimated),
-which run-to-run noise does not produce. That one still needs the in-process §2.9C re-run.
+It also leaves L16 addendum 2's other open question untouched: the **1.7–2.3×** beam-width
+discrepancy is a *systematic* sign-consistent error across four cells (greedy overestimated, beam 4
+underestimated), which run-to-run noise does not produce. That one still needs the in-process §2.9C
+re-run.
+
+> *Two numbers corrected by the pose track, 2026-10-03, neither changing the conclusion.* The pose
+> share is **74.4 %**, not 72 % — the row's own parenthetical (32.3 of 43.4 J) gives 74.4 %, and the
+> resulting system-J shift is **10.3 %**, which brackets the 6.3 % residual slightly more comfortably
+> than stated. And the beam-width discrepancy is **1.7–2.3×**, not 2.1–2.3×: §5.4 measures 4.65 J
+> against a composed 2.04 at T=204 (2.28×) and 4.50 against 2.67 at T=263 (1.69×). The lower bound
+> matters, because 1.69× at source rate is the weaker end of the effect and quoting the range from
+> its top makes the systematic look more uniform than it is.
