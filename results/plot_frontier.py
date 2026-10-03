@@ -156,9 +156,10 @@ paras = [
     "but not equivalent to a real low-rate camera. All cells carry a -0.03 BLEU-4 test-set "
     "vocabulary leak, uniform across cells and so unable to reorder them.",
     "Accuracy is scored on the AUTHORS' released keypoints. The deployed system uses our own RTMW "
-    "FP16 extractor; substituting it is worth -0.35 BLEU-4 [-4.23, +3.17] at n=30, so the deployed "
-    "system's ABSOLUTE accuracy carries roughly +-4 BLEU-4. Every cell shares the same poses, so "
-    "the relative ordering -- the deliverable -- is unaffected.",
+    "FP16 extractor; on a common 100-clip set that substitution costs -1.89 BLEU-4 [-4.26, +0.27] "
+    "at 24 fps -- not established, but only just, so our extractor plausibly costs ~2 points. The "
+    "deployed config itself now measures 22.99 BLEU-4 / 43.43 ROUGE-L on the board. Every cell "
+    "here shares the same poses, so the relative ordering -- the deliverable -- is unaffected.",
 ]
 # Wrap to the figure width in characters, or the caveats get clipped off the right edge.
 import textwrap  # noqa: E402

@@ -6,14 +6,20 @@ IMPORTANT - what kind of number each column is:
   * ACCURACY  : measured by us, n=976 OpenASL test clips, pruned FP32 checkpoint,
                 max_new_tokens 64, batch 8. See results/RESULTS.md L13.
                 *** ON THE AUTHORS' RELEASED KEYPOINTS, NOT OUR EXTRACTOR'S. *** The deployed
-                system feeds RTMW FP16 poses from our own pipeline. Substituting our poses is
-                worth -0.35 BLEU-4 [-4.23, +3.17] at n=30 (RESULTS.md 2.5c), so the DEPLOYED
-                system's absolute accuracy is ~22.8 BLEU-4 with an interval dominated by that
-                n=30 pose term at +-4. Pruning itself does not add to it: -0.46 [-3.82, +2.03]
-                on our own keypoints (2.5f), consistent with -0.28 [-0.63, +0.05] on theirs.
+                system feeds RTMW FP16 poses from our own pipeline. Measured on a common 100-clip
+                set (RESULTS.md 2.5g), substituting our poses costs -1.89 BLEU-4 [-4.26, +0.27]
+                at 24 fps and -2.62 [-5.38, +0.35] at source. Not established, but only just, and
+                the honest reading is that our extractor plausibly costs ~2 BLEU-4. An earlier
+                version of this note quoted -0.35 [-4.23, +3.17] from n=30 and called the cost
+                undetectable; that was reading a near-zero point estimate inside a +-4 interval
+                as evidence of no effect, and n=100 moved it against us.
+                The deployed config is now MEASURED rather than composed: 22.99 BLEU-4 /
+                43.43 ROUGE-L (board poses, pruned ckpt, 24 fps, beam 4, n=100).
+                Pruning does not add to it: -0.44 [-1.87, +0.94] on our keypoints, -0.28
+                [-0.63, +0.05] on theirs.
                 RELATIVE comparisons across the nine cells are unaffected -- every cell uses the
                 same poses -- which is again why the ordering is the deliverable and the absolute
-                column is not. The n=100 pass (2.5g) is what narrows this.
+                column is not.
   * POSE ENERGY: measured by the pose track on the board (15 W, mode 0, INA3221 VDD_IN,
                 RTMW-l-m FP16, 3 repeats). HANDOFF-LM-TRACK-2026-09-26 s0d.
   * LM ENERGY : measured by the pose track on the board, same conditions, as a function of

@@ -1944,3 +1944,41 @@ so explicitly; the plot carries it as a fourth caveat paragraph.
 
 **What narrows it:** the n=100 pass (§2.5g, `jetson/p10_n100.sh`), which takes the pose-substitution
 comparison to 100 distinct videos with the authors' reference poses restricted to the same 100 clips.
+
+#### L16 addendum 4 (2026-10-03): addendum 3's pose number is superseded, and the deployed config is now measured
+
+§2.5g took the pose-substitution comparison to **n=100 from 100 distinct videos**, with the authors'
+reference poses restricted to the same clips. Two things follow for the frontier.
+
+**1. Addendum 3's number is stale and moved against us.** It quoted the pose-substitution term as
+−0.35 BLEU-4 [−4.23, +3.17] from n=30 and read it as "our extractor costs nothing detectable". At
+n=100 it is **−1.89 [−4.26, +0.27]** at 24 fps and **−2.62 [−5.38, +0.35]** at source. Still not
+established — but only just, and the honest statement is that **our extractor plausibly costs ~2
+BLEU-4**, not ~0. ROUGE-L does not rescue it.
+
+This is the same error pattern this file already records twice — the 16 fps "free at n=30" claim and
+the ceiling-gap retraction. **A point estimate near zero inside a ±4 interval is not evidence of no
+effect.** We restated that principle in the metric-power work and then failed to apply it to a number
+handed to us. `unisign/frontier.py` and the figure caption now carry the n=100 figures.
+
+**2. The deployed configuration is no longer a composition.** Board pose extraction + pruned
+checkpoint + 24 fps + beam 4 measures **22.99 BLEU-4 / 43.43 ROUGE-L** (n=100). The composed estimate
+addendum 3 reported was ~22.8, so the composition was close — but it is now a measurement and should
+be quoted as one.
+
+**3. Our central recommendation is independently reproduced on a different pose source.** 24 fps vs
+source rate on *our own* keypoints is **+0.05 BLEU-4 [−1.11, +1.03]** — a tight null reproducing the
+n=976 authors'-poses result of −0.07 [−0.53, +0.39]. Two pose sources, two clip sets, same answer:
+**24 fps is free.** It also retires the n=30 artefact that read +1.97 for this comparison.
+
+**4. Pruning is confirmed a third time.** −0.44 [−1.87, +0.94] on our keypoints at n=100, against
+−0.46 [−3.82, +2.03] at n=30 and −0.28 [−0.63, +0.05] on the authors' at n=976. Same point estimate,
+tightening interval, three independent measurements.
+
+**5. Circumstantial support for L16 addendum 2's open question.** §2.5g found the >5.3 GB memory cliff
+is the full checkpoint **plus a resident TensorRT engine** — `eval_openasl` holds no engine and ran
+the same checkpoint at 4136 MB. Our standing hypothesis for the surviving 2.1–2.3× beam-width
+discrepancy is that §2.9C measured the LM *standalone* while every end-to-end run has the pose engine
+resident. A resident engine evidently changes the operating condition enough to move a memory cliff by
+over a gigabyte, which makes it more plausible that it also moves energy. Still unverified; the clean
+test remains re-running the §2.9C sweep in-process.
