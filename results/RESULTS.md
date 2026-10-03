@@ -1236,6 +1236,52 @@ the §2.9C sweep in-process with the pose engine loaded, and it is not yet done.
 term checks out at −16.7% measured against −17% composed (§5.3) — and the accuracy axis was always
 measured. The beam-width energy step is the one quantity not to quote from it.
 
+## 5.5 / Integrity of the pose fetch path, and an audit of every file it produced (2026-10-03)
+
+`data/openasl_pose_fetch.py`. Every accuracy number in this document is scored on pose pkls this
+script pulled out of the 32 GB HuggingFace archive by HTTP range request, so its failure modes are
+worth more than the one line they previously got.
+
+**Four defects, found by reading it rather than by being bitten.**
+
+1. **Resume trusted existence, not size.** The check was `os.path.exists(dst)`. A file truncated by an
+   interrupted run exists, so it was accepted on that run and on **every later run**, permanently and
+   silently. The archive index carries each member's uncompressed size, so this was detectable for
+   free and simply was not checked.
+2. **The write was not atomic.** `open(dst, "wb")` then `write(...)` means a kill mid-write leaves a
+   partial file under the *final* name — which defect 1 then blesses forever. The rest of this repo
+   already uses write-to-`.part`-then-rename (`task1_rtmpose/09_batch_clips.py`); this path did not.
+3. **A short range response corrupted the stream.** `_fetch` advanced its cursor by the number of
+   bytes *requested* (`start += hi - lo + 1`) rather than received. A proxy trimming a body or a
+   connection cut mid-body would shift every subsequent byte. It now advances by `len(r.content)`,
+   which makes the loop re-request the remainder and is self-correcting.
+4. **A server ignoring `Range` was undetected.** Such a server answers `200` with the whole object;
+   treating that as the requested slice would misalign everything. It now raises instead of guessing.
+
+**Fixes.** Write to `<name>.pkl.part`, verify the written size against `ZipInfo.file_size`, then
+`os.replace`. A full-member `read()` makes `zipfile` verify the member CRC, so size plus CRC now both
+have to pass before a file gets its final name. Resuming re-checks size and re-fetches on mismatch,
+reporting each one. Failures are collected and the script exits non-zero instead of reporting success.
+A new `--verify-only` audits an existing directory for the cost of the index alone (13.6 MB).
+
+**Verified on a deliberately truncated file.** Halving the Bitcoin-clip pkl (700431 → 350215 B) is
+caught as `REFETCH ...: 350215 B on disk, archive says 700431 B`; `--verify-only` reports it and
+downloads nothing; the repair restores a file that is **byte-identical** (SHA-256) to the Mac's
+original, unpickles, and leaves no `.part` behind.
+
+**Audit of everything the old script produced — all clean.**
+
+| directory | files | result |
+|---|---:|---|
+| `data/openasl_pose` (test split, the ceiling set) | 976 | 0 mismatches |
+| `data/openasl_train_pose_smoke` | 300 | 0 mismatches |
+| `data/openasl_5clip_pose` | 5 | 0 mismatches |
+
+**So no result in this document is affected.** That is the outcome worth stating plainly: the bug was
+real, the exposure was total — every BLEU and ROUGE number rests on these files — and it happens not
+to have fired. It is recorded as a latent defect that was caught before it cost anything, not as a
+correction, and the audit is cheap enough to re-run whenever the fetch path is used again.
+
 ## Track B: Uni-Sign OpenASL pose-only
 
 ### Metric check (B1.3), no model run

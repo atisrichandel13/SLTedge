@@ -11,6 +11,12 @@ requests, lets Python's zipfile read the index (~10 MB), and extracts only the m
     python data/openasl_pose_fetch.py --list | head                                          # member names
 
 Member names inside the archive look like pose-rtmpose-192/<clip>.pkl.
+
+Integrity (added 2026-10-03). Every file is written to <name>.pkl.part and renamed only after its
+size matches the size recorded in the archive index, and a full-member read makes zipfile verify the
+CRC. Resuming re-checks sizes rather than trusting that the path exists, which is what the original
+did -- so an interrupted run used to leave a truncated pkl that was accepted silently on every later
+run. Use --verify-only to audit an existing directory without downloading.
 """
 import argparse
 import gzip
@@ -60,8 +66,21 @@ class HttpConcatFile(io.RawIOBase):
             hi = min(end - self.offsets[i], self.sizes[i]) - 1
             r = self.s.get(self.urls[i], headers={"Range": f"bytes={lo}-{hi}"})
             r.raise_for_status()
+            got = len(r.content)
+            want = hi - lo + 1
+            # Advance by what ARRIVED, not by what was asked for. The original advanced by `want`,
+            # so a short range response (a proxy trimming the body, a connection cut mid-body)
+            # silently shifted every later byte and produced a corrupt member. Advancing by `got`
+            # makes the loop re-request the remainder instead, which is self-correcting.
+            if got == 0:
+                raise IOError(f"empty range response for {self.urls[i]} bytes={lo}-{hi}")
+            if got > want:
+                # a server that ignores Range answers 200 with the whole object; taking that as the
+                # requested slice would corrupt the stream in a way the zip CRC may not localise
+                raise IOError(f"range ignored for {self.urls[i]}: asked {want} B, got {got} B "
+                              f"(status {r.status_code}); refusing to guess the alignment")
             out += r.content
-            start += hi - lo + 1
+            start += got
         self.bytes_fetched += len(out)
         return out
 
@@ -105,6 +124,9 @@ def main():
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--out", default="data/openasl_ref_pose")
     ap.add_argument("--list", action="store_true")
+    ap.add_argument("--verify-only", action="store_true",
+                    help="check existing files against the archive's recorded sizes and report, "
+                         "without downloading anything")
     args = ap.parse_args()
 
     f, z = open_archive()
@@ -127,25 +149,57 @@ def main():
     names.sort(key=lambda n: z.getinfo(by_base[n]).header_offset if n in by_base else -1)
 
     os.makedirs(args.out, exist_ok=True)
-    ok, missing = 0, []
+    ok, missing, repaired, bad = 0, [], [], []
     for i, name in enumerate(names):
         m = by_base.get(name)
         if m is None:
             missing.append(name)
             continue
+        info = z.getinfo(m)
         dst = os.path.join(args.out, name + ".pkl")
+        # Resume must verify, not assume. The archive index carries each member's uncompressed
+        # size, so a truncated file is detectable for free -- and WAS NOT detected before: the old
+        # check was `os.path.exists(dst)`, which accepts a half-written file forever, and every
+        # accuracy number in this project is scored on files fetched by this script.
         if os.path.exists(dst):
-            ok += 1
+            have = os.path.getsize(dst)
+            if have == info.file_size:
+                ok += 1
+                continue
+            print(f"[fetch] REFETCH {name}: {have} B on disk, archive says {info.file_size} B",
+                  file=sys.stderr)
+            repaired.append(name)
+        if args.verify_only:
             continue
-        with z.open(m) as src, open(dst, "wb") as out:
-            out.write(src.read())
+        # Write to a temp name and rename. A pkl under its final name is the resume marker, so it
+        # must never exist half-written -- the same discipline task1_rtmpose/09_batch_clips.py uses.
+        tmp = dst + ".part"
+        try:
+            with z.open(m) as src, open(tmp, "wb") as out:
+                out.write(src.read())   # full read, so zipfile verifies the member CRC
+            got = os.path.getsize(tmp)
+            if got != info.file_size:
+                raise IOError(f"wrote {got} B but archive says {info.file_size} B")
+            os.replace(tmp, dst)
+        except Exception as e:                      # noqa: BLE001 -- report and keep going
+            if os.path.exists(tmp):
+                os.remove(tmp)
+            print(f"[fetch] FAILED {name}: {type(e).__name__}: {e}", file=sys.stderr)
+            bad.append(name)
+            continue
         ok += 1
         if i % 20 == 0:
             print(f"[fetch] {i+1}/{len(names)} {name} ({f.bytes_fetched/1e6:.0f} MB fetched so far)", file=sys.stderr)
-    print(f"[fetch] done: {ok} written to {args.out}, {len(missing)} not in archive, "
+    print(f"[fetch] done: {ok} ok in {args.out}, {len(missing)} not in archive, "
+          f"{len(repaired)} re-fetched (size mismatch), {len(bad)} failed, "
           f"{f.bytes_fetched/1e6:.1f} MB transferred", file=sys.stderr)
     if missing:
         print("[fetch] missing:", missing[:10], file=sys.stderr)
+    if repaired:
+        print("[fetch] size mismatches:", repaired[:10], file=sys.stderr)
+    if bad:
+        print("[fetch] failures:", bad[:10], file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
