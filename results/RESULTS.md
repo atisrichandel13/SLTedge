@@ -835,9 +835,10 @@ and an earlier draft of this section wrongly said it did. Measured the same day:
 board**, and M1 succeeded at 4625 MB after a reclaim. **The full-checkpoint path needs roughly 4 GB of
 MemFree; the pruned path needs ~1.5 GB.** Both numbers are now measured rather than assumed.
 Re-run with reclaim-to-target, three of those four configs then passed at 5292–5478 MB -- and the
-fourth, 255 frames at beam 4, still failed at **5691 MB on an empty board**. So ~4 GB is the figure
-for *loading* the full checkpoint; the widest decode needs more than the board has, for reasons §5.3
-localises to beam search rather than to load.
+fourth, 255 frames at beam 4, still failed at **5691 MB on an empty board**, although M1 ran that
+same cell at 4625 MB. So ~4 GB is the figure for *loading* the full checkpoint, and **MemFree is
+evidently not a sufficient readiness check**: §5.3 has the detail, and the protocol here may need a
+stronger test than a free-pages threshold.
 
 So the corrected statement is narrower than the withdrawal above might suggest. For the **pruned**
 path the 09-29 ceiling does not exist. For the **full** checkpoint memory is genuinely tight, the
@@ -886,7 +887,7 @@ share of latency falls 78.3% → 70.9% → 60.8% across the three cells.
 end-to-end energy claim must be per sentence. The per-frame basis stays valid for the pose stage
 alone, which is where it was defined.
 
-### The first real memory ceiling, and it is not at load time
+### The missing cell is a reproducibility failure, not a ceiling
 
 `source × beam 4` failed with **5691 MB of MemFree on a verified-empty board after reclaim**. Both
 models loaded fine (pose engine 1.1 s, mT5 59.3 s); the failure came during the warm-up sentence
@@ -894,16 +895,32 @@ inside `transformers` `generation/utils.py:3279` `_beam_search`, preceded by
 `NvMapMemAllocInternalTagged ... error 12` (ENOMEM) and surfacing as the usual
 `NVML_SUCCESS == r INTERNAL ASSERT FAILED`.
 
-This one is **not** an occupancy artefact -- unlike the claim withdrawn in §5.2, the board was
-checked, empty, and reclaimed, and it still failed. It is a **beam-search working-set** limit, not a
-load-time limit: 255 frames give a 263-step encoder output, which beam search expands ×4, on top of
-the 2.4–2.5 GB the loaded models already hold in the shared 8 GB pool.
+**It is tempting to call this a working-set ceiling. That would be wrong, and §5.1 is the refutation:
+M1 ran this exact cell** -- 255 frames, beam 4, same FP16 engine, same released checkpoint, 3 timed
+sentences -- **successfully on 2026-09-28**, at 2.577 GB peak and with *less* MemFree (4625 MB after
+reclaim) than the run that failed. Same cell, more headroom, opposite outcome.
 
-The consequence is a stronger claim than the efficiency story alone: at source rate on this board,
-**frame subsampling is a feasibility requirement for beam search, not only an optimisation.** What is
-not yet established is *where* the working set actually goes -- the obvious tensors are far too small
-to account for a multi-GB shortfall, so fragmentation in the unified pool is the suspicion and not
-the finding. One retry under `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` would discriminate.
+So what this measures is **run-to-run variance in whether the configuration fits**, not a limit of the
+configuration. The honest statement is that `source × beam 4` is feasible on this board and **not
+reliably so**, and that nothing we have yet distinguishes the candidate causes:
+
+- **Fragmentation of the unified pool.** The tensors beam search adds here are far too small for a
+  multi-GB shortfall (a 263-step encoder output expanded ×4 is tens of MB), so a contiguous-block
+  failure at high MemFree is the leading suspicion. `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`
+  lets the allocator grow a segment instead, which discriminates this from a true working-set need.
+- **What `drop_file_cache.py` leaves behind.** Reclaiming by touching 5120 MB of file pages raises
+  MemFree but says nothing about the *shape* of what is free. MemFree may simply be the wrong
+  readiness check, in which case the §5.2 protocol needs a better one.
+- **Residue from the preceding process.** The failing attempt was the first config of its driver
+  invocation, but an earlier container process may not have fully released device memory.
+
+A retry under `expandable_segments` is queued in `jetson/e2e_2x2.sh`, scoped to this one cell so it
+cannot change the allocator under the cells already measured.
+
+**The claim this does *not* support.** An earlier draft of this section said frame subsampling is a
+feasibility requirement for beam search at source rate. §5.1 contradicts that outright and the
+sentence has been removed. The efficiency argument for subsampling stands on the latency and energy
+numbers above and needs no help from a memory argument.
 
 ### Scope
 

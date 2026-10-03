@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
-# C9/M1b: end-to-end 2x2 over {source rate, 16 fps} x {beam 4, greedy} on ONE clip.
+# C9/M1b: end-to-end grid over {source rate, 24 fps, 16 fps} x {beam 4, greedy} on ONE clip.
+#
+# 24 fps added 2026-10-03 per ASK-E2E-KNEE: the frontier (L16) puts the recommended operating
+# point at beam 4 @ 24 fps, not 16 fps, so the original 2x2 measured one cell we recommend and
+# one we don't. Three frame counts against one clip and decoder also constrain the per-frame
+# term far better than two. 24 fps sits between the 136 frames that fit at beam 4 and the 255
+# that did not, so this cell locates the beam-search memory ceiling as well as answering the ask.
 #
 # Why a 2x2 and not just the one corner the LM track asked for. The composition
 # pose_J_per_s * seconds + LM_J runs ~6 % low against M1 (source rate, beam 4). Running only
@@ -17,7 +23,7 @@ OUT=results/e2e_2x2
 mkdir -p "$OUT" results/logs
 
 echo "[2x2] clip=$CLIP"
-for rate in src 16; do
+for rate in 24 16 src; do
   for beams in 4 1; do
     tag="${rate}_beam${beams}"
     sj="$OUT/e2e_${tag}.json"
@@ -41,7 +47,22 @@ for rate in src 16; do
     fi
     fpsarg=""
     [ "$rate" != "src" ] && fpsarg="--keep-fps $rate"
-    ./jetson/run.sh exec-batch python3 -m unisign.e2e_translate \
+    # src x beam 4 died inside _beam_search at 5691 MB free on an empty board (RESULTS.md 5.3).
+    # The obvious tensors are far too small for a multi-GB shortfall, so fragmentation of the
+    # unified pool is the suspicion. expandable_segments lets the allocator grow a segment
+    # instead of needing one contiguous block, which discriminates the two explanations.
+    #
+    # It is applied ONLY to that one cell. Setting it everywhere would change the allocator under
+    # the 16 fps cells already measured on 10-02 and make the new rates incomparable to them --
+    # the timing comparison is the point of the grid, and a silent config change across rows
+    # would wreck it. run.sh exec-batch is a bare `docker exec`, so host env does not cross into
+    # the container and the variable has to ride on the command line.
+    envpfx=""
+    if [ "$rate" = "src" ] && [ "$beams" = "4" ]; then
+      envpfx="env PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True"
+      echo "[2x2] $tag retry with expandable_segments (fragmentation hypothesis, RESULTS.md 5.3)"
+    fi
+    ./jetson/run.sh exec-batch $envpfx python3 -m unisign.e2e_translate \
         --engine "$ENG" \
         --frames "data/clips/$CLIP/frames" \
         --meta   "data/clips/$CLIP/meta.json" \
