@@ -449,6 +449,45 @@ effect size needs the 100-clip run. **Do not report the frame fix as a measured 
 Raw: `results/eval_30clip_*.json` (7 evals), `results/ci_30clip_*.json`, board logs
 `results/logs/p5_all.log`, `results/logs/final_30clip_summary.txt`.
 
+### 2.5f The deployable config had never had its accuracy measured (2026-10-03)
+
+`jetson/p9_deployable_eval.sh`, raw `results/eval_30clip_pruned_{fps24,src}_bs1.json`.
+
+Every board eval above uses the **full released checkpoint**. The model we intend to ship is the
+**pruned** one — §5.4 showed it is −12% system energy, half the peak memory, half the load time, and
+the only one that runs `source × beam 4` at all. So until today "our accuracy on the deployable model"
+was not a measurement: it was the n=976 decode-config number on the *authors'* keypoints composed with
+the n=30 pose-substitution term, and nobody had run the pruned checkpoint on our own keypoints.
+
+Same 30 clips, same pose pkls as §2.5c, pruned checkpoint with the pre-pruned mT5 directory, beam 4,
+`max_new_tokens` 64, **batch size 1** (held fixed because §5.1 found 2 of 30 clips change output
+between batch 8 and batch 1).
+
+| config | poses | ckpt | n | BLEU-4 | ROUGE-L |
+|---|---|---|---:|---:|---:|
+| **deployable: 24 fps** | ours, RTMW FP16 + frame fix | **pruned** | 30 | **19.70** | **46.48** |
+| 24 fps | ours, RTMW FP16 + frame fix | full | 30 | 20.15 | 46.31 |
+| source rate | ours, RTMW FP16 + frame fix | **pruned** | 30 | 17.73 | 42.85 |
+| source rate | ours, RTMW FP16 + frame fix | full | 30 | 18.64 | 44.19 |
+
+**Pruning on our own keypoints, paired bootstrap at 24 fps (2000 resamples):**
+**−0.46 BLEU-4 [−3.82, +2.03]**, ROUGE-L **+0.17 [−1.86, +2.14]** — not established, and consistent
+with the −0.28 [−0.63, +0.05] measured on the authors' keypoints at n=976 (L5.3). Pruning does not
+appear to cost anything extra when the poses come from our own extractor, which is the question this
+run existed to ask.
+
+**Do not read the 24 fps vs source rows as a frame-rate result.** +1.97 BLEU-4 is the same artefact
+§2.9B already warns about: at n=30, 24 fps scoring above source rate is noise, and the n=976
+measurement puts the true effect at −0.07 [−0.53, +0.39]. The rows are here to hold the rate fixed
+while the checkpoint changes, nothing more.
+
+**The honest summary of deployable accuracy as of this run.** The point estimate is ~22.8 BLEU-4 /
+~43.1 ROUGE-L, composed from the decode config at n=976 on the authors' keypoints (22.80 / 43.13,
+L13) and a pose-substitution term of −0.35 [−4.23, +3.17] at n=30 (§2.5c). **The composition is
+dominated by that n=30 interval: ±4 BLEU-4.** The absolute 30-clip figures above (17.7–20.2) are a
+small, harder subset whose own ceiling is 18.17 and must never be compared across clip sets. Narrowing
+this is what the n=100 pass (§2.5g) is for.
+
 ### 2.5d Why our poses differed: a 1.68x coordinate-frame mismatch (2026-09-26)
 
 Diffed our 30-clip poses against the authors' released poses in the units the frozen encoder consumes
