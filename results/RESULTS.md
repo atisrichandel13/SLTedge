@@ -1206,7 +1206,7 @@ Testing it directly, with the LM stage now measured rather than inferred:
 | **pruned checkpoint, LM stage measured** | **+4.65** | **+4.50** |
 | `frontier.py` composition (`LM_J`) | +2.04 | +2.67 |
 
-So the checkpoint explains roughly **half** the gap (7.02 → 4.65) and a **1.7–2.3× discrepancy survives
+So the checkpoint explains roughly **half** the gap (7.02 → 4.65) and a **2.1–2.3× discrepancy survives
 on the pruned model itself**, which is the configuration `frontier.py` claims to describe. The
 composition is therefore still wrong about beam width, and the checkpoint is not the whole story.
 
@@ -2034,7 +2034,7 @@ the frame-rate term still validates at −16.7 % measured against −17 % compos
 `c9_process_repeats.sh` — three *separate* processes per config — is the measurement that will put a
 real interval on it.
 
-It also leaves L16 addendum 2's other open question untouched: the **1.7–2.3×** beam-width
+It also leaves L16 addendum 2's other open question untouched: the **2.1–2.3×** beam-width
 discrepancy is a *systematic* sign-consistent error across four cells (greedy overestimated, beam 4
 underestimated), which run-to-run noise does not produce. That one still needs the in-process §2.9C
 re-run.
@@ -2046,3 +2046,40 @@ re-run.
 > against a composed 2.04 at T=204 (2.28×) and 4.50 against 2.67 at T=263 (1.69×). The lower bound
 > matters, because 1.69× at source rate is the weaker end of the effect and quoting the range from
 > its top makes the systematic look more uniform than it is.
+
+#### L16 addendum 6 (2026-10-03): the pose-share correction is accepted; the beam-width range correction is not
+
+Two corrections were made to addendum 5. **The first is right and is kept.** The pose share is
+**74.4 %** (32.3 of 43.4 J), not the 72 % we wrote — our own parenthetical contradicted our own
+arithmetic — and the resulting system-J shift is **10.3 %**, bracketing the 6.3 % residual slightly
+more comfortably than we claimed.
+
+**The second is wrong, and the range is restored to 2.1–2.3×.** It rests on a composed value of
+2.67 J at T=263 that `frontier.py` does not produce. Checked by running it:
+
+```
+T=204: beam4 10.878  greedy 8.833  penalty 2.044 J     <- agrees with 5.4's +2.04
+T=263: beam4 11.040  greedy 8.880  penalty 2.160 J     <- 5.4 quotes +2.67
+```
+
+The cause is the clamp. `lm_energy` tops out at the measured grid's largest encoder length:
+
+```python
+grid = sorted({t for (_, t) in LM_J})      # 68, 137, 215
+if frames >= grid[-1]:
+    return at(grid[-1]), interp
+```
+
+**T=263 is beyond the grid, so the composition clamps to T=215 rather than extrapolating** — a
+deliberate choice, since extrapolating an energy model past its measured range is how composed
+numbers acquire fictitious precision. 2.67 looks like linear extrapolation past T=215, which the code
+does not do.
+
+With the clamped value the ratios are **4.65 / 2.044 = 2.27×** and **4.50 / 2.160 = 2.08×**, i.e.
+**2.1–2.3×** as originally written. The substantive point behind the correction still stands and is
+worth keeping: the discrepancy is *not* perfectly uniform across the two cells, and quoting a range
+from its top would hide that. It is simply a narrower spread (2.08–2.27) than the proposed 1.69–2.28.
+
+**Neither correction changes any conclusion.** The residual is still explained in magnitude by
+across-run variation; the beam-width error is still a sign-consistent systematic that run-to-run noise
+cannot produce; and the in-process §2.9C re-run is still the test that would settle it.
