@@ -38,11 +38,16 @@ for rate in 24 16 src; do
     # for the pruned one that probe2.py uses. Loading it at the ~1.7 GB free left over after a
     # previous load fails with the NVML assert, which is an OOM in disguise. Reclaim to the TARGET,
     # not the deficit.
-    python3 jetson/drop_file_cache.py --target-free-mb=5000 2>&1 | tail -1
+    python3 jetson/drop_file_cache.py --target-free-mb=6200 2>&1 | tail -1
     free=$(awk '/MemFree/{printf "%d", $2/1024}' /proc/meminfo)
     echo "[2x2] $tag memfree=${free}MB after reclaim"
-    if [ "$free" -lt 3800 ]; then
-      echo "[2x2] $tag SKIPPED: only ${free}MB free, full checkpoint needs ~4 GB"
+    # 5400, not 3800. Measured 2026-10-03: loading the full checkpoint fails at 5214 MB and
+    # succeeds at 5268 / 5757 / 5292-5478 MB -- a cliff just above 5.2 GB, nowhere near the ~4 GB
+    # that M1's single success at 4625 MB suggested. A target of 5000 reclaims to ~5200 and so
+    # straddles the cliff, which is why three cells failed at LOAD on 10-03 while the identical
+    # 16/greedy cell reproduced exactly at 5268 MB. Target 6200 to land clear of it.
+    if [ "$free" -lt 5400 ]; then
+      echo "[2x2] $tag SKIPPED: only ${free}MB free, the full checkpoint load needs >5.3 GB"
       continue
     fi
     fpsarg=""
