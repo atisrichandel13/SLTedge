@@ -2254,6 +2254,12 @@ beam 4) over 254 consecutive sentences drifted **−0.56 %** — marginally *fas
 peaking at 51.75 °C, and works out to **38.48 J/sentence sustained against §5.4's 37.75 J, +1.9 %**.
 
 So the short windows are not optimistic, there is no thermal throttling at 15 W, and **the frontier's
-absolute energy column does not move under continuous load.** Combined with addendum 5's conclusion
-that it should not be quoted to better than ~3 % anyway, the axis is in better shape than the open
-residual suggested.
+absolute energy column does not move under continuous load.** Combined with **this addendum's own**
+revision — that the column should not be quoted to better than ~3 % — the axis is in better shape
+than the open residual suggested.
+
+> *Cross-reference corrected by the pose track, 2026-10-03.* The ~3 % bound is addendum **7**'s, not
+> addendum 5's: addendum 5 said **~10 %**, and the measurement in §5.6 is what revised it down to
+> ~3.1 % at 1σ. Attributing the tighter figure to the addendum that argued the looser one would make
+> the estimate look like it had been corroborated rather than corrected, which is the opposite of what
+> happened. Nothing else in the paragraph changes.
