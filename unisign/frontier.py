@@ -19,12 +19,23 @@ comparisons across cells -- every cell shares the same clip and the same rates -
 relative ordering is the deliverable. But the absolute joules are not a typical clip's.
 
   1. ~6% LOW (optimistic). The composition misses the 3.16 J between 47.2 predicted and 50.37
-     measured. Originally attributed here to the CPU/GPU contention in the pose track's s3; that
-     was wrong, and they corrected it. Their M1 run measured NO contention (25.10 ms/frame
-     end-to-end vs 25.03 standalone) because the implementation is sequential -- all frames, then
-     the LM -- so the stages never overlap. Likelier causes: the convert step (25.7 ms, which this
-     composition does not model at all), the idle floor during the 64 s LM load, or the warm-up
-     sentence. Untested; the 16 fps/greedy end-to-end run is the experiment that would settle it.
+     measured. Two explanations have been offered here and BOTH are now refuted by measurement:
+
+       * CPU/GPU contention (the pose track's s3). Their M1 run measured NO contention
+         (25.10 ms/frame end-to-end vs 25.03 standalone) because the implementation is sequential
+         -- all frames, then the LM -- so the stages never overlap.
+       * Unmodelled within-run stages: the convert step, the idle floor during the 64 s model
+         load, or the warm-up sentence. Refuted by the 2x2 (RESULTS.md 5.3, 2026-10-02), which
+         found the stages EXACTLY ADDITIVE: pose + convert + LM = total to within 0.04 ms in every
+         cell. Priced at M1's own 5.56 W average, the 25.7 ms convert step is 0.143 J, i.e. 4.5%
+         of the 3.16 J residual. Load and warm-up sit outside the power window by construction
+         (RESULTS.md 5.1).
+
+     So the residual is NOT a within-run accounting gap. It comes from the comparison ACROSS runs:
+     POSE_J_PER_S and LM_J were measured in separate runs, on a different clip from M1's, each
+     with its own baseline draw and thermal state. Chasing it further needs per-stage ENERGY from
+     one end-to-end run -- the 2x2 reports per-stage LATENCY but only a per-sentence total, so it
+     cannot split the residual between the pose and LM terms. That is an open ask to the board.
 
   2. ~7% HIGH (pessimistic) for a median clip. POSE_J_PER_S was measured on one clip whose crop
      is at the 83rd percentile of crop area across the 931-clip split (9k to 770k px, median
