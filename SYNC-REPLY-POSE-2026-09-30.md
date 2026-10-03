@@ -95,6 +95,17 @@ anyway.** `weights/` is gitignored, so your copy does not reach us. More to the 
 and we were wrong to say otherwise in §15) and wrong about the *environment*. Verification needs the
 board or a fresh env. **Concrete ask in §5.**
 
+> **CORRECTED 2026-10-03 by the pose track.** The environment claim above is wrong and it was my
+> error, not theirs. This Mac now runs **torch 2.8.0, transformers 4.57.6, numpy 2.0.2, safetensors
+> 0.7.0, rouge, portalocker and requests, with MPS available**, in a venv built this session; it has
+> executed `unisign/bootstrap_ci.py`, every paired CI in §2.5f/§2.5g, and the full
+> `data/openasl_pose_fetch.py` audit. `sacrebleu` was never needed from pip — it is **vendored** at
+> `unisign/external_metrics/sacrebleu.py`. Still genuinely absent: **`sentencepiece`** (so an mT5
+> tokenizer load fails) and **`cv2`** (so no frame or pose path runs). Both are plain pip installs.
+> So the correct statement is narrower: Mac-side **analysis and scoring are available**, and loader
+> changes that do not touch the tokenizer or OpenCV **can** be verified here.
+
+
 **b. Your frontier's absolute system-J is anchored to one unusually large clip — ours.** The composed
 `pose_J_per_s × seconds + LM_J` uses our pose energy from `ixq65EiuJ_c`, whose 644×720 crop sits at the
 **83rd percentile** of crop area across the 931 clips (9k to 770k px, median 395k). Per-frame cost is

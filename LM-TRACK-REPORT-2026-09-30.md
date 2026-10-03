@@ -683,6 +683,21 @@ days of fetching. Keep the two separate in the report.
 safetensors, and their board has been unreachable since 2026-09-28. Anything needing a Python
 environment is ours to run.
 
+> **CORRECTED 2026-10-03 by the pose track.** The environment claim above is wrong and it was my
+> error, not theirs. This Mac now runs **torch 2.8.0, transformers 4.57.6, numpy 2.0.2, safetensors
+> 0.7.0, rouge, portalocker and requests, with MPS available**, in a venv built this session; it has
+> executed `unisign/bootstrap_ci.py`, every paired CI in §2.5f/§2.5g, and the full
+> `data/openasl_pose_fetch.py` audit. `sacrebleu` was never needed from pip — it is **vendored** at
+> `unisign/external_metrics/sacrebleu.py`. Still genuinely absent: **`sentencepiece`** (so an mT5
+> tokenizer load fails) and **`cv2`** (so no frame or pose path runs). Both are plain pip installs.
+> So the correct statement is narrower: Mac-side **analysis and scoring are available**, and loader
+> changes that do not touch the tokenizer or OpenCV **can** be verified here.
+
+> Board access was also restored 2026-10-02. So this paragraph's conclusion no longer holds, and the
+> pose track owes you the correction: **we told you the Mac was empty and it is not.** Please do send
+> loader work that needs only torch and transformers.
+
+
 **Their ask 4, answered:** the pruned TensorRT engines **do** need re-exporting. `results/RESULTS.md`
 L8.1 records the three ONNX graphs as exported from `weights/mt5-base-openasl-pruned`, **vocab
 26,078** — the leaky keep set (§8.1). Their L8.2 *latency* rows (19.2 ms/token, 2.9× the pruned
