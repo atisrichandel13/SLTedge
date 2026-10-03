@@ -109,11 +109,12 @@ Things the LM track needs run on the board. Results come back via git or scp.
 **Board access restored 2026-10-02** — the pose track ran the §5.2 memory probes on a verified-empty
 board. The demo video for C11 still needs board time.
 
+**J5 and J7 delivered 2026-10-03** (rows moved to Delivered below), so the two remaining items are
+both C9 protocol work.
+
 | # | Request | Why it matters | Priority |
 |---|---|---|---|
-| J5 | **Add 24 fps to `jetson/e2e_2x2.sh`** (3x2), or at minimum the single cell `24 fps x beam 4` | The 2x2 covers {source, 16 fps}, built on our pre-frontier priority. The frontier puts the operating point at **beam 4 @ 24 fps** (free within noise); **16 fps is an established loss**, CI [-2.00, -0.64]. So the grid measures the residual at one cell we recommend and one we don't, and never at the one we do. `--keep-fps` already supports it. See `ASK-E2E-KNEE-2026-09-30.md` | **highest** |
 | J6 | C9 ≥3-clip rows spanning the crop range | `POSE_J_PER_S` came from one clip at the 83rd percentile of crop area, which is the frontier's ~7 % high bias. Fixes a precision issue, not a correctness one | medium |
-| J7 | Multi-clip board accuracy, ~100 clips end-to-end | **We have never produced a board-measured BLEU.** Accuracy is offline (n=976, Mac); the board↔offline bridge is a 30-clip agreement. ~15 min at 9.05 s/sentence | medium |
 | J8 | C9 protocol applied to the final rows: 3 runs mean ± std, DVFS logged, 30-min sustained for FP32 and the best compressed config | Row 5.2; the report's rigor rubric keys off it | high |
 
 ### Delivered
@@ -126,6 +127,8 @@ board. The demo video for C11 still needs board time.
 | J4 (= L8) | TensorRT engines from the pruned mT5 ONNX + cached decode loop | ✅ §L8.2. **FP16 overflows** (token 0 every step at −ln 26078); FP32 engines are the usable ones |
 | — | M1 end-to-end | ✅ §5.1 |
 | — | `cpu0_MHz` on LM power runs | ✅ withdrawn as an ask: `power_logger` already samples it into `aux_avg`; M1 carries 866.76 MHz, below the 897 MHz downclock point |
+| J5 | 24 fps added to the end-to-end grid | ✅ 2026-10-03, and widened to 3×2 `{source, 24, 16} × {beam 4, greedy}`. **beam 4 @ 24 fps measured end to end: 7728.7 ms, 42.94 J/sentence** (§5.3). The grid also found the composition's decoder-width term understated 3–5× and `mJ_per_frame` rising under subsampling |
+| J7 | Multi-clip board accuracy, ~100 clips | ✅ 2026-10-03, §2.5g. 100 clips / **100 distinct videos**, our own board keypoints, pruned checkpoint: **22.99 BLEU-4 / 43.43 ROUGE-L at 24 fps**. The deployable config's accuracy is now **measured directly** rather than composed. Authors' reference poses restricted to the same 100 clips |
 | — | `--keep-fps` on `e2e_translate.py` + `jetson/e2e_2x2.sh` | ✅ 2026-10-02, pose track |
 
 ### Note on re-exporting the TRT engines

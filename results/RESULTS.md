@@ -488,6 +488,82 @@ dominated by that n=30 interval: ±4 BLEU-4.** The absolute 30-clip figures abov
 small, harder subset whose own ceiling is 18.17 and must never be compared across clip sets. Narrowing
 this is what the n=100 pass (§2.5g) is for.
 
+### 2.5g n=100 board pass: the deployable config, measured rather than composed (2026-10-03)
+
+`jetson/p10_n100.sh`, raw `results/eval_n100_*.json`, CIs `results/ci_n100_*.json`.
+
+**100 clips from 100 distinct videos** — one clip per video, so no signer is counted twice. Our own
+keypoints extracted on the board (RTMW-l-m FP16 + frame fix, 24,365 frames at **36.0 frames/s**,
+11.3 min), and the authors' released reference poses **restricted to the same 100 clips**. That
+restriction is the point: §2.5c records us quoting a ceiling at n=40 against our rows at n=30, and
+this run must not repeat it. Decode held at the deployable settings throughout — beam 4,
+`max_new_tokens` 64, **batch size 1** (§5.1: 2 of 30 clips change output between batch 8 and 1).
+
+| row | poses | ckpt | rate | BLEU-4 | ROUGE-L |
+|---|---|---|---|---:|---:|
+| **the deployable config** | **ours** | **pruned** | **24 fps** | **22.99** | **43.43** |
+| | ours | pruned | source | 22.94 | 43.26 |
+| | ours | full | 24 fps | 23.44 | 43.84 |
+| ceiling | authors' | pruned | 24 fps | 24.89 | 43.94 |
+| ceiling | authors' | pruned | source | 25.56 | 45.24 |
+
+**The headline is that the first row is a measurement.** Board pose extraction, pruned checkpoint,
+24 fps, beam 4 — the configuration we intend to ship, scored end to end with nothing borrowed. Until
+today its accuracy was a *composition* of the n=976 decode figure on the authors' keypoints with an
+n=30 pose-substitution term (§2.5f). The composed estimate was ~22.8 BLEU-4 and the measurement is
+**22.99**, which is the reassuring part.
+
+Paired clip-level bootstrap, 2000 resamples, aligned by clip name:
+
+| comparison | BLEU-4 | 95 % CI | ROUGE-L | 95 % CI |
+|---|---:|---|---:|---|
+| **24 fps → source, our poses** | **+0.05** | **[−1.11, +1.03]** | +0.17 | [−1.23, +1.64] |
+| pruning (full → pruned), our poses @ 24 fps | −0.44 | [−1.87, +0.94] | −0.42 | [−1.49, +0.59] |
+| pose substitution (authors' → ours) @ 24 fps | **−1.89** | [−4.26, +0.27] | −0.51 | [−3.49, +2.80] |
+| pose substitution (authors' → ours) @ source | **−2.62** | [−5.38, +0.35] | −1.98 | [−4.86, +1.09] |
+
+**1. 24 fps is free on our own keypoints, and this is the cleanest evidence for the operating point
+yet.** +0.05 BLEU-4 [−1.11, +1.03] is a tight null, and it independently reproduces the n=976
+authors'-poses result of −0.07 [−0.53, +0.39] on a different pose source. It also retires the n=30
+artefact: §2.9B measured +1.97 BLEU-4 for 24 fps over source and warned it was noise; at n=100 the
+effect is +0.05. **The warning was correct and is now quantified.**
+
+**2. Pruning costs about −0.4 and is not established**, now with a usable interval: −0.44
+[−1.87, +0.94] against §2.5f's −0.46 [−3.82, +2.03] at n=30 — same point estimate, interval less than
+half as wide — and consistent with −0.28 [−0.63, +0.05] on the authors' keypoints at n=976 (L5.3).
+Three independent measurements agree that pruning is cheap. Combined with §5.4's −12 % system energy,
+half the peak memory and half the load time, **the pruned checkpoint is the right deployment choice on
+every axis we measure.**
+
+**3. The pose-substitution term moved against us, and §2.5f's reading of it must be revised.** At n=30
+it was −0.35 [−4.23, +3.17] and the pose track wrote that our extractor costs nothing detectable. At
+n=100 the point estimate is **−1.89 at 24 fps and −2.62 at source**, with upper bounds of +0.27 and
++0.35 — still not established, but only just, and both intervals now sit almost entirely below zero.
+
+**The correct statement is that our extractor plausibly costs ~2 BLEU-4 against the authors'
+keypoints and n=100 still cannot resolve it.** The n=30 figure was not wrong, it was uninformative,
+and a point estimate near zero inside a ±4 interval was read as evidence of no effect. **That is the
+same error this document already records twice** — the 16 fps "free" claim in §2.9 and the ceiling-gap
+retraction in §2.5b. Note too that ROUGE-L is *not* carrying this one (−0.51 and −1.98, both wide),
+so the metric-power argument does not rescue it either.
+
+**Consequence for the frontier.** L16 addendum 3 states the deployed system's absolute accuracy using
+the n=30 term. That addendum's reasoning is right and its number is now stale: the deployed absolute
+column is better read as **~2 BLEU-4 below** the plotted cells, not ~0.35, with the caveat that the
+term is unestablished. Relative ordering is unaffected, for the reason given there — every cell shares
+one pose source.
+
+**What would settle it:** the remaining 831 test clips. The interval narrowed from ±3.7 to ±2.3
+BLEU-4 going from n=30 to n=100, i.e. roughly as 1/√n, so n≈400 would bring it to about ±1.2 and
+n=931 to ±0.75 — enough to establish or kill a 2-point effect. The frames are on the Mac and the
+pipeline is the one used here; it is ~9 rounds of push, extract, pull, delete at 11 min of extraction
+per 100 clips.
+
+**Board housekeeping.** The 70 newly pushed clips' frames were deleted after verifying both pkl
+normalisations existed for each, returning `data/clips` to 251 MB. The original 30 clips' frames are
+kept deliberately: they include `ixq65EiuJ_c-00:03:47.633-00:03:56.133`, the end-to-end clip of
+§5.1/§5.3/§5.4.
+
 ### 2.5d Why our poses differed: a 1.68x coordinate-frame mismatch (2026-09-26)
 
 Diffed our 30-clip poses against the authors' released poses in the units the frozen encoder consumes
@@ -990,6 +1066,14 @@ There is a **cliff just above 5.2 GB**. `drop_file_cache.py --target-free-mb=500
 identical 16 fps/greedy cell reproduced exactly at 5268 MB. The driver now targets **6200** with the
 guard at **5400**, and every cell has passed since. **A single success is not a threshold**, which is
 the same error shape as the occupancy episode in §5.2.
+
+**Scope of that cliff, corrected 2026-10-03.** It is the requirement for the full checkpoint **plus a
+resident TensorRT pose engine**, not for the checkpoint alone. §2.5g's `full_ours_fps24` loaded the
+same full checkpoint and ran to completion at **4136 MB** of MemFree, because `eval_openasl.py` reads
+pose pkls and holds no engine. So the >5.3 GB figure applies to the end-to-end path (`e2e_translate`),
+and the eval path needs roughly a gigabyte less. Worth stating because it is also circumstantial
+support for the open question in §5.4: if a resident engine moves the memory requirement this much, a
+standalone LM sweep is plausibly a different operating condition than an in-process one.
 
 **(b) `source × beam 4` is genuinely marginal, and this time the evidence supports it.** It has now
 failed three times — at 5691 MB (in `_beam_search`), and twice more at 5768 MB with

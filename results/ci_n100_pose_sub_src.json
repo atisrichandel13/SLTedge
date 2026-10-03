@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_n100_pruned_ceil_src.json",
+ "b": "results/eval_n100_pruned_ours_src.json",
+ "n_clips": 100,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 25.55640742727728,
+  "b": 22.941302600940244,
+  "delta": -2.615104826337035,
+  "ci": [
+   -5.382478883180139,
+   0.35311174020850267
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.037
+ },
+ "rouge_l": {
+  "a": 45.240775566153914,
+  "b": 43.25756166859044,
+  "delta": -1.9832138975634734,
+  "ci": [
+   -4.861448912166442,
+   1.09355821162213
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.0975
+ }
+}

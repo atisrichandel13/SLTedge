@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_n100_pruned_ours_src.json",
+ "b": "results/eval_n100_pruned_ours_fps24.json",
+ "n_clips": 100,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 22.941302600940244,
+  "b": 22.99464592546267,
+  "delta": 0.05334332452242663,
+  "ci": [
+   -1.109190860590109,
+   1.0264761547521788
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.498
+ },
+ "rouge_l": {
+  "a": 43.25756166859044,
+  "b": 43.425784567701704,
+  "delta": 0.16822289911126376,
+  "ci": [
+   -1.2305333274257393,
+   1.6410963539168684
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.404
+ }
+}
