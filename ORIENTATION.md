@@ -242,10 +242,15 @@ end-to-end cost model could be attributed rather than guessed:
 
 | cell | frames | beams | total ms | pose ms | LM ms | J/sentence |
 |---|---|---|---|---|---|---|
-| source, beam 4 | 255 | 4 | *failed, see below* | | | |
+| source, beam 4 (= M1) | 255 | 4 | 9052.8 ± 335.6 | 6640.7 | 2386.5 | 50.37 |
 | source, greedy | 255 | 1 | 7998.0 ± 201.7 | 6260.7 | 1712.6 | 43.11 |
+| **24 fps, beam 4** ← the recommended point | **204** | **4** | **7728.7 ± 320.7** | **5349.5** | **2358.2** | **42.94** |
+| 24 fps, greedy | 204 | 1 | 6672.1 ± 347.0 | 5102.2 | 1550.9 | 35.92 |
 | 16 fps, beam 4 | 136 | 4 | 5616.1 ± 393.8 | 3414.3 | 2184.2 | 32.75 |
 | 16 fps, greedy | 136 | 1 | 4705.7 ± 121.4 | 3336.7 | 1355.6 | 25.80 |
+
+The 24 fps row is the frontier's recommended operating point, and until 2026-10-03 it had only ever been
+*composed* — never run end to end on the board.
 
 What it established:
 
@@ -262,13 +267,31 @@ What it established:
   **End-to-end energy must be quoted per sentence.** The per-frame basis is still right for the pose
   stage alone, where it was defined.
 
-**The missing cell is a reproducibility problem, not a limit.** `source × beam 4` died inside beam
-search with 5691 MB free on a verified-empty board — but **M1 ran that identical cell successfully at
-4625 MB free.** Same cell, more headroom, opposite outcome. The useful conclusion is not "it doesn't
-fit" but **"MemFree is not a sufficient readiness check"**. Leading suspicion is fragmentation of the
-unified pool, since the tensors beam search adds are tens of MB and not GB. A retry with
-`expandable_segments` is queued, scoped to that one cell so it cannot change the allocator under the
-cells already measured.
+**Two memory problems came out of this, and both thresholds we had were wrong.**
+
+*The load threshold was off by 1.3 GB.* We had said the full checkpoint needs ~4 GB of MemFree,
+inferred from M1's single success at 4625 MB. Measured properly: it **fails at 5214 MB and succeeds
+from 5268 MB up** — a cliff just above 5.2 GB. Our reclaim target of 5000 only reached ~5200, so it
+straddled the cliff, which is what failed three cells *at load* while the identical 16 fps/greedy cell
+reproduced perfectly at 5268 MB. Target is now 6200. **One success is not a threshold** — the same
+error shape as the occupancy episode.
+
+*`source × beam 4` is genuinely marginal.* It has failed three times, twice under
+`expandable_segments`, which only moved the failure to the KV-cache concat. Meanwhile `24 fps × beam 4`
+passes reliably at the same MemFree, so this looks like a real working-set limit at 255 frames and beam
+4 — with M1's one success as the outlier to explain. It does not block anything: that cell is the
+frontier's *accuracy* reference, measured on the Mac.
+
+**And a bigger finding behind the whole grid.** The frontier composes its language-model energy from
+measurements taken on the **pruned** checkpoint, while every end-to-end run loads the **full** one.
+Output projection cost scales with beams × vocabulary, and the vocabularies are 250,112 against 26,078.
+Measured on the full checkpoint, greedy → beam 4 costs **+7.0 J/sentence**; the composition predicts
++1.3 to +2.0 J. Re-running on the pruned checkpoint narrows it to **+4.6 J** (measured directly on the
+LM stage now that per-stage power windows exist) — so the checkpoint mismatch explains roughly half the
+gap and something else explains the rest, most likely that §2.9C was measured standalone with no pose
+engine resident. **Vocabulary pruning is also worth ~12 % of system energy** (37.7 vs 42.9 J/sentence at
+24 fps/beam 4), which had never been measured end to end; it was only ever a memory and accuracy
+argument.
 
 ---
 

@@ -1,0 +1,274 @@
+{
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-5.15.148-tegra-aarch64-with-glibc2.39",
+    "jetpack": "unknown (nvidia-jetpack package not found)",
+    "l4t": "R36.4.7",
+    "nvpmodel": "mode 0 (15W) from /var/lib/nvpmodel/status",
+    "gpu_max_MHz": 612.0,
+    "gpu_min_MHz": 306.0,
+    "cpu_max_MHz": 1497.6,
+    "torch": "2.8.0a0+5228986c39.nv25.06",
+    "torch_cuda": "12.9",
+    "cuda_available": true,
+    "gpu": "Orin",
+    "tensorrt": "10.11.0.33",
+    "nvcc": "V12.9.86"
+  },
+  "summary": {
+    "text": "When I moved to Texas two years ago, it was my first Airbnb subscription.",
+    "n_sentences": 3,
+    "frames_in": 255,
+    "frames_used": 255,
+    "sentence_total_ms": {
+      "mean": 7894.4,
+      "std": 479.2,
+      "runs": [
+        8571.9,
+        7539.2,
+        7572.2
+      ]
+    },
+    "pose_total_ms": 6517.9,
+    "convert_ms": 26.58,
+    "lm_total_ms": 1349.9,
+    "per_frame_ms": {
+      "imread_ms": {
+        "mean": 5.36,
+        "p95": 6.768
+      },
+      "preprocess_ms": {
+        "mean": 4.465,
+        "p95": 5.64
+      },
+      "trt_ms": {
+        "mean": 13.076,
+        "p95": 14.292
+      },
+      "postprocess_ms": {
+        "mean": 1.291,
+        "p95": 1.55
+      }
+    },
+    "J_per_sentence": 41.37,
+    "dyn_J_per_sentence": 10.41,
+    "square_norm": true,
+    "square_geom": {
+      "crop_xywh": [
+        297,
+        0,
+        644,
+        720
+      ],
+      "square_xywh": [
+        77,
+        -150,
+        1083
+      ],
+      "scale_vs_crop": 0.5946445060018467
+    },
+    "fps": {
+      "keep_fps": null,
+      "src_fps": null,
+      "frames_in": 255,
+      "frames_kept": 255
+    },
+    "num_beams": 1,
+    "load_pose_s": 1.08,
+    "load_lm_s": 28.62,
+    "peak_gpu_GB": 1.03
+  },
+  "runs": [
+    {
+      "text": "When I moved to Texas two years ago, it was my first Airbnb subscription.",
+      "lm_ms": {
+        "gcn": 99.21371500240639,
+        "encoder": 60.750552016543224,
+        "decoder": 1183.2710419839714,
+        "total": 1343.235309002921,
+        "encoder_len": 263,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 31.849995983066037,
+      "pose_total_ms": 7196.823359990958,
+      "frames_in": 255,
+      "frames_used": 255,
+      "sentence_total_ms": 8571.908664976945,
+      "imread_ms": {
+        "mean": 6.657,
+        "p95": 7.98
+      },
+      "preprocess_ms": {
+        "mean": 5.786,
+        "p95": 6.654
+      },
+      "trt_ms": {
+        "mean": 14.265,
+        "p95": 16.913
+      },
+      "postprocess_ms": {
+        "mean": 1.415,
+        "p95": 1.753
+      }
+    },
+    {
+      "text": "When I moved to Texas two years ago, it was my first Airbnb subscription.",
+      "lm_ms": {
+        "gcn": 110.33363197930157,
+        "encoder": 60.823576990514994,
+        "decoder": 1176.6182129795197,
+        "total": 1347.7754219493363,
+        "encoder_len": 263,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 26.20369801297784,
+      "pose_total_ms": 6165.208900987636,
+      "frames_in": 255,
+      "frames_used": 255,
+      "sentence_total_ms": 7539.18802094995,
+      "imread_ms": {
+        "mean": 5.376,
+        "p95": 6.875
+      },
+      "preprocess_ms": {
+        "mean": 4.496,
+        "p95": 5.941
+      },
+      "trt_ms": {
+        "mean": 12.95,
+        "p95": 14.311
+      },
+      "postprocess_ms": {
+        "mean": 1.266,
+        "p95": 1.511
+      }
+    },
+    {
+      "text": "When I moved to Texas two years ago, it was my first Airbnb subscription.",
+      "lm_ms": {
+        "gcn": 119.03826502384618,
+        "encoder": 60.74485499993898,
+        "decoder": 1178.948170010699,
+        "total": 1358.7312900344841,
+        "encoder_len": 263,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 21.69937698636204,
+      "pose_total_ms": 6191.7701049824245,
+      "frames_in": 255,
+      "frames_used": 255,
+      "sentence_total_ms": 7572.200772003271,
+      "imread_ms": {
+        "mean": 5.36,
+        "p95": 6.768
+      },
+      "preprocess_ms": {
+        "mean": 4.465,
+        "p95": 5.64
+      },
+      "trt_ms": {
+        "mean": 13.076,
+        "p95": 14.292
+      },
+      "postprocess_ms": {
+        "mean": 1.291,
+        "p95": 1.55
+      }
+    }
+  ],
+  "power": {
+    "n_samples": 474,
+    "duration_s": 23.65,
+    "rails_mW_avg": {
+      "VDD_CPU_GPU_CV": 1504.5,
+      "VDD_IN": 5247.4,
+      "VDD_SOC": 1389.8
+    },
+    "rails_mW_max": {
+      "VDD_CPU_GPU_CV": 2009.6,
+      "VDD_IN": 6400.7,
+      "VDD_SOC": 1650.5
+    },
+    "aux_avg": {
+      "GR3D_FREQ_pct": 50.85,
+      "cpu0_MHz": 990.78,
+      "fan_pwm": 67.47,
+      "fan_rpm": 1467.45,
+      "gpu_MHz": 330.96,
+      "temp_cpu_C": 49.06,
+      "temp_gpu_C": 49.51,
+      "temp_soc0_C": 49.12,
+      "temp_soc1_C": 48.23,
+      "temp_soc2_C": 48.54,
+      "temp_tj_C": 49.52
+    },
+    "total_rail": "VDD_IN",
+    "avg_watts": 5.247,
+    "energy_mJ": 124113.7,
+    "baseline_watts": 3.927,
+    "dynamic_energy_mJ": 31241.9,
+    "n_frames": 765,
+    "mJ_per_frame": 162.24,
+    "dynamic_mJ_per_frame": 40.84
+  },
+  "stage_power": {
+    "pose": {
+      "n_windows": 3,
+      "J_per_sentence": 32.519,
+      "dyn_J_per_sentence": 7.191,
+      "avg_watts": 5.055,
+      "duration_s": 6.45,
+      "n_samples_per_window": 130
+    },
+    "convert": {
+      "n_windows": 2,
+      "J_per_sentence": 0.0,
+      "dyn_J_per_sentence": 0.0,
+      "avg_watts": 4.943,
+      "duration_s": 0.0,
+      "n_samples_per_window": 1
+    },
+    "lm": {
+      "n_windows": 3,
+      "J_per_sentence": 8.227,
+      "dyn_J_per_sentence": 3.057,
+      "avg_watts": 6.227,
+      "duration_s": 1.317,
+      "n_samples_per_window": 27.3
+    },
+    "_check": {
+      "stage_sum_J_per_sentence": 40.746,
+      "window_J_per_sentence": 41.371,
+      "residual_J": 0.625,
+      "residual_pct": 1.51,
+      "note": "residual is edge quantisation plus the inter-stage gaps; compare it against n_samples_per_window before reading anything into a stage"
+    }
+  },
+  "config": {
+    "engine": "models/rtmw/rtmw-l-m_256x192_fp16.engine",
+    "frames": "data/clips/ixq65EiuJ_c-00:03:47.633-00:03:56.133/frames",
+    "meta": "data/clips/ixq65EiuJ_c-00:03:47.633-00:03:56.133/meta.json",
+    "preproc": null,
+    "ckpt": "weights/openasl_pose_only_slt_pruned.pth",
+    "mt5": "weights/mt5-base-openasl-pruned",
+    "square_norm": true,
+    "crop_wh": null,
+    "device": "cuda",
+    "dtype": "fp32",
+    "max_length": 256,
+    "max_new_tokens": 64,
+    "num_beams": 1,
+    "warmup": 20,
+    "limit": null,
+    "repeat": 3,
+    "keep_fps": null,
+    "src_fps": null,
+    "out": "results/e2e_pruned/e2e_src_beam1.json",
+    "power_backend": "auto",
+    "power_interval_ms": 50,
+    "power_sudo": false,
+    "idle_seconds": 3.0,
+    "power_csv": null,
+    "power_json": "results/e2e_pruned/power_src_beam1.json"
+  }
+}

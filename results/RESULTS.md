@@ -972,8 +972,12 @@ explanation, and M1 is the outlier to be explained rather than the refutation.
 
 **It does not block the deliverable.** `source × beam 4` is the frontier's *accuracy* reference, and
 that was measured on the Mac at n=976; nothing requires it to run on the board. The recommended cell,
-24 fps × beam 4, runs reliably. The pruned checkpoint would also almost certainly clear it, with ~1.5 GB
-to load instead of >5.3 GB — another reason the pruned re-run is the right next step.
+24 fps × beam 4, runs reliably.
+
+**Confirmed the same day (§5.4): the pruned checkpoint runs this cell at 4238 MB of MemFree** — 1.5 GB
+*less* headroom than the 5768 MB at which the full checkpoint failed it, with a peak of 1.09 GB against
+2.56 GB. So the limit here is specifically a **full-checkpoint** limit, and the deployable model does
+not have it.
 
 ### Scope
 
@@ -988,6 +992,107 @@ All three recover the clause structure and all three miss the content word. The 
 tracks the reference most closely, which is *consistent with* L7.2 and nothing more -- one clip
 cannot separate that from chance. The 2×2 interaction term is **not computable** because the
 `source × beam 4` cell does not exist.
+
+## 5.4 / The pruned checkpoint end to end, and per-stage energy (2026-10-03)
+
+`jetson/e2e_pruned.sh`, raw in `results/e2e_pruned/`. Same clip and protocol as §5.3, but loading
+`openasl_pose_only_slt_pruned.pth` with the pre-pruned `mt5-base-openasl-pruned` directory, and with
+the new per-stage power windows (`--power-interval-ms 50`). This is the experiment §5.3 said was
+decisive.
+
+### Per-stage energy now exists (the LM track's ASK-E2E-KNEE ask)
+
+`unisign/e2e_translate.py` marks pose / convert / LM boundaries inside the power window, and each
+stage's joules are integrated from **its own samples** rather than apportioned from the sentence total
+by latency share — which would be invalid, since the stages do not draw equal power. The numbers bear
+that out: the pose stage runs at **~5.0 W** and the LM stage at **~6.2 W**, so a latency-share split
+would have mis-assigned roughly a quarter of the LM's energy.
+
+| cell | frames | total ms | pose J (W) | convert J | LM J (W) | stage sum | window total | residual | peak GB |
+|---|---|---|---|---|---|---|---|---|---|
+| source, beam 4 | 255 | 8742.9 | 33.240 (5.026) | 0.000 | 12.726 (6.348) | 45.966 | 46.51 | +1.17% | 1.090 |
+| source, greedy | 255 | 7894.4 | 32.519 (5.055) | 0.000 | 8.227 (6.227) | 40.746 | 41.37 | +1.51% | 1.030 |
+| **24 fps, beam 4** | **204** | **6999.1** | **25.261 (5.092)** | 0.000 | **11.855 (6.226)** | **37.116** | **37.75** | +1.67% | **1.073** |
+| 24 fps, greedy | 204 | 6733.7 | 26.891 (4.985) | 0.000 | 7.210 (5.991) | 34.101 | 34.72 | +1.78% | 1.021 |
+
+All four cells ran, including `source × beam 4`.
+
+**The convert stage is below the measurement floor and must not be quoted from this table.** At ~20 ms
+it is shorter than the 50 ms sampling interval, so its window catches one sample and integrates to
+exactly 0.000 J. That is a limit of the method, not a finding — the LM track's own estimate of 0.143 J
+at M1's average power is the better figure, and it is negligible either way. Everything else carries
+25–133 samples per window and the three-stage sum closes on the sentence total to **1.2–1.8%**, which
+is the expected edge quantisation plus the inter-stage gaps.
+
+### Pruning is worth ~12% of system energy, and that had never been measured
+
+| cell | full ckpt J/sentence | pruned J/sentence | saving |
+|---|---:|---:|---:|
+| **24 fps, beam 4** | 42.94 | **37.75** | **−5.19 J (−12.1%)** |
+| source, beam 4 | 50.37 (M1, §5.1) | 46.51 | −3.86 J (−7.7%) |
+| source, greedy | 43.11 | 41.37 | −1.74 J (−4.0%) |
+| 24 fps, greedy | 35.92 | 34.72 | −1.20 J (−3.3%) |
+
+Vocabulary pruning had only ever been argued on **memory and accuracy** grounds (4× smaller,
+−0.28 BLEU-4 [−0.63, +0.05]). It is also a double-digit system-energy win at the recommended operating
+point.
+
+**And the saving is 3–4× larger at beam 4 than at greedy** (−12.1% / −7.7% versus −3.3% / −4.0%),
+which is the mechanism confirming itself: the layer pruning shrinks is the output projection, and that
+is evaluated once per beam per token. A vocabulary win should therefore scale with beam width, and it
+does.
+
+Two further deployment numbers, both roughly halved against the full checkpoint: **peak GPU 1.02–1.09 GB**
+against 2.39–2.56 GB (§5.3), and **mT5 load 28.6–29.0 s** against 56.7–58.2 s. The load figure sits
+outside the power window by construction, but it is the dominant term in cold-start latency.
+
+### It also clears the working-set limit that blocked `source × beam 4`
+
+That cell failed three times on the full checkpoint, twice under `expandable_segments`, at up to
+**5768 MB** of MemFree (§5.3). On the pruned checkpoint it **succeeded at 4238 MB** — 1.5 GB *less*
+headroom. So the §5.3 limit is specifically a full-checkpoint limit, and the deployable model does not
+have it.
+
+### The composition diagnosis is half right, and the other half is still open
+
+§5.3 attributed the frontier's understated decoder-width term to the pruned/full checkpoint mismatch.
+Testing it directly, with the LM stage now measured rather than inferred:
+
+| greedy → beam 4 | at 24 fps (T=204) | at source (T=263) |
+|---|---:|---:|
+| full checkpoint, system total (§5.3) | +7.02 | — *(cell OOMs)* |
+| **pruned checkpoint, LM stage measured** | **+4.65** | **+4.50** |
+| `frontier.py` composition (`LM_J`) | +2.04 | +2.67 |
+
+So the checkpoint explains roughly **half** the gap (7.02 → 4.65) and a **1.7–2.3× discrepancy survives
+on the pruned model itself**, which is the configuration `frontier.py` claims to describe. The
+composition is therefore still wrong about beam width, and the checkpoint is not the whole story.
+
+Note also that **the measured penalty is again flat in absolute joules** — 4.65 J at 204 frames against
+4.50 J at 263, a 1.3× change in frame count — exactly as in §5.3 on the full checkpoint (6.95 / 7.02 J).
+The composition instead makes it *grow* with T (2.04 → 2.67) because it interpolates `LM_J` in T. Two
+checkpoints and four frame counts now say the same thing: **decoder-width energy is a per-sentence
+constant and should not be modelled as a function of encoder length.**
+
+The leading remaining candidate is that §2.9C measured the LM **standalone** — one process, no pose
+engine resident, no TensorRT context in the shared 8 GB pool, its own thermal state — whereas these are
+end-to-end runs with both models loaded. The direction is consistent at all four cells: the composition
+**overestimates greedy and underestimates beam 4**, compressing the spread from both ends.
+
+| cell | composed `LM_J` | measured LM stage | error |
+|---|---:|---:|---:|
+| source, beam 4 | 11.75 | 12.726 | +8.3% |
+| source, greedy | 9.08 | 8.227 | −9.4% |
+| 24 fps, beam 4 | 10.88 | 11.855 | +9.0% |
+| 24 fps, greedy | 8.833 | 7.210 | −18.4% |
+
+A standalone sweep compressing the spread in both directions is what a different resident footprint
+would do, but **this is unverified** — four cells showing a consistent sign is a pattern, not a cause. The clean test is to re-run
+the §2.9C sweep in-process with the pose engine loaded, and it is not yet done.
+
+**What to do with the frontier meanwhile.** Its *relative* frame-rate ordering is sound — the frame-rate
+term checks out at −16.7% measured against −17% composed (§5.3) — and the accuracy axis was always
+measured. The beam-width energy step is the one quantity not to quote from it.
 
 ## Track B: Uni-Sign OpenASL pose-only
 
