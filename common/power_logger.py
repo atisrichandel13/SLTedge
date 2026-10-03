@@ -346,15 +346,22 @@ def add_power_args(parser):
     parser.add_argument("--power-json", default=None, help="write summary JSON")
 
 
-def run_with_power(args, fn, n_frames_getter):
-    """Run fn() under power logging; returns (fn_result, summary)."""
+def run_with_power(args, fn, n_frames_getter, pass_logger=False):
+    """Run fn() under power logging; returns (fn_result, summary).
+
+    pass_logger=True calls fn(pl) instead of fn(), so the caller can pl.mark() stage boundaries
+    inside the run and then carve per-stage energy out of the SAME sample stream with
+    summarize(window=...). That is the only way to price a stage: the stages do not draw equal
+    power -- pose is TRT/GPU-bound and the decoder is host-bound -- so apportioning a per-sentence
+    total by latency share is wrong, which is what the LM track asked us to stop doing.
+    """
     with PowerLogger(args.power_interval_ms, args.power_backend, args.power_sudo) as pl:
         if args.idle_seconds > 0:
             pl.mark("idle_start")
             time.sleep(args.idle_seconds)
             pl.mark("idle_end")
         pl.mark("run_start")
-        result = fn()
+        result = fn(pl) if pass_logger else fn()
         pl.mark("run_end")
     n = n_frames_getter(result)
     summary = pl.summarize(n_frames=n, window=("run_start", "run_end"),

@@ -173,9 +173,17 @@ def main():
     for _ in range(args.warmup):
         runner.infer({in_name: x0})
 
-    def one_sentence():
+    def one_sentence(pl=None, tag=None):
+        """pl/tag are the per-stage power windows. Marks are named <tag>_<stage>_{0,1} and are
+        carved out of the same sample stream afterwards, so a stage's joules are integrated from
+        its own samples rather than apportioned from the sentence total by latency share -- the
+        stages draw different power, so the apportionment would be wrong."""
+        def mk(name):
+            if pl is not None and tag is not None:
+                pl.mark(f"{tag}_{name}")
         lat = {"imread_ms": [], "preprocess_ms": [], "trt_ms": [], "postprocess_ms": []}
         kps, scs = [], []
+        mk("pose_0")
         t_pose0 = time.perf_counter()
         for path in frames:
             tr0 = time.perf_counter()
@@ -201,13 +209,18 @@ def main():
             kps.append(kn.reshape(1, 133, 2))
             scs.append(np.asarray(s, dtype=np.float32).reshape(1, 133))
         pose_total_ms = (time.perf_counter() - t_pose0) * 1e3
+        mk("pose_1")
 
+        mk("convert_0")
         t_c0 = time.perf_counter()
         inputs, idx = to_model_inputs(kps, scs, args.max_length)
         src = collate([inputs], ["clip"])
         convert_ms = (time.perf_counter() - t_c0) * 1e3
+        mk("convert_1")
 
+        mk("lm_0")
         r = model.translate(src, max_new_tokens=args.max_new_tokens, num_beams=args.num_beams)
+        mk("lm_1")
         out = {"text": r["text"], "lm_ms": r["timing_ms"], "convert_ms": convert_ms,
                "pose_total_ms": pose_total_ms, "frames_in": len(frames), "frames_used": len(idx),
                "sentence_total_ms": pose_total_ms + convert_ms + r["timing_ms"]["total"]}
@@ -219,23 +232,72 @@ def main():
     w = one_sentence()
     print(f"[m1] warm-up {w['sentence_total_ms']:.0f} ms -> {w['text']!r}")
 
-    def job():
+    plbox = {}
+
+    def job(pl):
+        plbox["pl"] = pl          # the logger outlives the with-block; its samples/marks persist
         runs = []
         for i in range(args.repeat):
-            r = one_sentence()
+            r = one_sentence(pl, f"r{i}")
             runs.append(r)
             print(f"[m1] run {i+1}: pose {r['pose_total_ms']:.0f} + convert {r['convert_ms']:.1f} + "
                   f"LM {r['lm_ms']['total']:.0f} = {r['sentence_total_ms']:.0f} ms")
         return {"runs": runs, "n_frames_total": sum(r["frames_in"] for r in runs),
                 "n_sentences": len(runs)}
 
-    res, power = run_with_power(args, job, lambda s: s["n_frames_total"])
+    res, power = run_with_power(args, job, lambda s: s["n_frames_total"], pass_logger=True)
     runs = res["runs"]
     tot = [r["sentence_total_ms"] for r in runs]
     # energy per SENTENCE is what the accuracy-energy frontier needs; mJ_per_frame from the logger is
     # the pose-stage basis and the two must not be mixed
     j_per_sentence = power["energy_mJ"] / 1e3 / res["n_sentences"]
     dyn_j_per_sentence = power["dynamic_energy_mJ"] / 1e3 / res["n_sentences"]
+
+    # --- per-stage energy (LM track ask, ASK-E2E-KNEE 2026-10-03) ---------------------------
+    # The composition the frontier uses is pose_J_per_s * seconds + LM_J, so checking it needs the
+    # two terms separately, not one per-sentence total. These windows are integrated from the
+    # stage's own samples. Dividing the sentence total by latency share would be wrong: the pose
+    # stage is TRT/GPU-bound and the decoder host-bound, so their average power differs.
+    #
+    # Read `n_samples` before trusting a stage: at a 100 ms interval a 1.4 s LM stage gets ~14
+    # samples and the window can miss up to one interval at each edge, so run with a smaller
+    # --power-interval-ms when the per-stage split is the point of the run.
+    pl = plbox.get("pl")
+    stage_power = None
+    if pl is not None:
+        base = ("idle_start", "idle_end") if args.idle_seconds > 0 else None
+        stage_power = {}
+        for st in ("pose", "convert", "lm"):
+            per = []
+            for i in range(res["n_sentences"]):
+                w = (f"r{i}_{st}_0", f"r{i}_{st}_1")
+                if w[0] in pl.marks and w[1] in pl.marks:
+                    per.append(pl.summarize(window=w, baseline=base))
+            ok = [x for x in per if "error" not in x]
+            if not ok:
+                continue
+            stage_power[st] = {
+                "n_windows": len(ok),
+                "J_per_sentence": round(statistics.mean(x["energy_mJ"] for x in ok) / 1e3, 3),
+                "dyn_J_per_sentence": round(statistics.mean(
+                    x.get("dynamic_energy_mJ", float("nan")) for x in ok) / 1e3, 3),
+                "avg_watts": round(statistics.mean(x["avg_watts"] for x in ok), 3),
+                "duration_s": round(statistics.mean(x["duration_s"] for x in ok), 3),
+                "n_samples_per_window": round(statistics.mean(x["n_samples"] for x in ok), 1),
+            }
+        # Auditable arithmetic: the three stages should reconstruct the sentence total. They will
+        # not match exactly -- each window loses up to one sample interval at each edge, and the
+        # gaps between stages belong to neither -- so the residual is reported, not hidden.
+        if stage_power:
+            ssum = sum(v["J_per_sentence"] for v in stage_power.values())
+            stage_power["_check"] = {
+                "stage_sum_J_per_sentence": round(ssum, 3),
+                "window_J_per_sentence": round(j_per_sentence, 3),
+                "residual_J": round(j_per_sentence - ssum, 3),
+                "residual_pct": round(100.0 * (j_per_sentence - ssum) / j_per_sentence, 2),
+                "note": ("residual is edge quantisation plus the inter-stage gaps; compare it "
+                         "against n_samples_per_window before reading anything into a stage"),
+            }
 
     summary = {
         "text": runs[-1]["text"],
@@ -259,10 +321,23 @@ def main():
         summary["peak_gpu_GB"] = round(torch.cuda.max_memory_allocated() / 1e9, 3)
     print("\n[m1] " + json.dumps({k: v for k, v in summary.items() if k != "square_geom"}, indent=2))
     print(f"[m1] text: {summary['text']!r}")
+    if stage_power:
+        ck = stage_power.get("_check", {})
+        for st in ("pose", "convert", "lm"):
+            v = stage_power.get(st)
+            if v:
+                print(f"[stage] {st:8s} {v['J_per_sentence']:7.3f} J/sentence  "
+                      f"{v['avg_watts']:5.3f} W  {v['duration_s']:6.3f} s  "
+                      f"n={v['n_samples_per_window']:.0f} samples/window")
+        if ck:
+            print(f"[stage] sum {ck['stage_sum_J_per_sentence']:.3f} J vs window "
+                  f"{ck['window_J_per_sentence']:.3f} J  "
+                  f"residual {ck['residual_J']:+.3f} J ({ck['residual_pct']:+.2f}%)")
 
     if args.out:
         os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
         json.dump({"env": collect(), "summary": summary, "runs": runs, "power": power,
+                   "stage_power": stage_power,
                    "config": vars(args)}, open(args.out, "w"), indent=2)
         print("[m1] wrote", args.out)
 
