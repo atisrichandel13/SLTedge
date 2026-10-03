@@ -21,15 +21,20 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
-TAG=n100
+# Parameterised 2026-10-03 so the same pass runs at any clip count. The POSE dir is deliberately
+# NOT tagged by n: frames are deleted from the shared board once a clip's pkls exist (2.5g), so a
+# fresh per-n pkl dir could never be rebuilt for the clips whose frames are gone. One accumulating
+# pose dir is the only arrangement consistent with the no-large-files rule.
+TAG="${SLT_TAG:-n100}"
+POSE_DIR="${SLT_POSE_DIR:-results/pkl_split_rtmw_fp16}"
+REF="${SLT_REF:-data/openasl_pose_split}"
 ENG=models/rtmw/rtmw-l-m_256x192_fp16.engine
 PRUNED_CKPT=weights/openasl_pose_only_slt_pruned.pth
 PRUNED_MT5=weights/mt5-base-openasl-pruned
 FULL_CKPT=weights/openasl_pose_only_slt.pth
 FULL_MT5=weights/mt5-base
 LABELS=data/openasl_labels/labels.test
-REF=data/openasl_pose_n100
-OURS=results/pkl_${TAG}_rtmw_fp16
+OURS="$POSE_DIR"
 R=(jetson/run.sh exec-batch)
 
 prep_mem() {
@@ -56,7 +61,7 @@ else
   echo "[p10] STAGE1 extract ($have/$n_clips done)  $(date -u +%TZ)"
   # one pass writes both normalisations; same keypoints, two exact normalisations, no extra GPU work
   "${R[@]}" python3 task1_rtmpose/09_batch_clips.py --engine "$ENG" --clips-dir data/clips \
-      --config rtmw_fp16 --pkl-out "$OURS" --pkl-out-raw "results/pkl_${TAG}_rtmw_fp16_raw" \
+      --config rtmw_fp16 --pkl-out "$OURS" --pkl-out-raw "${OURS}_raw" \
       --square-norm --progress-every 25 2>&1 | tail -4 | sed 's/^/[p10]   /'
 fi
 

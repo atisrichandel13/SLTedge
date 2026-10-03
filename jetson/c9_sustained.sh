@@ -17,8 +17,14 @@ cd "$(dirname "$0")/.."
 
 CLIP="${SLT_CLIP:-ixq65EiuJ_c-00:03:47.633-00:03:56.133}"
 ENGINE="${SLT_ENGINE:-models/rtmw/rtmw-l-m_256x192_fp16.engine}"
-CKPT="${SLT_CKPT:-weights/openasl_pose_only_slt.pth}"
-MT5="${SLT_MT5:-weights/mt5-base}"
+# Phase 2 is "the best compressed config" that C9 asks for, so it must be the config we ship, not
+# the released reference. Changed 2026-10-03: the PRUNED checkpoint is the deployment choice on every
+# axis measured -- -12 % system energy and half the peak memory and load time (5.4), -0.44 BLEU-4
+# [-1.87, +0.94] on our own keypoints (2.5g) -- and it is also the only one that does not sit near
+# the memory cliff over hundreds of iterations (5.3).
+CKPT="${SLT_CKPT:-weights/openasl_pose_only_slt_pruned.pth}"
+MT5="${SLT_MT5:-weights/mt5-base-openasl-pruned}"
+KEEP_FPS="${SLT_KEEP_FPS:-24}"   # the deployable rate (2.5g); set empty for source rate
 DUR="${SLT_DURATION_S:-1800}"
 R=(jetson/run.sh exec-batch)
 
@@ -77,11 +83,12 @@ fi
 if [ -f results/c9_sustained_e2e_iters.json ]; then
     echo "[c9] have phase 2"
 else
-    prep_mem || exit 1
-    echo "[c9] PHASE 2: sustained end-to-end, ${DUR}s  $(date +%H:%M:%S)"
+    # pruned path peaks at ~1.07 GB (5.4), so the 5200 target the full checkpoint needed is overkill
+    prep_mem 3500 || exit 1
+    echo "[c9] PHASE 2: sustained end-to-end (pruned, ${KEEP_FPS:-source} fps), ${DUR}s  $(date +%H:%M:%S)"
     "${R[@]}" python3 -m unisign.sustained_run --mode e2e --duration-s "$DUR" \
         --engine "$ENGINE" --frames "data/clips/$CLIP/frames" --meta "data/clips/$CLIP/meta.json" \
-        --ckpt "$CKPT" --mt5 "$MT5" --num-beams 4 \
+        --ckpt "$CKPT" --mt5 "$MT5" --num-beams 4 ${KEEP_FPS:+--keep-fps $KEEP_FPS} \
         --power-json results/c9_sustained_e2e.json --power-csv results/c9_sustained_e2e.csv \
         --out results/c9_sustained_e2e_iters.json > results/logs/c9_e2e.log 2>&1
     grep -E '^\[c9\] VERDICT|throttled|tj_C_max_overall|drift' results/logs/c9_e2e.log | tail -5 \

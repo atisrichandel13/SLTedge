@@ -42,6 +42,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 from common.envinfo import collect  # noqa: E402
 from common.power_logger import add_power_args, run_with_power  # noqa: E402
 from common.pose_to_unisign import collate, to_model_inputs  # noqa: E402
+from common.subsample_pkl import keep_idx  # noqa: E402
 from common.trt_runner import TrtRunner  # noqa: E402
 
 import cv2  # noqa: E402
@@ -86,6 +87,14 @@ def main():
     ap.add_argument("--warmup", type=int, default=20)
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--out", required=True, help="per-iteration JSON (the drift record)")
+    # The deployable cell is 24 fps (2.5g: free on our own keypoints, +0.05 BLEU-4 [-1.11, +1.03]),
+    # so a sustained run that is meant to stand behind the deployed configuration has to thin the
+    # same way. Selection is delegated to common.subsample_pkl.keep_idx, the same function the
+    # accuracy and energy paths use, so a rate means the same frames everywhere.
+    ap.add_argument("--keep-fps", type=float, default=None,
+                    help="thin to this rate using the clip's own source rate from --meta")
+    ap.add_argument("--src-fps", type=float, default=None,
+                    help="override the clip's source rate (normally read from --meta)")
     add_power_args(ap)
     args = ap.parse_args()
 
@@ -95,6 +104,21 @@ def main():
         frames = frames[: args.limit]
     if not frames:
         raise SystemExit(f"no frames under {args.frames}")
+    fps_info = {"keep_fps": None, "src_fps": None, "frames_in": len(frames), "frames_kept": len(frames)}
+    if args.keep_fps:
+        src = args.src_fps
+        if src is None:
+            if not args.meta:
+                raise SystemExit("--keep-fps needs --meta (or --src-fps) to read the clip's own "
+                                 "frame rate; a hardcoded rate is the bug this flag exists to avoid")
+            _m = json.load(open(args.meta))
+            src = (_m["n_frames"] / _m["duration_s"]) if _m.get("duration_s") else float(_m["fps"])
+        idx = keep_idx(len(frames), args.keep_fps, src)
+        frames = [frames[i] for i in idx]
+        fps_info.update(keep_fps=float(args.keep_fps), src_fps=round(float(src), 3),
+                        frames_kept=len(frames))
+        print(f"[c9] rate {fps_info['src_fps']} -> {args.keep_fps} fps: "
+              f"{fps_info['frames_in']} -> {len(frames)} frames", flush=True)
     pp = load_preproc(args.preproc or os.path.join(os.path.dirname(os.path.abspath(args.engine)),
                                                    "preproc.json"))
     runner = TrtRunner(args.engine)
@@ -211,7 +235,7 @@ def main():
 
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     json.dump({"env": collect(), "summary": summary, "iters": iters, "power": power,
-               "config": vars(args)}, open(args.out, "w"), indent=2)
+               "fps": fps_info, "config": vars(args)}, open(args.out, "w"), indent=2)
     print("[c9] wrote", args.out)
 
 
