@@ -357,7 +357,7 @@ it, for roughly 15 minutes of board time.
 **Also open:**
 
 - **Latency across the crop range.** All pose energy comes from one clip whose crop sits at the 83rd
-  percentile of crop area, and the range is 9k–770k px — a 27× spread, with ~11 of 25 ms/frame
+  percentile of crop area, and the range is 9k–770k px — an **85× spread**, with ~11 of 25 ms/frame
   scaling with area. Absolute joules are therefore clip-specific until we have ≥3 clips spanning it.
 - **The 931-clip full-split pass.** Clips are on the Mac (6.6 GB); the board has 17 GB free at 85 %
   full, so this needs batching — roughly 100 clips, run, pull, delete, ten times. **Needs your call
