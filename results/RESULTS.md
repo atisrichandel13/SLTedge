@@ -2219,3 +2219,41 @@ from its top would hide that. It is simply a narrower spread (2.08–2.27) than 
 **Neither correction changes any conclusion.** The residual is still explained in magnitude by
 across-run variation; the beam-width error is still a sign-consistent systematic that run-to-run noise
 cannot produce; and the in-process §2.9C re-run is still the test that would settle it.
+
+#### L16 addendum 7 (2026-10-03): addendum 5 was too generous; the sustained run validates the energy axis
+
+§5.6 measured across **three separate processes** what addendum 5 could only estimate. Two results,
+one against us and one for us.
+
+**1. Our "~10 % comfortably brackets the residual" was too strong.** Addendum 5 priced §2.2b's ×1.281
+CPU drift at a ~10 % system-J swing and concluded the across-run hypothesis was *sufficient in
+magnitude*. Measured, the spread is **4.2 % CV on frame time**, which at a 74.4 % pose share is
+**~3.1 % on system J at 1σ**:
+
+| | system-J swing | in σ |
+|---|---:|---:|
+| addendum 5's estimate | ~10 % | 3.2σ |
+| **measured, 3 processes** | **3.1 % (1σ)** | — |
+| the residual being explained | 6.3 % | **~2.0σ** |
+
+So the residual sits at about **two sigma**, which **three samples neither exclude nor establish**.
+"Comfortably brackets" was wrong; "consistent with, but not demonstrated by" is the honest statement.
+Two caveats pull in opposite directions: n=3 is a thin basis for a σ, and §2.2b's ×1.281 was a *real
+single observation*, so the tail may be considerably fatter than this σ implies.
+
+**What is now settled is the location.** All the spread is in `imread` and `preprocess` at ~9 % CV;
+TRT reproduces at **0.2–0.3 % CV** in both precisions. **Any GPU-variability explanation is ruled
+out.** And the jitter is specific to the configuration we ship: at FP32 everything is ≤0.7 %, because
+FP32 holds the GPU 25.9 ms/frame against FP16's 13.9, leaving the CPU slack and letting the governor
+settle. **FP16 is both the faster config and the jittery one, because it is the one the CPU bounds.**
+
+**2. The frontier's energy axis survives realistic duty cycle, which was a genuine risk.** Every
+latency and energy row behind the frontier came from an 8–25 s window with Tj never above 53 °C, and
+nothing had tested sustained operation. A 30-minute run of **our deployable config** (pruned, 24 fps,
+beam 4) over 254 consecutive sentences drifted **−0.56 %** — marginally *faster* at the end — with Tj
+peaking at 51.75 °C, and works out to **38.48 J/sentence sustained against §5.4's 37.75 J, +1.9 %**.
+
+So the short windows are not optimistic, there is no thermal throttling at 15 W, and **the frontier's
+absolute energy column does not move under continuous load.** Combined with addendum 5's conclusion
+that it should not be quoted to better than ~3 % anyway, the axis is in better shape than the open
+residual suggested.
