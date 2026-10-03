@@ -1,0 +1,274 @@
+{
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-5.15.148-tegra-aarch64-with-glibc2.39",
+    "jetpack": "unknown (nvidia-jetpack package not found)",
+    "l4t": "R36.4.7",
+    "nvpmodel": "mode 0 (15W) from /var/lib/nvpmodel/status",
+    "gpu_max_MHz": 612.0,
+    "gpu_min_MHz": 306.0,
+    "cpu_max_MHz": 1497.6,
+    "torch": "2.8.0a0+5228986c39.nv25.06",
+    "torch_cuda": "12.9",
+    "cuda_available": true,
+    "gpu": "Orin",
+    "tensorrt": "10.11.0.33",
+    "nvcc": "V12.9.86"
+  },
+  "summary": {
+    "text": "When I moved to Texas two years ago, it was my first priority.",
+    "n_sentences": 3,
+    "frames_in": 204,
+    "frames_used": 204,
+    "sentence_total_ms": {
+      "mean": 6733.7,
+      "std": 175.3,
+      "runs": [
+        6981.1,
+        6625.6,
+        6594.6
+      ]
+    },
+    "pose_total_ms": 5463.7,
+    "convert_ms": 24.88,
+    "lm_total_ms": 1245.1,
+    "per_frame_ms": {
+      "imread_ms": {
+        "mean": 6.161,
+        "p95": 7.268
+      },
+      "preprocess_ms": {
+        "mean": 5.307,
+        "p95": 6.173
+      },
+      "trt_ms": {
+        "mean": 13.295,
+        "p95": 14.212
+      },
+      "postprocess_ms": {
+        "mean": 1.292,
+        "p95": 1.531
+      }
+    },
+    "J_per_sentence": 34.72,
+    "dyn_J_per_sentence": 8.74,
+    "square_norm": true,
+    "square_geom": {
+      "crop_xywh": [
+        297,
+        0,
+        644,
+        720
+      ],
+      "square_xywh": [
+        77,
+        -150,
+        1083
+      ],
+      "scale_vs_crop": 0.5946445060018467
+    },
+    "fps": {
+      "keep_fps": 24.0,
+      "src_fps": 30.0,
+      "frames_in": 255,
+      "frames_kept": 204
+    },
+    "num_beams": 1,
+    "load_pose_s": 1.1,
+    "load_lm_s": 29.01,
+    "peak_gpu_GB": 1.021
+  },
+  "runs": [
+    {
+      "text": "When I moved to Texas two years ago, it was my first priority.",
+      "lm_ms": {
+        "gcn": 104.18167701573111,
+        "encoder": 62.483866000548005,
+        "decoder": 1087.331554008415,
+        "total": 1253.997097024694,
+        "encoder_len": 212,
+        "decoded_tokens": 19
+      },
+      "convert_ms": 27.894297003513202,
+      "pose_total_ms": 5699.166989012156,
+      "frames_in": 204,
+      "frames_used": 204,
+      "sentence_total_ms": 6981.058383040363,
+      "imread_ms": {
+        "mean": 6.507,
+        "p95": 7.899
+      },
+      "preprocess_ms": {
+        "mean": 5.571,
+        "p95": 6.522
+      },
+      "trt_ms": {
+        "mean": 14.351,
+        "p95": 19.127
+      },
+      "postprocess_ms": {
+        "mean": 1.403,
+        "p95": 2.134
+      }
+    },
+    {
+      "text": "When I moved to Texas two years ago, it was my first priority.",
+      "lm_ms": {
+        "gcn": 106.24837598879822,
+        "encoder": 59.43951601511799,
+        "decoder": 1076.8150209914893,
+        "total": 1242.5029129954055,
+        "encoder_len": 212,
+        "decoded_tokens": 19
+      },
+      "convert_ms": 25.484872021479532,
+      "pose_total_ms": 5357.601183000952,
+      "frames_in": 204,
+      "frames_used": 204,
+      "sentence_total_ms": 6625.588968017837,
+      "imread_ms": {
+        "mean": 6.232,
+        "p95": 7.483
+      },
+      "preprocess_ms": {
+        "mean": 5.315,
+        "p95": 6.049
+      },
+      "trt_ms": {
+        "mean": 13.296,
+        "p95": 14.232
+      },
+      "postprocess_ms": {
+        "mean": 1.322,
+        "p95": 1.536
+      }
+    },
+    {
+      "text": "When I moved to Texas two years ago, it was my first priority.",
+      "lm_ms": {
+        "gcn": 104.48136299964972,
+        "encoder": 58.58276301296428,
+        "decoder": 1075.8296260028146,
+        "total": 1238.8937520154286,
+        "encoder_len": 212,
+        "decoded_tokens": 19
+      },
+      "convert_ms": 21.25227401847951,
+      "pose_total_ms": 5334.440430015093,
+      "frames_in": 204,
+      "frames_used": 204,
+      "sentence_total_ms": 6594.586456049001,
+      "imread_ms": {
+        "mean": 6.161,
+        "p95": 7.268
+      },
+      "preprocess_ms": {
+        "mean": 5.307,
+        "p95": 6.173
+      },
+      "trt_ms": {
+        "mean": 13.295,
+        "p95": 14.212
+      },
+      "postprocess_ms": {
+        "mean": 1.292,
+        "p95": 1.531
+      }
+    }
+  ],
+  "power": {
+    "n_samples": 404,
+    "duration_s": 20.15,
+    "rails_mW_avg": {
+      "VDD_CPU_GPU_CV": 1467.0,
+      "VDD_IN": 5168.4,
+      "VDD_SOC": 1379.1
+    },
+    "rails_mW_max": {
+      "VDD_CPU_GPU_CV": 1966.3,
+      "VDD_IN": 6229.8,
+      "VDD_SOC": 1607.7
+    },
+    "aux_avg": {
+      "GR3D_FREQ_pct": 49.27,
+      "cpu0_MHz": 809.44,
+      "fan_pwm": 65.78,
+      "fan_rpm": 1421.27,
+      "gpu_MHz": 330.24,
+      "temp_cpu_C": 48.39,
+      "temp_gpu_C": 48.92,
+      "temp_soc0_C": 48.53,
+      "temp_soc1_C": 47.64,
+      "temp_soc2_C": 47.89,
+      "temp_tj_C": 48.92
+    },
+    "total_rail": "VDD_IN",
+    "avg_watts": 5.168,
+    "energy_mJ": 104153.9,
+    "baseline_watts": 3.867,
+    "dynamic_energy_mJ": 26232.0,
+    "n_frames": 612,
+    "mJ_per_frame": 170.19,
+    "dynamic_mJ_per_frame": 42.86
+  },
+  "stage_power": {
+    "pose": {
+      "n_windows": 3,
+      "J_per_sentence": 26.891,
+      "dyn_J_per_sentence": 6.009,
+      "avg_watts": 4.985,
+      "duration_s": 5.4,
+      "n_samples_per_window": 109
+    },
+    "convert": {
+      "n_windows": 2,
+      "J_per_sentence": 0.0,
+      "dyn_J_per_sentence": 0.0,
+      "avg_watts": 4.899,
+      "duration_s": 0.0,
+      "n_samples_per_window": 1
+    },
+    "lm": {
+      "n_windows": 3,
+      "J_per_sentence": 7.21,
+      "dyn_J_per_sentence": 2.569,
+      "avg_watts": 5.991,
+      "duration_s": 1.2,
+      "n_samples_per_window": 25
+    },
+    "_check": {
+      "stage_sum_J_per_sentence": 34.101,
+      "window_J_per_sentence": 34.718,
+      "residual_J": 0.617,
+      "residual_pct": 1.78,
+      "note": "residual is edge quantisation plus the inter-stage gaps; compare it against n_samples_per_window before reading anything into a stage"
+    }
+  },
+  "config": {
+    "engine": "models/rtmw/rtmw-l-m_256x192_fp16.engine",
+    "frames": "data/clips/ixq65EiuJ_c-00:03:47.633-00:03:56.133/frames",
+    "meta": "data/clips/ixq65EiuJ_c-00:03:47.633-00:03:56.133/meta.json",
+    "preproc": null,
+    "ckpt": "weights/openasl_pose_only_slt_pruned.pth",
+    "mt5": "weights/mt5-base-openasl-pruned",
+    "square_norm": true,
+    "crop_wh": null,
+    "device": "cuda",
+    "dtype": "fp32",
+    "max_length": 256,
+    "max_new_tokens": 64,
+    "num_beams": 1,
+    "warmup": 20,
+    "limit": null,
+    "repeat": 3,
+    "keep_fps": 24.0,
+    "src_fps": null,
+    "out": "results/e2e_pruned/e2e_24_beam1.json",
+    "power_backend": "auto",
+    "power_interval_ms": 50,
+    "power_sudo": false,
+    "idle_seconds": 3.0,
+    "power_csv": null,
+    "power_json": "results/e2e_pruned/power_24_beam1.json"
+  }
+}
