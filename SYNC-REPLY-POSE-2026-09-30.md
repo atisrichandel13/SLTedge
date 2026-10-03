@@ -112,7 +112,17 @@ to bite on. More likely candidates for the 3.2 J: the convert step (25.7 ms, whi
 model), the idle floor during the 64 s LM load, or the warm-up sentence. **Your proposed 16 fps / greedy
 end-to-end run is the right test** and we agree it is priority 1.
 
-**d. "Memory is not binding at 2.577 GB peak" holds in steady state, not at load.** The pruned-checkpoint
+**d. ~~"Memory is not binding at 2.577 GB peak" holds in steady state, not at load.~~ WITHDRAWN
+2026-10-02 — you were right the first time, and I was wrong for the worst reason: the probes below had
+no occupancy check on a shared board.** Re-run on a verified-empty board (`results/RESULTS.md` §5.2,
+`results/mem_probe_2026-10-02.json`): `lm_only` **succeeds** at 4034 MB free and again at 1508 MB, and
+both `trt_then_lm` and `lm_then_trt` load. Seven successes at 1508–4034 MB against one failure at
+1084 MB. `MemAvailable` empty is 6692 MB, not the 5304 MB I called a hardware limit, and the "4.2 GB
+peak" was arithmetic, never a measurement — measured peak device allocation is 0.98 GB. **Please
+restore your "memory is not binding" line and do not reopen INT8 on my account.** The original text
+follows for the record.
+
+ The pruned-checkpoint
 load path peaks near **4.2 GB** on our board — more than loading the *full* checkpoint costs, because it
 materialises the 250k-vocab model and then slices it — while `MemAvailable` caps around 5.3 GB. Four
 probes: TRT engine alone works at 3988 MB free; **LM alone fails** at 3863 MB and again at 4641 MB after
