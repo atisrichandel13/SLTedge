@@ -29,7 +29,7 @@ Context files: `sign-language-project-context-v2.md`, `jetson-setup-handoff.md`,
 | C6 | **Milestone M1 — first on-device translation.** Pose TRT engine → C3 → C5 on the Jetson for the Bitcoin clip. Save text + per-stage latency + power for the whole pipeline. This is the Stage 0 baseline every optimization is compared to | Teammate runs on the board, Atisri supports | ✅ 2026-09-28, RESULTS §5.1: 9052.8 ms, 50.37 J/sentence | all optimization rows |
 | C7 | Keypoint-scoring path: any pose engine output → C3 → BLEU on the 976 test clips on Colab (~5 min/T4). Needs the pose owner to run the engine over the test clips' frames, which needs the test clips' video (P3). Without it, pose ablations are scored by keypoint agreement only | both | 🔄 path works (§C7); pose→BLEU done at n=30 (§2.5c), never at n=976 | pose accuracy column |
 | C8 | Adaptation-training harness: `fine_tuning.py` with mT5 frozen, pose stack + projection trainable (~4.5 M params), checkpoint-resume, sharded pose data on local disk. Needs OpenASL **train** poses (97 K files, redo the 32 GB archive extraction for train). Used by both tracks for input-distribution shifts | Atisri builds; runs for pose shifts are triggered by the pose owner | ✅ `unisign/train_adapt.py`, §C8.1 / §C8.2 | P8, P9, P10, L9 |
-| C9 | Results protocol: every final row = 3 runs, mean ± std, DVFS state logged; ≥3 clips / ≥3 signers; one 30-min sustained run for FP32 and for the best compressed config. One shared table in `RESULTS.md` with fixed columns | both, teammate owns board runs | 🔄 `results/c9_sustained_pose.json` exists; protocol not yet applied to every final row | report |
+| C9 | Results protocol: every final row = 3 runs, mean ± std, DVFS state logged; ≥3 clips / ≥3 signers; one 30-min sustained run for FP32 and for the best compressed config. One shared table in `RESULTS.md` with fixed columns | both, teammate owns board runs | 🔄 **repeats, DVFS and both sustained runs done 2026-10-03 (§5.6)**; the ≥3-clips-spanning-the-crop-range part is J6, still outstanding | report |
 | C10 | **Milestone M4 — accuracy–energy frontier.** J per sentence (pose + LM, measured) vs BLEU-4 across all configs. The plot the report is built around | both | ✅ 2026-09-30 `results/frontier.png` + `.csv`, RESULTS §L16. **Energy is composed, not measured end-to-end** | report |
 | C11 | Report + demo video (record early), written against both rubrics | both | ⬜ **last step by agreement**: drafted only once both tracks' experiments are done and the results combined | — |
 
@@ -115,7 +115,6 @@ both C9 protocol work.
 | # | Request | Why it matters | Priority |
 |---|---|---|---|
 | J6 | C9 ≥3-clip rows spanning the crop range | `POSE_J_PER_S` came from one clip at the 83rd percentile of crop area, which is the frontier's ~7 % high bias. Fixes a precision issue, not a correctness one | medium |
-| J8 | C9 protocol applied to the final rows: 3 runs mean ± std, DVFS logged, 30-min sustained for FP32 and the best compressed config | Row 5.2; the report's rigor rubric keys off it | high |
 
 ### Delivered
 
@@ -128,6 +127,7 @@ both C9 protocol work.
 | — | M1 end-to-end | ✅ §5.1 |
 | — | `cpu0_MHz` on LM power runs | ✅ withdrawn as an ask: `power_logger` already samples it into `aux_avg`; M1 carries 866.76 MHz, below the 897 MHz downclock point |
 | J5 | 24 fps added to the end-to-end grid | ✅ 2026-10-03, and widened to 3×2 `{source, 24, 16} × {beam 4, greedy}`. **beam 4 @ 24 fps measured end to end: 7728.7 ms, 42.94 J/sentence** (§5.3). The grid also found the composition's decoder-width term understated 3–5× and `mJ_per_frame` rising under subsampling |
+| J8 | C9 protocol applied to the final rows | ✅ 2026-10-03, §5.6. Sustained 30 min at all three loads: **no throttling** (drift −0.26 % FP32 pose, −0.56 % end-to-end; Tj max 57.44 / 51.75 °C). Phase 2 = the deployable config, never run before, **38.48 J/sentence sustained vs 37.75 short-window (+1.9 %)** — so every short-window row in RESULTS.md is validated. Process-level repeats: TRT is 0.2–0.3 % CV while imread/preprocess are ~9 % CV **at FP16 only**, so run-to-run variance is a CPU-stage effect and not a GPU one |
 | J7 | Multi-clip board accuracy, ~100 clips | ✅ 2026-10-03, §2.5g. 100 clips / **100 distinct videos**, our own board keypoints, pruned checkpoint: **22.99 BLEU-4 / 43.43 ROUGE-L at 24 fps**. The deployable config's accuracy is now **measured directly** rather than composed. Authors' reference poses restricted to the same 100 clips |
 | — | `--keep-fps` on `e2e_translate.py` + `jetson/e2e_2x2.sh` | ✅ 2026-10-02, pose track |
 

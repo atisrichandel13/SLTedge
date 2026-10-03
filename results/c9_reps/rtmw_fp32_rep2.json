@@ -1,0 +1,106 @@
+{
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-5.15.148-tegra-aarch64-with-glibc2.39",
+    "jetpack": "unknown (nvidia-jetpack package not found)",
+    "l4t": "R36.4.7",
+    "nvpmodel": "mode 0 (15W) from /var/lib/nvpmodel/status",
+    "gpu_max_MHz": 612.0,
+    "gpu_min_MHz": 306.0,
+    "cpu_max_MHz": 1497.6,
+    "torch": "2.8.0a0+5228986c39.nv25.06",
+    "torch_cuda": "12.9",
+    "cuda_available": true,
+    "gpu": "Orin",
+    "tensorrt": "10.11.0.33",
+    "nvcc": "V12.9.86"
+  },
+  "latency": {
+    "n_frames": 255,
+    "wall_s": 10.69,
+    "keep_fps": null,
+    "src_fps": 29.97,
+    "fps_compute": 29.5,
+    "fps_end_to_end": 23.85,
+    "wall_ms_per_frame": 41.922,
+    "residual_ms": 0.01,
+    "imread_ms": {
+      "mean": 7.861,
+      "median": 7.929,
+      "p95": 8.122,
+      "min": 5.205,
+      "max": 9.251
+    },
+    "preprocess_ms": {
+      "mean": 6.805,
+      "median": 6.85,
+      "p95": 6.952,
+      "min": 3.47,
+      "max": 9.11
+    },
+    "trt_ms": {
+      "mean": 25.846,
+      "median": 25.821,
+      "p95": 26.045,
+      "min": 25.528,
+      "max": 26.203
+    },
+    "postprocess_ms": {
+      "mean": 1.242,
+      "median": 1.231,
+      "p95": 1.332,
+      "min": 0.814,
+      "max": 1.549
+    },
+    "total_ms": {
+      "mean": 33.893,
+      "median": 33.929,
+      "p95": 34.186,
+      "min": 30.515,
+      "max": 36.159
+    },
+    "collect_ms": {
+      "mean": 0.158,
+      "median": 0.121,
+      "p95": 0.301,
+      "min": 0.075,
+      "max": 2.119
+    },
+    "n_frames_total": 765
+  },
+  "power": {
+    "n_samples": 341,
+    "duration_s": 34.0,
+    "rails_mW_avg": {
+      "VDD_CPU_GPU_CV": 2442.9,
+      "VDD_IN": 6458.5,
+      "VDD_SOC": 1546.3
+    },
+    "rails_mW_max": {
+      "VDD_CPU_GPU_CV": 2768.8,
+      "VDD_IN": 6942.1,
+      "VDD_SOC": 1605.1
+    },
+    "aux_avg": {
+      "GR3D_FREQ_pct": 59.81,
+      "cpu0_MHz": 962.92,
+      "fan_pwm": 71.4,
+      "fan_rpm": 1571.45,
+      "gpu_MHz": 576.4,
+      "temp_cpu_C": 49.88,
+      "temp_gpu_C": 50.76,
+      "temp_soc0_C": 50.02,
+      "temp_soc1_C": 49.02,
+      "temp_soc2_C": 49.55,
+      "temp_tj_C": 50.77
+    },
+    "total_rail": "VDD_IN",
+    "avg_watts": 6.458,
+    "energy_mJ": 219746.9,
+    "baseline_watts": 3.509,
+    "dynamic_energy_mJ": 100436.1,
+    "n_frames": 765,
+    "mJ_per_frame": 287.25,
+    "dynamic_mJ_per_frame": 131.29
+  }
+}

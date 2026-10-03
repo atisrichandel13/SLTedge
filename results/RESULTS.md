@@ -1295,6 +1295,83 @@ in that instance — an unpickling error that stopped the run — whereas a trun
 unpickles would degrade an accuracy number without any error at all. The audit covers the silent case;
 the EOFError only ever covered the loud one.
 
+## 5.6 / J8: the C9 protocol, finally applied (2026-10-03)
+
+Two halves: sustained 30-minute runs (`jetson/c9_sustained.sh`, `unisign/sustained_run.py`) and
+process-level repeats (`jetson/c9_process_repeats.sh`, `results/c9_reps/`).
+
+### A. The board does not throttle, at any of the three loads
+
+| phase | load | duration | drift (1st→5th fifth) | Tj max | avg W | mJ/frame | verdict |
+|---|---|---:|---:|---:|---:|---:|---|
+| 1 | pose FP16 only | 1804.7 s, 68,850 frames | — | 53.33 °C | 4.907 | 128.62 | no throttling |
+| 1b | pose FP32 only | 1802.4 s, 43,095 frames | **−0.26 %** | 57.44 °C | 6.559 | 274.33 | no throttling |
+| **2** | **end-to-end, pruned @ 24 fps** | **1804.7 s, 51,816 frames** | **−0.56 %** | **51.75 °C** | **5.415** | **188.62** | **no throttling** |
+
+Phase 2 is the deployable configuration and had never been run. Over **254 consecutive sentences** it
+drifted **−0.56 %** — *negative*, i.e. marginally faster at the end than the start — with Tj peaking at
+51.75 °C, well short of anything that would clock down.
+
+**This is the result every short-window row in this document needed.** Phase 2 works out to
+**38.48 J/sentence** sustained (9,773,456 mJ / 254) against §5.4's three-sentence measurement of
+**37.75 J** — **+1.9 %**. So the 8–25 s windows that produced every latency and energy row are not
+optimistic, and the frontier's energy axis does not move under realistic duty cycle. That was a real
+risk: the whole table was measured with Tj never above 53 °C and nothing had tested what happens after
+half an hour.
+
+Note phase 1b runs hottest (57.44 °C) — FP32 pose is the heaviest sustained load we impose, hotter
+than the full pipeline, because the pipeline spends ~30 % of each sentence in the host-bound decoder
+with the GPU mostly idle.
+
+### B. Process-to-process variance, and the variance is not where it was assumed
+
+`04_infer_power.py` run as **three separate processes** per config — fresh engine load, CUDA context
+and power window each time, with a settle between so the reps are independent rather than a thermal
+ramp. Mean ± std across processes, 255-frame clip × 3 passes each:
+
+| | RTMW FP16 | CV | RTMW FP32 | CV |
+|---|---:|---:|---:|---:|
+| wall ms/frame | 26.667 ± 1.130 | **4.2 %** | 42.051 ± 0.126 | 0.3 % |
+| ├ imread | 6.104 ± 0.544 | **8.9 %** | 7.887 ± 0.023 | 0.3 % |
+| ├ preprocess | 5.235 ± 0.478 | **9.1 %** | 6.857 ± 0.045 | 0.7 % |
+| ├ **TRT** | **13.857 ± 0.047** | **0.3 %** | **25.892 ± 0.062** | **0.2 %** |
+| └ postprocess | 1.311 ± 0.055 | 4.2 % | 1.243 ± 0.004 | 0.3 % |
+| avg W | 4.881 ± 0.029 | 0.6 % | 6.440 ± 0.025 | 0.4 % |
+| mJ/frame | 137.307 ± 2.021 | 1.5 % | 289.353 ± 2.344 | 0.8 % |
+| gpu MHz | 308.8 ± 1.5 | 0.5 % | 575.6 ± 0.9 | 0.2 % |
+
+**The GPU is the stable part and the CPU is not.** TRT reproduces at **0.3 % CV** in both precisions —
+and reproduces the recorded rows: 13.857 vs §2.2's 13.8 ms, 25.892 vs 25.6 ms. All the variance lives
+in `imread` and `preprocess`, at ~9 % CV, and **only at FP16**. At FP32 everything is ≤0.7 %.
+
+The asymmetry has a mechanism: FP32 occupies the GPU for 25.9 ms per frame against FP16's 13.9, so the
+CPU has proportionally more slack per frame and the governor settles (gpu 575 MHz vs 309 MHz average).
+FP16 is the faster configuration *and* the jittery one, because it is the one whose frame time the CPU
+actually bounds.
+
+**Basis note, to prevent a false alarm.** `wall_ms_per_frame` (26.667) includes JPEG decode; §2.2's
+"19.7 ms total" does not. Pre + TRT + post here is **20.40 ms**, against 19.7 — consistent. This is
+exactly the two-fps-numbers distinction §2.2b exists to document, and it is the first thing to check
+before reading these as a regression.
+
+### C. This refines L16 addendum 5 rather than confirming it
+
+Addendum 5 priced the composition residual against §2.2b's **×1.281** CPU-stage drift and concluded a
+~10 % system-J swing, which brackets the 6.3 % residual. Measured across three processes the spread is
+smaller: FP16 frame time is 4.2 % CV, and at a ~74 % pose share of system energy that is a **~3 %
+system-J swing at 1σ**, not 10 %.
+
+**So the hypothesis is weakened, not refuted, and three processes cannot settle it.** The 6.3 % residual
+needs roughly 2σ of what we just measured, which a sample of three neither excludes nor establishes —
+and §2.2b's ×1.281 was a real single observation, so the distribution plausibly has excursions far
+larger than this σ. What is now certain is the *location*: whatever run-to-run term exists is in the
+CPU stages, not in TRT, which rules out any explanation that depends on GPU variability.
+
+**Consequence for the protocol.** C9's "3 runs, mean ± std" is now met for the pose rows and the
+numbers are stable enough to quote, with the caveat that **FP16 wall-clock rows deserve a ±4 % band
+and FP32 ±0.5 %**. The energy rows are tighter than the latency rows (1.5 % and 0.8 % CV), because
+power averaging absorbs the CPU jitter that frame time exposes.
+
 ## Track B: Uni-Sign OpenASL pose-only
 
 ### Metric check (B1.3), no model run
