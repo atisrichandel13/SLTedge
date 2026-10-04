@@ -387,9 +387,9 @@ family of effects, and it was too simple.
 **And "the metrics swapped roles" was also too simple** — the pose track caught this and the
 correction matters. *Precision* and *sensitivity* are different things, and only one of them
 reverses. Comparing the two metrics within each effect, on identical clips and draws, **BLEU-4's
-interval is narrower in all four comparisons we have** — by roughly 26, 10, 21 and 17 percentage
-points, though none of those should be read to better than about ±5, because they are ratios of two
-bootstrap-noisy widths and inherit noise from both. The **sign** is what is stable, not the
+interval is narrower in all four comparisons we have** — by roughly 26 %, 10 %, 21 % and 17 %,
+though none of those should be read to better than about ±5 percentage points, because they are
+ratios of two bootstrap-noisy widths and inherit noise from both. The **sign** is what is stable, not the
 magnitudes: they cannot be ranked against each other. It is the
 tighter estimator in the effect it *fails* to resolve just as much as in the one it resolves.
 
