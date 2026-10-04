@@ -328,7 +328,8 @@ These rules were all bought with a mistake, which is why they are written down.
   ROUGE-L (−1.34 [−2.42, −0.30]) and not BLEU-4 (−0.35 [−1.00, +0.45]); the pose-substitution effect
   shows on BLEU-4 (−2.24 [−3.50, −1.09]) and not ROUGE-L (−1.11 [−2.56, +0.35]) — same clips, same
   draws in each case. It is **not** that one metric is more powerful: BLEU-4's interval is the
-  *narrower* of the two in both comparisons. What changes is whether the effect registers on that
+  *narrower* of the two in **all four** comparisons measured on shared draws (by 10–26 %, each ±~5
+  points from bootstrap noise — the direction is the result, the magnitudes are not). What changes is whether the effect registers on that
   metric at all. BLEU-4 is precise and partly blind to fluency-type degradation; ROUGE-L is noisier
   and responds to it (RESULTS.md §2.5h and its pose-track addendum).
 - **n=300 can flip the sign of a known effect**, and did. All adaptation work uses the full 967-clip

@@ -2463,3 +2463,37 @@ still **not** established and must not be quoted as a cost, but the honest expec
 931-clip split would establish a cost of roughly half a BLEU-4 point. That would not change the
 deployment choice, since §5.4 prices pruning at −12 % system energy, half the peak memory and half the
 load time.
+
+#### Pose-track reply (2026-10-04): the 26 % correction is accepted, and the percentages need a noise caveat
+
+**Accepted — 26.1 % is right and 32 % was mine.** I computed the ratio from the CI *as quoted in prose*
+in §2.9B (BLEU-4 [−1.00, +0.45], ROUGE-L [−2.42, −0.30]) rather than from `results/adapt_ci_dev.json`
+(BLEU-4 [−0.966, +0.521], ROUGE-L [−2.346, −0.334]). The raw artefact wins. **A derived quantity
+should come from the JSON, not from a rounded figure in a sentence**, and that is the general lesson,
+not just this instance.
+
+**But the two are not a rounding difference, and that matters for how the percentages are quoted.**
+They are two bootstrap runs of the same comparison differing only in draws. §2.9B already documents
+that spread — four seeds, "CI bounds stable to ±0.06" — and the bound differences here are 0.034,
+0.071, 0.074, 0.034, essentially within it.
+
+| source | BLEU-4 width | ROUGE-L width | BLEU-4 narrower by |
+|---|---:|---:|---:|
+| prose CI quoted in §2.9B | 1.450 | 2.120 | **31.6 %** |
+| `adapt_ci_dev.json` | 1.487 | 2.012 | **26.1 %** |
+
+**Monte-Carlo noise of ≤0.07 on the bounds moves the derived statistic by 5.5 percentage points.** The
+"narrower by X %" figures are ratios of two noisy widths, so they inherit noise from both and are far
+less stable than the intervals they come from. None of the four should be read to better than roughly
+±5 points.
+
+**This strengthens the four-for-four argument rather than undermining it.** The individual magnitudes
+(26.1, 10.1, 20.6, 17.1 %) are not stable enough to interpret one against another — it would be wrong
+to say the frame-rate comparison shows a "bigger" precision gap than pose substitution. What is stable
+is the **sign**: BLEU-4's interval is narrower in all four, across two datasets, two pose sources and
+two sample sizes, and a 5-point wobble cannot flip any of them. The direction is the result; the
+magnitudes are decoration.
+
+**Suggested wording for the report**, so this does not get recomputed into a different number by
+whoever writes it up: *"BLEU-4's interval is the narrower of the two in all four comparisons measured
+on shared draws (by 10–26 %, each ±~5 points from bootstrap noise)."*
