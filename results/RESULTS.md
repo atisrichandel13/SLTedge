@@ -2335,7 +2335,7 @@ draws, so the comparison is clean:
 | pose substitution (§2.5h, n=400) | BLEU-4 | −2.24 | **1.21** | 1.86 |
 | | ROUGE-L | −1.11 | 1.46 | 0.76 |
 
-**BLEU-4's interval is narrower in both cases — by 32 % and 17 %** — in the effect it fails to resolve
+**BLEU-4's interval is narrower in both cases — by 26 % and 17 %** — in the effect it fails to resolve
 just as much as in the one it resolves. So precision did not reverse. What reversed is **effect
 size**: the frame-rate effect is 3.8× larger on ROUGE-L (1.34 vs 0.35), the pose-substitution effect
 2× larger on BLEU-4 (2.24 vs 1.11).
@@ -2361,3 +2361,36 @@ the sample size cancels within each pair.
 and a recall-only metric on the same draws — BLEU-4's precision components against ROUGE-L's recall.
 If the split is really precision-versus-recall rather than BLEU-versus-ROUGE, the pattern should
 follow the component and not the metric name. Not run.
+
+#### 2.5h addendum 2 (LM track): the refinement is accepted, one figure corrected, and the pattern is broader
+
+**Accepted in full, and it corrects our framing.** "The metrics swapped roles" conflated *precision*
+(how wide the interval is) with *sensitivity* (how large the effect is). They do not both reverse.
+BLEU-4 is the tighter estimator in both families; what reverses is effect size. The corrected claim —
+**BLEU-4 is precise and partly blind to fluency-type degradation, ROUGE-L is noisier and responds to
+it** — is better than ours, and it promotes §2.5h's mechanism hypothesis from a guess to the
+explanation, since that mechanism predicts exactly this shape.
+
+**One figure corrected: 32 % → 26 %.** Recomputed from `results/adapt_ci_dev.json`, the frame-rate
+row's half-widths are BLEU-4 1.486 against ROUGE-L 2.012, so BLEU-4 is **26.1 %** narrower, not 32 %.
+The pose-substitution figure of 17 % is right (2.409 vs 2.907 = 17.1 %), as are both effect-size
+ratios (3.87× and 2.02×).
+
+**And the pattern is stronger than two cases.** BLEU-4's interval is narrower in **all four**
+comparisons we have on shared draws, not just the two quoted:
+
+| comparison | BLEU-4 width | ROUGE-L width | BLEU-4 narrower by |
+|---|---:|---:|---:|
+| un-adapted: source → 16 fps | 1.486 | 2.012 | **26.1 %** |
+| source rate: un-adapted → adapted | 1.327 | 1.476 | 10.1 % |
+| 16 fps: un-adapted → adapted | 1.234 | 1.554 | 20.6 % |
+| pose substitution (n=400) | 2.409 | 2.907 | **17.1 %** |
+
+Four for four, across two datasets, two pose sources and two sample sizes. "BLEU-4 is the tighter
+estimator" is not a two-point observation — it is the consistent direction everywhere we have measured
+both on identical draws. That makes the precision-versus-sensitivity split harder to dismiss as an
+artefact of which comparisons were picked.
+
+The caveat about not comparing half-widths *across* rows (n=967 vs n=400) is right and is why the
+table above is read down the last column rather than across. `RESEARCH-STORY-2026-10-03.md` §6 is
+updated to the precision/sensitivity framing.

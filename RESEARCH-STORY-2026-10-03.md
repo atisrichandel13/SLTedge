@@ -382,9 +382,20 @@ extractor's — comes out:
 Same clips, same paired bootstrap, same 2000 draws — and the metrics have swapped roles.
 
 **So the claim is not "ROUGE-L is more powerful than BLEU-4."** That was our reading when we had one
-family of effects, and it was too simple. The defensible claim is that **the two metrics have
-different sensitivity profiles, and which one can resolve an effect depends on what kind of effect it
-is.**
+family of effects, and it was too simple.
+
+**And "the metrics swapped roles" was also too simple** — the pose track caught this and the
+correction matters. *Precision* and *sensitivity* are different things, and only one of them
+reverses. Comparing the two metrics within each effect, on identical clips and draws, **BLEU-4's
+interval is narrower in all four comparisons we have** — by 26 %, 10 %, 21 % and 17 %. It is the
+tighter estimator in the effect it *fails* to resolve just as much as in the one it resolves.
+
+What reverses is **effect size**: the frame-rate effect is 3.9× larger measured in ROUGE-L, and the
+pose-substitution effect 2.0× larger measured in BLEU-4.
+
+So the defensible claim is: **BLEU-4 is the more precise estimator but is partly blind to
+fluency-type degradation; ROUGE-L is noisier but registers it.** Which metric resolves an effect
+depends on what kind of effect it is — not on which metric has the tighter intervals.
 
 Our working hypothesis for the mechanism, stated as a hypothesis because we have not tested it:
 frame-rate thinning and adaptation mostly change *fluency and structure* — the sentence stays about
