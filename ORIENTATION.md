@@ -129,7 +129,9 @@ The bug worth knowing: our crop and theirs define coordinates in different frame
 normalisation mismatch**. We found it by noticing the disagreement correlated 0.968 with the predicted
 ratio. `common/renorm_to_openasl.py` fixes it by exact arithmetic — body disagreement 0.1328 → 0.0055
 — and with it applied, our best configuration (18.52 BLEU-4) is indistinguishable from the ceiling
-(18.17).
+(18.17) **at n=30**. That last clause matters: at **n=400 the gap to the ceiling is established at
+−2.24 BLEU-4 [−3.50, −1.09]** (RESULTS.md §2.5h). The frame fix removed most of the gap, not all of
+it, and 30 clips were too few to see the remainder.
 
 ### 3.4 Language model — mT5-base, shrunk
 
@@ -322,9 +324,13 @@ These rules were all bought with a mistake, which is why they are written down.
 - **Paired bootstrap, one set of draws for every run.** Score every configuration on the *same*
   resample draws, so deltas and differences-of-deltas are mutually comparable. Subtracting two
   independently-bootstrapped CIs is both wrong and less sensitive.
-- **Effects under ~1 BLEU-4 at n≈1000 must be carried by ROUGE-L.** BLEU-4 simply cannot resolve them.
-  The frame-rate result is the demonstration: ROUGE-L −1.34 [−2.42, −0.30] against BLEU-4 −0.35
-  [−1.00, +0.45] on the same clips and the same draws.
+- **Report both metrics; either one can be blind to your effect.** The frame-rate effect shows on
+  ROUGE-L (−1.34 [−2.42, −0.30]) and not BLEU-4 (−0.35 [−1.00, +0.45]); the pose-substitution effect
+  shows on BLEU-4 (−2.24 [−3.50, −1.09]) and not ROUGE-L (−1.11 [−2.56, +0.35]) — same clips, same
+  draws in each case. It is **not** that one metric is more powerful: BLEU-4's interval is the
+  *narrower* of the two in both comparisons. What changes is whether the effect registers on that
+  metric at all. BLEU-4 is precise and partly blind to fluency-type degradation; ROUGE-L is noisier
+  and responds to it (RESULTS.md §2.5h and its pose-track addendum).
 - **n=300 can flip the sign of a known effect**, and did. All adaptation work uses the full 967-clip
   dev split.
 - **Run the no-shift control before any adaptation claim.** Our first adaptation recipe looked like it
