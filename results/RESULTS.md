@@ -2505,3 +2505,68 @@ magnitudes are decoration.
 **Suggested wording for the report**, so this does not get recomputed into a different number by
 whoever writes it up: *"BLEU-4's interval is the narrower of the two in all four comparisons measured
 on shared draws (by 10–26 %, each ±~5 points from bootstrap noise)."*
+
+### 2.5i Where the −2.24 BLEU-4 pose gap is NOT: keypoints agree closely (2026-10-04)
+
+`task1_rtmpose/10_pose_gap.py`. §2.5h established that substituting our keypoints for the authors'
+costs **−2.24 BLEU-4 [−3.50, −1.09]**. The obvious next move is to swap pose models. Before spending
+board time on that, this compares the two keypoint sets **directly** — we hold both for the same 400
+clips, so the diagnosis is free and needs no GPU.
+
+Both sets are in the OpenASL square-normalised frame (ours via `common/renorm_to_openasl.py`), so a
+coordinate difference is directly interpretable. Distances in normalised units, 1.0 = the square
+crop's side. Judged only where **both** sources score ≥0.3, since disagreement about a keypoint
+neither can see is not an extraction-quality difference. 227 clips had identical frame counts and
+could be compared point-for-point; 3.38 M keypoint pairs.
+
+| group | mean | median | p95 | within 0.01 | within 0.02 | within 0.05 |
+|---|---:|---:|---:|---:|---:|---:|
+| body | 0.0099 | 0.0050 | 0.0345 | 81.2 % | 91.7 % | 96.9 % |
+| left hand | 0.0122 | 0.0060 | 0.0340 | 73.7 % | 90.1 % | 96.7 % |
+| right hand | 0.0122 | 0.0058 | 0.0339 | 74.1 % | 90.1 % | 96.8 % |
+| face | 0.0047 | 0.0032 | 0.0074 | 98.1 % | 99.0 % | 99.4 % |
+| **consumed (69 kpts)** | **0.0098** | **0.0047** | **0.0273** | **81.4 %** | **92.7 %** | **97.5 %** |
+
+**Mean signed offset over the consumed keypoints: dx +0.0016, dy +0.0032, magnitude 0.0036.** Near
+zero, so **this is not a misaligned coordinate system** — §2.5d's frame fix did its job and no
+systematic framing error remains. What is left is per-keypoint scatter.
+
+**So a different pose model is unlikely to be the answer**, and that is the practical conclusion. Our
+keypoints already sit a median of **0.47 % of the frame** from the authors', with no bias, and C2
+established that their poses came from the *same* 256×192 RTMW/RTMPose family we are using. A
+replacement would have to beat an agreement that is already this close. Note also the ranking: **hands
+are the worst group and the face the best**, which matches §P4's finding that hand error is argmax
+instability in the pose head — unchanged by precision, and so not fixable by choosing a number format
+or, probably, a sibling model.
+
+**What this does not establish.** Close agreement in *mean* coordinate distance does not mean the
+residual is harmless. Hand p95 is 0.034 — on a 500 px square that is ~17 px, which is enough to change
+a handshape, and handshape is the signal. A small, hand-concentrated error is exactly the kind that
+could cost 2 BLEU-4 while looking negligible in this table. **The diagnosis here is where the gap is
+not, not where it is.**
+
+### A truncated-download bug, found by the same comparison
+
+One clip in the n=400 set, `N29DdjIj5rw-00:00:11.400-00:00:19.200`, holds **4 frames for a 7.8 s
+utterance** — its own `meta.json` records `n_frames=4`, so `data/openasl_fetch.py` produced a
+truncated clip and nothing checked it. A scan of all 931 clip metas for effective rate
+(`n_frames / duration_s`) finds **exactly two** below 15 fps:
+
+| clip | n_frames | duration | effective rate |
+|---|---:|---:|---:|
+| `N29DdjIj5rw-00:00:11.400-00:00:19.200` | 4 | 7.80 s | 0.51 fps |
+| `RT2ZoSSsP1Y-00:01:38.300-00:01:51.000` | 8 | 12.70 s | 0.63 fps |
+
+The first is in the n=400 evaluation; the second is not. Its effect is visible and instructive — our
+pipeline, fed 4 frames, predicts **"No."**, while the authors' poses for the same clip produce
+*"Keep everything fresh and alive, I often get bored easily, so that s w…"* against a reference of
+*"It keeps things fresh for me, I mean -- I get bored easily, that's why"*.
+
+**It does not explain the gap.** Removing it moves the deployable row 21.57 → 21.67 and the pose
+substitution gap **−2.24 → −2.19**, i.e. this artefact accounts for 0.05 of 2.24, about 2 %. The
+published figures are left as measured, with this noted.
+
+**The lesson is the same one as §5.5**, one layer up: `openasl_pose_fetch.py` had an unchecked
+truncation path and it never fired; `openasl_fetch.py` has one and it **did**, twice. An effective-rate
+assertion at fetch time (`n_frames / duration_s` within a sane band of the declared `fps`) is the
+one-line guard both needed.
