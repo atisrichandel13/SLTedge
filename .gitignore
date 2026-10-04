@@ -30,6 +30,13 @@ data/openasl_5clip_pose/
 # the 30-clip superset of the same released poses (25 MB of pkl), fetched the same way
 data/openasl_pose/
 results/*.pkl
+# ...and in SUBdirectories, which the line above does NOT match. That gap let 296 MB of n=400 pose
+# pkls (results/pkl_split_rtmw_fp16{,_raw}/) sit untracked-but-addable, one `git add -A results/`
+# away from the history. Pose pkls are regenerable -- from data/openasl_pose_fetch.py for the
+# authors' poses, or from task1_rtmpose/09_batch_clips.py for ours -- so they belong on disk and on
+# the shared Drive, never in git.
+results/**/*.pkl
+results/pkl_*/
 
 # ---- python / envs / editors ----
 __pycache__/
