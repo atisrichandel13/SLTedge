@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_n400_pruned_ceil_src.json",
+ "b": "results/eval_n400_pruned_ours_src.json",
+ "n_clips": 400,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 23.829372087491393,
+  "b": 21.440523023025136,
+  "delta": -2.3888490644662568,
+  "ci": [
+   -3.485147651718935,
+   -1.051459095034816
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0005
+ },
+ "rouge_l": {
+  "a": 42.8396075322326,
+  "b": 40.71640179827053,
+  "delta": -2.1232057339620667,
+  "ci": [
+   -3.464750490297852,
+   -0.776423605388083
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0
+ }
+}

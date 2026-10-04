@@ -393,9 +393,24 @@ tighter estimator in the effect it *fails* to resolve just as much as in the one
 What reverses is **effect size**: the frame-rate effect is 3.9× larger measured in ROUGE-L, and the
 pose-substitution effect 2.0× larger measured in BLEU-4.
 
-So the defensible claim is: **BLEU-4 is the more precise estimator but is partly blind to
-fluency-type degradation; ROUGE-L is noisier but registers it.** Which metric resolves an effect
-depends on what kind of effect it is — not on which metric has the tighter intervals.
+So BLEU-4 is the more precise estimator in every comparison we have. But the next part — *which*
+effect each metric can see — took one more correction, and the answer turned out not to be about the
+metrics at all.
+
+**It is an interaction with subsampling.** ROUGE-L establishes pose substitution perfectly well at
+source rate: **−2.12 [−3.46, −0.78]**. The divergence appears *only* at 24 fps. Going from source to
+24 fps attenuates the **ROUGE-L** response to pose substitution by **48 %** (−2.12 → −1.11) and the
+**BLEU-4** response by **6 %** (−2.39 → −2.24). Frame thinning selectively destroys the ROUGE-L signal
+of pose-extraction quality.
+
+**And that produces the most practically useful finding in this whole thread: 24 fps is free on
+accuracy but *not* free on measurement sensitivity.** The same subsampling that costs nothing on
+either metric halves our ability to detect pose-quality differences with ROUGE-L — and the accuracy
+numbers would never reveal it, because they are unchanged. **Anyone comparing pose front-ends on
+subsampled data is using a blunted instrument and has no way to tell from the scores.**
+
+That is a stronger and more checkable claim than anything about metric power, and it is the one we
+would lead a paper with.
 
 Our working hypothesis for the mechanism, stated as a hypothesis because we have not tested it:
 frame-rate thinning and adaptation mostly change *fluency and structure* — the sentence stays about

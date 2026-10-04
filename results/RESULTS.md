@@ -2394,3 +2394,72 @@ artefact of which comparisons were picked.
 The caveat about not comparing half-widths *across* rows (n=967 vs n=400) is right and is why the
 table above is read down the last column rather than across. `RESEARCH-STORY-2026-10-03.md` §6 is
 updated to the precision/sensitivity framing.
+
+> **SUPERSEDED by the next addendum, 2026-10-04.** The precision/sensitivity split below is
+> right about interval widths, but its reading of *which* effect each metric can see was built
+> on one of five cells. ROUGE-L establishes pose substitution fine at source rate; the
+> divergence is specific to 24 fps. See the following addendum.
+
+#### §2.5h addendum 2 (2026-10-04): the full five-comparison set, and a correction to my own addendum
+
+The pose track's own bootstrap chain finished all five comparisons. `results/ci_n400_*.json`, 400
+paired clips, 2000 resamples each.
+
+| comparison | metric | delta | 95 % CI | half-width | verdict |
+|---|---|---:|---|---:|---|
+| pose substitution @ **source** | BLEU-4 | −2.39 | [−3.49, −1.05] | 1.22 | **established** |
+| | ROUGE-L | **−2.12** | **[−3.46, −0.78]** | 1.34 | **established** |
+| pose substitution @ **24 fps** | BLEU-4 | −2.24 | [−3.50, −1.09] | 1.21 | **established** |
+| | ROUGE-L | −1.11 | [−2.56, +0.35] | 1.46 | not established |
+| pruning, our poses @ 24 fps | BLEU-4 | −0.51 | [−1.08, +0.05] | 0.57 | not established |
+| | ROUGE-L | −0.51 | [−1.16, +0.08] | 0.62 | not established |
+| 24 fps vs source, our poses | BLEU-4 | +0.13 | [−0.49, +0.74] | 0.61 | not established |
+| | ROUGE-L | +0.45 | [−0.46, +1.46] | 0.96 | not established |
+| 24 fps vs source, ceiling | BLEU-4 | −0.02 | [−0.66, +0.98] | 0.82 | not established |
+| | ROUGE-L | −0.57 | [−1.72, +0.44] | 1.08 | not established |
+
+**1. I have to correct my own previous addendum.** I wrote that "ROUGE-L is noisier and responds to
+[fluency-type degradation]" while BLEU-4 is "partly blind" to it, and framed pose substitution as the
+effect ROUGE-L cannot see. **At source rate ROUGE-L establishes pose substitution perfectly well**
+(−2.12 [−3.46, −0.78]). The metric divergence exists at **24 fps only**, so it is not a property of
+either metric.
+
+**2. What is actually happening is an interaction with subsampling.** Going from source rate to 24 fps:
+
+| | source | 24 fps | attenuation |
+|---|---:|---:|---:|
+| ROUGE-L response to pose substitution | −2.12 | −1.11 | **48 %** |
+| BLEU-4 response to pose substitution | −2.39 | −2.24 | 6 % |
+
+**Frame subsampling selectively destroys the ROUGE-L signal of pose-extraction quality and leaves the
+BLEU-4 signal nearly intact.** Both metrics agree the effect exists at source rate; thinning to 24 fps
+halves one of them.
+
+This is the more useful finding, and it has a practical edge: **24 fps is free on accuracy and not free
+on measurement sensitivity.** The same subsampling that costs nothing on either metric (rows 3 and 4
+above, both tight nulls) halves our ability to *detect* pose-quality differences with ROUGE-L. Anyone
+comparing pose front-ends on subsampled data is working with a blunted instrument, and would not know
+it from the accuracy numbers.
+
+*Mechanism, speculative and labelled as such:* ROUGE-L scores longest-common-subsequence recall, which
+depends on sequence ordering; thinning frames removes ordering detail that distinguishes one pose
+source from another, so the ROUGE-L contrast shrinks. Word-choice differences, which BLEU-4's n-gram
+precision keys on, survive thinning. Untested — the test named in the previous addendum (precision-only
+versus recall-only components on shared draws) would also discriminate this.
+
+**3. 24 fps is confirmed free at n=400 on our own keypoints, on both metrics**: +0.13 [−0.49, +0.74]
+BLEU-4 and +0.45 [−0.46, +1.46] ROUGE-L. Tight nulls on the deployed pose source, which is the
+strongest form of this result we have.
+
+**4. The n=100 refusal was vindicated.** §2.5g recorded ROUGE-L −1.30 [−2.71, −0.00] for 24 fps vs
+source on the ceiling, flagged as sign-established by the script, and declined to promote it on the
+grounds that n=976 disagreed and an upper bound of −0.00 is a threshold artefact. At n=400 it is
+**−0.57 [−1.72, +0.44], not established.** Refusing a marginal result because a better-powered
+measurement disagreed was the right call, and this is the check on it.
+
+**5. Pruning is closer to established than it looks.** Both metrics give −0.51 with |delta|/half-width
+of 0.90 and 0.82 — consistent point estimates on two metrics, intervals just straddling zero. It is
+still **not** established and must not be quoted as a cost, but the honest expectation is that the full
+931-clip split would establish a cost of roughly half a BLEU-4 point. That would not change the
+deployment choice, since §5.4 prices pruning at −12 % system energy, half the peak memory and half the
+load time.
