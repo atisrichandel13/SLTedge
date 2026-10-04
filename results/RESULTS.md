@@ -2314,3 +2314,50 @@ field reports sub-1-point BLEU-4 differences at sample sizes where BLEU-4 cannot
 The reversal adds that **reporting a single metric is unsafe in either direction**, because the metric
 chosen may be the one blind to the effect under test. A paper on this now needs both metrics across
 both families of effect.
+
+#### Pose-track addendum to §2.5h (2026-10-03): reproduced, and the reversal is effect size rather than power
+
+**Both figures reproduce exactly.** Independent run, `unisign/bootstrap_ci.py`, same 2000 resamples,
+400 paired clips aligned by name: BLEU-4 **−2.24 [−3.50, −1.09]** established, ROUGE-L **−1.11
+[−2.56, +0.35]** not established. Raw: `results/ci_n400_pose_sub_fps24.json`. The established
+pose-substitution cost stands, and so does the ~2.2 BLEU-4 correction to the frontier's absolute
+accuracy column.
+
+**The scoping above is right** — §2.5h is careful that the original sub-1-point claim survives. What
+this addendum refines is the phrase "the metrics swapped roles", which attributes the reversal to
+power when the data say otherwise. Comparing the two metrics *within* each effect — same clips, same
+draws, so the comparison is clean:
+
+| effect | metric | delta | CI half-width | \|delta\| / half-width |
+|---|---|---:|---:|---:|
+| frame rate 30→16 (§2.9B, n=967) | BLEU-4 | −0.35 | **0.72** | 0.48 |
+| | ROUGE-L | −1.34 | 1.06 | 1.26 |
+| pose substitution (§2.5h, n=400) | BLEU-4 | −2.24 | **1.21** | 1.86 |
+| | ROUGE-L | −1.11 | 1.46 | 0.76 |
+
+**BLEU-4's interval is narrower in both cases — by 32 % and 17 %** — in the effect it fails to resolve
+just as much as in the one it resolves. So precision did not reverse. What reversed is **effect
+size**: the frame-rate effect is 3.8× larger on ROUGE-L (1.34 vs 0.35), the pose-substitution effect
+2× larger on BLEU-4 (2.24 vs 1.11).
+
+**"BLEU-4 is underpowered" conflates two separable things**, and separating them strengthens the claim:
+
+* **Precision** — how wide the interval is. BLEU-4 wins both times, so it is the tighter estimator.
+* **Sensitivity** — whether the effect registers on the metric at all. This is what varies by effect,
+  and it is what decides whether anything is established.
+
+So the defensible statement is not that one metric has more power, but that **BLEU-4 is precise and
+partly blind to fluency-type degradation, while ROUGE-L is noisier and responds to it.** That promotes
+§2.5h's mechanism hypothesis from a guess to the *explanation* of the pattern, because it predicts
+exactly this shape: an effect that changes which words appear lands on n-gram precision, an effect
+that leaves word choice alone and degrades ordering lands on longest-common-subsequence recall.
+
+**Caveat on reading the table.** The two effects are at different n (967 and 400), so the half-widths
+are **not** comparable *across* rows — only BLEU-4 against ROUGE-L *within* a row, which is the same
+clips and the same draws. The quantity that does compare across rows is |delta| / half-width, since
+the sample size cancels within each pair.
+
+**What would test the mechanism** instead of restating it: score both effects with a precision-only
+and a recall-only metric on the same draws — BLEU-4's precision components against ROUGE-L's recall.
+If the split is really precision-versus-recall rather than BLEU-versus-ROUGE, the pattern should
+follow the component and not the metric name. Not run.
