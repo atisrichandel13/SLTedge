@@ -2391,6 +2391,14 @@ estimator" is not a two-point observation — it is the consistent direction eve
 both on identical draws. That makes the precision-versus-sensitivity split harder to dismiss as an
 artefact of which comparisons were picked.
 
+> **Precision caveat, added after the pose track's noise analysis.** The last column is a ratio of two
+> bootstrap-noisy widths and inherits noise from both. Bound noise of ≤0.07 — the spread §2.9B
+> documents between runs differing only in draws — moves such a figure by about 5 percentage points,
+> which is exactly how 31.6 % and 26.1 % arose for the same comparison. **None of the four should be
+> read to better than ~±5 points, and they must not be ranked against each other.** What is stable is
+> the sign, in all four; a 5-point wobble cannot flip any of them. The one-decimal figures above are
+> retained only because they are what the artefacts contain.
+
 The caveat about not comparing half-widths *across* rows (n=967 vs n=400) is right and is why the
 table above is read down the last column rather than across. `RESEARCH-STORY-2026-10-03.md` §6 is
 updated to the precision/sensitivity framing.
