@@ -2263,3 +2263,54 @@ than the open residual suggested.
 > ~3.1 % at 1σ. Attributing the tighter figure to the addendum that argued the looser one would make
 > the estimate look like it had been corroborated rather than corrected, which is the opposite of what
 > happened. Nothing else in the paragraph changes.
+
+### 2.5h LM-track bootstrap on the n=400 board evals: the pose term is established, and the metrics swap roles
+
+Computed by the LM track on the five raw eval JSONs pushed with §2.5's n=400 results, independently of
+the pose track's own bootstraps, which were still running. `unisign/bootstrap_ci.py`, 400 paired clips
+aligned by clip name, 2000 resamples.
+
+**Pose substitution (authors' keypoints → ours), pruned checkpoint, 24 fps, beam 4, cap 64:**
+
+| metric | ceiling | ours | delta | 95 % CI | verdict |
+|---|---:|---:|---:|---|---|
+| **BLEU-4** | 23.81 | 21.57 | **−2.24** | **[−3.50, −1.09]** | **sign established** |
+| ROUGE-L | 42.27 | 41.17 | −1.11 | [−2.56, +0.35] | not established |
+
+**1. The pose-substitution cost is now established, after moving against us three times.**
+
+| n | delta BLEU-4 | 95 % CI | verdict |
+|---:|---:|---|---|
+| 30 (§2.5c) | −0.35 | [−4.23, +3.17] | not established — and we read it as "costs nothing detectable" |
+| 100 (§2.5g) | −1.89 | [−4.26, +0.27] | not established, but only just |
+| **400** | **−2.24** | **[−3.50, −1.09]** | **established** |
+
+The point estimate moved monotonically away from zero as n grew, which is the signature of a real
+effect that small samples were too noisy to see — not of a fluctuation. **The frontier's absolute
+accuracy column sits about 2.2 BLEU-4 above what the shipped system delivers**, and `frontier.py`,
+`plot_frontier.py` and the figure caption now say so with the established figure rather than a hedge.
+Relative ordering across the nine cells is untouched: every cell uses the same poses.
+
+**2. BLEU-4 establishes this effect and ROUGE-L does not — the reverse of L15/L16's pattern.**
+
+This is the more interesting half. In the adaptation work, on identical clips with identical draws,
+**ROUGE-L established both effects and BLEU-4 established neither.** Here, on identical clips with
+identical draws, **BLEU-4 establishes and ROUGE-L does not.** The metrics have swapped roles on a
+different family of effect.
+
+So "ROUGE-L is more powerful than BLEU-4" — our reading when we had only the adaptation results — is
+**too simple and is withdrawn**. The defensible statement is that the two metrics have different
+sensitivity profiles, and which one resolves an effect depends on what kind of effect it is.
+
+**Hypothesis for the mechanism, labelled as a hypothesis because it is untested.** Frame-rate thinning
+and adaptation change fluency and structure — the sentence keeps its length and broad content and gets
+better or worse at expressing it — which ROUGE-L's longest-common-subsequence recall tracks and
+BLEU-4's n-gram precision averages away. Pose substitution instead changes *which content words
+appear*, since different keypoints yield different nouns and names, and that is what n-gram precision
+is sharp about. Testable by classifying the edits between prediction pairs in each family; not done.
+
+**What this does to the publishable claim.** It strengthens it. The original observation — that the
+field reports sub-1-point BLEU-4 differences at sample sizes where BLEU-4 cannot resolve them — stands.
+The reversal adds that **reporting a single metric is unsafe in either direction**, because the metric
+chosen may be the one blind to the effect under test. A paper on this now needs both metrics across
+both families of effect.

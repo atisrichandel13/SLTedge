@@ -156,9 +156,8 @@ paras = [
     "but not equivalent to a real low-rate camera. All cells carry a -0.03 BLEU-4 test-set "
     "vocabulary leak, uniform across cells and so unable to reorder them.",
     "Accuracy is scored on the AUTHORS' released keypoints. The deployed system uses our own RTMW "
-    "FP16 extractor; on a common 100-clip set that substitution costs -1.89 BLEU-4 [-4.26, +0.27] "
-    "at 24 fps -- not established, but only just, so our extractor plausibly costs ~2 points. The "
-    "deployed config itself now measures 22.99 BLEU-4 / 43.43 ROUGE-L on the board. Every cell "
+    "FP16 extractor, and at n=400 that substitution is an ESTABLISHED -2.24 BLEU-4 [-3.50, -1.09] "
+    "at 24 fps -- so this axis sits ~2.2 points ABOVE what the shipped system delivers. Every cell "
     "here shares the same poses, so the relative ordering -- the deliverable -- is unaffected.",
 ]
 # Wrap to the figure width in characters, or the caveats get clipped off the right edge.

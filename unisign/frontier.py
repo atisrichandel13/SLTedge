@@ -6,13 +6,15 @@ IMPORTANT - what kind of number each column is:
   * ACCURACY  : measured by us, n=976 OpenASL test clips, pruned FP32 checkpoint,
                 max_new_tokens 64, batch 8. See results/RESULTS.md L13.
                 *** ON THE AUTHORS' RELEASED KEYPOINTS, NOT OUR EXTRACTOR'S. *** The deployed
-                system feeds RTMW FP16 poses from our own pipeline. Measured on a common 100-clip
-                set (RESULTS.md 2.5g), substituting our poses costs -1.89 BLEU-4 [-4.26, +0.27]
-                at 24 fps and -2.62 [-5.38, +0.35] at source. Not established, but only just, and
-                the honest reading is that our extractor plausibly costs ~2 BLEU-4. An earlier
-                version of this note quoted -0.35 [-4.23, +3.17] from n=30 and called the cost
-                undetectable; that was reading a near-zero point estimate inside a +-4 interval
-                as evidence of no effect, and n=100 moved it against us.
+                system feeds RTMW FP16 poses from our own pipeline, and at n=400 that substitution
+                is an ESTABLISHED cost of -2.24 BLEU-4 [-3.50, -1.09] at 24 fps (RESULTS.md 2.5h).
+                So the absolute accuracy column below sits about 2.2 BLEU-4 ABOVE what the shipped
+                system delivers. The term grew as n grew -- -0.35 [-4.23, +3.17] at n=30,
+                -1.89 [-4.26, +0.27] at n=100, -2.24 [-3.50, -1.09] at n=400 -- and an earlier
+                version of this note read the n=30 figure as "costs nothing detectable", which was
+                treating a near-zero point estimate inside a +-4 interval as evidence of no effect.
+                ROUGE-L does NOT establish the same effect (-1.11 [-2.56, +0.35]), the reverse of
+                the metric-power pattern we found in the adaptation work.
                 The deployed config is now MEASURED rather than composed: 22.99 BLEU-4 /
                 43.43 ROUGE-L (board poses, pruned ckpt, 24 fps, beam 4, n=100).
                 Pruning does not add to it: -0.44 [-1.87, +0.94] on our keypoints, -0.28

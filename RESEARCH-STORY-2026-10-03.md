@@ -358,9 +358,9 @@ two independent intervals, because clip difficulty cancels.
 For the 3×3 grid we went further: **one set of resample draws scores every cell**, so cells are
 comparable with each other, not just each against the reference.
 
-### The finding we think is genuinely publishable: BLEU-4 is underpowered
+### The finding we think is genuinely publishable — and a reversal that makes it better
 
-Here is the sharpest result in the project.
+Here is the sharpest result in the project, in the form we first found it.
 
 We measured the same effects with BLEU-4 and ROUGE-L, on **identical clips, with identical resample
 draws**. For the adaptation experiments:
@@ -370,10 +370,36 @@ draws**. For the adaptation experiments:
 
 At n=300, BLEU-4 even **flipped the sign** of an effect we could confirm with more data.
 
+**Then on 2026-10-03 we found the reverse, and it is the more interesting result.** On the n=400
+board evaluation, the *pose-substitution* effect — swapping the authors' keypoints for our own
+extractor's — comes out:
+
+| metric | delta | 95 % CI | verdict |
+|---|---:|---|---|
+| **BLEU-4** | **−2.24** | **[−3.50, −1.09]** | **established** |
+| ROUGE-L | −1.11 | [−2.56, +0.35] | **not** established |
+
+Same clips, same paired bootstrap, same 2000 draws — and the metrics have swapped roles.
+
+**So the claim is not "ROUGE-L is more powerful than BLEU-4."** That was our reading when we had one
+family of effects, and it was too simple. The defensible claim is that **the two metrics have
+different sensitivity profiles, and which one can resolve an effect depends on what kind of effect it
+is.**
+
+Our working hypothesis for the mechanism, stated as a hypothesis because we have not tested it:
+frame-rate thinning and adaptation mostly change *fluency and structure* — the sentence stays about
+the same length and says about the same thing, less well — which ROUGE-L's longest-common-subsequence
+recall picks up and BLEU-4's n-gram precision smears out. Pose substitution instead changes *which
+content words appear*, because different keypoints produce different nouns and names, and that is
+precisely what n-gram precision is sharp about.
+
 **Why this matters beyond us.** The sign-language translation literature routinely reports
-sub-1-point BLEU-4 differences as findings, at exactly these sample sizes. If BLEU-4 cannot resolve
-sub-1-point effects at n≈1000, that is a checkable claim about a whole subfield's evaluation
-practice. This is the piece we would build a paper around — not the compression study.
+sub-1-point BLEU-4 differences as findings, at exactly these sample sizes. The original observation —
+that BLEU-4 cannot resolve sub-1-point effects at n≈1000 — is a checkable claim about a subfield's
+evaluation practice. The reversal sharpens it rather than weakening it: **reporting a single metric
+is unsafe in either direction**, because the metric you happened to pick may be the one blind to your
+effect. This is still the piece we would build a paper around, and it now needs both metrics on both
+families of effect to be the paper.
 
 ### "Not measured" beats a plausible number
 
