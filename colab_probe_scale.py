@@ -92,6 +92,23 @@ for p in (CKPT, MT5, POSES):
     if not os.path.exists(p):
         sys.exit(f"[probe] missing {p} -- run colab_setup.py first")
 
+# Refuse to run twice. A `pkill` that silently misses leaves the old run's children alive, and the
+# restart then races them over the same output paths -- this happened on 2026-10-05 with two
+# bootstrap_ci processes writing one ci_n500.json, and earlier in the project with five trainers on
+# one GPU. The lock holds a pid; a lock whose pid is gone is stale and reclaimed.
+LOCK = "/content/probe.lock"
+if os.path.exists(LOCK):
+    try:
+        old = int(open(LOCK).read().strip())
+        os.kill(old, 0)                       # raises unless that pid is alive
+        sys.exit(f"[probe] ABORT: already running as pid {old}. Stop it first:\n"
+                 f"    !kill {old}; pkill -f unisign.bootstrap_ci; pkill -f unisign.train_adapt")
+    except (ValueError, ProcessLookupError, PermissionError):
+        print(f"[probe] stale lock from a dead pid, reclaiming {LOCK}")
+open(LOCK, "w").write(str(os.getpid()))
+import atexit
+atexit.register(lambda: os.path.exists(LOCK) and os.remove(LOCK))
+
 
 def run(cmd, what):
     print(f"\n[probe] {what}", flush=True)
@@ -138,16 +155,37 @@ def evaluate(tag, ckpt_fn):
 # imported from a different runtime.
 base = evaluate("unadapt_fps16", lambda: CKPT)
 
+# --- phase 1: all GPU work, serially ------------------------------------------------------------
+# Training and eval need the GPU and must not overlap -- two CUDA processes on one device is how
+# this project once ended up with five trainers fighting over a T4.
 rows = []
 for n in SIZES:
     # The eval JSON is the skip key: a recycled runtime that lost /content will not retrain a rung
     # it has already scored, because train() is only reached through the lambda.
     ev = evaluate(f"adapt_fps16_n{n}", lambda n=n: train(n))
-    ci = f"{OUT}/ci_n{n}.json"
-    if not os.path.exists(ci):
-        run(f"{P} -u -m unisign.bootstrap_ci {base} {ev} --out {ci} >> {OUT}/probe.log 2>&1",
-            f"bootstrap n={n}")
-    rows.append((n, ev, ci))
+    rows.append((n, ev, f"{OUT}/ci_n{n}.json"))
+
+# --- phase 2: all bootstraps, in parallel ---------------------------------------------------------
+# Deliberately after phase 1 rather than interleaved. bootstrap_ci is pure-Python ROUGE-L over 967
+# clips x 1000 resamples -- CPU-bound and minutes long -- so interleaving leaves the GPU idle waiting
+# on it. The rungs are independent and share no state but the baseline file, which is read-only here.
+todo = [(n, ev, ci) for n, ev, ci in rows if not os.path.exists(ci)]
+if todo:
+    import concurrent.futures as cf
+    workers = max(1, min(len(todo), (os.cpu_count() or 2)))
+    print(f"\n[probe] {len(todo)} bootstrap(s) over {workers} worker(s)", flush=True)
+
+    def boot(job):
+        n, ev, ci = job
+        # Each writes its own log: concurrent appends to one file interleave into nonsense.
+        return subprocess.run(f"{P} -u -m unisign.bootstrap_ci {base} {ev} --out {ci} "
+                              f"> {OUT}/ci_n{n}.log 2>&1", shell=True).returncode, n
+
+    with cf.ThreadPoolExecutor(workers) as pool:
+        for rc, n in pool.map(boot, todo):
+            if rc != 0:
+                sys.exit(f"[probe] FAILED: bootstrap n={n} (see {OUT}/ci_n{n}.log)")
+            print(f"[probe] bootstrap n={n} done", flush=True)
 
 # --- the curve ----------------------------------------------------------------------------------
 print("\n[probe] SCALING CURVE -- adaptation gain vs training-set size")
