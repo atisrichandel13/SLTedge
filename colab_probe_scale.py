@@ -33,8 +33,15 @@ L15.3's headline, which nothing has done yet.
 
 WHAT GOES TO DRIVE, AND WHAT DELIBERATELY DOES NOT
 Colab loses /content when the runtime is recycled, so anything expensive to recreate goes to Drive.
-That is: last.pt (the 5.35 M trainable params plus optimizer state, for mid-epoch resume), the eval
-JSONs, the CIs, the logs and the curve. All small.
+Here that is ONLY the eval JSONs, the CIs and the curve -- about 1 MB for the whole ladder. They are
+the results; everything else is a means of producing them.
+
+last.pt does NOT, despite being "only" the trainable params: with optimizer and scheduler state it
+is 70 MB per rung, 350 MB across the ladder, and this quota was exceeded mid-run on 2026-10-05 with
+two rungs' worth written. It buys mid-epoch resume, which is worth little here because the rungs are
+individually cheap -- the largest is ~15 minutes and the smallest under a minute. Trading 350 MB of a
+full quota for that is a bad deal, and a failed Drive write aborts the run outright, which is strictly
+worse than retraining a rung.
 
 `adapted_full.pth` does NOT. It is the FULL state dict at ~570 MB, not the trainable slice -- an
 earlier draft of this file claimed otherwise and would have put ~2.9 GB on Drive across the ladder,
@@ -93,12 +100,14 @@ def run(cmd, what):
 
 
 FULL = "/content/full"      # local: the 570 MB checkpoints, deliberately not on Drive
+WORK = "/content/work"      # local: per-rung out-dir (last.pt, 70 MB, and the training log)
 os.makedirs(FULL, exist_ok=True)
+os.makedirs(WORK, exist_ok=True)
 
 
 def train(n):
     """Train rung n. Returns the path to its full checkpoint, on LOCAL disk."""
-    d, full = f"{OUT}/fps16_n{n}", f"{FULL}/fps16_n{n}.pth"
+    d, full = f"{WORK}/fps16_n{n}", f"{FULL}/fps16_n{n}.pth"
     if os.path.exists(full):
         print(f"[probe] n={n}: full checkpoint present locally, skipping training")
         return full
