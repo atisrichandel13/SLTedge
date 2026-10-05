@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_hybrid_theirs_m.json",
+ "b": "results/eval_hybrid_theirs_ourhands.json",
+ "n_clips": 227,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 23.06814088619707,
+  "b": 21.47140273337869,
+  "delta": -1.5967381528183822,
+  "ci": [
+   -2.7813649472223734,
+   -0.5726869490741616
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0015
+ },
+ "rouge_l": {
+  "a": 42.58367163915145,
+  "b": 41.851747406275905,
+  "delta": -0.7319242328755422,
+  "ci": [
+   -2.1548508947997136,
+   0.905568942488225
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.156
+ }
+}

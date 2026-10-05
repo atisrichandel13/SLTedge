@@ -2570,3 +2570,103 @@ published figures are left as measured, with this noted.
 truncation path and it never fired; `openasl_fetch.py` has one and it **did**, twice. An effective-rate
 assertion at fetch time (`n_frames / duration_s` within a sane band of the declared `fps`) is the
 one-line guard both needed.
+
+### 2.5j Hand swap: the pose gap is not localised to the hands (2026-10-04)
+
+`jetson/p12_hybrid_hands.sh`, `task1_rtmpose/11_make_hybrid.py`, raw `results/eval_hybrid_*.json`,
+CIs `results/ci_hyb_*.json`. §2.5i showed our keypoints agree with the authors' to a median of 0.47 %
+of the frame with no systematic offset, but that hands are the worst group and the face the best.
+Since handshape is the signal in sign language, a hand-only error was the leading hypothesis for
+§2.5h's −2.24 BLEU-4. This tests it directly by exchanging **only** COCO-WholeBody indices 91–132
+between the two sources, keypoints and scores together, frame for frame.
+
+One matched 227-clip set for all four rows — the clips where both sources have identical frame counts.
+Pruned checkpoint, 24 fps, beam 4, cap 64, batch 1.
+
+| row | keypoints | BLEU-4 | ROUGE-L |
+|---|---|---:|---:|
+| `theirs_m` | authors' (ceiling) | 23.07 | 42.58 |
+| `ours_theirhands` | our body+face, **their hands** | 21.67 | 42.09 |
+| `theirs_ourhands` | their body+face, **our hands** | 21.47 | 41.85 |
+| `ours_m` | ours (baseline) | 21.31 | 41.28 |
+
+Paired bootstrap, 2000 resamples, same 227 clips:
+
+| comparison | BLEU-4 | 95 % CI | verdict |
+|---|---:|---|---|
+| total gap (theirs → ours) | −1.75 | [−3.45, −0.36] | established |
+| **degrade hands only** | **−1.60** | **[−2.78, −0.57]** | established |
+| **degrade body+face only** | **−1.40** | **[−2.91, −0.06]** | established, *marginally* |
+| **repair hands only** (ours → ours+their hands) | **+0.35** | **[−0.69, +1.61]** | **not established** |
+
+**1. Both groups carry the damage, and the effect is strongly sub-additive.** Degrading hands alone
+costs 1.60 and body+face alone costs 1.40, but degrading **both** costs only 1.75. The two individual
+effects sum to 3.00 against a combined 1.75, so each group alone already accounts for most of what
+both together cost. That is the signature of a degradation the model can absorb up to a point and then
+not — not of one group carrying the signal.
+
+**2. So repairing the hands is not the fix.** Giving our pipeline the authors' hands recovers
+**+0.35 [−0.69, +1.61]**, which is **not established** and is at most a fifth of the gap. **The
+hand-only hypothesis is rejected as the explanation**, and with it the case for choosing a pose model
+on hand accuracy specifically. A model swap aimed at hands would be board time spent on ~20 % of the
+problem, at best.
+
+**3. The body+face row is marginal and is not quoted as a clean result.** Its upper bound is −0.06.
+Per §2.5g's rule — a bound that rounds to zero is a threshold artefact — it is recorded as
+*marginally* established and nothing is built on its exact value. The sub-additivity argument does not
+depend on it: it holds on the point estimates and on the hands row alone, which is comfortably
+established.
+
+**4. ROUGE-L establishes none of the four.** All four ROUGE-L intervals include zero, at n=227. This is
+consistent with the §2.5h addendum's finding that pose-source effects register on BLEU-4 and not
+ROUGE-L — and note it is another instance of the two metrics disagreeing about the same data, so
+reporting one alone would have given the opposite impression here too.
+
+**What this says about where the gap is.** Combined with §2.5i, the picture is a **diffuse,
+distribution-wide difference** rather than a localised failure: coordinates agree closely everywhere,
+no group is the culprit, and damage saturates. That is what a *distribution shift* looks like — the
+model was trained on the authors' keypoints and never saw our extractor's noise — and it points at
+adaptation rather than at a better pose model.
+
+### 2.9D / J6: pose energy across the crop range — the ~7 % bias is really ~3 % (2026-10-04)
+
+`jetson/j6_crop_range.sh`, raw `results/j6_crop/`. Every pose energy number in this document comes
+from one clip whose 644×720 crop sits at the **83.4th percentile** of crop area across the 931-clip
+split. `unisign/frontier.py` flags that as a **~7 % pessimistic** bias on the absolute energy column
+and it is the last caveat on that axis. Five clips spanning **50,660 → 766,080 px (15.1×)**, three
+*separate processes* each per §5.6's protocol, FP16 engine, 15 W.
+
+| crop area | wall ms/frame | TRT ms | CPU (imread+pre) ms | avg W | mJ/frame |
+|---:|---:|---:|---:|---:|---:|
+| 50,660 | 17.01 ± 0.06 | 9.82 ± 0.04 | 5.99 ± 0.05 | 5.317 | **105.7 ± 1.2** |
+| 351,360 | 25.32 ± 0.82 | 13.66 ± 0.09 | 10.20 ± 0.71 | 4.879 | 133.0 ± 4.5 |
+| 394,560 | 25.07 ± 0.96 | 13.65 ± 0.02 | 9.95 ± 0.89 | 4.893 | 132.1 ± 2.4 |
+| 439,200 | 25.84 ± 0.91 | 13.71 ± 0.11 | 10.63 ± 0.81 | 4.869 | 134.6 ± 2.9 |
+| 766,080 | 27.41 ± 1.03 | 13.84 ± 0.09 | 12.10 ± 0.87 | 4.848 | **141.9 ± 4.2** |
+
+**15.1× more crop area costs only 1.34× the energy — the cost is 85 % fixed.** Linear fit:
+**mJ/frame = 109.7 + 49.5 per Mpx**.
+
+| clip | area | predicted mJ/frame | vs the measured clip |
+|---|---:|---:|---|
+| the measured clip (83.4th pct) | 463,680 | 132.6 | — |
+| **median clip** | 394,560 | 129.2 | **−2.6 %** |
+| p10 clip | 184,116 | 118.8 | −10.4 % |
+
+**So the caveat tightens from ~7 % to ~2.6 %**, and the old figure was an overestimate by about 3×.
+The ~7 % came from attributing all ~11.1 ms of per-frame CPU time to area scaling; measured, only
+about 4.5 ms of it does — CPU stages run 5.99 ms at the smallest crop and 12.10 at the largest, so
+roughly 6 ms varies across a 15× area range and the rest is fixed. **At ~2.6 % this is no longer the
+dominant uncertainty on the absolute energy axis** — it is now the same order as the ±3 % run-to-run
+term L16 addendum 7 settled on, and smaller than the composition's open beam-width error.
+
+**TRT is flat above ~350k px, as it must be** (13.65–13.84 ms at a fixed 256×192 input), which is a
+useful internal check: the engine does not see the crop, only the resize of it. The one departure is
+the smallest clip at **9.82 ms**, 28 % below the others at the same input size. That is not explained
+here and should not be read as an area effect in the engine; the likeliest candidates are DVFS
+(that run also drew the most power, 5.317 W, with the GPU busier relative to a shorter CPU stage) or
+clip-specific decode behaviour. Flagged, not resolved.
+
+**Small clips are genuinely cheaper** — the p10 clip is 10.4 % below the measured one — so a
+deployment dominated by tight crops would do better than our table says. But the median correction is
+small, and the relative orderings the frontier is built on were never affected by this at all.

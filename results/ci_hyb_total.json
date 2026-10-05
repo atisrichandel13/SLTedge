@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_hybrid_theirs_m.json",
+ "b": "results/eval_hybrid_ours_m.json",
+ "n_clips": 227,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 23.06814088619707,
+  "b": 21.314824112636046,
+  "delta": -1.7533167735610249,
+  "ci": [
+   -3.451956038395583,
+   -0.36104683377280317
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.005
+ },
+ "rouge_l": {
+  "a": 42.58367163915145,
+  "b": 41.28112720818832,
+  "delta": -1.302544430963124,
+  "ci": [
+   -3.0074182634251705,
+   0.5030987129436987
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.075
+ }
+}
