@@ -2788,6 +2788,19 @@ Left clean: **0** `frames/` directories, **0** `.pkl.part` files, board back to 
 directories and their `meta.json` stay — the extractor needs the meta and `p10_split.sh` counts the
 dirs — but every JPEG is gone, per the shared-board rule.
 
+**Both normalisations were pulled to the pose-track Mac on 2026-10-05 at 22:08–22:11 UTC**, so the
+board is no longer the only copy: 931/931 pkls in each of `results/pkl_split_rtmw_fp16{,_raw}` there,
+326 MB and 327 MB. Until that pull, 57.5 min of extraction existed solely on shared scratch. Worth
+recording for anyone checking the transfer logs: the two rsyncs report **byte-identical** totals
+(186,048,179 received, 339,780,084 total), which is not a duplicated copy — the same clip pickles to
+the same 253,774 bytes in both directories because the arrays have the same shape and dtype, while the
+md5s differ, as two different normalisations of the same keypoints must. The directories are
+`.gitignore`d (`:45`), so they live on disk and the Drive rather than in git, and are invisible to the
+LM track.
+
+The board copy is **not deleted**. It is 680 MB of pkls plus 560 MB of reference poses on a shared
+board, and clearing it is a one-way door against 57.5 min of board time, so it waits on Tushar.
+
 The reference set matters as much as ours: the ceiling row must be scored on *our* exact clip set, or
 it repeats §2.5c's error of quoting a ceiling at n=40 against our rows at n=30. It went 400 → 931 in
 the same run.
