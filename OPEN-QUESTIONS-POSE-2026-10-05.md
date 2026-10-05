@@ -101,7 +101,14 @@ board time at all before the report**, given the residual is ~2σ against the ru
 §5.6 already instruments per-stage energy? My inclination is to leave it and have the report say the
 residual is unexplained at ~2σ.
 
-### Q6 — the 286 MB of tracked pose pkls
+### Q6 — the 286 MB of tracked pose pkls  —  **DEFERRED to after the project (Tushar, 2026-10-05)**
+
+> Not to be actioned now. The new ignore rules stop it growing — `results/**/*.pkl`,
+> `results/pkl_*/`, `data/clips_*/**/frames/` — so the 286 MB is capped where it is. The history
+> rewrite happens after submission, when breaking a clone costs nobody a working tree. **No answer
+> needed from the LM track; nothing is blocked on it.**
+
+~~### Q6 (deferred) — the 286 MB of tracked pose pkls~~
 
 `data/openasl_train_pose_smoke/` (300 files, 239 MB) and four `results/pkl_30clip_*` dirs are
 **tracked in git**, so every clone pays for them. New ignore rules stop it growing, but removing these
