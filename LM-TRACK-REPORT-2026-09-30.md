@@ -299,13 +299,27 @@ the deliverable. But these joules are not a typical clip's:
 1. **~6 % low.** The 3.16 J the composition misses. ~~Attributed to the §5.4 contention.~~
    **CORRECTED by the pose track 2026-09-30:** their M1 run measured *no* contention (25.10 ms/frame
    end-to-end vs 25.03 standalone), because the implementation is sequential — all frames, then the
-   LM — so the stages never overlap. Likelier: the convert step (25.7 ms, unmodelled here), the idle
-   floor during the 64 s LM load, or warm-up. Untested.
-2. **~7 % high for a median clip.** The pose energy rate came from one clip whose crop is at the
-   **83rd percentile** of crop area across the 931-clip split. Pose cost is ~13.97 ms fixed plus
-   ~11.13 ms scaling with crop area, so a median clip is ~7 % cheaper per frame and a p10 clip ~27 %.
+   LM — so the stages never overlap. ~~Likelier: the convert step (25.7 ms, unmodelled here), the
+   idle floor during the 64 s LM load, or warm-up.~~ **ALSO REFUTED, 2026-10-02:** the pose track's
+   2×2 (§5.3) found the stages **exactly additive** — pose + convert + LM = total to within 0.04 ms
+   in every cell — and the convert step priced at M1's own 5.56 W is 0.143 J, **4.5 %** of the
+   3.16 J residual. Load and warm-up sit outside the power window by construction (§5.1). The
+   residual is therefore **not a within-run accounting gap**; it comes from comparing across runs,
+   since `POSE_J_PER_S` and `LM_J` were measured separately, on a different clip, each with its own
+   baseline draw and thermal state. Splitting it further needs per-stage *energy* from one
+   end-to-end run — the 2×2 reports per-stage latency but only a per-sentence total. Open ask.
+2. **~2.6 % high for a median clip — revised down from ~7 %, 2026-10-04.** The pose energy rate came
+   from one clip whose crop is at the **83.4th percentile** of crop area across the 931-clip split.
+   The ~7 % figure assumed all ~11.13 ms of per-frame CPU time scaled with crop area. **Measured**
+   over five clips spanning **15.1× of area** (§2.9D / J6): only ~4.5 ms does. 15.1× the area costs
+   **1.34× the energy** — 85 % fixed — fit `mJ/frame = 109.7 + 49.5/Mpx`. A median clip is 2.6 %
+   cheaper, not 7 %; a p10 clip 10.4 %, not 27 %. An overestimate of about 3×.
    Meanwhile `CLIP_S` is our split's *mean duration* — so the absolute column already mixes a duration
    from our data with an energy rate from their clip.
+
+**The two biases no longer cancel.** This report previously paired "~6 % low" against "~7 % high" as
+roughly offsetting. At 2.6 % the **net is ~3–4 % low**: the absolute energy column is mildly
+optimistic. Every relative ordering in the frontier is untouched — all cells share the clip and rates.
 
 | decoder | fps | BLEU-4 | ROUGE-L | system J | vs ref | |
 |---|---|---|---|---|---|---|

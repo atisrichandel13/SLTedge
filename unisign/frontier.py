@@ -54,13 +54,22 @@ relative ordering is the deliverable. But the absolute joules are not a typical 
      one end-to-end run -- the 2x2 reports per-stage LATENCY but only a per-sentence total, so it
      cannot split the residual between the pose and LM terms. That is an open ask to the board.
 
-  2. ~7% HIGH (pessimistic) for a median clip. POSE_J_PER_S was measured on one clip whose crop
-     is at the 83rd percentile of crop area across the 931-clip split (9k to 770k px, median
-     395k). Per-frame pose cost is ~13.97 ms fixed (TRT runs at a fixed 256x192 input) plus
-     ~11.13 ms that scales with crop area, so a median clip is ~7% cheaper per frame and a p10
-     clip ~27% cheaper. Meanwhile CLIP_S below is the MEAN TEST CLIP duration, not that clip's --
-     so the absolute column already mixes a duration from our split with an energy rate from
-     their clip. Fixing it needs pose energy over clips spanning the crop range (their C9 work).
+  2. ~2.6% HIGH (pessimistic) for a median clip -- REVISED DOWN from the ~7% this docstring
+     claimed until 2026-10-05. POSE_J_PER_S was measured on one clip whose crop is at the 83.4th
+     percentile of crop area across the 931-clip split (9k to 770k px, median 395k). The ~7%
+     figure assumed all ~11.13 ms of per-frame CPU time scaled with crop area. MEASURED over five
+     clips spanning 15.1x of area (RESULTS.md 2.9D / J6, 2026-10-04), only ~4.5 ms of it does:
+     the fit is mJ/frame = 109.7 + 49.5 per Mpx, i.e. 15.1x the area costs 1.34x the energy and
+     the cost is 85% FIXED. A median clip is therefore 2.6% cheaper per frame, not 7%, and a p10
+     clip 10.4%, not 27%. The old figure was an overestimate of about 3x.
+
+     CONSEQUENCE, and it is the reason this matters: caveats 1 and 2 no longer cancel. The old
+     pairing was "~6% low against ~7% high, the two oppose". At 2.6% the net is ~3-4% LOW, so the
+     absolute energy column is optimistic rather than roughly unbiased. Relative ordering across
+     cells is still untouched -- every cell shares the same clip and the same rates.
+
+     Meanwhile CLIP_S below is the MEAN TEST CLIP duration, not that clip's -- so the absolute
+     column still mixes a duration from our split with an energy rate from their clip.
 
 Two interpolations are flagged in the output:
   * beam 2 was not measured at T=137 or T=68, so it is placed at the same fraction of the
@@ -165,9 +174,10 @@ def main():
     name = NAME
     print(f"\nComposed accuracy-energy frontier, mean test clip ({CLIP_S} s, {SRC_FPS} fps source)")
     print("System J is COMPOSED from two separately measured stages, not measured end-to-end.")
-    print("Absolute J carries two opposing biases (see docstring): ~6% low from the unmodelled")
-    print("convert/load/warm-up, ~7% high because the pose energy rate came from an 83rd-percentile")
-    print("crop. RELATIVE comparisons across cells are unaffected. * = interpolated LM cell.\n")
+    print("Absolute J is NET ~3-4% LOW (see docstring): ~6% low from an across-run comparison, only")
+    print("~2.6% high from the 83rd-percentile crop the pose rate was measured on. The crop term was")
+    print("~7% until 2.9D/J6 measured it; the two no longer cancel.")
+    print("RELATIVE comparisons across cells are unaffected. * = interpolated LM cell.\n")
     print(f"{'decoder':<9}{'fps':>7}{'frames':>8}{'BLEU-4':>8}{'ROUGE-L':>9}"
           f"{'pose J':>8}{'LM J':>7}{'sys J':>8}  {'vs best':>8}  frontier")
     best = max(r["sys_J"] for r in rows)

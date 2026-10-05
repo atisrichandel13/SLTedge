@@ -22,9 +22,12 @@ THREE THINGS THIS PLOT IS NOT, ALL ANNOTATED ON THE FIGURE ITSELF:
 
   1. System joules are COMPOSED, not measured end-to-end. Against the one measured end-to-end run
      the composition predicts 47.2 J where 50.37 J was measured (~6% low), and the pose rate came
-     from a clip at the 83rd percentile of crop area (~7% high for a median clip). The two biases
-     oppose. RELATIVE ordering across cells -- which is the deliverable -- is unaffected, because
-     every cell shares the same clip and the same rates.
+     from a clip at the 83.4th percentile of crop area (~2.6% high for a median clip). The net is
+     therefore ~3-4% LOW. NOTE: the crop term read ~7% here until 2026-10-05, which made the two
+     biases look like they cancelled; RESULTS.md 2.9D / J6 measured pose energy across 15.1x of
+     crop area and found the cost 85% FIXED, cutting that term by about 3x. RELATIVE ordering
+     across cells -- which is the deliverable -- is unaffected, because every cell shares the same
+     clip and the same rates.
   2. Reduced frame rates are EMULATED by thinning already-extracted 30 fps keypoints. Exact for
      the pose model (extraction is per-frame independent), but a real 16 fps camera would differ
      in exposure and motion blur.
@@ -150,8 +153,9 @@ paras = [
     f"{surf['n_boot']} resamples with draws shared by every cell, on the BLEU-4 delta vs beam 4 @ "
     f"source; the reference cell has no bar by construction.",
     "System J is COMPOSED from two separately measured board stages (pose J/s x clip s + LM J), "
-    "NOT measured end-to-end: ~6% low against the one end-to-end run, ~7% high for a median-crop "
-    "clip. The two biases oppose, and neither reorders the cells.",
+    "NOT measured end-to-end: ~6% low against the one end-to-end run, and only ~2.6% high for a "
+    "median-crop clip now that pose energy has been measured across 15.1x of crop area and found "
+    "85% fixed. Net ~3-4% LOW -- the two biases do NOT cancel. Neither reorders the cells.",
     "Reduced frame rates are EMULATED by thinning 30 fps keypoints -- exact for the pose model, "
     "but not equivalent to a real low-rate camera. All cells carry a -0.03 BLEU-4 test-set "
     "vocabulary leak, uniform across cells and so unable to reorder them.",

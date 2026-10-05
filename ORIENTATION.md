@@ -363,9 +363,11 @@ it, for roughly 15 minutes of board time.
 
 **Also open:**
 
-- **Latency across the crop range.** All pose energy comes from one clip whose crop sits at the 83rd
-  percentile of crop area, and the range is 9k–770k px — an **85× spread**, with ~11 of 25 ms/frame
-  scaling with area. Absolute joules are therefore clip-specific until we have ≥3 clips spanning it.
+- ~~**Latency across the crop range.**~~ **CLOSED 2026-10-04 by the pose track (§2.9D / J6).** Five
+  clips spanning 50,660 → 766,080 px: **15.1× the crop area costs only 1.34× the energy**, so the
+  cost is **85 % fixed** (`mJ/frame = 109.7 + 49.5/Mpx`). The old worry that ~11 of 25 ms/frame
+  scaled with area was wrong — only ~4.5 ms does. The median-clip correction is **−2.6 %**, not the
+  ~7 % we had assumed, and absolute joules are far less clip-specific than feared.
 - **The 931-clip full-split pass.** Clips are on the Mac (6.6 GB); the board has 17 GB free at 85 %
   full, so this needs batching — roughly 100 clips, run, pull, delete, ten times. **Needs your call
   before any data moves**, under the shared-board rule.

@@ -323,11 +323,17 @@ measured end to end: `pose J/s × clip seconds + LM J`. We know two biases:
 
 - **~6% low** — the composition predicts 47.2 J where the one real end-to-end run measured 50.37 J.
   It doesn't model the format-conversion step, the idle draw during model load, or warm-up.
-- **~7% high** — the pose energy rate came from a clip whose crop is at the 83rd percentile of size,
-  while the duration is the mean clip's.
+- **~2.6% high** — the pose energy rate came from a clip whose crop is at the 83.4th percentile of
+  size, while the duration is the mean clip's. **This figure was ~7% until 2026-10-04**, when the
+  pose track measured pose energy across five clips spanning **15.1× of crop area** (§2.9D / J6) and
+  found 15.1× the area costs only **1.34× the energy** — the cost is **85% fixed**, fit
+  `mJ/frame = 109.7 + 49.5/Mpx`. The old ~7% assumed all ~11.1 ms of per-frame CPU time scaled with
+  area; only ~4.5 ms does. An overestimate of about 3×.
 
-They push in opposite directions, and *relative* comparisons across cells are unaffected because
-every cell shares the same clip and rates. But we do not quote a composed cell as a measured one.
+They push in opposite directions but **no longer cancel**: at ~6% low against ~2.6% high the net is
+**~3–4% low**, so the absolute energy column is mildly optimistic rather than roughly unbiased.
+*Relative* comparisons across cells are unaffected either way, because every cell shares the same
+clip and rates. But we do not quote a composed cell as a measured one.
 
 ### The one real end-to-end run
 
