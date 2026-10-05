@@ -126,7 +126,22 @@ run that is not J10 or J11, say so and it goes ahead of them.
 
 ## New
 
-### Q8 — should the operating point be **adapted @ 16 fps** rather than un-adapted @ 24 fps?
+### Q8 — adapted @ 16 fps as the operating point?  —  **RESOLVED: no. Withdrawn.**
+
+> **Answered 2026-10-05 (`REPLY-Q8-ADAPTED-16FPS`), conceded in full
+> (`REPLY-Q8-CONCEDED-2026-10-05.md`).** Carried through on both metrics, adapted @ 16 fps projects to
+> 22.00 BLEU-4 / 42.39 ROUGE-L against 22.80 / 43.13 at un-adapted 24 fps — **behind by 0.80 and 0.74**,
+> so the recommendation does not move. The BLEU-4 adaptation gain is **not established**
+> (+0.464 [−0.170, +1.064]) and BLEU-4 is the frontier's axis; I quoted only the established ROUGE-L
+> figure, which is cherry-picking against my own "report both metrics" rule. The projection also mixed
+> a 967-dev delta into 976-test cells. And the rate choice I offered **does not exist** — extraction is
+> rate-independent, so one dev pose set serves every target rate.
+>
+> **What survives:** adaptation improves the 16 fps Pareto point from −1.26 to −0.80 BLEU-4 at the same
+> 27.0 J. Worth measuring as a frontier row (test split, `--fps 16`, bootstrapped on shared draws), no
+> board time, LM track's call. J9 trains at `--fps 24` regardless.
+
+~~### Q8 (original) — should the operating point be adapted @ 16 fps?~~
 
 This came out of answering "do we need a combined run?", and it may be worth more than J9.
 
