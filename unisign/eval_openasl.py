@@ -43,6 +43,13 @@ def main():
     ap.add_argument("--max-new-tokens", type=int, default=100)
     ap.add_argument("--num-beams", type=int, default=4)
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--expect-n", type=int, default=None,
+                    help="fail unless exactly this many clips get scored. The pose directory IS the "
+                         "clip selection here (the n=400 runs request all 976 names and score the "
+                         "400 that have pkls), so a missing-fraction threshold cannot tell an "
+                         "intentional subset from a wrong --poses path. This can: pass the n you "
+                         "are pairing against and a changed or mistyped directory fails early "
+                         "instead of writing a result JSON that looks real.")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
@@ -79,6 +86,20 @@ def main():
         if (b // args.batch_size) % 10 == 0:
             el = time.perf_counter() - t0
             print(f"[eval] {done}/{len(names)}  {el/ done:.2f} s/clip  eta {(len(names)-done)*el/done/60:.1f} min", flush=True)
+    # A wrong --poses path makes every clip "missing" and still writes a result JSON, so a broken run
+    # looks like a small one. Same silent-zero class as a split name that matches nothing. Fail
+    # before scoring, and name the path, which is the thing that is wrong.
+    if not preds:
+        raise SystemExit(
+            f"[eval] ABORT: none of the {len(names)} requested clips have a .pkl under "
+            f"{args.poses!r}. Nothing was scored and no output was written.")
+    if args.expect_n is not None and len(preds) != args.expect_n:
+        raise SystemExit(
+            f"[eval] ABORT: scored {len(preds)} clips, expected {args.expect_n}. "
+            f"{len(missing)} of {len(names)} requested names have no .pkl under {args.poses!r}. "
+            f"Either the directory is not the one that produced the set you are pairing against, "
+            f"or its contents changed.")
+
     bleu, rouge = translation_performance(refs, preds)
     res = {"n": len(preds), "missing": len(missing), "bleu": bleu, "rouge_l": rouge,
            "wall_s": time.perf_counter() - t0, "config": vars(args)}
