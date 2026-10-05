@@ -106,8 +106,9 @@ fails here" — a false negative, published.
 
 ### Round 4 — finding the broken ingredient
 
-**Runs 5 and 6 — a recipe sweep**, all on the *control* condition (no frame-rate shift), now on the
-**full 967-clip dev split**. Un-adapted baseline: **23.13 BLEU-4 / 42.93 ROUGE-L**.
+**Runs 5 and 6 — a recipe sweep**, all on the *control* condition (no frame-rate shift), now
+**evaluated on the full 967-clip dev split** instead of 300. Training data is unchanged throughout
+L15: **20,000 OpenASL *train* clips**, 1 epoch. The 967 is the eval set, never the training set. Un-adapted baseline: **23.13 BLEU-4 / 42.93 ROUGE-L**.
 
 | run | recipe | Δ BLEU-4 | Δ ROUGE-L |
 |---|---|---|---|
@@ -133,13 +134,14 @@ available reading, not an isolated result.** It is written that way in RESULTS.m
 
 ### Round 5 — the real adaptation runs, with statistics
 
-**Runs 7–10 (Block 4)** — the working recipe, 967 dev clips, with eval JSONs saved so every number
+**Runs 7–10 (Block 4)** — the working recipe, trained on the same 20,000 train clips and **evaluated
+on 967 dev clips**, with eval JSONs saved so every number
 can get a confidence interval, and **three training seeds** so we know the noise floor:
 
 - `ctrl_src_s42` — control, source rate
 - `fps16_s42`, `fps16_s43`, `fps16_s44` — 16 fps, three seeds
 
-**The results** (967 dev clips, paired bootstrap, 1000 resamples):
+**The results** (evaluated on 967 dev clips, paired bootstrap, 1000 resamples):
 
 | comparison | BLEU-4 | ROUGE-L | verdict |
 |---|---|---|---|
@@ -172,7 +174,8 @@ alone is the best reading rather than a proven one.
 
 **2. We evaluated on 300 clips and got a sign error.** At n=300, 16 fps scored **+1.10 higher** than
 source rate — the *opposite* of the truth we'd already measured at n=976.
-→ **Fixed:** every later run uses the full 967-clip dev split. This became the seed of the project's
+→ **Fixed:** every later run *evaluates* on the full 967-clip dev split (the training set stayed at
+20,000 train clips). This became the seed of the project's
 most interesting methodological finding: BLEU-4 is too noisy to resolve effects this small.
 
 **3. The first adaptation results had no confidence intervals.** `train_adapt.py`'s built-in eval
