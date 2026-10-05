@@ -14,6 +14,14 @@
 # rate -- pose pkls are rate-independent and the thinning happens at load (fps_ratio_for_clip) --
 # so there is no rate flag here and the dev pkls are usable at any target fps.
 #
+# COST OF THAT RUN, measured rather than estimated (2026-10-05, `status` dry run + J12's own rate):
+#   918 clips, 184,093 frames, 6.0 GB of JPEGs on the pose-track Mac, 0 pkl pairs on the board.
+#   At J12's aggregate 32.0 frames/s (RESULTS.md 2.5k -- an AGGREGATE, so it already includes the
+#   staging rsyncs and reclaim passes) that is ~96 min of board time. Peak board usage is one batch
+#   of frames (~590 MB at 90 clips) plus the accumulating pkls (~670 MB for both normalisations at
+#   918 clips), against 15 G free, so disk is not the constraint. SLT_SKIP_REF=1 is required: the dev
+#   split has no ceiling row and data/openasl_pose holds test clips only.
+#
 # Runs on the POSE-TRACK MAC and drives the board over the expect wrappers, whose paths come from the
 # environment so the Jetson password never enters the tracked tree.
 #
