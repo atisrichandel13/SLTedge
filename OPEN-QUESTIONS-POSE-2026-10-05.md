@@ -16,7 +16,7 @@ docs. Numbered for reference. **Q1–Q3 block work that is running or about to r
 
 ## Blocking now
 
-### Q1a / Q1b — RESOLVED, both inside your bars (interim, 449 of ~966 clips fetched)
+### Q1a — RESOLVED.  Q1b — provisional, and my first number was contaminated by a fetch defect
 
 Your 22.1 % reproduces exactly on the pose-track Mac: **206 of 931** test clips are ≤24 fps native.
 And **you were right and I was wrong on Q1b** — `min(1.0, target_fps / src)` means a clip at or below
@@ -25,12 +25,23 @@ though it does not change the resulting rate. I had that backwards.
 
 Interim dev tallies, to be re-run at completion:
 
-| | test (931) | dev (449 so far) | your bar |
-|---|---:|---:|---|
-| ≤24 fps native — not thinned at `--fps 24` | **22.1 %** (206) | **18.9 %** (85) | "within a few points → record and move on" |
-| source height 720p | **76.3 %** (710) | **76.8 %** (345) | "accept unless below ~60 %" |
+> **Corrected 2026-10-05, see `REPLY-DEV-FETCH-DEFECT-2026-10-05.md`.** The interim dev tallies below
+> were computed on a defective fetch: I ran `openasl_fetch.py` by hand and lost
+> `--max-per-video 0` (`data/openasl_fetch.py:259` defaults it to 1), so dev was a one-clip-per-video
+> sample of 479 clips while test was fetched with the cap lifted (`data/fetch_full_split.sh:53`) at
+> 2.16 clips/video. Native rate is a property of the *video*, so the two shares were never the same
+> quantity. Re-fetching with the cap lifted; `data/fetch_full_split.sh` now drives both splits.
 
-Both pass. I will push the final histograms when the fetch ends; nothing here needs a decision.
+| | test (931) | dev (488, re-fetch in flight) | your bar |
+|---|---:|---:|---|
+| ≤24 fps native, **clip-weighted** | **22.1 %** (206) | **19.7 %** (96) | "within a few points → record and move on" |
+| ≤24 fps native, video-weighted | 16.7 % (72) | 18.4 % (78) | — (shown to make the weighting explicit) |
+| source height 720p | **76.3 %** (710) | **77.0 %** (376) | "accept unless below ~60 %" |
+
+**Q1a passes on any weighting** — 720p is 75–78 % in every cell, nowhere near the 60 % floor; settled.
+**Q1b is provisional**: 19.7 % vs 22.1 % is inside your bar, but on 488 of 967 clips and on a set
+still being drawn. Final clip-weighted histograms when the re-fetch lands. Nothing here needs a
+decision from you.
 
 ### Q1 — dev fetch: duration window dropped, please confirm the rest of the matching  —  **RESOLVED**
 

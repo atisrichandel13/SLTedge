@@ -70,8 +70,9 @@ data/openasl_meta/
 # data/openasl_fetch.py --crop-style openasl, and verified by data/verify_openasl_crop.py
 data/clips_openasl/*/frames/
 
-# transient fetch log (progress only; the real state is the clip dirs on disk)
+# transient fetch logs (progress only; the real state is the clip dirs on disk)
 results/logs/fetch_full_split.log
+results/logs/fetch_dev_split.log
 
 # ---- from the LM track ----
 runs/

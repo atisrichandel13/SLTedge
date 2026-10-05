@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
-# Phase A stage 1: fetch the whole OpenASL test split to the Mac. Safe to re-run at any time.
+# Phase A stage 1: fetch a whole OpenASL split to the pose-track Mac. Safe to re-run at any time.
 #
-#     ./data/fetch_full_split.sh              # fetch / resume
+#     ./data/fetch_full_split.sh              # fetch / resume the test split
 #     ./data/fetch_full_split.sh status       # how far along
+#
+#     SLT_SPLIT=valid SLT_WANT=1000 SLT_OUT=data/clips_dev \
+#       SLT_LOG=results/logs/fetch_dev_split.log ./data/fetch_full_split.sh
+#
+# USE THIS SCRIPT, NOT openasl_fetch.py DIRECTLY. On 2026-10-05 the dev fetch was launched by hand
+# and omitted --max-per-video 0, so it silently took the default of 1 (openasl_fetch.py:259) and
+# stopped at 479 clips from 424 videos. The test set was fetched with the cap lifted and averages
+# 2.16 clips per video. Two consequences, both bad: half the data, and a video-diversity mismatch
+# between the adaptation set and the set it is scored on. The flags that must match live here.
+#
+# The split is called "valid", not "dev", in the OpenASL TSV.
 #
 # RESUMABILITY. The state is the set of clip directories under data/clips: openasl_fetch.py
 # --skip-existing reuses any clip whose frame count matches its meta.json and re-fetches anything
@@ -17,7 +28,9 @@ cd "$(dirname "$0")/.."
 YT="${SLT_YTENV:-/private/tmp/claude-501/-Users-tushar-Documents-slt-SLTedge/b6ac1c6b-bb75-49c8-8921-249bf965866f/scratchpad/ytenv/bin}"
 OUT="${SLT_OUT:-data/clips}"
 LOG="${SLT_LOG:-results/logs/fetch_full_split.log}"
-WANT=974
+SPLIT="${SLT_SPLIT:-test}"
+WANT="${SLT_WANT:-974}"
+FFMPEG="${SLT_FFMPEG:-$(command -v ffmpeg)}"
 
 if [ "${1:-}" = "status" ]; then
     have=$(find "$OUT" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
@@ -50,8 +63,9 @@ for attempt in $(seq 1 "$ATTEMPTS"); do
     if [ "$have" -ge "$WANT" ]; then echo "[fetch] complete: ${have}/${WANT}"; break; fi
     echo "=== $(date) attempt ${attempt}, ${have}/${WANT} on disk" >> "$LOG"
     PATH="$YT:$PATH" "$YT/python" data/openasl_fetch.py \
-        --split test --n-clips "$WANT" --max-per-video 0 \
+        --split "$SPLIT" --n-clips "$WANT" --max-per-video 0 \
         --min-dur 0 --max-dur 1e9 --seed 0 --max-attempts 1200 \
+        --ffmpeg "$FFMPEG" \
         --out "$OUT" >> "$LOG" 2>&1 &
     pid=$!
 
