@@ -1,5 +1,9 @@
 # Open questions from the pose track
 
+> **Status 2026-10-05, after `ANSWERS-Q1-Q7` and `REPLY-Q2-SCALE`:** Q1a, Q1b, Q4, Q5, Q7 **resolved**
+> (see inline). Q2 **decided by Tushar — J9 proceeds**, with their probe accepted in parallel. Q3 and
+> Q6 open. **New: Q8**, which may matter more than J9.
+
 *2026-10-05. One place for everything I need from the LM track, so it is not scattered across reply
 docs. Numbered for reference. **Q1–Q3 block work that is running or about to run.***
 
@@ -7,7 +11,23 @@ docs. Numbered for reference. **Q1–Q3 block work that is running or about to r
 
 ## Blocking now
 
-### Q1 — dev fetch: duration window dropped, please confirm the rest of the matching
+### Q1a / Q1b — RESOLVED, both inside your bars (interim, 346 of ~920 clips fetched)
+
+Your 22.1 % reproduces exactly on the pose-track Mac: **206 of 931** test clips are ≤24 fps native.
+And **you were right and I was wrong on Q1b** — `min(1.0, target_fps / src)` means a clip at or below
+the target is not thinned at all, so the native mix changes *how much* subsampling is applied even
+though it does not change the resulting rate. I had that backwards.
+
+Interim dev tallies, to be re-run at completion:
+
+| | test (931) | dev (346 so far) | your bar |
+|---|---:|---:|---|
+| ≤24 fps native — not thinned at `--fps 24` | **22.1 %** | **18.5 %** | "within a few points → record and move on" |
+| source height 720p | ~76 % | **76.9 %** | "accept unless below ~60 %" |
+
+Both pass. I will push the final histograms when the fetch ends; nothing here needs a decision.
+
+### Q1 — dev fetch: duration window dropped, please confirm the rest of the matching  —  **RESOLVED**
 
 Your `REPLY-DEV-FETCH` §1 is accepted and acted on **while the fetch was running**: it is now
 `--min-dur 0.2 --max-dur 75`, which the fetcher reports as **966 candidates** (was 773 at 2–20 s). The
@@ -26,7 +46,7 @@ mix too. **Does a different mix change anything on your side**, given `--fps 24`
 its own rate? My reading is no — per-clip thinning makes the native rate irrelevant to the *target*
 rate — but you own that code path.
 
-### Q2 — is dev enough, now that the 20× is confirmed?
+### Q2 — is dev enough?  —  **DECIDED: J9 proceeds, and your probe is accepted in parallel**
 
 Settled and conceded: L15 trained on **20,000 train clips** (`RESULTS.md:1892`, `:1967`), evaluated on
 967 dev. J9 at ~920 dev clips is **~20× less training data than the runs that worked.** I was wrong to
@@ -35,12 +55,20 @@ retract that; see `REPLY-TO-J9-ISSUES`.
 Your §3 bounds what a null licenses and I have accepted that framing verbatim. The remaining question
 is whether to run it at all at this scale:
 
-**Q2.** Do you want J9 run at ~920 dev clips knowing it is 20× under L15's scale, with the agreed
-reading that a null means *"no pose-specific adaptation effect at this data scale"*? Or is that too
-weak a result to be worth the board extraction, in which case the alternative is train-split clips
-through our extractor — ~20,000 videos, roughly **40 hours of fetching and ~140 GB**, which nobody
-has signed up for. **I will keep the fetch running either way** since it is unattended and cheap, but
-I would rather not start the board extraction (step 1) on a result you would not use.
+**Decided by Tushar: run it.** The board is otherwise idle, so the extraction costs us nothing we
+are using elsewhere, and the agreed §3 reading makes a null reportable rather than wasted.
+
+**And `REPLY-Q2-SCALE` corrects my framing, which was the deeper error.** L15's 20,000 were the
+**authors' pose pkls** — HTTP range reads, no video, no board. J9 at 20,000 would need 20,000
+*videos* through our extractor. So "~20× less data" was never a comparison of like pipelines, and
+J9 at L15's scale was never on the table. That is the third time this number has misled one of us,
+and this is the framing that actually resolves it.
+
+**Your probe is accepted and is better than either of our positions.** Re-running the frame-rate
+adaptation at ~1,000 authors' train pkls (~0.78 GiB, no board) turns "is ~920 enough?" from a
+judgement into a measurement, against a known +1.04 ROUGE-L at 20,000. **Please run it** — it does not
+block my extraction, so the two go in parallel, and the project needs a data-scale number regardless
+of what J9 does.
 
 ### Q3 — which arm do you want first, and where do the pkls go?
 
@@ -92,3 +120,38 @@ you have hit** that should get the same treatment while I am in there?
 
 Board time is uncommitted after the dev extraction. If anything in the LM track's queue needs a board
 run that is not J10 or J11, say so and it goes ahead of them.
+
+
+---
+
+## New
+
+### Q8 — should the operating point be **adapted @ 16 fps** rather than un-adapted @ 24 fps?
+
+This came out of answering "do we need a combined run?", and it may be worth more than J9.
+
+**At 24 fps there is no frame-rate shift to adapt to.** Un-adapted, 24 fps costs −0.07 BLEU-4
+[−0.53, +0.39] on the authors' keypoints and +0.13 [−0.49, +0.74] on ours — free on both. So a run
+combining frame-rate and pose-source adaptation buys nothing at the *recommended* point: there is
+nothing on the frame-rate axis to recover.
+
+**At 16 fps there very much is, and you have already recovered most of it.** From
+`results/adapt_ci_dev.json`:
+
+| | ROUGE-L | 95 % CI | |
+|---|---:|---|---|
+| cost of 16 fps, un-adapted | −1.336 | [−2.346, −0.334] | established |
+| **adaptation at 16 fps** | **+1.044** | **[+0.247, +1.802]** | **established**, p(Δ<0)=0.004 |
+
+That is ~78 % of the loss recovered. And the energy gap is large — from `results/frontier.csv`,
+beam 4: **16 fps = 27.0 J against 24 fps = 36.1 J**, a further **25 %** saving.
+
+**So "adapted @ 16 fps" is a candidate operating point that could dominate un-adapted @ 24 fps** —
+similar accuracy for a quarter less energy. If it holds, it moves the frontier's recommendation, which
+is the headline of the report.
+
+**Q8: is that worth a run, and does it change what J9's checkpoint should be trained at?** J9 is
+currently specified at `--fps 24`. If we care about adapted-16 fps, the pose-source adaptation might be
+better trained at `--fps 16` so one checkpoint serves the candidate operating point — or we accept two
+checkpoints. Your call on the training side; I can supply either rate from the same dev pose set at no
+extra board cost, since the thinning happens at training time.
