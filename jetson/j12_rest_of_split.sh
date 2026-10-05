@@ -4,6 +4,16 @@
 #     SLT_JSSH=<path>/jssh.exp SLT_JRSYNC=<path>/jrsync.exp ./jetson/j12_rest_of_split.sh
 #     ./jetson/j12_rest_of_split.sh status
 #
+# AND IT DRIVES J9 STEP 1 TOO (the dev extraction), which is why it is parameterised:
+#
+#     SLT_CLIPS=data/clips_dev SLT_PKL=results/pkl_dev_rtmw_fp16 SLT_SKIP_REF=1 \
+#       SLT_LOG=results/logs/j9_dev_poses.log ./jetson/j12_rest_of_split.sh
+#
+# The clip list is just the directories under SLT_CLIPS, and the same relative path is used on both
+# sides of the rsync, so nothing else needs to change. Extraction is always at the clip's NATIVE
+# rate -- pose pkls are rate-independent and the thinning happens at load (fps_ratio_for_clip) --
+# so there is no rate flag here and the dev pkls are usable at any target fps.
+#
 # Runs on the POSE-TRACK MAC and drives the board over the expect wrappers, whose paths come from the
 # environment so the Jetson password never enters the tracked tree.
 #
@@ -35,11 +45,31 @@ RPATH="${SLT_RPATH:-sign-lang-project}"
 CLIPS="${SLT_CLIPS:-data/clips}"
 REFSRC="${SLT_REFSRC:-data/openasl_pose}"
 REFDST="${SLT_REFDST:-data/openasl_pose_split}"
+# The reference push exists so the CEILING row is scored on our exact clip set. The dev split has no
+# ceiling row -- it produces the adapted model, it is never scored against the authors' poses -- and
+# data/openasl_pose holds test clips only, so for J9 step 1 this step is not merely unnecessary, it
+# would look for pkls that cannot exist. SLT_SKIP_REF=1 turns it off.
+SKIP_REF="${SLT_SKIP_REF:-0}"
 PKL="${SLT_PKL:-results/pkl_split_rtmw_fp16}"
 NBATCH="${SLT_BATCH_CLIPS:-90}"
 ENG="${SLT_ENG:-models/rtmw/rtmw-l-m_256x192_fp16.engine}"
 WORK="${SLT_WORK:-${TMPDIR:-/tmp}}/j12"
 mkdir -p "$WORK"
+
+# OWN THE LOG. Fixed 2026-10-05, after this script extracted 528 clips and recorded none of it.
+# It was launched with its stdout through a pipeline, the reader exited two minutes in, and from then
+# on every echo failed with EPIPE. `set -e` is deliberately off here (a batch shortfall must not kill
+# the run), so those failures were silent: the log froze at 15:15 on batch 1 while the board went from
+# 403 to 931 pkls over the next several hours. The end state was verifiable afterwards -- 931/931/931
+# with no .part files and no frame dirs, and the reference push only runs after the batch loop's
+# `done`, so the zero-gain guard proves every batch passed -- but the per-batch record was gone.
+# A driver that runs unattended for hours must not depend on how it was invoked.
+LOG="${SLT_LOG:-results/logs/j12.log}"
+if [ "$LOG" != "-" ]; then
+    mkdir -p "$(dirname "$LOG")"
+    echo "[j12] logging to $LOG" >&2
+    exec >> "$LOG" 2>&1
+fi
 
 # Process substitution through the expect wrapper is fragile quoting, so each directory is listed
 # plainly and the intersection is taken here. A clip counts as done only when BOTH normalisations
@@ -115,7 +145,7 @@ print(n)\")" 2>/dev/null | sed 's/\r$//' | sed -n 's/.*J12COUNT=\([0-9][0-9]*\).
         jetson/run.sh exec-batch python3 task1_rtmpose/09_batch_clips.py --engine $ENG \
             --clips-dir $CLIPS --config rtmw_fp16 --pkl-out $PKL --pkl-out-raw ${PKL}_raw \
             --square-norm --progress-every 50 2>&1 | tail -3" \
-        2>&1 | grep -v '^spawn \|password:' | sed 's/^/[j12]   /'
+        2>&1 | grep -v --line-buffered '^spawn \|password:' | sed -u 's/^/[j12]   /'
 
     after=$(board_count "$PKL")
     if ! [ "$before" -ge 0 ] 2>/dev/null || ! [ "$after" -ge 0 ] 2>/dev/null; then
@@ -134,19 +164,25 @@ print(n)\")" 2>/dev/null | sed 's/\r$//' | sed -n 's/.*J12COUNT=\([0-9][0-9]*\).
     # `find -name frames -delete` threw away the frames of clips that had just failed. Clip dirs and
     # their meta.json always stay: 09_batch_clips.py needs the meta, and p10_split.sh counts the dirs.
     "$JSSH" "cd $RPATH && python3 jetson/j12_reclaim.py --clips $CLIPS --pkl $PKL && df -h ~ | tail -1" \
-        2>&1 | grep -v '^spawn \|password:' | sed 's/^/[j12]   /'
+        2>&1 | grep -v --line-buffered '^spawn \|password:' | sed -u 's/^/[j12]   /'
 done
 
 # ---- the authors' reference poses for the SAME clip set, or the ceiling row is scored on a different
 # one. That is the n=40-vs-n=30 mistake in RESULTS.md 2.5c, and full_split_pass.sh refuses to run
 # without them. data/openasl_pose on the pose-track Mac holds all 976, so this is a copy, not a fetch.
-echo "[j12] pushing reference poses for the extracted set"
-awk '{print $1 ".pkl"}' "$WORK/all.txt" > "$WORK/ref.txt"
-"$JRSYNC" -- -rt --info=stats1 --files-from="$WORK/ref.txt" "$REFSRC/" "$RHOST:$RPATH/$REFDST/" \
-    2>&1 | grep -E "Number of|Total transferred" | sed 's/^/[j12]   /'
+if [ "$SKIP_REF" = "1" ]; then
+    echo "[j12] SLT_SKIP_REF=1: not pushing reference poses (no ceiling row for this split)"
+else
+    echo "[j12] pushing reference poses for the extracted set"
+    awk '{print $1 ".pkl"}' "$WORK/all.txt" > "$WORK/ref.txt"
+    "$JRSYNC" -- -rt --info=stats1 --files-from="$WORK/ref.txt" "$REFSRC/" "$RHOST:$RPATH/$REFDST/" \
+        2>&1 | grep -v --line-buffered '^spawn \|password:' | tail -3 | sed -u 's/^/[j12]   ref rsync: /'
+fi
 
-"$JSSH" "cd $RPATH && echo \"[j12] pkls: \$(ls ${PKL}/*.pkl|wc -l) / raw \$(ls ${PKL}_raw/*.pkl|wc -l) / ref \$(ls ${REFDST}/*.pkl|wc -l)\" && df -h ~|tail -1" \
-    2>&1 | grep -v '^spawn \|password:' | sed 's/^/[j12]   /'
+REFTALLY=" / ref \$(ls ${REFDST}/*.pkl 2>/dev/null|wc -l)"
+[ "$SKIP_REF" = "1" ] && REFTALLY=""
+"$JSSH" "cd $RPATH && echo \"[j12] pkls: \$(ls ${PKL}/*.pkl|wc -l) / raw \$(ls ${PKL}_raw/*.pkl|wc -l)${REFTALLY}\" && df -h ~|tail -1" \
+    2>&1 | grep -v --line-buffered '^spawn \|password:' | sed -u 's/^/[j12]   /'
 echo "[j12] EXTRACTION DONE $(date -u +%FT%TZ)"
 echo "[j12] next: the evals, which need a NEW tag or eval_one skips them --"
 echo "[j12]   SLT_TAG=n931 SLT_EXPECT_N=931 jetson/p10_split.sh"
