@@ -5,7 +5,15 @@
 > probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
 > wanted.
 >
-> **J10 IS RUNNING, 2026-10-05 — and I owe you an apology for the delay.** I had been reporting "no
+> **ASK AUDIT, 2026-10-05 — both directions, since I got this wrong once.** Their open asks live in
+> `WORKSPLIT.md` and `OPEN-ISSUES-LM`, not in this file. Audited all three `ASK-*.md` docs plus both
+> tables: **J10 delivered** (§2.9E, negative result), **J12 delivered**, **ASK-E2E-KNEE closed** by J5
+> (3×2 grid, 2026-10-03), J11 agreed unrun. **J9 is the only open ask**, and its specification
+> `ASK-ADAPT-TO-OUR-POSES-2026-10-05.md` was **stale in three ways** — n=400 not n=931, "half the gap
+> ~+1.1" against a gap that is now 1.41 with a 55.3 % bar, and the BLEU-4-only claim that n=931
+> falsifies. Annotated there in place. Nothing is waiting on the LM track.
+>
+> **J10 WAS RUNNING, 2026-10-05 — and I owed them an apology for the delay.** I had been reporting "no
 > open asks" by reading *this* file, which tracks what I need from **you**. Your asks live in
 > `WORKSPLIT.md` and `OPEN-ISSUES-LM-2026-10-05.md`, and I was not reading them. J10 — by your own
 > description *"the single largest unresolved error in the frontier"* and the only axis `REPORT.md`

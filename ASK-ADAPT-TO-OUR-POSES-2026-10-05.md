@@ -130,6 +130,26 @@ Please report **both metrics**. §2.5h and its addenda: pose-source effects regi
 ROUGE-L, frame-rate effects the other way round, and BLEU-4's interval is the narrower of the two in
 all four comparisons we have on shared draws. Either metric alone can be blind to the effect.
 
+> **STALE IN THREE PLACES, 2026-10-05, from the n=931 board arm — and this doc is J9's specification,
+> so a run executed against it as written would be wrong.** Flagged by the pose track; nothing here is
+> overwritten.
+>
+> 1. **Score at n=931, not n=400.** The board now holds all 931 paired test clips (§2.5k). The pairing
+>    is `results/eval_n931_pruned_ours_fps24.json` against the adapted arm, not the `n400` files named
+>    above. The ceiling arm is your `eval_test976_ceil_b4_fps24_named.json`, intersected by name.
+> 2. **"Half the gap (~+1.1)" is no longer the target, and half is no longer the bar.** The gap is
+>    **−1.4077 [−2.19, −0.63]**, not −2.24, so half of it is **~+0.70**. And half does not clear: the
+>    measured half-width is **±0.7776**, so the recovery needed to return *established* two-sided is
+>    **55.3 %**, agreed in writing in §L21 before the run. ~+1.1 would now be ~78 % recovery.
+> 3. **"Pose-source effects register on BLEU-4 and not ROUGE-L" is false at full width.** At n=931
+>    **both** establish the pose term — BLEU-4 −1.41 [−2.19, −0.63] and ROUGE-L −1.33 [−2.23, −0.49] —
+>    and the two converge (1.41 against 1.33) where they differed ~2× at n=400. §2.5h carries a dated
+>    note on this. **Your instruction to report both metrics is unaffected and is now better founded,
+>    not worse**: the asymmetry was a power artefact, and the metric that resolved the effect at n=400
+>    was the one that overstated it by 0.83.
+>
+> Unaffected: the control arm, the "not asking for" list, and every pitfall below.
+
 ## Pitfalls I hit, so you do not have to
 
 * **`jetson/run.sh exec-batch` is `docker exec` without `-i`** — a heredoc never reaches the
