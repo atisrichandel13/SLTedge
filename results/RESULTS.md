@@ -2404,8 +2404,9 @@ both families of effect.
 **Both figures reproduce exactly.** Independent run, `unisign/bootstrap_ci.py`, same 2000 resamples,
 400 paired clips aligned by name: BLEU-4 **−2.24 [−3.50, −1.09]** established, ROUGE-L **−1.11
 [−2.56, +0.35]** not established. Raw: `results/ci_n400_pose_sub_fps24.json`. The established
-pose-substitution cost stands, and so does the ~2.2 BLEU-4 correction to the frontier's absolute
-accuracy column.
+pose-substitution cost stands, and so does the correction to the frontier's absolute accuracy column
+— though **its size is now ~1.4 BLEU-4, not ~2.2** (§2.5k, 2026-10-05; `unisign/frontier.py` and
+`results/plot_frontier.py` updated to match).
 
 **The scoping above is right** — §2.5h is careful that the original sub-1-point claim survives. What
 this addendum refines is the phrase "the metrics swapped roles", which attributes the reversal to
@@ -2418,6 +2419,25 @@ draws, so the comparison is clean:
 | | ROUGE-L | −1.34 | 1.06 | 1.26 |
 | pose substitution (§2.5h, n=400) | BLEU-4 | −2.24 | **1.21** | 1.86 |
 | | ROUGE-L | −1.11 | 1.46 | 0.76 |
+| **pose substitution (§2.5k, n=931)** | **BLEU-4** | **−1.41** | **0.775** | **1.82** |
+| | **ROUGE-L** | **−1.33** | 0.895 | 1.48 |
+
+> **CORRECTION TO THIS ADDENDUM, 2026-10-05, from the n=931 arm — and it is my own claim that was
+> wrong, not §2.5h's.** I argued the n=400 reversal was *effect size* rather than power, on the
+> grounds that the ROUGE-L effect was simply smaller (1.11 against 2.24). At full width the two
+> effects are **nearly equal — 1.33 against 1.41** — so the effect-size difference I was explaining
+> did not exist. It was sampling noise in both estimates at once: BLEU-4's 2.24 was 0.83 too large and
+> ROUGE-L's 1.11 was 0.22 too small, and they happened to err in opposite directions. **At n=931
+> there is no reversal to explain**, because both metrics establish the effect.
+>
+> **The other half of this addendum holds and is now confirmed a third time.** BLEU-4's interval is
+> narrower again at n=931 — **0.775 against 0.895, by 13 %** — so "BLEU-4 is the lower-variance
+> estimator on shared draws" survives at three sample sizes (26 %, 17 %, 13 %). What that implies is
+> now cleaner than my original framing: with the effect sizes equal, the *only* systematic difference
+> between the metrics on this family is interval width, which is power after all. So §2.5h's
+> instinct to call it power was closer than my refinement, and I was over-reading two noisy point
+> estimates. §2.5h's own swapped-roles *framing* still goes, for the reason in the note at its head:
+> at full width nothing swaps.
 
 **BLEU-4's interval is narrower in both cases — by 26 % and 17 %** — in the effect it fails to resolve
 just as much as in the one it resolves. So precision did not reverse. What reversed is **effect

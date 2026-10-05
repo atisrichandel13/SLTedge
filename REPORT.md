@@ -215,16 +215,30 @@ Every accuracy figure in §2–3 is scored on the **authors' released keypoints*
 feeds keypoints from **our own** extractor. Measured on 400 test clips from 400 distinct videos, our
 own board extraction, pruned checkpoint, 24 fps, beam 4, batch 1:
 
-| | BLEU-4 | ROUGE-L |
+| n=931, **all paired test clips** | BLEU-4 | ROUGE-L |
 |---|---:|---:|
-| **the deployed system** | **21.57** | **41.17** |
-| same clips, authors' keypoints | 23.81 | 42.27 |
-| **pose-substitution cost** | **−2.24 [−3.50, −1.09]** | −1.11 [−2.56, +0.35] |
+| **the deployed system** | **21.73** | **41.82** |
+| same clips, authors' keypoints | 23.14 | 43.15 |
+| **pose-substitution cost** | **−1.41 [−2.21, −0.66]** | **−1.33 [−2.25, −0.46]** |
 
-**That −2.24 is established, and it is the project's one real accuracy deficit.** It also moved
-monotonically away from zero as the sample grew — −0.35 at n=30, −1.89 at n=100, −2.24 at n=400 —
-which is the signature of a real effect that small samples could not resolve. We had called it
-"costing nothing detectable" at n=30.
+**Both are established, and this is the project's one real accuracy deficit.**
+
+> **UPDATED 2026-10-05 from the n=400 subset**, which gave −2.24 [−3.50, −1.09] on BLEU-4 and did not
+> establish ROUGE-L at all. J12 extended our board pose set to all **931** test clips that exist on
+> disk (45 of the 976 `labels.test` names have no clip and never will), and the full-width answer is
+> **−1.41**. Nothing earlier was wrong — −1.41 sits inside the n=400 interval — but that estimate sat
+> near its pessimistic end. Two things changed with it, and one claim of ours died:
+>
+> - **The "monotonic drift" argument is withdrawn.** We wrote that the cost moved monotonically away
+>   from zero as the sample grew — −0.35 at n=30, −1.89 at n=100, −2.24 at n=400 — and read that as
+>   the signature of a real effect. The next rung is **−1.41**, so the drift reversed. The effect *is*
+>   real and *is* established at full width; the monotonicity was sampling noise that happened to
+>   point one way three times. We keep the finding and drop the reasoning.
+> - **ROUGE-L now establishes it too**, −1.33 [−2.25, −0.46], and the two metrics converge: **1.41
+>   against 1.33**, where at n=400 they differed by about 2×.
+>
+> We had also called this cost "nothing detectable" at n=30, which was reading a near-zero point
+> estimate inside a ±4 interval as evidence of absence. `results/ci_n931_pose_gap.json`, §2.5k.
 
 **Where it is not.** We spent the diagnostic effort before the compute:
 
@@ -242,10 +256,13 @@ the authors' keypoints and never saw our extractor's noise. That makes **adaptat
 pose-model swap a poor use of board time.
 
 > **Outstanding (J9).** Fine-tuning the pose encoder on dev-split poses from our own extractor, then
-> evaluating on the same 400 test clips, is specified in `ASK-ADAPT-TO-OUR-POSES-2026-10-05.md` and
-> has not been run. The target is 21.57 with a ceiling of 23.81. Supporting evidence that it should
-> work: the harness already *improves* the model (+0.18 BLEU-4 / +0.70 ROUGE-L) with **no**
-> distribution shift to adapt to.
+> evaluating on the test clips, is specified in `ASK-ADAPT-TO-OUR-POSES-2026-10-05.md` and has not
+> been run. **The target is 21.73 with a ceiling of 23.14, on all 931 paired clips** (updated
+> 2026-10-05 from 21.57/23.81 at n=400). Supporting evidence that it should work: the harness already
+> *improves* the model (+0.18 BLEU-4 / +0.70 ROUGE-L) with **no** distribution shift to adapt to.
+> **Counter-evidence that it may not be resolvable:** §L17 sizes the expected recovery at ~39 % of the
+> gap, which is +0.55 against the measured ±0.775 half-width at n=931, so an effect of the predicted
+> size would come back *not established* even at full width. Open as Q9 to the LM track.
 
 ---
 
@@ -321,6 +338,17 @@ This is the methodological result we would most defend, and it reversed on us on
 |---|---|---|
 | frame rate 30→16, n=967 | −0.35 [−1.00, +0.45] — **not** established | −1.34 [−2.42, −0.30] — established |
 | pose substitution, n=400 | −2.24 [−3.50, −1.09] — **established** | −1.11 [−2.56, +0.35] — not established |
+| **pose substitution, n=931** | **−1.41 [−2.21, −0.66] — established** | **−1.33 [−2.25, −0.46] — established** |
+
+> **UPDATED 2026-10-05, and the update makes this section's argument stronger rather than weaker.**
+> At full width the pose row establishes on **both** metrics, so the clean "the metrics swapped roles"
+> story does not survive: that asymmetry was itself a power artefact at n=400. What replaces it is a
+> sharper version of the same lesson. The single metric anyone would have reported for this effect —
+> BLEU-4, the one that resolved it — **overstated it by 0.83**, while ROUGE-L, the metric we called
+> blind to it, was nearer the full-width answer all along at −1.11 against −1.33. So reporting one
+> metric is unsafe not only because it may miss an effect, but because the metric that *does* resolve
+> an effect at small n can be the one furthest from the truth. The frame-rate row is unchanged and
+> still establishes on ROUGE-L only.
 
 Same clips, same draws within each row. **Read down a row, not across rows**: the two rows are on
 different decode protocols (batch 8 and batch 1), and §L18 measures the ROUGE-L offset between them at
@@ -355,8 +383,10 @@ Kept deliberately; several of these are the project's more useful output.
 1. **"16 fps at no measured accuracy cost"** — claimed from n=30 where the interval was ±3. At n=976
    it is a −1.33 loss. We read "not significant" as "no effect".
 2. **"Our pose extractor costs nothing detectable"** — the same error, same shape: −0.35 inside a ±4
-   interval at n=30, established at −2.24 by n=400. **Third instance**, which is why §7.1's sample-size
-   discipline exists.
+   interval at n=30, established by n=400 and **−1.41 [−2.21, −0.66] at full width (n=931)**.
+   **Third instance**, which is why §7.1's sample-size discipline exists. A fourth lesson sits on top
+   of it: the n=400 estimate of −2.24 was itself 0.83 too large, so "established" is not the end of
+   the sample-size story — a resolved effect can still have a materially wrong magnitude.
 3. **A memory ceiling adopted without asking how it was measured.** The probes behind it ran on a
    shared board with no occupancy check. One track adopted the other's number and retracted a correct
    finding of its own on the strength of it.
@@ -370,7 +400,8 @@ Kept deliberately; several of these are the project's more useful output.
    clean, it never fired. The clip fetcher had the same hole and it **did** fire twice, putting a
    4-frame clip for a 7.8-second utterance into our n=400 set, where our pipeline answered "No." to a
    15-word reference. Both now verify sizes and rates; the contaminated clip accounts for 0.05 of the
-   2.24 gap and the figures are left as measured.
+   **n=400** 2.24 gap and the figures are left as measured. At n=931 one clip carries 0.43× the weight
+   it did at n=400, so its contribution to the −1.41 full-width figure is smaller still.
 
 ---
 
@@ -409,6 +440,7 @@ over; the demo video; and, if time allows, re-testing FP16 at n≈400 and the in
 that would close the frontier's last open caveat.
 
 **The headline.** On a 15 W Jetson Orin Nano, the pipeline translates a sign-language utterance in
-**7.0 s for 37.8 J**, sustains that for 30 minutes without throttling, and scores **21.57 BLEU-4**
-against a **23.81** ceiling set by the reference keypoints — with the 2.24-point difference diagnosed
-as a training-distribution shift rather than a limit of the hardware or the extractor.
+**7.0 s for 37.8 J**, sustains that for 30 minutes without throttling, and scores **21.73 BLEU-4**
+against a **23.14** ceiling set by the reference keypoints, on all 931 paired test clips — with the
+**1.41**-point difference diagnosed as a training-distribution shift rather than a limit of the
+hardware or the extractor.

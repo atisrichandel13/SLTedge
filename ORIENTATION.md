@@ -129,9 +129,10 @@ The bug worth knowing: our crop and theirs define coordinates in different frame
 normalisation mismatch**. We found it by noticing the disagreement correlated 0.968 with the predicted
 ratio. `common/renorm_to_openasl.py` fixes it by exact arithmetic — body disagreement 0.1328 → 0.0055
 — and with it applied, our best configuration (18.52 BLEU-4) is indistinguishable from the ceiling
-(18.17) **at n=30**. That last clause matters: at **n=400 the gap to the ceiling is established at
-−2.24 BLEU-4 [−3.50, −1.09]** (RESULTS.md §2.5h). The frame fix removed most of the gap, not all of
-it, and 30 clips were too few to see the remainder.
+(18.17) **at n=30**. That last clause matters: at **n=931, all paired test clips, the gap to the
+ceiling is established at −1.41 BLEU-4 [−2.21, −0.66]** (RESULTS.md §2.5k; it read −2.24
+[−3.50, −1.09] on the n=400 subset, which sat near the pessimistic end of its own interval). The
+frame fix removed most of the gap, not all of it, and 30 clips were too few to see the remainder.
 
 ### 3.4 Language model — mT5-base, shrunk
 
@@ -324,10 +325,13 @@ These rules were all bought with a mistake, which is why they are written down.
 - **Paired bootstrap, one set of draws for every run.** Score every configuration on the *same*
   resample draws, so deltas and differences-of-deltas are mutually comparable. Subtracting two
   independently-bootstrapped CIs is both wrong and less sensitive.
-- **Report both metrics; either one can be blind to your effect.** The frame-rate effect shows on
-  ROUGE-L (−1.34 [−2.42, −0.30]) and not BLEU-4 (−0.35 [−1.00, +0.45]); the pose-substitution effect
-  shows on BLEU-4 (−2.24 [−3.50, −1.09]) and not ROUGE-L (−1.11 [−2.56, +0.35]) — same clips, same
-  draws in each case. It is **not** that one metric is more powerful: BLEU-4's interval is the
+- **Report both metrics; either one can be blind to your effect — and the one that resolves it can
+  still be the one furthest from the truth.** The frame-rate effect shows on ROUGE-L
+  (−1.34 [−2.42, −0.30]) and not BLEU-4 (−0.35 [−1.00, +0.45]). The pose-substitution effect showed
+  on BLEU-4 (−2.24 [−3.50, −1.09]) and not ROUGE-L (−1.11 [−2.56, +0.35]) **at n=400** — but at the
+  full 931 clips **both** establish it and the two converge, −1.41 and −1.33 (§2.5k, 2026-10-05). So
+  that asymmetry was a power artefact, and the metric that did resolve it at n=400 was the one that
+  overstated it, by 0.83. Same clips, same draws in each case. It is **not** that one metric is more powerful: BLEU-4's interval is the
   *narrower* of the two in **all four** comparisons measured on shared draws (by 10–26 %, each ±~5
   points from bootstrap noise — the direction is the result, the magnitudes are not). What changes is whether the effect registers on that
   metric at all. BLEU-4 is precise and partly blind to fluency-type degradation; ROUGE-L is noisier

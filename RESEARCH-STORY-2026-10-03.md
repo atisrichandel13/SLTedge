@@ -387,6 +387,12 @@ extractor's — comes out:
 
 Same clips, same paired bootstrap, same 2000 draws — and the metrics have swapped roles.
 
+> **SUPERSEDED 2026-10-05; this narrative is dated 10-03 and is kept as written.** At the full 931
+> paired test clips the gap is **−1.41 [−2.21, −0.66]** on BLEU-4 and **−1.33 [−2.25, −0.46]** on
+> ROUGE-L — **both established**, and converging on each other. So the swapped-roles reading above was
+> a power artefact of n=400, and the BLEU-4 figure here is 0.83 too large. `results/RESULTS.md` §2.5k
+> is authoritative; this file is not.
+
 **So the claim is not "ROUGE-L is more powerful than BLEU-4."** That was our reading when we had one
 family of effects, and it was too simple.
 
