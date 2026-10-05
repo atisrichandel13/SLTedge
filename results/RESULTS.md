@@ -2685,6 +2685,90 @@ no group is the culprit, and damage saturates. That is what a *distribution shif
 model was trained on the authors' keypoints and never saw our extractor's noise — and it points at
 adaptation rather than at a better pose model.
 
+### 2.5k J12: the board pose set taken to all 931 fetched test clips (2026-10-05)
+
+`jetson/j12_rest_of_split.sh` (runs on the pose-track Mac, drives the board), engine
+`models/rtmw/rtmw-l-m_256x192_fp16.engine`, extractor `task1_rtmpose/09_batch_clips.py --square-norm`,
+`pmode:0000` (15 W). Output `results/pkl_split_rtmw_fp16{,_raw}` on the board.
+
+**Why this section exists, and why it is late.** The n=100 extraction is recorded in §2.5g and then
+the practice lapsed: the extension to n=400 — the set every §2.5h number rests on — was never written
+up, and nor was J12. This section backfills the whole ladder. Both omissions were mine.
+
+**Why 931 and not 976.** 45 of the 976 `labels.test` names have no clip on disk and never will:
+`data/clips/index.json` records `requested 974, n_ok 931, n_failed 43`. 931 is the paired ceiling, so
+J12 was 931 − 403 = 528 clips.
+
+#### The extraction ladder, reconstructed from pkl mtimes on the board
+
+Reproduce with `python3 jetson/j12_timeline.py --gap-min 5`, run on the board. The `--gap-min 5` is
+load-bearing: the aborted batch at 20:07 and J12's start at 20:13:39 are only 6.1 min apart, so the
+default 30-min threshold merges those two rows into one 531-clip rung at 29.2 frames/s.
+
+| rung | clips | frames | wall | frames/s | when (UTC) |
+|---|---:|---:|---:|---:|---|
+| §2.5g n=100 | 100 | 24,365 | 11.2 min | **36.3** | 10-03 21:25 → 21:36 |
+| extension to n=403 | 300 | 67,809 | 31.5 min | **35.9** | 10-03 22:53 → 23:25 |
+| aborted batch (see below) | 3 | 1,031 | 0.4 min | 40.7 | 10-05 20:07 |
+| **J12** | **528** | **110,357** | **57.5 min** | **32.0** | 10-05 20:13:39 → 21:11:10 |
+| **total on the board** | **931** | **203,562** | | | |
+
+**These timings are reconstructed, not logged, and that needs saying.** J12's own log holds five
+lines of a 528-clip run: the driver's stdout was a pipeline whose reader exited two minutes in, and
+because `set -e` is deliberately off there (a batch shortfall must not kill the run) every later
+`echo` failed with EPIPE in silence. The numbers above come from `jetson/j12_timeline.py`, which
+clusters the pkl mtimes on the board. **The method is validated rather than asserted**: on the n=100
+rung it independently reproduces §2.5g's separately recorded figures — 24,365 frames (exact), 36.3
+against 36.0 frames/s, 11.2 against 11.3 min — and the four rungs' frames sum to 203,562, which is
+also what `n_frames` sums to across the 931 `meta.json` files on the pose-track Mac. Two independent
+routes to the same total.
+
+**J12's 32.0 frames/s is an aggregate, not a GPU rate.** It spans six staging rsyncs and six reclaim
+passes as well as the extraction, which is why it sits ~11 % below the 35.9–36.3 frames/s of the two
+unbatched rungs. A spot measurement taken on the board mid-run over a 90 s window gave 11.33
+clips/min against the 9.18 clips/min aggregate here; both are real and they measure different things.
+Batching was not optional — 528 clips of JPEGs is 3.66 GB and the board is shared scratch.
+
+#### What is on the board now
+
+| | | |
+|---|---:|---|
+| `results/pkl_split_rtmw_fp16` | 931 pkl | 340 MB |
+| `results/pkl_split_rtmw_fp16_raw` | 931 pkl | 340 MB |
+| `data/openasl_pose_split` (authors' reference, same clip set) | 931 pkl | 560 MB |
+
+Left clean: **0** `frames/` directories, **0** `.pkl.part` files, board back to 15 G free. Clip
+directories and their `meta.json` stay — the extractor needs the meta and `p10_split.sh` counts the
+dirs — but every JPEG is gone, per the shared-board rule.
+
+The reference set matters as much as ours: the ceiling row must be scored on *our* exact clip set, or
+it repeats §2.5c's error of quoting a ceiling at n=40 against our rows at n=30. It went 400 → 931 in
+the same run.
+
+#### Two defects this run found, both now fixed
+
+**One unreadable JPEG aborted a whole 90-clip batch.** `cv2.imread` returns `None` and `preprocess`
+dies at `rtmpose_utils.py:81`. That is the 3-clip rung in the table: the batch wrote 3 pkls and
+stopped. `09_batch_clips.py` now isolates per clip, names the bad frame, and tallies skips at the end.
+Worse, the old cleanup (`find data/clips -name frames -exec rm -rf {} +`) then deleted the frames of
+all 90 clips including the 87 that had never been extracted; `jetson/j12_reclaim.py` now deletes
+frames only for clips with **both** pkls.
+
+**The board can be behind `main` on any file, and nothing checks it.** The first n=931 eval launch
+aborted with `unrecognized arguments: --expect-n 931` because the board's `unisign/eval_openasl.py`
+predated that flag — the board is an rsync target, not a git checkout. It failed loudly and wrote no
+JSON rather than scoring 931 clips unguarded. The board copy was diffed before overwriting, since
+every n=400 number came from it: purely additive (the argument, an empty-`preds` guard, the count
+check), no scoring path touched, so **the n=400 numbers stand**. See §L18 addendum 1.
+
+#### Accuracy
+
+Not in this section. The `pruned_ours_fps24` arm at `SLT_TAG=n931 SLT_EXPECT_N=931` is what turns
+this extraction into a result, and it is pending; the ceiling it pairs against is the LM track's
+`results/eval_test976_ceil_b4_fps24_named.json` intersected by clip name, at a measured device offset
+of +0.0514 BLEU-4 (§L18 addendum 1). Expected effect of the extraction itself: the §2.5h pose-gap
+half-width narrows by `sqrt(400/931) = 0.6555`, from ±1.205 to **±0.790**.
+
 ### 2.9D / J6: pose energy across the crop range — the ~7 % bias is really ~3 % (2026-10-04)
 
 `jetson/j6_crop_range.sh`, raw `results/j6_crop/`. Every pose energy number in this document comes
