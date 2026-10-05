@@ -6,15 +6,23 @@ IMPORTANT - what kind of number each column is:
   * ACCURACY  : measured by us, n=976 OpenASL test clips, pruned FP32 checkpoint,
                 max_new_tokens 64, batch 8. See results/RESULTS.md L13.
                 *** ON THE AUTHORS' RELEASED KEYPOINTS, NOT OUR EXTRACTOR'S. *** The deployed
-                system feeds RTMW FP16 poses from our own pipeline, and at n=400 that substitution
-                is an ESTABLISHED cost of -2.24 BLEU-4 [-3.50, -1.09] at 24 fps (RESULTS.md 2.5h).
-                So the absolute accuracy column below sits about 2.2 BLEU-4 ABOVE what the shipped
-                system delivers. The term grew as n grew -- -0.35 [-4.23, +3.17] at n=30,
-                -1.89 [-4.26, +0.27] at n=100, -2.24 [-3.50, -1.09] at n=400 -- and an earlier
-                version of this note read the n=30 figure as "costs nothing detectable", which was
-                treating a near-zero point estimate inside a +-4 interval as evidence of no effect.
-                ROUGE-L does NOT establish the same effect (-1.11 [-2.56, +0.35]), the reverse of
-                the metric-power pattern we found in the adaptation work.
+                system feeds RTMW FP16 poses from our own pipeline, and at the FULL 931 paired
+                clips that substitution is an ESTABLISHED cost of -1.41 BLEU-4 [-2.21, -0.66] at
+                24 fps (RESULTS.md 2.5k, results/ci_n931_pose_gap.json).
+                So the absolute accuracy column below sits about 1.4 BLEU-4 ABOVE what the shipped
+                system delivers.
+                UPDATED 2026-10-05 from -2.24 / ~2.2, which was the n=400 subset. Do not read the
+                n ladder as a trend: -0.35 [-4.23, +3.17] at n=30, -1.89 [-4.26, +0.27] at n=100,
+                -2.24 [-3.50, -1.09] at n=400, then -1.41 [-2.21, -0.66] at n=931. It drifted away
+                from zero three times and then came back, so the monotonicity was sampling noise,
+                not the signature of the effect; -1.41 is inside the n=400 interval, so the n=400
+                figure was not wrong, it sat near the pessimistic end. An earlier version of this
+                note read the n=30 figure as "costs nothing detectable", which was treating a
+                near-zero point estimate inside a +-4 interval as evidence of no effect.
+                ROUGE-L establishes the same effect at n=931 (-1.33 [-2.25, -0.46]) having failed
+                to at n=400 (-1.11 [-2.56, +0.35]), and the two metrics now agree closely (1.41 vs
+                1.33), so the metrics-swap-roles reading of 2.5h was itself a power artefact on
+                this family of effect.
                 The deployed config is now MEASURED rather than composed: 22.99 BLEU-4 /
                 43.43 ROUGE-L (board poses, pruned ckpt, 24 fps, beam 4, n=100).
                 Pruning does not add to it: -0.44 [-1.87, +0.94] on our keypoints, -0.28

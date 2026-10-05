@@ -160,9 +160,11 @@ paras = [
     "but not equivalent to a real low-rate camera. All cells carry a -0.03 BLEU-4 test-set "
     "vocabulary leak, uniform across cells and so unable to reorder them.",
     "Accuracy is scored on the AUTHORS' released keypoints. The deployed system uses our own RTMW "
-    "FP16 extractor, and at n=400 that substitution is an ESTABLISHED -2.24 BLEU-4 [-3.50, -1.09] "
-    "at 24 fps -- so this axis sits ~2.2 points ABOVE what the shipped system delivers. Every cell "
-    "here shares the same poses, so the relative ordering -- the deliverable -- is unaffected.",
+    "FP16 extractor, and across all 931 paired test clips that substitution is an ESTABLISHED "
+    "-1.41 BLEU-4 [-2.21, -0.66] at 24 fps -- so this axis sits ~1.4 points ABOVE what the shipped "
+    "system delivers. (Updated 2026-10-05 from the n=400 subset's -2.24; -1.41 is inside that "
+    "interval, which sat near its pessimistic end.) Every cell here shares the same poses, so the "
+    "relative ordering -- the deliverable -- is unaffected.",
 ]
 # Wrap to the figure width in characters, or the caveats get clipped off the right edge.
 import textwrap  # noqa: E402

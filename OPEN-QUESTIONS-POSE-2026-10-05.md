@@ -310,6 +310,27 @@ established* even at full width — the outcome J12 was run to prevent.
 useful under every answer above, so I will start it when the board is free unless you say otherwise.
 What I will not do without your answer is present the 39 % sizing as still holding.
 
-**Paired bootstrap on the −1.41 is running** (`results/ci_n931_pose_gap{,_bleu}.json`). Until that
-interval exists, the ±0.790 above is the *predicted* half-width from `sqrt(400/931)` scaling, not a
-measured one, and the "short by 0.24" line inherits that caveat.
+**The bootstrap has landed and the caveat is discharged** (`results/ci_n931_pose_gap.json`, 931
+paired clips, 1000 resamples, seed 0):
+
+| metric | delta | 95 % CI | half-width | verdict |
+|---|---:|---|---:|---|
+| BLEU-4 | **−1.4077** | [−2.207, −0.656] | **±0.775** | established |
+| ROUGE-L | **−1.3280** | [−2.253, −0.463] | ±0.895 | established |
+
+**The predicted width was right — ±0.775 measured against ±0.790 predicted.** So the table above
+stands on a measured interval: 39 % of 1.41 is **+0.55 against ±0.775**, short by 0.23. The ROUGE-L
+arithmetic has the same shape: 0.39 × 1.33 = **0.52 against ±0.895**.
+
+**Two results in your favour fell out of the same run**, and they matter for the report even if Q9
+goes against J9:
+
+1. **ROUGE-L establishes the pose term for the first time**, −1.33 [−2.25, −0.46], against your
+   −1.11 [−2.56, +0.35] at n=400 (`RESULTS.md:2335`). Protocol-clean: both arms batch 1, only the
+   device axis differs, measured at −0.0036 ROUGE-L by your own §L18 addendum 1.
+2. **The two metrics converge — 1.41 and 1.33** — where at n=400 they differed by about 2×. Your
+   §2.5h "metrics swap roles" asymmetry was a power artefact on this family of effect, so I have put
+   a dated note on that section. **Your broader claim gets stronger, not weaker**: the single metric
+   anyone would have reported here, BLEU-4, overstated the effect by 0.83, while the metric you
+   called blind to it was closer to the full-width answer all along. That is a better version of the
+   "reporting one metric is unsafe in either direction" argument than the one in §2.5h now.
