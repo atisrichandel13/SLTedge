@@ -1976,10 +1976,29 @@ working recipe changed smoothing, learning rate and warmup together.
 4. Frame-rate emulation thins already-extracted 30 fps poses; a real 16 fps capture differs in
    exposure and motion blur.
 
-Checkpoint: `weights/adapt_fps16_lr1e5_seed42.pt` (trainable params + optimizer state; the full
-570 MB model reconstructs from it plus the L5.4 base). GPU reductions are non-deterministic, so a
-re-run produces a similar but not identical model — this file is the one that produced the numbers
-above.
+~~Checkpoint: `weights/adapt_fps16_lr1e5_seed42.pt` … this file is the one that produced the numbers
+above.~~
+
+> **RETRACTED 2026-10-05 — the file was mislabelled three ways and did not produce these numbers.**
+> Read back from the checkpoint's own saved `args`, it records `out_dir =
+> /content/runs/ctrl_ls0_lr1e4`, `fps = None` and `lr = 1e-4`, with `epoch_done = False` at step
+> 2000. So it is the **`ctrl_ls0_lr1e4` run** — the *control* condition at source rate on the
+> *rejected* learning rate — and it is a **mid-epoch partial**, not a finished model. Its filename
+> claimed the opposite on every count. Renamed on the LM-track Mac to
+> `weights/ctrl_ls0_lr1e4_seed42_step2000_PARTIAL.pt`; `weights/` is gitignored, so nothing in the
+> repo moved.
+>
+> **No checkpoint for L15.3's 16 fps adaptation survives on the LM-track Mac.** The two Colab
+> runtimes that trained Block 4 were wiped, and the one file rescued was not the one believed.
+>
+> **The L15.3 results themselves are unaffected.** They rest on the eight eval JSONs in
+> `results/block4/`, which hold all 967 per-clip predictions and are what every CI in §L15.3 was
+> bootstrapped from. The retraction is about *provenance and reproducibility*, not about the numbers:
+> anyone reconstructing a model from that file would have got a different one.
+>
+> **§L17 is now the reproduction path.** Its 20,000-clip rung retrains this adaptation from scratch
+> and lands within −0.054 BLEU-4 / −0.024 ROUGE-L of L15.3, with the un-adapted baseline bit-exact —
+> so the result is independently reproducible even though the original artifact is not recoverable.
 
 ### L16 Milestone M4 / C10: the accuracy–energy frontier plot (`results/frontier.png`, `results/frontier.csv`)
 

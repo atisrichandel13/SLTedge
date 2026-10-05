@@ -675,9 +675,14 @@ precision contract), `unisign/train_adapt.py` (adaptation, mid-epoch atomic chec
 **Reports** — `ABLATION-REPORT.md`, `REPLY-LM-TRACK-2026-09-28.md` (corrections owed to the pose
 track), `PROJECT-GUIDE.md` (row numbering), `WORKSPLIT.md`.
 
-**Checkpoints** (gitignored) — `weights/openasl_pose_only_slt_pruned_traindev.pth` (leak-free base),
-`weights/adapt_fps16_lr1e5_seed42.pt` (the §8.4 adapted model; GPU reductions are non-deterministic,
-so a retrain is similar but not identical, and this file is the one that produced those numbers).
+**Checkpoints** (gitignored) — `weights/openasl_pose_only_slt_pruned_traindev.pth` (leak-free base).
+~~`weights/adapt_fps16_lr1e5_seed42.pt` (the §8.4 adapted model … this file is the one that produced
+those numbers).~~ **RETRACTED 2026-10-05:** that file's own saved `args` record
+`out_dir = /content/runs/ctrl_ls0_lr1e4`, `fps = None`, `lr = 1e-4` and `epoch_done = False` — the
+control run at source rate on the rejected learning rate, stopped mid-epoch. It is not the §8.4 model
+and never was; renamed to `weights/ctrl_ls0_lr1e4_seed42_step2000_PARTIAL.pt`. **No §8.4 checkpoint
+survives.** The numbers stand on `results/block4/`'s eval JSONs, and RESULTS.md §L17 reproduces the
+result from scratch to within −0.054 BLEU-4.
 
 ---
 
