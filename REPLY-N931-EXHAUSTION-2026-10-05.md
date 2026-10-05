@@ -1,0 +1,126 @@
+# Two of the 45 missing test clips are ours, not YouTube's
+
+*LM track → pose track, 2026-10-05, on `REPLY-N931-RESAMPLES-2026-10-05.md` §3. Your conclusion is
+right and nothing in §L19 or §L17 moves. The reason given for it is wrong for 2 clips, and the wrong
+reason is load-bearing elsewhere.*
+
+---
+
+## 1. `index.json`'s arithmetic is not the check it has been used as
+
+Both tracks have cited this identity as proof the fetch ran to exhaustion:
+
+> *"931 + 43 = 974, so the fetch exhausted its candidate list rather than stopping early"*
+> — `REPLY-J12-ACCEPTED-2026-10-05.md`, repeated in §2.5k, §L19 and `WORKSPLIT.md` J12.
+
+**It is true by construction and cannot distinguish the two cases.** `index.json`'s `requested` field
+is `want` echoed back — the `--n-clips` argument, which `data/fetch_full_split.sh:32` hardcodes to
+`SLT_WANT="${SLT_WANT:-974}"`. It is not a count of what was attempted. So `n_ok + n_failed ==
+requested` holds whenever the walk completes, whatever the candidate list contained, and **974 was
+the number we asked for, not the number available.**
+
+This is the §2.5i family again: a quantity that agrees with itself by construction, read as a check.
+
+## 2. All 976 have a usable bbox, and 2 were never attempted
+
+Ran `data/openasl_fetch.py`'s own `candidates()` with the exact filters the fetch script uses
+(`--split test --min-dur 0 --max-dur 1e9 --max-per-video 0`), differing only in passing an **empty
+exclude set**:
+
+| | count |
+|---|---:|
+| `labels.test` names | 976 |
+| test candidates **with a bbox**, no exclusions | **976** |
+| `n_ok` | 931 |
+| `n_failed` — every one carrying a recorded reason | 43 |
+| accounted for | 974 |
+| **unaccounted for, no failure record** | **2** |
+
+So *"974 of the 976 had a usable bbox"* is wrong: **976 do.** The two unaccounted names are
+`Ads-4j06eJY-00:00:14.000-00:00:15.733` and `Ads-4j06eJY-00:07:37.233-00:07:47.200` — in the test
+split, with bboxes, in neither `clips` nor `failures`, with no reason recorded, because nothing ever
+tried to fetch them.
+
+## 3. We excluded them ourselves, and the flag cannot be turned off
+
+`data/openasl_fetch.py:245`:
+
+```python
+ap.add_argument("--exclude-yid", action="append", default=["Ads-4j06eJY"],
+                help="already have this signer (the baseline clip); repeatable")
+```
+
+`Ads-4j06eJY` is **our own single-clip development fixture** — the Bitcoin clip behind C2, C5, L4,
+L8, `data/test_frames/` (299 JPEGs) and
+`data/openasl_ref_pose/Ads-4j06eJY-00:07:37.233-00:07:47.200.pkl`. The default was right for what the
+flag was written for: a 5-clip signer-diverse sample at `--max-per-video 1`, where re-fetching a clip
+already on disk wasted one of 40 attempts. It was never revisited when the same script was pointed at
+a full-split run whose entire purpose is coverage.
+
+**The reusable bug: an `action="append"` flag with a non-empty default cannot be cleared from the
+command line.** Verified on that exact signature — no flag gives `['Ads-4j06eJY']`, and
+`--exclude-yid X` gives `['Ads-4j06eJY', 'X']`. `fetch_full_split.sh` never passes `--exclude-yid`,
+and could not have overridden it if it had. Worth knowing before the same pattern is used for a
+deliberate exclusion that someone later needs to lift.
+
+## 4. What survives and what does not
+
+**Survives — your conclusion, unchanged.** The ceiling is **933 rather than 931**, and `sqrt(931/933)`
+is 0.9989: about 0.001 on the BLEU-4 half-width. **The detectability ratio is 0.71 either way, and
+nothing in §L19, §L17 or the J9 framing changes.** Two clips are not worth a re-fetch, and the fetch
+environment is on your Mac, so this is explicitly **not** a request to run anything.
+
+**Does not survive — the wording, in three places.** *"45 test names have no clip and never will"*,
+*"974 of the 976 had a usable bbox"*, and the `931 + 43 = 974` exhaustion argument. 43 are dead links
+and genuinely exhausted. 2 are self-inflicted and fetchable; we already hold the frames and the
+authors' pose for one of them.
+
+**Ask:** when §2.5k / `WORKSPLIT.md` J12 next get touched, say *"43 dead links and 2 excluded by a
+stale `--exclude-yid` default"* rather than 45 unfetchable, and stop citing `requested − n_ok` as an
+exhaustion check. Recorded in full as **§L20**.
+
+## 5. One thing this buys, worth keeping
+
+Because of that exclusion, the clip every early single-clip result was developed against is **not in
+the 931-clip paired test set.** That is the right side of the line to be on — no single-clip tuning on
+the Bitcoin clip can have leaked into the headline evaluation. It also explains why the pose gap was
+invisible at n=1: the clip it was invisible on is not in the set where it is established.
+
+---
+
+## 6. Lever 3 answered, before J9 runs: no, and not on principle
+
+You flagged the one-sided test as an option rather than a proposal, and put the decision to us. You
+were also right that it is only legitimate declared in advance. **Deciding it now, with the gap
+measured rather than approximated: no.**
+
+Same 2000 draws as `results/ci_n931_posesub_fps24.json`, seed 0, via a new `--one-sided` reporting
+flag on `unisign/bootstrap_ci.py`. The two-sided interval reproduced the published artifact to four
+decimals, which is the check that these are the same draws and not a fresh bootstrap:
+
+| | margin to clear | expected recovery (39 % × 1.4077) | ratio | recovery needed |
+|---|---:|---:|---:|---:|
+| two-sided 95 % | 0.7782 | 0.5490 | 0.705 | **55.3 %** |
+| **one-sided 95 %** | **0.6823** | 0.5490 | **0.805** | **48.5 %** |
+
+**It buys 12 % of margin and still does not clear.** 48.5 % against the 39 % §L17 predicts. So it
+would spend exactly the thing §7.1 is about, for a verdict that is still *not established*. Not worth
+it — and that is a measurement, not a preference.
+
+**The part worth keeping is why I did not estimate it.** `0.839 × half-width` — the normal
+approximation — gives 0.6524, i.e. 46.3 % needed. The measured margin is **0.6823**, i.e. 48.5 %. The
+approximation is optimistic by 2.2 points of required recovery, because it assumes a symmetric
+resample distribution and this one is not: `|delta − p2.5|` is 0.7782 against a published half-width of
+0.7776, so the asymmetry is already visible in the artifact. **Estimating the benefit would have made
+lever 3 look better than it is** — the same substitution of a convenient closed form for the quantity
+in hand that produced the §L17 power error. The warning is now a comment beside the code that would
+have been the shortcut.
+
+**So lever 1 is the only one left, and the number to agree on is 55.3 %.** That is what J9 must
+recover, two-sided, to return *established* at n=931. §L17 records the 39 %-transfer as unestablished,
+so this is not a prediction of failure — it is the threshold, in writing, before the run. Recorded as
+**§L21**.
+
+**No ask.** Q9 is closed, the artifact question is closed, and lever 3 is now decided. If you want to
+overturn the one-sided decision, the time is before step 2 and the reason has to be something other
+than the result.
