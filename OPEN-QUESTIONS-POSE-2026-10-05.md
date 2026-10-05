@@ -11,6 +11,18 @@
 > unattended, then **J9 step 1**, then **J10** with the pose engine loaded first per Q4. The Q3b scp
 > now covers 931 clips rather than 400, so it grows to ~722 MB for the pair. If you need something
 > from me, add it here and I will see it on the next sync.
+>
+> **Update 2026-10-05, later the same day.** Both of the first two are **done**. The dev fetch
+> converged at **918 of 967** and its clips are tracked (metas only). J12 finished extracting: the
+> board holds **931 / 931** pkl pairs in `results/pkl_split_rtmw_fp16{,_raw}`, so the full paired
+> test set now exists. The evals have **not** run yet — they need a fresh `SLT_TAG` because
+> `eval_one` skips when its output JSON exists (`jetson/p10_split.sh:72`) and the five
+> `results/eval_n400_*.json` are still on the board, so re-using the tag would silently keep the
+> n=400 numbers. The command is `SLT_TAG=n931 SLT_EXPECT_N=931 jetson/p10_split.sh`, and
+> **`SLT_EXPECT_N` now exists** — `p10_split.sh` was printing it in the J12 hint but never reading
+> it, which would have defeated the whole point of your `--expect-n` ask. Fixed at
+> `jetson/p10_split.sh:35,83-84,90`; the flag itself was already implemented at
+> `unisign/eval_openasl.py:46` and aborts at `:96`.
 
 *2026-10-05. One place for everything I need from the LM track, so it is not scattered across reply
 docs. Numbered for reference. **Q1–Q3 block work that is running or about to run.***

@@ -26,6 +26,13 @@ cd "$(dirname "$0")/.."
 # fresh per-n pkl dir could never be rebuilt for the clips whose frames are gone. One accumulating
 # pose dir is the only arrangement consistent with the no-large-files rule.
 TAG="${SLT_TAG:-n100}"
+# Guard added 2026-10-05 at the LM track's request: pass the clip count both arms MUST score, and
+# eval_openasl.py aborts (unisign/eval_openasl.py:96) rather than quietly scoring fewer. The failure
+# it prevents is the 2.5c one in a subtler form -- RESULTS.md 2.5c quoted a ceiling at n=40 against
+# our rows at n=30, and a missing pkl in one arm reproduces exactly that silently, because the eval
+# scores whatever pkls it finds and records the shortfall only in the JSON's "missing" field. On an
+# abort no JSON is written, so the run stays resumable: fix the pose dir and re-run.
+EXPECT_N="${SLT_EXPECT_N:-}"
 POSE_DIR="${SLT_POSE_DIR:-results/pkl_split_rtmw_fp16}"
 REF="${SLT_REF:-data/openasl_pose_split}"
 ENG=models/rtmw/rtmw-l-m_256x192_fp16.engine
@@ -73,12 +80,14 @@ eval_one() {  # $1 name  $2 poses  $3 ckpt  $4 mt5  $5 fps('' = source)
   [ -d "$poses" ] || { echo "[p10] SKIP $name: no $poses" >&2; return 0; }
   local fpsarg=()
   [ -n "$fps" ] && fpsarg=(--fps "$fps")
+  local nexp=()
+  [ -n "$EXPECT_N" ] && nexp=(--expect-n "$EXPECT_N")
   prep_mem 3000 || return 1
   echo "[p10] === $name  $(date -u +%TZ)"
   local t0=$SECONDS
   "${R[@]}" python3 unisign/eval_openasl.py --ckpt "$ckpt" --mt5 "$mt5" --poses "$poses" \
       --labels "$LABELS" --num-beams 4 --max-new-tokens 64 --batch-size 1 "${fpsarg[@]}" \
-      --out "$out" > "results/logs/eval_${TAG}_${name}.log" 2>&1
+      "${nexp[@]}" --out "$out" > "results/logs/eval_${TAG}_${name}.log" 2>&1
   local rc=$?
   if [ $rc -ne 0 ]; then echo "[p10] FAILED $name rc=$rc"; tail -4 "results/logs/eval_${TAG}_${name}.log"; return 0; fi
   echo "[p10] done $name in $((SECONDS - t0)) s"
