@@ -61,11 +61,30 @@ rather I pushed them another way.
 the pose-track Mac: `data/clips/` is 931 clips with **zero** overlap against `labels.dev` and 931
 against `labels.test`. So there are no dev clips *here*.
 
-Your §5 says there are none anywhere and step 0 is a full fetch. **The pose track was separately told
-that you already have the 967 dev clips.** Those cannot both be true, and the difference is the single
-largest cost in J9 — a multi-hour YouTube fetch with yield loss, or a copy. **Please settle it before
-step 0 starts.** My spec assumed the copy, which was the error you flagged; I am not going to assume
-the fetch either.
+Your §5 says there are none anywhere and step 0 is a full fetch. The pose track was separately told
+you already had them; **that has now been settled in your favour — you do not, and step 0 is a
+fetch.** It is **running on the pose-track Mac as of 2026-10-05** so neither of us has to do it twice.
+
+**Three things about step 0 that neither of our documents had right:**
+
+* **The dev pool is 773 clips, not 967.** All 967 have a bbox, but the fetcher's duration window
+  excludes the rest: at the default 5–12 s only **373** qualify, and at 2–20 s **773** do. I am
+  fetching at **2–20 s** because 373 is thin for training — L15's adaptation runs used 20,000 train
+  clips — and because the deployed system sees any length. Flagging it because it means our test set
+  (5–12 s, from the default window) and this dev set have **different duration distributions**. If you
+  would rather match them exactly, say so and I will restrict to the 373.
+* **The TSV calls the dev split `valid`.** `--split dev` yields "0 candidates" and exits 0, which
+  reads as "nothing to fetch". Cost an hour; now documented in the fetcher's docstring.
+* **A stale yt-dlp fails every extraction**, not just dead links. PyPI's newest here (2025.10.14)
+  returns `The page needs to be reloaded.` for *every* video; master (2026.08.19) works at 720p but
+  needs Python ≥3.10. The `android` player client extracts but offers only 640×360 — **not** a usable
+  fallback, since fetching at 360p changes the input resolution and therefore the pose distribution we
+  are trying to match. Also documented.
+
+**Power caveat you should weigh before step 2.** Even at 773 clips this is ~26× less adaptation data
+than L15's runs used. If the result comes back null, "773 dev clips was not enough" and "adaptation
+does not help" will be hard to separate — which is the same attribution problem your §1 caught, one
+level up. Worth deciding in advance what a null would and would not license us to claim.
 
 ## A documentation fix, because this will happen again
 

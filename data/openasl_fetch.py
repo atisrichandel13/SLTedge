@@ -18,6 +18,20 @@ falls outside and resizes to 224 - we keep the extra pixels because RTMPose/RTMW
 to the model input, and black padding would change the pose input. Whatever changes here must change
 for every clip, or latency and accuracy rows stop being comparable.
 
+TWO TRAPS, both measured 2026-10-05 and each worth an hour.
+
+1. THE DEV SPLIT IS CALLED `valid` IN THE TSV. `labels.dev` and the TSV's `split` column describe the
+   same 967 clips, but the column says `valid`. `--split dev` silently yields "0 candidates" and
+   exits 0, which reads as "nothing to fetch" rather than as an error. Use `--split valid`.
+
+2. A STALE yt-dlp FAILS EVERY EXTRACTION, not just dead links. PyPI's newest (2025.10.14 as seen
+   here) returns `The page needs to be reloaded.` for *every* video. The remedy is master:
+     python3 -m venv ytenv && ytenv/bin/pip install "git+https://github.com/yt-dlp/yt-dlp.git"
+   which needs **Python >= 3.10** (the system 3.9 cannot install it) and gave 2026.08.19, which
+   works at 720p. Do NOT fall back to `--extractor-args youtube:player_client=android`: it extracts
+   successfully but only offers 640x360, and fetching at 360p changes the input resolution and so the
+   pose distribution, which confounds any comparison against the 720p clips already collected.
+
 Needs `yt-dlp` and `ffmpeg` on PATH (or --yt-dlp / --ffmpeg). Expect dead links: OpenASL is 3 years
 old and clips go private or get deleted, so the script walks candidates until enough succeed and
 records every failure with its reason.
