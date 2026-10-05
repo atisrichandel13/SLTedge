@@ -18,6 +18,23 @@ its own idle baseline so the energies stay comparable.
 `--lengths` are pose frame counts fed to the encoder, i.e. the L7 sweep: 256 / 205 / 137 / 103 / 68
 correspond to 30 / 24 / 16 / 12 / 8 fps-equivalent for a ~8.5 s sentence. A length longer than the clip
 is silently the whole clip, so the row records `frames_used` as well as the requested length.
+
+J10 (--pose-engine). The 2.9C sweep above measures the LM STANDALONE: one process, no pose engine
+resident, no second TensorRT context in the shared 8 GB pool. Every end-to-end run has both models
+loaded, and composing from the standalone table understates the decoder-width energy term by
+2.08-2.27x (RESULTS.md 5.4), with the error signed consistently across all four cells -- the
+composition overestimates greedy and underestimates beam 4, compressing the spread from both ends.
+That is what a different resident footprint would do, but four cells sharing a sign is a pattern and
+not a cause (OPEN-ISSUES-LM-2026-10-05.md, J10).
+
+--pose-engine re-runs this identical sweep with the RTMW FP16 engine resident for the duration, so
+the only variable is the resident footprint. The engine is loaded BEFORE the LM, deliberately: the
+caching allocator's state depends on allocation ORDER, so loading it after would be a different
+experiment from the end-to-end runs this is meant to reproduce, where the pose stage is constructed
+first. One warm-up inference is run so the execution context's workspace is really allocated rather
+than merely deserialized -- an engine that has never run holds far less than one that has. The
+resulting JSON records `pose_engine` and the MemFree either side of it, so the two sweeps can be told
+apart from the artifact alone rather than from the filename.
 """
 import argparse
 import json
@@ -47,6 +64,10 @@ def main():
     ap.add_argument("--dtype", default="fp32", choices=["fp32", "fp16", "bf16"])
     ap.add_argument("--max-new-tokens", type=int, default=100)
     ap.add_argument("--repeat", type=int, default=3, help="timed passes per configuration (C9 wants 3)")
+    ap.add_argument("--pose-engine", default=None,
+                    help="J10: load this TensorRT pose engine BEFORE the LM and hold it resident for "
+                         "the whole sweep, so the LM is measured in the memory context the end-to-end "
+                         "runs actually have. Nothing else changes.")
     ap.add_argument("--out", required=True)
     add_power_args(ap)
     args = ap.parse_args()
@@ -58,9 +79,50 @@ def main():
     print(f"[sweep] {len(pkls)} clips, beams {args.beams}, lengths {args.lengths}, "
           f"{args.repeat} repeats -> {len(args.beams) * len(args.lengths)} configurations")
 
+    def memfree_mb():
+        try:
+            with open("/proc/meminfo") as fh:
+                for line in fh:
+                    if line.startswith("MemFree"):
+                        return int(line.split()[1]) // 1024
+        except OSError:
+            pass
+        return None
+
+    # J10: the pose engine goes in FIRST and stays. Allocation order matters to the caching
+    # allocator, and the end-to-end runs this is reproducing build the pose stage before the LM.
+    pose_runner = None
+    mem = {"before_pose": memfree_mb()}
+    if args.pose_engine:
+        from common.trt_runner import TrtRunner  # noqa: E402  (only needed for J10)
+        tp = time.perf_counter()
+        pose_runner = TrtRunner(args.pose_engine)
+        mem["after_pose"] = memfree_mb()
+        print(f"[sweep] J10: pose engine {args.pose_engine} resident in {time.perf_counter() - tp:.1f}s, "
+              f"MemFree {mem['before_pose']} -> {mem['after_pose']} MB", flush=True)
+
     t0 = time.perf_counter()
     dtype = {"fp32": torch.float32, "fp16": torch.float16, "bf16": torch.bfloat16}[args.dtype]
     model = load_model(args.ckpt, args.mt5, device=args.device, dtype=dtype)
+    mem["after_lm"] = memfree_mb()
+
+    # The pose warm-up happens HERE, after the LM, because that is the order e2e_translate.py:158-164
+    # uses and this run exists to reproduce its memory context. Doing it before the LM -- which the
+    # first two attempts did, meaning to make the footprint realistic -- forces the TensorRT context
+    # to allocate its workspace at exactly the moment the LM is loading, and both attempts died of
+    # NVML_SUCCESS == r INTERNAL ASSERT FAILED (CUDACachingAllocator.cpp:1017), this board's OOM in
+    # disguise, at MemFree 4487 and 4568 MB. The deployed path never has that peak: it constructs the
+    # runner, loads the LM, and only then infers. Warming up afterwards is both faithful and fits.
+    if pose_runner is not None:
+        feed = {}
+        for name in pose_runner.inputs:
+            shape = tuple(d if d > 0 else 1 for d in pose_runner.shape(name))
+            feed[name] = torch.zeros(shape, dtype=pose_runner.dtype(name), device=args.device)
+        pose_runner.infer(feed)
+        torch.cuda.synchronize()
+        mem["after_pose_warmup"] = memfree_mb()
+        print(f"[sweep] J10: pose warm-up done, MemFree {mem['after_lm']} -> "
+              f"{mem['after_pose_warmup']} MB", flush=True)
     print(f"[sweep] model loaded in {time.perf_counter() - t0:.1f}s "
           f"({sum(p.numel() for p in model.parameters()) / 1e6:.1f}M params)")
 
@@ -116,7 +178,8 @@ def main():
               f"{r['avg_W']:5.2f} {r['gpu_MHz']:7.0f}")
 
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
-    json.dump({"env": collect(), "rows": rows, "clips": pkls, "config": vars(args)},
+    json.dump({"env": collect(), "rows": rows, "clips": pkls, "config": vars(args),
+               "pose_engine_resident": bool(args.pose_engine), "memfree_mb": mem},
               open(args.out, "w"), indent=2)
     print("[sweep] wrote", args.out)
 

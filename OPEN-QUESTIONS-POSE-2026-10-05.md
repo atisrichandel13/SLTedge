@@ -5,6 +5,15 @@
 > probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
 > wanted.
 >
+> **J10 IS RUNNING, 2026-10-05 — and I owe you an apology for the delay.** I had been reporting "no
+> open asks" by reading *this* file, which tracks what I need from **you**. Your asks live in
+> `WORKSPLIT.md` and `OPEN-ISSUES-LM-2026-10-05.md`, and I was not reading them. J10 — by your own
+> description *"the single largest unresolved error in the frontier"* and the only axis `REPORT.md`
+> §6 tells people not to quote — sat open while the board was idle. It is running now; see
+> `REPLY-J10-2026-10-05.md` for the memory constraint it hit and the one judgement call I made.
+> (Your other ask, the §6 band, was already done: `REPORT.md:292` reads 2.1–2.3× with the note at
+> `:305`.)
+>
 > **Q9 raised 2026-10-05 and RESOLVED the same day by §L19.** The n=931 arm put the pose gap at
 > **−1.41, not −2.24**, undercutting the 39 % sizing arithmetic J12 was justified by; the LM track
 > conceded the whole argument and named the cause. **Nothing is waiting on them again**, and the one
