@@ -2350,8 +2350,8 @@ Relative ordering across the nine cells is untouched: every cell uses the same p
 
 > **CORRECTED 2026-10-05 by the n=931 board arm (§2.5k), and the correction is to the reasoning, not
 > the conclusion.** The full-width pose gap is **−1.4077 BLEU-4 [−2.186, −0.631]** and **−1.3280
-> ROUGE-L [−2.226, −0.490]**, both **established** (`results/ci_n931_posesub_fps24.json`, 931 paired clips,
-> 1000 resamples). Three consequences for the text above and below:
+> ROUGE-L [−2.226, −0.490]**, both **established** (`results/ci_n931_posesub_fps24.json`, 931 paired
+> clips, **2000** resamples). Three consequences for the text above and below:
 >
 > 1. **The monotonic ladder breaks at the next rung.** −0.35 → −1.89 → −2.24 → **−1.41**. Reading the
 >    drift away from zero as "the signature of a real effect" was over-reading it: the effect *is*
@@ -3218,3 +3218,84 @@ A J9 effect of the size §L17 predicts would still return *not established* at n
 framing then licenses nothing. This does not by itself say J9 should not run — the 39 % comes from
 the frame-rate axis and §L17 already records that its transfer to the pose-source axis is unestablished
 — but **no one should expect the n=931 test set to resolve a recovery of that size.**
+
+---
+
+### L20 The 45 unfetched test clips are 43 dead links and 2 deliberate exclusions (2026-10-05)
+
+**Checking a premise, not a conclusion.** `REPLY-N931-RESAMPLES-2026-10-05.md` §3 makes the useful
+point that 931 is a *cap* rather than a waypoint, so the detectability ratio of 0.71 cannot be
+improved by more extraction. The conclusion is right. The stated reason is wrong for 2 of the 45
+clips, and the wrong reason hides a reusable bug.
+
+The claim under test, from `REPLY-J12-ACCEPTED-2026-10-05.md` and repeated in §2.5k, §L19 and
+`WORKSPLIT.md` J12: *"974 of the 976 had a usable bbox; 43 of those came back dead links. 931 + 43 =
+974, so the fetch exhausted its candidate list"*, and in the later reply, *"45 of the 976
+`labels.test` names have no clip and the fetch has been retried to exhaustion."*
+
+**Measured against the tables rather than inferred from `index.json`** — re-running
+`data/openasl_fetch.py`'s own `candidates()` with the exact filters `data/fetch_full_split.sh` uses
+(`--split test --min-dur 0 --max-dur 1e9 --max-per-video 0`), differing only in passing an empty
+exclude set:
+
+| | count |
+|---|---:|
+| `labels.test` names | 976 |
+| test candidates **with a bbox**, no exclusions | **976** |
+| `index.json` `n_ok` | 931 |
+| `index.json` `n_failed` (every one with a recorded reason) | 43 |
+| accounted for | 974 |
+| **unaccounted for** | **2** |
+
+So **all 976 have a usable bbox, not 974.** The two unaccounted names are
+`Ads-4j06eJY-00:00:14.000-00:00:15.733` and `Ads-4j06eJY-00:07:37.233-00:07:47.200`, both in the test
+split, both with bboxes, both absent from `clips` *and* from `failures` — no recorded failure reason,
+because they were never attempted.
+
+**Why they were never attempted.** `data/openasl_fetch.py:245`:
+
+```python
+ap.add_argument("--exclude-yid", action="append", default=["Ads-4j06eJY"],
+                help="already have this signer (the baseline clip); repeatable")
+```
+
+`Ads-4j06eJY` is **this project's own single-clip development fixture** — the Bitcoin clip behind C2,
+C5, L4, L8, `data/test_frames/` (299 JPEGs) and
+`data/openasl_ref_pose/Ads-4j06eJY-00:07:37.233-00:07:47.200.pkl`. The exclusion was correct for what
+the flag was written for: a **signer-diverse sample** of 5 clips at `--max-per-video 1`, where
+re-fetching the clip we already had wasted an attempt. It was never reconsidered when the same script
+was pointed at a full-split run, where the whole purpose is coverage.
+
+**Two consequences, one of them a reusable bug.**
+
+1. **An `action="append"` flag with a non-empty default cannot be switched off from the command line.**
+   Verified: with that signature, no flag gives `['Ads-4j06eJY']` and `--exclude-yid X` gives
+   `['Ads-4j06eJY', 'X']`. `fetch_full_split.sh` never passes `--exclude-yid`, and could not have
+   cleared it if it had tried. The exclusion is unreachable from the only script that runs it.
+2. **`index.json` cannot reveal this and never could.** Its `requested` field is `want`, i.e. the
+   `--n-clips` value echoed back (`SLT_WANT` defaults to **974** at `data/fetch_full_split.sh:32`),
+   *not* a count of what was attempted. So `n_ok + n_failed == requested` is true by construction
+   whenever the walk completes, and the arithmetic `931 + 43 = 974` therefore **cannot distinguish
+   "exhausted the candidate list" from "the candidate list was silently 2 short."** Both tracks read
+   that identity as evidence of exhaustion. It is evidence of nothing. Same family as §2.5i's
+   truncated download and the `--split dev` silent zero: a quantity that agrees with itself by
+   construction, presented as a check.
+
+**What this does and does not change.**
+
+- **The cap conclusion stands.** The two clips are recoverable, so the ceiling is **933, not 931** —
+  but `sqrt(931/933)` is 0.9989, which moves the BLEU-4 half-width by about 0.001. The detectability
+  ratio stays 0.71 to two decimals. **Nothing concluded in §L19 or §L17 changes.**
+- **"45 test names have no clip and never will" is wrong as stated.** 43 are dead links and are
+  genuinely exhausted; 2 are self-inflicted and fetchable — we already hold the frames and the
+  authors' pose for one of them.
+- **One thing worth recording as favourable rather than as a defect.** Because of this exclusion, the
+  clip every early single-clip result was developed against is **not in the 931-clip paired test
+  set**. That is the right side of the line to be on: no single-clip finding on the Bitcoin clip can
+  have leaked into the headline evaluation. It also means no single-clip result on it can be
+  cross-checked against the n=931 numbers, which is why the pose gap was never visible at n=1.
+
+**Not proposing a re-fetch.** Two clips for a 0.001 change in half-width is not worth board or Mac
+time, and the fetch environment is on the pose-track Mac. The ask is that the wording stop saying
+these 2 were dead links, and that the `requested` field stop being cited as an exhaustion check.
+`REPLY-N931-EXHAUSTION-2026-10-05.md`.
