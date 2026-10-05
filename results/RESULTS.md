@@ -2829,6 +2829,22 @@ J12 first.
 L10's seed spread (0.05 BLEU-4 / 0.15 ROUGE-L) is small against these intervals. Run on Colab, not the
 rig. `n_boot` 1000, matching `adapt_ci_dev.json` so the anchor is comparable.
 
+> **Protocol note added 2026-10-05 after §L18.** Every eval here ran at **`--batch-size 8`**
+> (`colab_probe_scale.py:148`, and `eval_openasl.py`'s default), which is the §L13/§L15 protocol, not
+> the batch-1 protocol of §2.5g/§2.5h and every board row. Internally that is fine — all six evals in
+> this section, baseline included, share it, so the curve and its intervals stand.
+>
+> **It does constrain the power argument above**, which I under-qualified when I wrote it. That
+> argument takes the 39 % from this section's **batch-8 ROUGE-L** column and applies it to a
+> **batch-1 BLEU-4** gap and interval. The cross-*metric* leap was flagged; the cross-*protocol* one
+> was not. It survives mainly because 39 % is a **ratio internal to this section**, so a constant
+> protocol offset largely cancels in it, whereas a *difference* carried across would not.
+>
+> How much it would not: §L18 puts the cross-protocol ROUGE-L offset at **~0.34**, which is **85 % of
+> this section's n=920 rung** (+0.398 ROUGE-L). **A ROUGE-L difference carried across protocols can
+> therefore manufacture or erase a result of the size this probe is measuring, not merely blur it.**
+> Nothing in this section's ROUGE-L column may be compared with a batch-1 ROUGE-L figure.
+
 ---
 
 ### L18 Batching changes ~30 % of sentences, not 7 % — and the frontier's ROUGE-L is on the other protocol (2026-10-05)
