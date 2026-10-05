@@ -2349,8 +2349,8 @@ accuracy column sits about 2.2 BLEU-4 above what the shipped system delivers**, 
 Relative ordering across the nine cells is untouched: every cell uses the same poses.
 
 > **CORRECTED 2026-10-05 by the n=931 board arm (§2.5k), and the correction is to the reasoning, not
-> the conclusion.** The full-width pose gap is **−1.4077 BLEU-4 [−2.207, −0.656]** and **−1.3280
-> ROUGE-L [−2.253, −0.463]**, both **established** (`results/ci_n931_pose_gap.json`, 931 paired clips,
+> the conclusion.** The full-width pose gap is **−1.4077 BLEU-4 [−2.186, −0.631]** and **−1.3280
+> ROUGE-L [−2.226, −0.490]**, both **established** (`results/ci_n931_posesub_fps24.json`, 931 paired clips,
 > 1000 resamples). Three consequences for the text above and below:
 >
 > 1. **The monotonic ladder breaks at the next rung.** −0.35 → −1.89 → −2.24 → **−1.41**. Reading the
@@ -2419,8 +2419,8 @@ draws, so the comparison is clean:
 | | ROUGE-L | −1.34 | 1.06 | 1.26 |
 | pose substitution (§2.5h, n=400) | BLEU-4 | −2.24 | **1.21** | 1.86 |
 | | ROUGE-L | −1.11 | 1.46 | 0.76 |
-| **pose substitution (§2.5k, n=931)** | **BLEU-4** | **−1.41** | **0.775** | **1.82** |
-| | **ROUGE-L** | **−1.33** | 0.895 | 1.48 |
+| **pose substitution (§2.5k, n=931)** | **BLEU-4** | **−1.41** | **0.778** | **1.81** |
+| | **ROUGE-L** | **−1.33** | 0.868 | 1.53 |
 
 > **CORRECTION TO THIS ADDENDUM, 2026-10-05, from the n=931 arm — and it is my own claim that was
 > wrong, not §2.5h's.** I argued the n=400 reversal was *effect size* rather than power, on the
@@ -2431,8 +2431,8 @@ draws, so the comparison is clean:
 > there is no reversal to explain**, because both metrics establish the effect.
 >
 > **The other half of this addendum holds and is now confirmed a third time.** BLEU-4's interval is
-> narrower again at n=931 — **0.775 against 0.895, by 13 %** — so "BLEU-4 is the lower-variance
-> estimator on shared draws" survives at three sample sizes (26 %, 17 %, 13 %). What that implies is
+> narrower again at n=931 — **0.778 against 0.868, by 10 %** — so "BLEU-4 is the lower-variance
+> estimator on shared draws" survives at three sample sizes (26 %, 17 %, 10 %). What that implies is
 > now cleaner than my original framing: with the effect sizes equal, the *only* systematic difference
 > between the metrics on this family is interval width, which is power after all. So §2.5h's
 > instinct to call it power was closer than my refinement, and I was over-reading two noisy point
@@ -2826,14 +2826,16 @@ check), no scoring path touched, so **the n=400 numbers stand**. See §L18 adden
 `results/eval_n931_pruned_ours_fps24.json` (n=931, missing=45, `--expect-n 931` passed, 1519 s on the
 board at 1.63 s/clip), paired against the LM track's
 `results/eval_test976_ceil_b4_fps24_named.json` intersected by clip name — exactly 931 clips, **0
-reference mismatches**. CI from `results/ci_n931_pose_gap.json`, 1000 resamples, seed 0.
+reference mismatches**. CI from `results/ci_n931_posesub_fps24.json`, **2000** resamples — the same draw count as the
+n=400 reference it is compared against (`results/ci_n400_posesub_fps24_lm.json`, `n_boot` 2000), at the
+LM track's request in `REPLY-N931-2026-10-05.md`.
 
 | metric | ceiling | ours | delta | 95 % CI | half-width | verdict |
 |---|---:|---:|---:|---|---:|---|
-| **BLEU-4** | 23.1387 | 21.7310 | **−1.4077** | **[−2.207, −0.656]** | ±0.775 | **established** |
-| **ROUGE-L** | 43.1519 | 41.8239 | **−1.3280** | **[−2.253, −0.463]** | ±0.895 | **established** |
+| **BLEU-4** | 23.1387 | 21.7310 | **−1.4077** | **[−2.186, −0.631]** | ±0.778 | **established** |
+| **ROUGE-L** | 43.1519 | 41.8239 | **−1.3280** | **[−2.226, −0.490]** | ±0.868 | **established** |
 
-**The predicted narrowing was accurate: ±0.775 measured against ±0.790 from `sqrt(400/931)` scaling.**
+**The predicted narrowing was accurate: ±0.778 measured against ±0.790 from `sqrt(400/931)` scaling.**
 That part of the plan worked exactly as §L17 said it would.
 
 **What did not go to plan is the effect size.** The gap narrowed from −2.2413 to −1.4077, and the
@@ -2845,7 +2847,7 @@ pessimistic end of its own interval. §2.5h now carries a dated note to this eff
 
 **Two things this buys, and one it costs.**
 
-1. **ROUGE-L establishes the pose term for the first time** — −1.33 [−2.25, −0.46], against
+1. **ROUGE-L establishes the pose term for the first time** — −1.33 [−2.23, −0.49], against
    −1.11 [−2.56, +0.35] at n=400. Protocol-clean under §L18: both arms are batch 1 and the only axis
    differing is device, measured at −0.0036 ROUGE-L (§L18 addendum 1).
 2. **The two metrics now agree closely, 1.41 against 1.33**, where at n=400 they differed by ~2×. So
@@ -2855,8 +2857,8 @@ pessimistic end of its own interval. §2.5h now carries a dated note to this eff
    full-width answer all along.
 3. **It costs J12 its own justification.** `REPLY-PROBE-RESULT` sized J9's expected recovery at ~39 %
    of the gap — +0.88 against 2.24, clearing ±0.790. Against 1.41 it is **+0.55 against a measured
-   ±0.775**, which it does not clear; the ROUGE-L arithmetic is the same shape (0.39 × 1.33 = 0.52
-   against ±0.895). J12 widened the measurement *and* shrank the thing being measured, and the second
+   ±0.778**, which it does not clear; the ROUGE-L arithmetic is the same shape (0.39 × 1.33 = 0.52
+   against ±0.868). J12 widened the measurement *and* shrank the thing being measured, and the second
    effect was larger. **This is Q9 to the LM track**, because whether a ratio measured on a ROUGE-L
    scaling curve still applies to a smaller gap is their call, not mine.
 
@@ -3150,6 +3152,20 @@ mismatches). Artifact: `results/ci_n931_posesub_fps24.json`.
 > artifact every "the interval narrowed from ±1.205" statement compares against — is also 2000. An
 > interval width computed at 1000 draws is not directly comparable with one at 2000, and the whole
 > point of the n=931 run was to compare widths across n.
+>
+> > **ACCEPTED AND DONE, pose track 2026-10-05.** `ci_n931_pose_gap.json` is **deleted** and every
+> > citation of it — §2.5k, `REPORT.md`, `ORIENTATION.md`, `unisign/frontier.py`,
+> > `results/plot_frontier.py`, Q9 — now points at `ci_n931_posesub_fps24.json` with
+> > **[−2.19, −0.63]** and **±0.778**. One artifact for one quantity.
+> >
+> > **One correction to the reasoning, which does not change the ask.** Resample count does not make
+> > two widths incomparable — it adds Monte Carlo noise to the *estimate* of a width, without a
+> > systematic offset, so the two are comparable in expectation and 1000 draws costs precision rather
+> > than validity. Measured on this very pair: **0.0022 BLEU-4** (0.7754 against 0.7776) and 0.027
+> > ROUGE-L. So the request is right as practice — when the entire purpose is comparing widths across
+> > n, an avoidable noise source should go — and the practical effect on every conclusion either track
+> > has drawn is nil. Nothing that was said on the 1000-draw numbers needs revisiting; the detectability
+> > ratio is 0.71 either way.
 
 | | n=400 (§2.5h) | **n=931** |
 |---|---|---|

@@ -398,7 +398,7 @@ Same clips, same paired bootstrap — and at n=400 the metrics had swapped roles
 > added clips are harder for the *authors'* poses; §L19 has the decomposition.
 
 > **SUPERSEDED 2026-10-05; this narrative is dated 10-03 and is kept as written.** At the full 931
-> paired test clips the gap is **−1.41 [−2.21, −0.66]** on BLEU-4 and **−1.33 [−2.25, −0.46]** on
+> paired test clips the gap is **−1.41 [−2.19, −0.63]** on BLEU-4 and **−1.33 [−2.23, −0.49]** on
 > ROUGE-L — **both established**, and converging on each other. So the swapped-roles reading above was
 > a power artefact of n=400, and the BLEU-4 figure here is 0.83 too large. `results/RESULTS.md` §2.5k
 > is authoritative; this file is not.

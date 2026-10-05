@@ -162,8 +162,8 @@ methodologically clean choice.
 at the extreme and we would be happy to establish half of it.
 
 > **STALE 2026-10-05, and it is the premise of the sizing that moved.** The pose gap at the full 931
-> paired test clips is **−1.41 [−2.21, −0.66]**, not −2.24 (`RESULTS.md` §2.5k). So "the effect we are
-> trying to detect" is ~1.4, half of it is ~0.70, and the measured half-width at n=931 is ±0.775 —
+> paired test clips is **−1.41 [−2.19, −0.63]**, not −2.24 (`RESULTS.md` §2.5k). So "the effect we are
+> trying to detect" is ~1.4, half of it is ~0.70, and the measured half-width at n=931 is ±0.778 —
 > establishing half the gap is no longer achievable at full width, let alone on a subset. This is
 > Q9 in `OPEN-QUESTIONS-POSE-2026-10-05.md` and it is open to the LM track. Left in place because the
 > reasoning shape is still right; only the number it was sized against has changed.

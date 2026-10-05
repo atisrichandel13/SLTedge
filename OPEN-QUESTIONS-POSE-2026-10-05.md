@@ -5,10 +5,11 @@
 > probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
 > wanted.
 >
-> **Superseded 2026-10-05 by Q9 at the end of this file: one thing IS now waiting on them.** The
-> completed n=931 arm puts the pose gap at **−1.41, not −2.24**, which undercuts the 39 % sizing
-> arithmetic J12 was justified by. The question is whether §L17's ratio still applies to a smaller
-> gap; the line below was written before that arm existed.
+> **Q9 raised 2026-10-05 and RESOLVED the same day by §L19.** The n=931 arm put the pose gap at
+> **−1.41, not −2.24**, undercutting the 39 % sizing arithmetic J12 was justified by; the LM track
+> conceded the whole argument and named the cause. **Nothing is waiting on them again**, and the one
+> remaining decision is mine-and-theirs jointly: whether to declare a one-sided test before J9 step 2
+> runs (`REPLY-N931-RESAMPLES-2026-10-05.md` §3, lever 3). I am content to proceed without it.
 >
 > **Nothing in this file is waiting on the LM track.** Everything left is mine to execute, now in
 > this order after §L17 and `REPLY-PROBE-RESULT`: **J12** (531 remaining test clips — not 576; the
@@ -251,7 +252,23 @@ better trained at `--fps 16` so one checkpoint serves the candidate operating po
 checkpoints. Your call on the training side; I can supply either rate from the same dev pose set at no
 extra board cost, since the thinning happens at training time.
 
-### Q9 — the pose gap at full width is **−1.41, not −2.24**, and that undercuts the sizing argument J12 rested on  —  **OPEN, and it is yours to weigh in on**
+### Q9 — the pose gap at full width is **−1.41, not −2.24**, and that undercuts the sizing argument J12 rested on  —  **RESOLVED 2026-10-05 by §L19 + `REPLY-N931-2026-10-05.md`**
+
+> **Their answer, and they conceded the whole of it.** §L19: *"J12 did not buy the power it was run
+> for."* Detectability went **0.73 → 0.71**, marginally *worse*, because the interval narrowed 35 %
+> while the gap shrank 37 %. They named the cause better than I did: **§L17's power calculation
+> scaled the denominator while holding the numerator at a small-sample point estimate**, and
+> §2.5h's own [−3.50, −1.09] was wide enough to say that estimate was not yet well determined.
+> They also hold that J9 is still worth running — the 39 % comes from the frame-rate axis and its
+> transfer to the pose-source axis is unestablished — but that **nothing downstream may claim J12
+> made J9's predicted effect resolvable.** Agreed on all of it.
+>
+> They also asked for the 2000-resample artefact to be canonical, which is **done**: my 1000-draw
+> file is deleted and all citations point at `results/ci_n931_posesub_fps24.json`. See
+> `REPLY-N931-RESAMPLES-2026-10-05.md`, which adds the one thing neither side had said — **931 is
+> every test clip that will ever exist**, so 0.71 is a *cap*, not a current value, and the only
+> remaining levers are a larger true effect, a better metric (there isn't one here), or a one-sided
+> test declared before J9 step 2 runs.
 
 *2026-10-05, from the completed n=931 arm (`results/eval_n931_pruned_ours_fps24.json`).*
 
@@ -310,22 +327,22 @@ established* even at full width — the outcome J12 was run to prevent.
 useful under every answer above, so I will start it when the board is free unless you say otherwise.
 What I will not do without your answer is present the 39 % sizing as still holding.
 
-**The bootstrap has landed and the caveat is discharged** (`results/ci_n931_pose_gap.json`, 931
+**The bootstrap has landed and the caveat is discharged** (`results/ci_n931_posesub_fps24.json`, 931
 paired clips, 1000 resamples, seed 0):
 
 | metric | delta | 95 % CI | half-width | verdict |
 |---|---:|---|---:|---|
-| BLEU-4 | **−1.4077** | [−2.207, −0.656] | **±0.775** | established |
-| ROUGE-L | **−1.3280** | [−2.253, −0.463] | ±0.895 | established |
+| BLEU-4 | **−1.4077** | [−2.186, −0.631] | **±0.778** | established |
+| ROUGE-L | **−1.3280** | [−2.226, −0.490] | ±0.868 | established |
 
-**The predicted width was right — ±0.775 measured against ±0.790 predicted.** So the table above
-stands on a measured interval: 39 % of 1.41 is **+0.55 against ±0.775**, short by 0.23. The ROUGE-L
-arithmetic has the same shape: 0.39 × 1.33 = **0.52 against ±0.895**.
+**The predicted width was right — ±0.778 measured against ±0.790 predicted.** So the table above
+stands on a measured interval: 39 % of 1.41 is **+0.55 against ±0.778**, short by 0.23. The ROUGE-L
+arithmetic has the same shape: 0.39 × 1.33 = **0.52 against ±0.868**.
 
 **Two results in your favour fell out of the same run**, and they matter for the report even if Q9
 goes against J9:
 
-1. **ROUGE-L establishes the pose term for the first time**, −1.33 [−2.25, −0.46], against your
+1. **ROUGE-L establishes the pose term for the first time**, −1.33 [−2.23, −0.49], against your
    −1.11 [−2.56, +0.35] at n=400 (`RESULTS.md:2335`). Protocol-clean: both arms batch 1, only the
    device axis differs, measured at −0.0036 ROUGE-L by your own §L18 addendum 1.
 2. **The two metrics converge — 1.41 and 1.33** — where at n=400 they differed by about 2×. Your

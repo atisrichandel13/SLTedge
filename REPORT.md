@@ -219,7 +219,7 @@ own board extraction, pruned checkpoint, 24 fps, beam 4, batch 1:
 |---|---:|---:|
 | **the deployed system** | **21.73** | **41.82** |
 | same clips, authors' keypoints | 23.14 | 43.15 |
-| **pose-substitution cost** | **−1.41 [−2.21, −0.66]** | **−1.33 [−2.25, −0.46]** |
+| **pose-substitution cost** | **−1.41 [−2.19, −0.63]** | **−1.33 [−2.23, −0.49]** |
 
 **Both are established, and this is the project's one real accuracy deficit.**
 
@@ -234,11 +234,11 @@ own board extraction, pruned checkpoint, 24 fps, beam 4, batch 1:
 >   the signature of a real effect. The next rung is **−1.41**, so the drift reversed. The effect *is*
 >   real and *is* established at full width; the monotonicity was sampling noise that happened to
 >   point one way three times. We keep the finding and drop the reasoning.
-> - **ROUGE-L now establishes it too**, −1.33 [−2.25, −0.46], and the two metrics converge: **1.41
+> - **ROUGE-L now establishes it too**, −1.33 [−2.23, −0.49], and the two metrics converge: **1.41
 >   against 1.33**, where at n=400 they differed by about 2×.
 >
 > We had also called this cost "nothing detectable" at n=30, which was reading a near-zero point
-> estimate inside a ±4 interval as evidence of absence. `results/ci_n931_pose_gap.json`, §2.5k.
+> estimate inside a ±4 interval as evidence of absence. `results/ci_n931_posesub_fps24.json`, §2.5k.
 
 **Where it is not.** We spent the diagnostic effort before the compute:
 
@@ -261,7 +261,7 @@ pose-model swap a poor use of board time.
 > 2026-10-05 from 21.57/23.81 at n=400). Supporting evidence that it should work: the harness already
 > *improves* the model (+0.18 BLEU-4 / +0.70 ROUGE-L) with **no** distribution shift to adapt to.
 > **Counter-evidence that it may not be resolvable:** §L17 sizes the expected recovery at ~39 % of the
-> gap, which is +0.55 against the measured ±0.775 half-width at n=931, so an effect of the predicted
+> gap, which is +0.55 against the measured ±0.778 half-width at n=931, so an effect of the predicted
 > size would come back *not established* even at full width. Open as Q9 to the LM track.
 
 ---
@@ -338,7 +338,7 @@ This is the methodological result we would most defend, and it reversed on us on
 |---|---|---|
 | frame rate 30→16, n=967 | −0.35 [−1.00, +0.45] — **not** established | −1.34 [−2.42, −0.30] — established |
 | pose substitution, n=400 | −2.24 [−3.50, −1.09] — **established** | −1.11 [−2.56, +0.35] — not established |
-| **pose substitution, n=931** | **−1.41 [−2.21, −0.66] — established** | **−1.33 [−2.25, −0.46] — established** |
+| **pose substitution, n=931** | **−1.41 [−2.19, −0.63] — established** | **−1.33 [−2.23, −0.49] — established** |
 
 > **UPDATED 2026-10-05, and the update makes this section's argument stronger rather than weaker.**
 > At full width the pose row establishes on **both** metrics, so the clean "the metrics swapped roles"
@@ -383,7 +383,7 @@ Kept deliberately; several of these are the project's more useful output.
 1. **"16 fps at no measured accuracy cost"** — claimed from n=30 where the interval was ±3. At n=976
    it is a −1.33 loss. We read "not significant" as "no effect".
 2. **"Our pose extractor costs nothing detectable"** — the same error, same shape: −0.35 inside a ±4
-   interval at n=30, established by n=400 and **−1.41 [−2.21, −0.66] at full width (n=931)**.
+   interval at n=30, established by n=400 and **−1.41 [−2.19, −0.63] at full width (n=931)**.
    **Third instance**, which is why §7.1's sample-size discipline exists. A fourth lesson sits on top
    of it: the n=400 estimate of −2.24 was itself 0.83 too large, so "established" is not the end of
    the sample-size story — a resolved effect can still have a materially wrong magnitude.

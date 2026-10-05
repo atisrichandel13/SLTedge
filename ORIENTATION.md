@@ -130,7 +130,7 @@ normalisation mismatch**. We found it by noticing the disagreement correlated 0.
 ratio. `common/renorm_to_openasl.py` fixes it by exact arithmetic — body disagreement 0.1328 → 0.0055
 — and with it applied, our best configuration (18.52 BLEU-4) is indistinguishable from the ceiling
 (18.17) **at n=30**. That last clause matters: at **n=931, all paired test clips, the gap to the
-ceiling is established at −1.41 BLEU-4 [−2.21, −0.66]** (RESULTS.md §2.5k; it read −2.24
+ceiling is established at −1.41 BLEU-4 [−2.19, −0.63]** (RESULTS.md §2.5k; it read −2.24
 [−3.50, −1.09] on the n=400 subset, which sat near the pessimistic end of its own interval). The
 frame fix removed most of the gap, not all of it, and 30 clips were too few to see the remainder.
 
