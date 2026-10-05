@@ -2692,3 +2692,87 @@ clip-specific decode behaviour. Flagged, not resolved.
 **Small clips are genuinely cheaper** — the p10 clip is 10.4 % below the measured one — so a
 deployment dominated by tight crops would do better than our table says. But the median correction is
 small, and the relative orderings the frontier is built on were never affected by this at all.
+
+---
+
+### L17 Scaling probe: how much adaptation data this harness needs (`colab_probe_scale.py`, 2026-10-05)
+
+J9 proposes adapting the pose encoder to our own extractor's keypoints, trained on the ~920-clip dev
+split, because the train split would need 20,000 YouTube videos through the board extractor. L15's
+runs — the ones that worked — trained on **20,000** clips. Nobody had sampled the gap between 300
+(moved nothing, by design) and 20,000, so the board extraction was about to be spent on a coin flip.
+
+This measures it on the axis where the 20,000-clip answer is already known. Same adaptation as L15.3
+(16 fps, `lr 1e-5`, `ls 0.0`, warmup 0.1, 1 epoch, seed 42, pruned checkpoint), at a **nested** ladder
+of training-set sizes — `--limit N` takes the first N clips, so each set is a subset of the next and a
+difference between rungs cannot be a draw effect. Every rung is scored on all **967 dev clips** and
+paired-bootstrapped against **one** un-adapted baseline re-scored in the same environment.
+
+| n train | Δ BLEU-4 | Δ ROUGE-L |
+|---:|---|---|
+| 500 | +0.08 [−0.31, +0.48] | +0.40 [−0.13, +0.89] |
+| **920** | **+0.44 [+0.01, +0.90]** | +0.40 [−0.20, +0.96] |
+| 2000 | +0.38 [−0.11, +0.85] | **+0.73 [+0.10, +1.35]** |
+| 5000 | +0.25 [−0.33, +0.80] | +0.54 [−0.21, +1.24] |
+| 20000 | +0.41 [−0.24, +1.02] | **+1.02 [+0.27, +1.75]** |
+
+#### The anchor reproduces, so the curve is trustworthy
+
+The 20,000 rung exists as a validity check against L15.3, which ran in a Colab runtime that was later
+wiped. It reproduces almost exactly:
+
+| | L15.3 (Block 4) | this run | difference |
+|---|---|---|---|
+| Δ BLEU-4 | +0.464 [−0.170, +1.064] | +0.41 [−0.24, +1.02] | **−0.054** |
+| Δ ROUGE-L | +1.044 [+0.247, +1.802] | +1.02 [+0.27, +1.75] | **−0.024** |
+
+This is also the project's **first independent replication of L15.3**, on a different runtime with a
+retrained checkpoint, and GPU reductions are non-deterministic so it was never going to be bit-exact.
+
+#### ROUGE-L scales with data; BLEU-4 does not move at all
+
+The ROUGE-L column climbs — +0.40 at 500 and 920, +1.02 at 20,000 — and **n=920 reaches 39 % of the
+full-scale gain with an interval that includes zero.** The BLEU-4 column is flat and non-monotonic
+(+0.08, +0.44, +0.38, +0.25, +0.41): 5,000 clips scores *below* 920, which is not a scaling curve.
+
+**The n=920 BLEU-4 row should not be read as establishing anything.** Its lower bound is **+0.01**, it
+sits inside the band measured one rung below it, and across ten intervals one grazing zero is what
+chance produces. The honest reading is the ROUGE-L one: **at dev scale this harness delivers roughly
+40 % of what it delivers at 20,000 clips, and not measurably more than zero.**
+
+#### The probe cannot answer J9 directly, and this is the important caveat
+
+The two shifts register on **different metrics**, which §2.5h and its addenda have now shown four
+times:
+
+| shift | BLEU-4 | ROUGE-L |
+|---|---|---|
+| frame-rate, n=967 dev (what this probe scales) | −0.35 [−0.97, +0.52] *not established* | **−1.34 [−2.35, −0.33] established** |
+| pose-source, n=400 test (what J9 targets) | **−2.24 [−3.50, −1.09] established** | −1.11 [−2.56, +0.35] *not established* |
+
+So the scaling curve exists on a **ROUGE-L** effect, while J9 will be judged on **BLEU-4** — the column
+where this probe shows no scale signal, because the frame-rate shift barely registers there at any n.
+The probe bounds the data-volume question; it does not transfer to J9's axis.
+
+#### Power: J9 at dev scale is underpowered on the test set as it stands
+
+If J9's adaptation behaves like this curve, dev scale buys ~39 % of full recovery:
+
+| | |
+|---|---:|
+| pose gap to recover | 2.24 BLEU-4 |
+| 39 % of it | **+0.88** |
+| half-width of the n=400 paired interval (§2.5h) | **±1.20** |
+
+**+0.88 does not clear ±1.20.** A real effect of that size would come back "not established" — and the
+agreed framing then licenses nothing. Running J9 as specified risks buying a null that is about
+sample size rather than about adaptation.
+
+**The fix is cheaper than the thing it protects.** The n=400 test pose set is 400 of 976 clips.
+Extracting the remaining 576 narrows the interval by about `sqrt(400/976) = 0.64`, to **±0.77**, which
+**+0.88 does clear**. That is 576 clips of board extraction against the 967 the training set needs, so
+it is the smaller job and it is the one that decides whether J9 can report anything at all.
+
+**Deviations from protocol.** One seed per rung, not three — the rungs are a curve, not a headline, and
+L10's seed spread (0.05 BLEU-4 / 0.15 ROUGE-L) is small against these intervals. Run on Colab, not the
+rig. `n_boot` 1000, matching `adapt_ci_dev.json` so the anchor is comparable.
