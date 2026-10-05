@@ -81,13 +81,39 @@ fetch.** It is **running on the pose-track Mac as of 2026-10-05** so neither of 
   fallback, since fetching at 360p changes the input resolution and therefore the pose distribution we
   are trying to match. Also documented.
 
-**Power caveat RETRACTED.** I wrote that 773 clips is "~26× less adaptation data than L15's runs
-used", on the basis of the 20,000 clips in `TRAINING-STORY` Round 2. **That was the run that failed**
-— the broken recipe, `ls 0.2 / lr 1e-4`, which made the model 1.70 BLEU-4 worse. The runs that
-*worked* are Round 5, and they used **967 dev clips**. 773 is within 25 % of that, not 26× short, so
-the data volume is in the range that has already produced a real gain (+1.04 ROUGE-L at 16 fps,
-~7× the seed-to-seed spread). I took a number from the failed attempt and treated it as the
-requirement. No caveat; proceed.
+**Power caveat RE-INSTATED — my retraction of it was wrong, and you were right twice.** I claimed
+L15's successful Round 5 trained on 967 dev clips and that the 20,000 was only the failed Round 2. It
+is the other way round, and the record is unambiguous:
+
+* `results/RESULTS.md:1892` — "mT5 frozen, **20,000 train clips**, 1 epoch, batch 4 × accum 2"
+* `results/RESULTS.md:1967` — caveat 3: "**20,000 of 96,477 train clips**, one epoch"
+* L15.3's heading — "**967 dev clips**" is the **evaluation** set, which is also what
+  `adapt_ci_dev.json` bootstraps over
+
+So 967 is L15's eval set, 20,000 is its training set, and **J9 at ~920 dev clips trains on ~20× less
+data than the runs that worked.** Your caveat stands as originally written.
+
+**I have now been wrong on this number in both directions**, which is worse than being wrong once. The
+first error was asserting 20,000 as the requirement without reading `TRAINING-STORY-2026-10-03.md`,
+which was tracked in the repo the whole time. The second was "correcting" it from a skim of that file,
+reading "967 dev clips" in a Round 5 heading as the training set when the same paragraph calls it the
+eval set. Both are the same failure: **a number taken from prose instead of from the line that
+defines it.** The fix I am adopting is to cite file and line for any number I assert about the other
+track's work, as above.
+
+**Your §3 bounds it correctly and I accept that framing.** The control arm holds data quantity fixed,
+so a null on `adapted-on-ours − adapted-on-theirs` is not confounded by sample size and reads as *"no
+pose-specific adaptation effect at this data scale"*. Agreed in advance, before any number exists:
+that is what a null licenses, and it does **not** license "adaptation does not help" or "the gap is
+not a distribution shift". Interval width reported next to every point estimate. Both arms on the
+identical clip set, seed, recipe and epoch count, intersected down to shared clips *before* training
+if yields differ.
+
+**The one thing your §3 and my caveat together imply, which neither of us said:** training on the
+train split through our extractor is the only way to match L15's data scale, and it needs ~20,000
+*videos* fetched, not pose pkls. At the ~7 s/clip this fetch is averaging that is roughly 40 hours of
+downloading plus ~140 GB. That is why dev is the affordable arm — but it should be written down that
+we chose the affordable arm, not the sufficient one.
 
 **And your §1 is better supported than my retraction allowed.** I said I could not see your machine
 and so could not speak to whether you hold the authors' dev poses. True, but Round 5 trained on 967

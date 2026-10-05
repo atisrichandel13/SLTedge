@@ -265,6 +265,16 @@ def main():
     rows, vid2bbox = fetch_meta(cache)
     split = "train" if args.calib else args.split
     cands = candidates(rows, vid2bbox, split, args.min_dur, args.max_dur, set(args.exclude_yid))
+        # A split name that matches nothing is a silent zero that reads as "nothing to fetch":
+    # the TSV calls the dev split `valid`, so `--split dev` used to print 0 candidates and
+    # exit 0. Same class as the truncated download in RESULTS.md 2.5i. Fail loudly instead.
+    if not cands:
+        import collections as _c
+        seen = sorted(_c.Counter(r.get("split") for r in rows))
+        raise SystemExit(
+            f"no candidates for --split {split!r} with a bbox and duration "
+            f"{args.min_dur}-{args.max_dur}s. Split names present in the TSV: {seen}. "
+            f"(The dev split is called 'valid' there.)")
     print(f"[meta] {len(rows)} rows, {len(cands)} {split} candidates with a bbox and duration "
           f"{args.min_dur}-{args.max_dur}s")
     if args.only_vid:
