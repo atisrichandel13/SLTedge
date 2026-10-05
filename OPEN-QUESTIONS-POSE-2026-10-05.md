@@ -5,6 +5,11 @@
 > probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
 > wanted.
 >
+> **Superseded 2026-10-05 by Q9 at the end of this file: one thing IS now waiting on them.** The
+> completed n=931 arm puts the pose gap at **−1.41, not −2.24**, which undercuts the 39 % sizing
+> arithmetic J12 was justified by. The question is whether §L17's ratio still applies to a smaller
+> gap; the line below was written before that arm existed.
+>
 > **Nothing in this file is waiting on the LM track.** Everything left is mine to execute, now in
 > this order after §L17 and `REPLY-PROBE-RESULT`: **J12** (531 remaining test clips — not 576; the
 > paired ceiling is 931, see `REPLY-J12-ACCEPTED-2026-10-05.md`), then the dev fetch finishing
@@ -245,3 +250,66 @@ currently specified at `--fps 24`. If we care about adapted-16 fps, the pose-sou
 better trained at `--fps 16` so one checkpoint serves the candidate operating point — or we accept two
 checkpoints. Your call on the training side; I can supply either rate from the same dev pose set at no
 extra board cost, since the thinning happens at training time.
+
+### Q9 — the pose gap at full width is **−1.41, not −2.24**, and that undercuts the sizing argument J12 rested on  —  **OPEN, and it is yours to weigh in on**
+
+*2026-10-05, from the completed n=931 arm (`results/eval_n931_pruned_ours_fps24.json`).*
+
+J12 is done and the arm you asked for is scored. `--expect-n 931` passed, 0 reference mismatches,
+every flag matching your table, and the intersection against your ceiling is exactly 931.
+
+| on the same 931 clips | BLEU-4 | ROUGE-L |
+|---|---:|---:|
+| ours (board, `device=cuda`) | 21.7310 | 41.8239 |
+| ceiling (your 976, intersected, `device=cpu`) | 23.1387 | 43.1519 |
+| **pose gap** | **−1.4077** | **−1.3280** |
+| for comparison, the n=400 gap (§2.5h) | −2.2413 | — |
+
+**The gap narrowed by 0.83 going from 400 clips to 931.** The decomposition matters more than the
+headline: **our arm barely moved** (21.5658 → 21.7310, **+0.17**) while **your ceiling fell**
+(23.8071 → 23.1387, **−0.67**). So the 531 clips J12 added are harder *for the authors' own poses*
+than the n=400 subset was, and most of the change is in the reference arm rather than ours.
+
+**This is not a contradiction.** −1.41 sits inside §2.5h's −2.24 **[−3.50, −1.09]**, so the two are
+consistent; the n=400 point estimate simply sat near the pessimistic end of its own interval. That is
+what sampling error at n=400 looks like, and it is the reason J12 was worth running regardless of
+which way it moved.
+
+**But it cuts against the arithmetic that justified J12.** `REPLY-PROBE-RESULT` sized J9's expected
+recovery as ~39 % of the pose gap (§L17's ROUGE-L scaling rung):
+
+| | against the n=400 gap | against the n=931 gap |
+|---|---:|---:|
+| pose gap | 2.24 | **1.41** |
+| 39 % of it | +0.88 | **+0.55** |
+| predicted half-width at n=931 | ±0.790 | ±0.790 |
+| does it clear? | yes, by 0.09 | **no, short by 0.24** |
+
+**So J12 widened the measurement and shrank the thing being measured, and the second effect is the
+larger one.** On these numbers a real J9 effect of the size §L17 predicts comes back *not
+established* even at full width — the outcome J12 was run to prevent.
+
+**Q9, and I am not going to answer it unilaterally because the training side is yours:**
+
+1. **Does §L17's 39 % still apply to a 1.41 gap?** It was measured as a ratio on a ROUGE-L effect at
+   dev scale. If the mechanism is "adaptation recovers a fixed fraction of a distribution shift", 39 %
+   of a smaller shift is the right reading and J9 is now underpowered. If instead there is a roughly
+   fixed *absolute* recovery, the ratio is the wrong model and the conclusion changes. You own that
+   curve and I do not want to re-interpret it for you.
+2. **Is J9 still worth running on these numbers?** I think **yes**, for a reason that does not depend
+   on resolving (1): the pose gap is still the largest accuracy term in the project, J9's step 1 costs
+   board time I have already budgeted, and an unresolved-but-correctly-sized interval is a legitimate
+   result we agreed in advance to report. But "we ran it and it came back not established" is a
+   materially worse deliverable than the plan implied, and you should get to object before I spend the
+   board time rather than after.
+3. **Does it change the dev-scale target?** §L17's rungs were 500 / 920 / 2000 / 5000 / 20000. If the
+   effect to detect is now ~0.55 rather than ~0.88, the 918 dev clips may be the wrong rung to aim at,
+   and the honest move might be to say so in the report rather than to run the underpowered arm.
+
+**Nothing on my side is blocked by this.** J9 step 1 is pose extraction on the 918 dev clips and is
+useful under every answer above, so I will start it when the board is free unless you say otherwise.
+What I will not do without your answer is present the 39 % sizing as still holding.
+
+**Paired bootstrap on the −1.41 is running** (`results/ci_n931_pose_gap{,_bleu}.json`). Until that
+interval exists, the ±0.790 above is the *predicted* half-width from `sqrt(400/931)` scaling, not a
+measured one, and the "short by 0.24" line inherits that caveat.
