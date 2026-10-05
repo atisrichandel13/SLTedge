@@ -461,7 +461,8 @@ the n=30 pose-substitution term, and nobody had run the pruned checkpoint on our
 
 Same 30 clips, same pose pkls as §2.5c, pruned checkpoint with the pre-pruned mT5 directory, beam 4,
 `max_new_tokens` 64, **batch size 1** (held fixed because §5.1 found 2 of 30 clips change output
-between batch 8 and batch 1).
+between batch 8 and batch 1 — **§L18 measures this at ~30 % across the full split, not 7 %**; the
+reason to hold batch 1 stands, the magnitude in §5.1 does not).
 
 | config | poses | ckpt | n | BLEU-4 | ROUGE-L |
 |---|---|---|---:|---:|---:|
@@ -497,7 +498,7 @@ keypoints extracted on the board (RTMW-l-m FP16 + frame fix, 24,365 frames at **
 11.3 min), and the authors' released reference poses **restricted to the same 100 clips**. That
 restriction is the point: §2.5c records us quoting a ceiling at n=40 against our rows at n=30, and
 this run must not repeat it. Decode held at the deployable settings throughout — beam 4,
-`max_new_tokens` 64, **batch size 1** (§5.1: 2 of 30 clips change output between batch 8 and 1).
+`max_new_tokens` 64, **batch size 1** (§5.1: 2 of 30 clips change output between batch 8 and 1; **§L18 remeasures this at ~30 % across 976 clips**).
 
 | row | poses | ckpt | rate | BLEU-4 | ROUGE-L |
 |---|---|---|---|---:|---:|
@@ -2812,3 +2813,53 @@ J12 first.
 **Deviations from protocol.** One seed per rung, not three — the rungs are a curve, not a headline, and
 L10's seed spread (0.05 BLEU-4 / 0.15 ROUGE-L) is small against these intervals. Run on Colab, not the
 rig. `n_boot` 1000, matching `adapt_ci_dev.json` so the anchor is comparable.
+
+---
+
+### L18 Batching changes ~30 % of sentences, not 7 % — and the frontier's ROUGE-L is on the other protocol (2026-10-05)
+
+Found while re-running the 976-clip authors'-pose ceiling with clip names recorded, so that J12's
+extended test set can be paired against it. The re-run did not reproduce the frontier's own cell:
+
+| | BLEU-4 | ROUGE-L | `--mt5` | batch |
+|---|---:|---:|---|---:|
+| `eval_test_pruned_b4_fps24.json` (the **L13 / frontier** cell) | 22.80 | 43.13 | `mt5-base` | **8** |
+| `eval_test976_ceil_b4_fps24_named.json` (this run, **§2.5h protocol**) | **22.85** | **42.79** | `mt5-base-openasl-pruned` | **1** |
+
+**291 of 976 predictions differ.** Isolating the cause on 40 clips with the mt5 directory held fixed,
+batch 1 against batch 8 changes **13 of 40 sentences (32 %)** on its own — which matches the 30 % seen
+across all 976. The mt5 directory is not the cause; **batching is.**
+
+**§5.1's "2 of 30 clips change output between batch 8 and batch 1" understates this by about 4×**, and
+that figure is cited at §2.5h and elsewhere as the reason to hold batch size at 1. The reason stands;
+the magnitude does not. Padding is the mechanism — a batch pads to its longest member and beam search
+sees the padding — so the rate depends on how heterogeneous the clip lengths in a batch are, and 30
+clips from one video are far more uniform than 976 across the split.
+
+**What it costs each metric is the useful part, and they differ sharply:**
+
+| | batch 8 → 1, 40 clips | the same, 976 clips |
+|---|---:|---:|
+| BLEU-4 | 12.89 → 12.87 (**−0.02**) | 22.80 → 22.85 (**+0.05**) |
+| ROUGE-L | 35.05 → 35.43 (**+0.38**) | 43.13 → 42.79 (**−0.34**) |
+
+So a third of sentences change while **BLEU-4 barely moves (≤0.05) and ROUGE-L moves ~0.35 in both
+directions**. Consistent with the metric-sensitivity story in §2.5h's addenda: BLEU-4's n-gram
+precision is insensitive to the local rewording batching produces, ROUGE-L's longest-common-
+subsequence is not.
+
+**Consequence, and it is a cross-protocol one.** The frontier's accuracy surface (§L13, batch 8) and
+the pose-substitution comparison (§2.5h, batch 1) are on **different decode protocols**. Within each,
+every cell shares its protocol, so neither comparison is affected — the frontier's relative ordering
+and the −2.24 gap both stand. But the two sets of **ROUGE-L** numbers are not interchangeable to
+better than ~0.35, and a write-up that quotes a ROUGE-L from §L13 beside one from §2.5h is mixing
+them. BLEU-4 is safe to mix at ≤0.05.
+
+**The frontier's cells are currently not reproducible on the LM-track Mac at all.** `weights/mt5-base`
+ships `pytorch_model.bin`, and transformers 4.57 refuses `torch.load` on it (CVE-2025-32434); the L13
+runs were made on transformers 4.44. Reproducing them needs either a transformers downgrade or a
+safetensors conversion of that directory. The pruned directory ships `model.safetensors` and is
+unaffected, which is why everything on the §2.5h protocol still runs.
+
+**This run is the right one for J12.** It matches `eval_n400_pruned_{ours,ceil}_fps24.json` on `--mt5`,
+batch size, cap, beams and rate, so pairing it against J12's extended board poses is protocol-clean.
