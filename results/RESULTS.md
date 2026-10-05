@@ -1262,6 +1262,14 @@ A standalone sweep compressing the spread in both directions is what a different
 would do, but **this is unverified** — four cells showing a consistent sign is a pattern, not a cause. The clean test is to re-run
 the §2.9C sweep in-process with the pose engine loaded, and it is not yet done.
 
+> **DONE 2026-10-05, and the answer is no (§2.9E).** Residency changes nothing: the decoder-width term
+> goes 2.16 / 1.94 / 1.34 / 2.49 / 1.15 J → **2.15 / 1.80 / 1.21 / 2.40 / 1.13**, a ratio of
+> **0.90–1.00×**, with per-cell energy within ±0.15 J and no consistent sign. The spread *narrows*
+> ~5 % where this hypothesis needed it to widen ~110 %. **The candidate above is excluded**; the
+> 2.08–2.27× understatement is real and its cause is still unidentified, with the modelling error —
+> `LM_J` interpolated in T when the measured penalty is flat in T — now the leading remaining
+> explanation.
+
 **What to do with the frontier meanwhile.** Its *relative* frame-rate ordering is sound — the frame-rate
 term checks out at −16.7% measured against −17% composed (§5.3) — and the accuracy axis was always
 measured. The beam-width energy step is the one quantity not to quote from it.
@@ -2193,7 +2201,8 @@ the same checkpoint at 4136 MB. Our standing hypothesis for the surviving 2.1–
 discrepancy is that §2.9C measured the LM *standalone* while every end-to-end run has the pose engine
 resident. A resident engine evidently changes the operating condition enough to move a memory cliff by
 over a gigabyte, which makes it more plausible that it also moves energy. Still unverified; the clean
-test remains re-running the §2.9C sweep in-process.
+test remains re-running the §2.9C sweep in-process. **Run on 2026-10-05: it is not the cause (§2.9E,
+0.90–1.00×).**
 
 #### L16 addendum 5 (2026-10-03): run-to-run variation is large enough to explain the composition residual
 

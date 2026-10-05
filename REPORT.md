@@ -292,7 +292,7 @@ than a few percent:
 |---|---|---|
 | composition vs measured end-to-end | ~6 % low | run-to-run variation is ~3 % at 1σ; ~2σ, consistent but not demonstrated |
 | decoder-width term | **understated 2.1–2.3×** | **open** — the checkpoint mismatch explained only about half of it |
-| `LM_J` measured on the pruned model, standalone | direction known | **open** — the in-process re-run would settle it |
+| `LM_J` measured on the pruned model, standalone | **no effect** | **closed 2026-10-05** by J10/§2.9E — residency changes nothing, so this is *not* the cause |
 | measured clip at the 83.4th percentile of crop area | **−2.6 %** for a median clip | **closed** — was estimated at ~7 %, measured 3× smaller |
 
 **Net, the absolute column is mildly optimistic, not approximately unbiased.** The composition runs
@@ -303,6 +303,19 @@ The one we would fix first is the decoder-width term: across two checkpoints and
 measured beam-4 penalty is **flat in absolute joules** (6.95–7.02 J full, 4.50–4.65 J pruned) while the
 composition makes it grow with encoder length. Decoder-width energy is a per-sentence constant and
 should not be modelled as a function of sequence length.
+
+> **J10 ran on 2026-10-05 and the leading explanation is now excluded (§2.9E).** The hypothesis was
+> that §2.9C measured the LM *standalone* — one process, no pose engine resident — while every
+> end-to-end run holds both models, and that the missing resident footprint compressed the spread.
+> Re-running the identical sweep with the RTMW FP16 engine resident, changing nothing else, moves the
+> decoder-width term from 2.16 / 1.94 / 1.34 / 2.49 / 1.15 J to **2.15 / 1.80 / 1.21 / 2.40 / 1.13**
+> — a ratio of **0.90–1.00×**. The spread *narrows* by ~5 % where the hypothesis needed it to widen by
+> ~110 %, and per-cell energy agrees within ±0.15 J with no consistent sign. **So the 2.1–2.3×
+> understatement is real, measurement context is not its cause, and the beam-width axis of the
+> frontier stays unquotable.** This is a narrowing, not a fix: what J10 bought is the elimination of
+> the one candidate we could test, and the remaining explanation is the modelling error named in the
+> paragraph above — `LM_J` interpolated in T when the penalty is flat in T. Incidental and reusable: a
+> resident TensorRT pose context costs ~292 MB and **~0 W** at idle; it holds memory, not power.
 
 > **On the 2.1–2.3× figure.** An earlier draft said 1.7–2.3×, twice. The error originated in
 > `results/RESULTS.md` §5.4, whose composition row listed the composed value at T=263 as +2.67 J — a
