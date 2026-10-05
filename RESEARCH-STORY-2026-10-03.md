@@ -380,12 +380,22 @@ At n=300, BLEU-4 even **flipped the sign** of an effect we could confirm with mo
 board evaluation, the *pose-substitution* effect — swapping the authors' keypoints for our own
 extractor's — comes out:
 
-| metric | delta | 95 % CI | verdict |
-|---|---:|---|---|
-| **BLEU-4** | **−2.24** | **[−3.50, −1.09]** | **established** |
-| ROUGE-L | −1.11 | [−2.56, +0.35] | **not** established |
+| metric | delta (n=400) | 95 % CI | verdict | **delta (n=931)** | **95 % CI** | **verdict** |
+|---|---:|---|---|---:|---|---|
+| **BLEU-4** | **−2.24** | **[−3.50, −1.09]** | **established** | **−1.41** | **[−2.19, −0.63]** | **established** |
+| ROUGE-L | −1.11 | [−2.56, +0.35] | **not** established | **−1.33** | **[−2.23, −0.49]** | **established** |
 
-Same clips, same paired bootstrap, same 2000 draws — and the metrics have swapped roles.
+Same clips, same paired bootstrap — and at n=400 the metrics had swapped roles.
+
+> **Corrected 2026-10-05 (RESULTS.md §L19).** Once J12 extended the board pose set from 400 clips to
+> all 931, **ROUGE-L establishes this effect too.** So the swap was a **power limit at n=400, not a
+> property of the pose-source axis** — the clean "each axis registers on its own metric" story does
+> not survive the larger sample, and we should not tell it that way.
+>
+> What *does* survive, and is still the useful lesson: **either metric can be blind to a real effect
+> at a sample size you can afford**, so report both. BLEU-4's interval remains the narrower of the two
+> here as everywhere (±0.78 against ±0.87). The gap itself also moved, −2.24 → −1.41, because the 531
+> added clips are harder for the *authors'* poses; §L19 has the decomposition.
 
 > **SUPERSEDED 2026-10-05; this narrative is dated 10-03 and is kept as written.** At the full 931
 > paired test clips the gap is **−1.41 [−2.21, −0.66]** on BLEU-4 and **−1.33 [−2.25, −0.46]** on

@@ -3114,3 +3114,64 @@ guard. The pose track diffed the board's copy before overwriting it, since every
 from that file — the diff is purely additive (the argument, an empty-preds guard, the count check)
 with no scoring path touched, so **the n=400 numbers stand**; md5 now matches `main` on all five core
 files.
+
+---
+
+### L19 The pose gap at full width (n=931): it nearly halves, and J12 did not buy the power it was run for (2026-10-05)
+
+J12 extended the board pose set from 400 to all 931 fetched test clips so the pose-substitution gap
+could be measured at full width. `unisign/bootstrap_ci.py`, 2000 resamples, paired by clip name
+against `eval_test976_ceil_b4_fps24_named.json` (976 ∩ 931 = **931**, 45 dropped, 0 reference
+mismatches). Artifact: `results/ci_n931_posesub_fps24.json`.
+
+| | n=400 (§2.5h) | **n=931** |
+|---|---|---|
+| BLEU-4 | −2.24 [−3.50, −1.09] established | **−1.41 [−2.19, −0.63] established** |
+| ROUGE-L | −1.11 [−2.56, +0.35] *not established* | **−1.33 [−2.23, −0.49] established** |
+| deployable / ceiling | 21.57 / 23.81 | **21.73 / 23.14** |
+
+**The gap nearly halved — by 0.83 BLEU-4.** Decomposed: our arm barely moved (21.5658 → 21.7310,
+**+0.17**) while the **ceiling fell** (23.8071 → 23.1387, **−0.67**). The 531 clips J12 added are
+harder for the *authors' own* poses than the n=400 subset was. This is consistent, not contradictory:
+−1.41 sits inside §2.5h's [−3.50, −1.09]. But **the n=400 point estimate sat near the pessimistic end
+of its own interval**, and every argument built on 2.24 as a fixed quantity inherits that.
+
+#### What J12 did deliver
+
+* **ROUGE-L is established for the first time.** At n=400 it was −1.11 [−2.56, +0.35], straddling
+  zero; at n=931 it is −1.33 [−2.23, −0.49]. The pose-substitution effect is now established on
+  **both** metrics, which it never was before.
+* **The interval narrowed exactly as predicted.** ±1.205 → **±0.778**, against a `sqrt(400/931)`
+  prediction of ±0.790. The scaling argument was sound on its own terms.
+* **A better-determined headline.** The deployable-vs-ceiling pair moves from 21.57 / 23.81 to
+  21.73 / 23.14.
+
+#### What it did not deliver, and this was the stated purpose
+
+§L17 argued for J12 on the grounds that J9's expected recovery — 39 % of the gap — would become
+detectable once the interval narrowed. Carried through with the measured numbers:
+
+| | expected recovery (39 % of gap) | half-width | ratio | |
+|---|---:|---:|---:|---|
+| n=400 | +0.87 | ±1.205 | 0.73 | does not clear |
+| **n=931** | **+0.55** | **±0.778** | **0.71** | **still does not clear** |
+
+**The ratio moved from 0.73 to 0.71 — marginally worse, not better.** The interval shrank 35 % while
+the gap shrank 37 %, so detectability was essentially unchanged.
+
+**The error in §L17's argument was treating the gap as fixed and only its precision as lacking.** The
+−2.24 was itself an estimate on 400 clips, and extending the set moved it by more than the interval
+narrowed. A power calculation that scales the denominator while holding the numerator at a
+small-sample point estimate will overstate what more data buys, whenever that point estimate is not
+already well determined — and §2.5h's interval, [−3.50, −1.09], was wide enough to say it was not.
+
+**J12 was still worth running**, for the two reasons above and because the alternative was planning
+J9 against a gap that is in fact 37 % smaller than believed. But it did **not** make J9's predicted
+effect resolvable, and nothing downstream should claim it did.
+
+#### Consequence for J9
+
+A J9 effect of the size §L17 predicts would still return *not established* at n=931. The agreed
+framing then licenses nothing. This does not by itself say J9 should not run — the 39 % comes from
+the frame-rate axis and §L17 already records that its transfer to the pose-source axis is unestablished
+— but **no one should expect the n=931 test set to resolve a recovery of that size.**
