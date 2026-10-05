@@ -242,8 +242,22 @@ def main():
                     help="restrict to these clip ids; repeatable. Needed to re-fetch exactly the "
                          "clips a previous run picked, so two crop styles are compared on one sample.")
     ap.add_argument("--height", type=int, default=720)
-    ap.add_argument("--exclude-yid", action="append", default=["Ads-4j06eJY"],
-                    help="already have this signer (the baseline clip); repeatable")
+    # DEFAULT MOVED OUT OF argparse 2026-10-05, after it silently cost the test split 2 clips.
+    # `action="append"` with a non-empty default is a trap: the default is never replaced, only
+    # appended to, so NO command line could clear it -- no flag gave ['Ads-4j06eJY'] and
+    # --exclude-yid X gave ['Ads-4j06eJY', 'X']. fetch_full_split.sh never passed the flag and could
+    # not have overridden it if it had, so both Ads-4j06eJY clips of labels.test were dropped from a
+    # full-split fetch whose entire purpose is coverage, with no failure record to show for it. The
+    # exclusion was right for what it was written for -- a 5-clip signer-diverse sample at
+    # --max-per-video 1, where re-fetching a clip already on disk wasted one of 40 attempts -- and was
+    # never revisited when the same script was pointed at a whole split. Found by the LM track;
+    # RESULTS.md L20.
+    ap.add_argument("--exclude-yid", action="append", default=None,
+                    help="skip this signer entirely; repeatable. Defaults to the development fixture "
+                         "Ads-4j06eJY unless --no-exclude-yid is given.")
+    ap.add_argument("--no-exclude-yid", action="store_true",
+                    help="clear the default exclusion, so every signer is fetchable. A full-split "
+                         "fetch wants this; see the note above.")
     ap.add_argument("--max-attempts", type=int, default=40, help="dead links are common; cap the walk")
     ap.add_argument("--skip-existing", action=argparse.BooleanOptionalAction, default=True,
                     help="reuse clips already on disk with a complete frame set, instead of "
@@ -264,7 +278,16 @@ def main():
     cache = args.cache or os.path.join(os.path.dirname(os.path.abspath(args.out)), "openasl_meta")
     rows, vid2bbox = fetch_meta(cache)
     split = "train" if args.calib else args.split
-    cands = candidates(rows, vid2bbox, split, args.min_dur, args.max_dur, set(args.exclude_yid))
+    if args.no_exclude_yid:
+        excl = set()
+    elif args.exclude_yid is not None:
+        excl = set(args.exclude_yid)
+    else:
+        excl = {"Ads-4j06eJY"}
+    cands = candidates(rows, vid2bbox, split, args.min_dur, args.max_dur, excl)
+    if excl:
+        print(f"[fetch] excluding signer(s) {sorted(excl)} -- pass --no-exclude-yid to fetch them",
+              flush=True)
         # A split name that matches nothing is a silent zero that reads as "nothing to fetch":
     # the TSV calls the dev split `valid`, so `--split dev` used to print 0 candidates and
     # exit 0. Same class as the truncated download in RESULTS.md 2.5i. Fail loudly instead.

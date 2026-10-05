@@ -2742,8 +2742,14 @@ adaptation rather than at a better pose model.
 the practice lapsed: the extension to n=400 — the set every §2.5h number rests on — was never written
 up, and nor was J12. This section backfills the whole ladder. Both omissions were mine.
 
-**Why 931 and not 976.** 45 of the 976 `labels.test` names have no clip on disk and never will:
-`data/clips/index.json` records `requested 974, n_ok 931, n_failed 43`. 931 is the paired ceiling, so
+**Why 931 and not 976.** 45 of the 976 `labels.test` names have no clip on disk. **Corrected
+2026-10-05 by §L20: 43 are dead links, the other 2 are our own** — both clips of `Ads-4j06eJY`, the
+single-clip development fixture, silently removed by a stale `--exclude-yid` default at
+`data/openasl_fetch.py:245` that `fetch_full_split.sh` never passed and *could not* have cleared.
+**The real ceiling is 933**; `sqrt(931/933)` = 0.9989 moves the BLEU-4 half-width by ~0.001, so no
+number downstream changes. **Do not cite `requested − n_ok` as an exhaustion check**: `requested` is
+`--n-clips` echoed back (`data/fetch_full_split.sh:32` hardcodes 974), so `n_ok + n_failed ==
+requested` holds by construction whatever the candidate list held. 931 is the paired ceiling, so
 J12 was 931 − 403 = 528 clips.
 
 #### The extraction ladder, reconstructed from pkl mtimes on the board
@@ -2995,8 +3001,9 @@ agreed framing then licenses nothing. Running J9 as specified risks buying a nul
 sample size rather than about adaptation.
 
 **The fix is cheaper than the thing it protects.** The n=400 test pose set is 400 of the **931**
-test clips that exist on disk — `data/clips/index.json` records `requested 974, n_ok 931, n_failed 43`,
-so 45 of the 976 `labels.test` names have no clip and never will. Extracting the remaining **531**
+test clips that exist on disk — 931 of the 976 `labels.test` names (43 dead links and 2 excluded by a
+stale `--exclude-yid` default, §L20; the ceiling is 933 and the difference is ~0.001 on the
+half-width). Extracting the remaining **531**
 narrows the interval by `sqrt(400/931) = 0.6555`, to **±0.790**, which **+0.88 still clears** — by
 0.09 rather than the 0.11 a 976-clip ceiling would have given. Measured from the pose-track Mac that
 is 111,388 frames, ~45–47 min of board compute and ~426 MB of pkls back.
@@ -3131,6 +3138,89 @@ with no scoring path touched, so **the n=400 numbers stand**; md5 now matches `m
 files.
 
 ---
+
+### 2.9E / J10: the LM measured with the pose engine resident — residency is NOT the missing factor (2026-10-05)
+
+`jetson/j10_lm_sweep_resident.sh`, `unisign/lm_sweep.py --pose-engine`, artifact
+`results/lm_sweep_pruned_resident.json`. The §2.9C sweep repeated with the RTMW FP16 engine resident
+in the same process for the whole run. Pruned checkpoint, full mT5, same poses, same `--n-clips 3`,
+same beams, same lengths, same `--repeat 3`, one process — **the only variable is the resident
+engine**, which is what makes this a control rather than a new measurement.
+
+**The question (`OPEN-ISSUES-LM-2026-10-05.md`, J10).** `frontier.py` composes `LM_J` from §2.9C,
+which measured the LM *standalone*. Every end-to-end run holds both models, and the composition
+understates the decoder-width term by **2.08–2.27×** (§5.4) with the error signed consistently across
+all four cells — overestimating greedy, underestimating beam 4, compressing the spread from both ends.
+A different resident footprint would do that. The ask was to find out whether it does.
+
+#### It does not
+
+| beam | T | §2.9C J | J10 J | ΔJ | §2.9C ms | J10 ms | Δ |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 256 | 8.88 | 8.74 | −0.14 | 1372.4 | 1365.8 | −0.5 % |
+| 1 | 205 | 8.85 | 8.87 | +0.02 | 1369.0 | 1371.4 | +0.2 % |
+| 1 | 137 | 8.55 | 8.54 | −0.01 | 1351.2 | 1346.7 | −0.3 % |
+| 1 | 103 | 7.23 | 7.29 | +0.06 | 1163.5 | 1157.8 | −0.5 % |
+| 1 | 68 | 7.79 | 7.80 | +0.01 | 1264.1 | 1260.0 | −0.3 % |
+| 2 | 256 | 10.26 | 10.41 | +0.15 | 1582.1 | 1640.3 | +3.7 % |
+| 2 | 205 | 10.09 | 9.94 | −0.15 | 1556.8 | 1545.4 | −0.7 % |
+| 2 | 137 | 9.21 | 9.17 | −0.04 | 1454.1 | 1449.7 | −0.3 % |
+| 2 | 103 | 8.79 | 8.79 | +0.00 | 1425.2 | 1420.1 | −0.4 % |
+| 2 | 68 | 8.57 | 8.59 | +0.02 | 1403.2 | 1405.4 | +0.2 % |
+| 4 | 256 | 11.04 | 10.89 | −0.15 | 1675.5 | 1675.6 | +0.0 % |
+| 4 | 205 | 10.79 | 10.67 | −0.12 | 1663.0 | 1651.2 | −0.7 % |
+| 4 | 137 | 9.89 | 9.75 | −0.14 | 1574.0 | 1543.6 | −1.9 % |
+| 4 | 103 | 9.72 | 9.69 | −0.03 | 1577.0 | 1560.9 | −1.0 % |
+| 4 | 68 | 8.94 | 8.93 | −0.01 | 1464.7 | 1462.8 | −0.1 % |
+
+**Every cell is within ±0.15 J (±1.5 %) with no consistent sign, and latency is within ±1 %** bar one
++3.7 % outlier. And the quantity the whole exercise is about:
+
+| T | decoder-width term (beam 4 − greedy), §2.9C | J10 | ratio |
+|---:|---:|---:|---:|
+| 256 | 2.16 | 2.15 | 1.00× |
+| 205 | 1.94 | 1.80 | 0.93× |
+| 137 | 1.34 | 1.21 | 0.90× |
+| 103 | 2.49 | 2.40 | 0.96× |
+| 68 | 1.15 | 1.13 | 0.98× |
+
+**The spread does not widen — it narrows very slightly, 0.90–1.00×.** The hypothesis required it to
+*widen* by ~2× to account for the composition error. It moves the wrong way, and by ~5 % rather than
+~110 %.
+
+#### What this settles, in the LM track's own terms
+
+> *"If it does not, the discrepancy is something else and the beam-width axis of the frontier stays
+> unquotable."*
+
+**It does not. The beam-width axis stays unquotable, and `REPORT.md` §6 keeps J10 as open-and-now-
+narrowed rather than closed.** What J10 removes is the leading candidate: `LM_J` being the wrong table
+to compose from *because it was measured standalone* is now excluded. The 2.08–2.27× understatement is
+real and its cause is still unidentified.
+
+#### Two incidental measurements worth keeping
+
+- **A resident TensorRT pose context costs ~292 MB** (MemFree 5130 → 4838 at construction) and
+  **~0 W at idle** — the idle floor moves 3.84 → 3.76 W at beam 1 / T256, i.e. slightly *down*, which
+  is noise. An idle engine holds memory, not power. That is worth knowing for any future composition.
+- **Memory got genuinely tight**: MemFree fell to **179 MB** after the LM loaded. The result is still
+  sound, and the evidence is in the table rather than in reassurance — if the run were thrashing,
+  latency would inflate, and it matches §2.9C within ±1 % across all fifteen cells.
+
+#### Why the first two attempts failed, since the fix is the interesting part
+
+Attempts 1 and 2 died of `NVML_SUCCESS == r INTERNAL ASSERT FAILED` at
+`CUDACachingAllocator.cpp:1017` — this board's OOM in disguise — at MemFree 4487 and 4568 MB. The
+cause was mine: I ran the pose warm-up inference *immediately after constructing the runner*, meaning
+to make the resident footprint realistic, since an engine that has never executed holds less than one
+that has. That forces the TensorRT workspace to allocate at exactly the moment the LM is loading.
+**The deployed path never has that peak**: `unisign/e2e_translate.py:158-164` constructs the runner,
+loads the LM, and only then infers. So the attempt to be more faithful was less faithful, and moving
+the warm-up after `load_model` both fits and matches the configuration being reproduced.
+
+Checked before blaming the hardware: the board was idle for attempt 2 — nobody logged in, largest
+non-system process `gnome-shell` at 56 MB — so "J10 does not fit in 8 GB" would have been a wrong
+conclusion reported as a finding.
 
 ### L19 The pose gap at full width (n=931): it nearly halves, and J12 did not buy the power it was run for (2026-10-05)
 

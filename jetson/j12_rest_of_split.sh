@@ -18,8 +18,12 @@
 # environment so the Jetson password never enters the tracked tree.
 #
 # WHY 931 AND NOT 976. eval_n400_pruned_ours_fps24.json records missing=576 against all 976
-# labels.test names, but data/clips/index.json records requested 974, n_ok 931, n_failed 43: 45 test
-# names have no clip on disk and never will. 931 is the paired ceiling, so J12 is 931-400 = 531 clips.
+# labels.test names, but only 931 are on disk. CORRECTED 2026-10-05 (RESULTS.md L20): 43 are dead
+# links and 2 are OURS, both clips of Ads-4j06eJY, removed by a stale --exclude-yid default at
+# data/openasl_fetch.py:245 that this script never passed and could not have cleared. The true ceiling
+# is 933; the difference is ~0.001 on the half-width. And do NOT read `requested - n_ok` as proof the
+# fetch exhausted its candidates: `requested` is --n-clips echoed back, so the identity holds by
+# construction. 931 is the paired set we scored, so J12 was 931-400 = 531 clips.
 # The interval the LM track wants narrows by sqrt(400/931) = 0.6555, to a half-width of +-0.790
 # (REPLY-J12-ACCEPTED-2026-10-05.md), not the +-0.771 that sqrt(400/976) gives.
 #

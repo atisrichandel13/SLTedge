@@ -225,7 +225,9 @@ own board extraction, pruned checkpoint, 24 fps, beam 4, batch 1:
 
 > **UPDATED 2026-10-05 from the n=400 subset**, which gave −2.24 [−3.50, −1.09] on BLEU-4 and did not
 > establish ROUGE-L at all. J12 extended our board pose set to all **931** test clips that exist on
-> disk (45 of the 976 `labels.test` names have no clip and never will), and the full-width answer is
+> disk (45 of the 976 `labels.test` names have no clip: 43 dead links and 2 excluded by a stale
+> `--exclude-yid` default, §L20 — the true ceiling is 933 and the difference is ~0.001), and the
+> full-width answer is
 > **−1.41**. Nothing earlier was wrong — −1.41 sits inside the n=400 interval — but that estimate sat
 > near its pessimistic end. Two things changed with it, and one claim of ours died:
 >
