@@ -322,7 +322,11 @@ This is the methodological result we would most defend, and it reversed on us on
 | frame rate 30→16, n=967 | −0.35 [−1.00, +0.45] — **not** established | −1.34 [−2.42, −0.30] — established |
 | pose substitution, n=400 | −2.24 [−3.50, −1.09] — **established** | −1.11 [−2.56, +0.35] — not established |
 
-Same clips, same draws within each row. Our first reading was "ROUGE-L is more powerful than BLEU-4",
+Same clips, same draws within each row. **Read down a row, not across rows**: the two rows are on
+different decode protocols (batch 8 and batch 1), and §L18 measures the ROUGE-L offset between them at
+~0.35 — negligible for BLEU-4 at ≤0.05, but not for ROUGE-L. The point each row makes is internal to
+it, so the comparison the table exists for is unaffected; comparing −1.34 against −1.11 as magnitudes
+is not. Our first reading was "ROUGE-L is more powerful than BLEU-4",
 which is **wrong**: BLEU-4's interval is the *narrower* of the two in **all four** comparisons we have
 on shared draws (by 10–26 %, each ±~5 percentage points from bootstrap noise — the sign is stable, the
 magnitudes are not). Precision never reversed; **effect size** did.

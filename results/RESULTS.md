@@ -880,6 +880,21 @@ ROUGE-L 43.91 → 44.19). So the end-to-end path is correct, **and every offline
 document carries a small batching dependency** — smaller than any effect we reason about, but it should
 be stated rather than discovered later.
 
+> **CORRECTED 2026-10-05 by §L18 (LM track), verified here.** The 2-of-30 rate is **not**
+> representative: across all 976 test clips batching changes **291 predictions, 29.8 %**, and on 40
+> clips with the mT5 directory held fixed it changes **13 of 40, 32.5 %**. Padding is the mechanism, so
+> the rate tracks how heterogeneous the clip lengths inside a batch are — these 30 clips are far more
+> uniform than a whole split, which is why 2 of 30 came out low. The *reason* to hold batch size at 1
+> stands; the magnitude above does not.
+>
+> **"Smaller than any effect we reason about" is still true of BLEU-4 and is now false of ROUGE-L.**
+> The per-metric cost is BLEU-4 ≤ 0.05 but ROUGE-L ~0.35 (§L18). That ~0.35 is the same size as the
+> entire adaptation effect at dev scale — §L17's n=920 rung is **+0.398 ROUGE-L** — so a ROUGE-L quoted
+> across the two protocols can swallow a headline rather than round it. The protocols are **batch 8**
+> for §L13/§L15/§L17 (the frontier surface and every Colab adaptation run, `eval_openasl.py`'s
+> default) and **batch 1** for §2.5g/§2.5h and every board n=400 row. Within either, all cells share a
+> protocol and every comparison stands.
+
 **It is 1.06× slower than real time, and the LM is why.** 9.05 s to process 8.51 s of video. The pose
 stage alone is 6.64 s = **0.78× real time**, comfortably real-time; the LM's 2.39 s per sentence pushes
 the total over. Because LM cost is per *sentence* and pose is per *frame*, longer sentences get better
