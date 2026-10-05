@@ -53,8 +53,22 @@ count_clips() { find "$OUT" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ';
 # SUPERVISOR with a stall watchdog. Resumable is not the same as hang-proof: on 2026-09-28 a dropped
 # network left yt-dlp blocked on a socket and the fetch sat at 397 clips for six hours without dying,
 # so the resume logic never got a chance to run. The download path is fixed (process-group kill plus
-# --socket-timeout), but a supervisor is the belt to that braces: if the clip count stops advancing for
-# STALL_S, kill the whole thing and start again from disk state.
+# --socket-timeout), but a supervisor is the belt to that braces: if the fetch stops LOGGING for
+# STALL_S, kill it and start again from disk state.
+#
+# TWO WATCHDOG BUGS FIXED 2026-10-05, both seen on the dev fetch.
+#
+# 1. The kill took the supervisor with it. Without job control a background job inherits the shell's
+#    process group, so `kill -- -$(ps -o pgid= $pid)` killed this script and its nohup wrapper too:
+#    attempt 1 died at 738 clips and attempt 2 never ran, with no "attempt ended" line in the log.
+#    `set -m` gives each background job its own process group, so the kill hits only the child tree.
+#
+# 2. The stall signal was wrong. It watched the CLIP COUNT, but --skip-existing re-walks every clip
+#    already on disk, and because the candidate order is shuffled the tail of a resumed run is mostly
+#    [keep] lines. Ten minutes of healthy skipping looked identical to a hang. It now watches the LOG,
+#    which grows on every clip whether kept, fetched or failed, and goes silent only on a real hang --
+#    which is exactly the 2026-09-28 failure mode.
+set -m
 ATTEMPTS="${SLT_ATTEMPTS:-40}"
 STALL_S="${SLT_STALL_S:-600}"
 
@@ -69,15 +83,22 @@ for attempt in $(seq 1 "$ATTEMPTS"); do
         --out "$OUT" >> "$LOG" 2>&1 &
     pid=$!
 
-    last=$(count_clips); idle=0
+    log_lines() { wc -l < "$LOG" | tr -d ' '; }
+    last=$(log_lines); idle=0
     while kill -0 "$pid" 2>/dev/null; do
         sleep 30
-        now=$(count_clips)
+        now=$(log_lines)
         if [ "$now" -gt "$last" ]; then last=$now; idle=0; else idle=$((idle + 30)); fi
         if [ "$idle" -ge "$STALL_S" ]; then
-            echo "=== $(date) STALLED at ${now} clips for ${idle}s; killing attempt ${attempt}" >> "$LOG"
-            # kill the process group so yt-dlp's ffmpeg children go too
-            kill -- "-$(ps -o pgid= "$pid" | tr -d ' ')" 2>/dev/null || kill -9 "$pid" 2>/dev/null
+            echo "=== $(date) STALLED: no log output for ${idle}s at $(count_clips) clips; killing attempt ${attempt}" >> "$LOG"
+            # kill the child's process group so yt-dlp's ffmpeg children go too. set -m above put the
+            # child in its own group, so this no longer kills the supervisor.
+            cpgid=$(ps -o pgid= "$pid" | tr -d ' ')
+            if [ -n "$cpgid" ] && [ "$cpgid" != "$$" ]; then
+                kill -- "-$cpgid" 2>/dev/null || kill -9 "$pid" 2>/dev/null
+            else
+                kill -9 "$pid" 2>/dev/null
+            fi
             pkill -9 -f 'yt-dlp' 2>/dev/null; pkill -9 -f 'ffmpeg' 2>/dev/null
             break
         fi
