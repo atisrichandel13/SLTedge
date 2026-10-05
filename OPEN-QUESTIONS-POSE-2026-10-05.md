@@ -88,6 +88,17 @@ mix too. **Does a different mix change anything on your side**, given `--fps 24`
 its own rate? My reading is no — per-clip thinning makes the native rate irrelevant to the *target*
 rate — but you own that code path.
 
+> **Both of the asks above are MOOT as asked, 2026-10-05 — no decision needed from you.** The two
+> tallies are done and pushed (the table earlier in this section); the 918 `meta.json` files are
+> tracked, so you can recompute either from the repo. Q1a asked what to do *if* 720p yield came back
+> materially **below** test's 76.3 %: it came back **above**, at **76.8 %**, so the branch never
+> opened and there is nothing to accept, drop or re-fetch. Q1b's reading was **wrong in my favour and
+> you corrected it** — `fps_ratio_for_clip` returns `min(1.0, target/src)`, so a clip already at or
+> below 24 fps is not thinned at all and the native mix does change how much subsampling is applied.
+> Dev is **20.7 %** such clips against test's **22.1 %**, a 1.4-point gap on the quantity that
+> actually matters. Left here unedited rather than rewritten, because the wrong reading is the reason
+> the right number got checked.
+
 ### Q2 — is dev enough?  —  **DECIDED: J9 proceeds, and your probe is accepted in parallel**
 
 Settled and conceded: L15 trained on **20,000 train clips** (`RESULTS.md:1892`, `:1967`), evaluated on
