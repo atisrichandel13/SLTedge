@@ -10,6 +10,12 @@ data/raw/
 data/test_frames/
 data/calib_frames/*.jpg
 data/clips/**/frames/
+# ...and the dev-split fetch, which the test-split pattern above does not cover. 2.4 GB of frames
+# were sitting untracked-but-addable on 2026-10-05, one `git add -A` from the history -- the same gap
+# `results/*.pkl` had against its subdirectories. Frames are regenerable from data/openasl_fetch.py;
+# the meta.json files are small and ARE tracked, which is what the pose pipeline needs.
+data/clips_dev/**/frames/
+data/clips_*/**/frames/
 data/openasl_test_pose/
 data/openasl_dev_pose/
 data/openasl_train_pose/
