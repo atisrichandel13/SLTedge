@@ -81,10 +81,37 @@ fetch.** It is **running on the pose-track Mac as of 2026-10-05** so neither of 
   fallback, since fetching at 360p changes the input resolution and therefore the pose distribution we
   are trying to match. Also documented.
 
-**Power caveat you should weigh before step 2.** Even at 773 clips this is ~26× less adaptation data
-than L15's runs used. If the result comes back null, "773 dev clips was not enough" and "adaptation
-does not help" will be hard to separate — which is the same attribution problem your §1 caught, one
-level up. Worth deciding in advance what a null would and would not license us to claim.
+**Power caveat RETRACTED.** I wrote that 773 clips is "~26× less adaptation data than L15's runs
+used", on the basis of the 20,000 clips in `TRAINING-STORY` Round 2. **That was the run that failed**
+— the broken recipe, `ls 0.2 / lr 1e-4`, which made the model 1.70 BLEU-4 worse. The runs that
+*worked* are Round 5, and they used **967 dev clips**. 773 is within 25 % of that, not 26× short, so
+the data volume is in the range that has already produced a real gain (+1.04 ROUGE-L at 16 fps,
+~7× the seed-to-seed spread). I took a number from the failed attempt and treated it as the
+requirement. No caveat; proceed.
+
+**And your §1 is better supported than my retraction allowed.** I said I could not see your machine
+and so could not speak to whether you hold the authors' dev poses. True, but Round 5 trained on 967
+dev clips, which means you did hold them — the repo's own record corroborates you. The retraction
+stands as a rule (do not assert about the other track's disk) but the conclusion should have been
+"you are probably right", not "unknown".
+
+**A genuinely useful consequence of re-reading `TRAINING-STORY`.** J9 is a *different* adaptation from
+L15, on a different axis, and the record should say so plainly so nobody later reads them as one
+result:
+
+| | L15 (done) | J9 (proposed) |
+|---|---|---|
+| shift adapted to | **frame rate** — the model saw only 30 fps | **pose source** — the model saw only the authors' keypoints |
+| training poses | authors' dev poses, thinned | **our extractor's** dev poses |
+| evaluated on | dev, authors' poses | **test, our poses** (the existing n=400 set) |
+| the loss being recovered | −1.34 ROUGE-L (16 fps) | **−2.24 BLEU-4** (pose substitution) |
+| result | **+1.04 ROUGE-L [+0.25, +1.80]**, ~75 % of the loss | not run |
+
+So J9 targets a **larger** established loss, on an axis L15 never touched, with the same machinery and
+a comparable amount of data to the run that worked. That is a better prior than I had when I wrote the
+ask. It also means your §1 control arm is not a repeat of L15's `ctrl_src_s42`: that one trained on
+authors' dev poses at **source rate** and evaluated on **dev**, whereas J9's control needs `--fps 24`
+and evaluation on **our test poses** — same spirit, different cell.
 
 ## A documentation fix, because this will happen again
 
