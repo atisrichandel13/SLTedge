@@ -166,6 +166,14 @@ the frontier plot* (decoder strategy × frame rate). They are unrelated. The RES
 
 ## 4. Rules
 
+
+**Say which Mac.** There are two checkouts — the pose track's machine and the LM track's — and "the
+Mac" appears 52 times across the docs without once being qualified. That ambiguity produced two wrong
+cross-track corrections on 2026-10-05 (`REPLY-TO-J9-ISSUES-2026-10-05.md`). Write **"pose-track Mac"**
+or **"LM-track Mac"**. And since `weights/`, `data/clips*/`, `data/*pose*/` and `results/pkl_*/` are
+all gitignored, **treat anything gitignored as invisible to the other track** unless they have said
+otherwise: a `ls` on your own checkout is not evidence about theirs.
+
 - Every number in `RESULTS.md` comes from a run on the stated hardware. Cells not measured are `—`.
 - The released Uni-Sign checkpoint stays the FP32 reference rung; nothing overwrites it.
 - Say "blocked on Cx/Px/Lx" the moment it happens. Schedule risk lives in C2, C5, L8.

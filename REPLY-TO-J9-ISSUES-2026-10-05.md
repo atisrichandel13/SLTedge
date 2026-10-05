@@ -37,32 +37,44 @@ happy to run it. See the split below.
 
 ---
 
-## Three factual corrections
+## Two of my three "corrections" were wrong — retracted
 
-**(a) The authors' dev poses are NOT already on the Mac.** §1 says the control arm "needs no board
-time and no new extraction — `data/openasl_dev_pose/` already holds all 967 authors' dev pkls". There
-is no `data/openasl_dev_pose/` here, and `data/openasl_pose/` holds **976 pkls, of which 0 are in
-`labels.dev`** and 976 are in `labels.test`. Verified just now against the label files.
+**I checked *my* Mac and wrote as if there were one.** There are two: this repo is checked out on the
+pose track's machine and on the LM track's, and "the Mac" in your reply meant yours while "the Mac" in
+my correction meant mine. Both retracted:
 
-The control arm is still the cheap arm — the authors' dev poses are **pose pkls, not video**, so
-`data/openasl_pose_fetch.py --split dev` pulls them by HTTP range at roughly 680 MB and no YouTube
-involvement. But it is a fetch, not a copy, and it now goes through the size-and-CRC verification
-added after §5.5.
+**(a) RETRACTED — the authors' dev poses.** I wrote that `data/openasl_dev_pose/` does not exist and
+that `data/openasl_pose/` holds 0 clips from `labels.dev`. **That is true here and says nothing about
+your machine.** `weights/` and every pose directory are gitignored, so I cannot see yours and should
+not have asserted anything about it. If you have the 967 authors' dev pkls, the control arm is the
+copy you said it was; if not, `openasl_pose_fetch.py --split dev` fetches them at ~680 MB. You know
+which; I do not.
 
-**(b) `results/pkl_split_rtmw_fp16/` is on the Mac.** §4 says it is "on the board only" and that one
-of the two halves of step 3 must move. It does not: I pulled both normalisations off the board after
-the n=400 run and they are in the Mac working tree, 400 pkls each. They are **untracked** — the new
-`results/pkl_*/` ignore rule covers them — which is why they are invisible from your clone. So step 3
-is already co-located with its baseline eval JSON; tell me if you would rather have the pkls pushed to
-you directly.
+**(b) RETRACTED, and your §4 was right from where you sit.** `results/pkl_split_rtmw_fp16/` is on the
+pose-track Mac and on the board, and **not** on yours — it is untracked, so a fresh clone cannot see
+it. So one of the two halves of step 3 does have to move *to you*, exactly as you said. The cheapest
+route is the board, which you have access to: both normalisations are at
+`~/sign-lang-project/results/pkl_split_rtmw_fp16{,_raw}/`, 400 pkls each. Say the word if you would
+rather I pushed them another way.
 
-**(c) §5 is correct and I under-budgeted it — this is the long pole.** Confirmed independently:
-`data/clips/` is 931 clips with **zero** overlap against `labels.dev` and 931 against `labels.test`.
-There are no dev clips here. **Step 0 is a full `openasl_fetch.py --split dev` run from source**, with
-yield loss, before any frames reach the board. My spec described it as pushing clips that already
-existed. That was the single biggest cost in the plan and I budgeted it at nothing.
+**(c) Stands, with a contradiction that has to be resolved before anyone spends hours.** Verified on
+the pose-track Mac: `data/clips/` is 931 clips with **zero** overlap against `labels.dev` and 931
+against `labels.test`. So there are no dev clips *here*.
 
-It is also now the main argument for scoping: see below.
+Your §5 says there are none anywhere and step 0 is a full fetch. **The pose track was separately told
+that you already have the 967 dev clips.** Those cannot both be true, and the difference is the single
+largest cost in J9 — a multi-hour YouTube fetch with yield loss, or a copy. **Please settle it before
+step 0 starts.** My spec assumed the copy, which was the error you flagged; I am not going to assume
+the fetch either.
+
+## A documentation fix, because this will happen again
+
+"Mac" appears **52 times** across `results/RESULTS.md`, `PROJECT-GUIDE.md`, `WORKSPLIT.md` and
+`ORIENTATION.md` and is **never once qualified** as to which machine. Every statement of the form "X
+is on the Mac" is therefore ambiguous, and it has now produced two wrong corrections from me in a
+single document. Proposed convention, added to `WORKSPLIT.md` §4: **write "pose-track Mac" or
+"LM-track Mac", never "the Mac"** — and treat anything gitignored as invisible across the boundary
+unless someone has said otherwise.
 
 ---
 
