@@ -2906,3 +2906,41 @@ unaffected, which is why everything on the §2.5h protocol still runs.
 
 **This run is the right one for J12.** It matches `eval_n400_pruned_{ours,ceil}_fps24.json` on `--mt5`,
 batch size, cap, beams and rate, so pairing it against J12's extended board poses is protocol-clean.
+
+#### L18 addendum 1 — the device axis is ~0.8 % of sentences, 40× smaller than batching (2026-10-05)
+
+`ASK-J12-OURS-ARM` listed four flags that must not drift between the n=931 arms. It missed a fifth,
+caught by the pose track: `eval_test976_ceil_b4_fps24_named.json` records **`device=cpu`** (LM-track
+Mac) while **both** n=400 arms record **`device=cuda`** (board). Pairing a board arm against a CPU
+ceiling therefore adds a device axis the −2.24 never contained, and after §L18 no protocol axis should
+be carried into a headline unmeasured.
+
+Measured by restricting the 976-clip CPU ceiling to the same 400 clip names and comparing against
+`eval_n400_pruned_ceil_fps24.json` — reproduced here independently of the pose track:
+
+| | |
+|---|---:|
+| predictions differing | **3 of 400 (0.8 %)** |
+| BLEU-4, cpu | 23.8585 |
+| BLEU-4, cuda | 23.8071 |
+| **Δ (cpu − cuda)** | **+0.0514** |
+| Δ ROUGE-L | −0.0036 |
+
+**Negligible, and 40× smaller than batching's ~30 %.** It sits far inside the ±0.790 half-width the
+n=931 comparison will carry, so the board ceiling is *not* re-run and the plan stands. The direction
+is recorded because it is not zero: the CPU ceiling reads 0.05 **higher**, so a gap measured against
+it reads 0.05 **wider** than one measured against a CUDA ceiling.
+
+**A byproduct neither side had checked.** The two files use *different reference pose directories* —
+`data/openasl_test_pose` and `data/openasl_pose_split` — and 397 of 400 predictions match. So those
+directories hold equivalent reference poses for the shared clips. Every paired bootstrap across
+§2.5h and this comparison assumes that, and it had never been verified.
+
+**And `--expect-n` paid for itself within ten minutes of being threaded through.** The first n=931
+launch aborted with `unrecognized arguments: --expect-n 931`: the **board's** copy of
+`unisign/eval_openasl.py` was stale, because the board is an rsync target rather than a git checkout
+and nothing compares the two. It failed loudly and wrote no JSON instead of scoring 931 clips with no
+guard. The pose track diffed the board's copy before overwriting it, since every n=400 number came
+from that file — the diff is purely additive (the argument, an empty-preds guard, the count check)
+with no scoring path touched, so **the n=400 numbers stand**; md5 now matches `main` on all five core
+files.
