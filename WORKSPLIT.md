@@ -62,7 +62,7 @@ Context files: `sign-language-project-context-v2.md`, `jetson-setup-handoff.md`,
 | P10 | PTQ vs QAT on the pose front-end (QAT on the 4x24 rig, via C8-style loop on the pose model) | P5, C8 | ⬜ not started |
 | P11 | Preprocess cost: CPU JPEG decode + affine is 19 % of frame time; move affine + normalize to GPU (torch) and re-measure; report separately | P1 | ⬜ not started (§2.2b quantifies the cost: imread 6.02 + preprocess 5.11 ms/frame) |
 | P12 | Segmentation heuristic for the live demo: hands-return-to-rest on pose velocity | P1 | ⬜ not started |
-| P13 | Board runs for the LM track when asked: C6, L4 (PyTorch mT5 on Jetson), L8 (TRT mT5 engines), plus the C9 protocol runs and the 30-min thermal runs | as requested | 🔄 J1/J2/J4, M1, J5 and J7 delivered; board access restored 2026-10-02. J6 and J8 (C9 protocol) outstanding |
+| P13 | Board runs for the LM track when asked: C6, L4 (PyTorch mT5 on Jetson), L8 (TRT mT5 engines), plus the C9 protocol runs and the 30-min thermal runs | as requested | 🔄 J1/J2/J4, M1, J5, J6, J7 and J8 delivered; board access restored 2026-10-02. **C9 protocol work closed 2026-10-04.** Open: J10 and J11 (`OPEN-ISSUES-LM-2026-10-05.md`), plus J9 pending a design fix |
 | P14 | iOS capture app streaming frames to the Jetson, MetricKit from day one (plan §2). Cut at the week-4 gate if behind | — | ⬜ optional; gate passed so not forced, but nothing built |
 
 ---
@@ -104,17 +104,20 @@ Context files: `sign-language-project-context-v2.md`, `jetson-setup-handoff.md`,
 
 Things the LM track needs run on the board. Results come back via git or scp.
 
-### Outstanding (as of 2026-10-03)
+### Outstanding (as of 2026-10-05)
 
 **Board access restored 2026-10-02** — the pose track ran the §5.2 memory probes on a verified-empty
 board. The demo video for C11 still needs board time.
 
-**J5 and J7 delivered 2026-10-03** (rows moved to Delivered below), so the two remaining items are
-both C9 protocol work.
+**J5, J6, J7 and J8 are all delivered** (rows below), so the C9 protocol work is closed. The three
+open items are J9 (adaptation, design issues in `REPLY-J9-ADAPT-2026-10-05.md`) and the two new
+requests J10 and J11, both written up in `OPEN-ISSUES-LM-2026-10-05.md`.
 
 | # | Request | Why it matters | Priority |
 |---|---|---|---|
-| J9 | **Adapt the pose encoder to our own keypoints** (`ASK-ADAPT-TO-OUR-POSES-2026-10-05.md`). LM track runs it: dev-split poses via `jetson/p13_dev_poses.sh` on the board, then `train_adapt.py --lr 1e-5 --label-smoothing 0.0 --fps 24`, evaluated on the existing 400-clip test pose set | The pose gap is **−2.24 BLEU-4 [−3.50, −1.09]**, established, and is ~2.2 of the ~2.3 accuracy points available. §2.5i/§2.5j show it is a distribution shift, not information loss, so adaptation is the lever and a pose-model swap is not | **highest** |
+| J9 | **Adapt the pose encoder to our own keypoints** (`ASK-ADAPT-TO-OUR-POSES-2026-10-05.md`). LM track runs it: dev-split poses via `jetson/p13_dev_poses.sh` on the board, then `train_adapt.py --lr 1e-5 --label-smoothing 0.0 --fps 24`, evaluated on the existing 400-clip test pose set | The pose gap is **−2.24 BLEU-4 [−3.50, −1.09]**, established, and is ~2.2 of the ~2.3 accuracy points available. §2.5i/§2.5j show it is a distribution shift, not information loss, so adaptation is the lever and a pose-model swap is not | **highest** — but five design and logistics issues are open in `REPLY-J9-ADAPT-2026-10-05.md`, one structural: as specified the experiment cannot separate adaptation-to-our-keypoints from fine-tuning-on-dev helping generally. **Also reassigns all board work to the LM track — needs Atisri's agreement before step 0.** |
+| J10 | **Re-run the §2.9C beam × T sweep in-process with the RTMW FP16 engine resident.** Pruned checkpoint, nothing else changed, three separate processes per §5.6 | The **2.08–2.27×** understatement of the decoder-width energy term survives the checkpoint fix, and this is the one axis of the frontier `REPORT.md` §6 has to mark unquotable. §5.4's four cells show a consistent sign (greedy overestimated, beam 4 underestimated), which is what a different resident footprint would do — unverified | **high** |
+| J11 | **Per-stage energy from one end-to-end run** at `beam 4 @ 24 fps` — pose, convert and LM joules separately, same run | The 3.16 J (~6 %) composition residual is **not** a within-run gap: the 2×2 found the stages exactly additive and the convert step worth 0.143 J. It is an across-run artefact, and the 2×2's per-sentence-only energy total cannot split it between the pose and LM terms. §5.4 already instruments the LM stage alone | low — ~6 % against a ±3 % run-to-run term is ~2σ, consistent with noise |
 
 ### Delivered
 

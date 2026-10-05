@@ -1204,7 +1204,14 @@ Testing it directly, with the LM stage now measured rather than inferred:
 |---|---:|---:|
 | full checkpoint, system total (§5.3) | +7.02 | — *(cell OOMs)* |
 | **pruned checkpoint, LM stage measured** | **+4.65** | **+4.50** |
-| `frontier.py` composition (`LM_J`) | +2.04 | +2.67 |
+| `frontier.py` composition (`LM_J`) | +2.04 | **+2.16** ~~+2.67~~ |
+
+> **Correction, 2026-10-05.** The T=263 cell read **+2.67**, which is a linear *extrapolation* of
+> `LM_J` past the measured grid. `frontier.py` does not extrapolate: `lm_energy()` clamps
+> `frames >= grid[-1]` to the T=215 row, so the composed value it actually ships at T=263 is
+> `11.04 − 8.88 = `**`+2.16 J`**. The ratio band is therefore **2.08–2.27×**, which is what the
+> "2.1–2.3×" sentence below already says; the old cell made the table read as 1.7–2.3× and that
+> wrong band reached `REPORT.md` §6. Nothing measured changes — both corrected numbers are composed.
 
 So the checkpoint explains roughly **half** the gap (7.02 → 4.65) and a **2.1–2.3× discrepancy survives
 on the pruned model itself**, which is the configuration `frontier.py` claims to describe. The
@@ -1223,10 +1230,17 @@ end-to-end runs with both models loaded. The direction is consistent at all four
 
 | cell | composed `LM_J` | measured LM stage | error |
 |---|---:|---:|---:|
-| source, beam 4 | 11.75 | 12.726 | +8.3% |
-| source, greedy | 9.08 | 8.227 | −9.4% |
+| source, beam 4 | **11.04** ~~11.75~~ | 12.726 | **+15.3%** ~~+8.3%~~ |
+| source, greedy | **8.88** ~~9.08~~ | 8.227 | **−7.4%** ~~−9.4%~~ |
 | 24 fps, beam 4 | 10.88 | 11.855 | +9.0% |
 | 24 fps, greedy | 8.833 | 7.210 | −18.4% |
+
+> **Correction, 2026-10-05, same cause as above.** The two `source` rows are at T=263, past the
+> measured grid top of 215, and were composed by extrapolation. `frontier.py` clamps instead, so its
+> shipped values are 11.04 and 8.88. The 24 fps rows are at T=204, inside the grid, and are unchanged.
+> The pattern the table is here to show is unaffected and in fact sharper: the composition still
+> **overestimates greedy and underestimates beam 4** in all four cells, and the beam-4 underestimate
+> at source is 15.3% rather than 8.3%.
 
 A standalone sweep compressing the spread in both directions is what a different resident footprint
 would do, but **this is unverified** — four cells showing a consistent sign is a pattern, not a cause. The clean test is to re-run
