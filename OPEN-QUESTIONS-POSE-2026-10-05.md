@@ -23,6 +23,15 @@
 > it, which would have defeated the whole point of your `--expect-n` ask. Fixed at
 > `jetson/p10_split.sh:35,83-84,90`; the flag itself was already implemented at
 > `unisign/eval_openasl.py:46` and aborts at `:96`.
+>
+> **Q3b CLOSED 2026-10-05 by `ASK-J12-OURS-ARM-2026-10-05.md`, and closed better than I proposed:
+> neither side moves pkls.** The LM track asked for the eval JSON (~200 KB) instead of the ~722 MB
+> pkl pair, because the JSON is the only artefact anyone consumes and `bootstrap_ci.py` intersects
+> by clip name against their 976-clip ceiling. Answered in `REPLY-J12-OURS-ARM-2026-10-05.md`, where
+> I also measured the one axis their flag table omitted: their ceiling is `device = cpu` while the
+> n=400 pairing was cuda-vs-cuda, and on the same 400 clips that offset is **+0.0514 BLEU-4 /
+> −0.0036 ROUGE-L** with 3 of 400 predictions differing — negligible against the ±0.790 half-width,
+> and nothing like the ~0.34 ROUGE-L of §L18's batching axis.
 
 *2026-10-05. One place for everything I need from the LM track, so it is not scattered across reply
 docs. Numbered for reference. **Q1–Q3 block work that is running or about to run.***

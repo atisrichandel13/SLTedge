@@ -33,6 +33,13 @@ TAG="${SLT_TAG:-n100}"
 # scores whatever pkls it finds and records the shortfall only in the JSON's "missing" field. On an
 # abort no JSON is written, so the run stays resumable: fix the pose dir and re-run.
 EXPECT_N="${SLT_EXPECT_N:-}"
+# Which arms to run, space separated, or "all". Added 2026-10-05: the n=931 pass only needs the OURS
+# arm, because the ceiling is already scored at 976 on the LM track and bootstrap_ci.py intersects by
+# clip name. Re-running the other four would be ~45 min of board time for JSONs nobody reads. The
+# device axis that pairing introduces was measured first, not assumed: their ceiling is device=cpu
+# and the n=400 pairing was cuda-vs-cuda, and restricting their 976 to the same 400 clips puts the
+# cpu-vs-cuda offset at +0.0514 BLEU-4 / -0.0036 ROUGE-L with 3 of 400 predictions differing.
+ARMS="${SLT_ARMS:-all}"
 POSE_DIR="${SLT_POSE_DIR:-results/pkl_split_rtmw_fp16}"
 REF="${SLT_REF:-data/openasl_pose_split}"
 ENG=models/rtmw/rtmw-l-m_256x192_fp16.engine
@@ -75,6 +82,10 @@ fi
 # ---- stage 2: the evals.  name | poses | ckpt | fps
 eval_one() {  # $1 name  $2 poses  $3 ckpt  $4 mt5  $5 fps('' = source)
   local name="$1" poses="$2" ckpt="$3" mt5="$4" fps="$5"
+  case " $ARMS " in
+    *" all "*|*" $name "*) ;;
+    *) echo "[p10] skip $name (not in SLT_ARMS)"; return 0 ;;
+  esac
   local out="results/eval_${TAG}_${name}.json"
   [ -s "$out" ] && { echo "[p10] have $out"; return 0; }
   [ -d "$poses" ] || { echo "[p10] SKIP $name: no $poses" >&2; return 0; }
