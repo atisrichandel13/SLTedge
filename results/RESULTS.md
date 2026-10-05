@@ -2729,6 +2729,12 @@ wiped. It reproduces almost exactly:
 This is also the project's **first independent replication of L15.3**, on a different runtime with a
 retrained checkpoint, and GPU reductions are non-deterministic so it was never going to be bit-exact.
 
+**The un-adapted baseline, however, *is* bit-exact across the two runtimes** — BLEU-4 22.787836 and
+ROUGE-L 41.589883 in both, to a difference of 0.00e+00. No training is involved in that cell, so beam
+search over the same pruned checkpoint is deterministic. That pins down where the −0.054 / −0.024 at
+the 20,000 rung comes from: **the retrained checkpoint, not the environment.** Everything the two runs
+share reproduces exactly, and only the thing that was retrained differs.
+
 #### ROUGE-L scales with data; BLEU-4 does not move at all
 
 The ROUGE-L column climbs — +0.40 at 500 and 920, +1.02 at 20,000 — and **n=920 reaches 39 % of the

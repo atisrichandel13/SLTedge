@@ -1,0 +1,31 @@
+{
+ "a": "/content/drive/MyDrive/sltedge/probe_scale/evals/eval_dev_unadapt_fps16.json",
+ "b": "/content/drive/MyDrive/sltedge/probe_scale/evals/eval_dev_adapt_fps16_n920.json",
+ "n_clips": 967,
+ "n_boot": 1000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 22.787835534239992,
+  "b": 23.23215354879553,
+  "delta": 0.4443180145555381,
+  "ci": [
+   0.0058422300662639886,
+   0.902839813136754
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.021
+ },
+ "rouge_l": {
+  "a": 41.589882524600554,
+  "b": 41.98764229412599,
+  "delta": 0.397759769525436,
+  "ci": [
+   -0.203456221425777,
+   0.9597398077266674
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.101
+ }
+}

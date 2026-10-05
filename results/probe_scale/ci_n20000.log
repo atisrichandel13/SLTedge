@@ -1,0 +1,4 @@
+[ci] 967 paired clips, 1000 resamples
+  bleu4     22.79 ->  23.20   delta  +0.41  95% CI [-0.24, +1.02]  NOT ESTABLISHED (CI includes 0)
+  rouge_l   41.59 ->  42.61   delta  +1.02  95% CI [+0.27, +1.75]  sign established
+[ci] wrote /content/drive/MyDrive/sltedge/probe_scale/ci_n20000.json

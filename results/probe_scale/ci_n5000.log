@@ -1,0 +1,4 @@
+[ci] 967 paired clips, 1000 resamples
+  bleu4     22.79 ->  23.04   delta  +0.25  95% CI [-0.33, +0.80]  NOT ESTABLISHED (CI includes 0)
+  rouge_l   41.59 ->  42.13   delta  +0.54  95% CI [-0.21, +1.24]  NOT ESTABLISHED (CI includes 0)
+[ci] wrote /content/drive/MyDrive/sltedge/probe_scale/ci_n5000.json
