@@ -110,6 +110,7 @@ def main():
 
     t_all = time.perf_counter()
     done = frames_done = 0
+    skipped = []
     for mp, vid in todo:
         meta = json.load(open(mp))
         fdir = os.path.join(os.path.dirname(mp), "frames")
@@ -131,8 +132,17 @@ def main():
         sqf = square_fn(meta) if args.square_norm else None
         kps, scs, raw, kps_raw = [], [], [], []
         wh_crop = np.asarray([meta["crop_xywh"][2], meta["crop_xywh"][3]], dtype=np.float32)
+        # A single unreadable JPEG used to abort the entire pass: cv2.imread returns None and
+        # preprocess dies on None.shape at rtmpose_utils.py:81. On 2026-10-05 that killed a 531-clip
+        # J12 batch after 3 clips, and because the driver only checked that SOME pkls appeared it went
+        # on to delete the frames. One corrupt frame among 111,388 is a clip to skip, not a run to
+        # lose, so the clip is isolated and named and the pass continues.
+        bad = None
         for path in frames:
             img = cv2.imread(path)
+            if img is None:
+                bad = path
+                break
             x, center, scale = preprocess(img, None, pp)
             outs = runner.infer({in_name: x})
             k, s = postprocess(outs["simcc_x"].cpu().numpy(), outs["simcc_y"].cpu().numpy(),
@@ -145,6 +155,13 @@ def main():
             scs.append(np.asarray(s, dtype=np.float32).reshape(1, 133))
             if args.pkl_out_raw:
                 kps_raw.append((k / wh_crop[None]).astype(np.float32).reshape(1, 133, 2))
+
+        if bad is not None:
+            print(f"[batch] SKIP {vid}: unreadable frame {os.path.basename(bad)} "
+                  f"(cv2.imread returned None -- truncated or corrupt). Re-push this clip's frames "
+                  f"from the pose-track Mac; no pkl written.", flush=True)
+            skipped.append(vid)
+            continue
 
         # write to a temp name then rename: a pkl that exists is the resume marker, so it must never
         # exist in a half-written state
@@ -175,6 +192,9 @@ def main():
     el = time.perf_counter() - t_all
     print(f"[batch] {args.config} done: {done} clips, {frames_done} frames in {el / 60:.1f} min "
           f"({frames_done / max(el, 1e-9):.1f} frames/s) -> {args.pkl_out}", flush=True)
+    if skipped:
+        print(f"[batch] {len(skipped)} clip(s) SKIPPED for unreadable frames: "
+              f"{', '.join(skipped)}", flush=True)
 
 
 if __name__ == "__main__":
