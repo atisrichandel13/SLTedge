@@ -1,8 +1,13 @@
 # Open questions from the pose track
 
-> **Status 2026-10-05, after `ANSWERS-Q1-Q7` and `REPLY-Q2-SCALE`:** Q1a, Q1b, Q4, Q5, Q7 **resolved**
-> (see inline). Q2 **decided by Tushar — J9 proceeds**, with their probe accepted in parallel. Q3 and
-> Q6 open. **New: Q8**, which may matter more than J9.
+> **Status 2026-10-05, after `ANSWERS-Q1-Q7`, `REPLY-Q2-SCALE` and `ec7371f`:** Q1a, Q1b, Q3a, Q3b,
+> Q4, Q5, Q7, Q8 **all resolved** (see inline). Q2 **decided by Tushar — J9 proceeds**, with their
+> probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
+> wanted.
+>
+> **Nothing in this file is waiting on the LM track.** Everything left is mine to execute: the dev
+> fetch, then board extraction, then scp'ing the two 400-clip pose dirs across per Q3b. If you need
+> something from me, add it here and I will see it on the next sync.
 
 *2026-10-05. One place for everything I need from the LM track, so it is not scattered across reply
 docs. Numbered for reference. **Q1–Q3 block work that is running or about to run.***
@@ -11,7 +16,7 @@ docs. Numbered for reference. **Q1–Q3 block work that is running or about to r
 
 ## Blocking now
 
-### Q1a / Q1b — RESOLVED, both inside your bars (interim, 346 of ~920 clips fetched)
+### Q1a / Q1b — RESOLVED, both inside your bars (interim, 449 of ~966 clips fetched)
 
 Your 22.1 % reproduces exactly on the pose-track Mac: **206 of 931** test clips are ≤24 fps native.
 And **you were right and I was wrong on Q1b** — `min(1.0, target_fps / src)` means a clip at or below
@@ -20,10 +25,10 @@ though it does not change the resulting rate. I had that backwards.
 
 Interim dev tallies, to be re-run at completion:
 
-| | test (931) | dev (346 so far) | your bar |
+| | test (931) | dev (449 so far) | your bar |
 |---|---:|---:|---|
-| ≤24 fps native — not thinned at `--fps 24` | **22.1 %** | **18.5 %** | "within a few points → record and move on" |
-| source height 720p | ~76 % | **76.9 %** | "accept unless below ~60 %" |
+| ≤24 fps native — not thinned at `--fps 24` | **22.1 %** (206) | **18.9 %** (85) | "within a few points → record and move on" |
+| source height 720p | **76.3 %** (710) | **76.8 %** (345) | "accept unless below ~60 %" |
 
 Both pass. I will push the final histograms when the fetch ends; nothing here needs a decision.
 
@@ -70,7 +75,7 @@ judgement into a measurement, against a known +1.04 ROUGE-L at 20,000. **Please 
 block my extraction, so the two go in parallel, and the project needs a data-scale number regardless
 of what J9 does.
 
-### Q3 — which arm do you want first, and where do the pkls go?
+### Q3 — which arm do you want first, and where do the pkls go?  —  **RESOLVED**
 
 **Q3a.** You hold the authors' dev poses (corroborated: L15 Round 5 evaluated on 967 dev clips). The
 control arm needs them at `--fps 24` evaluated on **our** test poses — not a repeat of
@@ -81,11 +86,17 @@ parallel with my extraction?
 on — are on the pose-track Mac and the board, **not** on yours, and they are gitignored. Pull from
 `~/sign-lang-project/results/` on the board, or do you want them another way?
 
+> **Answered (`ANSWERS-Q1-Q7`, Q3a/Q3b).** Q3a: **yes, train now, evaluate later** — you hold 967
+> authors' dev pkls with exact 967/967 overlap on `labels.dev`, so the control arm's *training* can
+> start in parallel, but it cannot be *scored* until Q3b lands. Q3b: **scp, not git** — ~160 MB per
+> normalisation, ~320 MB for the pair, same category as Q6. Mine to execute; you are not blocked on a
+> decision, only on the files.
+
 ---
 
 ## Not blocking, but should be settled before the report is final
 
-### Q4 — J10, and the only frontier axis we tell people not to quote
+### Q4 — J10, and the only frontier axis we tell people not to quote  —  **RESOLVED**
 
 Accepted as the highest-value open measurement, and it is mine. Before I run it: your `OPEN-ISSUES-LM`
 describes it as the §2.9C sweep "with the RTMW FP16 engine resident, pruned checkpoint, nothing else
@@ -94,12 +105,21 @@ different experiments — a loaded-but-idle engine tests memory-footprint effect
 contention. §5.1 found no contention because the stages are sequential, so "loaded and idle" is the
 one that matches how the pipeline actually runs. I will do loaded-and-idle unless you say otherwise.
 
-### Q5 — J11 priority
+> **Answered (`ANSWERS-Q1-Q7`, Q4) — RESOLVED, with a refinement I had missed.** Loaded-and-idle
+> agreed, **and load the pose engine before the LM**, matching pipeline order: allocator and
+> memory-pool state depend on allocation *order*, not just on total occupancy, so loading the LM first
+> would test a configuration the pipeline never runs. Adopted — J10 loads the RTMW FP16 engine first.
+
+### Q5 — J11 priority  —  **RESOLVED: leave it**
 
 You rank it below J9 and J10 and call it unexplained rather than wrong. Agreed. **Q5: is it worth
 board time at all before the report**, given the residual is ~2σ against the run-to-run term and
 §5.6 already instruments per-stage energy? My inclination is to leave it and have the report say the
 residual is unexplained at ~2σ.
+
+> **Answered (`ANSWERS-Q1-Q7`, Q5) — RESOLVED: agreed, leave J11.** Not worth board time before the
+> report; the report says the residual is unexplained at ~2σ against the run-to-run term, which is
+> what `unisign/frontier.py`'s docstring already says.
 
 ### Q6 — the 286 MB of tracked pose pkls  —  **DEFERRED to after the project (Tushar, 2026-10-05)**
 
@@ -115,7 +135,7 @@ residual is unexplained at ~2σ.
 needs a history rewrite that would break your clone. **Q6: do you want that done, and when?** It is
 not mine to do unilaterally.
 
-### Q7 — your §4: make the split-name mismatch exit non-zero
+### Q7 — your §4: make the split-name mismatch exit non-zero  —  **RESOLVED, both sides fixed**
 
 Accepted — "a split name that matches nothing should exit non-zero" is right, and it is the same
 silent-zero class as the truncated download. I will implement it. **Q7: any other silent-zero paths
