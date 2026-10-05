@@ -2834,16 +2834,28 @@ rig. `n_boot` 1000, matching `adapt_ci_dev.json` so the anchor is comparable.
 > the batch-1 protocol of §2.5g/§2.5h and every board row. Internally that is fine — all six evals in
 > this section, baseline included, share it, so the curve and its intervals stand.
 >
-> **It does constrain the power argument above**, which I under-qualified when I wrote it. That
-> argument takes the 39 % from this section's **batch-8 ROUGE-L** column and applies it to a
-> **batch-1 BLEU-4** gap and interval. The cross-*metric* leap was flagged; the cross-*protocol* one
-> was not. It survives mainly because 39 % is a **ratio internal to this section**, so a constant
-> protocol offset largely cancels in it, whereas a *difference* carried across would not.
+> **The 39 % is free of a protocol offset — not merely robust to one.** A first version of this note
+> said it survived "because a ratio makes a constant offset largely cancel". That is false: a constant
+> offset does not cancel in a ratio, since `(a+d)/(b+d) ≠ a/b`, and at §L18's `d = 0.34` the 39 %
+> would read **54 %**. The correct reason is upstream of the ratio. `colab_probe_scale.py:156` scores
+> **one** shared baseline and `:181` bootstraps **every** rung against that same file, so a decode
+> offset shifts baseline and rung together and cancels **inside each delta**. Both +0.3978 and
+> +1.0165 are already offset-free, and `0.3978 / 1.0165 = 39.1 %` is a ratio of two offset-free
+> quantities.
 >
-> How much it would not: §L18 puts the cross-protocol ROUGE-L offset at **~0.34**, which is **85 % of
-> this section's n=920 rung** (+0.398 ROUGE-L). **A ROUGE-L difference carried across protocols can
-> therefore manufacture or erase a result of the size this probe is measuring, not merely blur it.**
-> Nothing in this section's ROUGE-L column may be compared with a batch-1 ROUGE-L figure.
+> **The honest residual leap is a different and weaker one:** applying a batch-8 **ROUGE-L** fraction
+> to a batch-1 **BLEU-4** gap assumes the *shape* of the data-scaling curve transfers across both
+> protocol and metric. §L18 bounds a **level** difference between protocols; it says nothing about
+> whether gains *scale with training data* the same way on each. Nothing here settles that.
+>
+> **J12's justification is untouched under every reading**, including one where the 39 % is wrong in
+> either direction: narrowing ±1.205 to ±0.790 is worth doing regardless of where on the curve J9
+> lands.
+>
+> Separately, and still binding: §L18 puts the cross-protocol ROUGE-L offset at **~0.34**, which is
+> **85 % of this section's n=920 rung**. A ROUGE-L *difference* carried across protocols can
+> manufacture or erase a result of the size this probe measures, so no figure in this section's
+> ROUGE-L column may be compared with a batch-1 ROUGE-L figure.
 
 ---
 
