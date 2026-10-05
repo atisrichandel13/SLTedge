@@ -30,7 +30,7 @@ dev poses, evaluated on the **same our-pose test n=400**. The contrast of intere
 down the Round 2 mistake in the opposite direction: a false *positive* this time.
 
 The control arm needs no board time and no new extraction — `data/openasl_dev_pose/` already holds
-all 967 authors' dev pkls on the Mac. It is the cheap arm, not the expensive one.
+all 967 authors' dev pkls on **Atisri's Mac**. It is the cheap arm, not the expensive one.
 
 ## 2. The ceiling moves too, so "half the gap" is not measured against 23.81
 
@@ -50,20 +50,27 @@ So the real sequence is: extract on the board → **pull `results/pkl_dev_rtmw_f
 train on Colab → score. That pull is not in the spec and is the step that needs your call under the
 shared-board rule.
 
-## 4. Step 3's two halves are on different machines
+## 4. Step 3's two halves may be on different machines
 
-`results/pkl_split_rtmw_fp16/` (the 400 test clips through our extractor) is **on the board only** —
-nothing under that path is tracked in git and it is not on the Mac. The baseline eval JSON it must be
-paired against, `results/eval_n400_pruned_ours_fps24.json`, **is** on the Mac. One of the two has to
-move before the paired bootstrap can run. Say which you prefer; pulling the 400 pkls is the smaller
-transfer and makes the comparison re-runnable afterwards.
+`results/pkl_split_rtmw_fp16/` (the 400 test clips through our extractor) is **not tracked in git**
+and is not on **Atisri's** Mac. The baseline eval JSON it must be paired against,
+`results/eval_n400_pruned_ours_fps24.json`, **is**. So unless you have those 400 pkls on *your* Mac,
+one of the two has to move off the board before the paired bootstrap can run.
 
-## 5. Step 0 is 967 YouTube fetches, not a copy
+**Ask: say where that directory actually lives.** If it is on your machine, commit it or scp it and
+this stops being a problem. If it is board-only, pulling the 400 pkls is the smaller transfer and
+makes the comparison re-runnable afterwards.
 
-There are **no dev clips anywhere on the Mac**. `data/clips/` is 931 clips with **zero** overlap
-against `labels.dev` and 931/932 overlap against `labels.test` — it is the test split. So step 0 is a
-full `openasl_fetch.py --split dev` run from source, with whatever yield loss that carries, before
-any frames reach the board. It is the long pole in this plan and the doc budgets it as a copy.
+## 5. Step 0 may be 967 YouTube fetches rather than a copy
+
+There are **no dev clips on Atisri's Mac**: `data/clips/` is 931 clips with **zero** overlap against
+`labels.dev` and 931/932 overlap against `labels.test` — it is the test split, and the only clip
+directory present.
+
+**Ask: do you have the dev-split clips on your Mac?** If not, step 0 is a full
+`openasl_fetch.py --split dev` run from source, with whatever yield loss that carries, before any
+frames reach the board — which makes it the long pole in this plan, where the doc budgets it as a
+copy. If you do have them, say so and this collapses to a transfer.
 
 ## 6. Flags check out
 
