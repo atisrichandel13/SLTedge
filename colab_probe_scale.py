@@ -31,11 +31,20 @@ its body came from different environments, and GPU reductions are non-determinis
 here costs ~15 minutes and makes the whole curve one environment. It also independently replicates
 L15.3's headline, which nothing has done yet.
 
-OUTPUTS GO TO DRIVE
-Colab loses /content when the runtime is recycled. Everything expensive here -- checkpoints and eval
-JSONs -- is small (train_adapt saves only the 5.35 M trainable params), so it goes to Drive and a
-dropped session resumes instead of restarting. The 32 GB pose archive deliberately does NOT: it
-re-downloads in minutes and Drive handles tens of thousands of small files badly.
+WHAT GOES TO DRIVE, AND WHAT DELIBERATELY DOES NOT
+Colab loses /content when the runtime is recycled, so anything expensive to recreate goes to Drive.
+That is: last.pt (the 5.35 M trainable params plus optimizer state, for mid-epoch resume), the eval
+JSONs, the CIs, the logs and the curve. All small.
+
+`adapted_full.pth` does NOT. It is the FULL state dict at ~570 MB, not the trainable slice -- an
+earlier draft of this file claimed otherwise and would have put ~2.9 GB on Drive across the ladder,
+which is how the project lost a Drive folder once already. It goes to local disk via --full-out, and
+the per-rung skip is keyed on the EVAL JSON rather than on the checkpoint, so a recycled runtime that
+loses /content skips any rung already scored instead of retraining it. A rung that was trained but
+not yet scored resumes from last.pt on Drive, which is the case worth protecting.
+
+The 32 GB pose archive also stays local: it re-downloads in minutes and Drive handles tens of
+thousands of small files badly.
 
 Re-runnable: every step is skipped when its output exists, so a disconnect costs only the step that
 was in flight. Training additionally resumes mid-epoch from last.pt.
@@ -83,41 +92,48 @@ def run(cmd, what):
         sys.exit(f"[probe] FAILED: {what}")
 
 
+FULL = "/content/full"      # local: the 570 MB checkpoints, deliberately not on Drive
+os.makedirs(FULL, exist_ok=True)
+
+
 def train(n):
-    d = f"{OUT}/fps16_n{n}"
-    if os.path.exists(f"{d}/adapted_full.pth"):
-        print(f"[probe] n={n}: already trained, skipping")
-        return d
+    """Train rung n. Returns the path to its full checkpoint, on LOCAL disk."""
+    d, full = f"{OUT}/fps16_n{n}", f"{FULL}/fps16_n{n}.pth"
+    if os.path.exists(full):
+        print(f"[probe] n={n}: full checkpoint present locally, skipping training")
+        return full
     os.makedirs(d, exist_ok=True)
     run(f"{P} -u -m unisign.train_adapt --ckpt {CKPT} --mt5 {MT5} --poses {POSES} "
         f"--labels {LABELS_TR} --limit {n} {FPS} "
-        f"--out-dir {d} --epochs 1 --batch-size 4 --accum 2 "
+        f"--out-dir {d} --full-out {full} --epochs 1 --batch-size 4 --accum 2 "
         f"--num-workers 2 --freeze-bn --save-every 200 --log-every 100 --seed {SEED} "
         f"--lr 1e-5 --label-smoothing 0.0 --warmup-epochs 0.1 --resume "
         f"> {d}/train.log 2>&1", f"train n={n}")
-    return d
+    return full
 
 
-def evaluate(tag, ckpt):
+def evaluate(tag, ckpt_fn):
+    """ckpt_fn is a callable so training is not triggered when the eval already exists."""
     out = f"{E}/eval_dev_{tag}.json"
     if os.path.exists(out):
         print(f"[probe] {tag}: already evaluated, skipping")
         return out
-    run(f"{P} -u -m unisign.eval_openasl --ckpt {ckpt} --mt5 {MT5} --poses {POSES} "
+    run(f"{P} -u -m unisign.eval_openasl --ckpt {ckpt_fn()} --mt5 {MT5} --poses {POSES} "
         f"--labels {LABELS_DEV} --num-beams 4 --max-new-tokens {CAP} --batch-size 8 {FPS} "
         f"--expect-n 967 --out {out} >> {OUT}/probe.log 2>&1", f"eval {tag}")
     return out
 
 
-# --- the un-adapted 16 fps baseline, retrained-from-nothing but re-scored in THIS environment ---
+# --- the un-adapted 16 fps baseline, scored in THIS environment ---------------------------------
 # Every rung is compared against this one file, so the comparison is paired and the baseline is not
 # imported from a different runtime.
-base = evaluate("unadapt_fps16", CKPT)
+base = evaluate("unadapt_fps16", lambda: CKPT)
 
 rows = []
 for n in SIZES:
-    d = train(n)
-    ev = evaluate(f"adapt_fps16_n{n}", f"{d}/adapted_full.pth")
+    # The eval JSON is the skip key: a recycled runtime that lost /content will not retrain a rung
+    # it has already scored, because train() is only reached through the lambda.
+    ev = evaluate(f"adapt_fps16_n{n}", lambda n=n: train(n))
     ci = f"{OUT}/ci_n{n}.json"
     if not os.path.exists(ci):
         run(f"{P} -u -m unisign.bootstrap_ci {base} {ev} --out {ci} >> {OUT}/probe.log 2>&1",

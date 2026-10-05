@@ -142,6 +142,11 @@ def main():
     ap.add_argument("--labels", required=True, help="labels.train (gzip pickle)")
     ap.add_argument("--limit", type=int, default=None, help="use the first N available train clips")
     ap.add_argument("--out-dir", required=True)
+    ap.add_argument("--full-out", default=None,
+                    help="where to write adapted_full.pth. Default <out-dir>/adapted_full.pth. "
+                         "The full state dict is ~570 MB while last.pt is only the 5.35 M trainable "
+                         "params, so a sweep pointing --out-dir at Drive wants this on local disk: "
+                         "Drive then carries only what cannot be recreated cheaply.")
     ap.add_argument("--resume", action="store_true", help="continue from <out-dir>/last.pt")
     ap.add_argument("--save-every", type=int, default=0,
                     help="also checkpoint every N optimizer steps, mid-epoch, and resume inside the "
@@ -306,7 +311,8 @@ def main():
                       for k, v in model.state_dict().items()}}
     if getattr(model, "keep_ids", None) is not None:
         full["keep_ids"] = model.keep_ids.tolist()
-    full_path = os.path.join(args.out_dir, "adapted_full.pth")
+    full_path = args.full_out or os.path.join(args.out_dir, "adapted_full.pth")
+    os.makedirs(os.path.dirname(os.path.abspath(full_path)), exist_ok=True)
     torch.save(full, full_path)
     print(f"[train] wrote {last_path} and {full_path} ({os.path.getsize(full_path)/1e6:.0f} MB)")
 
