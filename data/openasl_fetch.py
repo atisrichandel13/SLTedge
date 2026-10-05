@@ -350,6 +350,16 @@ def main():
                     "text": r["raw-text"], "split": split, "fps": fps, "source_wh": [W, H],
                     "n_frames": len(names), "stride": stride,
                     "start": r["start"], "end": r["end"], "duration_s": round(dur, 3)}
+            # Effective-rate guard. ffmpeg can return a near-empty section without failing, and
+            # nothing used to check: RESULTS.md 2.5i found two clips in the 931-clip test fetch with
+            # 4 frames for 7.8 s and 8 for 12.7 s. One reached the n=400 evaluation, where our
+            # pipeline answered "No." to a 15-word reference. A truncated clip is not a bad clip to
+            # be scored, it is a fetch failure to be retried, so fail loudly here instead.
+            eff = len(names) / dur if dur else 0.0
+            if dur and stride == 1 and eff < 0.5 * (fps or 30.0):
+                raise RuntimeError(
+                    f"truncated extraction: {len(names)} frames over {dur:.2f}s = {eff:.2f} fps "
+                    f"effective, against a declared {fps} fps. Delete {vid}/ and retry.")
             if not args.calib:
                 json.dump(meta, open(os.path.join(args.out, vid, "meta.json"), "w"), indent=1)
             done.append(meta)

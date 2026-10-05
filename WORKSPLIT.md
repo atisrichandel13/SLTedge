@@ -114,7 +114,7 @@ both C9 protocol work.
 
 | # | Request | Why it matters | Priority |
 |---|---|---|---|
-| J6 | C9 ≥3-clip rows spanning the crop range | `POSE_J_PER_S` came from one clip at the 83rd percentile of crop area, which is the frontier's ~7 % high bias. Fixes a precision issue, not a correctness one | medium |
+| J9 | **Adapt the pose encoder to our own keypoints** (`ASK-ADAPT-TO-OUR-POSES-2026-10-05.md`). LM track runs it: dev-split poses via `jetson/p13_dev_poses.sh` on the board, then `train_adapt.py --lr 1e-5 --label-smoothing 0.0 --fps 24`, evaluated on the existing 400-clip test pose set | The pose gap is **−2.24 BLEU-4 [−3.50, −1.09]**, established, and is ~2.2 of the ~2.3 accuracy points available. §2.5i/§2.5j show it is a distribution shift, not information loss, so adaptation is the lever and a pose-model swap is not | **highest** |
 
 ### Delivered
 
@@ -127,6 +127,7 @@ both C9 protocol work.
 | — | M1 end-to-end | ✅ §5.1 |
 | — | `cpu0_MHz` on LM power runs | ✅ withdrawn as an ask: `power_logger` already samples it into `aux_avg`; M1 carries 866.76 MHz, below the 897 MHz downclock point |
 | J5 | 24 fps added to the end-to-end grid | ✅ 2026-10-03, and widened to 3×2 `{source, 24, 16} × {beam 4, greedy}`. **beam 4 @ 24 fps measured end to end: 7728.7 ms, 42.94 J/sentence** (§5.3). The grid also found the composition's decoder-width term understated 3–5× and `mJ_per_frame` rising under subsampling |
+| J6 | C9 crop-range rows | ✅ 2026-10-04, §2.9D. Five clips spanning 15.1× of crop area: **15.1× area costs only 1.34× energy**, 85 % fixed. The frontier's "~7 % pessimistic" caveat is really **−2.6 %** for a median clip — an overestimate of ~3×, and no longer the dominant uncertainty on that axis |
 | J8 | C9 protocol applied to the final rows | ✅ 2026-10-03, §5.6. Sustained 30 min at all three loads: **no throttling** (drift −0.26 % FP32 pose, −0.56 % end-to-end; Tj max 57.44 / 51.75 °C). Phase 2 = the deployable config, never run before, **38.48 J/sentence sustained vs 37.75 short-window (+1.9 %)** — so every short-window row in RESULTS.md is validated. Process-level repeats: TRT is 0.2–0.3 % CV while imread/preprocess are ~9 % CV **at FP16 only**, so run-to-run variance is a CPU-stage effect and not a GPU one |
 | J7 | Multi-clip board accuracy, ~100 clips | ✅ 2026-10-03, §2.5g. 100 clips / **100 distinct videos**, our own board keypoints, pruned checkpoint: **22.99 BLEU-4 / 43.43 ROUGE-L at 24 fps**. The deployable config's accuracy is now **measured directly** rather than composed. Authors' reference poses restricted to the same 100 clips |
 | — | `--keep-fps` on `e2e_translate.py` + `jetson/e2e_2x2.sh` | ✅ 2026-10-02, pose track |
