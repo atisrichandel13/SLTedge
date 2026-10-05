@@ -1,0 +1,30 @@
+{
+ "vid": "uZwKNtHx9FE-00:00:37.133-00:00:45.600",
+ "yid": "uZwKNtHx9FE",
+ "crop_xywh": [
+  650,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.5080270302004931,
+  -0.1738669846008356,
+  0.9702663282068765,
+  1.1948346480013772
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There were videos posted on the Internet that showed a person walking on the grass, completely engulfed in flames.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 204,
+ "stride": 1,
+ "start": "00:00:37.133",
+ "end": "00:00:45.600",
+ "duration_s": 8.467
+}

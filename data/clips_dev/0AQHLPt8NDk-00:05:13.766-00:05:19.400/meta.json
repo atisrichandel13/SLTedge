@@ -1,0 +1,30 @@
+{
+ "vid": "0AQHLPt8NDk-00:05:13.766-00:05:19.400",
+ "yid": "0AQHLPt8NDk",
+ "crop_xywh": [
+  312,
+  0,
+  682,
+  720
+ ],
+ "bbox_norm": [
+  0.24377616439202818,
+  -0.20240383897432443,
+  0.7775927158317181,
+  1.2737227254711283
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They were very open-minded and willing to listen and ask me questions.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 169,
+ "stride": 1,
+ "start": "00:05:13.766",
+ "end": "00:05:19.400",
+ "duration_s": 5.634
+}

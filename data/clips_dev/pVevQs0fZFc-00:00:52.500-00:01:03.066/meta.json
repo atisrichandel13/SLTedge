@@ -1,0 +1,30 @@
+{
+ "vid": "pVevQs0fZFc-00:00:52.500-00:01:03.066",
+ "yid": "pVevQs0fZFc",
+ "crop_xywh": [
+  629,
+  0,
+  496,
+  720
+ ],
+ "bbox_norm": [
+  0.49130233377218246,
+  -0.08067821661631266,
+  0.8798012321194013,
+  1.0043033379095572
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Two other mass shootings happened in Sutherland Springs, Texas and Parkland, Florida.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 317,
+ "stride": 1,
+ "start": "00:00:52.500",
+ "end": "00:01:03.066",
+ "duration_s": 10.566
+}

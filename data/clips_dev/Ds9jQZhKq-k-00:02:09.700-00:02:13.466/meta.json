@@ -1,0 +1,30 @@
+{
+ "vid": "Ds9jQZhKq-k-00:02:09.700-00:02:13.466",
+ "yid": "Ds9jQZhKq-k",
+ "crop_xywh": [
+  821,
+  171,
+  274,
+  440
+ ],
+ "bbox_norm": [
+  0.6417418913407759,
+  0.2379015681719539,
+  0.8558404228904031,
+  0.8503189298841688
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Chauvin's attorney declined to comment.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 113,
+ "stride": 1,
+ "start": "00:02:09.700",
+ "end": "00:02:13.466",
+ "duration_s": 3.766
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "cux9_CWO_t0-00:00:37.700-00:00:44.733",
+ "yid": "cux9_CWO_t0",
+ "crop_xywh": [
+  770,
+  123,
+  378,
+  596
+ ],
+ "bbox_norm": [
+  0.6017479236735854,
+  0.17065334369353855,
+  0.8976962849151257,
+  1.0332399067644618
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "President Trump says the next two weeks will be painful.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 211,
+ "stride": 1,
+ "start": "00:00:37.700",
+ "end": "00:00:44.733",
+ "duration_s": 7.033
+}

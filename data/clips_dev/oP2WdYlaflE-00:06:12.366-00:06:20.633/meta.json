@@ -1,0 +1,30 @@
+{
+ "vid": "oP2WdYlaflE-00:06:12.366-00:06:20.633",
+ "yid": "oP2WdYlaflE",
+ "crop_xywh": [
+  699,
+  67,
+  500,
+  652
+ ],
+ "bbox_norm": [
+  0.5463318748474121,
+  0.09241448042127821,
+  0.93693452835083,
+  1.2059446923997668
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Also, people without smartphones wouldn't get notified.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 249,
+ "stride": 1,
+ "start": "00:06:12.366",
+ "end": "00:06:20.633",
+ "duration_s": 8.267
+}

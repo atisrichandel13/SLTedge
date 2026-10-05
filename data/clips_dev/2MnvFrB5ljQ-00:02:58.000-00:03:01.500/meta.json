@@ -1,0 +1,30 @@
+{
+ "vid": "2MnvFrB5ljQ-00:02:58.000-00:03:01.500",
+ "yid": "2MnvFrB5ljQ",
+ "crop_xywh": [
+  428,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.3341743007538811,
+  -0.08609526296141286,
+  0.7459392691415453,
+  1.1229478920157834
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We really look forward to analyzing our data and finding out how we can better serve you.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 105,
+ "stride": 1,
+ "start": "00:02:58.000",
+ "end": "00:03:01.500",
+ "duration_s": 3.5
+}

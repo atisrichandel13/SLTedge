@@ -1,0 +1,30 @@
+{
+ "vid": "dSkoNrtNxwo-00:02:54.066-00:02:59.333",
+ "yid": "dSkoNrtNxwo",
+ "crop_xywh": [
+  193,
+  13,
+  204,
+  328
+ ],
+ "bbox_norm": [
+  0.2489423794844716,
+  0.027973069747289022,
+  0.5121811536169544,
+  0.710405079027017
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "KIM: I'm here to train the NAD Board on how to approach legislative issues and strategies that address them.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  776,
+  480
+ ],
+ "n_frames": 158,
+ "stride": 1,
+ "start": "00:02:54.066",
+ "end": "00:02:59.333",
+ "duration_s": 5.267
+}

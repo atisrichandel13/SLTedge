@@ -1,0 +1,30 @@
+{
+ "vid": "P8USfnEaNig-00:00:55.266-00:00:57.266",
+ "yid": "P8USfnEaNig",
+ "crop_xywh": [
+  298,
+  0,
+  586,
+  720
+ ],
+ "bbox_norm": [
+  0.2329995668851412,
+  -0.19051529430595898,
+  0.6917369255652794,
+  1.1143091995152312
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Meteorology dream was on hold.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 60,
+ "stride": 1,
+ "start": "00:00:55.266",
+ "end": "00:00:57.266",
+ "duration_s": 2.0
+}

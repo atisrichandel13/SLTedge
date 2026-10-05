@@ -1,0 +1,30 @@
+{
+ "vid": "GvkCfTMdL7E-00:07:47.400-00:07:52.233",
+ "yid": "GvkCfTMdL7E",
+ "crop_xywh": [
+  580,
+  0,
+  550,
+  720
+ ],
+ "bbox_norm": [
+  0.45292792594295805,
+  -0.1498895555011462,
+  0.8835552884244371,
+  1.1422373665703667
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Michael Whaley simply said \"\"Fire the robots!\"\"\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 145,
+ "stride": 1,
+ "start": "00:07:47.400",
+ "end": "00:07:52.233",
+ "duration_s": 4.833
+}

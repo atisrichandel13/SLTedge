@@ -1,0 +1,30 @@
+{
+ "vid": "ML6oudznRj4-00:00:53.600-00:01:00.566",
+ "yid": "ML6oudznRj4",
+ "crop_xywh": [
+  650,
+  60,
+  436,
+  660
+ ],
+ "bbox_norm": [
+  0.5079407631404816,
+  0.08363665222490907,
+  0.8481416172451443,
+  1.1716922632180402
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "After that is met, you can go online and complete the Candidacy form for any of the positions.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 209,
+ "stride": 1,
+ "start": "00:00:53.600",
+ "end": "00:01:00.566",
+ "duration_s": 6.966
+}

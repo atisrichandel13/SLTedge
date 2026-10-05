@@ -1,0 +1,30 @@
+{
+ "vid": "IEf4PpwwHFY-00:13:50.533-00:14:02.333",
+ "yid": "IEf4PpwwHFY",
+ "crop_xywh": [
+  576,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.4497698744835212,
+  -0.18555761935882867,
+  0.9122840178640265,
+  1.1710000466339925
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He closed his vlog with telling Boone to spend less time feeling sorry and more time changing the world.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 283,
+ "stride": 1,
+ "start": "00:13:50.533",
+ "end": "00:14:02.333",
+ "duration_s": 11.8
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "y3rmBWJoJg4-00:09:59.533-00:10:14.466",
+ "yid": "y3rmBWJoJg4",
+ "crop_xywh": [
+  790,
+  137,
+  322,
+  510
+ ],
+ "bbox_norm": [
+  0.6170062214495188,
+  0.19054468811116862,
+  0.8691221007381577,
+  0.8994917840204405
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As for food in general, whether you are pregnant or not, the US FDA wants the public to know there is no evidence of Covid-19 spreading through food or food packaging.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 448,
+ "stride": 1,
+ "start": "00:09:59.533",
+ "end": "00:10:14.466",
+ "duration_s": 14.933
+}

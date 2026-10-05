@@ -1,0 +1,30 @@
+{
+ "vid": "FCcLqY-Nezo-00:06:17.633-00:06:27.433",
+ "yid": "FCcLqY-Nezo",
+ "crop_xywh": [
+  656,
+  0,
+  512,
+  720
+ ],
+ "bbox_norm": [
+  0.5126295299853308,
+  -0.10960293977573392,
+  0.9134387759839074,
+  1.0647697678618064
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The mother, a huge Pink fan, was originally supposed to go to the show but she died in June.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 294,
+ "stride": 1,
+ "start": "00:06:17.633",
+ "end": "00:06:27.433",
+ "duration_s": 9.8
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "ve2SjPdhxv4-00:01:27.600-00:01:29.200",
+ "yid": "ve2SjPdhxv4",
+ "crop_xywh": [
+  150,
+  0,
+  520,
+  720
+ ],
+ "bbox_norm": [
+  0.11740391254425049,
+  -0.07316662117286965,
+  0.5239509503046672,
+  1.0918335685023555
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The first student to become staff.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 39,
+ "stride": 1,
+ "start": "00:01:27.600",
+ "end": "00:01:29.200",
+ "duration_s": 1.6
+}

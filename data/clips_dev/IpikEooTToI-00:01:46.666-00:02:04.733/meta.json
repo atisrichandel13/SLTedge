@@ -1,0 +1,30 @@
+{
+ "vid": "IpikEooTToI-00:01:46.666-00:02:04.733",
+ "yid": "IpikEooTToI",
+ "crop_xywh": [
+  168,
+  0,
+  314,
+  360
+ ],
+ "bbox_norm": [
+  0.2628742701416716,
+  -0.1309542839680243,
+  0.7540026824408714,
+  1.3756381617165974
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The NAD with other consumer groups will file comments for the first round of comments due May 14.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 542,
+ "stride": 1,
+ "start": "00:01:46.666",
+ "end": "00:02:04.733",
+ "duration_s": 18.067
+}

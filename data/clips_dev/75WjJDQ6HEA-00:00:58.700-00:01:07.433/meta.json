@@ -1,0 +1,30 @@
+{
+ "vid": "75WjJDQ6HEA-00:00:58.700-00:01:07.433",
+ "yid": "75WjJDQ6HEA",
+ "crop_xywh": [
+  138,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.15832681595311673,
+  -0.24497929197600762,
+  0.8020248789979104,
+  1.1211481344114003
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "However, the treatments will not get your full vision back, but treatments can help slow down the decline of your eyes\u2019 health.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  872,
+  720
+ ],
+ "n_frames": 262,
+ "stride": 1,
+ "start": "00:00:58.700",
+ "end": "00:01:07.433",
+ "duration_s": 8.733
+}

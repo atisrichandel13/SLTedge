@@ -1,0 +1,30 @@
+{
+ "vid": "yG_ZGSd4bVg-00:02:45.766-00:02:49.466",
+ "yid": "yG_ZGSd4bVg",
+ "crop_xywh": [
+  490,
+  0,
+  490,
+  720
+ ],
+ "bbox_norm": [
+  0.3830928975257321,
+  -0.12970178699339838,
+  0.7667187296825907,
+  1.0035254486133127
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That is one thing I found interesting and wanted to share with you today.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 111,
+ "stride": 1,
+ "start": "00:02:45.766",
+ "end": "00:02:49.466",
+ "duration_s": 3.7
+}

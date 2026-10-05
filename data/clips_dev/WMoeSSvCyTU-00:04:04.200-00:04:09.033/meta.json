@@ -1,0 +1,30 @@
+{
+ "vid": "WMoeSSvCyTU-00:04:04.200-00:04:09.033",
+ "yid": "WMoeSSvCyTU",
+ "crop_xywh": [
+  644,
+  0,
+  602,
+  720
+ ],
+ "bbox_norm": [
+  0.5027810480402803,
+  -0.19705742389001762,
+  0.973500343848919,
+  1.2831455759313979
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "California reported 55 deaths from yesterday.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 145,
+ "stride": 1,
+ "start": "00:04:04.200",
+ "end": "00:04:09.033",
+ "duration_s": 4.833
+}

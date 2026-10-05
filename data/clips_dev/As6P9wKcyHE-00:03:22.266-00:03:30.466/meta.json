@@ -1,0 +1,30 @@
+{
+ "vid": "As6P9wKcyHE-00:03:22.266-00:03:30.466",
+ "yid": "As6P9wKcyHE",
+ "crop_xywh": [
+  610,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.47621416171391806,
+  -0.16276336881849499,
+  0.9221237444877625,
+  1.163669242505674
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "31 residents have tested positive for the virus and are still at the nursing home.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 197,
+ "stride": 1,
+ "start": "00:03:22.266",
+ "end": "00:03:30.466",
+ "duration_s": 8.2
+}

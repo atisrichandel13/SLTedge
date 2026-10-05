@@ -1,0 +1,30 @@
+{
+ "vid": "QVgXmaFw0Yc-00:05:01.200-00:05:04.666",
+ "yid": "QVgXmaFw0Yc",
+ "crop_xywh": [
+  718,
+  0,
+  518,
+  720
+ ],
+ "bbox_norm": [
+  0.5610563459850493,
+  -0.05170282972763035,
+  0.9664046968732561,
+  1.081850460261054
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Republicans agree it was a good call.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 104,
+ "stride": 1,
+ "start": "00:05:01.200",
+ "end": "00:05:04.666",
+ "duration_s": 3.466
+}

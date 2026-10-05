@@ -1,0 +1,30 @@
+{
+ "vid": "B6EREFQ9ElE-00:08:27.666-00:08:37.000",
+ "yid": "B6EREFQ9ElE",
+ "crop_xywh": [
+  516,
+  0,
+  652,
+  720
+ ],
+ "bbox_norm": [
+  0.402942859359652,
+  -0.12065209530637665,
+  0.9136165786207768,
+  1.4536846825176435
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "No reporter has ever challenged Trump on the Veterans Choice claim until one reporter did.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 281,
+ "stride": 1,
+ "start": "00:08:27.666",
+ "end": "00:08:37.000",
+ "duration_s": 9.334
+}

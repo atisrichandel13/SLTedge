@@ -1,0 +1,30 @@
+{
+ "vid": "q2dp2b7YPog-00:03:40.666-00:03:46.333",
+ "yid": "q2dp2b7YPog",
+ "crop_xywh": [
+  675,
+  0,
+  488,
+  720
+ ],
+ "bbox_norm": [
+  0.5272154853457497,
+  -0.10744637867761037,
+  0.9092090534028553,
+  1.0267577309583231
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They've got October and November use-or-freeze-by dates on them.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 170,
+ "stride": 1,
+ "start": "00:03:40.666",
+ "end": "00:03:46.333",
+ "duration_s": 5.667
+}

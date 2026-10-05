@@ -1,0 +1,30 @@
+{
+ "vid": "tFHyA_o_MNk-00:06:59.166-00:07:02.766",
+ "yid": "tFHyA_o_MNk",
+ "crop_xywh": [
+  647,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.5050858762529161,
+  -0.15378750067188907,
+  0.9310725406364159,
+  1.0579671306374632
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "CJ told that he killed the family.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:06:59.166",
+ "end": "00:07:02.766",
+ "duration_s": 3.6
+}

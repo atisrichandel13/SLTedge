@@ -1,0 +1,30 @@
+{
+ "vid": "ELZ2hHlrfqU-00:01:12.100-00:01:18.666",
+ "yid": "ELZ2hHlrfqU",
+ "crop_xywh": [
+  608,
+  0,
+  498,
+  720
+ ],
+ "bbox_norm": [
+  0.4751847147941589,
+  -0.14919651912318335,
+  0.8652158379554749,
+  1.027194883591599
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "31 people were hospitalized, some with serious burns.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 158,
+ "stride": 1,
+ "start": "00:01:12.100",
+ "end": "00:01:18.666",
+ "duration_s": 6.566
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "FCcLqY-Nezo-00:07:53.133-00:07:59.433",
+ "yid": "FCcLqY-Nezo",
+ "crop_xywh": [
+  669,
+  0,
+  540,
+  720
+ ],
+ "bbox_norm": [
+  0.5224180782050417,
+  -0.1151455568756044,
+  0.9443330656018174,
+  1.13174095730103
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That's right - now you can have the top news stories of the day right at your fingertips.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 189,
+ "stride": 1,
+ "start": "00:07:53.133",
+ "end": "00:07:59.433",
+ "duration_s": 6.3
+}

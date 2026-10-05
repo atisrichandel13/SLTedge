@@ -1,0 +1,30 @@
+{
+ "vid": "kqAi3ZphaCQ-00:00:25.166-00:00:26.566",
+ "yid": "kqAi3ZphaCQ",
+ "crop_xywh": [
+  89,
+  0,
+  390,
+  320
+ ],
+ "bbox_norm": [
+  0.15677241652224544,
+  -0.352833800845676,
+  0.8440323831143327,
+  1.647703601695873
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "YAP is still new.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  568,
+  320
+ ],
+ "n_frames": 42,
+ "stride": 1,
+ "start": "00:00:25.166",
+ "end": "00:00:26.566",
+ "duration_s": 1.4
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "Xfua6HqFHzU-00:00:15.633-00:00:17.233",
+ "yid": "Xfua6HqFHzU",
+ "crop_xywh": [
+  158,
+  0,
+  586,
+  720
+ ],
+ "bbox_norm": [
+  0.1646639739142524,
+  -0.1550761215775101,
+  0.7754090944925944,
+  1.1665160821985314
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Emailing is a good option.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  960,
+  720
+ ],
+ "n_frames": 48,
+ "stride": 1,
+ "start": "00:00:15.633",
+ "end": "00:00:17.233",
+ "duration_s": 1.6
+}

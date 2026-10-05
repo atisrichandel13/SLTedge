@@ -1,0 +1,30 @@
+{
+ "vid": "JtPw-DVL4Rk-00:10:53.133-00:10:54.100",
+ "yid": "JtPw-DVL4Rk",
+ "crop_xywh": [
+  424,
+  0,
+  498,
+  720
+ ],
+ "bbox_norm": [
+  0.3315325525071886,
+  -0.10705358952651789,
+  0.7201128747728135,
+  1.0128131006970817
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your language.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 29,
+ "stride": 1,
+ "start": "00:10:53.133",
+ "end": "00:10:54.100",
+ "duration_s": 0.967
+}

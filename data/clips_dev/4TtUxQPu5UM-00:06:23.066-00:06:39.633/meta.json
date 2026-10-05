@@ -1,0 +1,30 @@
+{
+ "vid": "4TtUxQPu5UM-00:06:23.066-00:06:39.633",
+ "yid": "4TtUxQPu5UM",
+ "crop_xywh": [
+  329,
+  0,
+  206,
+  306
+ ],
+ "bbox_norm": [
+  0.5144792431408597,
+  -0.02302203336805276,
+  0.8371578877734155,
+  0.8516218142820798
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The meeting will take place at the Queen's estate and will be attended by the Queen herself, her son Prince Charles and his two sons Prince William and Prince Harry.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 497,
+ "stride": 1,
+ "start": "00:06:23.066",
+ "end": "00:06:39.633",
+ "duration_s": 16.567
+}

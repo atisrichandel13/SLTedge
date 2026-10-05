@@ -1,0 +1,30 @@
+{
+ "vid": "DCy7yjXqaAM-00:01:06.133-00:01:09.266",
+ "yid": "DCy7yjXqaAM",
+ "crop_xywh": [
+  231,
+  0,
+  410,
+  470
+ ],
+ "bbox_norm": [
+  0.27033882982763485,
+  -0.21123237994323252,
+  0.7502664109715167,
+  1.2549544224413354
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Second, the patient was pregnant.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 94,
+ "stride": 1,
+ "start": "00:01:06.133",
+ "end": "00:01:09.266",
+ "duration_s": 3.133
+}

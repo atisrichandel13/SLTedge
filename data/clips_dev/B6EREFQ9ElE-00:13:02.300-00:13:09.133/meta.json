@@ -1,0 +1,30 @@
+{
+ "vid": "B6EREFQ9ElE-00:13:02.300-00:13:09.133",
+ "yid": "B6EREFQ9ElE",
+ "crop_xywh": [
+  560,
+  0,
+  682,
+  720
+ ],
+ "bbox_norm": [
+  0.4371767028560483,
+  -0.1503161029763984,
+  0.9710121123771357,
+  1.4595091753428113
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"It's called, \"\"Tyson versus Jaws: Rumble on the Reef.\"\"\"",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 205,
+ "stride": 1,
+ "start": "00:13:02.300",
+ "end": "00:13:09.133",
+ "duration_s": 6.833
+}

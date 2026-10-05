@@ -1,0 +1,30 @@
+{
+ "vid": "oY4zNmRl79Q-00:07:34.033-00:07:44.066",
+ "yid": "oY4zNmRl79Q",
+ "crop_xywh": [
+  673,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.5261142010158962,
+  -0.08785422760763285,
+  0.9427254274156359,
+  1.1105220488560053
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Looking into the issue, it's apparent that men are twice as likely to wear the same underwear without changing than women.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 301,
+ "stride": 1,
+ "start": "00:07:34.033",
+ "end": "00:07:44.066",
+ "duration_s": 10.033
+}

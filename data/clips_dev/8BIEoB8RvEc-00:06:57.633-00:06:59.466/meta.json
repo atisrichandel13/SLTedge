@@ -1,0 +1,30 @@
+{
+ "vid": "8BIEoB8RvEc-00:06:57.633-00:06:59.466",
+ "yid": "8BIEoB8RvEc",
+ "crop_xywh": [
+  616,
+  0,
+  664,
+  720
+ ],
+ "bbox_norm": [
+  0.48099664052327473,
+  -0.1960287211853781,
+  1.0529877344767253,
+  1.5319548783478913
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm a third-generation business owner.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 55,
+ "stride": 1,
+ "start": "00:06:57.633",
+ "end": "00:06:59.466",
+ "duration_s": 1.833
+}

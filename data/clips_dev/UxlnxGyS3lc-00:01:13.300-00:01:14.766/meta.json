@@ -1,0 +1,30 @@
+{
+ "vid": "UxlnxGyS3lc-00:01:13.300-00:01:14.766",
+ "yid": "UxlnxGyS3lc",
+ "crop_xywh": [
+  348,
+  0,
+  580,
+  720
+ ],
+ "bbox_norm": [
+  0.27149521708488467,
+  -0.1975320091953984,
+  0.7247102916240692,
+  1.1297779551258793
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "What does remote education look like?",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 36,
+ "stride": 1,
+ "start": "00:01:13.300",
+ "end": "00:01:14.766",
+ "duration_s": 1.466
+}

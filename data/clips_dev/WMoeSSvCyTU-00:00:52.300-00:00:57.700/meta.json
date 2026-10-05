@@ -1,0 +1,30 @@
+{
+ "vid": "WMoeSSvCyTU-00:00:52.300-00:00:57.700",
+ "yid": "WMoeSSvCyTU",
+ "crop_xywh": [
+  635,
+  0,
+  616,
+  720
+ ],
+ "bbox_norm": [
+  0.49639135129524,
+  -0.22221579524938237,
+  0.9776577429337935,
+  1.2758601524746913
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He posted a vlog on his Facebook wall explaining what he observed.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 162,
+ "stride": 1,
+ "start": "00:00:52.300",
+ "end": "00:00:57.700",
+ "duration_s": 5.4
+}

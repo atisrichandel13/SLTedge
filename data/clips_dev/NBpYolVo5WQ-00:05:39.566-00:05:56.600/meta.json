@@ -1,0 +1,30 @@
+{
+ "vid": "NBpYolVo5WQ-00:05:39.566-00:05:56.600",
+ "yid": "NBpYolVo5WQ",
+ "crop_xywh": [
+  610,
+  0,
+  594,
+  720
+ ],
+ "bbox_norm": [
+  0.47679116861607,
+  -0.17719427847926855,
+  0.9415500400512199,
+  1.2078936278766195
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Spain announced they would soon declare a day for national mourning for the over 25,000 people who died from COVID-19.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 409,
+ "stride": 1,
+ "start": "00:05:39.566",
+ "end": "00:05:56.600",
+ "duration_s": 17.034
+}

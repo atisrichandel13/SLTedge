@@ -1,0 +1,30 @@
+{
+ "vid": "mrTrAkEC1Sc-00:01:59.566-00:02:09.000",
+ "yid": "mrTrAkEC1Sc",
+ "crop_xywh": [
+  312,
+  0,
+  690,
+  720
+ ],
+ "bbox_norm": [
+  0.24369694196689895,
+  -0.17406871887365666,
+  0.7835672944609882,
+  1.3005877098841976
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Last summer at the DSA Conference, our committee collaborated with NASADHH to host a town hall.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 283,
+ "stride": 1,
+ "start": "00:01:59.566",
+ "end": "00:02:09.000",
+ "duration_s": 9.434
+}

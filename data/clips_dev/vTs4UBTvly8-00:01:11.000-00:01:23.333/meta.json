@@ -1,0 +1,30 @@
+{
+ "vid": "vTs4UBTvly8-00:01:11.000-00:01:23.333",
+ "yid": "vTs4UBTvly8",
+ "crop_xywh": [
+  661,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.5165156768248962,
+  -0.1214076791559015,
+  0.9690466494173616,
+  1.2139710506519399
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"At that time, the 3-year-old son Aaron shared a puzzling statement to Florida's child protective services saying, \"\"Daddy hurt her.\"\"\"",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 370,
+ "stride": 1,
+ "start": "00:01:11.000",
+ "end": "00:01:23.333",
+ "duration_s": 12.333
+}

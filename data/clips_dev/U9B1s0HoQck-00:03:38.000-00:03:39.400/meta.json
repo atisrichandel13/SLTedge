@@ -1,0 +1,30 @@
+{
+ "vid": "U9B1s0HoQck-00:03:38.000-00:03:39.400",
+ "yid": "U9B1s0HoQck",
+ "crop_xywh": [
+  627,
+  0,
+  616,
+  720
+ ],
+ "bbox_norm": [
+  0.49005307444819696,
+  -0.2535016534750354,
+  0.9722234337418167,
+  1.2654022310986932
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The New York AG is suing.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 42,
+ "stride": 1,
+ "start": "00:03:38.000",
+ "end": "00:03:39.400",
+ "duration_s": 1.4
+}

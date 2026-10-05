@@ -1,0 +1,30 @@
+{
+ "vid": "4TtUxQPu5UM-00:08:29.600-00:08:34.166",
+ "yid": "4TtUxQPu5UM",
+ "crop_xywh": [
+  348,
+  0,
+  200,
+  292
+ ],
+ "bbox_norm": [
+  0.5439936373914991,
+  -0.020118852645631822,
+  0.8566780166966576,
+  0.8149312621071225
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He was sentenced to death in 2002.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 137,
+ "stride": 1,
+ "start": "00:08:29.600",
+ "end": "00:08:34.166",
+ "duration_s": 4.566
+}

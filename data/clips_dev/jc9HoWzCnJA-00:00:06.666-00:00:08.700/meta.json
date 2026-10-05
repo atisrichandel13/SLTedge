@@ -1,0 +1,30 @@
+{
+ "vid": "jc9HoWzCnJA-00:00:06.666-00:00:08.700",
+ "yid": "jc9HoWzCnJA",
+ "crop_xywh": [
+  406,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.3173785723172701,
+  -0.13684005737304689,
+  0.7913615544637044,
+  1.1689931385877126
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Grab this opportunity and apply for the Youth Ambassador Program!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 61,
+ "stride": 1,
+ "start": "00:00:06.666",
+ "end": "00:00:08.700",
+ "duration_s": 2.034
+}

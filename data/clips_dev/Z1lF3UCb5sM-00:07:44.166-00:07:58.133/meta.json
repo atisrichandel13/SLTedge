@@ -1,0 +1,30 @@
+{
+ "vid": "Z1lF3UCb5sM-00:07:44.166-00:07:58.133",
+ "yid": "Z1lF3UCb5sM",
+ "crop_xywh": [
+  605,
+  0,
+  568,
+  720
+ ],
+ "bbox_norm": [
+  0.4729600532382142,
+  -0.16213299391835864,
+  0.9162258335188322,
+  1.1600665328289688
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In New York, there was a man who tested positive for coronavirus - making him the second case in the state after a Manhattan woman tested positive.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 336,
+ "stride": 1,
+ "start": "00:07:44.166",
+ "end": "00:07:58.133",
+ "duration_s": 13.967
+}

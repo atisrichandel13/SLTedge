@@ -1,0 +1,30 @@
+{
+ "vid": "fyWOxU3YUq8-00:09:26.133-00:09:45.200",
+ "yid": "fyWOxU3YUq8",
+ "crop_xywh": [
+  647,
+  0,
+  522,
+  720
+ ],
+ "bbox_norm": [
+  0.5054453910606495,
+  -0.09785870501384643,
+  0.913614909130594,
+  1.0978552783591353
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Promote the rights and well-being of persons with disabilities in society and develop an increase awareness of persons with disabilities in every aspect of political, social, economic and cultural life.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 572,
+ "stride": 1,
+ "start": "00:09:26.133",
+ "end": "00:09:45.200",
+ "duration_s": 19.067
+}

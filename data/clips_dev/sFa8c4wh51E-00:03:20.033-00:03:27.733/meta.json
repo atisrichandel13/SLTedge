@@ -1,0 +1,30 @@
+{
+ "vid": "sFa8c4wh51E-00:03:20.033-00:03:27.733",
+ "yid": "sFa8c4wh51E",
+ "crop_xywh": [
+  589,
+  0,
+  562,
+  720
+ ],
+ "bbox_norm": [
+  0.46043883046359885,
+  -0.07091554922790767,
+  0.8990571644289275,
+  1.1156373329853992
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Customers stood by stunned as they witnessed thieves stealing merchandise. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 231,
+ "stride": 1,
+ "start": "00:03:20.033",
+ "end": "00:03:27.733",
+ "duration_s": 7.7
+}

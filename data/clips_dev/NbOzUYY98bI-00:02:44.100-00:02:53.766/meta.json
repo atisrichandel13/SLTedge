@@ -1,0 +1,30 @@
+{
+ "vid": "NbOzUYY98bI-00:02:44.100-00:02:53.766",
+ "yid": "NbOzUYY98bI",
+ "crop_xywh": [
+  455,
+  0,
+  546,
+  720
+ ],
+ "bbox_norm": [
+  0.3554650153143931,
+  -0.16247657924347977,
+  0.7818315109964143,
+  1.0472901049157173
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Our goal is to include students enrolled in mainstream programs; this is to build confidence in all Deaf Youth in America. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 290,
+ "stride": 1,
+ "start": "00:02:44.100",
+ "end": "00:02:53.766",
+ "duration_s": 9.666
+}

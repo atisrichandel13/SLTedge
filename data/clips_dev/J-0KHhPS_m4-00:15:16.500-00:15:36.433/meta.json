@@ -1,0 +1,30 @@
+{
+ "vid": "J-0KHhPS_m4-00:15:16.500-00:15:36.433",
+ "yid": "J-0KHhPS_m4",
+ "crop_xywh": [
+  643,
+  0,
+  448,
+  622
+ ],
+ "bbox_norm": [
+  0.5027189062813581,
+  -0.06934358341770208,
+  0.8521797715607337,
+  0.8632770171946725
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Many believe Friday the 13th started in the 20th century after a man named Thomas Lawson wrote a book entitled \"\"Friday the Thirteenth\"\" about a stockbroker who chooses this day to deliberately crash the stock market.\"",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 598,
+ "stride": 1,
+ "start": "00:15:16.500",
+ "end": "00:15:36.433",
+ "duration_s": 19.933
+}

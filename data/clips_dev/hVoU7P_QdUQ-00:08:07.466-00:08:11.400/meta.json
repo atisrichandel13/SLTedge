@@ -1,0 +1,30 @@
+{
+ "vid": "hVoU7P_QdUQ-00:08:07.466-00:08:11.400",
+ "yid": "hVoU7P_QdUQ",
+ "crop_xywh": [
+  405,
+  34,
+  196,
+  326
+ ],
+ "bbox_norm": [
+  0.6331163187821706,
+  0.09574625227186415,
+  0.9389176627000173,
+  1.0484124351430821
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your body's reaction is dependent on what you are surrounded by.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 118,
+ "stride": 1,
+ "start": "00:08:07.466",
+ "end": "00:08:11.400",
+ "duration_s": 3.934
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "bySOi__Kauk-00:04:13.200-00:04:23.166",
+ "yid": "bySOi__Kauk",
+ "crop_xywh": [
+  657,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.5135048278172811,
+  -0.11628208607803156,
+  0.9379331954320271,
+  1.1252534438945627
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The medical team used catheters and tiny balloons to remove the item from his face.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 299,
+ "stride": 1,
+ "start": "00:04:13.200",
+ "end": "00:04:23.166",
+ "duration_s": 9.966
+}

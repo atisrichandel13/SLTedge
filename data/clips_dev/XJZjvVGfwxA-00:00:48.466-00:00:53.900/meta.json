@@ -1,0 +1,30 @@
+{
+ "vid": "XJZjvVGfwxA-00:00:48.466-00:00:53.900",
+ "yid": "XJZjvVGfwxA",
+ "crop_xywh": [
+  314,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.24550191224223433,
+  -0.17927153188103911,
+  0.6885467327002323,
+  1.118299009877557
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The NAD\u2019s lawyers depend on those legal fees to continue our work.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 163,
+ "stride": 1,
+ "start": "00:00:48.466",
+ "end": "00:00:53.900",
+ "duration_s": 5.434
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:03:51.233-00:03:52.366",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  421,
+  0,
+  752,
+  720
+ ],
+ "bbox_norm": [
+  0.3285350481669108,
+  -0.1528249024083375,
+  0.9165776434398832,
+  1.5458179413326203
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "What are they trying to do?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 34,
+ "stride": 1,
+ "start": "00:03:51.233",
+ "end": "00:03:52.366",
+ "duration_s": 1.133
+}

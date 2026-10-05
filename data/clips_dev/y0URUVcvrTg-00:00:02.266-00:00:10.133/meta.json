@@ -1,0 +1,30 @@
+{
+ "vid": "y0URUVcvrTg-00:00:02.266-00:00:10.133",
+ "yid": "y0URUVcvrTg",
+ "crop_xywh": [
+  145,
+  0,
+  390,
+  470
+ ],
+ "bbox_norm": [
+  0.16991226567038328,
+  -0.20542314035672668,
+  0.6261418723762269,
+  1.2071289206227513
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We've been having a great time here in Salt Lake City, Utah.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 236,
+ "stride": 1,
+ "start": "00:00:02.266",
+ "end": "00:00:10.133",
+ "duration_s": 7.867
+}

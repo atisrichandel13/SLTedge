@@ -1,0 +1,30 @@
+{
+ "vid": "smq7BzXmIkE-00:10:01.400-00:10:02.066",
+ "yid": "smq7BzXmIkE",
+ "crop_xywh": [
+  637,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.49786893526713055,
+  -0.12021204983746564,
+  0.9255144278208415,
+  1.0514680456232142
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Take a look.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 20,
+ "stride": 1,
+ "start": "00:10:01.400",
+ "end": "00:10:02.066",
+ "duration_s": 0.666
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "z3jAMn3xpoM-00:00:38.500-00:00:54.033",
+ "yid": "z3jAMn3xpoM",
+ "crop_xywh": [
+  647,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.5055359904647719,
+  -0.19064207565512029,
+  0.9795148663486994,
+  1.2400751531734724
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Two of the rocket's side boosters successfully landed at Cape Canaveral Air Force Station.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 466,
+ "stride": 1,
+ "start": "00:00:38.500",
+ "end": "00:00:54.033",
+ "duration_s": 15.533
+}

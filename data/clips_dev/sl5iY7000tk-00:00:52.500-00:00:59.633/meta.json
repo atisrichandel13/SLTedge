@@ -1,0 +1,30 @@
+{
+ "vid": "sl5iY7000tk-00:00:52.500-00:00:59.633",
+ "yid": "sl5iY7000tk",
+ "crop_xywh": [
+  654,
+  0,
+  530,
+  720
+ ],
+ "bbox_norm": [
+  0.5110491582589556,
+  -0.1454766404105095,
+  0.9257864870766337,
+  1.0802632745024872
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "People in the Midwest should expect rough weather through tomorrow.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 214,
+ "stride": 1,
+ "start": "00:00:52.500",
+ "end": "00:00:59.633",
+ "duration_s": 7.133
+}

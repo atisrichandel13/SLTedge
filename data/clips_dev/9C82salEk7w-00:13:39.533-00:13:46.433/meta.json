@@ -1,0 +1,30 @@
+{
+ "vid": "9C82salEk7w-00:13:39.533-00:13:46.433",
+ "yid": "9C82salEk7w",
+ "crop_xywh": [
+  347,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.2712751472697538,
+  -0.14960957653901674,
+  0.7537733984928505,
+  1.2241693752263885
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Maybe one day we'll see one of those Deaf kids watching become President of the United States.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 166,
+ "stride": 1,
+ "start": "00:13:39.533",
+ "end": "00:13:46.433",
+ "duration_s": 6.9
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "Eh3k6oJrFgY-00:01:18.466-00:01:20.233",
+ "yid": "Eh3k6oJrFgY",
+ "crop_xywh": [
+  631,
+  0,
+  586,
+  720
+ ],
+ "bbox_norm": [
+  0.49273974807174115,
+  -0.18329388810773936,
+  0.9506072927404332,
+  1.240419873681088
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some were blocked by a logo.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 43,
+ "stride": 1,
+ "start": "00:01:18.466",
+ "end": "00:01:20.233",
+ "duration_s": 1.767
+}

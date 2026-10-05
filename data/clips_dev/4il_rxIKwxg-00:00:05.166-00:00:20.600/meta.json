@@ -1,0 +1,30 @@
+{
+ "vid": "4il_rxIKwxg-00:00:05.166-00:00:20.600",
+ "yid": "4il_rxIKwxg",
+ "crop_xywh": [
+  378,
+  0,
+  616,
+  720
+ ],
+ "bbox_norm": [
+  0.2950991640090942,
+  -0.14139479036684388,
+  0.7773188982009888,
+  1.215944425088388
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If the hospital staff refuses to communicate with you or does not respect your wishes, demand an \u201cethics consultation.\u201d You can also contact ConsumerGroups@DHHCAN.org for help.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 371,
+ "stride": 1,
+ "start": "00:00:05.166",
+ "end": "00:00:20.600",
+ "duration_s": 15.434
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "jPvOkmxsKoA-00:07:02.166-00:07:13.533",
+ "yid": "jPvOkmxsKoA",
+ "crop_xywh": [
+  686,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.5355512872410281,
+  -0.10943026765341152,
+  0.9347018407738726,
+  1.118513736223189
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Last night the new 'Aladdin' trailer aired during the Grammys and many on social media expressed their disappointment.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 342,
+ "stride": 1,
+ "start": "00:07:02.166",
+ "end": "00:07:13.533",
+ "duration_s": 11.367
+}

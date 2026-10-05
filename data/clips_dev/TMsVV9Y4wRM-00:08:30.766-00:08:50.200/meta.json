@@ -1,0 +1,30 @@
+{
+ "vid": "TMsVV9Y4wRM-00:08:30.766-00:08:50.200",
+ "yid": "TMsVV9Y4wRM",
+ "crop_xywh": [
+  610,
+  0,
+  590,
+  720
+ ],
+ "bbox_norm": [
+  0.47668021927531967,
+  -0.12563027614051311,
+  0.9384863095405774,
+  1.1860126626985894
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Pitcher Ty Kohen struck out his good friend Jack Kocon on the opposing team to end the game.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 583,
+ "stride": 1,
+ "start": "00:08:30.766",
+ "end": "00:08:50.200",
+ "duration_s": 19.434
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "9VviAP3FNv4-00:00:31.366-00:00:36.200",
+ "yid": "9VviAP3FNv4",
+ "crop_xywh": [
+  147,
+  0,
+  486,
+  480
+ ],
+ "bbox_norm": [
+  0.17208734671647058,
+  -0.21777396043141684,
+  0.7413647981475425,
+  1.601294221083323
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Why do I keep going back to YLC?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 145,
+ "stride": 1,
+ "start": "00:00:31.366",
+ "end": "00:00:36.200",
+ "duration_s": 4.834
+}

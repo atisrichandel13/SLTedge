@@ -1,0 +1,30 @@
+{
+ "vid": "NOKlX2CRNfk-00:05:22.200-00:05:24.600",
+ "yid": "NOKlX2CRNfk",
+ "crop_xywh": [
+  637,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.49785175800323483,
+  -0.13838656248869718,
+  0.9013595883051554,
+  1.0912467158282244
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They're being held without bond.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 72,
+ "stride": 1,
+ "start": "00:05:22.200",
+ "end": "00:05:24.600",
+ "duration_s": 2.4
+}

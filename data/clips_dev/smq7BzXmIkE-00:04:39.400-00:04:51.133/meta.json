@@ -1,0 +1,30 @@
+{
+ "vid": "smq7BzXmIkE-00:04:39.400-00:04:51.133",
+ "yid": "smq7BzXmIkE",
+ "crop_xywh": [
+  664,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.5191152662178721,
+  -0.11414615111731588,
+  0.9284984042387053,
+  1.1212861962037342
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "One passenger says when he/she realized he/she was filming him/her, he/she knocked the phone out of his/her hand and started choking him/her angrily.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 352,
+ "stride": 1,
+ "start": "00:04:39.400",
+ "end": "00:04:51.133",
+ "duration_s": 11.733
+}

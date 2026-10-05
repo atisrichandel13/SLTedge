@@ -1,0 +1,30 @@
+{
+ "vid": "dgj2EdrYj8Y-00:06:39.433-00:06:45.300",
+ "yid": "dgj2EdrYj8Y",
+ "crop_xywh": [
+  348,
+  0,
+  632,
+  720
+ ],
+ "bbox_norm": [
+  0.2715087718433804,
+  -0.21692972065489968,
+  0.7663656945581789,
+  1.2053949536610042
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some states have good rules set up while other states do not have any rules.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 176,
+ "stride": 1,
+ "start": "00:06:39.433",
+ "end": "00:06:45.300",
+ "duration_s": 5.867
+}

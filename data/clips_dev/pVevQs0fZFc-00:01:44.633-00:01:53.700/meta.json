@@ -1,0 +1,30 @@
+{
+ "vid": "pVevQs0fZFc-00:01:44.633-00:01:53.700",
+ "yid": "pVevQs0fZFc",
+ "crop_xywh": [
+  642,
+  0,
+  490,
+  720
+ ],
+ "bbox_norm": [
+  0.5019268024328983,
+  -0.0785074769607698,
+  0.8847839413267194,
+  1.0057746030505659
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Labor Department reports that America's unemployment rate fell to 3.9%.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 272,
+ "stride": 1,
+ "start": "00:01:44.633",
+ "end": "00:01:53.700",
+ "duration_s": 9.067
+}

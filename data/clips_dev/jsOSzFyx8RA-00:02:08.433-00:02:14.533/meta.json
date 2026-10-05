@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:02:08.433-00:02:14.533",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  342,
+  0,
+  580,
+  720
+ ],
+ "bbox_norm": [
+  0.26726051193099837,
+  -0.07177862600759939,
+  0.7211264154932521,
+  1.2612549981316765
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But I feel good about it and I feel like it was definitely worth it.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 183,
+ "stride": 1,
+ "start": "00:02:08.433",
+ "end": "00:02:14.533",
+ "duration_s": 6.1
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "znwRZXn3jc0-00:01:16.333-00:01:23.433",
+ "yid": "znwRZXn3jc0",
+ "crop_xywh": [
+  590,
+  0,
+  602,
+  720
+ ],
+ "bbox_norm": [
+  0.4610333893650262,
+  -0.14490560224403295,
+  0.9313578243403472,
+  1.2093467600688557
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Senate Republicans announced plans to hold confirmation hearings around Labor Day.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 213,
+ "stride": 1,
+ "start": "00:01:16.333",
+ "end": "00:01:23.433",
+ "duration_s": 7.1
+}

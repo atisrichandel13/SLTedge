@@ -1,0 +1,30 @@
+{
+ "vid": "yH_kzYMc0dE-00:06:39.600-00:06:49.266",
+ "yid": "yH_kzYMc0dE",
+ "crop_xywh": [
+  633,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.4946147309858247,
+  -0.10998171598598483,
+  0.9140939416184938,
+  1.1263838500401844
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There\u2019s a student-run organization, the Ebony Club, who calls themselves one of the oldest cultural organizations in the NTID/RIT community.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 290,
+ "stride": 1,
+ "start": "00:06:39.600",
+ "end": "00:06:49.266",
+ "duration_s": 9.666
+}

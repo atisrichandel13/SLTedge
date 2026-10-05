@@ -1,0 +1,30 @@
+{
+ "vid": "ICBGc3FXFyQ-00:07:18.600-00:07:21.733",
+ "yid": "ICBGc3FXFyQ",
+ "crop_xywh": [
+  194,
+  0,
+  310,
+  478
+ ],
+ "bbox_norm": [
+  0.29587160384004557,
+  -0.063811124835098,
+  0.7725494350382389,
+  0.9970754748896549
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This supports the Alexander Graham Bell Association.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 94,
+ "stride": 1,
+ "start": "00:07:18.600",
+ "end": "00:07:21.733",
+ "duration_s": 3.133
+}

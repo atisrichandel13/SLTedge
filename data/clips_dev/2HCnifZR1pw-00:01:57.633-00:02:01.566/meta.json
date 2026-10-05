@@ -1,0 +1,30 @@
+{
+ "vid": "2HCnifZR1pw-00:01:57.633-00:02:01.566",
+ "yid": "2HCnifZR1pw",
+ "crop_xywh": [
+  685,
+  0,
+  496,
+  720
+ ],
+ "bbox_norm": [
+  0.5351448208093643,
+  -0.1098425582603172,
+  0.9226474354664485,
+  1.0604794422785442
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Today is National Special Education Day.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 118,
+ "stride": 1,
+ "start": "00:01:57.633",
+ "end": "00:02:01.566",
+ "duration_s": 3.933
+}

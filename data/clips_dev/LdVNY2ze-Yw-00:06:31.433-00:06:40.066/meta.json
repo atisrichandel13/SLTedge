@@ -1,0 +1,30 @@
+{
+ "vid": "LdVNY2ze-Yw-00:06:31.433-00:06:40.066",
+ "yid": "LdVNY2ze-Yw",
+ "crop_xywh": [
+  222,
+  0,
+  744,
+  720
+ ],
+ "bbox_norm": [
+  0.17314952489657282,
+  -0.23768620857825645,
+  0.7549849513249519,
+  1.4358797384463144
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "My heart hurts, I grieve for them because like I said, I don't think we're ready for schools to open but it means that they have to suffer more.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 259,
+ "stride": 1,
+ "start": "00:06:31.433",
+ "end": "00:06:40.066",
+ "duration_s": 8.633
+}

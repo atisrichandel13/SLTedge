@@ -1,0 +1,30 @@
+{
+ "vid": "WMoeSSvCyTU-00:11:33.100-00:11:44.033",
+ "yid": "WMoeSSvCyTU",
+ "crop_xywh": [
+  680,
+  0,
+  594,
+  720
+ ],
+ "bbox_norm": [
+  0.5308801188613429,
+  -0.20278251061402053,
+  0.9963693695839005,
+  1.251001923707733
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The WNBA started their season on Saturday in a shortened 22-game schedule.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 328,
+ "stride": 1,
+ "start": "00:11:33.100",
+ "end": "00:11:44.033",
+ "duration_s": 10.933
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "wVf4dXXMOIg-00:02:17.100-00:02:24.766",
+ "yid": "wVf4dXXMOIg",
+ "crop_xywh": [
+  716,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.5590426714523978,
+  -0.09677143004781381,
+  0.9702425175818844,
+  1.0354153315226238
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Due to the confusion, we reached out to them to clarify the issues.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 230,
+ "stride": 1,
+ "start": "00:02:17.100",
+ "end": "00:02:24.766",
+ "duration_s": 7.666
+}

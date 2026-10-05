@@ -1,0 +1,30 @@
+{
+ "vid": "c-5mKVNHetA-00:06:53.500-00:06:58.400",
+ "yid": "c-5mKVNHetA",
+ "crop_xywh": [
+  586,
+  0,
+  464,
+  674
+ ],
+ "bbox_norm": [
+  0.45771939436594644,
+  -0.06274826968157733,
+  0.8211460987726846,
+  0.9362283600701227
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The study was funded by the National Institute of Health.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 147,
+ "stride": 1,
+ "start": "00:06:53.500",
+ "end": "00:06:58.400",
+ "duration_s": 4.9
+}

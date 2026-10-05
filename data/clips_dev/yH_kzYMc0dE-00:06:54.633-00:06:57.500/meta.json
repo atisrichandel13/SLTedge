@@ -1,0 +1,30 @@
+{
+ "vid": "yH_kzYMc0dE-00:06:54.633-00:06:57.500",
+ "yid": "yH_kzYMc0dE",
+ "crop_xywh": [
+  622,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.4856203891612865,
+  -0.11455966494210953,
+  0.9118920962015787,
+  1.1402718131924852
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They have weekly meetings and host community events.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 86,
+ "stride": 1,
+ "start": "00:06:54.633",
+ "end": "00:06:57.500",
+ "duration_s": 2.867
+}

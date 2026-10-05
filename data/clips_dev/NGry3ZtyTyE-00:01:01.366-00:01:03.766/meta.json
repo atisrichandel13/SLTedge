@@ -1,0 +1,30 @@
+{
+ "vid": "NGry3ZtyTyE-00:01:01.366-00:01:03.766",
+ "yid": "NGry3ZtyTyE",
+ "crop_xywh": [
+  530,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.41441090477837456,
+  -0.2349863193653248,
+  0.8972569062974718,
+  1.1594423235198597
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you\u2019re nervous \u2013 it's okay.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 72,
+ "stride": 1,
+ "start": "00:01:01.366",
+ "end": "00:01:03.766",
+ "duration_s": 2.4
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "KWiU6b05W7Y-00:00:46.733-00:00:53.233",
+ "yid": "KWiU6b05W7Y",
+ "crop_xywh": [
+  146,
+  0,
+  620,
+  720
+ ],
+ "bbox_norm": [
+  0.1671385579994218,
+  -0.16235154089425025,
+  0.879166144310685,
+  1.2077972113237083
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If a dentist has concerns during an exam, the dentist can do a biopsy to verify any oral cancer.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  872,
+  720
+ ],
+ "n_frames": 195,
+ "stride": 1,
+ "start": "00:00:46.733",
+ "end": "00:00:53.233",
+ "duration_s": 6.5
+}

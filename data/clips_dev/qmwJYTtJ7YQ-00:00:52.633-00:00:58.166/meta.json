@@ -1,0 +1,30 @@
+{
+ "vid": "qmwJYTtJ7YQ-00:00:52.633-00:00:58.166",
+ "yid": "qmwJYTtJ7YQ",
+ "crop_xywh": [
+  216,
+  42,
+  468,
+  678
+ ],
+ "bbox_norm": [
+  0.16906117738461962,
+  0.05871637381759345,
+  0.5347736611085779,
+  1.082126515207727
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I met with President Bobi Cordatno for lunch, and wow, she is an amazing woman.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 166,
+ "stride": 1,
+ "start": "00:00:52.633",
+ "end": "00:00:58.166",
+ "duration_s": 5.533
+}

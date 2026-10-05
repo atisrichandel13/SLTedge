@@ -1,0 +1,30 @@
+{
+ "vid": "NGry3ZtyTyE-00:01:35.266-00:01:37.366",
+ "yid": "NGry3ZtyTyE",
+ "crop_xywh": [
+  330,
+  0,
+  678,
+  720
+ ],
+ "bbox_norm": [
+  0.25802027262174165,
+  -0.258796295209488,
+  0.7880290777255328,
+  1.3608240268848562
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You want to impress the company and the boss.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 63,
+ "stride": 1,
+ "start": "00:01:35.266",
+ "end": "00:01:37.366",
+ "duration_s": 2.1
+}

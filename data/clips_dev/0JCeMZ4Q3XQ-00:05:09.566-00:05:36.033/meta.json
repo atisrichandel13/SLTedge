@@ -1,0 +1,30 @@
+{
+ "vid": "0JCeMZ4Q3XQ-00:05:09.566-00:05:36.033",
+ "yid": "0JCeMZ4Q3XQ",
+ "crop_xywh": [
+  697,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.5442061516223963,
+  -0.152397734408553,
+  0.9679666181280429,
+  1.0804237034280288
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Tropical Storm Karen sparked warnings for Saint Vincent, the Grenadines, Grenada and territories.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 795,
+ "stride": 1,
+ "start": "00:05:09.566",
+ "end": "00:05:36.033",
+ "duration_s": 26.467
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "y0URUVcvrTg-00:00:10.133-00:00:19.600",
+ "yid": "y0URUVcvrTg",
+ "crop_xywh": [
+  157,
+  0,
+  390,
+  470
+ ],
+ "bbox_norm": [
+  0.1837222463196445,
+  -0.20167653452954037,
+  0.6414088662939528,
+  1.2141565601253475
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We visited two schools which operate under the Utah Schools for the Deaf and Blind. Wow!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 284,
+ "stride": 1,
+ "start": "00:00:10.133",
+ "end": "00:00:19.600",
+ "duration_s": 9.467
+}

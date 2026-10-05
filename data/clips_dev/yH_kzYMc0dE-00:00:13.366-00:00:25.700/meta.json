@@ -1,0 +1,30 @@
+{
+ "vid": "yH_kzYMc0dE-00:00:13.366-00:00:25.700",
+ "yid": "yH_kzYMc0dE",
+ "crop_xywh": [
+  615,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.48049613248120554,
+  -0.11936380579187587,
+  0.9093393678063745,
+  1.160952215223341
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That has brought the attention of the administration two issues: accessibility for students in the classrooms and the climate on campus towards people of color.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 370,
+ "stride": 1,
+ "start": "00:00:13.366",
+ "end": "00:00:25.700",
+ "duration_s": 12.334
+}

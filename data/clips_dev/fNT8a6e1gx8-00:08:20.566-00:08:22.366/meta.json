@@ -1,0 +1,30 @@
+{
+ "vid": "fNT8a6e1gx8-00:08:20.566-00:08:22.366",
+ "yid": "fNT8a6e1gx8",
+ "crop_xywh": [
+  257,
+  7,
+  376,
+  596
+ ],
+ "bbox_norm": [
+  0.2006846536289562,
+  0.009372668796115452,
+  0.494287406314503,
+  0.8395541239266444
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "With unity, it can be approached better.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 54,
+ "stride": 1,
+ "start": "00:08:20.566",
+ "end": "00:08:22.366",
+ "duration_s": 1.8
+}

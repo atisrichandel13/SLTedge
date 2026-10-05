@@ -1,0 +1,30 @@
+{
+ "vid": "FYdKjJCcQcw-00:00:00.366-00:00:04.033",
+ "yid": "FYdKjJCcQcw",
+ "crop_xywh": [
+  292,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.22784337636196253,
+  -0.13896286640103014,
+  0.7083498051672271,
+  1.1834459308020595
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hi, I am Melissa and I have a few things to share with you. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 110,
+ "stride": 1,
+ "start": "00:00:00.366",
+ "end": "00:00:04.033",
+ "duration_s": 3.667
+}

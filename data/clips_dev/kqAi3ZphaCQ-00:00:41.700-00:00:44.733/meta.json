@@ -1,0 +1,30 @@
+{
+ "vid": "kqAi3ZphaCQ-00:00:41.700-00:00:44.733",
+ "yid": "kqAi3ZphaCQ",
+ "crop_xywh": [
+  84,
+  0,
+  410,
+  320
+ ],
+ "bbox_norm": [
+  0.1476420380611434,
+  -0.4042607521801664,
+  0.8698305705461439,
+  1.708742922596764
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The discussion really opened my eyes.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  568,
+  320
+ ],
+ "n_frames": 91,
+ "stride": 1,
+ "start": "00:00:41.700",
+ "end": "00:00:44.733",
+ "duration_s": 3.033
+}

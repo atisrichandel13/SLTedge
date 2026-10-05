@@ -1,0 +1,30 @@
+{
+ "vid": "4b-evcJm2JQ-00:09:06.700-00:09:23.166",
+ "yid": "4b-evcJm2JQ",
+ "crop_xywh": [
+  650,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.5076105175596295,
+  -0.07827112923567543,
+  0.9391820965391217,
+  1.1349602367473905
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "And although there are no ways to prevent breast cancer, there are ways you can reduce your risk, like maintaining a healthy weight, eating well and focusing on living a healthy lifestyle.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 494,
+ "stride": 1,
+ "start": "00:09:06.700",
+ "end": "00:09:23.166",
+ "duration_s": 16.466
+}

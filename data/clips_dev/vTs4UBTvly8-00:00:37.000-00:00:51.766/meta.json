@@ -1,0 +1,30 @@
+{
+ "vid": "vTs4UBTvly8-00:00:37.000-00:00:51.766",
+ "yid": "vTs4UBTvly8",
+ "crop_xywh": [
+  683,
+  0,
+  576,
+  720
+ ],
+ "bbox_norm": [
+  0.533932144722242,
+  -0.1324339805917347,
+  0.9841585605778498,
+  1.1918664471883849
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Authorities in Florida solve a 25-year-old cold case when the victim's son makes a gruesome discovery in the backyard of his childhood home.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 443,
+ "stride": 1,
+ "start": "00:00:37.000",
+ "end": "00:00:51.766",
+ "duration_s": 14.766
+}

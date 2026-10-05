@@ -1,0 +1,30 @@
+{
+ "vid": "XySXQIrwypg-00:00:29.533-00:00:34.966",
+ "yid": "XySXQIrwypg",
+ "crop_xywh": [
+  329,
+  0,
+  604,
+  720
+ ],
+ "bbox_norm": [
+  0.25720142836522575,
+  -0.19885928820814483,
+  0.7292979081471761,
+  1.2043937293501148
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you are interested in any of these groups, send us your interest and resume at NADYAP@NAD.org!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 163,
+ "stride": 1,
+ "start": "00:00:29.533",
+ "end": "00:00:34.966",
+ "duration_s": 5.433
+}

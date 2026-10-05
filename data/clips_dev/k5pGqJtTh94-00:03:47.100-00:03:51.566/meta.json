@@ -1,0 +1,30 @@
+{
+ "vid": "k5pGqJtTh94-00:03:47.100-00:03:51.566",
+ "yid": "k5pGqJtTh94",
+ "crop_xywh": [
+  631,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.4927067771102443,
+  -0.14311346959586096,
+  0.9140478004108775,
+  1.0648877577348188
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There was also a war going on at the time between Russia and Ukraine.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 108,
+ "stride": 1,
+ "start": "00:03:47.100",
+ "end": "00:03:51.566",
+ "duration_s": 4.466
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "UgqB79-BaJ4-00:04:39.100-00:04:56.200",
+ "yid": "UgqB79-BaJ4",
+ "crop_xywh": [
+  565,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.4417090229871796,
+  -0.20540626951457147,
+  0.915812531913199,
+  1.2559939537375706
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Phoenix Police Department Chief Jeri Williams said she has started an internal investigation and is disturbed by officers' language and actions.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 410,
+ "stride": 1,
+ "start": "00:04:39.100",
+ "end": "00:04:56.200",
+ "duration_s": 17.1
+}

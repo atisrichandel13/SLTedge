@@ -1,0 +1,30 @@
+{
+ "vid": "31sHy2-FC70-00:23:42.366-00:23:49.500",
+ "yid": "31sHy2-FC70",
+ "crop_xywh": [
+  606,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.4733857908703032,
+  -0.14820381487488116,
+  0.9152606019519623,
+  1.196338089029625
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "One person said he is a good choice, understands MSD, and Deaf people.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 172,
+ "stride": 1,
+ "start": "00:23:42.366",
+ "end": "00:23:49.500",
+ "duration_s": 7.134
+}

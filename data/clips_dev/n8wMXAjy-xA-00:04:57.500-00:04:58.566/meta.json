@@ -1,0 +1,30 @@
+{
+ "vid": "n8wMXAjy-xA-00:04:57.500-00:04:58.566",
+ "yid": "n8wMXAjy-xA",
+ "crop_xywh": [
+  313,
+  0,
+  662,
+  720
+ ],
+ "bbox_norm": [
+  0.24414860634576707,
+  -0.2068888406904917,
+  0.7623402981531052,
+  1.2998622319054982
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That was important for me.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 32,
+ "stride": 1,
+ "start": "00:04:57.500",
+ "end": "00:04:58.566",
+ "duration_s": 1.066
+}

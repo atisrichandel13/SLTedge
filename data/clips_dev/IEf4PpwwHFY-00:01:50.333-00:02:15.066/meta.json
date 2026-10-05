@@ -1,0 +1,30 @@
+{
+ "vid": "IEf4PpwwHFY-00:01:50.333-00:02:15.066",
+ "yid": "IEf4PpwwHFY",
+ "crop_xywh": [
+  585,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.4571535228013325,
+  -0.1837318476211828,
+  0.9204048151395569,
+  1.210776320017278
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Dayton Police Chief said the gunman who killed 9 people at a bar, Connor Betts, had an obsession with violence and mass shootings and had expressed a desire to commit a mass shooting.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 593,
+ "stride": 1,
+ "start": "00:01:50.333",
+ "end": "00:02:15.066",
+ "duration_s": 24.733
+}

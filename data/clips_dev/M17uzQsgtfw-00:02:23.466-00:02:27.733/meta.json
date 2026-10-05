@@ -1,0 +1,30 @@
+{
+ "vid": "M17uzQsgtfw-00:02:23.466-00:02:27.733",
+ "yid": "M17uzQsgtfw",
+ "crop_xywh": [
+  670,
+  0,
+  498,
+  720
+ ],
+ "bbox_norm": [
+  0.5233963954143035,
+  -0.09090804184264267,
+  0.9121176169468806,
+  1.0623522532971157
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was shut down because of massive flooding due to hurricane Florence.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 128,
+ "stride": 1,
+ "start": "00:02:23.466",
+ "end": "00:02:27.733",
+ "duration_s": 4.267
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "WO5ZoULrxEo-00:02:36.133-00:02:55.033",
+ "yid": "WO5ZoULrxEo",
+ "crop_xywh": [
+  383,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.2988789907741896,
+  -0.1759758714451555,
+  0.7684995661725055,
+  1.250429164698612
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Surgeon General Jerome Adams warned that this week would be the hardest and saddest of most Americans' lives.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 454,
+ "stride": 1,
+ "start": "00:02:36.133",
+ "end": "00:02:55.033",
+ "duration_s": 18.9
+}

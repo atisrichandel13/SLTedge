@@ -1,0 +1,30 @@
+{
+ "vid": "myLjinuFXrg-00:00:03.366-00:00:18.600",
+ "yid": "myLjinuFXrg",
+ "crop_xywh": [
+  89,
+  0,
+  568,
+  720
+ ],
+ "bbox_norm": [
+  0.12349641879783543,
+  -0.11181652634232132,
+  0.9118596743462358,
+  1.1575241455901266
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Known as \"\"the roof of the world\"\" the altitude of this autonomous region of China averages more than 15,000 feet above sea level.\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  720,
+  720
+ ],
+ "n_frames": 457,
+ "stride": 1,
+ "start": "00:00:03.366",
+ "end": "00:00:18.600",
+ "duration_s": 15.234
+}

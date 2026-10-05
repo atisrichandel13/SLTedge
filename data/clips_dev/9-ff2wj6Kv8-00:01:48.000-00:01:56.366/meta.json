@@ -1,0 +1,30 @@
+{
+ "vid": "9-ff2wj6Kv8-00:01:48.000-00:01:56.366",
+ "yid": "9-ff2wj6Kv8",
+ "crop_xywh": [
+  248,
+  0,
+  356,
+  470
+ ],
+ "bbox_norm": [
+  0.29066477059693946,
+  -0.044526302511114155,
+  0.7089323173537314,
+  1.119558094519598
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Third, the NAD board will be meeting next month in Hartford, Connecticut on April 13-15. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 251,
+ "stride": 1,
+ "start": "00:01:48.000",
+ "end": "00:01:56.366",
+ "duration_s": 8.366
+}

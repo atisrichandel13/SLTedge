@@ -1,0 +1,30 @@
+{
+ "vid": "YK5b2oCZKBk-00:03:09.766-00:03:40.700",
+ "yid": "YK5b2oCZKBk",
+ "crop_xywh": [
+  589,
+  0,
+  594,
+  720
+ ],
+ "bbox_norm": [
+  0.4600908154655101,
+  -0.17545205795731691,
+  0.9241490591384177,
+  1.200619710977692
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In separate but related news, Dr. Anthony Fauci criticized the Trump administration\u2019s response to the Covid-19 crisis by pointing out the spiking cases nationwide and said we are positioned very poorly because we are approaching the fall and winter season.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 928,
+ "stride": 1,
+ "start": "00:03:09.766",
+ "end": "00:03:40.700",
+ "duration_s": 30.934
+}

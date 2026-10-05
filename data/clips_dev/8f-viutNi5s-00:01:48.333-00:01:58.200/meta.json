@@ -1,0 +1,30 @@
+{
+ "vid": "8f-viutNi5s-00:01:48.333-00:01:58.200",
+ "yid": "8f-viutNi5s",
+ "crop_xywh": [
+  591,
+  0,
+  642,
+  720
+ ],
+ "bbox_norm": [
+  0.46144666406843393,
+  -0.201464944768835,
+  0.9630854113896687,
+  1.3159340395750823
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Kim said she was hesitant because of the cost of hockey, but found a way by working multiple jobs.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 296,
+ "stride": 1,
+ "start": "00:01:48.333",
+ "end": "00:01:58.200",
+ "duration_s": 9.867
+}

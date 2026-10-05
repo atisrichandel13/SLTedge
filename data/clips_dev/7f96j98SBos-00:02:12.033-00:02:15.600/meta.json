@@ -1,0 +1,30 @@
+{
+ "vid": "7f96j98SBos-00:02:12.033-00:02:15.600",
+ "yid": "7f96j98SBos",
+ "crop_xywh": [
+  645,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.5041982072772402,
+  -0.016211769797585228,
+  0.9076122457330877,
+  1.0789582808009703
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Person A refuses and person B calls the police.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 107,
+ "stride": 1,
+ "start": "00:02:12.033",
+ "end": "00:02:15.600",
+ "duration_s": 3.567
+}

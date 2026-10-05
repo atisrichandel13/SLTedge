@@ -1,0 +1,30 @@
+{
+ "vid": "ubC82N6N1bQ-00:00:59.266-00:01:01.600",
+ "yid": "ubC82N6N1bQ",
+ "crop_xywh": [
+  128,
+  10,
+  544,
+  710
+ ],
+ "bbox_norm": [
+  0.10031639681922065,
+  0.01396927821783372,
+  0.5250384367836847,
+  1.129569412043065
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "My father said it'd be hard because your deaf and it'd be difficult to communicate.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 70,
+ "stride": 1,
+ "start": "00:00:59.266",
+ "end": "00:01:01.600",
+ "duration_s": 2.334
+}

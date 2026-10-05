@@ -1,0 +1,30 @@
+{
+ "vid": "q2dp2b7YPog-00:01:53.766-00:02:04.300",
+ "yid": "q2dp2b7YPog",
+ "crop_xywh": [
+  699,
+  0,
+  492,
+  720
+ ],
+ "bbox_norm": [
+  0.5464694301287333,
+  -0.10740932601469534,
+  0.9314936518669128,
+  1.0410416511473832
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There is a four thousand dollar reward for information about a missing five-year-old girl from Jacksonville, Florida.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 316,
+ "stride": 1,
+ "start": "00:01:53.766",
+ "end": "00:02:04.300",
+ "duration_s": 10.534
+}

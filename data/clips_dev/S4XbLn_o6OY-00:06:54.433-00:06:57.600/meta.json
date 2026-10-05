@@ -1,0 +1,30 @@
+{
+ "vid": "S4XbLn_o6OY-00:06:54.433-00:06:57.600",
+ "yid": "S4XbLn_o6OY",
+ "crop_xywh": [
+  645,
+  0,
+  518,
+  720
+ ],
+ "bbox_norm": [
+  0.5036275637149811,
+  -0.07330265363057455,
+  0.9094374907016753,
+  1.1623963668611315
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But there's no indication if he actually showed up.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 96,
+ "stride": 1,
+ "start": "00:06:54.433",
+ "end": "00:06:57.600",
+ "duration_s": 3.167
+}

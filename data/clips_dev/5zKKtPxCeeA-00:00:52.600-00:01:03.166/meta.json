@@ -1,0 +1,30 @@
+{
+ "vid": "5zKKtPxCeeA-00:00:52.600-00:01:03.166",
+ "yid": "5zKKtPxCeeA",
+ "crop_xywh": [
+  371,
+  0,
+  702,
+  720
+ ],
+ "bbox_norm": [
+  0.2895893509189288,
+  -0.21111088240588152,
+  0.8381900365153948,
+  1.3566446836347934
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you need a transcript, ask for it before the meeting, so that it can be prepared quickly after the meeting ends.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 317,
+ "stride": 1,
+ "start": "00:00:52.600",
+ "end": "00:01:03.166",
+ "duration_s": 10.566
+}

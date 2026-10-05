@@ -1,0 +1,30 @@
+{
+ "vid": "4SVP0ShrpN0-00:02:45.166-00:03:02.200",
+ "yid": "4SVP0ShrpN0",
+ "crop_xywh": [
+  610,
+  0,
+  650,
+  720
+ ],
+ "bbox_norm": [
+  0.47617674522029546,
+  -0.20953617432013727,
+  0.9847124575025441,
+  1.351924680266094
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Derek Chauvin, the former Minneapolis police officer who is charged with killing George Floyd, was released from jail today after he posted a $1 million bond.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 511,
+ "stride": 1,
+ "start": "00:02:45.166",
+ "end": "00:03:02.200",
+ "duration_s": 17.034
+}

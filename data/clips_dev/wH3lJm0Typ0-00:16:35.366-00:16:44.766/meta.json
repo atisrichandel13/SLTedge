@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:16:35.366-00:16:44.766",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  27,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.02076020366267154,
+  -0.0681455809238129,
+  0.4806133982730888,
+  1.2577113971375582
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's not just for myself, but I want to think about people before me that had their obstacles who've tried but maybe didn't have the opportunity nor the access and more.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 282,
+ "stride": 1,
+ "start": "00:16:35.366",
+ "end": "00:16:44.766",
+ "duration_s": 9.4
+}

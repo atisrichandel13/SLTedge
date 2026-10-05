@@ -1,0 +1,30 @@
+{
+ "vid": "z3jAMn3xpoM-00:03:30.200-00:03:35.100",
+ "yid": "z3jAMn3xpoM",
+ "crop_xywh": [
+  613,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.4788633198208279,
+  -0.15343576313536844,
+  0.9460207769605848,
+  1.2611847022727685
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Will we see the same thing happen between Trump and Rouhani?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 147,
+ "stride": 1,
+ "start": "00:03:30.200",
+ "end": "00:03:35.100",
+ "duration_s": 4.9
+}

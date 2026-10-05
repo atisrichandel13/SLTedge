@@ -1,0 +1,30 @@
+{
+ "vid": "ZdEwfVNtSmw-00:02:51.066-00:02:53.166",
+ "yid": "ZdEwfVNtSmw",
+ "crop_xywh": [
+  644,
+  0,
+  512,
+  720
+ ],
+ "bbox_norm": [
+  0.5031165856581468,
+  -0.09575461145819422,
+  0.9040991538610215,
+  1.0927146737731759
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The incident was captured on TV.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 63,
+ "stride": 1,
+ "start": "00:02:51.066",
+ "end": "00:02:53.166",
+ "duration_s": 2.1
+}

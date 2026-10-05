@@ -1,0 +1,30 @@
+{
+ "vid": "_N5zuJa9vJI-00:02:46.100-00:02:47.233",
+ "yid": "_N5zuJa9vJI",
+ "crop_xywh": [
+  603,
+  24,
+  488,
+  696
+ ],
+ "bbox_norm": [
+  0.47123085203624904,
+  0.032774793029462214,
+  0.8526321320306687,
+  1.1422129999392876
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm not really a runner.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 34,
+ "stride": 1,
+ "start": "00:02:46.100",
+ "end": "00:02:47.233",
+ "duration_s": 1.133
+}

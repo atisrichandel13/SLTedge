@@ -1,0 +1,30 @@
+{
+ "vid": "y0URUVcvrTg-00:01:17.600-00:01:23.666",
+ "yid": "y0URUVcvrTg",
+ "crop_xywh": [
+  153,
+  0,
+  398,
+  470
+ ],
+ "bbox_norm": [
+  0.17871963845769756,
+  -0.2030891227612487,
+  0.6457759061111092,
+  1.2086172525056003
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you want legislative training, please feel free to contact us.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 182,
+ "stride": 1,
+ "start": "00:01:17.600",
+ "end": "00:01:23.666",
+ "duration_s": 6.066
+}

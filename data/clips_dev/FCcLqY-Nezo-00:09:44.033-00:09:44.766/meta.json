@@ -1,0 +1,30 @@
+{
+ "vid": "FCcLqY-Nezo-00:09:44.033-00:09:44.766",
+ "yid": "FCcLqY-Nezo",
+ "crop_xywh": [
+  439,
+  0,
+  498,
+  720
+ ],
+ "bbox_norm": [
+  0.34325823465983074,
+  -0.12375160782425491,
+  0.7326124827067058,
+  1.0548398660730431
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your life.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 22,
+ "stride": 1,
+ "start": "00:09:44.033",
+ "end": "00:09:44.766",
+ "duration_s": 0.733
+}

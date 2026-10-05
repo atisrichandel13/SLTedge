@@ -1,0 +1,30 @@
+{
+ "vid": "wPJ_InXF_I8-00:07:07.633-00:07:09.766",
+ "yid": "wPJ_InXF_I8",
+ "crop_xywh": [
+  627,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.4895714001777845,
+  -0.15946834705494067,
+  0.9316399207481971,
+  1.1834647822583841
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There was no one around at the time.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 64,
+ "stride": 1,
+ "start": "00:07:07.633",
+ "end": "00:07:09.766",
+ "duration_s": 2.133
+}

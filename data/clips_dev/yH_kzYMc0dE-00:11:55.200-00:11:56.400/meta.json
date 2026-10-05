@@ -1,0 +1,30 @@
+{
+ "vid": "yH_kzYMc0dE-00:11:55.200-00:11:56.400",
+ "yid": "yH_kzYMc0dE",
+ "crop_xywh": [
+  660,
+  0,
+  520,
+  720
+ ],
+ "bbox_norm": [
+  0.5153203845024109,
+  -0.09185650436966508,
+  0.9230280756950379,
+  1.0592063621238426
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I\u2019ll keep an eye on this situation.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 36,
+ "stride": 1,
+ "start": "00:11:55.200",
+ "end": "00:11:56.400",
+ "duration_s": 1.2
+}

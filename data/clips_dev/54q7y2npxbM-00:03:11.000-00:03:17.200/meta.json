@@ -1,0 +1,30 @@
+{
+ "vid": "54q7y2npxbM-00:03:11.000-00:03:17.200",
+ "yid": "54q7y2npxbM",
+ "crop_xywh": [
+  690,
+  0,
+  512,
+  720
+ ],
+ "bbox_norm": [
+  0.5390751261460154,
+  -0.0708164601762857,
+  0.9397427851693672,
+  1.0446207180357816
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The SWAT team arrived a few hours later and were able to free everyone inside.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 186,
+ "stride": 1,
+ "start": "00:03:11.000",
+ "end": "00:03:17.200",
+ "duration_s": 6.2
+}

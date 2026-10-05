@@ -1,0 +1,30 @@
+{
+ "vid": "7BgQM7l2ZY0-00:03:42.633-00:03:59.133",
+ "yid": "7BgQM7l2ZY0",
+ "crop_xywh": [
+  595,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.4650483258565267,
+  -0.13721991786250362,
+  0.8816126518249512,
+  1.1112647946675618
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A Jamaican passenger airliner en route to Toronto, Canada crash landed in Guyana, injuring several people on the flight.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 495,
+ "stride": 1,
+ "start": "00:03:42.633",
+ "end": "00:03:59.133",
+ "duration_s": 16.5
+}

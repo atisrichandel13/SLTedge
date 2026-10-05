@@ -1,0 +1,30 @@
+{
+ "vid": "XPndROf0Ltg-00:00:57.766-00:01:00.333",
+ "yid": "XPndROf0Ltg",
+ "crop_xywh": [
+  713,
+  0,
+  512,
+  720
+ ],
+ "bbox_norm": [
+  0.5567047021327874,
+  -0.1219614501692291,
+  0.9578011439396784,
+  1.0665741004835168
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Six others died.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 62,
+ "stride": 1,
+ "start": "00:00:57.766",
+ "end": "00:01:00.333",
+ "duration_s": 2.567
+}

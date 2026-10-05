@@ -1,0 +1,30 @@
+{
+ "vid": "zXbsQVNijQY-00:03:01.133-00:03:02.566",
+ "yid": "zXbsQVNijQY",
+ "crop_xywh": [
+  223,
+  68,
+  424,
+  636
+ ],
+ "bbox_norm": [
+  0.17423521501046638,
+  0.09496051176094715,
+  0.5053985931255199,
+  0.9785189216519579
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Those are the different types of bills.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 43,
+ "stride": 1,
+ "start": "00:03:01.133",
+ "end": "00:03:02.566",
+ "duration_s": 1.433
+}

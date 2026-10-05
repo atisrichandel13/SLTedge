@@ -1,0 +1,30 @@
+{
+ "vid": "evNnts-GPb0-00:07:43.233-00:07:45.233",
+ "yid": "evNnts-GPb0",
+ "crop_xywh": [
+  265,
+  0,
+  416,
+  696
+ ],
+ "bbox_norm": [
+  0.20726012865702312,
+  -0.046859532109013315,
+  0.5329949156443278,
+  0.96612915886773
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now I\u2019ve come this far and it\u2019s a different team.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 48,
+ "stride": 1,
+ "start": "00:07:43.233",
+ "end": "00:07:45.233",
+ "duration_s": 2.0
+}

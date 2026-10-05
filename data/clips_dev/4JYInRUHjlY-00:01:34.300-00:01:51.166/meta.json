@@ -1,0 +1,30 @@
+{
+ "vid": "4JYInRUHjlY-00:01:34.300-00:01:51.166",
+ "yid": "4JYInRUHjlY",
+ "crop_xywh": [
+  680,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.531229322408539,
+  -0.07894364511438617,
+  0.9468822843888226,
+  1.1102379224745365
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Investigators believe this was a murder-suicide but they are examining video from the area and interviewing people who knew her to try to find a motive.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 506,
+ "stride": 1,
+ "start": "00:01:34.300",
+ "end": "00:01:51.166",
+ "duration_s": 16.866
+}

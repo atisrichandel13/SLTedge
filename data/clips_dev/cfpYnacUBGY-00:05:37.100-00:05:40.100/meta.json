@@ -1,0 +1,30 @@
+{
+ "vid": "cfpYnacUBGY-00:05:37.100-00:05:40.100",
+ "yid": "cfpYnacUBGY",
+ "crop_xywh": [
+  620,
+  0,
+  494,
+  720
+ ],
+ "bbox_norm": [
+  0.4846655739678277,
+  -0.08846873883847838,
+  0.8713309182061089,
+  1.0170420717310023
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But the increase slowed over time.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 90,
+ "stride": 1,
+ "start": "00:05:37.100",
+ "end": "00:05:40.100",
+ "duration_s": 3.0
+}

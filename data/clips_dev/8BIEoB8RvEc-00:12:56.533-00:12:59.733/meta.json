@@ -1,0 +1,30 @@
+{
+ "vid": "8BIEoB8RvEc-00:12:56.533-00:12:59.733",
+ "yid": "8BIEoB8RvEc",
+ "crop_xywh": [
+  332,
+  0,
+  710,
+  720
+ ],
+ "bbox_norm": [
+  0.25955419619878134,
+  -0.21829328642951115,
+  0.8145743823051453,
+  1.4021049568388197
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Having the judges evaluate and appoint the winners was awesome.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 96,
+ "stride": 1,
+ "start": "00:12:56.533",
+ "end": "00:12:59.733",
+ "duration_s": 3.2
+}

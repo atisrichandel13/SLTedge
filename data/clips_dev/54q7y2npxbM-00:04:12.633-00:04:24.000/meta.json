@@ -1,0 +1,30 @@
+{
+ "vid": "54q7y2npxbM-00:04:12.633-00:04:24.000",
+ "yid": "54q7y2npxbM",
+ "crop_xywh": [
+  666,
+  0,
+  488,
+  720
+ ],
+ "bbox_norm": [
+  0.5206650181093078,
+  -0.07190988963480861,
+  0.9013403625303996,
+  1.0078094760896823
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Check out these cool sculptures in 53 years old Chris Brown's Colorado backyard.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 342,
+ "stride": 1,
+ "start": "00:04:12.633",
+ "end": "00:04:24.000",
+ "duration_s": 11.367
+}

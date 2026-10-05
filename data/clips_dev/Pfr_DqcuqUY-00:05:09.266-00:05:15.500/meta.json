@@ -1,0 +1,30 @@
+{
+ "vid": "Pfr_DqcuqUY-00:05:09.266-00:05:15.500",
+ "yid": "Pfr_DqcuqUY",
+ "crop_xywh": [
+  300,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.23422106859976785,
+  -0.11019854777970045,
+  0.6977014591819362,
+  1.2585545634665685
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you have experience as a foreman in construction, that position is similar to supervising.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 187,
+ "stride": 1,
+ "start": "00:05:09.266",
+ "end": "00:05:15.500",
+ "duration_s": 6.234
+}

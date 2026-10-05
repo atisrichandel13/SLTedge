@@ -1,0 +1,30 @@
+{
+ "vid": "luSqJNOOx6A-00:10:26.100-00:10:29.566",
+ "yid": "luSqJNOOx6A",
+ "crop_xywh": [
+  400,
+  0,
+  486,
+  720
+ ],
+ "bbox_norm": [
+  0.312555472056071,
+  -0.05815911671471974,
+  0.6932998854016501,
+  1.0956086779397631
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Remember to like us on Facebook and follow us on Twitter.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 104,
+ "stride": 1,
+ "start": "00:10:26.100",
+ "end": "00:10:29.566",
+ "duration_s": 3.466
+}

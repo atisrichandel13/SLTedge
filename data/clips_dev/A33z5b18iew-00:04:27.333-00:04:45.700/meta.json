@@ -1,0 +1,30 @@
+{
+ "vid": "A33z5b18iew-00:04:27.333-00:04:45.700",
+ "yid": "A33z5b18iew",
+ "crop_xywh": [
+  789,
+  93,
+  440,
+  626
+ ],
+ "bbox_norm": [
+  0.6166938560503024,
+  0.12855150682909472,
+  0.9611643578555134,
+  1.1594323743451704
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Last week suspects Gregory McMichael and his son Travis were arrested and charged with felony murder and aggravated assault.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 551,
+ "stride": 1,
+ "start": "00:04:27.333",
+ "end": "00:04:45.700",
+ "duration_s": 18.367
+}

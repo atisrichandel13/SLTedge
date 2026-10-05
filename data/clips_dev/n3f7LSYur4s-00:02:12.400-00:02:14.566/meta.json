@@ -1,0 +1,30 @@
+{
+ "vid": "n3f7LSYur4s-00:02:12.400-00:02:14.566",
+ "yid": "n3f7LSYur4s",
+ "crop_xywh": [
+  323,
+  0,
+  674,
+  720
+ ],
+ "bbox_norm": [
+  0.2527248753441705,
+  -0.1397777086422767,
+  0.7788795842064752,
+  1.2965796376452032
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Moved there about 2 years.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 65,
+ "stride": 1,
+ "start": "00:02:12.400",
+ "end": "00:02:14.566",
+ "duration_s": 2.166
+}

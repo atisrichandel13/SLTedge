@@ -1,0 +1,30 @@
+{
+ "vid": "luSqJNOOx6A-00:04:18.200-00:04:27.466",
+ "yid": "luSqJNOOx6A",
+ "crop_xywh": [
+  666,
+  0,
+  472,
+  720
+ ],
+ "bbox_norm": [
+  0.5201764101073855,
+  -0.04575479951485124,
+  0.889572578952426,
+  1.086301265948664
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Los Angeles police have identified 29-year-old Eric Holder as a suspect in shooting and killing someone.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 278,
+ "stride": 1,
+ "start": "00:04:18.200",
+ "end": "00:04:27.466",
+ "duration_s": 9.266
+}

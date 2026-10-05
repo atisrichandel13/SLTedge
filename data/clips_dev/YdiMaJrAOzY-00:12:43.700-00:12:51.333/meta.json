@@ -1,0 +1,30 @@
+{
+ "vid": "YdiMaJrAOzY-00:12:43.700-00:12:51.333",
+ "yid": "YdiMaJrAOzY",
+ "crop_xywh": [
+  283,
+  0,
+  714,
+  720
+ ],
+ "bbox_norm": [
+  0.22118046305201075,
+  -0.22542835575443607,
+  0.7793700132284079,
+  1.4132892196242872
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Rita Corey was Ivana's role model, idol, hero, and an amazing mother.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 184,
+ "stride": 1,
+ "start": "00:12:43.700",
+ "end": "00:12:51.333",
+ "duration_s": 7.633
+}

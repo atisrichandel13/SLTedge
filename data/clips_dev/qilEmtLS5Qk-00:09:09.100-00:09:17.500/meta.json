@@ -1,0 +1,30 @@
+{
+ "vid": "qilEmtLS5Qk-00:09:09.100-00:09:17.500",
+ "yid": "qilEmtLS5Qk",
+ "crop_xywh": [
+  805,
+  157,
+  298,
+  468
+ ],
+ "bbox_norm": [
+  0.6285997991208677,
+  0.2182058075327932,
+  0.8620137214660645,
+  0.8700212721962006
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The coronavirus pandemic is also expected to slow down in the summer.",
+ "split": "valid",
+ "fps": 26.565,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 224,
+ "stride": 1,
+ "start": "00:09:09.100",
+ "end": "00:09:17.500",
+ "duration_s": 8.4
+}

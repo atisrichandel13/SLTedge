@@ -1,0 +1,30 @@
+{
+ "vid": "0fsBkodUEk0-00:12:04.400-00:12:17.500",
+ "yid": "0fsBkodUEk0",
+ "crop_xywh": [
+  659,
+  0,
+  556,
+  720
+ ],
+ "bbox_norm": [
+  0.5146312574545543,
+  -0.13826602454538697,
+  0.9497332513332367,
+  1.1386071864101621
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As for our USA teams, they have to raise funds to support themselves for each trip to the World Deaf Basketball, PanAm Games, and Deaflympics.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 315,
+ "stride": 1,
+ "start": "00:12:04.400",
+ "end": "00:12:17.500",
+ "duration_s": 13.1
+}

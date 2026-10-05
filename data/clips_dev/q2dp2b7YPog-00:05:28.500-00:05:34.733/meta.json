@@ -1,0 +1,30 @@
+{
+ "vid": "q2dp2b7YPog-00:05:28.500-00:05:34.733",
+ "yid": "q2dp2b7YPog",
+ "crop_xywh": [
+  638,
+  0,
+  494,
+  720
+ ],
+ "bbox_norm": [
+  0.4981313421015154,
+  -0.08913766329283834,
+  0.8848780130085192,
+  1.0929454485575358
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The author said that the name would be long to type.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 187,
+ "stride": 1,
+ "start": "00:05:28.500",
+ "end": "00:05:34.733",
+ "duration_s": 6.233
+}

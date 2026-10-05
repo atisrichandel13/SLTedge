@@ -1,0 +1,30 @@
+{
+ "vid": "2O6QUmPT0gM-00:00:32.000-00:00:50.166",
+ "yid": "2O6QUmPT0gM",
+ "crop_xywh": [
+  177,
+  0,
+  320,
+  360
+ ],
+ "bbox_norm": [
+  0.2770208490978588,
+  -0.20207255421262799,
+  0.7764735908941789,
+  1.310714352203138
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In our comments we told the FCC to make sure that the rates continue the current level of relay services and continue to advance functionally equivalent telecommunications.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 545,
+ "stride": 1,
+ "start": "00:00:32.000",
+ "end": "00:00:50.166",
+ "duration_s": 18.166
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:13:45.066-00:13:55.300",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  622,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.48600032941891197,
+  -0.15797713059110938,
+  0.9747754180366225,
+  1.2549599744800226
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "My friends, and some fans, said that I was being the Cam they know.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 307,
+ "stride": 1,
+ "start": "00:13:45.066",
+ "end": "00:13:55.300",
+ "duration_s": 10.234
+}

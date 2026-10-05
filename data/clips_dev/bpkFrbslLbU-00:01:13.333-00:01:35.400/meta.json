@@ -1,0 +1,30 @@
+{
+ "vid": "bpkFrbslLbU-00:01:13.333-00:01:35.400",
+ "yid": "bpkFrbslLbU",
+ "crop_xywh": [
+  599,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.467732372223956,
+  -0.16783483986418035,
+  0.9085823553913045,
+  1.1612871910457758
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "WHO's Director-General Tedros Adhanom Ghebreyesus said he is deeply concerned by the levels of spread and inaction by other countries.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 530,
+ "stride": 1,
+ "start": "00:01:13.333",
+ "end": "00:01:35.400",
+ "duration_s": 22.067
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "wPJ_InXF_I8-00:12:12.533-00:12:17.000",
+ "yid": "wPJ_InXF_I8",
+ "crop_xywh": [
+  674,
+  0,
+  594,
+  720
+ ],
+ "bbox_norm": [
+  0.5265625988995588,
+  -0.12072240675100737,
+  0.9914884449523172,
+  1.3460486894772377
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Mark Medoff passed away at the age of 79.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 134,
+ "stride": 1,
+ "start": "00:12:12.533",
+ "end": "00:12:17.000",
+ "duration_s": 4.467
+}

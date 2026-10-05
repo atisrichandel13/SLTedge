@@ -1,0 +1,30 @@
+{
+ "vid": "ixq65EiuJ_c-00:03:14.300-00:03:15.200",
+ "yid": "ixq65EiuJ_c",
+ "crop_xywh": [
+  417,
+  0,
+  494,
+  720
+ ],
+ "bbox_norm": [
+  0.3258958339691162,
+  -0.0376047205041956,
+  0.7115087456173367,
+  1.0716545269813067
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I don't care about money.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 27,
+ "stride": 1,
+ "start": "00:03:14.300",
+ "end": "00:03:15.200",
+ "duration_s": 0.9
+}

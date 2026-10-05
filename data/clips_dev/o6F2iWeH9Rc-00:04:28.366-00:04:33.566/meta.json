@@ -1,0 +1,30 @@
+{
+ "vid": "o6F2iWeH9Rc-00:04:28.366-00:04:33.566",
+ "yid": "o6F2iWeH9Rc",
+ "crop_xywh": [
+  616,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.48151008224487307,
+  -0.1565200590910735,
+  0.9405656750996908,
+  1.2259510791919848
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you want to watch, the link is provided above as well as the link with information on the competition.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 125,
+ "stride": 1,
+ "start": "00:04:28.366",
+ "end": "00:04:33.566",
+ "duration_s": 5.2
+}

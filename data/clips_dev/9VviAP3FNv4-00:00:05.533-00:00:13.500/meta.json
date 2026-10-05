@@ -1,0 +1,30 @@
+{
+ "vid": "9VviAP3FNv4-00:00:05.533-00:00:13.500",
+ "yid": "9VviAP3FNv4",
+ "crop_xywh": [
+  116,
+  0,
+  496,
+  480
+ ],
+ "bbox_norm": [
+  0.13616458816885668,
+  -0.21730436914496953,
+  0.7164907816515409,
+  1.458791010744042
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "My name is Travis Clevenger and I am the Camp Director.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 239,
+ "stride": 1,
+ "start": "00:00:05.533",
+ "end": "00:00:13.500",
+ "duration_s": 7.967
+}

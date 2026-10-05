@@ -1,0 +1,30 @@
+{
+ "vid": "qeSkb04_Cy4-00:01:50.833-00:02:02.433",
+ "yid": "qeSkb04_Cy4",
+ "crop_xywh": [
+  381,
+  0,
+  584,
+  720
+ ],
+ "bbox_norm": [
+  0.297313597542899,
+  -0.171994888164379,
+  0.7537563414800735,
+  1.0448627245363105
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now our group's focus is to use the paper to develop a model bill for state associations and/or individuals to emulate.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 348,
+ "stride": 1,
+ "start": "00:01:50.833",
+ "end": "00:02:02.433",
+ "duration_s": 11.6
+}

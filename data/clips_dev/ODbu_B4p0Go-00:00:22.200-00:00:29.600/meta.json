@@ -1,0 +1,30 @@
+{
+ "vid": "ODbu_B4p0Go-00:00:22.200-00:00:29.600",
+ "yid": "ODbu_B4p0Go",
+ "crop_xywh": [
+  327,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.2556600040859646,
+  -0.12014372774602945,
+  0.6969375885857476,
+  1.1079829252894524
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Last Thursday afternoon, we had a presentation on Hawai\u2019i culture, history, and traditions. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 222,
+ "stride": 1,
+ "start": "00:00:22.200",
+ "end": "00:00:29.600",
+ "duration_s": 7.4
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:06:40.433-00:06:48.133",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  39,
+  0,
+  610,
+  720
+ ],
+ "bbox_norm": [
+  0.03043355333044174,
+  -0.032340970351246986,
+  0.5077764375835446,
+  1.2733052905287867
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm glad that period rally was happening because it empowers.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 231,
+ "stride": 1,
+ "start": "00:06:40.433",
+ "end": "00:06:48.133",
+ "duration_s": 7.7
+}

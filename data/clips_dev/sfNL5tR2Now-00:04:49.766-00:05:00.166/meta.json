@@ -1,0 +1,30 @@
+{
+ "vid": "sfNL5tR2Now-00:04:49.766-00:05:00.166",
+ "yid": "sfNL5tR2Now",
+ "crop_xywh": [
+  176,
+  0,
+  494,
+  706
+ ],
+ "bbox_norm": [
+  0.1371727002564297,
+  -0.1384493872256262,
+  0.5233474149498888,
+  0.9810555831790682
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "First, Education -- we're excited about LEAD-K which is a national campaign focused on language equality for deaf children.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 312,
+ "stride": 1,
+ "start": "00:04:49.766",
+ "end": "00:05:00.166",
+ "duration_s": 10.4
+}

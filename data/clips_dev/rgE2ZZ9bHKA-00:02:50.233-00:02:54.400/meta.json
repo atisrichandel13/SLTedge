@@ -1,0 +1,30 @@
+{
+ "vid": "rgE2ZZ9bHKA-00:02:50.233-00:02:54.400",
+ "yid": "rgE2ZZ9bHKA",
+ "crop_xywh": [
+  429,
+  0,
+  556,
+  720
+ ],
+ "bbox_norm": [
+  0.3353120988210042,
+  -0.11352605014377169,
+  0.7697215379079183,
+  1.1582342306066442
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Day in and day out, we need to make sure there is an emphasis on languages.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 125,
+ "stride": 1,
+ "start": "00:02:50.233",
+ "end": "00:02:54.400",
+ "duration_s": 4.167
+}

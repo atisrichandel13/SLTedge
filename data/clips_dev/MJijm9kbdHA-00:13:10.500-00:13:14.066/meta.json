@@ -1,0 +1,30 @@
+{
+ "vid": "MJijm9kbdHA-00:13:10.500-00:13:14.066",
+ "yid": "MJijm9kbdHA",
+ "crop_xywh": [
+  631,
+  0,
+  558,
+  720
+ ],
+ "bbox_norm": [
+  0.4931945518211082,
+  -0.174892098226665,
+  0.9290732207121672,
+  1.1227775923018593
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I bet it's a big weight off my shoulders!",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 86,
+ "stride": 1,
+ "start": "00:13:10.500",
+ "end": "00:13:14.066",
+ "duration_s": 3.566
+}

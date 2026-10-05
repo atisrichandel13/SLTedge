@@ -1,0 +1,30 @@
+{
+ "vid": "z3jAMn3xpoM-00:17:08.533-00:17:11.633",
+ "yid": "z3jAMn3xpoM",
+ "crop_xywh": [
+  422,
+  12,
+  448,
+  708
+ ],
+ "bbox_norm": [
+  0.32937688241925156,
+  0.016700769911500213,
+  0.6795139505152117,
+  1.0575894554688452
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Another friend asked me if I could get blue.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 93,
+ "stride": 1,
+ "start": "00:17:08.533",
+ "end": "00:17:11.633",
+ "duration_s": 3.1
+}

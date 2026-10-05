@@ -1,0 +1,30 @@
+{
+ "vid": "daTPNSQet08-00:05:14.700-00:05:20.600",
+ "yid": "daTPNSQet08",
+ "crop_xywh": [
+  199,
+  0,
+  824,
+  720
+ ],
+ "bbox_norm": [
+  0.15517881382470844,
+  -0.2184515503631241,
+  0.7998180636044206,
+  1.6598724184974096
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Never really closes even though there\u2019s a lot of snow or bad storm.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 142,
+ "stride": 1,
+ "start": "00:05:14.700",
+ "end": "00:05:20.600",
+ "duration_s": 5.9
+}

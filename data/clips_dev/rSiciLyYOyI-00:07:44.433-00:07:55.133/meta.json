@@ -1,0 +1,30 @@
+{
+ "vid": "rSiciLyYOyI-00:07:44.433-00:07:55.133",
+ "yid": "rSiciLyYOyI",
+ "crop_xywh": [
+  568,
+  0,
+  580,
+  720
+ ],
+ "bbox_norm": [
+  0.4441236757764629,
+  -0.12708729319409695,
+  0.8966900146085452,
+  1.1075513677659377
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I waited for a few hours then finally I moved onto a wheelchair so I could visit her in the other room... Really, when I woke up, I was really emotional.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 257,
+ "stride": 1,
+ "start": "00:07:44.433",
+ "end": "00:07:55.133",
+ "duration_s": 10.7
+}

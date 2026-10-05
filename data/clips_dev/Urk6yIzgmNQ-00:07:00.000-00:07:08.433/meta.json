@@ -1,0 +1,30 @@
+{
+ "vid": "Urk6yIzgmNQ-00:07:00.000-00:07:08.433",
+ "yid": "Urk6yIzgmNQ",
+ "crop_xywh": [
+  624,
+  0,
+  604,
+  720
+ ],
+ "bbox_norm": [
+  0.48722066879272463,
+  -0.16320191325641692,
+  0.9599216344879894,
+  1.2822655551155733
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The U.S. economy lost 20.5 million jobs last month.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 203,
+ "stride": 1,
+ "start": "00:07:00.000",
+ "end": "00:07:08.433",
+ "duration_s": 8.433
+}

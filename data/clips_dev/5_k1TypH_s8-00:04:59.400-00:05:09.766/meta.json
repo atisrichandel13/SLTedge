@@ -1,0 +1,30 @@
+{
+ "vid": "5_k1TypH_s8-00:04:59.400-00:05:09.766",
+ "yid": "5_k1TypH_s8",
+ "crop_xywh": [
+  613,
+  0,
+  586,
+  720
+ ],
+ "bbox_norm": [
+  0.4787930708082896,
+  -0.13669407758763227,
+  0.9366925337957956,
+  1.2273860349436496
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We want to warn you, this story contains language that some viewers may find disturbing due to the graphic nature.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 311,
+ "stride": 1,
+ "start": "00:04:59.400",
+ "end": "00:05:09.766",
+ "duration_s": 10.366
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "pimixabgzlc-00:04:01.166-00:04:06.600",
+ "yid": "pimixabgzlc",
+ "crop_xywh": [
+  379,
+  0,
+  518,
+  720
+ ],
+ "bbox_norm": [
+  0.2958850850962629,
+  -0.1069699091542048,
+  0.7007482461255007,
+  1.0635414281945705
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We also hope to collaborate with other specializations to share influence with each other and make progress.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 163,
+ "stride": 1,
+ "start": "00:04:01.166",
+ "end": "00:04:06.600",
+ "duration_s": 5.434
+}

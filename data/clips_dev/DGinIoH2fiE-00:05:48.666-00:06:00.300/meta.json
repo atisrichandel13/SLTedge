@@ -1,0 +1,30 @@
+{
+ "vid": "DGinIoH2fiE-00:05:48.666-00:06:00.300",
+ "yid": "DGinIoH2fiE",
+ "crop_xywh": [
+  699,
+  0,
+  506,
+  720
+ ],
+ "bbox_norm": [
+  0.5458138176373073,
+  -0.12809580575852167,
+  0.9415254194395883,
+  1.058572227689955
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Binge drinking can have serious negative health effects, such as an increased risk of falling and an increased likelihood of chronic health issues.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 349,
+ "stride": 1,
+ "start": "00:05:48.666",
+ "end": "00:06:00.300",
+ "duration_s": 11.634
+}

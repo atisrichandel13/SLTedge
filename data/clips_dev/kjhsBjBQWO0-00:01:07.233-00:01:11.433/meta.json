@@ -1,0 +1,30 @@
+{
+ "vid": "kjhsBjBQWO0-00:01:07.233-00:01:11.433",
+ "yid": "kjhsBjBQWO0",
+ "crop_xywh": [
+  283,
+  0,
+  402,
+  470
+ ],
+ "bbox_norm": [
+  0.33117767798537673,
+  -0.2314628636973579,
+  0.8036384472566088,
+  1.14769291518753
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As of recent, it became apparent that NAD needed to pursue a lawsuit against Netflix. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 126,
+ "stride": 1,
+ "start": "00:01:07.233",
+ "end": "00:01:11.433",
+ "duration_s": 4.2
+}

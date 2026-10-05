@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:14:00.566-00:14:05.666",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  614,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.47976479581607284,
+  -0.2171714395320259,
+  0.9694181801170431,
+  1.2172294154104508
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That was a relief that I was able to show that and stand where I stand.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 153,
+ "stride": 1,
+ "start": "00:14:00.566",
+ "end": "00:14:05.666",
+ "duration_s": 5.1
+}

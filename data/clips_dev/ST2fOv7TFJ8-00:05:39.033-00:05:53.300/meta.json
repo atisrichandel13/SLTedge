@@ -1,0 +1,30 @@
+{
+ "vid": "ST2fOv7TFJ8-00:05:39.033-00:05:53.300",
+ "yid": "ST2fOv7TFJ8",
+ "crop_xywh": [
+  618,
+  0,
+  492,
+  670
+ ],
+ "bbox_norm": [
+  0.4830482793408771,
+  -0.11158387125000473,
+  0.868288749872252,
+  0.931609000038423
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The President issued a statement Saturday confirming Hamza bin Laden was killed in a US counterterrorism operation.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 428,
+ "stride": 1,
+ "start": "00:05:39.033",
+ "end": "00:05:53.300",
+ "duration_s": 14.267
+}

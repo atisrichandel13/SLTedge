@@ -1,0 +1,30 @@
+{
+ "vid": "LdVNY2ze-Yw-00:05:07.533-00:05:21.566",
+ "yid": "LdVNY2ze-Yw",
+ "crop_xywh": [
+  231,
+  0,
+  742,
+  720
+ ],
+ "bbox_norm": [
+  0.18023482640584312,
+  -0.252167352830143,
+  0.760118407829135,
+  1.4442331630316176
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The most recent publication from JAMA said children under 5 years old contribute to an extremely high rate of transmission because you know how their noses run when they have a cold - if they touch their fluids and other objects, the virus spreads.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 421,
+ "stride": 1,
+ "start": "00:05:07.533",
+ "end": "00:05:21.566",
+ "duration_s": 14.033
+}

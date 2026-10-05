@@ -1,0 +1,30 @@
+{
+ "vid": "D9HR4q0vbwE-00:24:23.300-00:24:25.700",
+ "yid": "D9HR4q0vbwE",
+ "crop_xywh": [
+  703,
+  0,
+  410,
+  576
+ ],
+ "bbox_norm": [
+  0.5495797157287597,
+  -0.1321499718560113,
+  0.8704913351270888,
+  0.8009337696028344
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We knew this would happen.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 58,
+ "stride": 1,
+ "start": "00:24:23.300",
+ "end": "00:24:25.700",
+ "duration_s": 2.4
+}

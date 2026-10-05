@@ -1,0 +1,30 @@
+{
+ "vid": "auhv4QGyB-U-00:03:38.266-00:04:11.600",
+ "yid": "auhv4QGyB-U",
+ "crop_xywh": [
+  634,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.49511277165578965,
+  -0.09280980470234548,
+  0.908800992285632,
+  1.1246762117013673
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"The report also found other Netflix shows that were popular among young people showed more smoking and use of tobacco products in recent seasons, including \"\"Orange Is The New Black\"\", \"\"House Of Cards\"\" and \"\"Unbreakable Kimmy Schmidt.\"\"\"",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 1001,
+ "stride": 1,
+ "start": "00:03:38.266",
+ "end": "00:04:11.600",
+ "duration_s": 33.334
+}

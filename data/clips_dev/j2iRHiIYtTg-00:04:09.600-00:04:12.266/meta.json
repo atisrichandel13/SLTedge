@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:04:09.600-00:04:12.266",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  384,
+  0,
+  774,
+  720
+ ],
+ "bbox_norm": [
+  0.3001953383286794,
+  -0.18414944189566154,
+  0.9051937520503998,
+  1.5626649000026562
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Because if we don't do this, students can't fight.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 80,
+ "stride": 1,
+ "start": "00:04:09.600",
+ "end": "00:04:12.266",
+ "duration_s": 2.666
+}

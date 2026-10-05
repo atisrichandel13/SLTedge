@@ -1,0 +1,30 @@
+{
+ "vid": "T3EE8msFORw-00:05:14.266-00:05:17.266",
+ "yid": "T3EE8msFORw",
+ "crop_xywh": [
+  632,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.493570736779107,
+  -0.18400836143964602,
+  0.9145814281039768,
+  1.088523166797779
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now, Hillary Clinton.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 72,
+ "stride": 1,
+ "start": "00:05:14.266",
+ "end": "00:05:17.266",
+ "duration_s": 3.0
+}

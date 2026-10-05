@@ -1,0 +1,30 @@
+{
+ "vid": "osHy2dzQmgE-00:00:47.400-00:00:49.533",
+ "yid": "osHy2dzQmgE",
+ "crop_xywh": [
+  376,
+  0,
+  676,
+  720
+ ],
+ "bbox_norm": [
+  0.2940649888454339,
+  -0.21678833214306084,
+  0.8228470362149752,
+  1.3163103753005676
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You can read and understand how to better accommodate me.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 64,
+ "stride": 1,
+ "start": "00:00:47.400",
+ "end": "00:00:49.533",
+ "duration_s": 2.133
+}

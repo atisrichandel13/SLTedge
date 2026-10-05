@@ -1,0 +1,30 @@
+{
+ "vid": "vr6f7eEZmCc-00:00:18.233-00:00:35.633",
+ "yid": "vr6f7eEZmCc",
+ "crop_xywh": [
+  353,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.275398846807934,
+  -0.1550194208457987,
+  0.7392799870173137,
+  1.181677549049337
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This program focuses on deaf and hard of hearing youth who are eager to address social issues and are actively seeking innovative solutions in three areas: visibility, innovation, and sustainability, VIS for short.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 522,
+ "stride": 1,
+ "start": "00:00:18.233",
+ "end": "00:00:35.633",
+ "duration_s": 17.4
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "54q7y2npxbM-00:05:31.633-00:05:44.566",
+ "yid": "54q7y2npxbM",
+ "crop_xywh": [
+  653,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.5104134364005847,
+  -0.07900315164274413,
+  0.9084248053721892,
+  1.0340974135729435
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The announcement comes shortly after this tweet from President Trump saying Israel would be showing great weakness by allowing them to enter the country.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 388,
+ "stride": 1,
+ "start": "00:05:31.633",
+ "end": "00:05:44.566",
+ "duration_s": 12.933
+}

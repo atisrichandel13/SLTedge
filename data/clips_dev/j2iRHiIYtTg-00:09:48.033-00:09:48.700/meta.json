@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:09:48.033-00:09:48.700",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  366,
+  0,
+  774,
+  720
+ ],
+ "bbox_norm": [
+  0.28630706469217937,
+  -0.16687747531467015,
+  0.8915538756052652,
+  1.5801067097981771
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Not just Kappa Gamma.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 20,
+ "stride": 1,
+ "start": "00:09:48.033",
+ "end": "00:09:48.700",
+ "duration_s": 0.667
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "y7KIrON1uco-00:00:29.133-00:00:30.200",
+ "yid": "y7KIrON1uco",
+ "crop_xywh": [
+  447,
+  0,
+  480,
+  674
+ ],
+ "bbox_norm": [
+  0.3492570899781727,
+  -0.12128311843468398,
+  0.724766715367635,
+  0.9358818730349263
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Here are the top stories.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 33,
+ "stride": 1,
+ "start": "00:00:29.133",
+ "end": "00:00:30.200",
+ "duration_s": 1.067
+}

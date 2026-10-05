@@ -1,0 +1,30 @@
+{
+ "vid": "G34h0hn3T5k-00:02:06.633-00:02:16.500",
+ "yid": "G34h0hn3T5k",
+ "crop_xywh": [
+  616,
+  0,
+  562,
+  720
+ ],
+ "bbox_norm": [
+  0.48137981957859466,
+  -0.16985835764143203,
+  0.9214474234316085,
+  1.1883696610544936
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It is not known what will happen to the ISIS fighters if Kurdish fighters decide to go to the border to war against Turkey.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 237,
+ "stride": 1,
+ "start": "00:02:06.633",
+ "end": "00:02:16.500",
+ "duration_s": 9.867
+}

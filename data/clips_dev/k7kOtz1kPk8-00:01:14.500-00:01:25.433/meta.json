@@ -1,0 +1,30 @@
+{
+ "vid": "k7kOtz1kPk8-00:01:14.500-00:01:25.433",
+ "yid": "k7kOtz1kPk8",
+ "crop_xywh": [
+  576,
+  0,
+  456,
+  630
+ ],
+ "bbox_norm": [
+  0.45002946612810846,
+  -0.16269914218204726,
+  0.8061772283881602,
+  0.8745059508934835
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"For NAD Youth Programs related information, please contact us via Facebook, at the NAD Youth Programs, or email us through the NAD's website page \"\"Contact Us\"\".\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 328,
+ "stride": 1,
+ "start": "00:01:14.500",
+ "end": "00:01:25.433",
+ "duration_s": 10.933
+}

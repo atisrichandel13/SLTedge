@@ -1,0 +1,30 @@
+{
+ "vid": "6vmtT8VJus8-00:00:18.433-00:00:23.000",
+ "yid": "6vmtT8VJus8",
+ "crop_xywh": [
+  353,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.2758430435543968,
+  -0.18552153728626392,
+  0.6871464456830706,
+  1.023298718815758
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There are so many different intelligence levels, and ... science is what I\u2019m good at.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 137,
+ "stride": 1,
+ "start": "00:00:18.433",
+ "end": "00:00:23.000",
+ "duration_s": 4.567
+}

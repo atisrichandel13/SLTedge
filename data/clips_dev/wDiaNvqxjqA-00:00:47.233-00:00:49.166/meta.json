@@ -1,0 +1,30 @@
+{
+ "vid": "wDiaNvqxjqA-00:00:47.233-00:00:49.166",
+ "yid": "wDiaNvqxjqA",
+ "crop_xywh": [
+  405,
+  0,
+  690,
+  720
+ ],
+ "bbox_norm": [
+  0.31661856704288055,
+  -0.15919995484528718,
+  0.8563760413063898,
+  1.4609890419759868
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Eager to learn more?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 58,
+ "stride": 1,
+ "start": "00:00:47.233",
+ "end": "00:00:49.166",
+ "duration_s": 1.933
+}

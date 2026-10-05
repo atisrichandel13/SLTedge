@@ -1,0 +1,30 @@
+{
+ "vid": "fNT8a6e1gx8-00:06:55.266-00:06:56.633",
+ "yid": "fNT8a6e1gx8",
+ "crop_xywh": [
+  252,
+  0,
+  340,
+  508
+ ],
+ "bbox_norm": [
+  0.19699215624067518,
+  -0.012770704575526863,
+  0.4625311136245728,
+  0.7057041650936927
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I feel inspired.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 41,
+ "stride": 1,
+ "start": "00:06:55.266",
+ "end": "00:06:56.633",
+ "duration_s": 1.367
+}

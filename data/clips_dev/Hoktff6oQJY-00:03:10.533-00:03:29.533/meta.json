@@ -1,0 +1,30 @@
+{
+ "vid": "Hoktff6oQJY-00:03:10.533-00:03:29.533",
+ "yid": "Hoktff6oQJY",
+ "crop_xywh": [
+  794,
+  56,
+  394,
+  664
+ ],
+ "bbox_norm": [
+  0.6205432215980862,
+  0.07747006918497132,
+  0.9285894630266271,
+  1.0240618924127107
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The CDC has updated its website to remove dosage guidance on hydroxychloroquine.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 570,
+ "stride": 1,
+ "start": "00:03:10.533",
+ "end": "00:03:29.533",
+ "duration_s": 19.0
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "xEZo2zgDdfE-00:01:56.000-00:02:08.166",
+ "yid": "xEZo2zgDdfE",
+ "crop_xywh": [
+  113,
+  0,
+  248,
+  360
+ ],
+ "bbox_norm": [
+  0.23589693465733635,
+  -0.06725345855434191,
+  0.7538001467648162,
+  1.0733175620277904
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Please check out my blog on the NAD website, link below, regarding which Representatives the NAD Board members met with and where they met.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  480,
+  360
+ ],
+ "n_frames": 366,
+ "stride": 1,
+ "start": "00:01:56.000",
+ "end": "00:02:08.166",
+ "duration_s": 12.166
+}

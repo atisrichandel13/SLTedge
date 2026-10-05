@@ -1,0 +1,30 @@
+{
+ "vid": "WVzY3Ez1r-E-00:00:21.666-00:00:22.266",
+ "yid": "WVzY3Ez1r-E",
+ "crop_xywh": [
+  184,
+  0,
+  846,
+  720
+ ],
+ "bbox_norm": [
+  0.14409339030583698,
+  -0.1963542796947338,
+  0.8049946188926697,
+  1.7459783836647316
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was beneficial.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 18,
+ "stride": 1,
+ "start": "00:00:21.666",
+ "end": "00:00:22.266",
+ "duration_s": 0.6
+}

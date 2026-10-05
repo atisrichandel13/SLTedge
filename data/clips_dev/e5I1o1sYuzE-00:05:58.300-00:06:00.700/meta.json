@@ -1,0 +1,30 @@
+{
+ "vid": "e5I1o1sYuzE-00:05:58.300-00:06:00.700",
+ "yid": "e5I1o1sYuzE",
+ "crop_xywh": [
+  691,
+  0,
+  502,
+  720
+ ],
+ "bbox_norm": [
+  0.5398717414008247,
+  -0.12029592725965711,
+  0.9324710591634114,
+  1.1079441470864377
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Police did not say if there would be any charges filed.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 72,
+ "stride": 1,
+ "start": "00:05:58.300",
+ "end": "00:06:00.700",
+ "duration_s": 2.4
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "znwRZXn3jc0-00:00:07.566-00:00:08.433",
+ "yid": "znwRZXn3jc0",
+ "crop_xywh": [
+  343,
+  0,
+  594,
+  720
+ ],
+ "bbox_norm": [
+  0.26777695020039877,
+  -0.1413165057146991,
+  0.7317175070444742,
+  1.221091421150867
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hello everyone.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 26,
+ "stride": 1,
+ "start": "00:00:07.566",
+ "end": "00:00:08.433",
+ "duration_s": 0.867
+}

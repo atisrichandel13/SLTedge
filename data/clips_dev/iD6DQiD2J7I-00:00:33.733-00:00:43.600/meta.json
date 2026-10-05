@@ -1,0 +1,30 @@
+{
+ "vid": "iD6DQiD2J7I-00:00:33.733-00:00:43.600",
+ "yid": "iD6DQiD2J7I",
+ "crop_xywh": [
+  256,
+  14,
+  260,
+  424
+ ],
+ "bbox_norm": [
+  0.3910039608145586,
+  0.028899937205844453,
+  0.7882831429608858,
+  0.9122045199076335
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Since around 2004/2006, NAD noticed that more colleges are starting to expand their deaf programs across the nation.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 296,
+ "stride": 1,
+ "start": "00:00:33.733",
+ "end": "00:00:43.600",
+ "duration_s": 9.867
+}

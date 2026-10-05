@@ -1,0 +1,30 @@
+{
+ "vid": "CZiiD1UoDfQ-00:02:29.000-00:02:32.200",
+ "yid": "CZiiD1UoDfQ",
+ "crop_xywh": [
+  344,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.26842137279673517,
+  -0.21099785571990415,
+  0.7580527973990155,
+  1.1529195931335912
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I've met about 40 people on the videophone so far, and I want to meet more going forward.",
+ "split": "valid",
+ "fps": 59.94,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 192,
+ "stride": 1,
+ "start": "00:02:29.000",
+ "end": "00:02:32.200",
+ "duration_s": 3.2
+}

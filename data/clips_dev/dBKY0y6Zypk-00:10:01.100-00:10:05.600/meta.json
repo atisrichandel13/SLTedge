@@ -1,0 +1,30 @@
+{
+ "vid": "dBKY0y6Zypk-00:10:01.100-00:10:05.600",
+ "yid": "dBKY0y6Zypk",
+ "crop_xywh": [
+  488,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.381212282769474,
+  -0.12519452915270143,
+  0.8129760424296061,
+  1.1885003703448345
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There has been more and more conferences that DSP has sponsored.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 135,
+ "stride": 1,
+ "start": "00:10:01.100",
+ "end": "00:10:05.600",
+ "duration_s": 4.5
+}

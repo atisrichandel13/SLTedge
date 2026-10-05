@@ -1,0 +1,30 @@
+{
+ "vid": "RdDlFuOSvWQ-00:02:16.533-00:02:19.366",
+ "yid": "RdDlFuOSvWQ",
+ "crop_xywh": [
+  200,
+  0,
+  424,
+  564
+ ],
+ "bbox_norm": [
+  0.1565069128485287,
+  -0.13656958931152077,
+  0.487621704269858,
+  0.7850579273207255
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So for those of you attending the NAD conference, come join us!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 85,
+ "stride": 1,
+ "start": "00:02:16.533",
+ "end": "00:02:19.366",
+ "duration_s": 2.833
+}

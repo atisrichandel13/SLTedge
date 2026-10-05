@@ -1,0 +1,30 @@
+{
+ "vid": "G8PUtORtufE-00:02:03.400-00:02:16.766",
+ "yid": "G8PUtORtufE",
+ "crop_xywh": [
+  722,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.5640071930708708,
+  -0.14041469702177742,
+  0.9773829651467594,
+  1.0576685576445446
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Secretary of State Mike Pompeo blames Iran for the attacks, which Iran denies.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 401,
+ "stride": 1,
+ "start": "00:02:03.400",
+ "end": "00:02:16.766",
+ "duration_s": 13.366
+}

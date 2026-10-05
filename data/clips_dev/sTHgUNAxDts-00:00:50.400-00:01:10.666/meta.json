@@ -1,0 +1,30 @@
+{
+ "vid": "sTHgUNAxDts-00:00:50.400-00:01:10.666",
+ "yid": "sTHgUNAxDts",
+ "crop_xywh": [
+  784,
+  81,
+  416,
+  638
+ ],
+ "bbox_norm": [
+  0.6126459854841232,
+  0.11183548503451878,
+  0.9375715909401576,
+  1.1095141543282403
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"President Trump tweeted \"\"flattening of the curve\"\" as a new model on the pandemic in the US is forecasting thousands fewer deaths than what was predicted just days ago.\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 608,
+ "stride": 1,
+ "start": "00:00:50.400",
+ "end": "00:01:10.666",
+ "duration_s": 20.266
+}

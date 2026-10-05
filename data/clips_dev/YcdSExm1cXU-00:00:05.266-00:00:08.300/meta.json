@@ -1,0 +1,30 @@
+{
+ "vid": "YcdSExm1cXU-00:00:05.266-00:00:08.300",
+ "yid": "YcdSExm1cXU",
+ "crop_xywh": [
+  375,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.2932575719398365,
+  -0.1543472557737116,
+  0.7726041651608652,
+  1.20191167716162
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "How many of you are looking forward to the NAD Conference this summer?!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 91,
+ "stride": 1,
+ "start": "00:00:05.266",
+ "end": "00:00:08.300",
+ "duration_s": 3.034
+}

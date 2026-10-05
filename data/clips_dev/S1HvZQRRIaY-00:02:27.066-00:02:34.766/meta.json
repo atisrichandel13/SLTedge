@@ -1,0 +1,30 @@
+{
+ "vid": "S1HvZQRRIaY-00:02:27.066-00:02:34.766",
+ "yid": "S1HvZQRRIaY",
+ "crop_xywh": [
+  683,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.5333202233551242,
+  -0.128736035743034,
+  0.9437395792480902,
+  1.082852796309571
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "France announced it is holding an international architectural design competition to redesign the spire that fell over during the fire.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 231,
+ "stride": 1,
+ "start": "00:02:27.066",
+ "end": "00:02:34.766",
+ "duration_s": 7.7
+}

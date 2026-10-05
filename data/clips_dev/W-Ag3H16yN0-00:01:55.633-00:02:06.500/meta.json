@@ -1,0 +1,30 @@
+{
+ "vid": "W-Ag3H16yN0-00:01:55.633-00:02:06.500",
+ "yid": "W-Ag3H16yN0",
+ "crop_xywh": [
+  647,
+  0,
+  520,
+  720
+ ],
+ "bbox_norm": [
+  0.5052799557194565,
+  -0.12798306757352168,
+  0.9115477691997181,
+  1.0734958901282243
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Centers for Disease Control and Prevention and the FDA both issued a warning yesterday that consumers should avoid the treats.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 327,
+ "stride": 1,
+ "start": "00:01:55.633",
+ "end": "00:02:06.500",
+ "duration_s": 10.867
+}

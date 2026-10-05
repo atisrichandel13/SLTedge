@@ -1,0 +1,30 @@
+{
+ "vid": "GfWZfUxFmhE-00:01:24.466-00:01:33.100",
+ "yid": "GfWZfUxFmhE",
+ "crop_xywh": [
+  112,
+  0,
+  296,
+  320
+ ],
+ "bbox_norm": [
+  0.196375398783961,
+  -0.22911731157547388,
+  0.7183145452122603,
+  1.2155518929163616
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Not only that, also various groups such as, parent groups, non-profit organizations, deaf schools, and programs for the deaf.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  568,
+  320
+ ],
+ "n_frames": 259,
+ "stride": 1,
+ "start": "00:01:24.466",
+ "end": "00:01:33.100",
+ "duration_s": 8.634
+}

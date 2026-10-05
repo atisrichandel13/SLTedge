@@ -1,0 +1,30 @@
+{
+ "vid": "K1bsZiByzTs-00:04:24.300-00:04:31.700",
+ "yid": "K1bsZiByzTs",
+ "crop_xywh": [
+  677,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.5285884316762288,
+  -0.129229052743794,
+  0.9279559548695883,
+  1.040492819680108
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Park officials say they were notified that a group of elephants were trapped under the waterfall and were crying out.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 222,
+ "stride": 1,
+ "start": "00:04:24.300",
+ "end": "00:04:31.700",
+ "duration_s": 7.4
+}

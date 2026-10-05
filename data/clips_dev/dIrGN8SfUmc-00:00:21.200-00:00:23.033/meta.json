@@ -1,0 +1,30 @@
+{
+ "vid": "dIrGN8SfUmc-00:00:21.200-00:00:23.033",
+ "yid": "dIrGN8SfUmc",
+ "crop_xywh": [
+  134,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.18631031993975855,
+  -0.13971980216571825,
+  0.9696070070619937,
+  1.180342626375426
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We have to stand outside and wait.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  720,
+  720
+ ],
+ "n_frames": 44,
+ "stride": 1,
+ "start": "00:00:21.200",
+ "end": "00:00:23.033",
+ "duration_s": 1.833
+}

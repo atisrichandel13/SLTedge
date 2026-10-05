@@ -1,0 +1,30 @@
+{
+ "vid": "klMC536m8bU-00:01:56.233-00:01:57.233",
+ "yid": "klMC536m8bU",
+ "crop_xywh": [
+  253,
+  0,
+  394,
+  470
+ ],
+ "bbox_norm": [
+  0.2965505427044345,
+  -0.16033456448726016,
+  0.7582273665141326,
+  1.136951256378081
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Discuss many issues.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 30,
+ "stride": 1,
+ "start": "00:01:56.233",
+ "end": "00:01:57.233",
+ "duration_s": 1.0
+}

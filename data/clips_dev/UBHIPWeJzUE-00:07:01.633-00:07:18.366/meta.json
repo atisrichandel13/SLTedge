@@ -1,0 +1,30 @@
+{
+ "vid": "UBHIPWeJzUE-00:07:01.633-00:07:18.366",
+ "yid": "UBHIPWeJzUE",
+ "crop_xywh": [
+  629,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.49110638552373,
+  -0.2214549469956558,
+  0.9808796907808914,
+  1.2479190645263358
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Trump administration has rejected California's request for disaster relief aid for wildfires that hit the state last month, according to the New York Times.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 502,
+ "stride": 1,
+ "start": "00:07:01.633",
+ "end": "00:07:18.366",
+ "duration_s": 16.733
+}

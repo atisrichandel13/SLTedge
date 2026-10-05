@@ -1,0 +1,30 @@
+{
+ "vid": "noSF4Y7sGEk-00:04:14.433-00:04:22.233",
+ "yid": "noSF4Y7sGEk",
+ "crop_xywh": [
+  784,
+  186,
+  318,
+  486
+ ],
+ "bbox_norm": [
+  0.6128175620491623,
+  0.2586945962868308,
+  0.8607134345575427,
+  0.9328921715606376
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Officials say infections are increasing in Dallas, Austin and San Antonio.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 234,
+ "stride": 1,
+ "start": "00:04:14.433",
+ "end": "00:04:22.233",
+ "duration_s": 7.8
+}

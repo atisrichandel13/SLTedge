@@ -1,0 +1,30 @@
+{
+ "vid": "viB8JR7fVxE-00:02:16.466-00:02:18.733",
+ "yid": "viB8JR7fVxE",
+ "crop_xywh": [
+  201,
+  0,
+  888,
+  720
+ ],
+ "bbox_norm": [
+  0.15701641695840018,
+  -0.3760508427544246,
+  0.8505917310714721,
+  1.7633752014901902
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That\u2019s another challenge I have this week.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 68,
+ "stride": 1,
+ "start": "00:02:16.466",
+ "end": "00:02:18.733",
+ "duration_s": 2.267
+}

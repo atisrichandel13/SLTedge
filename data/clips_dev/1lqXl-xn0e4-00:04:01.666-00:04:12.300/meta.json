@@ -1,0 +1,30 @@
+{
+ "vid": "1lqXl-xn0e4-00:04:01.666-00:04:12.300",
+ "yid": "1lqXl-xn0e4",
+ "crop_xywh": [
+  177,
+  23,
+  210,
+  352
+ ],
+ "bbox_norm": [
+  0.27612717300653455,
+  0.04872416357199351,
+  0.6063706055283546,
+  0.7818039054671924
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The NAD conference will be hosted here. This is the biggest room in the whole Marriott hotel, with plenty of seating!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  480
+ ],
+ "n_frames": 319,
+ "stride": 1,
+ "start": "00:04:01.666",
+ "end": "00:04:12.300",
+ "duration_s": 10.634
+}

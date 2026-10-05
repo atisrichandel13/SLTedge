@@ -1,0 +1,30 @@
+{
+ "vid": "WNCp5smpwdM-00:00:23.366-00:00:26.633",
+ "yid": "WNCp5smpwdM",
+ "crop_xywh": [
+  530,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.41368530273437504,
+  -0.12656566478587963,
+  0.8734945933024089,
+  1.192806883211489
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I entered the YAP 2018 competition and won!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 98,
+ "stride": 1,
+ "start": "00:00:23.366",
+ "end": "00:00:26.633",
+ "duration_s": 3.267
+}

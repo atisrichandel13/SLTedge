@@ -1,0 +1,30 @@
+{
+ "vid": "J-0KHhPS_m4-00:12:08.733-00:12:20.433",
+ "yid": "J-0KHhPS_m4",
+ "crop_xywh": [
+  640,
+  0,
+  464,
+  652
+ ],
+ "bbox_norm": [
+  0.5000298878124781,
+  -0.06729497818719773,
+  0.8623363981928144,
+  0.905200383928087
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The group pulled data from 14 other studies that looked at the effectiveness of PACE labeling and calorie reduction.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 351,
+ "stride": 1,
+ "start": "00:12:08.733",
+ "end": "00:12:20.433",
+ "duration_s": 11.7
+}

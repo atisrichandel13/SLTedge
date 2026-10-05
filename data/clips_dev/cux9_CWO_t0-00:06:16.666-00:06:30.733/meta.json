@@ -1,0 +1,30 @@
+{
+ "vid": "cux9_CWO_t0-00:06:16.666-00:06:30.733",
+ "yid": "cux9_CWO_t0",
+ "crop_xywh": [
+  760,
+  120,
+  390,
+  600
+ ],
+ "bbox_norm": [
+  0.5939199217935888,
+  0.16638283871699802,
+  0.8984101856627115,
+  1.0518670743719996
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Bureau of Prisons made an announcement today that prisons will be under a heightened state of lockdown as it fights the spread.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 422,
+ "stride": 1,
+ "start": "00:06:16.666",
+ "end": "00:06:30.733",
+ "duration_s": 14.067
+}

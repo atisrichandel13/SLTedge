@@ -1,0 +1,30 @@
+{
+ "vid": "oUaGP-pj30A-00:01:46.666-00:01:58.266",
+ "yid": "oUaGP-pj30A",
+ "crop_xywh": [
+  665,
+  0,
+  492,
+  720
+ ],
+ "bbox_norm": [
+  0.5196739510127476,
+  -0.07449648751152886,
+  0.904159141268049,
+  1.009711024571979
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But emergency management officials are warning people not to wait until the storm hits to get prepared.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 348,
+ "stride": 1,
+ "start": "00:01:46.666",
+ "end": "00:01:58.266",
+ "duration_s": 11.6
+}

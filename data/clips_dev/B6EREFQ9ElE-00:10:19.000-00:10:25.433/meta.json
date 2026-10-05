@@ -1,0 +1,30 @@
+{
+ "vid": "B6EREFQ9ElE-00:10:19.000-00:10:25.433",
+ "yid": "B6EREFQ9ElE",
+ "crop_xywh": [
+  447,
+  0,
+  702,
+  720
+ ],
+ "bbox_norm": [
+  0.34916188737266085,
+  -0.15226515999093923,
+  0.8982985072665745,
+  1.4803939232459433
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Masks are mandatory except during scenes.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 193,
+ "stride": 1,
+ "start": "00:10:19.000",
+ "end": "00:10:25.433",
+ "duration_s": 6.433
+}

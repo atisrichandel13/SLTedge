@@ -1,0 +1,30 @@
+{
+ "vid": "tvo5_D7OUOQ-00:01:09.133-00:01:12.066",
+ "yid": "tvo5_D7OUOQ",
+ "crop_xywh": [
+  126,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.09814363036836896,
+  -0.13443939420912002,
+  0.5502329536846706,
+  1.3677777767181396
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But that deaf school has three ASL specialists.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 71,
+ "stride": 1,
+ "start": "00:01:09.133",
+ "end": "00:01:12.066",
+ "duration_s": 2.933
+}

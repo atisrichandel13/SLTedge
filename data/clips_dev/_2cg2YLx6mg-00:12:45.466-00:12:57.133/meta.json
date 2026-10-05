@@ -1,0 +1,30 @@
+{
+ "vid": "_2cg2YLx6mg-00:12:45.466-00:12:57.133",
+ "yid": "_2cg2YLx6mg",
+ "crop_xywh": [
+  358,
+  0,
+  612,
+  720
+ ],
+ "bbox_norm": [
+  0.27977623627299353,
+  -0.15205650228671927,
+  0.7577463482107435,
+  1.2324329615900755
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "What started out as ASL Music Videos before the inception of DPAN.TV; captions, audio, voiceover, transcripts, visual descriptions always has been important to us.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 280,
+ "stride": 1,
+ "start": "00:12:45.466",
+ "end": "00:12:57.133",
+ "duration_s": 11.667
+}

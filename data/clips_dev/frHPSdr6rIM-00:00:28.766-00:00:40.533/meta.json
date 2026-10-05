@@ -1,0 +1,30 @@
+{
+ "vid": "frHPSdr6rIM-00:00:28.766-00:00:40.533",
+ "yid": "frHPSdr6rIM",
+ "crop_xywh": [
+  615,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.48026754925822657,
+  -0.18542874356691832,
+  0.9435105987459596,
+  1.2057132442095126
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was going smoothly until pro-homeless protesters interrupted by honking their horns while driving around.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 283,
+ "stride": 1,
+ "start": "00:00:28.766",
+ "end": "00:00:40.533",
+ "duration_s": 11.767
+}

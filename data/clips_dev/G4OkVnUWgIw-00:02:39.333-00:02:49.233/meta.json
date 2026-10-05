@@ -1,0 +1,30 @@
+{
+ "vid": "G4OkVnUWgIw-00:02:39.333-00:02:49.233",
+ "yid": "G4OkVnUWgIw",
+ "crop_xywh": [
+  377,
+  0,
+  622,
+  720
+ ],
+ "bbox_norm": [
+  0.294392102625635,
+  -0.12211956918975454,
+  0.7807448933521907,
+  1.2847457844534038
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "When you start the telehealth appointment with your doctor, you should see the doctor clearly on the screen.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 238,
+ "stride": 1,
+ "start": "00:02:39.333",
+ "end": "00:02:49.233",
+ "duration_s": 9.9
+}

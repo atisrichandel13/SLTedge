@@ -1,0 +1,30 @@
+{
+ "vid": "btdPgAr_4ow-00:08:38.266-00:08:50.666",
+ "yid": "btdPgAr_4ow",
+ "crop_xywh": [
+  735,
+  75,
+  478,
+  644
+ ],
+ "bbox_norm": [
+  0.5745252027511596,
+  0.10485675500940393,
+  0.9482673012415568,
+  1.172937562448007
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some seniors in Florida could be feeling a little less lonely thanks to their new mechanical pets.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 372,
+ "stride": 1,
+ "start": "00:08:38.266",
+ "end": "00:08:50.666",
+ "duration_s": 12.4
+}

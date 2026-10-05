@@ -1,0 +1,30 @@
+{
+ "vid": "HtnT8Dk8BkU-00:01:39.266-00:01:40.566",
+ "yid": "HtnT8Dk8BkU",
+ "crop_xywh": [
+  212,
+  0,
+  844,
+  720
+ ],
+ "bbox_norm": [
+  0.16562551259994507,
+  -0.31684987280103893,
+  0.8257818579673767,
+  1.7659669637680053
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Join today!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 39,
+ "stride": 1,
+ "start": "00:01:39.266",
+ "end": "00:01:40.566",
+ "duration_s": 1.3
+}

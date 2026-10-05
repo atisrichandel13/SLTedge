@@ -1,0 +1,30 @@
+{
+ "vid": "tFHyA_o_MNk-00:09:18.300-00:09:54.200",
+ "yid": "tFHyA_o_MNk",
+ "crop_xywh": [
+  642,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.5018968837205754,
+  -0.15563339607968196,
+  0.9260685680448547,
+  1.072891796959771
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There were several pictures and videos on Twitter that showed what it looks like there \u2014 medical staff that were covered from head to toe in protective clothing carrying a patient on a gurney, law enforcement wearing masks blocking a transit station, and an emergency vehicle blocking a highway.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 862,
+ "stride": 1,
+ "start": "00:09:18.300",
+ "end": "00:09:54.200",
+ "duration_s": 35.9
+}

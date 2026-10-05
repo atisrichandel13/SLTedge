@@ -1,0 +1,30 @@
+{
+ "vid": "_GGnds1j594-00:04:42.633-00:04:48.366",
+ "yid": "_GGnds1j594",
+ "crop_xywh": [
+  389,
+  0,
+  530,
+  720
+ ],
+ "bbox_norm": [
+  0.3037025692349388,
+  -0.0990920834818845,
+  0.7181827931177048,
+  1.1302340274386935
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "With my program, it\u2019s usually the first time hearing students meet a deaf person.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 172,
+ "stride": 1,
+ "start": "00:04:42.633",
+ "end": "00:04:48.366",
+ "duration_s": 5.733
+}

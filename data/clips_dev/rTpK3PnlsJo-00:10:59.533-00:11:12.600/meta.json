@@ -1,0 +1,30 @@
+{
+ "vid": "rTpK3PnlsJo-00:10:59.533-00:11:12.600",
+ "yid": "rTpK3PnlsJo",
+ "crop_xywh": [
+  744,
+  81,
+  442,
+  638
+ ],
+ "bbox_norm": [
+  0.5815145111703253,
+  0.11182440665549187,
+  0.9263406347918821,
+  1.0862028152223617
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The other teachers and I figured out how to meet the needs of distance learning and make it effective for all students.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 393,
+ "stride": 1,
+ "start": "00:10:59.533",
+ "end": "00:11:12.600",
+ "duration_s": 13.067
+}

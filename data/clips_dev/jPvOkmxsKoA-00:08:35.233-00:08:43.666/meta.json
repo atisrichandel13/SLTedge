@@ -1,0 +1,30 @@
+{
+ "vid": "jPvOkmxsKoA-00:08:35.233-00:08:43.666",
+ "yid": "jPvOkmxsKoA",
+ "crop_xywh": [
+  684,
+  0,
+  514,
+  720
+ ],
+ "bbox_norm": [
+  0.5346434431138382,
+  -0.11488976627480058,
+  0.9369106049631156,
+  1.1107352997136446
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "These bears are an endangered species so it is illegal for people to kill them.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 253,
+ "stride": 1,
+ "start": "00:08:35.233",
+ "end": "00:08:43.666",
+ "duration_s": 8.433
+}

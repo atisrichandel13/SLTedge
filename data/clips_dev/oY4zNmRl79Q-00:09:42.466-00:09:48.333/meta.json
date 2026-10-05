@@ -1,0 +1,30 @@
+{
+ "vid": "oY4zNmRl79Q-00:09:42.466-00:09:48.333",
+ "yid": "oY4zNmRl79Q",
+ "crop_xywh": [
+  668,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.5219970685464365,
+  -0.09579425387912327,
+  0.9395573068548131,
+  1.088774403623102
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's called the Hi Bed, described as a second generation smart bed.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 177,
+ "stride": 1,
+ "start": "00:09:42.466",
+ "end": "00:09:48.333",
+ "duration_s": 5.867
+}

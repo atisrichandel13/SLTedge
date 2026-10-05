@@ -1,0 +1,30 @@
+{
+ "vid": "8BIEoB8RvEc-00:09:58.500-00:10:01.266",
+ "yid": "8BIEoB8RvEc",
+ "crop_xywh": [
+  689,
+  90,
+  302,
+  450
+ ],
+ "bbox_norm": [
+  0.5383903761704762,
+  0.12510054906209309,
+  0.7748541931311289,
+  0.7495791832605998
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As a new parent on campus, there was space available.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 83,
+ "stride": 1,
+ "start": "00:09:58.500",
+ "end": "00:10:01.266",
+ "duration_s": 2.766
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:08:16.266-00:08:36.600",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  598,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.4668091790205767,
+  -0.18440927057129275,
+  0.9505570817155903,
+  1.266493237063638
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "She said she suspected she had the coronavirus and contacted her primary doctor and asked about getting a test, but was told she did not meet guidelines for the test because she did not have recent travel out of the country.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 489,
+ "stride": 1,
+ "start": "00:08:16.266",
+ "end": "00:08:36.600",
+ "duration_s": 20.334
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "jZP5thQ22S0-00:02:13.700-00:02:31.300",
+ "yid": "jZP5thQ22S0",
+ "crop_xywh": [
+  674,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.5268176697335154,
+  -0.11981339584606499,
+  0.9295536659798532,
+  1.1058483203751985
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Congressional negotiators still haven't finalized a spending bill to help battle the coronavirus, and its passage hinges on Democrats insisting any vaccine against the virus is made affordable for everyone.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 528,
+ "stride": 1,
+ "start": "00:02:13.700",
+ "end": "00:02:31.300",
+ "duration_s": 17.6
+}

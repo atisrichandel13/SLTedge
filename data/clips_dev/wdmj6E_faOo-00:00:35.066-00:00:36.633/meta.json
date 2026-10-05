@@ -1,0 +1,30 @@
+{
+ "vid": "wdmj6E_faOo-00:00:35.066-00:00:36.633",
+ "yid": "wdmj6E_faOo",
+ "crop_xywh": [
+  215,
+  36,
+  424,
+  626
+ ],
+ "bbox_norm": [
+  0.1680762791633606,
+  0.04955837673611111,
+  0.49968119859695437,
+  0.9207274881998698
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was so hard to write.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 47,
+ "stride": 1,
+ "start": "00:00:35.066",
+ "end": "00:00:36.633",
+ "duration_s": 1.567
+}

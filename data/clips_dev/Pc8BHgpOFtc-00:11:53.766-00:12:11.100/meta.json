@@ -1,0 +1,30 @@
+{
+ "vid": "Pc8BHgpOFtc-00:11:53.766-00:12:11.100",
+ "yid": "Pc8BHgpOFtc",
+ "crop_xywh": [
+  619,
+  0,
+  586,
+  720
+ ],
+ "bbox_norm": [
+  0.48338613661508717,
+  -0.18079135666028112,
+  0.9416934634011889,
+  1.2100031126113164
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"The person who started the petition, David Randall, who is a retired teacher for deaf children, posted an update with the headline, \"\"Victory!\"\"\"",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 416,
+ "stride": 1,
+ "start": "00:11:53.766",
+ "end": "00:12:11.100",
+ "duration_s": 17.334
+}

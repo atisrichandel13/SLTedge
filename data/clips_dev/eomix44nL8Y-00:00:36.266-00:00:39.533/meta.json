@@ -1,0 +1,30 @@
+{
+ "vid": "eomix44nL8Y-00:00:36.266-00:00:39.533",
+ "yid": "eomix44nL8Y",
+ "crop_xywh": [
+  390,
+  44,
+  546,
+  676
+ ],
+ "bbox_norm": [
+  0.30484289725621544,
+  0.0616876870614511,
+  0.7311624073982239,
+  1.3957669208667896
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We've been discussing policy of using interpreters.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 79,
+ "stride": 1,
+ "start": "00:00:36.266",
+ "end": "00:00:39.533",
+ "duration_s": 3.267
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "4AsiL4C8l_E-00:05:45.766-00:05:51.500",
+ "yid": "4AsiL4C8l_E",
+ "crop_xywh": [
+  663,
+  0,
+  526,
+  720
+ ],
+ "bbox_norm": [
+  0.5179470218930926,
+  -0.09382662273588635,
+  0.9297360113688878,
+  1.0625876090640114
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A new menu item came in but it is not a sandwich.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 172,
+ "stride": 1,
+ "start": "00:05:45.766",
+ "end": "00:05:51.500",
+ "duration_s": 5.734
+}

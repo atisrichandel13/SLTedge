@@ -1,0 +1,30 @@
+{
+ "vid": "hcfvUwu-Rtg-00:00:32.000-00:00:35.333",
+ "yid": "hcfvUwu-Rtg",
+ "crop_xywh": [
+  397,
+  63,
+  438,
+  656
+ ],
+ "bbox_norm": [
+  0.31034977436065675,
+  0.08765767011692915,
+  0.6522857677368891,
+  1.019359045684653
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I just visited to city hall and touched the bell.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 100,
+ "stride": 1,
+ "start": "00:00:32.000",
+ "end": "00:00:35.333",
+ "duration_s": 3.333
+}

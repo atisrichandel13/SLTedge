@@ -1,0 +1,30 @@
+{
+ "vid": "t386fjyHvkE-00:01:23.600-00:01:35.166",
+ "yid": "t386fjyHvkE",
+ "crop_xywh": [
+  135,
+  0,
+  242,
+  360
+ ],
+ "bbox_norm": [
+  0.2821541806629726,
+  -0.10822550607106043,
+  0.7868925269444784,
+  1.000705477548024
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some are facing permanent closure, such as New York with the 4201 system being completely transferred to the school district, fully changing its system.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  480,
+  360
+ ],
+ "n_frames": 347,
+ "stride": 1,
+ "start": "00:01:23.600",
+ "end": "00:01:35.166",
+ "duration_s": 11.566
+}

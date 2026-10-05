@@ -1,0 +1,30 @@
+{
+ "vid": "nSPiSnDaVfA-00:05:58.000-00:06:34.033",
+ "yid": "nSPiSnDaVfA",
+ "crop_xywh": [
+  481,
+  0,
+  688,
+  720
+ ],
+ "bbox_norm": [
+  0.37584781536858203,
+  -0.24209494345789173,
+  0.9134704007531091,
+  1.399653110985952
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This newspaper reported last week that according to private sources, a branch of the Russian government had a secret program to pay bounties to the Taliban in Afghanistan to kill U.S. service members.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 1080,
+ "stride": 1,
+ "start": "00:05:58.000",
+ "end": "00:06:34.033",
+ "duration_s": 36.033
+}

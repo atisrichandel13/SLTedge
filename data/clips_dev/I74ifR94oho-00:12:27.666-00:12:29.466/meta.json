@@ -1,0 +1,30 @@
+{
+ "vid": "I74ifR94oho-00:12:27.666-00:12:29.466",
+ "yid": "I74ifR94oho",
+ "crop_xywh": [
+  669,
+  204,
+  180,
+  262
+ ],
+ "bbox_norm": [
+  0.5228895505269369,
+  0.283739330150463,
+  0.6639693472120497,
+  0.6483809545697499
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That Deaf Bing!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 54,
+ "stride": 1,
+ "start": "00:12:27.666",
+ "end": "00:12:29.466",
+ "duration_s": 1.8
+}

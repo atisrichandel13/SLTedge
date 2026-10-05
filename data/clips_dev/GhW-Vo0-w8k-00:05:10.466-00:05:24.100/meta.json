@@ -1,0 +1,30 @@
+{
+ "vid": "GhW-Vo0-w8k-00:05:10.466-00:05:24.100",
+ "yid": "GhW-Vo0-w8k",
+ "crop_xywh": [
+  631,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.49270859005475287,
+  -0.06670271791057823,
+  0.8917333492124924,
+  1.1044833049495881
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Most of the church members are seen ducking under their pews, while a woman frantically runs to the left side of the building, apparently to check on one of the victims.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 327,
+ "stride": 1,
+ "start": "00:05:10.466",
+ "end": "00:05:24.100",
+ "duration_s": 13.634
+}

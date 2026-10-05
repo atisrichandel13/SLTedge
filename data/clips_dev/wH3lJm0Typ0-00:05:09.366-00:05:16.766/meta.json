@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:05:09.366-00:05:16.766",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  587,
+  0,
+  556,
+  720
+ ],
+ "bbox_norm": [
+  0.458919844450774,
+  -0.1728100868507668,
+  0.893295714766891,
+  1.1303077845318328
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Unfortunately his celebration ended within a few hours when he was injured from an off campus shooting.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 222,
+ "stride": 1,
+ "start": "00:05:09.366",
+ "end": "00:05:16.766",
+ "duration_s": 7.4
+}

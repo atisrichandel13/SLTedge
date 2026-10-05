@@ -1,0 +1,30 @@
+{
+ "vid": "mq2dPNCiRoI-00:02:39.566-00:02:45.566",
+ "yid": "mq2dPNCiRoI",
+ "crop_xywh": [
+  363,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.28354756147011945,
+  -0.17070062230525498,
+  0.7348061484852056,
+  1.2646157945557421
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I felt that my dad was actively involved throughout my education. My parents were at each of my IEP meetings.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 144,
+ "stride": 1,
+ "start": "00:02:39.566",
+ "end": "00:02:45.566",
+ "duration_s": 6.0
+}

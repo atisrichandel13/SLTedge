@@ -1,0 +1,30 @@
+{
+ "vid": "kNy2E3P7m2s-00:01:21.700-00:01:25.233",
+ "yid": "kNy2E3P7m2s",
+ "crop_xywh": [
+  277,
+  0,
+  334,
+  470
+ ],
+ "bbox_norm": [
+  0.32399000460628957,
+  -0.05871617005457039,
+  0.7160169679813495,
+  1.0662007123404822
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We encourage the committee to come together and advocate for mental health.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 106,
+ "stride": 1,
+ "start": "00:01:21.700",
+ "end": "00:01:25.233",
+ "duration_s": 3.533
+}

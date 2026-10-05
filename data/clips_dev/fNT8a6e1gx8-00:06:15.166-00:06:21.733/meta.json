@@ -1,0 +1,30 @@
+{
+ "vid": "fNT8a6e1gx8-00:06:15.166-00:06:21.733",
+ "yid": "fNT8a6e1gx8",
+ "crop_xywh": [
+  619,
+  8,
+  374,
+  556
+ ],
+ "bbox_norm": [
+  0.48340486943721767,
+  0.011710776223076714,
+  0.7757583326101303,
+  0.7827569564183553
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They won the nomination to go to the NAD Conference in Connecticut happening July 2-7, 2018.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 197,
+ "stride": 1,
+ "start": "00:06:15.166",
+ "end": "00:06:21.733",
+ "duration_s": 6.567
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "P0S4xXiR3Jo-00:01:00.200-00:01:09.100",
+ "yid": "P0S4xXiR3Jo",
+ "crop_xywh": [
+  510,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.3981449427428069,
+  -0.19488881756085263,
+  0.829757484977628,
+  1.099417441241208
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Opening Ceremony, College Bowl, July 4th activity, and the Youth Ambassador Program.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 267,
+ "stride": 1,
+ "start": "00:01:00.200",
+ "end": "00:01:09.100",
+ "duration_s": 8.9
+}

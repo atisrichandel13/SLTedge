@@ -1,0 +1,30 @@
+{
+ "vid": "8BIEoB8RvEc-00:01:42.466-00:01:44.166",
+ "yid": "8BIEoB8RvEc",
+ "crop_xywh": [
+  212,
+  0,
+  912,
+  720
+ ],
+ "bbox_norm": [
+  0.16596608884406813,
+  -0.3297374494148023,
+  0.879118587031509,
+  1.8302129873924384
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Long day?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 51,
+ "stride": 1,
+ "start": "00:01:42.466",
+ "end": "00:01:44.166",
+ "duration_s": 1.7
+}

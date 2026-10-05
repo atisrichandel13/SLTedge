@@ -1,0 +1,30 @@
+{
+ "vid": "045-gE1O_hQ-00:02:04.333-00:02:15.333",
+ "yid": "045-gE1O_hQ",
+ "crop_xywh": [
+  303,
+  0,
+  846,
+  720
+ ],
+ "bbox_norm": [
+  0.2365350550086937,
+  -0.33227655195675876,
+  0.8976890039681202,
+  1.643742231191885
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Voluntary manslaughter is, as the saying goes, a \"\"crime of passion,\"\" done in the heat of the moment.\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 330,
+ "stride": 1,
+ "start": "00:02:04.333",
+ "end": "00:02:15.333",
+ "duration_s": 11.0
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "FCcLqY-Nezo-00:09:42.466-00:09:43.766",
+ "yid": "FCcLqY-Nezo",
+ "crop_xywh": [
+  428,
+  0,
+  522,
+  720
+ ],
+ "bbox_norm": [
+  0.334443195660909,
+  -0.13672907440750687,
+  0.7425785462061564,
+  1.0500381575690376
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Sign1News.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 39,
+ "stride": 1,
+ "start": "00:09:42.466",
+ "end": "00:09:43.766",
+ "duration_s": 1.3
+}

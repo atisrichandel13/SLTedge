@@ -1,0 +1,30 @@
+{
+ "vid": "sld9TKHkOtg-00:02:34.133-00:02:34.600",
+ "yid": "sld9TKHkOtg",
+ "crop_xywh": [
+  516,
+  0,
+  508,
+  720
+ ],
+ "bbox_norm": [
+  0.403073771794637,
+  -0.10476949479844835,
+  0.7999598344167074,
+  1.1508757732532642
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's hard to say.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 12,
+ "stride": 1,
+ "start": "00:02:34.133",
+ "end": "00:02:34.600",
+ "duration_s": 0.467
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "ttn1KkTsZrE-00:00:07.366-00:00:21.633",
+ "yid": "ttn1KkTsZrE",
+ "crop_xywh": [
+  378,
+  0,
+  530,
+  720
+ ],
+ "bbox_norm": [
+  0.29528193991313606,
+  -0.1640283176346548,
+  0.7096113415651543,
+  1.0403137193477738
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Many of you have contacted the NAD Board, Staff, and myself to discuss concerns about deaf programs and schools across the U.S. We agree with these concerns.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 428,
+ "stride": 1,
+ "start": "00:00:07.366",
+ "end": "00:00:21.633",
+ "duration_s": 14.267
+}

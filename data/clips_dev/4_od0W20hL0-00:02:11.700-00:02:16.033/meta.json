@@ -1,0 +1,30 @@
+{
+ "vid": "4_od0W20hL0-00:02:11.700-00:02:16.033",
+ "yid": "4_od0W20hL0",
+ "crop_xywh": [
+  136,
+  0,
+  996,
+  720
+ ],
+ "bbox_norm": [
+  0.10647402295359858,
+  -0.38877480628559125,
+  0.885051958207731,
+  1.8362207065393894
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now that the Board is set, we're going to start the process with the committee.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 130,
+ "stride": 1,
+ "start": "00:02:11.700",
+ "end": "00:02:16.033",
+ "duration_s": 4.333
+}

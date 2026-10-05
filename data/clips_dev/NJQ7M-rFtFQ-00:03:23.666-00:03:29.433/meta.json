@@ -1,0 +1,30 @@
+{
+ "vid": "NJQ7M-rFtFQ-00:03:23.666-00:03:29.433",
+ "yid": "NJQ7M-rFtFQ",
+ "crop_xywh": [
+  192,
+  0,
+  722,
+  720
+ ],
+ "bbox_norm": [
+  0.14984592346918016,
+  -0.18420671331819402,
+  0.7137943022591727,
+  1.4991851685539126
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Especially in the field with a lot of writing and reading, I feel like that\u2019s a perfect job for Deaf people.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 173,
+ "stride": 1,
+ "start": "00:03:23.666",
+ "end": "00:03:29.433",
+ "duration_s": 5.767
+}

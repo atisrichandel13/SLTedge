@@ -1,0 +1,30 @@
+{
+ "vid": "bySOi__Kauk-00:00:29.233-00:00:30.233",
+ "yid": "bySOi__Kauk",
+ "crop_xywh": [
+  419,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.3271650541396368,
+  -0.12050352147016576,
+  0.7444804009937105,
+  1.1330276691093648
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hello everyone.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 30,
+ "stride": 1,
+ "start": "00:00:29.233",
+ "end": "00:00:30.233",
+ "duration_s": 1.0
+}

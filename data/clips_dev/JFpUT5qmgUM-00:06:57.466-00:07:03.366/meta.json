@@ -1,0 +1,30 @@
+{
+ "vid": "JFpUT5qmgUM-00:06:57.466-00:07:03.366",
+ "yid": "JFpUT5qmgUM",
+ "crop_xywh": [
+  180,
+  0,
+  294,
+  360
+ ],
+ "bbox_norm": [
+  0.2811543967988756,
+  -0.18478219980075036,
+  0.7407208416197035,
+  1.178170660542853
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A system to take full advantage of based on hearing ability.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 177,
+ "stride": 1,
+ "start": "00:06:57.466",
+ "end": "00:07:03.366",
+ "duration_s": 5.9
+}

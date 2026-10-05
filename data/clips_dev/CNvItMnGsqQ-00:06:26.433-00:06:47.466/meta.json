@@ -1,0 +1,30 @@
+{
+ "vid": "CNvItMnGsqQ-00:06:26.433-00:06:47.466",
+ "yid": "CNvItMnGsqQ",
+ "crop_xywh": [
+  602,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.47051754623573283,
+  -0.20258369634922546,
+  0.9503612605918423,
+  1.2401341215519142
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A Citigroup official said what this study shows is that the costs of racial inequality is not paid only by underrepresented groups, but us all.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 631,
+ "stride": 1,
+ "start": "00:06:26.433",
+ "end": "00:06:47.466",
+ "duration_s": 21.033
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "Fb-fHA2ykDA-00:00:44.600-00:00:49.633",
+ "yid": "Fb-fHA2ykDA",
+ "crop_xywh": [
+  157,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.16308040242895858,
+  -0.12294862352961423,
+  0.7763145552741156,
+  1.1785915064840193
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you\u2019re uncertain, contact us at NAD. We can help figure out if it's good or bad.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  960,
+  720
+ ],
+ "n_frames": 151,
+ "stride": 1,
+ "start": "00:00:44.600",
+ "end": "00:00:49.633",
+ "duration_s": 5.033
+}

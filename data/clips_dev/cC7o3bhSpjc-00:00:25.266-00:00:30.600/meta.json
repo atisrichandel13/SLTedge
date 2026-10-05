@@ -1,0 +1,30 @@
+{
+ "vid": "cC7o3bhSpjc-00:00:25.266-00:00:30.600",
+ "yid": "cC7o3bhSpjc",
+ "crop_xywh": [
+  425,
+  0,
+  546,
+  720
+ ],
+ "bbox_norm": [
+  0.3324074605498651,
+  -0.15821059170261645,
+  0.7595917446444732,
+  1.1118292970154289
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you still have questions, please contact YAP at NADYAP@NAD.org!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 160,
+ "stride": 1,
+ "start": "00:00:25.266",
+ "end": "00:00:30.600",
+ "duration_s": 5.334
+}

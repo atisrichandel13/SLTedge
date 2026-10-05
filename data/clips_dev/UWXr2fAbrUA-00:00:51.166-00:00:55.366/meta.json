@@ -1,0 +1,30 @@
+{
+ "vid": "UWXr2fAbrUA-00:00:51.166-00:00:55.366",
+ "yid": "UWXr2fAbrUA",
+ "crop_xywh": [
+  373,
+  0,
+  620,
+  720
+ ],
+ "bbox_norm": [
+  0.29175982929411387,
+  -0.1574973878406343,
+  0.7765771888551258,
+  1.235342208418266
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you go to a hospital room, make sure that room is an area with strong WiFi.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 101,
+ "stride": 1,
+ "start": "00:00:51.166",
+ "end": "00:00:55.366",
+ "duration_s": 4.2
+}

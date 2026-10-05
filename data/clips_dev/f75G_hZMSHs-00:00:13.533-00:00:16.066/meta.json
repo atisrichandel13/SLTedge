@@ -1,0 +1,30 @@
+{
+ "vid": "f75G_hZMSHs-00:00:13.533-00:00:16.066",
+ "yid": "f75G_hZMSHs",
+ "crop_xywh": [
+  414,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.3232259770234426,
+  -0.10506823769322148,
+  0.7325879593690237,
+  1.0931883171752648
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Here are the top stories.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 76,
+ "stride": 1,
+ "start": "00:00:13.533",
+ "end": "00:00:16.066",
+ "duration_s": 2.533
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "sfNL5tR2Now-00:04:42.233-00:04:48.166",
+ "yid": "sfNL5tR2Now",
+ "crop_xywh": [
+  174,
+  0,
+  496,
+  702
+ ],
+ "bbox_norm": [
+  0.1355866312980652,
+  -0.14032886175461756,
+  0.5232565230793423,
+  0.9747133706332235
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hi, I'm David O. Reynolds, I'm the Region IV Representative from California.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 178,
+ "stride": 1,
+ "start": "00:04:42.233",
+ "end": "00:04:48.166",
+ "duration_s": 5.933
+}

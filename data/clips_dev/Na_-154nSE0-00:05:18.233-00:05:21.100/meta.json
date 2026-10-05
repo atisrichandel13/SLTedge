@@ -1,0 +1,30 @@
+{
+ "vid": "Na_-154nSE0-00:05:18.233-00:05:21.100",
+ "yid": "Na_-154nSE0",
+ "crop_xywh": [
+  593,
+  0,
+  622,
+  720
+ ],
+ "bbox_norm": [
+  0.4634254208317509,
+  -0.20324371636159136,
+  0.9490767337657787,
+  1.288210444587739
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As for the other design elements, we'll see.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 86,
+ "stride": 1,
+ "start": "00:05:18.233",
+ "end": "00:05:21.100",
+ "duration_s": 2.867
+}

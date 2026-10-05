@@ -1,0 +1,30 @@
+{
+ "vid": "bxITvkIvXL0-00:00:58.433-00:01:07.033",
+ "yid": "bxITvkIvXL0",
+ "crop_xywh": [
+  399,
+  0,
+  586,
+  720
+ ],
+ "bbox_norm": [
+  0.3114714399362222,
+  -0.18500003244122887,
+  0.7706664277957036,
+  1.15914250330368
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "All members planning to attend the NAD conference or not, it is important because it's the same concept as voting. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 258,
+ "stride": 1,
+ "start": "00:00:58.433",
+ "end": "00:01:07.033",
+ "duration_s": 8.6
+}

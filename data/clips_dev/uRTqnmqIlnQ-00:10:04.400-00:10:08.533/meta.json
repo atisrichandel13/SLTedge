@@ -1,0 +1,30 @@
+{
+ "vid": "uRTqnmqIlnQ-00:10:04.400-00:10:08.533",
+ "yid": "uRTqnmqIlnQ",
+ "crop_xywh": [
+  571,
+  0,
+  622,
+  720
+ ],
+ "bbox_norm": [
+  0.44628323237101236,
+  -0.19730446921454536,
+  0.9322929318745932,
+  1.2733586244229917
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There was also flash flooding.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 100,
+ "stride": 1,
+ "start": "00:10:04.400",
+ "end": "00:10:08.533",
+ "duration_s": 4.133
+}

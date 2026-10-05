@@ -1,0 +1,30 @@
+{
+ "vid": "KgndpECeNKs-00:00:28.666-00:00:35.233",
+ "yid": "KgndpECeNKs",
+ "crop_xywh": [
+  129,
+  0,
+  272,
+  320
+ ],
+ "bbox_norm": [
+  0.22681929091332664,
+  -0.05921398639678955,
+  0.7077167412484755,
+  1.3279183959960936
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "For more information about the conference, explore hartford.nad.org.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  568,
+  320
+ ],
+ "n_frames": 198,
+ "stride": 1,
+ "start": "00:00:28.666",
+ "end": "00:00:35.233",
+ "duration_s": 6.567
+}

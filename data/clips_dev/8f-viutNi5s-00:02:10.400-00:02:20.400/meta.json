@@ -1,0 +1,30 @@
+{
+ "vid": "8f-viutNi5s-00:02:10.400-00:02:20.400",
+ "yid": "8f-viutNi5s",
+ "crop_xywh": [
+  573,
+  0,
+  642,
+  720
+ ],
+ "bbox_norm": [
+  0.44804398114563987,
+  -0.19905471477496964,
+  0.9494364707196346,
+  1.3118786865679075
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The sons said they had to cope with coaches or other people making fun of their deaf mother on the hockey rink.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 300,
+ "stride": 1,
+ "start": "00:02:10.400",
+ "end": "00:02:20.400",
+ "duration_s": 10.0
+}

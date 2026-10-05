@@ -1,0 +1,30 @@
+{
+ "vid": "iNlQhjadEdk-00:01:22.466-00:01:25.366",
+ "yid": "iNlQhjadEdk",
+ "crop_xywh": [
+  389,
+  0,
+  402,
+  574
+ ],
+ "bbox_norm": [
+  0.3039815734933924,
+  -0.001118528891983346,
+  0.6180398561336377,
+  0.7980815675523546
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thomas grew up.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 88,
+ "stride": 1,
+ "start": "00:01:22.466",
+ "end": "00:01:25.366",
+ "duration_s": 2.9
+}

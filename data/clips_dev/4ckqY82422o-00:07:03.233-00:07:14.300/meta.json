@@ -1,0 +1,30 @@
+{
+ "vid": "4ckqY82422o-00:07:03.233-00:07:14.300",
+ "yid": "4ckqY82422o",
+ "crop_xywh": [
+  747,
+  91,
+  402,
+  628
+ ],
+ "bbox_norm": [
+  0.5838007476199325,
+  0.12687589815138717,
+  0.898717990324865,
+  1.0862873792252927
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They discovered the undulating motion snakes exhibit while gliding stabilizes them which looks similar to an airplane taking off.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 333,
+ "stride": 1,
+ "start": "00:07:03.233",
+ "end": "00:07:14.300",
+ "duration_s": 11.067
+}

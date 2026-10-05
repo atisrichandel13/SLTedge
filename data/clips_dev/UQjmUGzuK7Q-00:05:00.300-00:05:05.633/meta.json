@@ -1,0 +1,30 @@
+{
+ "vid": "UQjmUGzuK7Q-00:05:00.300-00:05:05.633",
+ "yid": "UQjmUGzuK7Q",
+ "crop_xywh": [
+  665,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.5194446831941605,
+  -0.12357989549636841,
+  0.9296408047278722,
+  1.1406824202449233
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But house Democrats and other critics say that's not enough.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 160,
+ "stride": 1,
+ "start": "00:05:00.300",
+ "end": "00:05:05.633",
+ "duration_s": 5.333
+}

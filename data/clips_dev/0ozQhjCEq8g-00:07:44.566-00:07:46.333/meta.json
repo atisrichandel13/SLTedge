@@ -1,0 +1,30 @@
+{
+ "vid": "0ozQhjCEq8g-00:07:44.566-00:07:46.333",
+ "yid": "0ozQhjCEq8g",
+ "crop_xywh": [
+  386,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.3013040846044367,
+  -0.14844119010950982,
+  0.7150453986543597,
+  1.0445303130230117
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Those are your top stories.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 53,
+ "stride": 1,
+ "start": "00:07:44.566",
+ "end": "00:07:46.333",
+ "duration_s": 1.767
+}

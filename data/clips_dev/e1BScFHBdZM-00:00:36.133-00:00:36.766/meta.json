@@ -1,0 +1,30 @@
+{
+ "vid": "e1BScFHBdZM-00:00:36.133-00:00:36.766",
+ "yid": "e1BScFHBdZM",
+ "crop_xywh": [
+  335,
+  0,
+  398,
+  600
+ ],
+ "bbox_norm": [
+  0.2615287184715271,
+  -0.07000556521945529,
+  0.5728861212730407,
+  0.8353192355897692
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Congratulations.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 19,
+ "stride": 1,
+ "start": "00:00:36.133",
+ "end": "00:00:36.766",
+ "duration_s": 0.633
+}

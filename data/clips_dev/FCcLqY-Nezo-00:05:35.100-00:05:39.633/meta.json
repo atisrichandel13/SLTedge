@@ -1,0 +1,30 @@
+{
+ "vid": "FCcLqY-Nezo-00:05:35.100-00:05:39.633",
+ "yid": "FCcLqY-Nezo",
+ "crop_xywh": [
+  654,
+  0,
+  522,
+  720
+ ],
+ "bbox_norm": [
+  0.5105494703565325,
+  -0.09480407200162373,
+  0.9190191518692744,
+  1.0870459306807745
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The DNC immediately contacted the FBI to investigate  who may have been responsible for the attempt.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 136,
+ "stride": 1,
+ "start": "00:05:35.100",
+ "end": "00:05:39.633",
+ "duration_s": 4.533
+}

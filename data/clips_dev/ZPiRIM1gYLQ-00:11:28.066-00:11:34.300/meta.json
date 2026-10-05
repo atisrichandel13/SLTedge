@@ -1,0 +1,30 @@
+{
+ "vid": "ZPiRIM1gYLQ-00:11:28.066-00:11:34.300",
+ "yid": "ZPiRIM1gYLQ",
+ "crop_xywh": [
+  664,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.5187189358536916,
+  -0.18834007883014928,
+  0.96103300997006,
+  1.1386194630193311
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The girl's name is Chloe Wiegand.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 150,
+ "stride": 1,
+ "start": "00:11:28.066",
+ "end": "00:11:34.300",
+ "duration_s": 6.234
+}

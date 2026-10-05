@@ -1,0 +1,30 @@
+{
+ "vid": "3h7veASAUaw-00:11:20.066-00:11:20.433",
+ "yid": "3h7veASAUaw",
+ "crop_xywh": [
+  675,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.5270543734232584,
+  -0.08089574884485316,
+  0.9481671969095865,
+  1.1132479455735949
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your language.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 11,
+ "stride": 1,
+ "start": "00:11:20.066",
+ "end": "00:11:20.433",
+ "duration_s": 0.367
+}

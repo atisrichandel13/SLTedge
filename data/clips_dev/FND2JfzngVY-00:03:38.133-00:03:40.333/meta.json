@@ -1,0 +1,30 @@
+{
+ "vid": "FND2JfzngVY-00:03:38.133-00:03:40.333",
+ "yid": "FND2JfzngVY",
+ "crop_xywh": [
+  307,
+  0,
+  684,
+  720
+ ],
+ "bbox_norm": [
+  0.2394950730460031,
+  -0.041278061034187435,
+  0.7739256313868931,
+  1.3678194167122009
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There are so many different contexts for the word.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 66,
+ "stride": 1,
+ "start": "00:03:38.133",
+ "end": "00:03:40.333",
+ "duration_s": 2.2
+}

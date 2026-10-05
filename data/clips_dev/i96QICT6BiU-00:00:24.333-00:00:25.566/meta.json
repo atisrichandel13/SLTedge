@@ -1,0 +1,30 @@
+{
+ "vid": "i96QICT6BiU-00:00:24.333-00:00:25.566",
+ "yid": "i96QICT6BiU",
+ "crop_xywh": [
+  354,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.2763397415479024,
+  -0.012238290574815538,
+  0.694652259349823,
+  1.1754952430725099
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hello everyone.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 37,
+ "stride": 1,
+ "start": "00:00:24.333",
+ "end": "00:00:25.566",
+ "duration_s": 1.233
+}

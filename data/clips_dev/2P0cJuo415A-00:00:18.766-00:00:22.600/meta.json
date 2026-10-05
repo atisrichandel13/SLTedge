@@ -1,0 +1,30 @@
+{
+ "vid": "2P0cJuo415A-00:00:18.766-00:00:22.600",
+ "yid": "2P0cJuo415A",
+ "crop_xywh": [
+  355,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.2777275035255834,
+  -0.14776583145468788,
+  0.7090617748728969,
+  1.0841695688853719
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It is important for them to have complete access, so they can continue to learn.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 92,
+ "stride": 1,
+ "start": "00:00:18.766",
+ "end": "00:00:22.600",
+ "duration_s": 3.834
+}

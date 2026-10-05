@@ -1,0 +1,30 @@
+{
+ "vid": "0fsBkodUEk0-00:10:52.333-00:10:57.366",
+ "yid": "0fsBkodUEk0",
+ "crop_xywh": [
+  700,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.5468585459391275,
+  -0.11523697916666667,
+  0.959770004272461,
+  1.1155873430040149
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was said that these circumstances could have stopped the team, but it did not.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 121,
+ "stride": 1,
+ "start": "00:10:52.333",
+ "end": "00:10:57.366",
+ "duration_s": 5.033
+}

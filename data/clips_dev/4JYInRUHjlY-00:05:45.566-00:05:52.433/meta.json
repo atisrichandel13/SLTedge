@@ -1,0 +1,30 @@
+{
+ "vid": "4JYInRUHjlY-00:05:45.566-00:05:52.433",
+ "yid": "4JYInRUHjlY",
+ "crop_xywh": [
+  678,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.5293306691305978,
+  -0.09546881445290971,
+  0.9577786771077957,
+  1.0878544439083686
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Markle is the first woman to hold the title of Duchess of Sussex.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 206,
+ "stride": 1,
+ "start": "00:05:45.566",
+ "end": "00:05:52.433",
+ "duration_s": 6.867
+}

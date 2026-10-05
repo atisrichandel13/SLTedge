@@ -1,0 +1,30 @@
+{
+ "vid": "W5m8NDOi6V8-00:06:34.633-00:06:37.300",
+ "yid": "W5m8NDOi6V8",
+ "crop_xywh": [
+  611,
+  0,
+  664,
+  720
+ ],
+ "bbox_norm": [
+  0.4774733702341715,
+  -0.1289306640625,
+  0.9960763590676444,
+  1.3236672386290536
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But, with that said, I don\u2019t want you to worry.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 65,
+ "stride": 1,
+ "start": "00:06:34.633",
+ "end": "00:06:37.300",
+ "duration_s": 2.667
+}

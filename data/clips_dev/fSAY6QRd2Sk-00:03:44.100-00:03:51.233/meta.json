@@ -1,0 +1,30 @@
+{
+ "vid": "fSAY6QRd2Sk-00:03:44.100-00:03:51.233",
+ "yid": "fSAY6QRd2Sk",
+ "crop_xywh": [
+  660,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.515752629716267,
+  -0.06987876859232847,
+  0.9441195347512416,
+  1.150475513349824
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Several Democrats have now vowed to investigate Trump for possible obstruction of justice.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 214,
+ "stride": 1,
+ "start": "00:03:44.100",
+ "end": "00:03:51.233",
+ "duration_s": 7.133
+}

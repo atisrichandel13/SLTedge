@@ -1,0 +1,30 @@
+{
+ "vid": "9pk8Y3m6qfs-00:07:40.400-00:07:49.633",
+ "yid": "9pk8Y3m6qfs",
+ "crop_xywh": [
+  585,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.456671336718968,
+  -0.20940971954789742,
+  0.931034373101734,
+  1.2268988335574116
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So a mockery of interpreters is in bad taste, and especially now that it's the 30 years anniversary of the ADA.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 277,
+ "stride": 1,
+ "start": "00:07:40.400",
+ "end": "00:07:49.633",
+ "duration_s": 9.233
+}

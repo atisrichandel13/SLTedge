@@ -1,0 +1,30 @@
+{
+ "vid": "YcdSExm1cXU-00:02:39.766-00:02:42.000",
+ "yid": "YcdSExm1cXU",
+ "crop_xywh": [
+  367,
+  0,
+  616,
+  720
+ ],
+ "bbox_norm": [
+  0.28656863485063827,
+  -0.13279754598304708,
+  0.7682790688105993,
+  1.236509948811203
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "See you at the conference this July!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 67,
+ "stride": 1,
+ "start": "00:02:39.766",
+ "end": "00:02:42.000",
+ "duration_s": 2.234
+}

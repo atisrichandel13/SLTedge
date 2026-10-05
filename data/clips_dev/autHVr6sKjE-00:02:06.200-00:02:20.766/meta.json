@@ -1,0 +1,30 @@
+{
+ "vid": "autHVr6sKjE-00:02:06.200-00:02:20.766",
+ "yid": "autHVr6sKjE",
+ "crop_xywh": [
+  672,
+  0,
+  502,
+  720
+ ],
+ "bbox_norm": [
+  0.5246161395853216,
+  -0.11971053338612771,
+  0.9179388934915717,
+  1.0473160207472265
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Each day this week, the House plans to vote on bills to fund parts of the government affected by the weeks-long shut down.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 437,
+ "stride": 1,
+ "start": "00:02:06.200",
+ "end": "00:02:20.766",
+ "duration_s": 14.566
+}

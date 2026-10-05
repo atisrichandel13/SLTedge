@@ -1,0 +1,30 @@
+{
+ "vid": "qNT7y4vlqtc-00:00:12.166-00:00:36.233",
+ "yid": "qNT7y4vlqtc",
+ "crop_xywh": [
+  423,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.33045144859401654,
+  -0.1426441343655836,
+  0.797748518976672,
+  1.1273910425022948
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The NAD Youth Programs includes five different programs: Jr. NAD and Youth Leadership Camp that are geared towards high school youth; College Bowl and Youth Ambassador Program, which is for deaf youth ages between 18 - 30; and the National Deaf Youth Day that is celebrated across the U.S. every year.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 722,
+ "stride": 1,
+ "start": "00:00:12.166",
+ "end": "00:00:36.233",
+ "duration_s": 24.067
+}

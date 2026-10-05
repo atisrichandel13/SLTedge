@@ -1,0 +1,30 @@
+{
+ "vid": "D9HR4q0vbwE-00:14:47.400-00:14:48.200",
+ "yid": "D9HR4q0vbwE",
+ "crop_xywh": [
+  31,
+  0,
+  616,
+  720
+ ],
+ "bbox_norm": [
+  0.024019713401794433,
+  -0.13863783094618057,
+  0.5057935857772827,
+  1.320728056165907
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I told my mom.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 20,
+ "stride": 1,
+ "start": "00:14:47.400",
+ "end": "00:14:48.200",
+ "duration_s": 0.8
+}

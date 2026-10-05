@@ -1,0 +1,30 @@
+{
+ "vid": "bCEriaJUzm4-00:11:00.000-00:11:02.066",
+ "yid": "bCEriaJUzm4",
+ "crop_xywh": [
+  670,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.5231679720756335,
+  -0.14416165800176114,
+  0.951544037843362,
+  1.1840396212716389
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Thank you for watching \"\"The Daily Moth.\"\"\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 62,
+ "stride": 1,
+ "start": "00:11:00.000",
+ "end": "00:11:02.066",
+ "duration_s": 2.066
+}

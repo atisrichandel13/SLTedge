@@ -1,0 +1,30 @@
+{
+ "vid": "0AQHLPt8NDk-00:17:09.100-00:17:10.500",
+ "yid": "0AQHLPt8NDk",
+ "crop_xywh": [
+  244,
+  0,
+  754,
+  720
+ ],
+ "bbox_norm": [
+  0.19060206060056334,
+  -0.23672983302991576,
+  0.7800503960362187,
+  1.6493632626631622
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That is all for this week!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 42,
+ "stride": 1,
+ "start": "00:17:09.100",
+ "end": "00:17:10.500",
+ "duration_s": 1.4
+}

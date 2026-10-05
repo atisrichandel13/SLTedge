@@ -1,0 +1,30 @@
+{
+ "vid": "y0_Id80EZ2Y-00:01:35.200-00:01:38.133",
+ "yid": "y0_Id80EZ2Y",
+ "crop_xywh": [
+  234,
+  0,
+  724,
+  720
+ ],
+ "bbox_norm": [
+  0.18312861301280836,
+  -0.25956803859506616,
+  0.7491342067718506,
+  1.4506893358112853
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That's how I use the cards, in my experience.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 88,
+ "stride": 1,
+ "start": "00:01:35.200",
+ "end": "00:01:38.133",
+ "duration_s": 2.933
+}

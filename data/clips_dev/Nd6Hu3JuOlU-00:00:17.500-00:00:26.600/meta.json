@@ -1,0 +1,30 @@
+{
+ "vid": "Nd6Hu3JuOlU-00:00:17.500-00:00:26.600",
+ "yid": "Nd6Hu3JuOlU",
+ "crop_xywh": [
+  105,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.1453719463412609,
+  -0.044337841637608184,
+  0.9318721925369418,
+  1.2310528979959714
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A mail-in ballot is the same as an absentee ballot.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  720,
+  720
+ ],
+ "n_frames": 219,
+ "stride": 1,
+ "start": "00:00:17.500",
+ "end": "00:00:26.600",
+ "duration_s": 9.1
+}

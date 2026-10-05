@@ -1,0 +1,30 @@
+{
+ "vid": "um5PB4Bkq6c-00:00:25.000-00:00:31.166",
+ "yid": "um5PB4Bkq6c",
+ "crop_xywh": [
+  224,
+  0,
+  796,
+  720
+ ],
+ "bbox_norm": [
+  0.17482062515459562,
+  -0.2435266818219458,
+  0.7977170705795288,
+  1.6961587571261223
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You can communicate through various methods: texting, Skype, Videophone, and others like Marco Polo.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 185,
+ "stride": 1,
+ "start": "00:00:25.000",
+ "end": "00:00:31.166",
+ "duration_s": 6.166
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "LdVNY2ze-Yw-00:04:16.000-00:04:17.200",
+ "yid": "LdVNY2ze-Yw",
+ "crop_xywh": [
+  249,
+  0,
+  722,
+  720
+ ],
+ "bbox_norm": [
+  0.19481327732404072,
+  -0.23127317781801576,
+  0.7584348460038502,
+  1.4076251577447962
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "15,000 kids will fall ill.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 36,
+ "stride": 1,
+ "start": "00:04:16.000",
+ "end": "00:04:17.200",
+ "duration_s": 1.2
+}

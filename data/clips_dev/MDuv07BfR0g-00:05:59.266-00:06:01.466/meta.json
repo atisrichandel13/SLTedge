@@ -1,0 +1,30 @@
+{
+ "vid": "MDuv07BfR0g-00:05:59.266-00:06:01.466",
+ "yid": "MDuv07BfR0g",
+ "crop_xywh": [
+  614,
+  0,
+  632,
+  720
+ ],
+ "bbox_norm": [
+  0.47942772819882346,
+  -0.18245415662331554,
+  0.9732688812982467,
+  1.3207989243603258
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That was 10 years ago.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 66,
+ "stride": 1,
+ "start": "00:05:59.266",
+ "end": "00:06:01.466",
+ "duration_s": 2.2
+}

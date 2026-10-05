@@ -1,0 +1,30 @@
+{
+ "vid": "q2Ejjm3NsU0-00:01:05.766-00:01:08.100",
+ "yid": "q2Ejjm3NsU0",
+ "crop_xywh": [
+  218,
+  0,
+  830,
+  720
+ ],
+ "bbox_norm": [
+  0.17032269069126674,
+  -0.3144635382152739,
+  0.8185773577008929,
+  1.7076095861101908
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Am I really lazy?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 70,
+ "stride": 1,
+ "start": "00:01:05.766",
+ "end": "00:01:08.100",
+ "duration_s": 2.334
+}

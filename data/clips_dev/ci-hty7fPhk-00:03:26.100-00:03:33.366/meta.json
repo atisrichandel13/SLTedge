@@ -1,0 +1,30 @@
+{
+ "vid": "ci-hty7fPhk-00:03:26.100-00:03:33.366",
+ "yid": "ci-hty7fPhk",
+ "crop_xywh": [
+  510,
+  0,
+  612,
+  720
+ ],
+ "bbox_norm": [
+  0.39815886743140944,
+  -0.1976002746158176,
+  0.8772472807855317,
+  1.187444330867292
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Speaking of Facebook. if you have any information about promotions, happenings, or events in your area, please send them to us and we will post them on our Facebook page.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 218,
+ "stride": 1,
+ "start": "00:03:26.100",
+ "end": "00:03:33.366",
+ "duration_s": 7.266
+}

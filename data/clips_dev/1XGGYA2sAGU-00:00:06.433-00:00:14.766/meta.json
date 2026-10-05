@@ -1,0 +1,30 @@
+{
+ "vid": "1XGGYA2sAGU-00:00:06.433-00:00:14.766",
+ "yid": "1XGGYA2sAGU",
+ "crop_xywh": [
+  368,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.28720715713500977,
+  -0.16862387438173648,
+  0.7552088966369629,
+  1.0859206793749774
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Earlier this month we had a NAD conference in Hartford, with over 2,100 people in attendance!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 250,
+ "stride": 1,
+ "start": "00:00:06.433",
+ "end": "00:00:14.766",
+ "duration_s": 8.333
+}

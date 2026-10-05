@@ -1,0 +1,30 @@
+{
+ "vid": "IEf4PpwwHFY-00:18:21.166-00:18:26.200",
+ "yid": "IEf4PpwwHFY",
+ "crop_xywh": [
+  69,
+  0,
+  1132,
+  720
+ ],
+ "bbox_norm": [
+  0.05419991556803385,
+  -0.4106684603514495,
+  0.9388887176513673,
+  2.2463912810219657
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Uncle?",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 121,
+ "stride": 1,
+ "start": "00:18:21.166",
+ "end": "00:18:26.200",
+ "duration_s": 5.034
+}

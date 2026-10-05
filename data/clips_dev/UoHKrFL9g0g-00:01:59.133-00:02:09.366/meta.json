@@ -1,0 +1,30 @@
+{
+ "vid": "UoHKrFL9g0g-00:01:59.133-00:02:09.366",
+ "yid": "UoHKrFL9g0g",
+ "crop_xywh": [
+  374,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.29248058879924665,
+  -0.0858189691660168,
+  0.7728343510046238,
+  1.216463444499286
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The NAD Board is thrilled to announce that we have selected Orlando, Florida to host the NAD Conference in 2022!",
+ "split": "valid",
+ "fps": 59.94,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 614,
+ "stride": 1,
+ "start": "00:01:59.133",
+ "end": "00:02:09.366",
+ "duration_s": 10.233
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "wVf4dXXMOIg-00:06:04.300-00:06:15.733",
+ "yid": "wVf4dXXMOIg",
+ "crop_xywh": [
+  684,
+  0,
+  510,
+  704
+ ],
+ "bbox_norm": [
+  0.5340018857504435,
+  -0.1027727554001862,
+  0.9330827095658307,
+  0.9797605290313083
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Meanwhile, on Tuesday the National Security Council's top Ukraine expert will go before House impeachment investigators.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 343,
+ "stride": 1,
+ "start": "00:06:04.300",
+ "end": "00:06:15.733",
+ "duration_s": 11.433
+}

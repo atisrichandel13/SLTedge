@@ -1,0 +1,30 @@
+{
+ "vid": "4zsgy6DmJfA-00:00:40.033-00:00:51.333",
+ "yid": "4zsgy6DmJfA",
+ "crop_xywh": [
+  686,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.5362626720877254,
+  -0.09430373114957788,
+  0.9533204574210971,
+  1.1507829936241534
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A suspect in the murder of legendary civil rights activist Sadie Roberts Joseph is now behind bars.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 339,
+ "stride": 1,
+ "start": "00:00:40.033",
+ "end": "00:00:51.333",
+ "duration_s": 11.3
+}

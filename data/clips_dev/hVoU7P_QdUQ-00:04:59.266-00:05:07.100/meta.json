@@ -1,0 +1,30 @@
+{
+ "vid": "hVoU7P_QdUQ-00:04:59.266-00:05:07.100",
+ "yid": "hVoU7P_QdUQ",
+ "crop_xywh": [
+  394,
+  33,
+  214,
+  326
+ ],
+ "bbox_norm": [
+  0.6156059826413791,
+  0.09048086007436117,
+  0.9508221035202344,
+  1.0964703891012404
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Spain has overtaken China in the number of COVID-19 deaths.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 235,
+ "stride": 1,
+ "start": "00:04:59.266",
+ "end": "00:05:07.100",
+ "duration_s": 7.834
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "HtnT8Dk8BkU-00:00:44.500-00:00:57.466",
+ "yid": "HtnT8Dk8BkU",
+ "crop_xywh": [
+  243,
+  0,
+  822,
+  720
+ ],
+ "bbox_norm": [
+  0.18946426342695186,
+  -0.26998229936996415,
+  0.8329770870697804,
+  1.6910947248127388
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So, we are granting complementary membership fees for all Jr. NAD chapters\u2026 and for those who want to establish a new Jr. NAD chapter!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 389,
+ "stride": 1,
+ "start": "00:00:44.500",
+ "end": "00:00:57.466",
+ "duration_s": 12.966
+}

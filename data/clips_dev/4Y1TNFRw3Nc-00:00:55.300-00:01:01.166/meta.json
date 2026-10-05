@@ -1,0 +1,30 @@
+{
+ "vid": "4Y1TNFRw3Nc-00:00:55.300-00:01:01.166",
+ "yid": "4Y1TNFRw3Nc",
+ "crop_xywh": [
+  312,
+  0,
+  644,
+  720
+ ],
+ "bbox_norm": [
+  0.24405561288197836,
+  -0.005905398616084347,
+  0.7467533032099406,
+  1.4412219129962687
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "My favorite memory is the retreat and meeting other competitors.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 176,
+ "stride": 1,
+ "start": "00:00:55.300",
+ "end": "00:01:01.166",
+ "duration_s": 5.866
+}

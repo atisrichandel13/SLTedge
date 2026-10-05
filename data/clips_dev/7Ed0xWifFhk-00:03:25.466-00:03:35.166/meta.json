@@ -1,0 +1,30 @@
+{
+ "vid": "7Ed0xWifFhk-00:03:25.466-00:03:35.166",
+ "yid": "7Ed0xWifFhk",
+ "crop_xywh": [
+  678,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.5295967791713564,
+  -0.1428378369175108,
+  0.9282155742753023,
+  1.052047481524892
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "According to police his real identity is 21-year-old Darin Schilmiller from Indiana.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 291,
+ "stride": 1,
+ "start": "00:03:25.466",
+ "end": "00:03:35.166",
+ "duration_s": 9.7
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "rSiciLyYOyI-00:09:55.133-00:09:59.033",
+ "yid": "rSiciLyYOyI",
+ "crop_xywh": [
+  190,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.14880953838950708,
+  -0.11849762319821364,
+  0.6007770387749923,
+  1.1318086248624628
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Their love, support and prayers for us has been incredible.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 94,
+ "stride": 1,
+ "start": "00:09:55.133",
+ "end": "00:09:59.033",
+ "duration_s": 3.9
+}

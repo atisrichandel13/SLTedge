@@ -1,0 +1,30 @@
+{
+ "vid": "h9cr6AMsZ1A-00:00:24.500-00:00:37.166",
+ "yid": "h9cr6AMsZ1A",
+ "crop_xywh": [
+  378,
+  0,
+  494,
+  670
+ ],
+ "bbox_norm": [
+  0.2956826408188064,
+  -0.07054622039134367,
+  0.6815348732523072,
+  0.9310951500801354
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "And people would become carpenters, laborers, mechanics, plowers and farmers.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 380,
+ "stride": 1,
+ "start": "00:00:24.500",
+ "end": "00:00:37.166",
+ "duration_s": 12.666
+}

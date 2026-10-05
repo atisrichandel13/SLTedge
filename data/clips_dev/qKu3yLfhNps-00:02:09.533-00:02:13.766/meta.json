@@ -1,0 +1,30 @@
+{
+ "vid": "qKu3yLfhNps-00:02:09.533-00:02:13.766",
+ "yid": "qKu3yLfhNps",
+ "crop_xywh": [
+  248,
+  0,
+  404,
+  470
+ ],
+ "bbox_norm": [
+  0.2908928420517471,
+  -0.17357204081383937,
+  0.763337184278584,
+  1.2552438389455043
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Title II is important for deaf individuals because of the \u201ceffective communication.\"\"\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 127,
+ "stride": 1,
+ "start": "00:02:09.533",
+ "end": "00:02:13.766",
+ "duration_s": 4.233
+}

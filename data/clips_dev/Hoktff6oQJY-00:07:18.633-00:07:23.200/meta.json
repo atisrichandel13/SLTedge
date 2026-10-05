@@ -1,0 +1,30 @@
+{
+ "vid": "Hoktff6oQJY-00:07:18.633-00:07:23.200",
+ "yid": "Hoktff6oQJY",
+ "crop_xywh": [
+  769,
+  78,
+  394,
+  642
+ ],
+ "bbox_norm": [
+  0.6010784668581827,
+  0.10778581377059694,
+  0.9093742549419404,
+  1.0177754916842021
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That state is the first place in America to have a major outbreak.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 137,
+ "stride": 1,
+ "start": "00:07:18.633",
+ "end": "00:07:23.200",
+ "duration_s": 4.567
+}

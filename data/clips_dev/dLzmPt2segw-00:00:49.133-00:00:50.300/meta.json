@@ -1,0 +1,30 @@
+{
+ "vid": "dLzmPt2segw-00:00:49.133-00:00:50.300",
+ "yid": "dLzmPt2segw",
+ "crop_xywh": [
+  275,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.21514935947599864,
+  -0.12299901165028729,
+  0.6983927204495385,
+  1.0896897896257027
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Make sure you let them know.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 35,
+ "stride": 1,
+ "start": "00:00:49.133",
+ "end": "00:00:50.300",
+ "duration_s": 1.167
+}

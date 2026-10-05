@@ -1,0 +1,30 @@
+{
+ "vid": "CnBZlJ39ESQ-00:01:33.000-00:01:35.300",
+ "yid": "CnBZlJ39ESQ",
+ "crop_xywh": [
+  363,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.2832602924770779,
+  -0.12993006294156298,
+  0.757955879635281,
+  1.2378587357791855
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You have the right to decide your care.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 56,
+ "stride": 1,
+ "start": "00:01:33.000",
+ "end": "00:01:35.300",
+ "duration_s": 2.3
+}

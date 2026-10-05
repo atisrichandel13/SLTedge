@@ -1,0 +1,30 @@
+{
+ "vid": "I74ifR94oho-00:08:39.466-00:08:45.233",
+ "yid": "I74ifR94oho",
+ "crop_xywh": [
+  635,
+  0,
+  594,
+  720
+ ],
+ "bbox_norm": [
+  0.49641471771966844,
+  -0.2100099860297309,
+  0.9612689090910412,
+  1.185448045680132
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The insults were based on their status as a gay couple.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 173,
+ "stride": 1,
+ "start": "00:08:39.466",
+ "end": "00:08:45.233",
+ "duration_s": 5.767
+}

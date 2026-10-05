@@ -1,0 +1,30 @@
+{
+ "vid": "FCcLqY-Nezo-00:02:37.166-00:02:47.200",
+ "yid": "FCcLqY-Nezo",
+ "crop_xywh": [
+  656,
+  0,
+  522,
+  720
+ ],
+ "bbox_norm": [
+  0.512116942379644,
+  -0.10876374815041613,
+  0.9201130356293559,
+  1.0892410747340469
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Under Michigan law, if no will exists, an unmarried person's assets should be split evenly among the children.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 301,
+ "stride": 1,
+ "start": "00:02:37.166",
+ "end": "00:02:47.200",
+ "duration_s": 10.034
+}

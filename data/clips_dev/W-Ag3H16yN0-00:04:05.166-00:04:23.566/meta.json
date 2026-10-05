@@ -1,0 +1,30 @@
+{
+ "vid": "W-Ag3H16yN0-00:04:05.166-00:04:23.566",
+ "yid": "W-Ag3H16yN0",
+ "crop_xywh": [
+  634,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.4949234836452358,
+  -0.1325357908720488,
+  0.9120619470292741,
+  1.1082250754197598
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "All of that social media attention means free advertising for Dollar General, it boosts the company's image with younger shoppers and helps lift the dollar store empire.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 552,
+ "stride": 1,
+ "start": "00:04:05.166",
+ "end": "00:04:23.566",
+ "duration_s": 18.4
+}

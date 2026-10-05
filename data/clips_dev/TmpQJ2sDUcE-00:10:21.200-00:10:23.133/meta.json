@@ -1,0 +1,30 @@
+{
+ "vid": "TmpQJ2sDUcE-00:10:21.200-00:10:23.133",
+ "yid": "TmpQJ2sDUcE",
+ "crop_xywh": [
+  524,
+  0,
+  546,
+  720
+ ],
+ "bbox_norm": [
+  0.409463988410102,
+  -0.06898111414026331,
+  0.8363932927449544,
+  1.1107725967595605
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is the first one not the second.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 58,
+ "stride": 1,
+ "start": "00:10:21.200",
+ "end": "00:10:23.133",
+ "duration_s": 1.933
+}

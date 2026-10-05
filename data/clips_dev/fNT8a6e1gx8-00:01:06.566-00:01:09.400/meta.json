@@ -1,0 +1,30 @@
+{
+ "vid": "fNT8a6e1gx8-00:01:06.566-00:01:09.400",
+ "yid": "fNT8a6e1gx8",
+ "crop_xywh": [
+  436,
+  79,
+  414,
+  628
+ ],
+ "bbox_norm": [
+  0.3409770056605339,
+  0.1092266215218438,
+  0.664699737727642,
+  0.9823893586794535
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "District 1 is called Lephix.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 85,
+ "stride": 1,
+ "start": "00:01:06.566",
+ "end": "00:01:09.400",
+ "duration_s": 2.834
+}

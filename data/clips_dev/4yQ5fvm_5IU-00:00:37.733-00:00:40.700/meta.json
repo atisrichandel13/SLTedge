@@ -1,0 +1,30 @@
+{
+ "vid": "4yQ5fvm_5IU-00:00:37.733-00:00:40.700",
+ "yid": "4yQ5fvm_5IU",
+ "crop_xywh": [
+  84,
+  0,
+  332,
+  480
+ ],
+ "bbox_norm": [
+  0.09868763475222046,
+  -0.10185912361851444,
+  0.48745209482725543,
+  1.0140196751665187
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now, NAD is excited to expand.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 89,
+ "stride": 1,
+ "start": "00:00:37.733",
+ "end": "00:00:40.700",
+ "duration_s": 2.967
+}

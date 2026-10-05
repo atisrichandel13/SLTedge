@@ -1,0 +1,30 @@
+{
+ "vid": "TMsVV9Y4wRM-00:09:51.700-00:10:01.700",
+ "yid": "TMsVV9Y4wRM",
+ "crop_xywh": [
+  596,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.46596120250681056,
+  -0.1422942255943127,
+  0.9450734503282223,
+  1.1883264157145257
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Kohen says he wanted Kocon to know their friendship is more important than the outcome of the game.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 300,
+ "stride": 1,
+ "start": "00:09:51.700",
+ "end": "00:10:01.700",
+ "duration_s": 10.0
+}

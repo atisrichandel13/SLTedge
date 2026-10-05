@@ -1,0 +1,30 @@
+{
+ "vid": "ftjAL7MnqsE-00:00:05.300-00:00:11.333",
+ "yid": "ftjAL7MnqsE",
+ "crop_xywh": [
+  640,
+  0,
+  640,
+  720
+ ],
+ "bbox_norm": [
+  0.5002482405653945,
+  -0.19560036530365815,
+  1.0092417433455183,
+  1.30302661422256
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Today is the 19th anniversary of the September 11 terrorist attacks.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 181,
+ "stride": 1,
+ "start": "00:00:05.300",
+ "end": "00:00:11.333",
+ "duration_s": 6.033
+}

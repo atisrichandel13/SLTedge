@@ -1,0 +1,30 @@
+{
+ "vid": "9oAD9JRPPIQ-00:08:22.066-00:08:33.733",
+ "yid": "9oAD9JRPPIQ",
+ "crop_xywh": [
+  625,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.48859873272123794,
+  -0.15984057209479113,
+  0.9207356534685407,
+  1.2063060287193017
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The pair shared the video online and were surprised to find out it went viral, racking up over 150,000 views in just a few days.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 350,
+ "stride": 1,
+ "start": "00:08:22.066",
+ "end": "00:08:33.733",
+ "duration_s": 11.667
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "dIrGN8SfUmc-00:00:47.733-00:00:59.666",
+ "yid": "dIrGN8SfUmc",
+ "crop_xywh": [
+  116,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.1612126627927104,
+  -0.13873027897385695,
+  0.9636891642575541,
+  1.2081930005361163
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "After the call is done and we go back, we have to clean all the firetrucks and disinfect it with a special kind of spray that kills all the germs and virus particles.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  720,
+  720
+ ],
+ "n_frames": 287,
+ "stride": 1,
+ "start": "00:00:47.733",
+ "end": "00:00:59.666",
+ "duration_s": 11.933
+}

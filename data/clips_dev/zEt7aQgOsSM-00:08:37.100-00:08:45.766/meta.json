@@ -1,0 +1,30 @@
+{
+ "vid": "zEt7aQgOsSM-00:08:37.100-00:08:45.766",
+ "yid": "zEt7aQgOsSM",
+ "crop_xywh": [
+  825,
+  164,
+  276,
+  414
+ ],
+ "bbox_norm": [
+  0.6446885931248567,
+  0.2271973382859003,
+  0.8600740184589307,
+  0.8032247465483996
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We will post it with sign language interpretation on all of our social media platforms immediately after the live coverage ends.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 260,
+ "stride": 1,
+ "start": "00:08:37.100",
+ "end": "00:08:45.766",
+ "duration_s": 8.666
+}

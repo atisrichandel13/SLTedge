@@ -1,0 +1,30 @@
+{
+ "vid": "XPndROf0Ltg-00:14:16.666-00:14:32.533",
+ "yid": "XPndROf0Ltg",
+ "crop_xywh": [
+  704,
+  0,
+  514,
+  720
+ ],
+ "bbox_norm": [
+  0.5500758294935351,
+  -0.1142138957747936,
+  0.9515605922385212,
+  1.0507862268129526
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I looked at excerpts of the book about Joss, and it presents Joss as an oral person who reads lips, and there is one part where someone uses sign language with her.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 381,
+ "stride": 1,
+ "start": "00:14:16.666",
+ "end": "00:14:32.533",
+ "duration_s": 15.867
+}

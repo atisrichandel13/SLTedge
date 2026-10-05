@@ -1,0 +1,30 @@
+{
+ "vid": "QVgXmaFw0Yc-00:03:17.233-00:03:40.300",
+ "yid": "QVgXmaFw0Yc",
+ "crop_xywh": [
+  652,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.509575112432027,
+  -0.0704411155727111,
+  0.9125859203384363,
+  1.1127297785388226
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you want more information on adopting Beans or any pet from Maricopa County Animal Care and Control, the website is pets.maricopa.gov or you can send an email to JulieSadek@mail.maricopa.gov.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 693,
+ "stride": 1,
+ "start": "00:03:17.233",
+ "end": "00:03:40.300",
+ "duration_s": 23.067
+}

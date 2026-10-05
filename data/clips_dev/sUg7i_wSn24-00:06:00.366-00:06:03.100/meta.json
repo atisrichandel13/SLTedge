@@ -1,0 +1,30 @@
+{
+ "vid": "sUg7i_wSn24-00:06:00.366-00:06:03.100",
+ "yid": "sUg7i_wSn24",
+ "crop_xywh": [
+  102,
+  0,
+  620,
+  720
+ ],
+ "bbox_norm": [
+  0.07993502055897432,
+  -0.14273283050470623,
+  0.5642997807147456,
+  1.1495661583860977
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I need people like YOU to be like me!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 82,
+ "stride": 1,
+ "start": "00:06:00.366",
+ "end": "00:06:03.100",
+ "duration_s": 2.734
+}

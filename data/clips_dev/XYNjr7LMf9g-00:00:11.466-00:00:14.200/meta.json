@@ -1,0 +1,30 @@
+{
+ "vid": "XYNjr7LMf9g-00:00:11.466-00:00:14.200",
+ "yid": "XYNjr7LMf9g",
+ "crop_xywh": [
+  357,
+  0,
+  558,
+  720
+ ],
+ "bbox_norm": [
+  0.27857821034450153,
+  -0.1573579002829159,
+  0.7150492742949841,
+  1.0458988260339808
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "On behalf of the NAD, we recognize this unfortunate tragedy.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 82,
+ "stride": 1,
+ "start": "00:00:11.466",
+ "end": "00:00:14.200",
+ "duration_s": 2.734
+}

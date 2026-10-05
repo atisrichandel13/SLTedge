@@ -1,0 +1,30 @@
+{
+ "vid": "E1OPBAVeRgg-00:00:27.000-00:00:32.266",
+ "yid": "E1OPBAVeRgg",
+ "crop_xywh": [
+  261,
+  0,
+  758,
+  720
+ ],
+ "bbox_norm": [
+  0.20362149675687155,
+  -0.3376647733979755,
+  0.7966848194599152,
+  1.4098294977236676
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This yearly event has been happening since 1958.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 158,
+ "stride": 1,
+ "start": "00:00:27.000",
+ "end": "00:00:32.266",
+ "duration_s": 5.266
+}

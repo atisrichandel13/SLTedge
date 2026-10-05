@@ -1,0 +1,30 @@
+{
+ "vid": "Nw07MwFkT2k-00:01:14.166-00:01:19.333",
+ "yid": "Nw07MwFkT2k",
+ "crop_xywh": [
+  412,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.32175742467244467,
+  -0.1752691554316768,
+  0.7411816190083821,
+  1.0080394657276295
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They may not engage with the deaf community or have access to things like sign language or Deaf education.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 124,
+ "stride": 1,
+ "start": "00:01:14.166",
+ "end": "00:01:19.333",
+ "duration_s": 5.167
+}

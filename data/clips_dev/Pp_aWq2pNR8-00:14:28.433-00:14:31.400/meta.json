@@ -1,0 +1,30 @@
+{
+ "vid": "Pp_aWq2pNR8-00:14:28.433-00:14:31.400",
+ "yid": "Pp_aWq2pNR8",
+ "crop_xywh": [
+  319,
+  0,
+  708,
+  720
+ ],
+ "bbox_norm": [
+  0.2492275947994656,
+  -0.2540254470448435,
+  0.80293837123447,
+  1.4548019825970686
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "To focus, I communicate with the assistant coach.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 72,
+ "stride": 1,
+ "start": "00:14:28.433",
+ "end": "00:14:31.400",
+ "duration_s": 2.967
+}

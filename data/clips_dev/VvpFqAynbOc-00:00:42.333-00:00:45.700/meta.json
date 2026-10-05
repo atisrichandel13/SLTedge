@@ -1,0 +1,30 @@
+{
+ "vid": "VvpFqAynbOc-00:00:42.333-00:00:45.700",
+ "yid": "VvpFqAynbOc",
+ "crop_xywh": [
+  549,
+  0,
+  498,
+  720
+ ],
+ "bbox_norm": [
+  0.42900836110115054,
+  -0.06310252030690511,
+  0.8182627880573273,
+  1.0382009100914
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I\u2019m from here, San Francisco, born and raised.",
+ "split": "valid",
+ "fps": 59.94,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 202,
+ "stride": 1,
+ "start": "00:00:42.333",
+ "end": "00:00:45.700",
+ "duration_s": 3.367
+}

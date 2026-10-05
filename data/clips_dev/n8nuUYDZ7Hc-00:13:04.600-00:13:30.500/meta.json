@@ -1,0 +1,30 @@
+{
+ "vid": "n8nuUYDZ7Hc-00:13:04.600-00:13:30.500",
+ "yid": "n8nuUYDZ7Hc",
+ "crop_xywh": [
+  341,
+  0,
+  652,
+  720
+ ],
+ "bbox_norm": [
+  0.2664886162831233,
+  -0.1974097001926172,
+  0.7757558999917447,
+  1.3137527932695061
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The RIT Human Resource Department has archived years of reports and/or complaints by its employees, but their information naturally falls in the hands of RIT attorneys whose strategy and intent is to defend and protect the University at all cost.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 777,
+ "stride": 1,
+ "start": "00:13:04.600",
+ "end": "00:13:30.500",
+ "duration_s": 25.9
+}

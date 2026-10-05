@@ -1,0 +1,30 @@
+{
+ "vid": "iNlQhjadEdk-00:02:04.666-00:02:09.600",
+ "yid": "iNlQhjadEdk",
+ "crop_xywh": [
+  378,
+  9,
+  376,
+  538
+ ],
+ "bbox_norm": [
+  0.2956221479839749,
+  0.012773783177505304,
+  0.5900151406394111,
+  0.7617306424364632
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thomas was intelligent and a very active individual.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 148,
+ "stride": 1,
+ "start": "00:02:04.666",
+ "end": "00:02:09.600",
+ "duration_s": 4.934
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "8lvz5LG50wc-00:13:20.500-00:13:36.166",
+ "yid": "8lvz5LG50wc",
+ "crop_xywh": [
+  591,
+  0,
+  562,
+  720
+ ],
+ "bbox_norm": [
+  0.46186465255001136,
+  -0.13707451457865755,
+  0.9018411975157888,
+  1.1752563932950502
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There is a video of two homes crumbling below landslides, with pieces of it rolling down a steep, exposed hillside by the Tennessee River.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 376,
+ "stride": 1,
+ "start": "00:13:20.500",
+ "end": "00:13:36.166",
+ "duration_s": 15.666
+}

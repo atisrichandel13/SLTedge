@@ -1,0 +1,30 @@
+{
+ "vid": "IEf4PpwwHFY-00:13:10.233-00:13:14.533",
+ "yid": "IEf4PpwwHFY",
+ "crop_xywh": [
+  599,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.46778493305993457,
+  -0.19236115013270572,
+  0.9356365052480545,
+  1.2175749191741674
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He said deaf actors can't keep on being ignored.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 104,
+ "stride": 1,
+ "start": "00:13:10.233",
+ "end": "00:13:14.533",
+ "duration_s": 4.3
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "4i0Y_mFJejI-00:00:20.200-00:00:22.700",
+ "yid": "4i0Y_mFJejI",
+ "crop_xywh": [
+  396,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.30925300319989524,
+  -0.1883789168463813,
+  0.7779176652431488,
+  1.3344544737427324
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We know very little about the virus.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 75,
+ "stride": 1,
+ "start": "00:00:20.200",
+ "end": "00:00:22.700",
+ "duration_s": 2.5
+}

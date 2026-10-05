@@ -1,0 +1,30 @@
+{
+ "vid": "o6F2iWeH9Rc-00:03:16.100-00:03:25.433",
+ "yid": "o6F2iWeH9Rc",
+ "crop_xywh": [
+  584,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.4562688665036802,
+  -0.1551693025439855,
+  0.9251285658942329,
+  1.249742541686007
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"I want to support this competition so I'll send a \"\"The Daily Moth\"\" mug to the winner.\"",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 224,
+ "stride": 1,
+ "start": "00:03:16.100",
+ "end": "00:03:25.433",
+ "duration_s": 9.333
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "GmpPSx_UekY-00:05:10.700-00:05:32.300",
+ "yid": "GmpPSx_UekY",
+ "crop_xywh": [
+  684,
+  0,
+  508,
+  706
+ ],
+ "bbox_norm": [
+  0.5346782568505261,
+  -0.09364004022870433,
+  0.9310041789860688,
+  0.980319165731688
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Authorities in Arizona say 66-year-old Daniel Shannon buried his 97-year-old mother in his yard in an effort to continue to collect her benefit checks.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 648,
+ "stride": 1,
+ "start": "00:05:10.700",
+ "end": "00:05:32.300",
+ "duration_s": 21.6
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "NJ-7WUtB5Xk-00:05:11.333-00:05:40.766",
+ "yid": "NJ-7WUtB5Xk",
+ "crop_xywh": [
+  618,
+  0,
+  572,
+  720
+ ],
+ "bbox_norm": [
+  0.4830636264013013,
+  -0.18250972646316266,
+  0.9294116411970256,
+  1.141999228173516
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "On February 21, the American School for the Deaf published on their school website a summary of results from an investigation of sexual and physical abuse against students at the school in West Hartford, Connecticut and at Camp Isola Bella in Salisbury.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 707,
+ "stride": 1,
+ "start": "00:05:11.333",
+ "end": "00:05:40.766",
+ "duration_s": 29.433
+}

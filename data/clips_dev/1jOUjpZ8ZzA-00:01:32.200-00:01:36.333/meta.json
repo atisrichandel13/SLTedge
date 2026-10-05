@@ -1,0 +1,30 @@
+{
+ "vid": "1jOUjpZ8ZzA-00:01:32.200-00:01:36.333",
+ "yid": "1jOUjpZ8ZzA",
+ "crop_xywh": [
+  407,
+  0,
+  602,
+  720
+ ],
+ "bbox_norm": [
+  0.31809012095133465,
+  -0.11792367666739004,
+  0.788033541361491,
+  1.2586850263807507
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I know American Sign Language, so for our meeting today can we sign?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 124,
+ "stride": 1,
+ "start": "00:01:32.200",
+ "end": "00:01:36.333",
+ "duration_s": 4.133
+}

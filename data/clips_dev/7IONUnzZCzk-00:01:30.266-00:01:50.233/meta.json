@@ -1,0 +1,30 @@
+{
+ "vid": "7IONUnzZCzk-00:01:30.266-00:01:50.233",
+ "yid": "7IONUnzZCzk",
+ "crop_xywh": [
+  612,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.47805565012825857,
+  -0.13470635531861105,
+  0.9070225728882684,
+  1.1528059567934201
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Southern California surgeon Dr. Grant Robicheaux and his girlfriend Cerissa Riley were arrested earlier this week in Newport Beach.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 599,
+ "stride": 1,
+ "start": "00:01:30.266",
+ "end": "00:01:50.233",
+ "duration_s": 19.967
+}

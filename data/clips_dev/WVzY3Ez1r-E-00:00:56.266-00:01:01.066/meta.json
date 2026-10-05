@@ -1,0 +1,30 @@
+{
+ "vid": "WVzY3Ez1r-E-00:00:56.266-00:01:01.066",
+ "yid": "WVzY3Ez1r-E",
+ "crop_xywh": [
+  291,
+  0,
+  690,
+  720
+ ],
+ "bbox_norm": [
+  0.22728809268995265,
+  -0.1992410564788,
+  0.7666448593139649,
+  1.3727742634818318
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is why you should consider donating to the NAD Youth Programs.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 144,
+ "stride": 1,
+ "start": "00:00:56.266",
+ "end": "00:01:01.066",
+ "duration_s": 4.8
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "iD6DQiD2J7I-00:06:37.700-00:06:44.733",
+ "yid": "iD6DQiD2J7I",
+ "crop_xywh": [
+  193,
+  75,
+  166,
+  242
+ ],
+ "bbox_norm": [
+  0.2956730890270657,
+  0.1564650291620299,
+  0.5481669140628472,
+  0.6622273356415505
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "By learning their differences and ours, we are represent our state by what we do.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 211,
+ "stride": 1,
+ "start": "00:06:37.700",
+ "end": "00:06:44.733",
+ "duration_s": 7.033
+}

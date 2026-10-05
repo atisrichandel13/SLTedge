@@ -1,0 +1,30 @@
+{
+ "vid": "Hoktff6oQJY-00:06:43.100-00:06:57.600",
+ "yid": "Hoktff6oQJY",
+ "crop_xywh": [
+  804,
+  66,
+  392,
+  654
+ ],
+ "bbox_norm": [
+  0.628304473010973,
+  0.0918850159431935,
+  0.9345749561814056,
+  1.0194758759909055
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "On Tuesday during the White House's coronavirus task force news briefing, President Trump said his administration is doing everything to address the challenge.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 435,
+ "stride": 1,
+ "start": "00:06:43.100",
+ "end": "00:06:57.600",
+ "duration_s": 14.5
+}

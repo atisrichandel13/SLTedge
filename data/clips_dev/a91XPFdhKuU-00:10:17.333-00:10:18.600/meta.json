@@ -1,0 +1,30 @@
+{
+ "vid": "a91XPFdhKuU-00:10:17.333-00:10:18.600",
+ "yid": "a91XPFdhKuU",
+ "crop_xywh": [
+  635,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.4959365725517273,
+  -0.10478426615397135,
+  0.8988337397575379,
+  1.0976753588075991
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your language in ASL.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 39,
+ "stride": 1,
+ "start": "00:10:17.333",
+ "end": "00:10:18.600",
+ "duration_s": 1.267
+}

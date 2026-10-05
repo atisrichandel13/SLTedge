@@ -1,0 +1,30 @@
+{
+ "vid": "0AQHLPt8NDk-00:05:49.333-00:05:56.166",
+ "yid": "0AQHLPt8NDk",
+ "crop_xywh": [
+  312,
+  0,
+  652,
+  720
+ ],
+ "bbox_norm": [
+  0.24408699784960064,
+  -0.18717892695566543,
+  0.7535405473103599,
+  1.2008821040023991
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "For interpreting, we could start employment opportunities and growth for federal jobs.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 205,
+ "stride": 1,
+ "start": "00:05:49.333",
+ "end": "00:05:56.166",
+ "duration_s": 6.833
+}

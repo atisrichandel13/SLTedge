@@ -1,0 +1,30 @@
+{
+ "vid": "e5I1o1sYuzE-00:01:07.400-00:01:10.500",
+ "yid": "e5I1o1sYuzE",
+ "crop_xywh": [
+  663,
+  0,
+  488,
+  720
+ ],
+ "bbox_norm": [
+  0.5181436488502904,
+  -0.10053991723014133,
+  0.8998044716684442,
+  1.0836376428139372
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They were both listening in on the call.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 93,
+ "stride": 1,
+ "start": "00:01:07.400",
+ "end": "00:01:10.500",
+ "duration_s": 3.1
+}

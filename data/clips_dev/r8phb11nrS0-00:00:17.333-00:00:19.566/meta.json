@@ -1,0 +1,30 @@
+{
+ "vid": "r8phb11nrS0-00:00:17.333-00:00:19.566",
+ "yid": "r8phb11nrS0",
+ "crop_xywh": [
+  271,
+  0,
+  756,
+  720
+ ],
+ "bbox_norm": [
+  0.21191458191190446,
+  -0.23038751662723603,
+  0.8033618535314287,
+  1.5538524181123765
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Actually, they decided to assign it to me.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 67,
+ "stride": 1,
+ "start": "00:00:17.333",
+ "end": "00:00:19.566",
+ "duration_s": 2.233
+}

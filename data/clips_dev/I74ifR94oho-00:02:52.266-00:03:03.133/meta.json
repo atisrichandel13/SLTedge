@@ -1,0 +1,30 @@
+{
+ "vid": "I74ifR94oho-00:02:52.266-00:03:03.133",
+ "yid": "I74ifR94oho",
+ "crop_xywh": [
+  630,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.49237997315146703,
+  -0.19073151824985424,
+  0.9604816171858046,
+  1.2152696183501135
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They said they are paid less than members of the men's team although they do the same work and are the defending champions.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 326,
+ "stride": 1,
+ "start": "00:02:52.266",
+ "end": "00:03:03.133",
+ "duration_s": 10.867
+}

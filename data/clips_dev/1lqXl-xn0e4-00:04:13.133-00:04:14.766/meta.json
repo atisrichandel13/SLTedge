@@ -1,0 +1,30 @@
+{
+ "vid": "1lqXl-xn0e4-00:04:13.133-00:04:14.766",
+ "yid": "1lqXl-xn0e4",
+ "crop_xywh": [
+  156,
+  26,
+  228,
+  358
+ ],
+ "bbox_norm": [
+  0.2444295048713684,
+  0.05331843376159668,
+  0.601983654499054,
+  0.800950452486674
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We're waiting for you!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  480
+ ],
+ "n_frames": 49,
+ "stride": 1,
+ "start": "00:04:13.133",
+ "end": "00:04:14.766",
+ "duration_s": 1.633
+}

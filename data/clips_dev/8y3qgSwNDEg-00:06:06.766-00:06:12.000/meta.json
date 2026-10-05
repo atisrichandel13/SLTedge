@@ -1,0 +1,30 @@
+{
+ "vid": "8y3qgSwNDEg-00:06:06.766-00:06:12.000",
+ "yid": "8y3qgSwNDEg",
+ "crop_xywh": [
+  437,
+  0,
+  582,
+  720
+ ],
+ "bbox_norm": [
+  0.34118873824675877,
+  -0.19010523425208198,
+  0.7959260081251462,
+  1.1306578199068704
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm thrilled to work at NAD to continue to build bridges and look forward to your bridges too!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 157,
+ "stride": 1,
+ "start": "00:06:06.766",
+ "end": "00:06:12.000",
+ "duration_s": 5.234
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "8BIEoB8RvEc-00:11:53.133-00:11:55.400",
+ "yid": "8BIEoB8RvEc",
+ "crop_xywh": [
+  536,
+  161,
+  264,
+  424
+ ],
+ "bbox_norm": [
+  0.41870859691074913,
+  0.22326112575631923,
+  0.6259155046372187,
+  0.8144984734752191
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So, that's nice!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 68,
+ "stride": 1,
+ "start": "00:11:53.133",
+ "end": "00:11:55.400",
+ "duration_s": 2.267
+}

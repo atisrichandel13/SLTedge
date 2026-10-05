@@ -1,0 +1,30 @@
+{
+ "vid": "4SVP0ShrpN0-00:01:33.300-00:01:42.700",
+ "yid": "4SVP0ShrpN0",
+ "crop_xywh": [
+  599,
+  0,
+  650,
+  720
+ ],
+ "bbox_norm": [
+  0.46763100986592254,
+  -0.21473944641073622,
+  0.9766411284954227,
+  1.3456479588757093
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The doctor also said Trump has developed antibodies in his blood.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 282,
+ "stride": 1,
+ "start": "00:01:33.300",
+ "end": "00:01:42.700",
+ "duration_s": 9.4
+}

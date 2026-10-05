@@ -1,0 +1,30 @@
+{
+ "vid": "e9o20Wskpvw-00:08:08.700-00:08:18.666",
+ "yid": "e9o20Wskpvw",
+ "crop_xywh": [
+  674,
+  0,
+  506,
+  720
+ ],
+ "bbox_norm": [
+  0.5263289495309194,
+  -0.109853895328663,
+  0.9220139133930207,
+  1.1323438169338085
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "His owners say Lieutenant Dan was born without legs but he still lives life to his fullest.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 299,
+ "stride": 1,
+ "start": "00:08:08.700",
+ "end": "00:08:18.666",
+ "duration_s": 9.966
+}

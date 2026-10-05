@@ -1,0 +1,30 @@
+{
+ "vid": "a91XPFdhKuU-00:00:29.666-00:00:42.300",
+ "yid": "a91XPFdhKuU",
+ "crop_xywh": [
+  640,
+  0,
+  518,
+  720
+ ],
+ "bbox_norm": [
+  0.49991266560136227,
+  -0.10452241246928017,
+  0.904497131966708,
+  1.0953985230964527
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Previous president impeachment hearings involved Andrew Johnson, Richard Nixon and Bill Clinton.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 380,
+ "stride": 1,
+ "start": "00:00:29.666",
+ "end": "00:00:42.300",
+ "duration_s": 12.634
+}

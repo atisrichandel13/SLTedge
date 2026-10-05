@@ -1,0 +1,30 @@
+{
+ "vid": "T3EE8msFORw-00:13:36.533-00:13:51.533",
+ "yid": "T3EE8msFORw",
+ "crop_xywh": [
+  648,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.5060359079543858,
+  -0.16876947701975273,
+  0.9249507551323878,
+  1.0793970570595721
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Cauthen explained that she flew to Toronto to visit a friend in Hamilton on October 10 but was frantic and upset in the airplane.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 360,
+ "stride": 1,
+ "start": "00:13:36.533",
+ "end": "00:13:51.533",
+ "duration_s": 15.0
+}

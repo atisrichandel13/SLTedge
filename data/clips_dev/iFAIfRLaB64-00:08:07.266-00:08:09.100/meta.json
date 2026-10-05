@@ -1,0 +1,30 @@
+{
+ "vid": "iFAIfRLaB64-00:08:07.266-00:08:09.100",
+ "yid": "iFAIfRLaB64",
+ "crop_xywh": [
+  320,
+  0,
+  494,
+  720
+ ],
+ "bbox_norm": [
+  0.2499164406458537,
+  -0.055156834920247394,
+  0.6355628410975138,
+  1.0237467165346499
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Canada is leading 2 to 1.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 45,
+ "stride": 1,
+ "start": "00:08:07.266",
+ "end": "00:08:09.100",
+ "duration_s": 1.834
+}

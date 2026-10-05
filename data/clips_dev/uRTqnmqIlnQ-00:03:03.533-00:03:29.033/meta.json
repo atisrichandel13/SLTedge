@@ -1,0 +1,30 @@
+{
+ "vid": "uRTqnmqIlnQ-00:03:03.533-00:03:29.033",
+ "yid": "uRTqnmqIlnQ",
+ "crop_xywh": [
+  571,
+  0,
+  616,
+  720
+ ],
+ "bbox_norm": [
+  0.4462674022043947,
+  -0.20693681390125396,
+  0.927386075306714,
+  1.2413472535989973
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A top Sweden official, Dr. Anders Tegnell, who is leading the policies, told CNBC that there is a plateau in new cases and that the country is nearing herd immunity.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 612,
+ "stride": 1,
+ "start": "00:03:03.533",
+ "end": "00:03:29.033",
+ "duration_s": 25.5
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "9oAD9JRPPIQ-00:04:45.266-00:04:56.100",
+ "yid": "9oAD9JRPPIQ",
+ "crop_xywh": [
+  624,
+  0,
+  572,
+  720
+ ],
+ "bbox_norm": [
+  0.4876161454903959,
+  -0.1659631504354252,
+  0.9346089348648533,
+  1.2179281142691838
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Dr. Strange, Spiderman, Thor, Hulk, Ant-Man and Black Panther.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 325,
+ "stride": 1,
+ "start": "00:04:45.266",
+ "end": "00:04:56.100",
+ "duration_s": 10.834
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "YVYics9X960-00:00:51.366-00:00:56.666",
+ "yid": "YVYics9X960",
+ "crop_xywh": [
+  288,
+  0,
+  616,
+  720
+ ],
+ "bbox_norm": [
+  0.2246768033632668,
+  -0.20766822366019447,
+  0.7071317349710772,
+  1.2042548509481559
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I admit, I never expected to be an interpreter growing up, much less realize interpreting could be a paying job!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 159,
+ "stride": 1,
+ "start": "00:00:51.366",
+ "end": "00:00:56.666",
+ "duration_s": 5.3
+}

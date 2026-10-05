@@ -1,0 +1,30 @@
+{
+ "vid": "WMoeSSvCyTU-00:10:43.333-00:10:55.066",
+ "yid": "WMoeSSvCyTU",
+ "crop_xywh": [
+  644,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.5028695585582178,
+  -0.2051701677548245,
+  0.9717241636464293,
+  1.2627130162672382
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The pastor said last weekend he told many other church members who were ill that he feels as if the whole church has the coronavirus.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 352,
+ "stride": 1,
+ "start": "00:10:43.333",
+ "end": "00:10:55.066",
+ "duration_s": 11.733
+}

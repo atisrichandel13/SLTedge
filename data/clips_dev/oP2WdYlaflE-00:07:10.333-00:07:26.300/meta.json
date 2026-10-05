@@ -1,0 +1,30 @@
+{
+ "vid": "oP2WdYlaflE-00:07:10.333-00:07:26.300",
+ "yid": "oP2WdYlaflE",
+ "crop_xywh": [
+  711,
+  64,
+  490,
+  656
+ ],
+ "bbox_norm": [
+  0.5554542880309256,
+  0.08830966837922036,
+  0.9389835555929886,
+  1.1946393609744066
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The move is allegedly to conserve resources but on Monday House Speaker Nancy Pelosi opposed.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 480,
+ "stride": 1,
+ "start": "00:07:10.333",
+ "end": "00:07:26.300",
+ "duration_s": 15.967
+}

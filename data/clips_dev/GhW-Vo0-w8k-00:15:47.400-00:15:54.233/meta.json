@@ -1,0 +1,30 @@
+{
+ "vid": "GhW-Vo0-w8k-00:15:47.400-00:15:54.233",
+ "yid": "GhW-Vo0-w8k",
+ "crop_xywh": [
+  653,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.5102249309270069,
+  -0.1385021145496304,
+  0.9363174216915863,
+  1.1239652169138763
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Lewis was very active in the deaf community and never stopped her love for interpreting.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 164,
+ "stride": 1,
+ "start": "00:15:47.400",
+ "end": "00:15:54.233",
+ "duration_s": 6.833
+}

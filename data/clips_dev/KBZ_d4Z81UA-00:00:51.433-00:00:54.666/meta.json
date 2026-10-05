@@ -1,0 +1,30 @@
+{
+ "vid": "KBZ_d4Z81UA-00:00:51.433-00:00:54.666",
+ "yid": "KBZ_d4Z81UA",
+ "crop_xywh": [
+  190,
+  0,
+  390,
+  480
+ ],
+ "bbox_norm": [
+  0.22355175255346416,
+  -0.09253585478838752,
+  0.681760571471106,
+  1.291837339775235
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hi, I'm here about to eat some delicious turkey.",
+ "split": "valid",
+ "fps": 25.0,
+ "source_wh": [
+  852,
+  480
+ ],
+ "n_frames": 81,
+ "stride": 1,
+ "start": "00:00:51.433",
+ "end": "00:00:54.666",
+ "duration_s": 3.233
+}

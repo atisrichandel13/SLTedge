@@ -1,0 +1,30 @@
+{
+ "vid": "uZwKNtHx9FE-00:18:57.200-00:19:11.700",
+ "yid": "uZwKNtHx9FE",
+ "crop_xywh": [
+  654,
+  0,
+  590,
+  720
+ ],
+ "bbox_norm": [
+  0.5108096213567824,
+  -0.18282480249959956,
+  0.9729856118701753,
+  1.2338957709862441
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He was arrested because he reached out to his sister Cassandra again and allegedly made threats, which was a violation of his probation.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 348,
+ "stride": 1,
+ "start": "00:18:57.200",
+ "end": "00:19:11.700",
+ "duration_s": 14.5
+}

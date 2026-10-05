@@ -1,0 +1,30 @@
+{
+ "vid": "WMoeSSvCyTU-00:05:20.733-00:05:23.166",
+ "yid": "WMoeSSvCyTU",
+ "crop_xywh": [
+  643,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.5019907273186578,
+  -0.1997261800883729,
+  0.9694459851582845,
+  1.262105522626712
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Its dipping while the others are rising.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 73,
+ "stride": 1,
+ "start": "00:05:20.733",
+ "end": "00:05:23.166",
+ "duration_s": 2.433
+}

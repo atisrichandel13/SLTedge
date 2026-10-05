@@ -1,0 +1,30 @@
+{
+ "vid": "2P0cJuo415A-00:02:59.066-00:03:06.266",
+ "yid": "2P0cJuo415A",
+ "crop_xywh": [
+  340,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.26543143272399905,
+  -0.1553442287949658,
+  0.7064159261612665,
+  1.1035235461482296
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Be sure to work with the educational audiologist to ensure the video and audio at home work well and have good connections.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 173,
+ "stride": 1,
+ "start": "00:02:59.066",
+ "end": "00:03:06.266",
+ "duration_s": 7.2
+}

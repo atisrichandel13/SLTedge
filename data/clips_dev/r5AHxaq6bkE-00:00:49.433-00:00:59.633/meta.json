@@ -1,0 +1,30 @@
+{
+ "vid": "r5AHxaq6bkE-00:00:49.433-00:00:59.633",
+ "yid": "r5AHxaq6bkE",
+ "crop_xywh": [
+  762,
+  100,
+  394,
+  620
+ ],
+ "bbox_norm": [
+  0.5951907788553545,
+  0.13845083243530712,
+  0.9031337291963639,
+  1.0642045236402942
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As of Tuesday evening, 58,356 people have died from the coronavirus in the US.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 306,
+ "stride": 1,
+ "start": "00:00:49.433",
+ "end": "00:00:59.633",
+ "duration_s": 10.2
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:17:41.533-00:17:44.233",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  201,
+  0,
+  778,
+  720
+ ],
+ "bbox_norm": [
+  0.15717403093973795,
+  -0.10215953918324057,
+  0.7649422430524638,
+  1.6420229070326862
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Work in solidarity with our community.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 81,
+ "stride": 1,
+ "start": "00:17:41.533",
+ "end": "00:17:44.233",
+ "duration_s": 2.7
+}

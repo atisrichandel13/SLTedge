@@ -1,0 +1,30 @@
+{
+ "vid": "y0_Id80EZ2Y-00:02:27.766-00:02:34.333",
+ "yid": "y0_Id80EZ2Y",
+ "crop_xywh": [
+  314,
+  0,
+  672,
+  720
+ ],
+ "bbox_norm": [
+  0.2452894643942515,
+  -0.20705876350402833,
+  0.770081064303716,
+  1.3267415673644454
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "One day I was just thinking and it came to me that there was no ASL or deaf tarot cards.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 197,
+ "stride": 1,
+ "start": "00:02:27.766",
+ "end": "00:02:34.333",
+ "duration_s": 6.567
+}

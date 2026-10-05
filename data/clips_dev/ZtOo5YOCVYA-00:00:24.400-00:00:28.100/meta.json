@@ -1,0 +1,30 @@
+{
+ "vid": "ZtOo5YOCVYA-00:00:24.400-00:00:28.100",
+ "yid": "ZtOo5YOCVYA",
+ "crop_xywh": [
+  822,
+  135,
+  160,
+  246
+ ],
+ "bbox_norm": [
+  0.6419040078702181,
+  0.18750809839958155,
+  0.7668442166369894,
+  0.5289596732687835
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Join us and have fun with friends while touring Louisville!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 111,
+ "stride": 1,
+ "start": "00:00:24.400",
+ "end": "00:00:28.100",
+ "duration_s": 3.7
+}

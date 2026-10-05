@@ -1,0 +1,30 @@
+{
+ "vid": "NJ-7WUtB5Xk-00:21:27.433-00:21:28.566",
+ "yid": "NJ-7WUtB5Xk",
+ "crop_xywh": [
+  434,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.33911440902286105,
+  -0.13797999958933135,
+  0.7717378907733494,
+  1.114667460359173
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That is all for today.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 28,
+ "stride": 1,
+ "start": "00:21:27.433",
+ "end": "00:21:28.566",
+ "duration_s": 1.133
+}

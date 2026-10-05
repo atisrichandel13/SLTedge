@@ -1,0 +1,30 @@
+{
+ "vid": "iKEJlREMx7w-00:01:16.533-00:01:24.433",
+ "yid": "iKEJlREMx7w",
+ "crop_xywh": [
+  423,
+  0,
+  518,
+  720
+ ],
+ "bbox_norm": [
+  0.3306577252017127,
+  -0.18145022289252577,
+  0.7357222497463226,
+  1.0975947658956786
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Even if net neutrality is removed, the FCC will retrain the requirement for transparency. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 237,
+ "stride": 1,
+ "start": "00:01:16.533",
+ "end": "00:01:24.433",
+ "duration_s": 7.9
+}

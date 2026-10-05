@@ -1,0 +1,30 @@
+{
+ "vid": "4i0Y_mFJejI-00:02:14.266-00:02:22.433",
+ "yid": "4i0Y_mFJejI",
+ "crop_xywh": [
+  378,
+  0,
+  608,
+  720
+ ],
+ "bbox_norm": [
+  0.2956622344295995,
+  -0.18961645747708805,
+  0.7706812144947701,
+  1.287336781127653
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "These studies have not undergone the typical review and approval process.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 245,
+ "stride": 1,
+ "start": "00:02:14.266",
+ "end": "00:02:22.433",
+ "duration_s": 8.167
+}

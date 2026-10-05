@@ -1,0 +1,30 @@
+{
+ "vid": "_GGnds1j594-00:01:26.300-00:01:35.100",
+ "yid": "_GGnds1j594",
+ "crop_xywh": [
+  485,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.3786068007631122,
+  -0.10951753638991936,
+  0.7951576469829248,
+  1.1468082697219901
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I went to a mainstreamed program at Madison High School, graduated in 2002.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 264,
+ "stride": 1,
+ "start": "00:01:26.300",
+ "end": "00:01:35.100",
+ "duration_s": 8.8
+}

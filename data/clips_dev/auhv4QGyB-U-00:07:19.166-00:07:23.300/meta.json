@@ -1,0 +1,30 @@
+{
+ "vid": "auhv4QGyB-U-00:07:19.166-00:07:23.300",
+ "yid": "auhv4QGyB-U",
+ "crop_xywh": [
+  618,
+  0,
+  522,
+  720
+ ],
+ "bbox_norm": [
+  0.48303357569376626,
+  -0.08638119280779803,
+  0.8905103925069173,
+  1.1353397047254774
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The judge has given them until Monday to produce the phone.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 125,
+ "stride": 1,
+ "start": "00:07:19.166",
+ "end": "00:07:23.300",
+ "duration_s": 4.134
+}

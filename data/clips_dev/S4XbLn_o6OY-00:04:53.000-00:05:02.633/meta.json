@@ -1,0 +1,30 @@
+{
+ "vid": "S4XbLn_o6OY-00:04:53.000-00:05:02.633",
+ "yid": "S4XbLn_o6OY",
+ "crop_xywh": [
+  606,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.47317421765163026,
+  -0.07704087838359262,
+  0.8728025411737376,
+  1.097635493881401
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "At a Sunday news conference, a police spokesperson declined to say if the woman, shot by an officer, was armed at the time of the shooting.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 289,
+ "stride": 1,
+ "start": "00:04:53.000",
+ "end": "00:05:02.633",
+ "duration_s": 9.633
+}

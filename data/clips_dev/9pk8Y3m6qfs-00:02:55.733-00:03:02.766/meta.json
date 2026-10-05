@@ -1,0 +1,30 @@
+{
+ "vid": "9pk8Y3m6qfs-00:02:55.733-00:03:02.766",
+ "yid": "9pk8Y3m6qfs",
+ "crop_xywh": [
+  587,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.45870998441710953,
+  -0.207517273974357,
+  0.9318156589833341,
+  1.2138673596706604
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There are no mask or social distancing requirements for the event.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 211,
+ "stride": 1,
+ "start": "00:02:55.733",
+ "end": "00:03:02.766",
+ "duration_s": 7.033
+}

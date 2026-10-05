@@ -1,0 +1,30 @@
+{
+ "vid": "O2uBRm6D_KI-00:00:27.400-00:00:28.166",
+ "yid": "O2uBRm6D_KI",
+ "crop_xywh": [
+  363,
+  0,
+  636,
+  720
+ ],
+ "bbox_norm": [
+  0.28388312657674153,
+  -0.2253530791953758,
+  0.7809514554341634,
+  1.1667413828108046
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Progress is being made.",
+ "split": "valid",
+ "fps": 59.94,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 46,
+ "stride": 1,
+ "start": "00:00:27.400",
+ "end": "00:00:28.166",
+ "duration_s": 0.766
+}

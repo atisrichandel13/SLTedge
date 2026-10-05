@@ -1,0 +1,30 @@
+{
+ "vid": "O6yJZ85qEl0-00:04:46.200-00:04:50.066",
+ "yid": "O6yJZ85qEl0",
+ "crop_xywh": [
+  585,
+  0,
+  540,
+  720
+ ],
+ "bbox_norm": [
+  0.45686450103918713,
+  -0.11880959493142587,
+  0.8794359455506007,
+  1.068684505974805
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The boat took a wrong turn and had to turn back.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 116,
+ "stride": 1,
+ "start": "00:04:46.200",
+ "end": "00:04:50.066",
+ "duration_s": 3.866
+}

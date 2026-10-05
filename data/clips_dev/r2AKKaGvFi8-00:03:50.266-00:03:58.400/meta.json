@@ -1,0 +1,30 @@
+{
+ "vid": "r2AKKaGvFi8-00:03:50.266-00:03:58.400",
+ "yid": "r2AKKaGvFi8",
+ "crop_xywh": [
+  344,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.2683864282102001,
+  -0.19340130423201995,
+  0.7095924143888512,
+  1.0594448940914325
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I volunteer because I want to support other deaf foreigners who come here.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 244,
+ "stride": 1,
+ "start": "00:03:50.266",
+ "end": "00:03:58.400",
+ "duration_s": 8.134
+}

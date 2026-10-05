@@ -1,0 +1,30 @@
+{
+ "vid": "_N5zuJa9vJI-00:02:24.733-00:02:39.333",
+ "yid": "_N5zuJa9vJI",
+ "crop_xywh": [
+  633,
+  0,
+  494,
+  720
+ ],
+ "bbox_norm": [
+  0.4942381764903213,
+  -0.09556724904763579,
+  0.8808294346838287,
+  1.0260358724529897
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Deaf running couple Clyde and Nancy Kelly Jones says they will be back next year for the 50th anniversary of the Peachtree Road race.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 438,
+ "stride": 1,
+ "start": "00:02:24.733",
+ "end": "00:02:39.333",
+ "duration_s": 14.6
+}

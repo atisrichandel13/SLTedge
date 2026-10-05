@@ -1,0 +1,30 @@
+{
+ "vid": "bpkFrbslLbU-00:08:34.433-00:08:42.233",
+ "yid": "bpkFrbslLbU",
+ "crop_xywh": [
+  576,
+  0,
+  576,
+  720
+ ],
+ "bbox_norm": [
+  0.449669803652847,
+  -0.16479962480928,
+  0.9002534857967444,
+  1.1708198932179232
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There will be some students who will be allowed to stay on campus if they meet a certain criteria.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 188,
+ "stride": 1,
+ "start": "00:08:34.433",
+ "end": "00:08:42.233",
+ "duration_s": 7.8
+}

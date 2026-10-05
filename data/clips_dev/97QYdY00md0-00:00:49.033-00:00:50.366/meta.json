@@ -1,0 +1,30 @@
+{
+ "vid": "97QYdY00md0-00:00:49.033-00:00:50.366",
+ "yid": "97QYdY00md0",
+ "crop_xywh": [
+  8,
+  0,
+  318,
+  320
+ ],
+ "bbox_norm": [
+  0.014161229693273982,
+  -0.22973642945289613,
+  0.575774652857176,
+  1.385551322499911
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Looking forward to it!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  568,
+  320
+ ],
+ "n_frames": 40,
+ "stride": 1,
+ "start": "00:00:49.033",
+ "end": "00:00:50.366",
+ "duration_s": 1.333
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "8BIEoB8RvEc-00:06:53.633-00:06:55.433",
+ "yid": "8BIEoB8RvEc",
+ "crop_xywh": [
+  163,
+  0,
+  840,
+  720
+ ],
+ "bbox_norm": [
+  0.12711863806753448,
+  -0.31579079547715105,
+  0.784466773813421,
+  1.5460816759051699
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I was born in south Minnesota.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 54,
+ "stride": 1,
+ "start": "00:06:53.633",
+ "end": "00:06:55.433",
+ "duration_s": 1.8
+}

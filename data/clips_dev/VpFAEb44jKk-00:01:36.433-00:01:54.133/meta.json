@@ -1,0 +1,30 @@
+{
+ "vid": "VpFAEb44jKk-00:01:36.433-00:01:54.133",
+ "yid": "VpFAEb44jKk",
+ "crop_xywh": [
+  294,
+  0,
+  590,
+  720
+ ],
+ "bbox_norm": [
+  0.22944657468350135,
+  -0.1982801261761891,
+  0.6911422879525062,
+  1.1559870671054078
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So for example, for cases that require criminal experts, we always refer to HEARD, Innocence Project, Equal Justice Initiative, and more.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 531,
+ "stride": 1,
+ "start": "00:01:36.433",
+ "end": "00:01:54.133",
+ "duration_s": 17.7
+}

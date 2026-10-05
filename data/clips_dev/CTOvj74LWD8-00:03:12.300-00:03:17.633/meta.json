@@ -1,0 +1,30 @@
+{
+ "vid": "CTOvj74LWD8-00:03:12.300-00:03:17.633",
+ "yid": "CTOvj74LWD8",
+ "crop_xywh": [
+  663,
+  0,
+  472,
+  720
+ ],
+ "bbox_norm": [
+  0.5176555106134126,
+  -0.08491474947945438,
+  0.8872763539805557,
+  1.0448413746124166
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Dry January has picked up in popularity since it began in 2012.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 160,
+ "stride": 1,
+ "start": "00:03:12.300",
+ "end": "00:03:17.633",
+ "duration_s": 5.333
+}

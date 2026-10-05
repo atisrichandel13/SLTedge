@@ -1,0 +1,30 @@
+{
+ "vid": "mdRh7UiZjQM-00:01:11.733-00:01:16.266",
+ "yid": "mdRh7UiZjQM",
+ "crop_xywh": [
+  240,
+  0,
+  388,
+  470
+ ],
+ "bbox_norm": [
+  0.28084918813746923,
+  -0.13870217807387145,
+  0.7353812792341857,
+  1.2510835873682087
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In Minnesota, the police arrested a deaf man.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 136,
+ "stride": 1,
+ "start": "00:01:11.733",
+ "end": "00:01:16.266",
+ "duration_s": 4.533
+}

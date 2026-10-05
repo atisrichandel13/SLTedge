@@ -1,0 +1,30 @@
+{
+ "vid": "4_od0W20hL0-00:01:54.433-00:01:58.066",
+ "yid": "4_od0W20hL0",
+ "crop_xywh": [
+  179,
+  0,
+  964,
+  720
+ ],
+ "bbox_norm": [
+  0.13950396288524974,
+  -0.40630020408919365,
+  0.8930332471023906,
+  1.819910464202515
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Has a background in education and education law.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 109,
+ "stride": 1,
+ "start": "00:01:54.433",
+ "end": "00:01:58.066",
+ "duration_s": 3.633
+}

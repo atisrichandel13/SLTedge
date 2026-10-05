@@ -1,0 +1,30 @@
+{
+ "vid": "qilEmtLS5Qk-00:09:50.266-00:09:58.100",
+ "yid": "qilEmtLS5Qk",
+ "crop_xywh": [
+  797,
+  162,
+  284,
+  446
+ ],
+ "bbox_norm": [
+  0.6228853470938546,
+  0.2246777061179832,
+  0.8450731595357259,
+  0.8454113446593915
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Do you plan on traveling this summer or you and your family going to enjoy a stay-cation?",
+ "split": "valid",
+ "fps": 26.565,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 209,
+ "stride": 1,
+ "start": "00:09:50.266",
+ "end": "00:09:58.100",
+ "duration_s": 7.834
+}

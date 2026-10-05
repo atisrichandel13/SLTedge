@@ -1,0 +1,30 @@
+{
+ "vid": "LdVNY2ze-Yw-00:08:21.300-00:08:26.600",
+ "yid": "LdVNY2ze-Yw",
+ "crop_xywh": [
+  274,
+  0,
+  716,
+  720
+ ],
+ "bbox_norm": [
+  0.21423787822326024,
+  -0.20165899064805773,
+  0.7737905358274778,
+  1.4174522982703315
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There are many studies that show if you go to school, it is an environment with high stress.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 159,
+ "stride": 1,
+ "start": "00:08:21.300",
+ "end": "00:08:26.600",
+ "duration_s": 5.3
+}

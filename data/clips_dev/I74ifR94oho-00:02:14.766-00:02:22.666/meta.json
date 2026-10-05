@@ -1,0 +1,30 @@
+{
+ "vid": "I74ifR94oho-00:02:14.766-00:02:22.666",
+ "yid": "I74ifR94oho",
+ "crop_xywh": [
+  646,
+  0,
+  616,
+  720
+ ],
+ "bbox_norm": [
+  0.5050006190935771,
+  -0.21913488028961936,
+  0.9863207459449768,
+  1.2351195222065774
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You can watch the games on Fox or Fox Sports or on the Fox Sports app.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 237,
+ "stride": 1,
+ "start": "00:02:14.766",
+ "end": "00:02:22.666",
+ "duration_s": 7.9
+}

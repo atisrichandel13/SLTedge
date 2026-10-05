@@ -1,0 +1,30 @@
+{
+ "vid": "fSAY6QRd2Sk-00:00:57.666-00:01:04.700",
+ "yid": "fSAY6QRd2Sk",
+ "crop_xywh": [
+  636,
+  0,
+  568,
+  720
+ ],
+ "bbox_norm": [
+  0.49717746039693667,
+  -0.0850639192119536,
+  0.9412670394246893,
+  1.1890737630497474
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Sadly some children will never get adopted.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 212,
+ "stride": 1,
+ "start": "00:00:57.666",
+ "end": "00:01:04.700",
+ "duration_s": 7.034
+}

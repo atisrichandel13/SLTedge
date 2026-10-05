@@ -1,0 +1,30 @@
+{
+ "vid": "W5m8NDOi6V8-00:09:02.666-00:09:15.000",
+ "yid": "W5m8NDOi6V8",
+ "crop_xywh": [
+  18,
+  0,
+  590,
+  720
+ ],
+ "bbox_norm": [
+  0.013674050039715236,
+  -0.0918799223723235,
+  0.4750003492832184,
+  1.3405745105978883
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Plus for other nurses and health care workers, wow, you all have to be there and face it, and while we stay home, you are in the midst of war.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 297,
+ "stride": 1,
+ "start": "00:09:02.666",
+ "end": "00:09:15.000",
+ "duration_s": 12.334
+}

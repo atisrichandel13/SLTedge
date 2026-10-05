@@ -1,0 +1,30 @@
+{
+ "vid": "zl5Q-PahKrQ-00:03:55.366-00:04:02.066",
+ "yid": "zl5Q-PahKrQ",
+ "crop_xywh": [
+  632,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.49347350422928976,
+  -0.1628848974405373,
+  0.9218228208340281,
+  1.1155557660014108
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's the first strike in 30 years for the district, which is the second largest in the nation.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 201,
+ "stride": 1,
+ "start": "00:03:55.366",
+ "end": "00:04:02.066",
+ "duration_s": 6.7
+}

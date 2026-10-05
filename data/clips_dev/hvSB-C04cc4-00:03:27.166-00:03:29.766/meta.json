@@ -1,0 +1,30 @@
+{
+ "vid": "hvSB-C04cc4-00:03:27.166-00:03:29.766",
+ "yid": "hvSB-C04cc4",
+ "crop_xywh": [
+  5,
+  0,
+  710,
+  720
+ ],
+ "bbox_norm": [
+  0.003633160889148712,
+  -0.0920691172281901,
+  0.5596459065874417,
+  1.5238556897198712
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Since this is a short video, I just did each line as I caption it.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 78,
+ "stride": 1,
+ "start": "00:03:27.166",
+ "end": "00:03:29.766",
+ "duration_s": 2.6
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:02:38.166-00:02:42.066",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  307,
+  0,
+  972,
+  720
+ ],
+ "bbox_norm": [
+  0.23983475032605622,
+  -0.5233430791784216,
+  1.1561257429290237,
+  2.1047629019902696
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's really different without and they said stay where I was.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 94,
+ "stride": 1,
+ "start": "00:02:38.166",
+ "end": "00:02:42.066",
+ "duration_s": 3.9
+}

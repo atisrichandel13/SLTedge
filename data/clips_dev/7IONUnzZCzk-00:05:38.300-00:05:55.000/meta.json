@@ -1,0 +1,30 @@
+{
+ "vid": "7IONUnzZCzk-00:05:38.300-00:05:55.000",
+ "yid": "7IONUnzZCzk",
+ "crop_xywh": [
+  621,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.4852831790156097,
+  -0.13111255227492152,
+  0.9085646591564216,
+  1.137511468851658
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Firefighter Mary Schidlowsky said her crew was battling a wildfire with a waterhose last month when the towering flames and smoke got caught up in a whirlwind.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 501,
+ "stride": 1,
+ "start": "00:05:38.300",
+ "end": "00:05:55.000",
+ "duration_s": 16.7
+}

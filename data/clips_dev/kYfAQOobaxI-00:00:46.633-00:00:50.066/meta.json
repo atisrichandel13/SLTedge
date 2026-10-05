@@ -1,0 +1,30 @@
+{
+ "vid": "kYfAQOobaxI-00:00:46.633-00:00:50.066",
+ "yid": "kYfAQOobaxI",
+ "crop_xywh": [
+  674,
+  0,
+  496,
+  712
+ ],
+ "bbox_norm": [
+  0.5264367069516863,
+  -0.07577645740811788,
+  0.9148542960484823,
+  0.990437173591089
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A female driver dropping off food.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 103,
+ "stride": 1,
+ "start": "00:00:46.633",
+ "end": "00:00:50.066",
+ "duration_s": 3.433
+}

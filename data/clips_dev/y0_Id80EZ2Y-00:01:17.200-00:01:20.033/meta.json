@@ -1,0 +1,30 @@
+{
+ "vid": "y0_Id80EZ2Y-00:01:17.200-00:01:20.033",
+ "yid": "y0_Id80EZ2Y",
+ "crop_xywh": [
+  234,
+  0,
+  752,
+  720
+ ],
+ "bbox_norm": [
+  0.18289045446059282,
+  -0.24376388416830488,
+  0.7704411375756357,
+  1.4656032371105452
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Tarot cards have been used for over 400 years.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 85,
+ "stride": 1,
+ "start": "00:01:17.200",
+ "end": "00:01:20.033",
+ "duration_s": 2.833
+}

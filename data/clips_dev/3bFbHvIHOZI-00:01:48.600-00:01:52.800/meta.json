@@ -1,0 +1,30 @@
+{
+ "vid": "3bFbHvIHOZI-00:01:48.600-00:01:52.800",
+ "yid": "3bFbHvIHOZI",
+ "crop_xywh": [
+  337,
+  0,
+  832,
+  720
+ ],
+ "bbox_norm": [
+  0.26293582407633465,
+  -0.3468323892310814,
+  0.914219108581543,
+  1.5220703334984955
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Warm, cozy and loving holiday! ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 126,
+ "stride": 1,
+ "start": "00:01:48.600",
+ "end": "00:01:52.800",
+ "duration_s": 4.2
+}

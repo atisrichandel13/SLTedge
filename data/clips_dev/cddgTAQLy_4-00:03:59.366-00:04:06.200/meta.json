@@ -1,0 +1,30 @@
+{
+ "vid": "cddgTAQLy_4-00:03:59.366-00:04:06.200",
+ "yid": "cddgTAQLy_4",
+ "crop_xywh": [
+  284,
+  0,
+  322,
+  480
+ ],
+ "bbox_norm": [
+  0.3319970286334406,
+  -0.08082874422150899,
+  0.7097771212559898,
+  1.0112700776356023
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If I don't make many calls, then the take home profit is small. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 205,
+ "stride": 1,
+ "start": "00:03:59.366",
+ "end": "00:04:06.200",
+ "duration_s": 6.834
+}

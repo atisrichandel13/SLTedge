@@ -1,0 +1,30 @@
+{
+ "vid": "n8o0aUKmNyM-00:02:50.100-00:02:56.466",
+ "yid": "n8o0aUKmNyM",
+ "crop_xywh": [
+  640,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.5001798531947992,
+  -0.15290577735429928,
+  0.9237460878160264,
+  1.1258418788710665
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "He denied the accusations and described himself as the victim of what was a political criticism, attempting to destroyed him and his family.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 191,
+ "stride": 1,
+ "start": "00:02:50.100",
+ "end": "00:02:56.466",
+ "duration_s": 6.366
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "dZQp7OeNINo-00:04:01.466-00:04:05.633",
+ "yid": "dZQp7OeNINo",
+ "crop_xywh": [
+  322,
+  0,
+  712,
+  720
+ ],
+ "bbox_norm": [
+  0.2513999252319336,
+  -0.22883655858922888,
+  0.8083765691121418,
+  1.5231530815407084
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You can follow their Facebook, Instagram, and Twitter.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 125,
+ "stride": 1,
+ "start": "00:04:01.466",
+ "end": "00:04:05.633",
+ "duration_s": 4.167
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "gALXtpV4IY8-00:07:39.600-00:08:24.000",
+ "yid": "gALXtpV4IY8",
+ "crop_xywh": [
+  593,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.46340162953485114,
+  -0.20018883651032793,
+  0.9436281353049213,
+  1.2391537590254393
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The family of Breonna Taylor, a 26-year-old Black woman who was fatally shot by Louisville police officers in her sleep when they entered her home during a no-knock warrant search, is demanding action from the city of Louisville because they feel frustrated that very little action has taken place in the past three months.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 1331,
+ "stride": 1,
+ "start": "00:07:39.600",
+ "end": "00:08:24.000",
+ "duration_s": 44.4
+}

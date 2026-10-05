@@ -1,0 +1,30 @@
+{
+ "vid": "UBHIPWeJzUE-00:06:51.366-00:07:00.133",
+ "yid": "UBHIPWeJzUE",
+ "crop_xywh": [
+  624,
+  0,
+  612,
+  720
+ ],
+ "bbox_norm": [
+  0.4875839053459888,
+  -0.22058739958735799,
+  0.9666238568863779,
+  1.2125183684604306
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Registered Democrats are voting at twice the rate of registered Republicans.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 263,
+ "stride": 1,
+ "start": "00:06:51.366",
+ "end": "00:07:00.133",
+ "duration_s": 8.767
+}

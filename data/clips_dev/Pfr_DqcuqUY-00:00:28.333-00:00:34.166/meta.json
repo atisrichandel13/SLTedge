@@ -1,0 +1,30 @@
+{
+ "vid": "Pfr_DqcuqUY-00:00:28.333-00:00:34.166",
+ "yid": "Pfr_DqcuqUY",
+ "crop_xywh": [
+  316,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.24719476563589912,
+  -0.08517894442119295,
+  0.668058278674171,
+  1.1597827447154534
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Even with the cold weather, I was really into construction.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 175,
+ "stride": 1,
+ "start": "00:00:28.333",
+ "end": "00:00:34.166",
+ "duration_s": 5.833
+}

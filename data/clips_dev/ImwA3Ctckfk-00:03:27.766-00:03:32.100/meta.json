@@ -1,0 +1,30 @@
+{
+ "vid": "ImwA3Ctckfk-00:03:27.766-00:03:32.100",
+ "yid": "ImwA3Ctckfk",
+ "crop_xywh": [
+  665,
+  0,
+  562,
+  720
+ ],
+ "bbox_norm": [
+  0.5191739953594443,
+  -0.1245610267210072,
+  0.9587386884807069,
+  1.112249361046057
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That is Phillips, the other native drummer.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 131,
+ "stride": 1,
+ "start": "00:03:27.766",
+ "end": "00:03:32.100",
+ "duration_s": 4.334
+}

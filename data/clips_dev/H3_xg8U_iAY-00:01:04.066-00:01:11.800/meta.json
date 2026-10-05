@@ -1,0 +1,30 @@
+{
+ "vid": "H3_xg8U_iAY-00:01:04.066-00:01:11.800",
+ "yid": "H3_xg8U_iAY",
+ "crop_xywh": [
+  641,
+  0,
+  508,
+  720
+ ],
+ "bbox_norm": [
+  0.500448352732557,
+  -0.09238706999073074,
+  0.8973546927702343,
+  1.0007110026053692
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In April, after a pregnant woman was killed, an emergency c-section was performed. The baby has been in critical condition since.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 233,
+ "stride": 1,
+ "start": "00:01:04.066",
+ "end": "00:01:11.800",
+ "duration_s": 7.734
+}

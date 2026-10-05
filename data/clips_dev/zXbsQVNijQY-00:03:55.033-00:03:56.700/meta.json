@@ -1,0 +1,30 @@
+{
+ "vid": "zXbsQVNijQY-00:03:55.033-00:03:56.700",
+ "yid": "zXbsQVNijQY",
+ "crop_xywh": [
+  317,
+  61,
+  374,
+  652
+ ],
+ "bbox_norm": [
+  0.24730107307434082,
+  0.08423219468858507,
+  0.5405866972605388,
+  0.9905559172453705
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Region 1 is champ!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 50,
+ "stride": 1,
+ "start": "00:03:55.033",
+ "end": "00:03:56.700",
+ "duration_s": 1.667
+}

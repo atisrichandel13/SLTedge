@@ -1,0 +1,30 @@
+{
+ "vid": "7Ed0xWifFhk-00:06:25.666-00:06:29.266",
+ "yid": "7Ed0xWifFhk",
+ "crop_xywh": [
+  676,
+  0,
+  498,
+  720
+ ],
+ "bbox_norm": [
+  0.5281713875857267,
+  -0.13078448491465763,
+  0.9181566859736586,
+  1.0370474407568524
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Last week they decided to kill the bear.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 108,
+ "stride": 1,
+ "start": "00:06:25.666",
+ "end": "00:06:29.266",
+ "duration_s": 3.6
+}

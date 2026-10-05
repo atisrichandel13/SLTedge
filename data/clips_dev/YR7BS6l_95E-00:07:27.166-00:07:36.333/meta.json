@@ -1,0 +1,30 @@
+{
+ "vid": "YR7BS6l_95E-00:07:27.166-00:07:36.333",
+ "yid": "YR7BS6l_95E",
+ "crop_xywh": [
+  648,
+  0,
+  518,
+  720
+ ],
+ "bbox_norm": [
+  0.5070930853422496,
+  -0.09552567196213436,
+  0.9127512925405029,
+  1.0552550424389566
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "However he did tell the newspaper, Idaho Statesman, that he didn't do anything illegal.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1278,
+  720
+ ],
+ "n_frames": 276,
+ "stride": 1,
+ "start": "00:07:27.166",
+ "end": "00:07:36.333",
+ "duration_s": 9.167
+}

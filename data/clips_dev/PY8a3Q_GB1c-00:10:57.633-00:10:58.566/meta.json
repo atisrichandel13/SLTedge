@@ -1,0 +1,30 @@
+{
+ "vid": "PY8a3Q_GB1c-00:10:57.633-00:10:58.566",
+ "yid": "PY8a3Q_GB1c",
+ "crop_xywh": [
+  386,
+  19,
+  452,
+  700
+ ],
+ "bbox_norm": [
+  0.3015962441762288,
+  0.02631882561577691,
+  0.6545776844024658,
+  1.033925998358079
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I can't believe it.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 28,
+ "stride": 1,
+ "start": "00:10:57.633",
+ "end": "00:10:58.566",
+ "duration_s": 0.933
+}

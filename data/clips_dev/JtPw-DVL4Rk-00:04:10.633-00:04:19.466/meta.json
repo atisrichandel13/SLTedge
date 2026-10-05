@@ -1,0 +1,30 @@
+{
+ "vid": "JtPw-DVL4Rk-00:04:10.633-00:04:19.466",
+ "yid": "JtPw-DVL4Rk",
+ "crop_xywh": [
+  716,
+  0,
+  464,
+  720
+ ],
+ "bbox_norm": [
+  0.5590193018501188,
+  -0.09046939488791635,
+  0.922218182646198,
+  1.0049226784411773
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This particular worm is rare in the US but common in the Tropics.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 265,
+ "stride": 1,
+ "start": "00:04:10.633",
+ "end": "00:04:19.466",
+ "duration_s": 8.833
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "viB8JR7fVxE-00:01:03.400-00:01:08.133",
+ "yid": "viB8JR7fVxE",
+ "crop_xywh": [
+  477,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.37233038852954736,
+  -0.1785057575766611,
+  0.8405998484841708,
+  1.2209616619051644
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You won the previous one, ANTM, and it seems like you are the favorite, people expect you to win.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 142,
+ "stride": 1,
+ "start": "00:01:03.400",
+ "end": "00:01:08.133",
+ "duration_s": 4.733
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "kNy2E3P7m2s-00:00:35.433-00:00:37.266",
+ "yid": "kNy2E3P7m2s",
+ "crop_xywh": [
+  291,
+  0,
+  312,
+  470
+ ],
+ "bbox_norm": [
+  0.3401998642126956,
+  -0.05810128217508991,
+  0.7074111961216933,
+  1.015569049385115
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They decided to let that leader go.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 55,
+ "stride": 1,
+ "start": "00:00:35.433",
+ "end": "00:00:37.266",
+ "duration_s": 1.833
+}

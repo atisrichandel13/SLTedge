@@ -1,0 +1,30 @@
+{
+ "vid": "TUH4q-QBV7k-00:08:33.600-00:08:48.166",
+ "yid": "TUH4q-QBV7k",
+ "crop_xywh": [
+  637,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.49777282368053094,
+  -0.08179378525576608,
+  0.9009938037756717,
+  1.0568239368573584
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Send pictures and video of your festive decorations to our Sign1News Facebook page and we will share them during our broadcast.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 437,
+ "stride": 1,
+ "start": "00:08:33.600",
+ "end": "00:08:48.166",
+ "duration_s": 14.566
+}

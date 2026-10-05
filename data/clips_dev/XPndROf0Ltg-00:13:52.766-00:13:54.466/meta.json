@@ -1,0 +1,30 @@
+{
+ "vid": "XPndROf0Ltg-00:13:52.766-00:13:54.466",
+ "yid": "XPndROf0Ltg",
+ "crop_xywh": [
+  335,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.26168098979526094,
+  -0.13246344421135545,
+  0.7445074063760263,
+  1.4383310608412503
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Do you want to add anything?",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 41,
+ "stride": 1,
+ "start": "00:13:52.766",
+ "end": "00:13:54.466",
+ "duration_s": 1.7
+}

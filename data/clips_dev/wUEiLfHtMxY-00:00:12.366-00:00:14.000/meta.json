@@ -1,0 +1,30 @@
+{
+ "vid": "wUEiLfHtMxY-00:00:12.366-00:00:14.000",
+ "yid": "wUEiLfHtMxY",
+ "crop_xywh": [
+  340,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.26533103466033936,
+  -0.19620139510543258,
+  0.7255984576543173,
+  1.147621324327257
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "What is this week?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 49,
+ "stride": 1,
+ "start": "00:00:12.366",
+ "end": "00:00:14.000",
+ "duration_s": 1.634
+}

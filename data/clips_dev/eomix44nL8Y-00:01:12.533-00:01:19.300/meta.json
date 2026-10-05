@@ -1,0 +1,30 @@
+{
+ "vid": "eomix44nL8Y-00:01:12.533-00:01:19.300",
+ "yid": "eomix44nL8Y",
+ "crop_xywh": [
+  640,
+  56,
+  364,
+  632
+ ],
+ "bbox_norm": [
+  0.4998356938362122,
+  0.07756061951319376,
+  0.784476375579834,
+  0.9554452200730642
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That's where most leaders gathered at that time, including many superintendents.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 163,
+ "stride": 1,
+ "start": "00:01:12.533",
+ "end": "00:01:19.300",
+ "duration_s": 6.767
+}

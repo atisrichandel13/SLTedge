@@ -1,0 +1,30 @@
+{
+ "vid": "Hoktff6oQJY-00:02:27.633-00:02:32.733",
+ "yid": "Hoktff6oQJY",
+ "crop_xywh": [
+  761,
+  57,
+  400,
+  662
+ ],
+ "bbox_norm": [
+  0.594294725694964,
+  0.07890442742241753,
+  0.9076703894522883,
+  1.0339717324916609
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The city's airport was China's epicenter for COVID-19.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 153,
+ "stride": 1,
+ "start": "00:02:27.633",
+ "end": "00:02:32.733",
+ "duration_s": 5.1
+}

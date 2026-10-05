@@ -1,0 +1,30 @@
+{
+ "vid": "FaELOA6h-ec-00:01:31.233-00:01:41.200",
+ "yid": "FaELOA6h-ec",
+ "crop_xywh": [
+  106,
+  0,
+  672,
+  720
+ ],
+ "bbox_norm": [
+  0.1218386953394712,
+  -0.23323619930832476,
+  0.8922261150605088,
+  1.3914471141497293
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Often the patient has preferences such as wanting the caregiver to organize their files or simply clean for them.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  872,
+  720
+ ],
+ "n_frames": 299,
+ "stride": 1,
+ "start": "00:01:31.233",
+ "end": "00:01:41.200",
+ "duration_s": 9.967
+}

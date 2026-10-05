@@ -1,0 +1,30 @@
+{
+ "vid": "z3jAMn3xpoM-00:09:40.500-00:09:56.633",
+ "yid": "z3jAMn3xpoM",
+ "crop_xywh": [
+  674,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.5262591247296415,
+  -0.2063749081035205,
+  1.006735467419182,
+  1.2542667101247933
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The bill will expunge almost 800,000 people's criminal records for possession or selling 30 grams or less of marijuana.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 484,
+ "stride": 1,
+ "start": "00:09:40.500",
+ "end": "00:09:56.633",
+ "duration_s": 16.133
+}

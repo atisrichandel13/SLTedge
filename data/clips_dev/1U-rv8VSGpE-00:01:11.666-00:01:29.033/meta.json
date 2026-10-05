@@ -1,0 +1,30 @@
+{
+ "vid": "1U-rv8VSGpE-00:01:11.666-00:01:29.033",
+ "yid": "1U-rv8VSGpE",
+ "crop_xywh": [
+  636,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.4970615695771717,
+  -0.1417732437914221,
+  0.921713020082504,
+  1.117244107819949
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Milwaukee police released body camera video of the arrest and tazing of NBA player, Sterling Brown.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 521,
+ "stride": 1,
+ "start": "00:01:11.666",
+ "end": "00:01:29.033",
+ "duration_s": 17.367
+}

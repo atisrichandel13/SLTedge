@@ -1,0 +1,30 @@
+{
+ "vid": "XH50c6aFmzE-00:04:01.733-00:04:17.633",
+ "yid": "XH50c6aFmzE",
+ "crop_xywh": [
+  615,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.48060519198576607,
+  -0.18317385926658725,
+  0.9550197127792571,
+  1.1768893680454773
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Authorities in Virginia say Julia Tomlin, the mother of missing two-year-old Noah Tomlin, has been arrested in his disappearance.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 477,
+ "stride": 1,
+ "start": "00:04:01.733",
+ "end": "00:04:17.633",
+ "duration_s": 15.9
+}

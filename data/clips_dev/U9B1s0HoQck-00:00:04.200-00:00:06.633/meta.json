@@ -1,0 +1,30 @@
+{
+ "vid": "U9B1s0HoQck-00:00:04.200-00:00:06.633",
+ "yid": "U9B1s0HoQck",
+ "crop_xywh": [
+  626,
+  0,
+  642,
+  720
+ ],
+ "bbox_norm": [
+  0.4890076298183865,
+  -0.2427486433806243,
+  0.9916249020894369,
+  1.2772279242527338
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thank you for your birthday wishes.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 73,
+ "stride": 1,
+ "start": "00:00:04.200",
+ "end": "00:00:06.633",
+ "duration_s": 2.433
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "DGinIoH2fiE-00:08:22.233-00:08:23.166",
+ "yid": "DGinIoH2fiE",
+ "crop_xywh": [
+  708,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.5530916253725688,
+  -0.14168055145828812,
+  0.9569399873415628,
+  1.0384591243885182
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your life.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 28,
+ "stride": 1,
+ "start": "00:08:22.233",
+ "end": "00:08:23.166",
+ "duration_s": 0.933
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "OsDhpgMygiQ-00:01:20.733-00:01:24.100",
+ "yid": "OsDhpgMygiQ",
+ "crop_xywh": [
+  383,
+  0,
+  284,
+  418
+ ],
+ "bbox_norm": [
+  0.4486002568431797,
+  -0.11231391002341969,
+  0.7816544702197445,
+  0.8914319843265183
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I decided to volunteer at the Aspen Camp, and I enjoyed my time there.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 101,
+ "stride": 1,
+ "start": "00:01:20.733",
+ "end": "00:01:24.100",
+ "duration_s": 3.367
+}

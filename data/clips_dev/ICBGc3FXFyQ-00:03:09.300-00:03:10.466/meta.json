@@ -1,0 +1,30 @@
+{
+ "vid": "ICBGc3FXFyQ-00:03:09.300-00:03:10.466",
+ "yid": "ICBGc3FXFyQ",
+ "crop_xywh": [
+  186,
+  0,
+  324,
+  480
+ ],
+ "bbox_norm": [
+  0.28409507004857426,
+  -0.044646350542704265,
+  0.7815892222459893,
+  1.0539084752400716
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I will explain more going forward. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 35,
+ "stride": 1,
+ "start": "00:03:09.300",
+ "end": "00:03:10.466",
+ "duration_s": 1.166
+}

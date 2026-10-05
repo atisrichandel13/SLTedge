@@ -1,0 +1,30 @@
+{
+ "vid": "vA244OzMnjk-00:01:59.200-00:02:14.333",
+ "yid": "vA244OzMnjk",
+ "crop_xywh": [
+  614,
+  0,
+  634,
+  720
+ ],
+ "bbox_norm": [
+  0.4795327500982599,
+  -0.22407252645900108,
+  0.9759632582192893,
+  1.2896162892435932
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Both are similar explosions, but Beirut is in a densely populated area while West Texas was in a rural area.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 454,
+ "stride": 1,
+ "start": "00:01:59.200",
+ "end": "00:02:14.333",
+ "duration_s": 15.133
+}

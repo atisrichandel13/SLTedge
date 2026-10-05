@@ -1,0 +1,30 @@
+{
+ "vid": "hcfvUwu-Rtg-00:00:40.600-00:00:41.700",
+ "yid": "hcfvUwu-Rtg",
+ "crop_xywh": [
+  321,
+  136,
+  144,
+  232
+ ],
+ "bbox_norm": [
+  0.25076898677008497,
+  0.1889963816082667,
+  0.36386679070336475,
+  0.511343889387827
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "My experience has been very positive.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 33,
+ "stride": 1,
+ "start": "00:00:40.600",
+ "end": "00:00:41.700",
+ "duration_s": 1.1
+}

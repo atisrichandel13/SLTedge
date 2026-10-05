@@ -1,0 +1,30 @@
+{
+ "vid": "yCTSy-JKKm4-00:00:52.100-00:01:04.533",
+ "yid": "yCTSy-JKKm4",
+ "crop_xywh": [
+  431,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.3365959351857503,
+  -0.14617487193919995,
+  0.7703092750973172,
+  1.0877652756490823
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This became a custom of ours where we learn of what has or is happening among various deaf communities.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 373,
+ "stride": 1,
+ "start": "00:00:52.100",
+ "end": "00:01:04.533",
+ "duration_s": 12.433
+}

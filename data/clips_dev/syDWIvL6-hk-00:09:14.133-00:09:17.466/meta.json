@@ -1,0 +1,30 @@
+{
+ "vid": "syDWIvL6-hk-00:09:14.133-00:09:17.466",
+ "yid": "syDWIvL6-hk",
+ "crop_xywh": [
+  759,
+  138,
+  342,
+  530
+ ],
+ "bbox_norm": [
+  0.5925939531887279,
+  0.19155424280104297,
+  0.8601475519292494,
+  0.9279825297835606
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Okay, not everything is serious, calm down.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 100,
+ "stride": 1,
+ "start": "00:09:14.133",
+ "end": "00:09:17.466",
+ "duration_s": 3.333
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "XPndROf0Ltg-00:04:57.133-00:05:17.400",
+ "yid": "XPndROf0Ltg",
+ "crop_xywh": [
+  730,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.5705900730729915,
+  -0.12730629921680317,
+  0.9744092908846278,
+  1.0682237620076174
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The New York Times said that previous presidents Obama and Bush had the opportunity to kill Soleimani, but didn't because they feared it would lead to war with Iran.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 487,
+ "stride": 1,
+ "start": "00:04:57.133",
+ "end": "00:05:17.400",
+ "duration_s": 20.267
+}

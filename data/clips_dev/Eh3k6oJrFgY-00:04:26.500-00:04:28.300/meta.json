@@ -1,0 +1,30 @@
+{
+ "vid": "Eh3k6oJrFgY-00:04:26.500-00:04:28.300",
+ "yid": "Eh3k6oJrFgY",
+ "crop_xywh": [
+  533,
+  0,
+  558,
+  720
+ ],
+ "bbox_norm": [
+  0.416216355782968,
+  -0.1398024209732872,
+  0.8523788946646231,
+  1.1777489752435881
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was cavalier.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 44,
+ "stride": 1,
+ "start": "00:04:26.500",
+ "end": "00:04:28.300",
+ "duration_s": 1.8
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "cunzvS3XRX4-00:25:22.133-00:25:26.700",
+ "yid": "cunzvS3XRX4",
+ "crop_xywh": [
+  593,
+  0,
+  590,
+  720
+ ],
+ "bbox_norm": [
+  0.46352006738836116,
+  -0.17771653711595117,
+  0.9250997080947414,
+  1.2084043496385568
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "She said she loved DCARA and resigned to try and resolve the issue.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 110,
+ "stride": 1,
+ "start": "00:25:22.133",
+ "end": "00:25:26.700",
+ "duration_s": 4.567
+}

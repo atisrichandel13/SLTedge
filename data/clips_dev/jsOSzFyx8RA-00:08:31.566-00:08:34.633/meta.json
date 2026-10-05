@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:08:31.566-00:08:34.633",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  158,
+  0,
+  750,
+  720
+ ],
+ "bbox_norm": [
+  0.12332362543072617,
+  -0.301537271131549,
+  0.7095702430658173,
+  1.3316407799488388
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm really glad that was shown on Netflix.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 92,
+ "stride": 1,
+ "start": "00:08:31.566",
+ "end": "00:08:34.633",
+ "duration_s": 3.067
+}

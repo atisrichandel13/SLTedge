@@ -1,0 +1,30 @@
+{
+ "vid": "pSCEUYh2-nI-00:00:10.066-00:00:12.600",
+ "yid": "pSCEUYh2-nI",
+ "crop_xywh": [
+  237,
+  0,
+  454,
+  470
+ ],
+ "bbox_norm": [
+  0.2772466706447914,
+  -0.2179917244201011,
+  0.8098347360133008,
+  1.37529136424369
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Join and connect with other deaf people who own businesses.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 76,
+ "stride": 1,
+ "start": "00:00:10.066",
+ "end": "00:00:12.600",
+ "duration_s": 2.534
+}

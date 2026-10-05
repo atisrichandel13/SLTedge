@@ -1,0 +1,30 @@
+{
+ "vid": "LdVNY2ze-Yw-00:05:21.566-00:05:27.233",
+ "yid": "LdVNY2ze-Yw",
+ "crop_xywh": [
+  257,
+  0,
+  732,
+  720
+ ],
+ "bbox_norm": [
+  0.201068554205053,
+  -0.24873906220745678,
+  0.7730105021420647,
+  1.4234251263354598
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Also, there is a very high amount of coronavirus in the fluid.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 170,
+ "stride": 1,
+ "start": "00:05:21.566",
+ "end": "00:05:27.233",
+ "duration_s": 5.667
+}

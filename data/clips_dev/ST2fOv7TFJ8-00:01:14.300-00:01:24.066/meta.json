@@ -1,0 +1,30 @@
+{
+ "vid": "ST2fOv7TFJ8-00:01:14.300-00:01:24.066",
+ "yid": "ST2fOv7TFJ8",
+ "crop_xywh": [
+  630,
+  0,
+  478,
+  670
+ ],
+ "bbox_norm": [
+  0.4918218014603954,
+  -0.10607659596732331,
+  0.8652476827977067,
+  0.9301834892193925
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But I did give up sodas, added more fruits and vegetables to my diet and started walking.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 293,
+ "stride": 1,
+ "start": "00:01:14.300",
+ "end": "00:01:24.066",
+ "duration_s": 9.766
+}

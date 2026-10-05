@@ -1,0 +1,30 @@
+{
+ "vid": "j2iRHiIYtTg-00:02:17.600-00:02:20.100",
+ "yid": "j2iRHiIYtTg",
+ "crop_xywh": [
+  414,
+  0,
+  770,
+  720
+ ],
+ "bbox_norm": [
+  0.323321827782525,
+  -0.18790411113220967,
+  0.9249006546868218,
+  1.5786484301531756
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They don't care about the community.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 75,
+ "stride": 1,
+ "start": "00:02:17.600",
+ "end": "00:02:20.100",
+ "duration_s": 2.5
+}

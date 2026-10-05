@@ -1,0 +1,30 @@
+{
+ "vid": "GvkCfTMdL7E-00:09:15.466-00:09:22.366",
+ "yid": "GvkCfTMdL7E",
+ "crop_xywh": [
+  592,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.462886871610369,
+  -0.14173754670212088,
+  0.8807327338627406,
+  1.1642932350252881
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Here's an event Harry Potter fans won't want to miss.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 207,
+ "stride": 1,
+ "start": "00:09:15.466",
+ "end": "00:09:22.366",
+ "duration_s": 6.9
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "q4FNvJ4e3KY-00:00:36.266-00:00:42.033",
+ "yid": "q4FNvJ4e3KY",
+ "crop_xywh": [
+  611,
+  0,
+  644,
+  720
+ ],
+ "bbox_norm": [
+  0.4772108414059594,
+  -0.13690767883623717,
+  0.9803058106558663,
+  1.2715543086945065
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Millions of people are at risk of losing food assistance in the ongoing government shutdown.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 174,
+ "stride": 1,
+ "start": "00:00:36.266",
+ "end": "00:00:42.033",
+ "duration_s": 5.767
+}

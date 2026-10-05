@@ -1,0 +1,30 @@
+{
+ "vid": "ftjAL7MnqsE-00:03:10.433-00:03:29.566",
+ "yid": "ftjAL7MnqsE",
+ "crop_xywh": [
+  626,
+  0,
+  640,
+  720
+ ],
+ "bbox_norm": [
+  0.4889684865094613,
+  -0.219700528819012,
+  0.9896307135319364,
+  1.2843486866359741
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The attorney for Derek Chauvin, who kneeled on Floyd's neck for eight minutes, asked for his murder charge to be dismissed, saying there is not enough evidence against him.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 574,
+ "stride": 1,
+ "start": "00:03:10.433",
+ "end": "00:03:29.566",
+ "duration_s": 19.133
+}

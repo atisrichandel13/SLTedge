@@ -1,0 +1,30 @@
+{
+ "vid": "GhW-Vo0-w8k-00:06:20.733-00:06:26.433",
+ "yid": "GhW-Vo0-w8k",
+ "crop_xywh": [
+  634,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.4956001917521159,
+  -0.09120298718649243,
+  0.8944587616693406,
+  1.0836058399664663
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Another man died, identified as Rich White.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 137,
+ "stride": 1,
+ "start": "00:06:20.733",
+ "end": "00:06:26.433",
+ "duration_s": 5.7
+}

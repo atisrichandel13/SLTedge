@@ -1,0 +1,30 @@
+{
+ "vid": "KvQT44G45kM-00:07:09.733-00:07:19.766",
+ "yid": "KvQT44G45kM",
+ "crop_xywh": [
+  560,
+  0,
+  644,
+  720
+ ],
+ "bbox_norm": [
+  0.43715739801627435,
+  -0.17619766875459494,
+  0.9417187327430362,
+  1.3703344451777428
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Have a healthy and safe Sunday, and remember, stay at home as much as you can and practice social distancing.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 241,
+ "stride": 1,
+ "start": "00:07:09.733",
+ "end": "00:07:19.766",
+ "duration_s": 10.033
+}

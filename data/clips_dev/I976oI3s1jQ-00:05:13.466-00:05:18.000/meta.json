@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:05:13.466-00:05:18.000",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  276,
+  0,
+  1004,
+  720
+ ],
+ "bbox_norm": [
+  0.21580130981676507,
+  -0.37673779625683923,
+  1.1190802733103433,
+  2.2190349925648083
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Not just for myself, but that letter was for everyone.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 109,
+ "stride": 1,
+ "start": "00:05:13.466",
+ "end": "00:05:18.000",
+ "duration_s": 4.534
+}

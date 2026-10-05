@@ -1,0 +1,30 @@
+{
+ "vid": "zl5Q-PahKrQ-00:03:36.300-00:03:47.300",
+ "yid": "zl5Q-PahKrQ",
+ "crop_xywh": [
+  643,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.5020371868835752,
+  -0.1703899796856511,
+  0.9343299087600329,
+  1.1396339029551477
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The teachers want higher salaries, smaller class sizes, and more counselors and nurses hired.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 330,
+ "stride": 1,
+ "start": "00:03:36.300",
+ "end": "00:03:47.300",
+ "duration_s": 11.0
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "1zRfH_9kqtk-00:02:54.133-00:03:03.233",
+ "yid": "1zRfH_9kqtk",
+ "crop_xywh": [
+  245,
+  0,
+  784,
+  720
+ ],
+ "bbox_norm": [
+  0.19118564634612112,
+  -0.23441040501450047,
+  0.8044771682854854,
+  1.6940625172110921
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"So, like, I've told them - I said \"\"If there are no more community captions, we won't have access\"\".\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 273,
+ "stride": 1,
+ "start": "00:02:54.133",
+ "end": "00:03:03.233",
+ "duration_s": 9.1
+}

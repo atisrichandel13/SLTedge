@@ -1,0 +1,30 @@
+{
+ "vid": "wdmj6E_faOo-00:01:57.433-00:02:01.433",
+ "yid": "wdmj6E_faOo",
+ "crop_xywh": [
+  205,
+  35,
+  412,
+  626
+ ],
+ "bbox_norm": [
+  0.16014705896377562,
+  0.048735438913538834,
+  0.4829953333605891,
+  0.9192627883763705
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "And I wrote the history the best I could. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 120,
+ "stride": 1,
+ "start": "00:01:57.433",
+ "end": "00:02:01.433",
+ "duration_s": 4.0
+}

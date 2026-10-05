@@ -1,0 +1,30 @@
+{
+ "vid": "eomix44nL8Y-00:00:50.066-00:00:52.700",
+ "yid": "eomix44nL8Y",
+ "crop_xywh": [
+  455,
+  109,
+  290,
+  456
+ ],
+ "bbox_norm": [
+  0.35527199231661283,
+  0.15130003904684994,
+  0.5828227043151856,
+  0.7862754707662469
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "What was the result after that?",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 64,
+ "stride": 1,
+ "start": "00:00:50.066",
+ "end": "00:00:52.700",
+ "duration_s": 2.634
+}

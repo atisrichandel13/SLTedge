@@ -1,0 +1,30 @@
+{
+ "vid": "y0URUVcvrTg-00:01:12.433-00:01:13.700",
+ "yid": "y0URUVcvrTg",
+ "crop_xywh": [
+  166,
+  0,
+  386,
+  470
+ ],
+ "bbox_norm": [
+  0.1942051121445953,
+  -0.2110283263186191,
+  0.6478704948335956,
+  1.23307918183347
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We're both looking forward to it.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 38,
+ "stride": 1,
+ "start": "00:01:12.433",
+ "end": "00:01:13.700",
+ "duration_s": 1.267
+}

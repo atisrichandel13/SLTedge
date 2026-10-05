@@ -1,0 +1,30 @@
+{
+ "vid": "5dttR4Yq-2k-00:02:27.533-00:02:31.300",
+ "yid": "5dttR4Yq-2k",
+ "crop_xywh": [
+  347,
+  0,
+  704,
+  720
+ ],
+ "bbox_norm": [
+  0.27073870861169064,
+  -0.24226652845389116,
+  0.8214434565919818,
+  1.3920628024271442
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Believe it or not, I have a 9 to 5 job!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 113,
+ "stride": 1,
+ "start": "00:02:27.533",
+ "end": "00:02:31.300",
+ "duration_s": 3.767
+}

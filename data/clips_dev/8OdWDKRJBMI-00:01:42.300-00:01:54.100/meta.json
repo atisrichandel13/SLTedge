@@ -1,0 +1,30 @@
+{
+ "vid": "8OdWDKRJBMI-00:01:42.300-00:01:54.100",
+ "yid": "8OdWDKRJBMI",
+ "crop_xywh": [
+  587,
+  0,
+  670,
+  720
+ ],
+ "bbox_norm": [
+  0.4583229763407103,
+  -0.2502872189445675,
+  0.982137640653082,
+  1.376714405991102
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In the next two weeks, after this official business has taken place, comes the time for the presidential debates and the vice presidential debate.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 354,
+ "stride": 1,
+ "start": "00:01:42.300",
+ "end": "00:01:54.100",
+ "duration_s": 11.8
+}

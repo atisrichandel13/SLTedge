@@ -1,0 +1,30 @@
+{
+ "vid": "LifhWQwUvMg-00:04:38.000-00:04:44.466",
+ "yid": "LifhWQwUvMg",
+ "crop_xywh": [
+  611,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.4770044995169354,
+  -0.12694493698598314,
+  0.9470992552928436,
+  1.166763982745657
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is Liz Smith and her two-year-old daughter Gisele.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 194,
+ "stride": 1,
+ "start": "00:04:38.000",
+ "end": "00:04:44.466",
+ "duration_s": 6.466
+}

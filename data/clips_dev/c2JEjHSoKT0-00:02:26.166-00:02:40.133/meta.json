@@ -1,0 +1,30 @@
+{
+ "vid": "c2JEjHSoKT0-00:02:26.166-00:02:40.133",
+ "yid": "c2JEjHSoKT0",
+ "crop_xywh": [
+  283,
+  0,
+  720,
+  720
+ ],
+ "bbox_norm": [
+  0.2211550722046504,
+  -0.19597524949062017,
+  0.7842277294113522,
+  1.5327894437880742
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If you experience any form of racism, audism or discrimination, or if the doctor does not provide effective communication with you, don\u2019t keep quiet.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 419,
+ "stride": 1,
+ "start": "00:02:26.166",
+ "end": "00:02:40.133",
+ "duration_s": 13.967
+}

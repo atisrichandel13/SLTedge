@@ -1,0 +1,30 @@
+{
+ "vid": "ICBGc3FXFyQ-00:02:55.233-00:03:09.133",
+ "yid": "ICBGc3FXFyQ",
+ "crop_xywh": [
+  198,
+  0,
+  314,
+  480
+ ],
+ "bbox_norm": [
+  0.3032451441875795,
+  -0.06195312227521624,
+  0.7832590613942212,
+  1.0517287275147817
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "NAD Board Region I Representative, Sean Gerlis, NAD Civil Right Chair Alexis Kashar, and I went to the New York 4201 rally.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  654,
+  480
+ ],
+ "n_frames": 417,
+ "stride": 1,
+ "start": "00:02:55.233",
+ "end": "00:03:09.133",
+ "duration_s": 13.9
+}

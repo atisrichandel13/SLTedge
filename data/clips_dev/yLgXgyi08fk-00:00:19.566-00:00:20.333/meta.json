@@ -1,0 +1,30 @@
+{
+ "vid": "yLgXgyi08fk-00:00:19.566-00:00:20.333",
+ "yid": "yLgXgyi08fk",
+ "crop_xywh": [
+  168,
+  0,
+  530,
+  470
+ ],
+ "bbox_norm": [
+  0.19697908852641977,
+  -0.3391303894367624,
+  0.8182696947727605,
+  1.5473727023347896
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Powerful.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 23,
+ "stride": 1,
+ "start": "00:00:19.566",
+ "end": "00:00:20.333",
+ "duration_s": 0.767
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "Hoktff6oQJY-00:02:15.366-00:02:24.366",
+ "yid": "Hoktff6oQJY",
+ "crop_xywh": [
+  782,
+  55,
+  396,
+  664
+ ],
+ "bbox_norm": [
+  0.6111880112577368,
+  0.07699343441935723,
+  0.9199815348342613,
+  1.0165417549541458
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "On Wednesday the lockdown in Wuhan, China was lifted.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 270,
+ "stride": 1,
+ "start": "00:02:15.366",
+ "end": "00:02:24.366",
+ "duration_s": 9.0
+}

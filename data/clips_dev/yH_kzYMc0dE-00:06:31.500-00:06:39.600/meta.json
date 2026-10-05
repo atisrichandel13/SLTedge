@@ -1,0 +1,30 @@
+{
+ "vid": "yH_kzYMc0dE-00:06:31.500-00:06:39.600",
+ "yid": "yH_kzYMc0dE",
+ "crop_xywh": [
+  629,
+  0,
+  540,
+  720
+ ],
+ "bbox_norm": [
+  0.49111849726462853,
+  -0.10378548700703155,
+  0.9140669582652396,
+  1.1364230276325482
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Let\u2019s pause the communication issue and go to another topic - NTID/RIT student excitement for diversity on campus.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 243,
+ "stride": 1,
+ "start": "00:06:31.500",
+ "end": "00:06:39.600",
+ "duration_s": 8.1
+}

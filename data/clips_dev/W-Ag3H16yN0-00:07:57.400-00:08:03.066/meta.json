@@ -1,0 +1,30 @@
+{
+ "vid": "W-Ag3H16yN0-00:07:57.400-00:08:03.066",
+ "yid": "W-Ag3H16yN0",
+ "crop_xywh": [
+  644,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.5032133691451128,
+  -0.13904286137333624,
+  0.9235801201240689,
+  1.1158048571584531
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Little Lola Bond was born with a faulty heart.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 170,
+ "stride": 1,
+ "start": "00:07:57.400",
+ "end": "00:08:03.066",
+ "duration_s": 5.666
+}

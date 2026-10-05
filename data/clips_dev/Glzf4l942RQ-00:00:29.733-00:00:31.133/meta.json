@@ -1,0 +1,30 @@
+{
+ "vid": "Glzf4l942RQ-00:00:29.733-00:00:31.133",
+ "yid": "Glzf4l942RQ",
+ "crop_xywh": [
+  379,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.29623641084741664,
+  -0.1890321708019869,
+  0.7421922242199933,
+  1.1393400733853563
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Welcome to Sign1News.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 42,
+ "stride": 1,
+ "start": "00:00:29.733",
+ "end": "00:00:31.133",
+ "duration_s": 1.4
+}

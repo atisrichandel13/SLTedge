@@ -1,0 +1,30 @@
+{
+ "vid": "DCy7yjXqaAM-00:01:28.200-00:01:31.166",
+ "yid": "DCy7yjXqaAM",
+ "crop_xywh": [
+  234,
+  0,
+  404,
+  470
+ ],
+ "bbox_norm": [
+  0.27371652182768386,
+  -0.2068756829480471,
+  0.7470172541606188,
+  1.2523933823227038
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Third, they had an upset stomach and would not eat.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 89,
+ "stride": 1,
+ "start": "00:01:28.200",
+ "end": "00:01:31.166",
+ "duration_s": 2.966
+}

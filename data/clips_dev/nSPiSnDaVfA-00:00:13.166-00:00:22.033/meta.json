@@ -1,0 +1,30 @@
+{
+ "vid": "nSPiSnDaVfA-00:00:13.166-00:00:22.033",
+ "yid": "nSPiSnDaVfA",
+ "crop_xywh": [
+  503,
+  0,
+  682,
+  720
+ ],
+ "bbox_norm": [
+  0.3932507906431033,
+  -0.24022073418678733,
+  0.9257810101097014,
+  1.3821395821695628
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Its motto is \"\"All the News That's Fit to Print.\"\"\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 266,
+ "stride": 1,
+ "start": "00:00:13.166",
+ "end": "00:00:22.033",
+ "duration_s": 8.867
+}

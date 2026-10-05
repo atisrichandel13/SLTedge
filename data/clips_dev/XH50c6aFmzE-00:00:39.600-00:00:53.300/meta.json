@@ -1,0 +1,30 @@
+{
+ "vid": "XH50c6aFmzE-00:00:39.600-00:00:53.300",
+ "yid": "XH50c6aFmzE",
+ "crop_xywh": [
+  617,
+  0,
+  608,
+  720
+ ],
+ "bbox_norm": [
+  0.4817287667209365,
+  -0.18674297920032995,
+  0.9577258948820183,
+  1.1723132899912911
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Police in Kentucky say 20-year-old Tyrese Garvin died in the same hospital where he had just become a father.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 411,
+ "stride": 1,
+ "start": "00:00:39.600",
+ "end": "00:00:53.300",
+ "duration_s": 13.7
+}

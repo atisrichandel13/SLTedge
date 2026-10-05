@@ -1,0 +1,30 @@
+{
+ "vid": "qilEmtLS5Qk-00:06:43.566-00:07:00.366",
+ "yid": "qilEmtLS5Qk",
+ "crop_xywh": [
+  142,
+  231,
+  264,
+  392
+ ],
+ "bbox_norm": [
+  0.11055701915864592,
+  0.32103405508975436,
+  0.31788480094185584,
+  0.8659385453526375
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Health experts say the friction from constantly wearing masks combined with stress from the pandemic and moisture trapped underneath the fabric is creating the perfect environment for bacteria and organisms to grow on the face which leads to breakouts.",
+ "split": "valid",
+ "fps": 26.565,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 447,
+ "stride": 1,
+ "start": "00:06:43.566",
+ "end": "00:07:00.366",
+ "duration_s": 16.8
+}

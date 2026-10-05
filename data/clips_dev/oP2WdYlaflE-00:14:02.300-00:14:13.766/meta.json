@@ -1,0 +1,30 @@
+{
+ "vid": "oP2WdYlaflE-00:14:02.300-00:14:13.766",
+ "yid": "oP2WdYlaflE",
+ "crop_xywh": [
+  707,
+  64,
+  500,
+  656
+ ],
+ "bbox_norm": [
+  0.5524107203554751,
+  0.08846490964367615,
+  0.9426913243621143,
+  1.2031884207654355
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Pick up some food curbside or have it delivered from your favorite local Mexican restaurant.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 344,
+ "stride": 1,
+ "start": "00:14:02.300",
+ "end": "00:14:13.766",
+ "duration_s": 11.466
+}

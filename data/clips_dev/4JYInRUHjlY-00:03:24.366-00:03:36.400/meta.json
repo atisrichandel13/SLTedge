@@ -1,0 +1,30 @@
+{
+ "vid": "4JYInRUHjlY-00:03:24.366-00:03:36.400",
+ "yid": "4JYInRUHjlY",
+ "crop_xywh": [
+  678,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.5294162715406723,
+  -0.08328054535515958,
+  0.9534199353222433,
+  1.1176681754674964
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Pagourtzis is being held without bail, accused of capital murder of multiple people and aggravated assault.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 361,
+ "stride": 1,
+ "start": "00:03:24.366",
+ "end": "00:03:36.400",
+ "duration_s": 12.034
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "GfWZfUxFmhE-00:02:50.166-00:03:00.300",
+ "yid": "GfWZfUxFmhE",
+ "crop_xywh": [
+  110,
+  0,
+  294,
+  320
+ ],
+ "bbox_norm": [
+  0.1940816108435266,
+  -0.21445337318983232,
+  0.7132147113216085,
+  1.2048571476519434
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "For example, as someone who works at a deaf school, I attend events to learn new things like transition programs that I then bring back what I learned to the school where I work.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  568,
+  320
+ ],
+ "n_frames": 304,
+ "stride": 1,
+ "start": "00:02:50.166",
+ "end": "00:03:00.300",
+ "duration_s": 10.134
+}

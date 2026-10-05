@@ -1,0 +1,30 @@
+{
+ "vid": "InXgHoNg1CY-00:00:00.400-00:00:03.066",
+ "yid": "InXgHoNg1CY",
+ "crop_xywh": [
+  163,
+  0,
+  476,
+  470
+ ],
+ "bbox_norm": [
+  0.19089559872200673,
+  -0.19331259930387457,
+  0.7490374098337785,
+  1.354128511408542
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "What should employers know?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 80,
+ "stride": 1,
+ "start": "00:00:00.400",
+ "end": "00:00:03.066",
+ "duration_s": 2.666
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "UfLdljKWr2k-00:00:11.600-00:00:13.566",
+ "yid": "UfLdljKWr2k",
+ "crop_xywh": [
+  544,
+  0,
+  636,
+  720
+ ],
+ "bbox_norm": [
+  0.4246347713470459,
+  -0.15651555520516855,
+  0.9226661586761474,
+  1.2722865500273528
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm from Austin, Texas!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 59,
+ "stride": 1,
+ "start": "00:00:11.600",
+ "end": "00:00:13.566",
+ "duration_s": 1.966
+}

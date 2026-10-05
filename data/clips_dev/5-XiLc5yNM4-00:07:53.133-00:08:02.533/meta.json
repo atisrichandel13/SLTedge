@@ -1,0 +1,30 @@
+{
+ "vid": "5-XiLc5yNM4-00:07:53.133-00:08:02.533",
+ "yid": "5-XiLc5yNM4",
+ "crop_xywh": [
+  627,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.4901202523917482,
+  -0.16209563446788527,
+  0.9237989731002273,
+  1.1169917936678286
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Experts say there are five things you shouldn't save until the morning.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 282,
+ "stride": 1,
+ "start": "00:07:53.133",
+ "end": "00:08:02.533",
+ "duration_s": 9.4
+}

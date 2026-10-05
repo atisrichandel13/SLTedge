@@ -1,0 +1,30 @@
+{
+ "vid": "3h7veASAUaw-00:06:38.400-00:06:48.500",
+ "yid": "3h7veASAUaw",
+ "crop_xywh": [
+  670,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.5232797141935005,
+  -0.10031098398788814,
+  0.9432402208203176,
+  1.1349247819521824
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "According to ESPN, the suspect is Bivens' eighteen-year-old brother-in-law, Matthew Bernard.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 303,
+ "stride": 1,
+ "start": "00:06:38.400",
+ "end": "00:06:48.500",
+ "duration_s": 10.1
+}

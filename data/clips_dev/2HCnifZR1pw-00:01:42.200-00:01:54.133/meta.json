@@ -1,0 +1,30 @@
+{
+ "vid": "2HCnifZR1pw-00:01:42.200-00:01:54.133",
+ "yid": "2HCnifZR1pw",
+ "crop_xywh": [
+  705,
+  0,
+  484,
+  720
+ ],
+ "bbox_norm": [
+  0.5506372335884306,
+  -0.09976475974659861,
+  0.9294385025898615,
+  1.0644956345911378
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The December 6 deadline is for Trump to indicate if he will provide his own evidence and witnesses in future hearings.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 358,
+ "stride": 1,
+ "start": "00:01:42.200",
+ "end": "00:01:54.133",
+ "duration_s": 11.933
+}

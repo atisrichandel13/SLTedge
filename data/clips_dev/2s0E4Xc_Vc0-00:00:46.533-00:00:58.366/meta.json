@@ -1,0 +1,30 @@
+{
+ "vid": "2s0E4Xc_Vc0-00:00:46.533-00:00:58.366",
+ "yid": "2s0E4Xc_Vc0",
+ "crop_xywh": [
+  456,
+  0,
+  484,
+  720
+ ],
+ "bbox_norm": [
+  0.35630957330336593,
+  -0.06327278284461907,
+  0.7353748120052714,
+  1.0494518771542194
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There will be several tracks available at NLTC: Education Advocacy, Legislative Training, Government Training, and a general training track.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 355,
+ "stride": 1,
+ "start": "00:00:46.533",
+ "end": "00:00:58.366",
+ "duration_s": 11.833
+}

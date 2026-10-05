@@ -1,0 +1,30 @@
+{
+ "vid": "fgbp9mCQX_g-00:00:15.233-00:00:16.633",
+ "yid": "fgbp9mCQX_g",
+ "crop_xywh": [
+  323,
+  0,
+  602,
+  720
+ ],
+ "bbox_norm": [
+  0.2519991091319493,
+  -0.10584830632285466,
+  0.7226884194782802,
+  1.19047423165942
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Here are the stories for today.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 42,
+ "stride": 1,
+ "start": "00:00:15.233",
+ "end": "00:00:16.633",
+ "duration_s": 1.4
+}

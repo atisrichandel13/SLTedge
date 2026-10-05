@@ -1,0 +1,30 @@
+{
+ "vid": "7MVtn8T13Lc-00:01:46.066-00:01:48.300",
+ "yid": "7MVtn8T13Lc",
+ "crop_xywh": [
+  159,
+  0,
+  760,
+  720
+ ],
+ "bbox_norm": [
+  0.12436204212052482,
+  -0.3041676059601799,
+  0.719065478018352,
+  1.3788495203805349
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "NAD members are fun!",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 68,
+ "stride": 1,
+ "start": "00:01:46.066",
+ "end": "00:01:48.300",
+ "duration_s": 2.234
+}

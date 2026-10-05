@@ -1,0 +1,30 @@
+{
+ "vid": "MDuv07BfR0g-00:04:09.266-00:04:22.500",
+ "yid": "MDuv07BfR0g",
+ "crop_xywh": [
+  598,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.46749476671218876,
+  -0.18363142119513617,
+  0.9560543052355449,
+  1.2744734656369243
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Seven out of eight jurors said John T. Williams \"\"posed no imminent danger.\"\"\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 397,
+ "stride": 1,
+ "start": "00:04:09.266",
+ "end": "00:04:22.500",
+ "duration_s": 13.234
+}

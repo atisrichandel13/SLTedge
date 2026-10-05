@@ -1,0 +1,30 @@
+{
+ "vid": "yH_kzYMc0dE-00:05:24.066-00:05:29.066",
+ "yid": "yH_kzYMc0dE",
+ "crop_xywh": [
+  628,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.4905357535167407,
+  -0.11723401287265718,
+  0.9145484524388467,
+  1.1787250236228661
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "First, you must identify your communication style from these four choices.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 150,
+ "stride": 1,
+ "start": "00:05:24.066",
+ "end": "00:05:29.066",
+ "duration_s": 5.0
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "fNT8a6e1gx8-00:02:49.400-00:02:54.466",
+ "yid": "fNT8a6e1gx8",
+ "crop_xywh": [
+  775,
+  49,
+  368,
+  606
+ ],
+ "bbox_norm": [
+  0.6055633045011951,
+  0.06767437842584426,
+  0.8939387959818687,
+  0.9096988042195638
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We have to thank you for teaching us how they all work; we got mapped.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 152,
+ "stride": 1,
+ "start": "00:02:49.400",
+ "end": "00:02:54.466",
+ "duration_s": 5.066
+}

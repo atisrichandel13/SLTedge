@@ -1,0 +1,30 @@
+{
+ "vid": "wH3lJm0Typ0-00:16:25.066-00:16:27.066",
+ "yid": "wH3lJm0Typ0",
+ "crop_xywh": [
+  6,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.004825894649212177,
+  -0.029352004439742476,
+  0.450264695363167,
+  1.1091023339165582
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Ahhh ... Finally!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 60,
+ "stride": 1,
+ "start": "00:16:25.066",
+ "end": "00:16:27.066",
+ "duration_s": 2.0
+}

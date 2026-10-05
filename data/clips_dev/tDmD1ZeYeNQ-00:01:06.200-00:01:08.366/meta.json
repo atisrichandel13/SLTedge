@@ -1,0 +1,30 @@
+{
+ "vid": "tDmD1ZeYeNQ-00:01:06.200-00:01:08.366",
+ "yid": "tDmD1ZeYeNQ",
+ "crop_xywh": [
+  442,
+  0,
+  610,
+  720
+ ],
+ "bbox_norm": [
+  0.3451994112559727,
+  -0.23132433531776309,
+  0.8219407024837675,
+  1.1380457769941401
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They are using videos to share their information without captions.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 65,
+ "stride": 1,
+ "start": "00:01:06.200",
+ "end": "00:01:08.366",
+ "duration_s": 2.166
+}

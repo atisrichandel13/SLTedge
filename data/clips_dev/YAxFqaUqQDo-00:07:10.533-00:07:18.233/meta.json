@@ -1,0 +1,30 @@
+{
+ "vid": "YAxFqaUqQDo-00:07:10.533-00:07:18.233",
+ "yid": "YAxFqaUqQDo",
+ "crop_xywh": [
+  771,
+  58,
+  456,
+  662
+ ],
+ "bbox_norm": [
+  0.6024318659559209,
+  0.08057484096950955,
+  0.9597654956452389,
+  1.1010620338133323
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Johnson was released from the hospital on Easter Sunday and has been recovering at home.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 231,
+ "stride": 1,
+ "start": "00:07:10.533",
+ "end": "00:07:18.233",
+ "duration_s": 7.7
+}

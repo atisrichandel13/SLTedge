@@ -1,0 +1,30 @@
+{
+ "vid": "yjAuZBiVFII-00:00:02.666-00:00:08.066",
+ "yid": "yjAuZBiVFII",
+ "crop_xywh": [
+  262,
+  0,
+  592,
+  720
+ ],
+ "bbox_norm": [
+  0.2724588850130537,
+  -0.11049862871266375,
+  0.8902624085294679,
+  1.1695974966492315
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Before a bill is proposed, how long does the pre-planning take?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  960,
+  720
+ ],
+ "n_frames": 162,
+ "stride": 1,
+ "start": "00:00:02.666",
+ "end": "00:00:08.066",
+ "duration_s": 5.4
+}

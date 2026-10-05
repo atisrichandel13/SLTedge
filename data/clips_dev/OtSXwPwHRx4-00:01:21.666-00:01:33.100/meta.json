@@ -1,0 +1,30 @@
+{
+ "vid": "OtSXwPwHRx4-00:01:21.666-00:01:33.100",
+ "yid": "OtSXwPwHRx4",
+ "crop_xywh": [
+  329,
+  0,
+  520,
+  682
+ ],
+ "bbox_norm": [
+  0.25737030333366945,
+  -0.14525570667244322,
+  0.6632926927096602,
+  0.9480440744839237
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You can get involved by looking for the DGM Facebook page in your state, and find where, what city, and what time to meet.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 343,
+ "stride": 1,
+ "start": "00:01:21.666",
+ "end": "00:01:33.100",
+ "duration_s": 11.434
+}

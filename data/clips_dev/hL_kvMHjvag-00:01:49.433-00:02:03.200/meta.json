@@ -1,0 +1,30 @@
+{
+ "vid": "hL_kvMHjvag-00:01:49.433-00:02:03.200",
+ "yid": "hL_kvMHjvag",
+ "crop_xywh": [
+  643,
+  0,
+  492,
+  720
+ ],
+ "bbox_norm": [
+  0.5020536533799995,
+  -0.13232531464562677,
+  0.8866443814044018,
+  1.0379540250642871
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "On Thursday Defense Secretary James Mattis submitted his resignation, saying his views are not aligned with President Trump.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 413,
+ "stride": 1,
+ "start": "00:01:49.433",
+ "end": "00:02:03.200",
+ "duration_s": 13.767
+}

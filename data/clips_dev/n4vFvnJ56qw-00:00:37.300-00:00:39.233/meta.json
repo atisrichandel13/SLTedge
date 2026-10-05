@@ -1,0 +1,30 @@
+{
+ "vid": "n4vFvnJ56qw-00:00:37.300-00:00:39.233",
+ "yid": "n4vFvnJ56qw",
+ "crop_xywh": [
+  295,
+  0,
+  658,
+  720
+ ],
+ "bbox_norm": [
+  0.23039271699057684,
+  -0.190393054632493,
+  0.7450366086430019,
+  1.4169259601169162
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Stay positive.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 58,
+ "stride": 1,
+ "start": "00:00:37.300",
+ "end": "00:00:39.233",
+ "duration_s": 1.933
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "Bn5RrOa7AEI-00:01:25.633-00:01:30.733",
+ "yid": "Bn5RrOa7AEI",
+ "crop_xywh": [
+  380,
+  0,
+  516,
+  706
+ ],
+ "bbox_norm": [
+  0.29687447086457286,
+  -0.11771740064541214,
+  0.7007467085315334,
+  0.9807959190833525
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Looking forward to a job, planting the seed there and considering what the future looks like to work there. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 153,
+ "stride": 1,
+ "start": "00:01:25.633",
+ "end": "00:01:30.733",
+ "duration_s": 5.1
+}

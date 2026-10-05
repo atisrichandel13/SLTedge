@@ -1,0 +1,30 @@
+{
+ "vid": "tFHyA_o_MNk-00:14:46.233-00:14:56.300",
+ "yid": "tFHyA_o_MNk",
+ "crop_xywh": [
+  661,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.5162215771318294,
+  -0.16944742109049293,
+  0.9453958731930272,
+  1.0966921696767424
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The Democrats\u2019 arguments will continue today and tomorrow, then it will be President Trump\u2019s legal team\u2019s turn.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 242,
+ "stride": 1,
+ "start": "00:14:46.233",
+ "end": "00:14:56.300",
+ "duration_s": 10.067
+}

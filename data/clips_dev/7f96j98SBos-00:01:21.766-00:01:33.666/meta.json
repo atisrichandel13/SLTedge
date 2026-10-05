@@ -1,0 +1,30 @@
+{
+ "vid": "7f96j98SBos-00:01:21.766-00:01:33.666",
+ "yid": "7f96j98SBos",
+ "crop_xywh": [
+  656,
+  0,
+  516,
+  720
+ ],
+ "bbox_norm": [
+  0.5122438788414001,
+  -0.005909372259069372,
+  0.9165987549004732,
+  1.067393072544302
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "However the family also says they are trying to navigate through this extremely heart-wrenching time and have asked for privacy to grieve and make arrangements for his funeral.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 357,
+ "stride": 1,
+ "start": "00:01:21.766",
+ "end": "00:01:33.666",
+ "duration_s": 11.9
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "mfS4CuaOtxI-00:03:22.533-00:03:47.966",
+ "yid": "mfS4CuaOtxI",
+ "crop_xywh": [
+  604,
+  0,
+  584,
+  720
+ ],
+ "bbox_norm": [
+  0.47151207807587414,
+  -0.17358794862769591,
+  0.929029756768286,
+  1.188143836357119
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I mentioned yesterday that NAD CEO Howard Rosenblum said historically no U.S. president has ever given a briefing with an ASL interpreter, but that he thinks there should be one because of the severity of this national crisis.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 611,
+ "stride": 1,
+ "start": "00:03:22.533",
+ "end": "00:03:47.966",
+ "duration_s": 25.433
+}

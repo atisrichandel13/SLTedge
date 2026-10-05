@@ -1,0 +1,30 @@
+{
+ "vid": "ixq65EiuJ_c-00:03:33.533-00:03:35.633",
+ "yid": "ixq65EiuJ_c",
+ "crop_xywh": [
+  721,
+  0,
+  404,
+  644
+ ],
+ "bbox_norm": [
+  0.5629519266959948,
+  -0.02811671852046608,
+  0.8797938542488294,
+  0.8953895851417825
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some people said, \u201cYou left a state government job?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 63,
+ "stride": 1,
+ "start": "00:03:33.533",
+ "end": "00:03:35.633",
+ "duration_s": 2.1
+}

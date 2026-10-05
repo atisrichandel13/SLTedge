@@ -1,0 +1,30 @@
+{
+ "vid": "syDWIvL6-hk-00:05:33.700-00:05:45.666",
+ "yid": "syDWIvL6-hk",
+ "crop_xywh": [
+  814,
+  159,
+  292,
+  446
+ ],
+ "bbox_norm": [
+  0.6356231900623867,
+  0.22022462330167258,
+  0.8644298165185111,
+  0.8408005720471579
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "President Trump took to Twitter Saturday slamming the decision to deny testing by focusing the blame on Pelosi.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 359,
+ "stride": 1,
+ "start": "00:05:33.700",
+ "end": "00:05:45.666",
+ "duration_s": 11.966
+}

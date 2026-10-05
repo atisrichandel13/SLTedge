@@ -1,0 +1,30 @@
+{
+ "vid": "EmHZnx5ubqM-00:00:27.333-00:00:32.500",
+ "yid": "EmHZnx5ubqM",
+ "crop_xywh": [
+  352,
+  0,
+  640,
+  720
+ ],
+ "bbox_norm": [
+  0.27526242192586264,
+  -0.1315824178059896,
+  0.7761088473002116,
+  1.2563524831136068
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It is your responsibility to give your doctor the information. Your doctor is responsible for this information.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 124,
+ "stride": 1,
+ "start": "00:00:27.333",
+ "end": "00:00:32.500",
+ "duration_s": 5.167
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "wO-FMbD4MW8-00:02:08.766-00:02:10.033",
+ "yid": "wO-FMbD4MW8",
+ "crop_xywh": [
+  341,
+  0,
+  640,
+  720
+ ],
+ "bbox_norm": [
+  0.26677130262056986,
+  -0.13965946126867224,
+  0.7671867072582245,
+  1.292021887390702
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We discussed wanting to bring that.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 38,
+ "stride": 1,
+ "start": "00:02:08.766",
+ "end": "00:02:10.033",
+ "duration_s": 1.267
+}

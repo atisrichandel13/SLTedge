@@ -1,0 +1,30 @@
+{
+ "vid": "CNvItMnGsqQ-00:03:51.333-00:04:12.533",
+ "yid": "CNvItMnGsqQ",
+ "crop_xywh": [
+  607,
+  0,
+  618,
+  720
+ ],
+ "bbox_norm": [
+  0.47435215652145424,
+  -0.19516065213172004,
+  0.9580203722155313,
+  1.2541936526739343
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The body of Justice Ruth Bader Ginsburg was honored yesterday and today in a U.S. flag-draped casket on the front steps of the U.S. Supreme Court building.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 636,
+ "stride": 1,
+ "start": "00:03:51.333",
+ "end": "00:04:12.533",
+ "duration_s": 21.2
+}

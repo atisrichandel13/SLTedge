@@ -1,0 +1,30 @@
+{
+ "vid": "4b-evcJm2JQ-00:02:25.033-00:02:30.733",
+ "yid": "4b-evcJm2JQ",
+ "crop_xywh": [
+  665,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.5196124076843261,
+  -0.07937014564635261,
+  0.9353349004473005,
+  1.1065047040061347
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The school district fired him and contacted police immediately after finding out about the incident.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 171,
+ "stride": 1,
+ "start": "00:02:25.033",
+ "end": "00:02:30.733",
+ "duration_s": 5.7
+}

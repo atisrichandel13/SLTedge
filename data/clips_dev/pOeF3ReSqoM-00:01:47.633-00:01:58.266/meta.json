@@ -1,0 +1,30 @@
+{
+ "vid": "pOeF3ReSqoM-00:01:47.633-00:01:58.266",
+ "yid": "pOeF3ReSqoM",
+ "crop_xywh": [
+  665,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.5192055881023407,
+  -0.15606796344121296,
+  0.9429153541723887,
+  1.1095699844536957
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is the second legal defeat for Kemp after accusations of voter suppression.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 319,
+ "stride": 1,
+ "start": "00:01:47.633",
+ "end": "00:01:58.266",
+ "duration_s": 10.633
+}

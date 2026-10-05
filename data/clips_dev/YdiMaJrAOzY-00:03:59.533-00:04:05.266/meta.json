@@ -1,0 +1,30 @@
+{
+ "vid": "YdiMaJrAOzY-00:03:59.533-00:04:05.266",
+ "yid": "YdiMaJrAOzY",
+ "crop_xywh": [
+  590,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.4608681695801871,
+  -0.14133363905407134,
+  0.8804137383188521,
+  1.0543779870189687
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Giuliani wanted to discuss investigations.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 138,
+ "stride": 1,
+ "start": "00:03:59.533",
+ "end": "00:04:05.266",
+ "duration_s": 5.733
+}

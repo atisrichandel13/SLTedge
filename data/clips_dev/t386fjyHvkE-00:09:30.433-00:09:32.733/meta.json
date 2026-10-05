@@ -1,0 +1,30 @@
+{
+ "vid": "t386fjyHvkE-00:09:30.433-00:09:32.733",
+ "yid": "t386fjyHvkE",
+ "crop_xywh": [
+  148,
+  0,
+  238,
+  360
+ ],
+ "bbox_norm": [
+  0.30737587043217246,
+  -0.0903394653683617,
+  0.8067268360228765,
+  1.0094588309999497
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is why I discuss the three prongs.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  480,
+  360
+ ],
+ "n_frames": 69,
+ "stride": 1,
+ "start": "00:09:30.433",
+ "end": "00:09:32.733",
+ "duration_s": 2.3
+}

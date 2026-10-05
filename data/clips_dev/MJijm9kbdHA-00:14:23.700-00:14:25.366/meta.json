@@ -1,0 +1,30 @@
+{
+ "vid": "MJijm9kbdHA-00:14:23.700-00:14:25.366",
+ "yid": "MJijm9kbdHA",
+ "crop_xywh": [
+  254,
+  0,
+  728,
+  720
+ ],
+ "bbox_norm": [
+  0.19846487045288086,
+  -0.1879624808276141,
+  0.7682850201924641,
+  1.3359545080750077
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was a new perspective.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 40,
+ "stride": 1,
+ "start": "00:14:23.700",
+ "end": "00:14:25.366",
+ "duration_s": 1.666
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "W5m8NDOi6V8-00:02:27.433-00:02:31.233",
+ "yid": "W5m8NDOi6V8",
+ "crop_xywh": [
+  681,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.5316432116324442,
+  -0.06687765734934668,
+  0.9983417611373098,
+  1.21708515903406
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We still have to take care of them and protect them, too.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 92,
+ "stride": 1,
+ "start": "00:02:27.433",
+ "end": "00:02:31.233",
+ "duration_s": 3.8
+}

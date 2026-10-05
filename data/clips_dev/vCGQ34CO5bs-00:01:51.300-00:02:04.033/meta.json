@@ -1,0 +1,30 @@
+{
+ "vid": "vCGQ34CO5bs-00:01:51.300-00:02:04.033",
+ "yid": "vCGQ34CO5bs",
+ "crop_xywh": [
+  169,
+  0,
+  574,
+  470
+ ],
+ "bbox_norm": [
+  0.19743660521001843,
+  -0.26294455084230206,
+  0.8708554332304683,
+  1.8046102770984287
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In my opinion, it is so important for society to see the value of women; especially in today's climate with women's rights at risk and how the system views women.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 382,
+ "stride": 1,
+ "start": "00:01:51.300",
+ "end": "00:02:04.033",
+ "duration_s": 12.733
+}

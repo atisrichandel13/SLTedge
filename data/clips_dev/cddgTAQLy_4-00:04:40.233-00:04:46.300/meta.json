@@ -1,0 +1,30 @@
+{
+ "vid": "cddgTAQLy_4-00:04:40.233-00:04:46.300",
+ "yid": "cddgTAQLy_4",
+ "crop_xywh": [
+  282,
+  0,
+  322,
+  480
+ ],
+ "bbox_norm": [
+  0.33048747090228736,
+  -0.07928998911822284,
+  0.7087278055890351,
+  1.015706651299088
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We recognize every government program deals with fraud.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 182,
+ "stride": 1,
+ "start": "00:04:40.233",
+ "end": "00:04:46.300",
+ "duration_s": 6.067
+}

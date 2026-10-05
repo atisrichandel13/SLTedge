@@ -1,0 +1,30 @@
+{
+ "vid": "XPndROf0Ltg-00:11:04.300-00:11:07.133",
+ "yid": "XPndROf0Ltg",
+ "crop_xywh": [
+  730,
+  0,
+  496,
+  720
+ ],
+ "bbox_norm": [
+  0.5705344268253871,
+  -0.11658326809999173,
+  0.9584902104877291,
+  1.058630754581835
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "You won't have to worry about that in 2021.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 68,
+ "stride": 1,
+ "start": "00:11:04.300",
+ "end": "00:11:07.133",
+ "duration_s": 2.833
+}

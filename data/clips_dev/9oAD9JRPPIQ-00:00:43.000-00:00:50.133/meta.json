@@ -1,0 +1,30 @@
+{
+ "vid": "9oAD9JRPPIQ-00:00:43.000-00:00:50.133",
+ "yid": "9oAD9JRPPIQ",
+ "crop_xywh": [
+  664,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.5189440098843833,
+  -0.14044349335268794,
+  0.9477226656536722,
+  1.1802654341928513
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A major storm pounded the Golden State with rain, flash floods and mudslides.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 214,
+ "stride": 1,
+ "start": "00:00:43.000",
+ "end": "00:00:50.133",
+ "duration_s": 7.133
+}

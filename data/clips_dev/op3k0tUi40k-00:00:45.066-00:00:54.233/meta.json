@@ -1,0 +1,30 @@
+{
+ "vid": "op3k0tUi40k-00:00:45.066-00:00:54.233",
+ "yid": "op3k0tUi40k",
+ "crop_xywh": [
+  306,
+  0,
+  632,
+  720
+ ],
+ "bbox_norm": [
+  0.23924490350665467,
+  -0.13351282139017123,
+  0.7324779519167813,
+  1.2684628154613355
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I applied, got the job, and worked for 13 years as the Communication Access Specialist then received a promotion as the Office Manager.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 275,
+ "stride": 1,
+ "start": "00:00:45.066",
+ "end": "00:00:54.233",
+ "duration_s": 9.167
+}

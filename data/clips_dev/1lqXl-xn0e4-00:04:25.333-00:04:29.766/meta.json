@@ -1,0 +1,30 @@
+{
+ "vid": "1lqXl-xn0e4-00:04:25.333-00:04:29.766",
+ "yid": "1lqXl-xn0e4",
+ "crop_xywh": [
+  203,
+  37,
+  256,
+  420
+ ],
+ "bbox_norm": [
+  0.3165910420594392,
+  0.0771286893773962,
+  0.7195025179121229,
+  0.9533530841639012
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Right now, I'm sitting at the Circ, a bar in the middle of the lobby.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  480
+ ],
+ "n_frames": 133,
+ "stride": 1,
+ "start": "00:04:25.333",
+ "end": "00:04:29.766",
+ "duration_s": 4.433
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "wdmj6E_faOo-00:00:50.133-00:00:55.066",
+ "yid": "wdmj6E_faOo",
+ "crop_xywh": [
+  687,
+  110,
+  120,
+  178
+ ],
+ "bbox_norm": [
+  0.5368764966726303,
+  0.1528572784529792,
+  0.6315782397985459,
+  0.4011017203330994
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Different writers have different habits, you know?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 148,
+ "stride": 1,
+ "start": "00:00:50.133",
+ "end": "00:00:55.066",
+ "duration_s": 4.933
+}

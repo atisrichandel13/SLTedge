@@ -1,0 +1,30 @@
+{
+ "vid": "4zsgy6DmJfA-00:10:12.600-00:10:13.766",
+ "yid": "4zsgy6DmJfA",
+ "crop_xywh": [
+  671,
+  0,
+  552,
+  720
+ ],
+ "bbox_norm": [
+  0.5243120375133696,
+  -0.10005508907257564,
+  0.9565008163452149,
+  1.121819997716833
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Sign1News.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 35,
+ "stride": 1,
+ "start": "00:10:12.600",
+ "end": "00:10:13.766",
+ "duration_s": 1.166
+}

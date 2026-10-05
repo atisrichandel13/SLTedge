@@ -1,0 +1,30 @@
+{
+ "vid": "hr4pJ4qW9ao-00:01:48.066-00:01:56.700",
+ "yid": "hr4pJ4qW9ao",
+ "crop_xywh": [
+  629,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.4916808525721232,
+  -0.16120342243770588,
+  0.9342792394833687,
+  1.153314051397166
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Today Georgia Governor Brian Kemp signed the fetal heartbeat bill.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 260,
+ "stride": 1,
+ "start": "00:01:48.066",
+ "end": "00:01:56.700",
+ "duration_s": 8.634
+}

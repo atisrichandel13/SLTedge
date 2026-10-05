@@ -1,0 +1,30 @@
+{
+ "vid": "5-XiLc5yNM4-00:05:36.666-00:05:44.333",
+ "yid": "5-XiLc5yNM4",
+ "crop_xywh": [
+  223,
+  104,
+  156,
+  240
+ ],
+ "bbox_norm": [
+  0.17383842698989377,
+  0.1447221899545321,
+  0.2965582532267417,
+  0.47961166716818315
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The officers who fired at the father never faced criminal charges.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 230,
+ "stride": 1,
+ "start": "00:05:36.666",
+ "end": "00:05:44.333",
+ "duration_s": 7.667
+}

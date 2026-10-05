@@ -1,0 +1,30 @@
+{
+ "vid": "CdakPZuyQmU-00:00:18.600-00:00:39.233",
+ "yid": "CdakPZuyQmU",
+ "crop_xywh": [
+  457,
+  0,
+  580,
+  720
+ ],
+ "bbox_norm": [
+  0.356988760077435,
+  -0.10871975442637567,
+  0.8106479570140009,
+  1.1464216054772025
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Here are your top stories for today: The US Food and Drug Administration has given emergency approval to a new Covid-19 saliva test.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 619,
+ "stride": 1,
+ "start": "00:00:18.600",
+ "end": "00:00:39.233",
+ "duration_s": 20.633
+}

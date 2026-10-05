@@ -1,0 +1,30 @@
+{
+ "vid": "ELZ2hHlrfqU-00:01:37.533-00:01:44.300",
+ "yid": "ELZ2hHlrfqU",
+ "crop_xywh": [
+  617,
+  0,
+  502,
+  720
+ ],
+ "bbox_norm": [
+  0.48211053501475937,
+  -0.15390346283061737,
+  0.8753163626699736,
+  1.040952135015417
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There were tourists from the United States and around the world who were visiting the island.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 163,
+ "stride": 1,
+ "start": "00:01:37.533",
+ "end": "00:01:44.300",
+ "duration_s": 6.767
+}

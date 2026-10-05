@@ -1,0 +1,30 @@
+{
+ "vid": "_gcdbWV03Xk-00:04:19.166-00:04:24.466",
+ "yid": "_gcdbWV03Xk",
+ "crop_xywh": [
+  358,
+  0,
+  650,
+  720
+ ],
+ "bbox_norm": [
+  0.27957323789596555,
+  -0.12576367060343424,
+  0.7874954819679261,
+  1.3406643757113703
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The potential liability for all that is going on can affect the agreement between RID and NAD. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 159,
+ "stride": 1,
+ "start": "00:04:19.166",
+ "end": "00:04:24.466",
+ "duration_s": 5.3
+}

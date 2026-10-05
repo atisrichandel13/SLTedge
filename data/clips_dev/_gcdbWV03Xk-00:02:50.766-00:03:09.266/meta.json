@@ -1,0 +1,30 @@
+{
+ "vid": "_gcdbWV03Xk-00:02:50.766-00:03:09.266",
+ "yid": "_gcdbWV03Xk",
+ "crop_xywh": [
+  340,
+  0,
+  662,
+  720
+ ],
+ "bbox_norm": [
+  0.26555187066396074,
+  -0.09224630387945207,
+  0.7838637272516886,
+  1.3553039739589499
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The RID board and interim executive director will perform a risk assessment of the organization, looking at the board structure, financial position, and the certification maintenance program.  ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 555,
+ "stride": 1,
+ "start": "00:02:50.766",
+ "end": "00:03:09.266",
+ "duration_s": 18.5
+}

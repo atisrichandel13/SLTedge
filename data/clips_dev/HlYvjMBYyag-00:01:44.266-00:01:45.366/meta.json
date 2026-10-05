@@ -1,0 +1,30 @@
+{
+ "vid": "HlYvjMBYyag-00:01:44.266-00:01:45.366",
+ "yid": "HlYvjMBYyag",
+ "crop_xywh": [
+  281,
+  0,
+  362,
+  480
+ ],
+ "bbox_norm": [
+  0.3286722642037732,
+  -0.07575144540695918,
+  0.7530039037179294,
+  1.1061614467984155
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I want to give back.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 33,
+ "stride": 1,
+ "start": "00:01:44.266",
+ "end": "00:01:45.366",
+ "duration_s": 1.1
+}

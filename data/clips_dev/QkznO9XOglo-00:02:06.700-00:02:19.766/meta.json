@@ -1,0 +1,30 @@
+{
+ "vid": "QkznO9XOglo-00:02:06.700-00:02:19.766",
+ "yid": "QkznO9XOglo",
+ "crop_xywh": [
+  641,
+  0,
+  558,
+  720
+ ],
+ "bbox_norm": [
+  0.501123926911173,
+  -0.11219154962395705,
+  0.9373491387830002,
+  1.1166880287925123
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "24-year-old social media star Cameron Dallas is facing charges of assault after being arrested in Colorado over the weekend.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 392,
+ "stride": 1,
+ "start": "00:02:06.700",
+ "end": "00:02:19.766",
+ "duration_s": 13.066
+}

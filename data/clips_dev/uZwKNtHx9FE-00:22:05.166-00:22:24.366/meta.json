@@ -1,0 +1,30 @@
+{
+ "vid": "uZwKNtHx9FE-00:22:05.166-00:22:24.366",
+ "yid": "uZwKNtHx9FE",
+ "crop_xywh": [
+  623,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.4869857572740124,
+  -0.1877451643341806,
+  0.9534990074814007,
+  1.2097691804847126
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The mother explained that there has always been tension and strifes between Charln and his sister, and that the tensions ramped up after their father and her husband, who was an Air Force veteran, died a few years ago.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 461,
+ "stride": 1,
+ "start": "00:22:05.166",
+ "end": "00:22:24.366",
+ "duration_s": 19.2
+}

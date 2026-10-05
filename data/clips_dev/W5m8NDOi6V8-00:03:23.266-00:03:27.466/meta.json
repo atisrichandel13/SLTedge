@@ -1,0 +1,30 @@
+{
+ "vid": "W5m8NDOi6V8-00:03:23.266-00:03:27.466",
+ "yid": "W5m8NDOi6V8",
+ "crop_xywh": [
+  30,
+  0,
+  580,
+  720
+ ],
+ "bbox_norm": [
+  0.02309014645833818,
+  -0.10482106822718598,
+  0.4761817315268138,
+  1.3529416267623766
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In your system, and maybe the same system has been in others too?",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 101,
+ "stride": 1,
+ "start": "00:03:23.266",
+ "end": "00:03:27.466",
+ "duration_s": 4.2
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "bySOi__Kauk-00:06:39.466-00:06:45.766",
+ "yid": "bySOi__Kauk",
+ "crop_xywh": [
+  659,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.5151323937533194,
+  -0.12453954224465652,
+  0.9345425505387156,
+  1.0805296739871972
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Now IKEA wants you to help them build happiness.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 189,
+ "stride": 1,
+ "start": "00:06:39.466",
+ "end": "00:06:45.766",
+ "duration_s": 6.3
+}

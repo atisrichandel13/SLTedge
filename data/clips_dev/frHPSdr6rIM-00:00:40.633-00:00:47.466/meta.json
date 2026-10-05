@@ -1,0 +1,30 @@
+{
+ "vid": "frHPSdr6rIM-00:00:40.633-00:00:47.466",
+ "yid": "frHPSdr6rIM",
+ "crop_xywh": [
+  624,
+  0,
+  602,
+  720
+ ],
+ "bbox_norm": [
+  0.4877343669082179,
+  -0.2002508272626986,
+  0.9576776966904148,
+  1.2454252951608096
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"A demonstrator walked up in front with a large banner that said, \"\"HOMELESS CAN'T STAY HOME.\"\"\"",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 164,
+ "stride": 1,
+ "start": "00:00:40.633",
+ "end": "00:00:47.466",
+ "duration_s": 6.833
+}

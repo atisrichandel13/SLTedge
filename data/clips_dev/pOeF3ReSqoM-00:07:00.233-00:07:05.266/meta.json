@@ -1,0 +1,30 @@
+{
+ "vid": "pOeF3ReSqoM-00:07:00.233-00:07:05.266",
+ "yid": "pOeF3ReSqoM",
+ "crop_xywh": [
+  685,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.5354730144623787,
+  -0.14614463769691677,
+  0.9514533883781843,
+  1.0801687404673586
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Baldwin was booked and released.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 151,
+ "stride": 1,
+ "start": "00:07:00.233",
+ "end": "00:07:05.266",
+ "duration_s": 5.033
+}

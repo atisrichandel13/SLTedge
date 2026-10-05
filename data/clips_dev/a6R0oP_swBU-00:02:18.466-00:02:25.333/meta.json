@@ -1,0 +1,30 @@
+{
+ "vid": "a6R0oP_swBU-00:02:18.466-00:02:25.333",
+ "yid": "a6R0oP_swBU",
+ "crop_xywh": [
+  683,
+  53,
+  478,
+  666
+ ],
+ "bbox_norm": [
+  0.5337309610275995,
+  0.07388282722056018,
+  0.9074622048272027,
+  1.1758208952673317
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We need to get many deaf people to gather together to support language acquisition.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 206,
+ "stride": 1,
+ "start": "00:02:18.466",
+ "end": "00:02:25.333",
+ "duration_s": 6.867
+}

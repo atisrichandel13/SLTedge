@@ -1,0 +1,30 @@
+{
+ "vid": "EDlQOtl4fW8-00:05:07.666-00:05:14.666",
+ "yid": "EDlQOtl4fW8",
+ "crop_xywh": [
+  354,
+  0,
+  608,
+  720
+ ],
+ "bbox_norm": [
+  0.27688900856744675,
+  -0.07898883247711881,
+  0.7521296796344575,
+  1.2583999431953228
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This should explain the reason why, along with supporting information, it should be selected as a top priority.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 210,
+ "stride": 1,
+ "start": "00:05:07.666",
+ "end": "00:05:14.666",
+ "duration_s": 7.0
+}

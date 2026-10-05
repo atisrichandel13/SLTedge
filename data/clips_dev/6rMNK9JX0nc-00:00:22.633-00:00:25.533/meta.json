@@ -1,0 +1,30 @@
+{
+ "vid": "6rMNK9JX0nc-00:00:22.633-00:00:25.533",
+ "yid": "6rMNK9JX0nc",
+ "crop_xywh": [
+  208,
+  0,
+  404,
+  470
+ ],
+ "bbox_norm": [
+  0.24302093541594244,
+  -0.19933226925825115,
+  0.7169071240193081,
+  1.2739495847805737
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That is against the law and NAD has taken action.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:00:22.633",
+ "end": "00:00:25.533",
+ "duration_s": 2.9
+}

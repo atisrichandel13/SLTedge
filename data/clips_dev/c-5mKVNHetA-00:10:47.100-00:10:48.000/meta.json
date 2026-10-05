@@ -1,0 +1,30 @@
+{
+ "vid": "c-5mKVNHetA-00:10:47.100-00:10:48.000",
+ "yid": "c-5mKVNHetA",
+ "crop_xywh": [
+  580,
+  0,
+  496,
+  682
+ ],
+ "bbox_norm": [
+  0.45304447412490845,
+  -0.06417517132229275,
+  0.8416355729103089,
+  0.9474468178219265
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your life.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 27,
+ "stride": 1,
+ "start": "00:10:47.100",
+ "end": "00:10:48.000",
+ "duration_s": 0.9
+}

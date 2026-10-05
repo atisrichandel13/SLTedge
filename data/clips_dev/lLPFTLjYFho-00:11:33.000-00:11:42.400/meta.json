@@ -1,0 +1,30 @@
+{
+ "vid": "lLPFTLjYFho-00:11:33.000-00:11:42.400",
+ "yid": "lLPFTLjYFho",
+ "crop_xywh": [
+  780,
+  78,
+  424,
+  642
+ ],
+ "bbox_norm": [
+  0.6095190612893355,
+  0.10900126600358453,
+  0.9407932846169723,
+  1.0778024468970346
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "NASCAR vows to ban whoever hung the noose.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 282,
+ "stride": 1,
+ "start": "00:11:33.000",
+ "end": "00:11:42.400",
+ "duration_s": 9.4
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "tAB9G6QcXDU-00:01:22.633-00:01:28.166",
+ "yid": "tAB9G6QcXDU",
+ "crop_xywh": [
+  360,
+  0,
+  650,
+  720
+ ],
+ "bbox_norm": [
+  0.2813960584939695,
+  -0.22413245057748032,
+  0.7890937697653677,
+  1.3603991639380362
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It can be a staff or someone you\u2019ve worked with before.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 166,
+ "stride": 1,
+ "start": "00:01:22.633",
+ "end": "00:01:28.166",
+ "duration_s": 5.533
+}

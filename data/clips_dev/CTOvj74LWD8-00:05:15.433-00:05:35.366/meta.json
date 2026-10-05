@@ -1,0 +1,30 @@
+{
+ "vid": "CTOvj74LWD8-00:05:15.433-00:05:35.366",
+ "yid": "CTOvj74LWD8",
+ "crop_xywh": [
+  679,
+  0,
+  482,
+  720
+ ],
+ "bbox_norm": [
+  0.5301341688632965,
+  -0.08248465891237612,
+  0.9072257610162099,
+  1.0586723381501657
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The survey found Generation X, people between 39 and 54 years old, most likely to have credit card debt followed by Baby Boomers, people between 55 and 75 years old.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 598,
+ "stride": 1,
+ "start": "00:05:15.433",
+ "end": "00:05:35.366",
+ "duration_s": 19.933
+}

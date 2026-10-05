@@ -1,0 +1,30 @@
+{
+ "vid": "ovvuXVSsItE-00:02:30.766-00:02:38.266",
+ "yid": "ovvuXVSsItE",
+ "crop_xywh": [
+  618,
+  0,
+  562,
+  720
+ ],
+ "bbox_norm": [
+  0.48263508962548296,
+  -0.17779558768402934,
+  0.922586729215539,
+  1.0739787634636084
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Anyone who hasn't been vaccinated or doesn't get vaccinated could be facing a fine of up to $1,000.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 225,
+ "stride": 1,
+ "start": "00:02:30.766",
+ "end": "00:02:38.266",
+ "duration_s": 7.5
+}

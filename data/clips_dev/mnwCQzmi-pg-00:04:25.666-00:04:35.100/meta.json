@@ -1,0 +1,30 @@
+{
+ "vid": "mnwCQzmi-pg-00:04:25.666-00:04:35.100",
+ "yid": "mnwCQzmi-pg",
+ "crop_xywh": [
+  564,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.44071390179620273,
+  -0.19721673268242926,
+  0.921019637066385,
+  1.2487396512054592
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Emirates said they are the first to do this and would expand testing to include other flights.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 227,
+ "stride": 1,
+ "start": "00:04:25.666",
+ "end": "00:04:35.100",
+ "duration_s": 9.434
+}

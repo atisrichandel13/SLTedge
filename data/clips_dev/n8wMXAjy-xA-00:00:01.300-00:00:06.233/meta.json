@@ -1,0 +1,30 @@
+{
+ "vid": "n8wMXAjy-xA-00:00:01.300-00:00:06.233",
+ "yid": "n8wMXAjy-xA",
+ "crop_xywh": [
+  338,
+  0,
+  670,
+  720
+ ],
+ "bbox_norm": [
+  0.26396117369333905,
+  -0.2347018046437958,
+  0.7880353848139445,
+  1.3161004473839277
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I mean, I liked school but I never thought about life beyond school.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 148,
+ "stride": 1,
+ "start": "00:00:01.300",
+ "end": "00:00:06.233",
+ "duration_s": 4.933
+}

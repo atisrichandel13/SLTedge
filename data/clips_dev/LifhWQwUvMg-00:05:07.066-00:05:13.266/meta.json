@@ -1,0 +1,30 @@
+{
+ "vid": "LifhWQwUvMg-00:05:07.066-00:05:13.266",
+ "yid": "LifhWQwUvMg",
+ "crop_xywh": [
+  630,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.4918354174296061,
+  -0.10416055976019965,
+  0.958501402537028,
+  1.1758541480170357
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The baby also had no visitors at the hospital for several months.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 186,
+ "stride": 1,
+ "start": "00:05:07.066",
+ "end": "00:05:13.266",
+ "duration_s": 6.2
+}

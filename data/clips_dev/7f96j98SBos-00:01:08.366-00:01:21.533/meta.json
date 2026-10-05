@@ -1,0 +1,30 @@
+{
+ "vid": "7f96j98SBos-00:01:08.366-00:01:21.533",
+ "yid": "7f96j98SBos",
+ "crop_xywh": [
+  669,
+  0,
+  492,
+  720
+ ],
+ "bbox_norm": [
+  0.5223791267298445,
+  -0.0033672567046532536,
+  0.906830607386078,
+  1.0389237097602912
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "His father, Victor, says he is overwhelmed by the love and support the family has received and it helps ease the pain of losing his son.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 395,
+ "stride": 1,
+ "start": "00:01:08.366",
+ "end": "00:01:21.533",
+ "duration_s": 13.167
+}

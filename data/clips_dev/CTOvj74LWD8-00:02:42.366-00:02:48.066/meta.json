@@ -1,0 +1,30 @@
+{
+ "vid": "CTOvj74LWD8-00:02:42.366-00:02:48.066",
+ "yid": "CTOvj74LWD8",
+ "crop_xywh": [
+  663,
+  0,
+  484,
+  720
+ ],
+ "bbox_norm": [
+  0.5180972119740077,
+  -0.08549599904862662,
+  0.896349344934736,
+  1.062241585746644
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Between all of the holiday parties, you might have overindulged on the holiday foods.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 171,
+ "stride": 1,
+ "start": "00:02:42.366",
+ "end": "00:02:48.066",
+ "duration_s": 5.7
+}

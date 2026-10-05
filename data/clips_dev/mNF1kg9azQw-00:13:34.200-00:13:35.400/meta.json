@@ -1,0 +1,30 @@
+{
+ "vid": "mNF1kg9azQw-00:13:34.200-00:13:35.400",
+ "yid": "mNF1kg9azQw",
+ "crop_xywh": [
+  664,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.5187313874562581,
+  -0.11176722962179302,
+  0.986925925148858,
+  1.3613943570925866
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There are various reasons.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 29,
+ "stride": 1,
+ "start": "00:13:34.200",
+ "end": "00:13:35.400",
+ "duration_s": 1.2
+}

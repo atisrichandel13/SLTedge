@@ -1,0 +1,30 @@
+{
+ "vid": "yLgXgyi08fk-00:01:00.400-00:01:02.000",
+ "yid": "yLgXgyi08fk",
+ "crop_xywh": [
+  185,
+  0,
+  452,
+  470
+ ],
+ "bbox_norm": [
+  0.21688469880079497,
+  -0.26691687482468623,
+  0.7458974244164639,
+  1.3094385459575246
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "YLC will always be in my heart.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 48,
+ "stride": 1,
+ "start": "00:01:00.400",
+ "end": "00:01:02.000",
+ "duration_s": 1.6
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "I976oI3s1jQ-00:05:59.066-00:06:02.666",
+ "yid": "I976oI3s1jQ",
+ "crop_xywh": [
+  208,
+  0,
+  1072,
+  720
+ ],
+ "bbox_norm": [
+  0.16235244097533047,
+  -0.3948482717506189,
+  1.087609925976506,
+  2.3284121713520567
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I called the CDC and asked questions to which they confirmed.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:05:59.066",
+ "end": "00:06:02.666",
+ "duration_s": 3.6
+}

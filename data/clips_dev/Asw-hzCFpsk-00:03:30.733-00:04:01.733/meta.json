@@ -1,0 +1,30 @@
+{
+ "vid": "Asw-hzCFpsk-00:03:30.733-00:04:01.733",
+ "yid": "Asw-hzCFpsk",
+ "crop_xywh": [
+  639,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.49905306498209634,
+  -0.16442812942527793,
+  0.922727378639015,
+  1.071475866845659
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "CNN reported that in Chesapeake, Virginia, a former U.S. postal worker, Jason Delacruz, admitted that he rented a public storage unit to toss in mail that he couldn't deliver in time because of pressure.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 744,
+ "stride": 1,
+ "start": "00:03:30.733",
+ "end": "00:04:01.733",
+ "duration_s": 31.0
+}

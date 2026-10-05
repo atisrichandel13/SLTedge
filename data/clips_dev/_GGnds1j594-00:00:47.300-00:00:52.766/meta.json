@@ -1,0 +1,30 @@
+{
+ "vid": "_GGnds1j594-00:00:47.300-00:00:52.766",
+ "yid": "_GGnds1j594",
+ "crop_xywh": [
+  491,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.3839307399711223,
+  -0.10540528302776024,
+  0.8013273470329516,
+  1.1654254468067995
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Then, in the second year, I charged five dollars per class. I started to see my class size grow.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 164,
+ "stride": 1,
+ "start": "00:00:47.300",
+ "end": "00:00:52.766",
+ "duration_s": 5.466
+}

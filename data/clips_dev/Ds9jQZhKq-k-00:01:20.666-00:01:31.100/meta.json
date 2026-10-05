@@ -1,0 +1,30 @@
+{
+ "vid": "Ds9jQZhKq-k-00:01:20.666-00:01:31.100",
+ "yid": "Ds9jQZhKq-k",
+ "crop_xywh": [
+  819,
+  171,
+  286,
+  452
+ ],
+ "bbox_norm": [
+  0.6400462850195463,
+  0.2368575709330797,
+  0.8635923069031513,
+  0.86487673114992
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But Chauvin still stands to benefit from a pension partially funded by taxpayers.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 314,
+ "stride": 1,
+ "start": "00:01:20.666",
+ "end": "00:01:31.100",
+ "duration_s": 10.434
+}

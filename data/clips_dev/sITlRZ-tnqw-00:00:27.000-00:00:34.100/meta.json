@@ -1,0 +1,30 @@
+{
+ "vid": "sITlRZ-tnqw-00:00:27.000-00:00:34.100",
+ "yid": "sITlRZ-tnqw",
+ "crop_xywh": [
+  271,
+  0,
+  638,
+  720
+ ],
+ "bbox_norm": [
+  0.21142084570158098,
+  -0.23040183132918424,
+  0.7098139884926024,
+  1.2918424712287055
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "My goal is to have a flow that is ongoing. ",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 213,
+ "stride": 1,
+ "start": "00:00:27.000",
+ "end": "00:00:34.100",
+ "duration_s": 7.1
+}

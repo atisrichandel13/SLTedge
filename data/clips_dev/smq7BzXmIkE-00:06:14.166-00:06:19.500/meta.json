@@ -1,0 +1,30 @@
+{
+ "vid": "smq7BzXmIkE-00:06:14.166-00:06:19.500",
+ "yid": "smq7BzXmIkE",
+ "crop_xywh": [
+  641,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.500870676835378,
+  -0.10854662524329292,
+  0.9174368262290955,
+  1.139979233123638
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "China insists it's the injured party and demands a fair increase.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 160,
+ "stride": 1,
+ "start": "00:06:14.166",
+ "end": "00:06:19.500",
+ "duration_s": 5.334
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "8BIEoB8RvEc-00:04:17.000-00:04:18.533",
+ "yid": "8BIEoB8RvEc",
+ "crop_xywh": [
+  866,
+  111,
+  360,
+  588
+ ],
+ "bbox_norm": [
+  0.6766074021657308,
+  0.1536581759982639,
+  0.9578352006276449,
+  0.9722570009584779
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Gallaudet Food provides one.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 46,
+ "stride": 1,
+ "start": "00:04:17.000",
+ "end": "00:04:18.533",
+ "duration_s": 1.533
+}

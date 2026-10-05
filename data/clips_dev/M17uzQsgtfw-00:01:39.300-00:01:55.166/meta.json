@@ -1,0 +1,30 @@
+{
+ "vid": "M17uzQsgtfw-00:01:39.300-00:01:55.166",
+ "yid": "M17uzQsgtfw",
+ "crop_xywh": [
+  673,
+  0,
+  482,
+  720
+ ],
+ "bbox_norm": [
+  0.5260773758093517,
+  -0.07604839978394685,
+  0.9023078170087602,
+  1.0085859407613307
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Dallas' police chief released a statement saying Guyger was terminated after an internal affairs investigation concluded she was arrested due to manslaughter.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 476,
+ "stride": 1,
+ "start": "00:01:39.300",
+ "end": "00:01:55.166",
+ "duration_s": 15.866
+}

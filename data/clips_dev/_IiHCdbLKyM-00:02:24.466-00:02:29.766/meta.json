@@ -1,0 +1,30 @@
+{
+ "vid": "_IiHCdbLKyM-00:02:24.466-00:02:29.766",
+ "yid": "_IiHCdbLKyM",
+ "crop_xywh": [
+  502,
+  0,
+  614,
+  720
+ ],
+ "bbox_norm": [
+  0.3918281962474187,
+  -0.21306999347828054,
+  0.872429848710696,
+  1.2597434255811903
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They used the 14th amendment and successfully changed the Supreme Court's view.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 159,
+ "stride": 1,
+ "start": "00:02:24.466",
+ "end": "00:02:29.766",
+ "duration_s": 5.3
+}

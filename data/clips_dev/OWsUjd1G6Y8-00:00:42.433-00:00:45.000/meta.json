@@ -1,0 +1,30 @@
+{
+ "vid": "OWsUjd1G6Y8-00:00:42.433-00:00:45.000",
+ "yid": "OWsUjd1G6Y8",
+ "crop_xywh": [
+  364,
+  0,
+  588,
+  720
+ ],
+ "bbox_norm": [
+  0.2839894950389862,
+  -0.1483698844909668,
+  0.743820995092392,
+  1.222571983602312
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Do you get tired of those kinds of questions?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 77,
+ "stride": 1,
+ "start": "00:00:42.433",
+ "end": "00:00:45.000",
+ "duration_s": 2.567
+}

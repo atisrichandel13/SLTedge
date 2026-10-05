@@ -1,0 +1,30 @@
+{
+ "vid": "kTrTETgKpBw-00:10:10.066-00:10:13.333",
+ "yid": "kTrTETgKpBw",
+ "crop_xywh": [
+  623,
+  0,
+  610,
+  720
+ ],
+ "bbox_norm": [
+  0.4870521159399123,
+  -0.190441735080941,
+  0.9632111844562349,
+  1.2735508247658058
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Today there are four political news briefs.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 79,
+ "stride": 1,
+ "start": "00:10:10.066",
+ "end": "00:10:13.333",
+ "duration_s": 3.267
+}

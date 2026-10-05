@@ -1,0 +1,30 @@
+{
+ "vid": "LQGgyecOXwo-00:01:13.366-00:01:28.666",
+ "yid": "LQGgyecOXwo",
+ "crop_xywh": [
+  173,
+  0,
+  346,
+  480
+ ],
+ "bbox_norm": [
+  0.27096825164297356,
+  -0.11068466780842215,
+  0.8120011630265609,
+  1.0534015895663829
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Associations of the deaf in different countries will select children, between 10-12 years of age to participate in the camp.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  480
+ ],
+ "n_frames": 459,
+ "stride": 1,
+ "start": "00:01:13.366",
+ "end": "00:01:28.666",
+ "duration_s": 15.3
+}

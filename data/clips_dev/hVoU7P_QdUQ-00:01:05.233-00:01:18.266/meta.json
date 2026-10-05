@@ -1,0 +1,30 @@
+{
+ "vid": "hVoU7P_QdUQ-00:01:05.233-00:01:18.266",
+ "yid": "hVoU7P_QdUQ",
+ "crop_xywh": [
+  401,
+  27,
+  210,
+  332
+ ],
+ "bbox_norm": [
+  0.6261196091205259,
+  0.07395679672391438,
+  0.9570164816289009,
+  1.0799912486230605
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The White House's coronavirus response coordinator said anyone who has recently left New York should self-quarantine for 14 days.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  640,
+  360
+ ],
+ "n_frames": 391,
+ "stride": 1,
+ "start": "00:01:05.233",
+ "end": "00:01:18.266",
+ "duration_s": 13.033
+}

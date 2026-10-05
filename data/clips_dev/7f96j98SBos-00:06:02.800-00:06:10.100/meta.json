@@ -1,0 +1,30 @@
+{
+ "vid": "7f96j98SBos-00:06:02.800-00:06:10.100",
+ "yid": "7f96j98SBos",
+ "crop_xywh": [
+  676,
+  0,
+  486,
+  720
+ ],
+ "bbox_norm": [
+  0.5284507101232355,
+  -0.0003010534678244029,
+  0.9083608381675952,
+  1.0299305755281287
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Check out Snowball the dancing cockatoo!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 219,
+ "stride": 1,
+ "start": "00:06:02.800",
+ "end": "00:06:10.100",
+ "duration_s": 7.3
+}

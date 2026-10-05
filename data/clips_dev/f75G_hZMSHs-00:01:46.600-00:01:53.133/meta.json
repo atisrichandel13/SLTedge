@@ -1,0 +1,30 @@
+{
+ "vid": "f75G_hZMSHs-00:01:46.600-00:01:53.133",
+ "yid": "f75G_hZMSHs",
+ "crop_xywh": [
+  628,
+  0,
+  514,
+  720
+ ],
+ "bbox_norm": [
+  0.49045572996139525,
+  -0.1186009368190059,
+  0.8918060628573099,
+  1.1041698185602824
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But the police chief says he's disappointed by the officer's actions.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 196,
+ "stride": 1,
+ "start": "00:01:46.600",
+ "end": "00:01:53.133",
+ "duration_s": 6.533
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "7f96j98SBos-00:04:30.200-00:04:37.000",
+ "yid": "7f96j98SBos",
+ "crop_xywh": [
+  670,
+  0,
+  484,
+  720
+ ],
+ "bbox_norm": [
+  0.5237777795248885,
+  -0.007594051206014989,
+  0.9019890413051698,
+  1.0237167627184696
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The team was ceremoniously granted the keys to the city in front of City Hall.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 204,
+ "stride": 1,
+ "start": "00:04:30.200",
+ "end": "00:04:37.000",
+ "duration_s": 6.8
+}

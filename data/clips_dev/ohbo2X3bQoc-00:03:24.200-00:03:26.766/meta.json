@@ -1,0 +1,30 @@
+{
+ "vid": "ohbo2X3bQoc-00:03:24.200-00:03:26.766",
+ "yid": "ohbo2X3bQoc",
+ "crop_xywh": [
+  203,
+  0,
+  514,
+  720
+ ],
+ "bbox_norm": [
+  0.15858318905035654,
+  -0.12961525122324627,
+  0.5605865170558294,
+  1.0836769020115888
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "They are interested in getting feedback from you.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 77,
+ "stride": 1,
+ "start": "00:03:24.200",
+ "end": "00:03:26.766",
+ "duration_s": 2.566
+}

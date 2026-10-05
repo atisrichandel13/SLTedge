@@ -1,0 +1,30 @@
+{
+ "vid": "_2cg2YLx6mg-00:03:54.433-00:04:04.066",
+ "yid": "_2cg2YLx6mg",
+ "crop_xywh": [
+  627,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.4898299609515684,
+  -0.1058493801324362,
+  0.9072361648505461,
+  1.1528120067948147
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"He developed the non profit animal rescue center \"\"Keepers of the Wild\"\" to provide a home for the exotic animals.\"",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 231,
+ "stride": 1,
+ "start": "00:03:54.433",
+ "end": "00:04:04.066",
+ "duration_s": 9.633
+}

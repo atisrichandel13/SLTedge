@@ -1,0 +1,30 @@
+{
+ "vid": "a91XPFdhKuU-00:02:10.166-00:02:34.766",
+ "yid": "a91XPFdhKuU",
+ "crop_xywh": [
+  665,
+  0,
+  512,
+  720
+ ],
+ "bbox_norm": [
+  0.5196906317461718,
+  -0.09504683592894653,
+  0.9198326244010582,
+  1.0866400197461559
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Kent testified that over the course of 2018 and 2019, he became increasingly aware of an effort by Giuliani and other associates to run a smear campaign to oust U.S. ambassador to Ukraine Marie Yovanovitch.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 738,
+ "stride": 1,
+ "start": "00:02:10.166",
+ "end": "00:02:34.766",
+ "duration_s": 24.6
+}

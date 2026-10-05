@@ -1,0 +1,30 @@
+{
+ "vid": "Asw-hzCFpsk-00:16:17.433-00:16:24.366",
+ "yid": "Asw-hzCFpsk",
+ "crop_xywh": [
+  462,
+  24,
+  398,
+  696
+ ],
+ "bbox_norm": [
+  0.3606231357112076,
+  0.03334944582681196,
+  0.6720008016836764,
+  1.0020422763160852
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Here is a Deaf Bing video from an elementary student at the American School for the Deaf in Connecticut!",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 167,
+ "stride": 1,
+ "start": "00:16:17.433",
+ "end": "00:16:24.366",
+ "duration_s": 6.933
+}

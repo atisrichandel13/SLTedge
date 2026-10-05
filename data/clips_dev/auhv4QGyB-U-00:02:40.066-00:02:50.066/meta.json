@@ -1,0 +1,30 @@
+{
+ "vid": "auhv4QGyB-U-00:02:40.066-00:02:50.066",
+ "yid": "auhv4QGyB-U",
+ "crop_xywh": [
+  643,
+  0,
+  518,
+  720
+ ],
+ "bbox_norm": [
+  0.5022024546729194,
+  -0.08697229126353322,
+  0.9075808133019341,
+  1.1056144544813367
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The lawsuit was based on the accusers showing up tell their stories in an open court, but the agreement was that it was to be closed.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 300,
+ "stride": 1,
+ "start": "00:02:40.066",
+ "end": "00:02:50.066",
+ "duration_s": 10.0
+}

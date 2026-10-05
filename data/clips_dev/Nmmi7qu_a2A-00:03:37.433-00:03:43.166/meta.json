@@ -1,0 +1,30 @@
+{
+ "vid": "Nmmi7qu_a2A-00:03:37.433-00:03:43.166",
+ "yid": "Nmmi7qu_a2A",
+ "crop_xywh": [
+  410,
+  0,
+  526,
+  708
+ ],
+ "bbox_norm": [
+  0.3200237701052711,
+  -0.1832726205089105,
+  0.7309648086911157,
+  0.9841642360586337
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I've now been here for four years as a full-time staff Certified Deaf Interpreter.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 172,
+ "stride": 1,
+ "start": "00:03:37.433",
+ "end": "00:03:43.166",
+ "duration_s": 5.733
+}

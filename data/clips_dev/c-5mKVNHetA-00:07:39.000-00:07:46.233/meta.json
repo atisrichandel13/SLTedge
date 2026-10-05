@@ -1,0 +1,30 @@
+{
+ "vid": "c-5mKVNHetA-00:07:39.000-00:07:46.233",
+ "yid": "c-5mKVNHetA",
+ "crop_xywh": [
+  660,
+  0,
+  480,
+  684
+ ],
+ "bbox_norm": [
+  0.5156857051632622,
+  -0.07127689785427517,
+  0.8902561572465031,
+  0.9510504250574594
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "On Wednesday the social media app started asking new users their date of birth.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 217,
+ "stride": 1,
+ "start": "00:07:39.000",
+ "end": "00:07:46.233",
+ "duration_s": 7.233
+}

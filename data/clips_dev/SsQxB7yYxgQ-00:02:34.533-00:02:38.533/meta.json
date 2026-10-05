@@ -1,0 +1,30 @@
+{
+ "vid": "SsQxB7yYxgQ-00:02:34.533-00:02:38.533",
+ "yid": "SsQxB7yYxgQ",
+ "crop_xywh": [
+  359,
+  0,
+  730,
+  720
+ ],
+ "bbox_norm": [
+  0.2801095403035482,
+  -0.27769532493308735,
+  0.8509385197957358,
+  1.3987444350631149
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It is about 30 miles away from where I'm located.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 120,
+ "stride": 1,
+ "start": "00:02:34.533",
+ "end": "00:02:38.533",
+ "duration_s": 4.0
+}

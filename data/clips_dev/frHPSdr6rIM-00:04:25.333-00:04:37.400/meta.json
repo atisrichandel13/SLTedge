@@ -1,0 +1,30 @@
+{
+ "vid": "frHPSdr6rIM-00:04:25.333-00:04:37.400",
+ "yid": "frHPSdr6rIM",
+ "crop_xywh": [
+  565,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.4415642475259715,
+  -0.18051063030920111,
+  0.9112174976831195,
+  1.2362970690769863
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"Why would an elected official tap the interpreter's shoulder and tell him/her to stop interpreting if the intention was to give the protesters the floor?\"\"\"",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 290,
+ "stride": 1,
+ "start": "00:04:25.333",
+ "end": "00:04:37.400",
+ "duration_s": 12.067
+}

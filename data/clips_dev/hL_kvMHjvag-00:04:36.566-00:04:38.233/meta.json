@@ -1,0 +1,30 @@
+{
+ "vid": "hL_kvMHjvag-00:04:36.566-00:04:38.233",
+ "yid": "hL_kvMHjvag",
+ "crop_xywh": [
+  629,
+  0,
+  488,
+  720
+ ],
+ "bbox_norm": [
+  0.4916673310597738,
+  -0.12985301688865378,
+  0.8730771160125733,
+  1.098292381145336
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Check this out!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 50,
+ "stride": 1,
+ "start": "00:04:36.566",
+ "end": "00:04:38.233",
+ "duration_s": 1.667
+}

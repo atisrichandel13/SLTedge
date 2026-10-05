@@ -1,0 +1,30 @@
+{
+ "vid": "mq2dPNCiRoI-00:05:25.166-00:05:30.266",
+ "yid": "mq2dPNCiRoI",
+ "crop_xywh": [
+  354,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.2764505634307861,
+  -0.12402850341796876,
+  0.7423071155548097,
+  1.2440497651276765
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Because the actions on one side with nothing done on the other. Where is the support for that? ",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 123,
+ "stride": 1,
+ "start": "00:05:25.166",
+ "end": "00:05:30.266",
+ "duration_s": 5.1
+}

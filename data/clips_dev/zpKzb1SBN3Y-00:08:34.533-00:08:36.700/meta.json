@@ -1,0 +1,30 @@
+{
+ "vid": "zpKzb1SBN3Y-00:08:34.533-00:08:36.700",
+ "yid": "zpKzb1SBN3Y",
+ "crop_xywh": [
+  416,
+  0,
+  572,
+  720
+ ],
+ "bbox_norm": [
+  0.32518983865395573,
+  -0.17389213801109554,
+  0.7726081787011563,
+  1.1231073167588976
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We will not stop or give up.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 65,
+ "stride": 1,
+ "start": "00:08:34.533",
+ "end": "00:08:36.700",
+ "duration_s": 2.167
+}

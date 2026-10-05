@@ -1,0 +1,30 @@
+{
+ "vid": "tUnOjApclYI-00:01:07.266-00:01:14.033",
+ "yid": "tUnOjApclYI",
+ "crop_xywh": [
+  370,
+  0,
+  632,
+  720
+ ],
+ "bbox_norm": [
+  0.2888975151186067,
+  -0.16645911370943342,
+  0.7835158456631792,
+  1.056144879934695
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "After a year and a half of rotating through various jobs, I decided on welding, it seemed to be a passion of mine.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 203,
+ "stride": 1,
+ "start": "00:01:07.266",
+ "end": "00:01:14.033",
+ "duration_s": 6.767
+}

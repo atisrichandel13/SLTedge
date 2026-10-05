@@ -1,0 +1,30 @@
+{
+ "vid": "4b-evcJm2JQ-00:04:17.500-00:04:26.266",
+ "yid": "4b-evcJm2JQ",
+ "crop_xywh": [
+  667,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.5210218164156067,
+  -0.08048063594090364,
+  0.9390431768489333,
+  1.1173115238453608
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This isn't the first time Sesame Street has addressed tough conversations.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 263,
+ "stride": 1,
+ "start": "00:04:17.500",
+ "end": "00:04:26.266",
+ "duration_s": 8.766
+}

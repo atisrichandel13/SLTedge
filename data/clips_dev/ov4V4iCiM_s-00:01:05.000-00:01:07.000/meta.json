@@ -1,0 +1,30 @@
+{
+ "vid": "ov4V4iCiM_s-00:01:05.000-00:01:07.000",
+ "yid": "ov4V4iCiM_s",
+ "crop_xywh": [
+  603,
+  0,
+  538,
+  720
+ ],
+ "bbox_norm": [
+  0.47099172396537586,
+  -0.12164840915603856,
+  0.892152162698599,
+  1.0656726576324203
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I made new friends and we adventured together.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 60,
+ "stride": 1,
+ "start": "00:01:05.000",
+ "end": "00:01:07.000",
+ "duration_s": 2.0
+}

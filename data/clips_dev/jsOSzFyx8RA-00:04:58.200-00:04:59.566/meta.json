@@ -1,0 +1,30 @@
+{
+ "vid": "jsOSzFyx8RA-00:04:58.200-00:04:59.566",
+ "yid": "jsOSzFyx8RA",
+ "crop_xywh": [
+  255,
+  0,
+  758,
+  720
+ ],
+ "bbox_norm": [
+  0.1991170989142524,
+  -0.20647199654284817,
+  0.7913579199049209,
+  1.3756921116707257
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I expected something different.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 41,
+ "stride": 1,
+ "start": "00:04:58.200",
+ "end": "00:04:59.566",
+ "duration_s": 1.366
+}

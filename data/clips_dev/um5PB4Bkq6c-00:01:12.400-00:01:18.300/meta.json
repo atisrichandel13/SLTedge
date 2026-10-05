@@ -1,0 +1,30 @@
+{
+ "vid": "um5PB4Bkq6c-00:01:12.400-00:01:18.300",
+ "yid": "um5PB4Bkq6c",
+ "crop_xywh": [
+  209,
+  0,
+  788,
+  720
+ ],
+ "bbox_norm": [
+  0.16296621527936722,
+  -0.25067067322907627,
+  0.7797099944618013,
+  1.6545116194972287
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Also, it is important to have boundaries and to set realistic expectations.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 177,
+ "stride": 1,
+ "start": "00:01:12.400",
+ "end": "00:01:18.300",
+ "duration_s": 5.9
+}

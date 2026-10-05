@@ -1,0 +1,30 @@
+{
+ "vid": "Hoktff6oQJY-00:00:59.733-00:01:11.000",
+ "yid": "Hoktff6oQJY",
+ "crop_xywh": [
+  797,
+  46,
+  412,
+  674
+ ],
+ "bbox_norm": [
+  0.6224487585179946,
+  0.06437215867385365,
+  0.9448353206410127,
+  1.0216240608614255
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"President Trump says this week and next week will be \"\"very painful\"\" as the virus continues to spread across the country.\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 338,
+ "stride": 1,
+ "start": "00:00:59.733",
+ "end": "00:01:11.000",
+ "duration_s": 11.267
+}

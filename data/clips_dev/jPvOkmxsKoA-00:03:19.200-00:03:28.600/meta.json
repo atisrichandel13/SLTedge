@@ -1,0 +1,30 @@
+{
+ "vid": "jPvOkmxsKoA-00:03:19.200-00:03:28.600",
+ "yid": "jPvOkmxsKoA",
+ "crop_xywh": [
+  666,
+  0,
+  514,
+  720
+ ],
+ "bbox_norm": [
+  0.5201606270862602,
+  -0.11857352526331971,
+  0.9229278129443788,
+  1.126744665922942
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Both performances will be held at Emory University's Goodrich C. White Hall, Room 208.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 282,
+ "stride": 1,
+ "start": "00:03:19.200",
+ "end": "00:03:28.600",
+ "duration_s": 9.4
+}

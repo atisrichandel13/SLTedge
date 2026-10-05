@@ -1,0 +1,30 @@
+{
+ "vid": "O6yJZ85qEl0-00:02:25.466-00:02:30.533",
+ "yid": "O6yJZ85qEl0",
+ "crop_xywh": [
+  575,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.4495558146507509,
+  -0.12161946723965333,
+  0.8683569131358977,
+  1.0521542046659738
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A public defender was provided.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 152,
+ "stride": 1,
+ "start": "00:02:25.466",
+ "end": "00:02:30.533",
+ "duration_s": 5.067
+}

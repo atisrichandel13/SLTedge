@@ -1,0 +1,30 @@
+{
+ "vid": "vj0oCiYKF4M-00:18:15.666-00:18:17.333",
+ "yid": "vj0oCiYKF4M",
+ "crop_xywh": [
+  604,
+  0,
+  524,
+  720
+ ],
+ "bbox_norm": [
+  0.4719125231107076,
+  -0.10154988677413375,
+  0.8819002588589986,
+  1.1316141658359105
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Mark your calendars!",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 40,
+ "stride": 1,
+ "start": "00:18:15.666",
+ "end": "00:18:17.333",
+ "duration_s": 1.667
+}

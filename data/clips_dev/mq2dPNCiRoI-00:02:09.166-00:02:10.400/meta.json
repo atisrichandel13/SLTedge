@@ -1,0 +1,30 @@
+{
+ "vid": "mq2dPNCiRoI-00:02:09.166-00:02:10.400",
+ "yid": "mq2dPNCiRoI",
+ "crop_xywh": [
+  335,
+  0,
+  582,
+  720
+ ],
+ "bbox_norm": [
+  0.261989172299703,
+  -0.1210906982421875,
+  0.7172369029786851,
+  1.252872770803946
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It will destroy them.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 30,
+ "stride": 1,
+ "start": "00:02:09.166",
+ "end": "00:02:10.400",
+ "duration_s": 1.234
+}

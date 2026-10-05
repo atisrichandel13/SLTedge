@@ -1,0 +1,30 @@
+{
+ "vid": "wE-HDf4tK9Y-00:04:38.366-00:04:46.266",
+ "yid": "wE-HDf4tK9Y",
+ "crop_xywh": [
+  629,
+  0,
+  596,
+  720
+ ],
+ "bbox_norm": [
+  0.49145449532402885,
+  -0.2166483611915639,
+  0.9577007823520237,
+  1.2074576433114743
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The third person was a 56-year-old woman who died when her mobile home was destroyed.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 190,
+ "stride": 1,
+ "start": "00:04:38.366",
+ "end": "00:04:46.266",
+ "duration_s": 7.9
+}

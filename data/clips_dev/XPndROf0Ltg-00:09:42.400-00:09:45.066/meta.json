@@ -1,0 +1,30 @@
+{
+ "vid": "XPndROf0Ltg-00:09:42.400-00:09:45.066",
+ "yid": "XPndROf0Ltg",
+ "crop_xywh": [
+  721,
+  0,
+  510,
+  720
+ ],
+ "bbox_norm": [
+  0.5632479741023138,
+  -0.12355496441876447,
+  0.9617311722193008,
+  1.0530576602685824
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "To avoid fraud.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 64,
+ "stride": 1,
+ "start": "00:09:42.400",
+ "end": "00:09:45.066",
+ "duration_s": 2.666
+}

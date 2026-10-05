@@ -1,0 +1,30 @@
+{
+ "vid": "B6EREFQ9ElE-00:15:27.566-00:15:28.666",
+ "yid": "B6EREFQ9ElE",
+ "crop_xywh": [
+  406,
+  0,
+  656,
+  720
+ ],
+ "bbox_norm": [
+  0.3172785736265637,
+  -0.1294183922823144,
+  0.8306645098186675,
+  1.4792019859192862
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I wouldn't mind trying it.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 33,
+ "stride": 1,
+ "start": "00:15:27.566",
+ "end": "00:15:28.666",
+ "duration_s": 1.1
+}

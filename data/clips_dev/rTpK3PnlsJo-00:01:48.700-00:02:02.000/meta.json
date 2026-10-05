@@ -1,0 +1,30 @@
+{
+ "vid": "rTpK3PnlsJo-00:01:48.700-00:02:02.000",
+ "yid": "rTpK3PnlsJo",
+ "crop_xywh": [
+  742,
+  76,
+  426,
+  644
+ ],
+ "bbox_norm": [
+  0.5796324822306633,
+  0.10581389427185059,
+  0.9124520418047904,
+  1.0839686952696908
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Health officials say reopening too soon could cause a resurgence of cases, leading to possibly having to shut down again.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 399,
+ "stride": 1,
+ "start": "00:01:48.700",
+ "end": "00:02:02.000",
+ "duration_s": 13.3
+}

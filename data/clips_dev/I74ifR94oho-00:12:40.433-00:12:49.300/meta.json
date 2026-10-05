@@ -1,0 +1,30 @@
+{
+ "vid": "I74ifR94oho-00:12:40.433-00:12:49.300",
+ "yid": "I74ifR94oho",
+ "crop_xywh": [
+  382,
+  46,
+  532,
+  674
+ ],
+ "bbox_norm": [
+  0.2980647516839298,
+  0.06348844614539127,
+  0.7149274655330328,
+  1.3042473687065972
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hearing students would depend on sound for the cue to run, but Deaf would use their eyes and may be oversensitive to arm movements.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 266,
+ "stride": 1,
+ "start": "00:12:40.433",
+ "end": "00:12:49.300",
+ "duration_s": 8.867
+}

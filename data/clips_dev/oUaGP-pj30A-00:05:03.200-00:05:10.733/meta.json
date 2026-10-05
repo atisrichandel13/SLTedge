@@ -1,0 +1,30 @@
+{
+ "vid": "oUaGP-pj30A-00:05:03.200-00:05:10.733",
+ "yid": "oUaGP-pj30A",
+ "crop_xywh": [
+  643,
+  0,
+  498,
+  706
+ ],
+ "bbox_norm": [
+  0.5022816455882528,
+  -0.07762471351070681,
+  0.8918699725814487,
+  0.9801971951544572
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Sources say sharing personal information about Trump and his family is not appropriate.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 226,
+ "stride": 1,
+ "start": "00:05:03.200",
+ "end": "00:05:10.733",
+ "duration_s": 7.533
+}

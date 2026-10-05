@@ -1,0 +1,30 @@
+{
+ "vid": "KwqCdno2f5E-00:01:41.566-00:01:49.600",
+ "yid": "KwqCdno2f5E",
+ "crop_xywh": [
+  390,
+  0,
+  466,
+  704
+ ],
+ "bbox_norm": [
+  0.3048977400980839,
+  -0.05177517268843301,
+  0.6691803377501819,
+  0.977325583333241
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In my closing comments, this is just one of several vlogs for you to know what NAD is doing.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 241,
+ "stride": 1,
+ "start": "00:01:41.566",
+ "end": "00:01:49.600",
+ "duration_s": 8.034
+}

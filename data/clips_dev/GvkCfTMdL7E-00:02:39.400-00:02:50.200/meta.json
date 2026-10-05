@@ -1,0 +1,30 @@
+{
+ "vid": "GvkCfTMdL7E-00:02:39.400-00:02:50.200",
+ "yid": "GvkCfTMdL7E",
+ "crop_xywh": [
+  616,
+  0,
+  542,
+  720
+ ],
+ "bbox_norm": [
+  0.4809804226801946,
+  -0.14121662542011665,
+  0.905168987665421,
+  1.1770701181786694
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "A reporter asked a police officer and Mayor Rahm Emanuel whether the National Guard would be helpful.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 324,
+ "stride": 1,
+ "start": "00:02:39.400",
+ "end": "00:02:50.200",
+ "duration_s": 10.8
+}

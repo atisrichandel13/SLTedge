@@ -1,0 +1,30 @@
+{
+ "vid": "3_D804hV73c-00:02:18.666-00:02:23.433",
+ "yid": "3_D804hV73c",
+ "crop_xywh": [
+  225,
+  0,
+  428,
+  470
+ ],
+ "bbox_norm": [
+  0.2628995286506703,
+  -0.180988040848506,
+  0.7651461724712055,
+  1.2371998969544755
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This shows improvement of their language development and academic performance.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  470
+ ],
+ "n_frames": 143,
+ "stride": 1,
+ "start": "00:02:18.666",
+ "end": "00:02:23.433",
+ "duration_s": 4.767
+}

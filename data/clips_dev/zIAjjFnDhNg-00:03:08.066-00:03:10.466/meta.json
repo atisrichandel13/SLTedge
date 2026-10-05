@@ -1,0 +1,30 @@
+{
+ "vid": "zIAjjFnDhNg-00:03:08.066-00:03:10.466",
+ "yid": "zIAjjFnDhNg",
+ "crop_xywh": [
+  423,
+  0,
+  654,
+  720
+ ],
+ "bbox_norm": [
+  0.33085665384928387,
+  -0.1433289252387153,
+  0.8413209957546658,
+  1.2967141638861763
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "To have an impact and change the world into a better place.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 72,
+ "stride": 1,
+ "start": "00:03:08.066",
+ "end": "00:03:10.466",
+ "duration_s": 2.4
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "bySOi__Kauk-00:07:17.700-00:07:27.000",
+ "yid": "bySOi__Kauk",
+ "crop_xywh": [
+  674,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.5267726767630804,
+  -0.12370069821675618,
+  0.9436883477937607,
+  1.10136077656317
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "IKEA is taking applications through July 1 and will pick a winner mid-July.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 279,
+ "stride": 1,
+ "start": "00:07:17.700",
+ "end": "00:07:27.000",
+ "duration_s": 9.3
+}

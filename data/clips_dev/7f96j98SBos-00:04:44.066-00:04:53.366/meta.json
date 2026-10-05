@@ -1,0 +1,30 @@
+{
+ "vid": "7f96j98SBos-00:04:44.066-00:04:53.366",
+ "yid": "7f96j98SBos",
+ "crop_xywh": [
+  635,
+  0,
+  494,
+  720
+ ],
+ "bbox_norm": [
+  0.4960695312136696,
+  -0.01640355902374106,
+  0.8824592817397344,
+  1.042225900276628
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The first parade was held in July 2015 after the women's national team defeated Japan 5-2, winning the World Cup.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 279,
+ "stride": 1,
+ "start": "00:04:44.066",
+ "end": "00:04:53.366",
+ "duration_s": 9.3
+}

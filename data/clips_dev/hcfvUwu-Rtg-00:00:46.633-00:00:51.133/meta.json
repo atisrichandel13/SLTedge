@@ -1,0 +1,30 @@
+{
+ "vid": "hcfvUwu-Rtg-00:00:46.633-00:00:51.133",
+ "yid": "hcfvUwu-Rtg",
+ "crop_xywh": [
+  437,
+  41,
+  478,
+  678
+ ],
+ "bbox_norm": [
+  0.34157538060788756,
+  0.05632140391157488,
+  0.715253460848773,
+  1.1146814024497453
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm here at NAD's 50th, wow.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 135,
+ "stride": 1,
+ "start": "00:00:46.633",
+ "end": "00:00:51.133",
+ "duration_s": 4.5
+}

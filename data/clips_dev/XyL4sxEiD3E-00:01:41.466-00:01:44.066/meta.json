@@ -1,0 +1,30 @@
+{
+ "vid": "XyL4sxEiD3E-00:01:41.466-00:01:44.066",
+ "yid": "XyL4sxEiD3E",
+ "crop_xywh": [
+  232,
+  0,
+  850,
+  720
+ ],
+ "bbox_norm": [
+  0.1808626040816307,
+  -0.3970453088482221,
+  0.8461362108588218,
+  1.6778423512147533
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's the same idea with fast timings.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 78,
+ "stride": 1,
+ "start": "00:01:41.466",
+ "end": "00:01:44.066",
+ "duration_s": 2.6
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "FND2JfzngVY-00:03:45.166-00:03:51.166",
+ "yid": "FND2JfzngVY",
+ "crop_xywh": [
+  309,
+  0,
+  678,
+  720
+ ],
+ "bbox_norm": [
+  0.24131720194945463,
+  -0.033445005445508984,
+  0.7715711587184184,
+  1.3722585597911754
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "So it was fun because when I went there, there were about fifty or sixty students lined up.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 180,
+ "stride": 1,
+ "start": "00:03:45.166",
+ "end": "00:03:51.166",
+ "duration_s": 6.0
+}

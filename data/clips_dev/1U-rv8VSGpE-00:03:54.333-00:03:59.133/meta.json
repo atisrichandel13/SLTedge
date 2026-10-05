@@ -1,0 +1,30 @@
+{
+ "vid": "1U-rv8VSGpE-00:03:54.333-00:03:59.133",
+ "yid": "1U-rv8VSGpE",
+ "crop_xywh": [
+  621,
+  0,
+  556,
+  720
+ ],
+ "bbox_norm": [
+  0.48553368469764446,
+  -0.13068227901921572,
+  0.9200189952192636,
+  1.1340268377447797
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The 80-year-old is one of Hollywood's biggest stars.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 144,
+ "stride": 1,
+ "start": "00:03:54.333",
+ "end": "00:03:59.133",
+ "duration_s": 4.8
+}

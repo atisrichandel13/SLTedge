@@ -1,0 +1,30 @@
+{
+ "vid": "rlUUw27_6kM-00:17:09.233-00:17:15.433",
+ "yid": "rlUUw27_6kM",
+ "crop_xywh": [
+  470,
+  0,
+  528,
+  720
+ ],
+ "bbox_norm": [
+  0.36737652619679767,
+  -0.1803732047846288,
+  0.7805586788389418,
+  1.0657078307351948
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The game can be really beneficial for those who don't have enough support at home, or in the school environment.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 149,
+ "stride": 1,
+ "start": "00:17:09.233",
+ "end": "00:17:15.433",
+ "duration_s": 6.2
+}

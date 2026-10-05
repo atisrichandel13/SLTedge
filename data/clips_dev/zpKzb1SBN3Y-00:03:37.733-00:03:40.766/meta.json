@@ -1,0 +1,30 @@
+{
+ "vid": "zpKzb1SBN3Y-00:03:37.733-00:03:40.766",
+ "yid": "zpKzb1SBN3Y",
+ "crop_xywh": [
+  623,
+  0,
+  468,
+  664
+ ],
+ "bbox_norm": [
+  0.48654706352635435,
+  -0.12985739977503846,
+  0.8532096477977016,
+  0.923552522045827
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Find out who your Educational Advocate in your state or for your national organization.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 91,
+ "stride": 1,
+ "start": "00:03:37.733",
+ "end": "00:03:40.766",
+ "duration_s": 3.033
+}

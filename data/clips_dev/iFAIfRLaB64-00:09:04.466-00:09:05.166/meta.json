@@ -1,0 +1,30 @@
+{
+ "vid": "iFAIfRLaB64-00:09:04.466-00:09:05.166",
+ "yid": "iFAIfRLaB64",
+ "crop_xywh": [
+  13,
+  0,
+  494,
+  720
+ ],
+ "bbox_norm": [
+  0.009898397657606337,
+  -0.08941502512237172,
+  0.39695991939968533,
+  1.1348427807843244
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "How do you feel?",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 17,
+ "stride": 1,
+ "start": "00:09:04.466",
+ "end": "00:09:05.166",
+ "duration_s": 0.7
+}

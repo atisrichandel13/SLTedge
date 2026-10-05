@@ -1,0 +1,30 @@
+{
+ "vid": "NJ-7WUtB5Xk-00:16:39.533-00:16:44.300",
+ "yid": "NJ-7WUtB5Xk",
+ "crop_xywh": [
+  164,
+  0,
+  490,
+  720
+ ],
+ "bbox_norm": [
+  0.12800362421118694,
+  -0.14454453018360475,
+  0.5106811447419982,
+  1.020278284131233
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "But it was not possible to get an interpreter because it came in last minute.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 115,
+ "stride": 1,
+ "start": "00:16:39.533",
+ "end": "00:16:44.300",
+ "duration_s": 4.767
+}

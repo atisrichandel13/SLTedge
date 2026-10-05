@@ -1,0 +1,30 @@
+{
+ "vid": "u919vf-yghQ-00:11:30.666-00:11:37.600",
+ "yid": "u919vf-yghQ",
+ "crop_xywh": [
+  299,
+  0,
+  648,
+  720
+ ],
+ "bbox_norm": [
+  0.23394667666445498,
+  -0.11483748514592435,
+  0.739836335438554,
+  1.2959012777859449
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I wonder what Deaf Hong Kong people's perspectives are on this situation and what impact the bill would have on their lives.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 167,
+ "stride": 1,
+ "start": "00:11:30.666",
+ "end": "00:11:37.600",
+ "duration_s": 6.934
+}

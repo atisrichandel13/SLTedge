@@ -1,0 +1,30 @@
+{
+ "vid": "KvQT44G45kM-00:03:19.300-00:03:42.066",
+ "yid": "KvQT44G45kM",
+ "crop_xywh": [
+  587,
+  0,
+  640,
+  720
+ ],
+ "bbox_norm": [
+  0.458493705518318,
+  -0.19846918960211654,
+  0.959287495468602,
+  1.3462985494722823
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Trump said Pritzker is blaming the federal government for his own shortcomings, and Pritzker responded by saying Trump wasted months of time and asked where were the tests when we needed them?",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 547,
+ "stride": 1,
+ "start": "00:03:19.300",
+ "end": "00:03:42.066",
+ "duration_s": 22.766
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "oY4zNmRl79Q-00:08:07.566-00:08:22.733",
+ "yid": "oY4zNmRl79Q",
+ "crop_xywh": [
+  685,
+  0,
+  534,
+  720
+ ],
+ "bbox_norm": [
+  0.5352958309477654,
+  -0.08786209186302099,
+  0.952936127220375,
+  1.1169972579452343
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Tommy John Co. recommends swapping out old underwear with new every six months to a year to prevent yeast infections and urinary tract infections.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 456,
+ "stride": 1,
+ "start": "00:08:07.566",
+ "end": "00:08:22.733",
+ "duration_s": 15.167
+}

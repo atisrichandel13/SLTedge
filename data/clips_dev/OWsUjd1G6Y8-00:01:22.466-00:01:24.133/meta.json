@@ -1,0 +1,30 @@
+{
+ "vid": "OWsUjd1G6Y8-00:01:22.466-00:01:24.133",
+ "yid": "OWsUjd1G6Y8",
+ "crop_xywh": [
+  118,
+  0,
+  870,
+  720
+ ],
+ "bbox_norm": [
+  0.09242316365242005,
+  -0.30438655323452424,
+  0.7726935398578644,
+  1.6351231008105809
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "What can you do now?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 50,
+ "stride": 1,
+ "start": "00:01:22.466",
+ "end": "00:01:24.133",
+ "duration_s": 1.667
+}

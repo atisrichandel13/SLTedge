@@ -1,0 +1,30 @@
+{
+ "vid": "1U-rv8VSGpE-00:07:46.400-00:07:48.333",
+ "yid": "1U-rv8VSGpE",
+ "crop_xywh": [
+  409,
+  0,
+  550,
+  720
+ ],
+ "bbox_norm": [
+  0.3196495400534736,
+  -0.12911141477985147,
+  0.7492841217252943,
+  1.110624866721071
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Your language.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 58,
+ "stride": 1,
+ "start": "00:07:46.400",
+ "end": "00:07:48.333",
+ "duration_s": 1.933
+}

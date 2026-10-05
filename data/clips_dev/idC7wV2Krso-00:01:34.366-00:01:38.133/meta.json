@@ -1,0 +1,30 @@
+{
+ "vid": "idC7wV2Krso-00:01:34.366-00:01:38.133",
+ "yid": "idC7wV2Krso",
+ "crop_xywh": [
+  322,
+  0,
+  728,
+  720
+ ],
+ "bbox_norm": [
+  0.25134198976599653,
+  -0.2103638017811061,
+  0.8206864356994629,
+  1.524524304025991
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "How does the human body respond to herbs?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 113,
+ "stride": 1,
+ "start": "00:01:34.366",
+ "end": "00:01:38.133",
+ "duration_s": 3.767
+}

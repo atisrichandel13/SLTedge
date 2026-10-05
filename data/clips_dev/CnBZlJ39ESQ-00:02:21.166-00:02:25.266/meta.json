@@ -1,0 +1,30 @@
+{
+ "vid": "CnBZlJ39ESQ-00:02:21.166-00:02:25.266",
+ "yid": "CnBZlJ39ESQ",
+ "crop_xywh": [
+  384,
+  0,
+  606,
+  720
+ ],
+ "bbox_norm": [
+  0.29986288785934445,
+  -0.14988256454467774,
+  0.773346361319224,
+  1.1941851061361808
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Keep in mind that sometimes hospitals WIFI doesn't work.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 99,
+ "stride": 1,
+ "start": "00:02:21.166",
+ "end": "00:02:25.266",
+ "duration_s": 4.1
+}

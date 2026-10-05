@@ -1,0 +1,30 @@
+{
+ "vid": "zsHK8wYjQ9E-00:00:16.000-00:00:26.400",
+ "yid": "zsHK8wYjQ9E",
+ "crop_xywh": [
+  342,
+  0,
+  564,
+  720
+ ],
+ "bbox_norm": [
+  0.26709646976814067,
+  -0.1277202294476939,
+  0.7077720518465396,
+  1.1654539095941956
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It is important to remind corporations, businesses, government, states, and so forth, to hire deaf or hard of hearing people who have the skills.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 312,
+ "stride": 1,
+ "start": "00:00:16.000",
+ "end": "00:00:26.400",
+ "duration_s": 10.4
+}

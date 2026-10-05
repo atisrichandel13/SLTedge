@@ -1,0 +1,30 @@
+{
+ "vid": "IS0FR_xIPFM-00:00:34.566-00:00:48.766",
+ "yid": "IS0FR_xIPFM",
+ "crop_xywh": [
+  474,
+  0,
+  626,
+  720
+ ],
+ "bbox_norm": [
+  0.36997188051541646,
+  -0.0757827991909451,
+  0.8593681188424429,
+  1.276920960214403
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In a speech marking the grim anniversary, the agency's director called for political leadership and more engagement with their communities.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 426,
+ "stride": 1,
+ "start": "00:00:34.566",
+ "end": "00:00:48.766",
+ "duration_s": 14.2
+}

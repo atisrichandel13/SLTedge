@@ -1,0 +1,30 @@
+{
+ "vid": "cfpYnacUBGY-00:05:07.600-00:05:18.233",
+ "yid": "cfpYnacUBGY",
+ "crop_xywh": [
+  636,
+  0,
+  484,
+  688
+ ],
+ "bbox_norm": [
+  0.49686388224363326,
+  -0.061241152551439075,
+  0.8750932320952416,
+  0.9560307410028246
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Of all age groups, adults 25 to 64 years old saw the largest increase in mortality rates, by 6-percent.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 319,
+ "stride": 1,
+ "start": "00:05:07.600",
+ "end": "00:05:18.233",
+ "duration_s": 10.633
+}

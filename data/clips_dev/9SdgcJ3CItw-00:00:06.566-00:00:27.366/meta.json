@@ -1,0 +1,30 @@
+{
+ "vid": "9SdgcJ3CItw-00:00:06.566-00:00:27.366",
+ "yid": "9SdgcJ3CItw",
+ "crop_xywh": [
+  307,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.2400583708445231,
+  -0.1709451237431279,
+  0.6913690143585206,
+  1.1633057109691478
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Today, the NAD filed a new lawsuit against an organization called the Mountain States Health Alliance, which runs a number of hospitals, including Johnson City Medical Center in Johnson City, TN.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 624,
+ "stride": 1,
+ "start": "00:00:06.566",
+ "end": "00:00:27.366",
+ "duration_s": 20.8
+}

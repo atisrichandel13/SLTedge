@@ -1,0 +1,30 @@
+{
+ "vid": "daTPNSQet08-00:06:26.600-00:06:29.333",
+ "yid": "daTPNSQet08",
+ "crop_xywh": [
+  353,
+  0,
+  684,
+  720
+ ],
+ "bbox_norm": [
+  0.27610221136183966,
+  -0.16471212477911087,
+  0.8106520334879558,
+  1.3732881757948134
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I grieve with the seniors.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 66,
+ "stride": 1,
+ "start": "00:06:26.600",
+ "end": "00:06:29.333",
+ "duration_s": 2.733
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "NGry3ZtyTyE-00:01:50.366-00:01:55.433",
+ "yid": "NGry3ZtyTyE",
+ "crop_xywh": [
+  625,
+  0,
+  610,
+  720
+ ],
+ "bbox_norm": [
+  0.4882633075919202,
+  -0.15882040636798672,
+  0.9653767565245269,
+  1.2622916908674342
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "First, email them a simple thank you.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 152,
+ "stride": 1,
+ "start": "00:01:50.366",
+ "end": "00:01:55.433",
+ "duration_s": 5.067
+}

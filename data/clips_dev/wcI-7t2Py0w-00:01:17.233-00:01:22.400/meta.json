@@ -1,0 +1,30 @@
+{
+ "vid": "wcI-7t2Py0w-00:01:17.233-00:01:22.400",
+ "yid": "wcI-7t2Py0w",
+ "crop_xywh": [
+  306,
+  0,
+  658,
+  720
+ ],
+ "bbox_norm": [
+  0.23896782987861223,
+  -0.14668702520919674,
+  0.7539109424878192,
+  1.3014042347277934
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We are committed to supporting the Black Deaf community, including NBDA.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 155,
+ "stride": 1,
+ "start": "00:01:17.233",
+ "end": "00:01:22.400",
+ "duration_s": 5.167
+}

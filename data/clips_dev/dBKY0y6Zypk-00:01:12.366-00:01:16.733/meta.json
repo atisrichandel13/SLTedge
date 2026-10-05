@@ -1,0 +1,30 @@
+{
+ "vid": "dBKY0y6Zypk-00:01:12.366-00:01:16.733",
+ "yid": "dBKY0y6Zypk",
+ "crop_xywh": [
+  723,
+  0,
+  504,
+  720
+ ],
+ "bbox_norm": [
+  0.564606844348672,
+  -0.0666145753795064,
+  0.9593268418017729,
+  1.1378373641863118
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Yes, we met during the protest, and would get together.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 131,
+ "stride": 1,
+ "start": "00:01:12.366",
+ "end": "00:01:16.733",
+ "duration_s": 4.367
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "8lvz5LG50wc-00:05:10.333-00:05:27.266",
+ "yid": "8lvz5LG50wc",
+ "crop_xywh": [
+  615,
+  0,
+  572,
+  720
+ ],
+ "bbox_norm": [
+  0.48024685673597384,
+  -0.15068153357225814,
+  0.9277995671683211,
+  1.1960372215794786
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The COVID-19 has killed more than 1,775 people in the world and infected over 71,000.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 407,
+ "stride": 1,
+ "start": "00:05:10.333",
+ "end": "00:05:27.266",
+ "duration_s": 16.933
+}

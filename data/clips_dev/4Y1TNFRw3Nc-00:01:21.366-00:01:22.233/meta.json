@@ -1,0 +1,30 @@
+{
+ "vid": "4Y1TNFRw3Nc-00:01:21.366-00:01:22.233",
+ "yid": "4Y1TNFRw3Nc",
+ "crop_xywh": [
+  291,
+  0,
+  694,
+  720
+ ],
+ "bbox_norm": [
+  0.22762766679128013,
+  -0.07936669808846933,
+  0.7699100255966187,
+  1.545682462056478
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Go ahead and sign up!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 26,
+ "stride": 1,
+ "start": "00:01:21.366",
+ "end": "00:01:22.233",
+ "duration_s": 0.867
+}

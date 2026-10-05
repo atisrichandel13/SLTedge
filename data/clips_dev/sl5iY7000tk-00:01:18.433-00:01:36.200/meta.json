@@ -1,0 +1,30 @@
+{
+ "vid": "sl5iY7000tk-00:01:18.433-00:01:36.200",
+ "yid": "sl5iY7000tk",
+ "crop_xywh": [
+  680,
+  0,
+  502,
+  720
+ ],
+ "bbox_norm": [
+  0.5315722507108409,
+  -0.13055050718862735,
+  0.9245417921713951,
+  1.0643955373978606
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Kansas governor Jeff Colyer declared a state of emergency Wednesday in advance of the ill weather expected.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 533,
+ "stride": 1,
+ "start": "00:01:18.433",
+ "end": "00:01:36.200",
+ "duration_s": 17.767
+}

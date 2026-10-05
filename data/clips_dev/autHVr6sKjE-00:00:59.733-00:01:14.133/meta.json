@@ -1,0 +1,30 @@
+{
+ "vid": "autHVr6sKjE-00:00:59.733-00:01:14.133",
+ "yid": "autHVr6sKjE",
+ "crop_xywh": [
+  644,
+  0,
+  508,
+  720
+ ],
+ "bbox_norm": [
+  0.5032556566698798,
+  -0.12384296659207335,
+  0.9005056282569622,
+  1.057933213082513
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "\"He tweeted: \"\"I asked what is going to happen in 30 days if I quickly open things up, are you going to approve border security, which includes a wall or steel barrier?\"",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 432,
+ "stride": 1,
+ "start": "00:00:59.733",
+ "end": "00:01:14.133",
+ "duration_s": 14.4
+}

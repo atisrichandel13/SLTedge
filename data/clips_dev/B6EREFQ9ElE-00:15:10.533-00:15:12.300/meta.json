@@ -1,0 +1,30 @@
+{
+ "vid": "B6EREFQ9ElE-00:15:10.533-00:15:12.300",
+ "yid": "B6EREFQ9ElE",
+ "crop_xywh": [
+  530,
+  0,
+  698,
+  720
+ ],
+ "bbox_norm": [
+  0.4144435506878477,
+  -0.12549289485019466,
+  0.9595367633935177,
+  1.4977483601682515
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was discontinued after two years.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 54,
+ "stride": 1,
+ "start": "00:15:10.533",
+ "end": "00:15:12.300",
+ "duration_s": 1.767
+}

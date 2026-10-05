@@ -1,0 +1,30 @@
+{
+ "vid": "045-gE1O_hQ-00:09:14.666-00:09:37.566",
+ "yid": "045-gE1O_hQ",
+ "crop_xywh": [
+  0,
+  0,
+  642,
+  720
+ ],
+ "bbox_norm": [
+  -0.04596685174006771,
+  -0.1863671222426721,
+  0.5017668382269173,
+  1.4450002091326382
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Each and every aspect, meaning the person, the crime, the knife or weapon, the location, all of it must be presented to the jury for them to believe that there is no other reasonable explanation but what the prosecutor said.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 687,
+ "stride": 1,
+ "start": "00:09:14.666",
+ "end": "00:09:37.566",
+ "duration_s": 22.9
+}

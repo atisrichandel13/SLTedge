@@ -1,0 +1,30 @@
+{
+ "vid": "G8PUtORtufE-00:08:31.100-00:08:33.666",
+ "yid": "G8PUtORtufE",
+ "crop_xywh": [
+  721,
+  0,
+  540,
+  720
+ ],
+ "bbox_norm": [
+  0.5631219550967217,
+  -0.13258384731080797,
+  0.9848419949412346,
+  1.097640146811803
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "There's no word yet on a cause of death.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 77,
+ "stride": 1,
+ "start": "00:08:31.100",
+ "end": "00:08:33.666",
+ "duration_s": 2.566
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "sld9TKHkOtg-00:00:25.166-00:00:25.666",
+ "yid": "sld9TKHkOtg",
+ "crop_xywh": [
+  359,
+  0,
+  658,
+  720
+ ],
+ "bbox_norm": [
+  0.28073256810506186,
+  -0.15066538210268374,
+  0.7951077461242676,
+  1.472825085675275
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Why not?",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 12,
+ "stride": 1,
+ "start": "00:00:25.166",
+ "end": "00:00:25.666",
+ "duration_s": 0.5
+}

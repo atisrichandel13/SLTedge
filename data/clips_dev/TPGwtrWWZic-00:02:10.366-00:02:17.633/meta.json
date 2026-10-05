@@ -1,0 +1,30 @@
+{
+ "vid": "TPGwtrWWZic-00:02:10.366-00:02:17.633",
+ "yid": "TPGwtrWWZic",
+ "crop_xywh": [
+  367,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.2868519638523911,
+  -0.12522670797226004,
+  0.7115258997136896,
+  1.1292920841512455
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We plan exhibits which include contacting artists, lenders and collectors.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 218,
+ "stride": 1,
+ "start": "00:02:10.366",
+ "end": "00:02:17.633",
+ "duration_s": 7.267
+}

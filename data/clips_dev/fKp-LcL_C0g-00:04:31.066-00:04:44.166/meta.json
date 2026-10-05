@@ -1,0 +1,30 @@
+{
+ "vid": "fKp-LcL_C0g-00:04:31.066-00:04:44.166",
+ "yid": "fKp-LcL_C0g",
+ "crop_xywh": [
+  675,
+  0,
+  500,
+  720
+ ],
+ "bbox_norm": [
+  0.5273182702969901,
+  -0.13515087964665537,
+  0.9183828755270076,
+  1.0338674833670616
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The White House is blocking the release of the whistleblower complaint Congress, with Trump insisting there's nothing to see.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 393,
+ "stride": 1,
+ "start": "00:04:31.066",
+ "end": "00:04:44.166",
+ "duration_s": 13.1
+}

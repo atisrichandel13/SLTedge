@@ -1,0 +1,30 @@
+{
+ "vid": "4i0Y_mFJejI-00:00:15.133-00:00:17.100",
+ "yid": "4i0Y_mFJejI",
+ "crop_xywh": [
+  398,
+  0,
+  598,
+  720
+ ],
+ "bbox_norm": [
+  0.3107019212510851,
+  -0.18865912284380124,
+  0.7783843994140625,
+  1.2781913056785679
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The answer is-- we do not know.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 59,
+ "stride": 1,
+ "start": "00:00:15.133",
+ "end": "00:00:17.100",
+ "duration_s": 1.967
+}

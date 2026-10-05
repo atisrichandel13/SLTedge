@@ -1,0 +1,30 @@
+{
+ "vid": "uZwKNtHx9FE-00:10:54.166-00:10:55.300",
+ "yid": "uZwKNtHx9FE",
+ "crop_xywh": [
+  472,
+  116,
+  248,
+  392
+ ],
+ "bbox_norm": [
+  0.36882591247558594,
+  0.16139533431441697,
+  0.562206522623698,
+  0.7056165718737943
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's very soon.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 28,
+ "stride": 1,
+ "start": "00:10:54.166",
+ "end": "00:10:55.300",
+ "duration_s": 1.134
+}

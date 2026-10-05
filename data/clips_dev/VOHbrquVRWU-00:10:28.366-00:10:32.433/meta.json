@@ -1,0 +1,30 @@
+{
+ "vid": "VOHbrquVRWU-00:10:28.366-00:10:32.433",
+ "yid": "VOHbrquVRWU",
+ "crop_xywh": [
+  662,
+  0,
+  548,
+  720
+ ],
+ "bbox_norm": [
+  0.5170247459411621,
+  -0.09365516238742405,
+  0.9454952201843263,
+  1.1317218335469563
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Trees with the wildlife.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 123,
+ "stride": 1,
+ "start": "00:10:28.366",
+ "end": "00:10:32.433",
+ "duration_s": 4.067
+}

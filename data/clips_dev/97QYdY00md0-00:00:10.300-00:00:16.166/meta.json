@@ -1,0 +1,30 @@
+{
+ "vid": "97QYdY00md0-00:00:10.300-00:00:16.166",
+ "yid": "97QYdY00md0",
+ "crop_xywh": [
+  21,
+  0,
+  318,
+  320
+ ],
+ "bbox_norm": [
+  0.0366500479887722,
+  -0.24135700398021276,
+  0.5967335895007019,
+  1.4001454336775674
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This is Juniper Sussman, a CODA and an interpreter.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  568,
+  320
+ ],
+ "n_frames": 176,
+ "stride": 1,
+ "start": "00:00:10.300",
+ "end": "00:00:16.166",
+ "duration_s": 5.866
+}

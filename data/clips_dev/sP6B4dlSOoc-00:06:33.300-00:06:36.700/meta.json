@@ -1,0 +1,30 @@
+{
+ "vid": "sP6B4dlSOoc-00:06:33.300-00:06:36.700",
+ "yid": "sP6B4dlSOoc",
+ "crop_xywh": [
+  611,
+  0,
+  566,
+  720
+ ],
+ "bbox_norm": [
+  0.47766785545954626,
+  -0.09780235896034846,
+  0.9199134962899345,
+  1.2070678852222585
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If they feel dry or sticky, they are definitely in need of some water.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 102,
+ "stride": 1,
+ "start": "00:06:33.300",
+ "end": "00:06:36.700",
+ "duration_s": 3.4
+}

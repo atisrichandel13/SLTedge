@@ -1,0 +1,30 @@
+{
+ "vid": "q4FNvJ4e3KY-00:02:54.433-00:02:59.600",
+ "yid": "q4FNvJ4e3KY",
+ "crop_xywh": [
+  599,
+  0,
+  654,
+  720
+ ],
+ "bbox_norm": [
+  0.4681412766377131,
+  -0.146934265560574,
+  0.9799488057692846,
+  1.305785557958815
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Prepare to be seriously grossed out.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 156,
+ "stride": 1,
+ "start": "00:02:54.433",
+ "end": "00:02:59.600",
+ "duration_s": 5.167
+}

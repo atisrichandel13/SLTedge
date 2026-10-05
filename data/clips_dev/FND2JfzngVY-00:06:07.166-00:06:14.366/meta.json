@@ -1,0 +1,30 @@
+{
+ "vid": "FND2JfzngVY-00:06:07.166-00:06:14.366",
+ "yid": "FND2JfzngVY",
+ "crop_xywh": [
+  677,
+  0,
+  470,
+  682
+ ],
+ "bbox_norm": [
+  0.5289632423357531,
+  -0.13683797831487174,
+  0.8965399324893951,
+  0.9490575326813592
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The people continued efforts to resuscitate the until paramedics arrived.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 216,
+ "stride": 1,
+ "start": "00:06:07.166",
+ "end": "00:06:14.366",
+ "duration_s": 7.2
+}

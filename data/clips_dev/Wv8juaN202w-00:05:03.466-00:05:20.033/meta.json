@@ -1,0 +1,30 @@
+{
+ "vid": "Wv8juaN202w-00:05:03.466-00:05:20.033",
+ "yid": "Wv8juaN202w",
+ "crop_xywh": [
+  628,
+  0,
+  550,
+  720
+ ],
+ "bbox_norm": [
+  0.49087642788887026,
+  -0.15162303076850045,
+  0.9209387123584747,
+  1.1242003151222513
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The review found errors in the investigation and concluded that a different student, who was 18 at the time of the shooting, was the shooter.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 398,
+ "stride": 1,
+ "start": "00:05:03.466",
+ "end": "00:05:20.033",
+ "duration_s": 16.567
+}

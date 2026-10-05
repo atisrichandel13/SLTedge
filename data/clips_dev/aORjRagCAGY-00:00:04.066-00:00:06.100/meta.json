@@ -1,0 +1,30 @@
+{
+ "vid": "aORjRagCAGY-00:00:04.066-00:00:06.100",
+ "yid": "aORjRagCAGY",
+ "crop_xywh": [
+  204,
+  0,
+  788,
+  720
+ ],
+ "bbox_norm": [
+  0.15908297758836012,
+  -0.34918244299385964,
+  0.7749442540682279,
+  1.4340494840573041
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Dad would give him his camera to play with.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 61,
+ "stride": 1,
+ "start": "00:00:04.066",
+ "end": "00:00:06.100",
+ "duration_s": 2.034
+}

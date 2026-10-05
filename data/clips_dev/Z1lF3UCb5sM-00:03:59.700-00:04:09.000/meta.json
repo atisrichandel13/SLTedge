@@ -1,0 +1,30 @@
+{
+ "vid": "Z1lF3UCb5sM-00:03:59.700-00:04:09.000",
+ "yid": "Z1lF3UCb5sM",
+ "crop_xywh": [
+  632,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.49412291279545534,
+  -0.1714018061131607,
+  0.927026485160545,
+  1.1229218019085165
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It was a very disappointing day for the campaign as they were considered one of the top candidates when the Democratic race started.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 224,
+ "stride": 1,
+ "start": "00:03:59.700",
+ "end": "00:04:09.000",
+ "duration_s": 9.3
+}

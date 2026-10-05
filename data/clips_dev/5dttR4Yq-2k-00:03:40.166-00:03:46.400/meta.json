@@ -1,0 +1,30 @@
+{
+ "vid": "5dttR4Yq-2k-00:03:40.166-00:03:46.400",
+ "yid": "5dttR4Yq-2k",
+ "crop_xywh": [
+  322,
+  0,
+  688,
+  720
+ ],
+ "bbox_norm": [
+  0.2516000024059363,
+  -0.22988858064945214,
+  0.7889138752954048,
+  1.3583092163413124
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It\u2019s not their normal, so personally, I\u2019ve learned that education is key.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 187,
+ "stride": 1,
+ "start": "00:03:40.166",
+ "end": "00:03:46.400",
+ "duration_s": 6.234
+}

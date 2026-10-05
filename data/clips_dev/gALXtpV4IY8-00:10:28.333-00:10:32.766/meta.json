@@ -1,0 +1,30 @@
+{
+ "vid": "gALXtpV4IY8-00:10:28.333-00:10:32.766",
+ "yid": "gALXtpV4IY8",
+ "crop_xywh": [
+  597,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.4665005542613842,
+  -0.2133856146750954,
+  0.9349936697218154,
+  1.2118243260638704
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Gugino is still recovering.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 133,
+ "stride": 1,
+ "start": "00:10:28.333",
+ "end": "00:10:32.766",
+ "duration_s": 4.433
+}

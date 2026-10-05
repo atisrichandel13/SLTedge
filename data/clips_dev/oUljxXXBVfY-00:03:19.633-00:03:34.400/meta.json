@@ -1,0 +1,30 @@
+{
+ "vid": "oUljxXXBVfY-00:03:19.633-00:03:34.400",
+ "yid": "oUljxXXBVfY",
+ "crop_xywh": [
+  608,
+  0,
+  570,
+  720
+ ],
+ "bbox_norm": [
+  0.4751317752732171,
+  -0.15619267181113913,
+  0.9204942937250491,
+  1.1735741282686774
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "This Monday afternoon Amy Klobuchar announced she is dropping out of the race and is expected to fly to Dallas tonight to announce her endorsement of Joe Biden.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 355,
+ "stride": 1,
+ "start": "00:03:19.633",
+ "end": "00:03:34.400",
+ "duration_s": 14.767
+}

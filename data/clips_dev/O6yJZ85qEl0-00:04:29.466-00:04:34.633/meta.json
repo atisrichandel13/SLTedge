@@ -1,0 +1,30 @@
+{
+ "vid": "O6yJZ85qEl0-00:04:29.466-00:04:34.633",
+ "yid": "O6yJZ85qEl0",
+ "crop_xywh": [
+  561,
+  0,
+  554,
+  720
+ ],
+ "bbox_norm": [
+  0.4382117440623622,
+  -0.1275825432124531,
+  0.8707751935528171,
+  1.0967542556024366
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Some people have faced obstacles trying to evacuate, with no avail.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 155,
+ "stride": 1,
+ "start": "00:04:29.466",
+ "end": "00:04:34.633",
+ "duration_s": 5.167
+}

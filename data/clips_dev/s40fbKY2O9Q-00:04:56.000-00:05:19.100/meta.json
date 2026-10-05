@@ -1,0 +1,30 @@
+{
+ "vid": "s40fbKY2O9Q-00:04:56.000-00:05:19.100",
+ "yid": "s40fbKY2O9Q",
+ "crop_xywh": [
+  662,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.5175429925072393,
+  -0.10031815896566601,
+  0.9558121361034951,
+  1.1891553827453987
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "While authorities were investigating the case of the missing teens, they were shocked to find the body of a man near the site where the teens' burning car was discovered, but they do not believe the remains are that of either missing teenager.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 693,
+ "stride": 1,
+ "start": "00:04:56.000",
+ "end": "00:05:19.100",
+ "duration_s": 23.1
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "H7nga4_DWtE-00:00:28.266-00:00:30.733",
+ "yid": "H7nga4_DWtE",
+ "crop_xywh": [
+  377,
+  0,
+  580,
+  720
+ ],
+ "bbox_norm": [
+  0.2943437173631456,
+  -0.15100056966145833,
+  0.7486214171515572,
+  1.1397453939178843
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Sign language happens in the home.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 74,
+ "stride": 1,
+ "start": "00:00:28.266",
+ "end": "00:00:30.733",
+ "duration_s": 2.467
+}

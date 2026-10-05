@@ -1,0 +1,30 @@
+{
+ "vid": "mrTrAkEC1Sc-00:00:20.633-00:00:26.300",
+ "yid": "mrTrAkEC1Sc",
+ "crop_xywh": [
+  306,
+  0,
+  692,
+  720
+ ],
+ "bbox_norm": [
+  0.23882105918157667,
+  -0.18655690834005043,
+  0.7796152682531449,
+  1.2781002605781353
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We work biweekly to clean it up, in order to present the first draft of the CPC this coming spring, 2020. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 170,
+ "stride": 1,
+ "start": "00:00:20.633",
+ "end": "00:00:26.300",
+ "duration_s": 5.667
+}

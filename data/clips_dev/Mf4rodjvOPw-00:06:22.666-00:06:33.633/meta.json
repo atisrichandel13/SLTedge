@@ -1,0 +1,30 @@
+{
+ "vid": "Mf4rodjvOPw-00:06:22.666-00:06:33.633",
+ "yid": "Mf4rodjvOPw",
+ "crop_xywh": [
+  605,
+  0,
+  586,
+  720
+ ],
+ "bbox_norm": [
+  0.4727217698338056,
+  -0.15814305015418398,
+  0.9304039728761924,
+  1.1525852066365423
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Roberson was a security guard, a police officer walked to him near Chicago last weekend.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 329,
+ "stride": 1,
+ "start": "00:06:22.666",
+ "end": "00:06:33.633",
+ "duration_s": 10.967
+}

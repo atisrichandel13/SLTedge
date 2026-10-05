@@ -1,0 +1,30 @@
+{
+ "vid": "c-5mKVNHetA-00:00:24.200-00:00:31.333",
+ "yid": "c-5mKVNHetA",
+ "crop_xywh": [
+  652,
+  0,
+  492,
+  716
+ ],
+ "bbox_norm": [
+  0.509299023378463,
+  -0.07252035040073294,
+  0.894389047509148,
+  0.993879359361356
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We have a few updates on the impeachment inquiry against President Trump.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 214,
+ "stride": 1,
+ "start": "00:00:24.200",
+ "end": "00:00:31.333",
+ "duration_s": 7.133
+}

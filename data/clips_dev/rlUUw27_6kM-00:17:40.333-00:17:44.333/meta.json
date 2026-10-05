@@ -1,0 +1,30 @@
+{
+ "vid": "rlUUw27_6kM-00:17:40.333-00:17:44.333",
+ "yid": "rlUUw27_6kM",
+ "crop_xywh": [
+  457,
+  0,
+  536,
+  720
+ ],
+ "bbox_norm": [
+  0.35720069726308185,
+  -0.18090069240993925,
+  0.7762177133560181,
+  1.0820864550272622
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "It's one nice way that we can hit on these important areas of concern that schools might not cover.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 96,
+ "stride": 1,
+ "start": "00:17:40.333",
+ "end": "00:17:44.333",
+ "duration_s": 4.0
+}

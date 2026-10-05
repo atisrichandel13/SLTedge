@@ -1,0 +1,30 @@
+{
+ "vid": "N29DdjIj5rw-00:05:12.066-00:05:14.400",
+ "yid": "N29DdjIj5rw",
+ "crop_xywh": [
+  270,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.21108399686359222,
+  -0.22129428197467138,
+  0.6799251227151779,
+  1.2107022522618531
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "That\u2019s where you can really get a step in.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 70,
+ "stride": 1,
+ "start": "00:05:12.066",
+ "end": "00:05:14.400",
+ "duration_s": 2.334
+}

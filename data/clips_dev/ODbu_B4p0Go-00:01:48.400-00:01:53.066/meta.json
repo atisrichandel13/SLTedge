@@ -1,0 +1,30 @@
+{
+ "vid": "ODbu_B4p0Go-00:01:48.400-00:01:53.066",
+ "yid": "ODbu_B4p0Go",
+ "crop_xywh": [
+  301,
+  0,
+  582,
+  720
+ ],
+ "bbox_norm": [
+  0.23501081807272775,
+  -0.13119035095134107,
+  0.6894623336337862,
+  1.1484517902293532
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We discussed and looked into why some got an alert while others did not.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 140,
+ "stride": 1,
+ "start": "00:01:48.400",
+ "end": "00:01:53.066",
+ "duration_s": 4.666
+}

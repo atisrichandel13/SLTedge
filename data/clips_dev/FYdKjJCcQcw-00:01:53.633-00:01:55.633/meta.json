@@ -1,0 +1,30 @@
+{
+ "vid": "FYdKjJCcQcw-00:01:53.633-00:01:55.633",
+ "yid": "FYdKjJCcQcw",
+ "crop_xywh": [
+  233,
+  0,
+  704,
+  720
+ ],
+ "bbox_norm": [
+  0.18170309596591527,
+  -0.22375127062385466,
+  0.7320173422495524,
+  1.326947216928741
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We were able to meet with the students and have lunch with them.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 60,
+ "stride": 1,
+ "start": "00:01:53.633",
+ "end": "00:01:55.633",
+ "duration_s": 2.0
+}

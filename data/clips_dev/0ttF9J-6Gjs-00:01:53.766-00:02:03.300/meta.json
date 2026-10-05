@@ -1,0 +1,30 @@
+{
+ "vid": "0ttF9J-6Gjs-00:01:53.766-00:02:03.300",
+ "yid": "0ttF9J-6Gjs",
+ "crop_xywh": [
+  101,
+  0,
+  1078,
+  720
+ ],
+ "bbox_norm": [
+  0.07861609541136642,
+  -0.4761736058945248,
+  0.920756396205946,
+  1.965927672462293
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": " I'm Erica West Oyedele and I am the RID Region V Representative.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 286,
+ "stride": 1,
+ "start": "00:01:53.766",
+ "end": "00:02:03.300",
+ "duration_s": 9.534
+}

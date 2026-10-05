@@ -1,0 +1,30 @@
+{
+ "vid": "3MkO82JvaOo-00:00:04.400-00:00:09.500",
+ "yid": "3MkO82JvaOo",
+ "crop_xywh": [
+  260,
+  0,
+  706,
+  720
+ ],
+ "bbox_norm": [
+  0.20293334530245874,
+  -0.21338655114031466,
+  0.7555318596542523,
+  1.4252816859966537
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Often people use social media as a resource to get ideas of how to advocate for themselves.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 153,
+ "stride": 1,
+ "start": "00:00:04.400",
+ "end": "00:00:09.500",
+ "duration_s": 5.1
+}

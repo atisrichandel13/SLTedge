@@ -1,0 +1,30 @@
+{
+ "vid": "r8phb11nrS0-00:01:01.433-00:01:04.333",
+ "yid": "r8phb11nrS0",
+ "crop_xywh": [
+  217,
+  0,
+  766,
+  720
+ ],
+ "bbox_norm": [
+  0.16955538723203872,
+  -0.2500148266921809,
+  0.7683605498737759,
+  1.5398109206446895
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The drawback was that I had to shave.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 87,
+ "stride": 1,
+ "start": "00:01:01.433",
+ "end": "00:01:04.333",
+ "duration_s": 2.9
+}

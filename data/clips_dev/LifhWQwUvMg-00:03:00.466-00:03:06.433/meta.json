@@ -1,0 +1,30 @@
+{
+ "vid": "LifhWQwUvMg-00:03:00.466-00:03:06.433",
+ "yid": "LifhWQwUvMg",
+ "crop_xywh": [
+  589,
+  0,
+  586,
+  720
+ ],
+ "bbox_norm": [
+  0.4598198855364764,
+  -0.10511037685253002,
+  0.9177234437730577,
+  1.1797666861687177
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "One official said more firings are expected.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 179,
+ "stride": 1,
+ "start": "00:03:00.466",
+ "end": "00:03:06.433",
+ "duration_s": 5.967
+}

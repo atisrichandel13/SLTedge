@@ -1,0 +1,30 @@
+{
+ "vid": "_gcdbWV03Xk-00:04:52.133-00:04:55.166",
+ "yid": "_gcdbWV03Xk",
+ "crop_xywh": [
+  423,
+  0,
+  612,
+  720
+ ],
+ "bbox_norm": [
+  0.33054843869125633,
+  -0.11248138606199744,
+  0.8097174477158932,
+  1.2912818380731355
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Many of you are wondering about the recent lawsuits. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 91,
+ "stride": 1,
+ "start": "00:04:52.133",
+ "end": "00:04:55.166",
+ "duration_s": 3.033
+}

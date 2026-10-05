@@ -1,0 +1,30 @@
+{
+ "vid": "LifhWQwUvMg-00:00:37.466-00:00:42.533",
+ "yid": "LifhWQwUvMg",
+ "crop_xywh": [
+  639,
+  0,
+  578,
+  720
+ ],
+ "bbox_norm": [
+  0.49908628682980594,
+  -0.1161166228858295,
+  0.9517994310664034,
+  1.1473779439621654
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Another member of President Trump's cabinet steps down.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 152,
+ "stride": 1,
+ "start": "00:00:37.466",
+ "end": "00:00:42.533",
+ "duration_s": 5.067
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "HlYvjMBYyag-00:00:54.433-00:01:05.366",
+ "yid": "HlYvjMBYyag",
+ "crop_xywh": [
+  258,
+  0,
+  362,
+  480
+ ],
+ "bbox_norm": [
+  0.30203130228119623,
+  -0.1054799486892392,
+  0.7272993779048766,
+  1.1027721160590047
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "More and more universities across the country are using multimedia online with videos which are not always captioned.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  854,
+  480
+ ],
+ "n_frames": 328,
+ "stride": 1,
+ "start": "00:00:54.433",
+ "end": "00:01:05.366",
+ "duration_s": 10.933
+}

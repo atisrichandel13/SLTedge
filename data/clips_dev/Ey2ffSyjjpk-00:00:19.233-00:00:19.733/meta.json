@@ -1,0 +1,30 @@
+{
+ "vid": "Ey2ffSyjjpk-00:00:19.233-00:00:19.733",
+ "yid": "Ey2ffSyjjpk",
+ "crop_xywh": [
+  287,
+  0,
+  710,
+  720
+ ],
+ "bbox_norm": [
+  0.22417850891749064,
+  -0.15040886490433306,
+  0.780005935827891,
+  1.4093805878250687
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Hello!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 15,
+ "stride": 1,
+ "start": "00:00:19.233",
+ "end": "00:00:19.733",
+ "duration_s": 0.5
+}

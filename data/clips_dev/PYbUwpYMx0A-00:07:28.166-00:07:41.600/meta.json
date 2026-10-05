@@ -1,0 +1,30 @@
+{
+ "vid": "PYbUwpYMx0A-00:07:28.166-00:07:41.600",
+ "yid": "PYbUwpYMx0A",
+ "crop_xywh": [
+  673,
+  0,
+  502,
+  720
+ ],
+ "bbox_norm": [
+  0.5261223502610446,
+  -0.13748856550163474,
+  0.9182325170854482,
+  1.034429476824753
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I'm Bob Green, guest anchor for Sign1News.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 403,
+ "stride": 1,
+ "start": "00:07:28.166",
+ "end": "00:07:41.600",
+ "duration_s": 13.434
+}

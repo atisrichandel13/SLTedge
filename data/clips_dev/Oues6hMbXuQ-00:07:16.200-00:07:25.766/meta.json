@@ -1,0 +1,30 @@
+{
+ "vid": "Oues6hMbXuQ-00:07:16.200-00:07:25.766",
+ "yid": "Oues6hMbXuQ",
+ "crop_xywh": [
+  659,
+  0,
+  512,
+  720
+ ],
+ "bbox_norm": [
+  0.5151054771467186,
+  -0.07782224116806478,
+  0.9154622565740826,
+  1.1279829207964782
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Regarding the emotional discussions, some thought it was incredibly insulting while others didn't see anything wrong.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 287,
+ "stride": 1,
+ "start": "00:07:16.200",
+ "end": "00:07:25.766",
+ "duration_s": 9.566
+}

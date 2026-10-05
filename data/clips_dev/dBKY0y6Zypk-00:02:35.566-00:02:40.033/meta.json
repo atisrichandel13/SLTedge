@@ -1,0 +1,30 @@
+{
+ "vid": "dBKY0y6Zypk-00:02:35.566-00:02:40.033",
+ "yid": "dBKY0y6Zypk",
+ "crop_xywh": [
+  636,
+  0,
+  426,
+  680
+ ],
+ "bbox_norm": [
+  0.49679794076048295,
+  -0.1127368749087403,
+  0.8299504103483977,
+  0.9444785284243821
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "How did you three collaborate and develop the curriculum?",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 134,
+ "stride": 1,
+ "start": "00:02:35.566",
+ "end": "00:02:40.033",
+ "duration_s": 4.467
+}

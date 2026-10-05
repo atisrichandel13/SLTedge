@@ -1,0 +1,30 @@
+{
+ "vid": "NJ-7WUtB5Xk-00:18:28.433-00:18:39.133",
+ "yid": "NJ-7WUtB5Xk",
+ "crop_xywh": [
+  180,
+  0,
+  518,
+  720
+ ],
+ "bbox_norm": [
+  0.1404464250955826,
+  -0.13967143490783168,
+  0.545283950292147,
+  1.054207748565239
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Face masks are used all the time in hospitals so I asked and the facemasks were brought on set as props.",
+ "split": "valid",
+ "fps": 24.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 257,
+ "stride": 1,
+ "start": "00:18:28.433",
+ "end": "00:18:39.133",
+ "duration_s": 10.7
+}

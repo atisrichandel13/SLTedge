@@ -1,0 +1,30 @@
+{
+ "vid": "na2y-3lh5x4-00:07:27.466-00:07:35.366",
+ "yid": "na2y-3lh5x4",
+ "crop_xywh": [
+  649,
+  0,
+  494,
+  698
+ ],
+ "bbox_norm": [
+  0.5070928345123927,
+  -0.06557200926321524,
+  0.8933497359355291,
+  0.9690956411538301
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The list included Snickers, M&Ms, Hershey bars and candy corn.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 237,
+ "stride": 1,
+ "start": "00:07:27.466",
+ "end": "00:07:35.366",
+ "duration_s": 7.9
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "wn3kpVhXTLQ-00:02:11.433-00:02:15.233",
+ "yid": "wn3kpVhXTLQ",
+ "crop_xywh": [
+  567,
+  378,
+  128,
+  178
+ ],
+ "bbox_norm": [
+  0.4428724437952042,
+  0.5254729200292516,
+  0.5435437748829524,
+  0.7727392903080693
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "AFter the test, they will decide if they should continue to allow it or not.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 114,
+ "stride": 1,
+ "start": "00:02:11.433",
+ "end": "00:02:15.233",
+ "duration_s": 3.8
+}

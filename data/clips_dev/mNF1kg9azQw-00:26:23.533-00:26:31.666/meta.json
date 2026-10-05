@@ -1,0 +1,30 @@
+{
+ "vid": "mNF1kg9azQw-00:26:23.533-00:26:31.666",
+ "yid": "mNF1kg9azQw",
+ "crop_xywh": [
+  632,
+  0,
+  544,
+  720
+ ],
+ "bbox_norm": [
+  0.4936655590676854,
+  -0.13008034390035633,
+  0.9193312400426621,
+  1.1225986493392321
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "To keep yourself updated with The Deaf Protectors, you can check out their Facebook page.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 195,
+ "stride": 1,
+ "start": "00:26:23.533",
+ "end": "00:26:31.666",
+ "duration_s": 8.133
+}

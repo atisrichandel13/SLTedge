@@ -1,0 +1,30 @@
+{
+ "vid": "GhW-Vo0-w8k-00:00:12.200-00:00:16.033",
+ "yid": "GhW-Vo0-w8k",
+ "crop_xywh": [
+  430,
+  0,
+  532,
+  720
+ ],
+ "bbox_norm": [
+  0.3362331407111988,
+  -0.12408300849661726,
+  0.7523875269973488,
+  1.1454725756282695
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I hope your Christmas / holiday break went well.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 92,
+ "stride": 1,
+ "start": "00:00:12.200",
+ "end": "00:00:16.033",
+ "duration_s": 3.833
+}

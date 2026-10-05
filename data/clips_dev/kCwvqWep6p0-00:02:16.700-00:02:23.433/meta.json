@@ -1,0 +1,30 @@
+{
+ "vid": "kCwvqWep6p0-00:02:16.700-00:02:23.433",
+ "yid": "kCwvqWep6p0",
+ "crop_xywh": [
+  418,
+  0,
+  600,
+  720
+ ],
+ "bbox_norm": [
+  0.3266098150392858,
+  -0.16223463594321205,
+  0.7953419479897352,
+  1.1887896438708905
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I was told to meet the nurses assistant and discuss pay day. ",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 202,
+ "stride": 1,
+ "start": "00:02:16.700",
+ "end": "00:02:23.433",
+ "duration_s": 6.733
+}

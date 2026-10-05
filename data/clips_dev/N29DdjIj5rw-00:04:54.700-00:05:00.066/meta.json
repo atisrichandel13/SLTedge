@@ -1,0 +1,30 @@
+{
+ "vid": "N29DdjIj5rw-00:04:54.700-00:05:00.066",
+ "yid": "N29DdjIj5rw",
+ "crop_xywh": [
+  288,
+  0,
+  584,
+  720
+ ],
+ "bbox_norm": [
+  0.22501225134338995,
+  -0.20063073557501557,
+  0.6816376792060004,
+  1.1477190129015715
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Often they keep their tips, tricks, and methods for the future.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 161,
+ "stride": 1,
+ "start": "00:04:54.700",
+ "end": "00:05:00.066",
+ "duration_s": 5.366
+}

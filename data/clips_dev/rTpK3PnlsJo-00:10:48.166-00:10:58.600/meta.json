@@ -1,0 +1,30 @@
+{
+ "vid": "rTpK3PnlsJo-00:10:48.166-00:10:58.600",
+ "yid": "rTpK3PnlsJo",
+ "crop_xywh": [
+  749,
+  84,
+  428,
+  636
+ ],
+ "bbox_norm": [
+  0.5851410911196754,
+  0.11679934143389342,
+  0.9193774662320576,
+  1.069705947997078
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "As an online student, it took me a while to get accustomed to uploading most of the classwork and homework.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 314,
+ "stride": 1,
+ "start": "00:10:48.166",
+ "end": "00:10:58.600",
+ "duration_s": 10.434
+}

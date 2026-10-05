@@ -1,0 +1,30 @@
+{
+ "vid": "35N28rtz66I-00:08:21.500-00:08:41.100",
+ "yid": "35N28rtz66I",
+ "crop_xywh": [
+  635,
+  0,
+  546,
+  720
+ ],
+ "bbox_norm": [
+  0.49592528774239925,
+  -0.03628429525390932,
+  0.9223056585775258,
+  1.179625252426157
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Companies are charging thousands of dollars, claiming the infusions can treat a number of conditions and slow down aging.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 588,
+ "stride": 1,
+ "start": "00:08:21.500",
+ "end": "00:08:41.100",
+ "duration_s": 19.6
+}

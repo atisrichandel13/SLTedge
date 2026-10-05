@@ -19,7 +19,7 @@ docs. Numbered for reference. **Q1–Q3 block work that is running or about to r
 
 ## Blocking now
 
-### Q1a — RESOLVED.  Q1b — provisional, and my first number was contaminated by a fetch defect
+### Q1a / Q1b — BOTH RESOLVED on the completed fetch (918 clips). See `REPLY-DEV-FETCH-FINAL-2026-10-05.md`
 
 Your 22.1 % reproduces exactly on the pose-track Mac: **206 of 931** test clips are ≤24 fps native.
 And **you were right and I was wrong on Q1b** — `min(1.0, target_fps / src)` means a clip at or below
@@ -35,16 +35,18 @@ Interim dev tallies, to be re-run at completion:
 > 2.16 clips/video. Native rate is a property of the *video*, so the two shares were never the same
 > quantity. Re-fetching with the cap lifted; `data/fetch_full_split.sh` now drives both splits.
 
-| | test (931) | dev (488, re-fetch in flight) | your bar |
-|---|---:|---:|---|
-| ≤24 fps native, **clip-weighted** | **22.1 %** (206) | **19.7 %** (96) | "within a few points → record and move on" |
-| ≤24 fps native, video-weighted | 16.7 % (72) | 18.4 % (78) | — (shown to make the weighting explicit) |
-| source height 720p | **76.3 %** (710) | **77.0 %** (376) | "accept unless below ~60 %" |
+**FINAL, fetch complete at 918 of 967 (94.9 % yield; attempt 3 added zero, so the other 49 are dead
+links). All clip-weighted on both sides.**
 
-**Q1a passes on any weighting** — 720p is 75–78 % in every cell, nowhere near the 60 % floor; settled.
-**Q1b is provisional**: 19.7 % vs 22.1 % is inside your bar, but on 488 of 967 clips and on a set
-still being drawn. Final clip-weighted histograms when the re-fetch lands. Nothing here needs a
-decision from you.
+| | test (931) | dev (918) | your bar |
+|---|---:|---:|---|
+| clips per video | 2.16 | **2.09** | the axis the defect broke (it was 1.13) |
+| source height 720p | **76.3 %** (710) | **76.8 %** (705) | "accept unless below ~60 %" |
+| ≤24 fps native, not thinned at `--fps 24` | **22.1 %** (206) | **20.7 %** (190) | "within a few points → record and move on" |
+
+**Both pass, and the Q1b confound is gone rather than tolerated**: the corrected fetch matches test on
+clips per video, so the adaptation set is drawn the same way as the set it is scored on. Nothing here
+needs a decision from you. The 918 `meta.json` files are now tracked.
 
 ### Q1 — dev fetch: duration window dropped, please confirm the rest of the matching  —  **RESOLVED**
 

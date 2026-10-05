@@ -1,0 +1,30 @@
+{
+ "vid": "J-0KHhPS_m4-00:09:29.100-00:09:35.600",
+ "yid": "J-0KHhPS_m4",
+ "crop_xywh": [
+  645,
+  0,
+  462,
+  674
+ ],
+ "bbox_norm": [
+  0.5042590501980904,
+  -0.07875690052651951,
+  0.8646424947640835,
+  0.9373721031721501
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "After being left unsupervised, four escaped out the front door of the facility.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 195,
+ "stride": 1,
+ "start": "00:09:29.100",
+ "end": "00:09:35.600",
+ "duration_s": 6.5
+}

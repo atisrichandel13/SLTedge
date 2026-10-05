@@ -1,0 +1,30 @@
+{
+ "vid": "PY8a3Q_GB1c-00:08:41.266-00:08:58.433",
+ "yid": "PY8a3Q_GB1c",
+ "crop_xywh": [
+  380,
+  0,
+  714,
+  720
+ ],
+ "bbox_norm": [
+  0.29673511492900356,
+  -0.207093694474962,
+  0.8547557017742059,
+  1.4153686660647051
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "I could see smoke in the sky from my car but I couldn't see much because there were lots of television live trucks and reporters lined up along the side of the road.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 515,
+ "stride": 1,
+ "start": "00:08:41.266",
+ "end": "00:08:58.433",
+ "duration_s": 17.167
+}

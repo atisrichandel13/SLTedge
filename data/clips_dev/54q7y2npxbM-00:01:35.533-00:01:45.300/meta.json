@@ -1,0 +1,30 @@
+{
+ "vid": "54q7y2npxbM-00:01:35.533-00:01:45.300",
+ "yid": "54q7y2npxbM",
+ "crop_xywh": [
+  707,
+  0,
+  502,
+  716
+ ],
+ "bbox_norm": [
+  0.5524041720029325,
+  -0.07570922214582292,
+  0.9449476759312516,
+  0.9957005048800921
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The MMS website estimates more than 20 million people have used the solution and thousands of lives have improved.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 294,
+ "stride": 1,
+ "start": "00:01:35.533",
+ "end": "00:01:45.300",
+ "duration_s": 9.767
+}

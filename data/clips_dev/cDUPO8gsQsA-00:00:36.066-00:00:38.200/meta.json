@@ -1,0 +1,30 @@
+{
+ "vid": "cDUPO8gsQsA-00:00:36.066-00:00:38.200",
+ "yid": "cDUPO8gsQsA",
+ "crop_xywh": [
+  356,
+  0,
+  560,
+  720
+ ],
+ "bbox_norm": [
+  0.27775778648180843,
+  -0.16854173328801778,
+  0.7158260981241862,
+  1.1167404998062003
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "The selected person will represent your organization.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 64,
+ "stride": 1,
+ "start": "00:00:36.066",
+ "end": "00:00:38.200",
+ "duration_s": 2.134
+}

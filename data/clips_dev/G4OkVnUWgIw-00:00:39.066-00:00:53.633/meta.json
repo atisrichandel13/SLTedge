@@ -1,0 +1,30 @@
+{
+ "vid": "G4OkVnUWgIw-00:00:39.066-00:00:53.633",
+ "yid": "G4OkVnUWgIw",
+ "crop_xywh": [
+  386,
+  0,
+  638,
+  720
+ ],
+ "bbox_norm": [
+  0.3019438993363153,
+  -0.14465062237290477,
+  0.7998255761464438,
+  1.2161119944456393
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "If the doctor does not provide an interpreter or captionist, please contact: telehealth@dhhcan.org.",
+ "split": "valid",
+ "fps": 23.976,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 350,
+ "stride": 1,
+ "start": "00:00:39.066",
+ "end": "00:00:53.633",
+ "duration_s": 14.567
+}

@@ -1,0 +1,30 @@
+{
+ "vid": "M17uzQsgtfw-00:01:02.666-00:01:21.033",
+ "yid": "M17uzQsgtfw",
+ "crop_xywh": [
+  667,
+  0,
+  498,
+  720
+ ],
+ "bbox_norm": [
+  0.521089799840887,
+  -0.08611047545551737,
+  0.9098095017510491,
+  1.054018635920059
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Amber Guyger, the Dallas police officer charged with manslaughter after shooting a person in their apartment, has been fired.",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 551,
+ "stride": 1,
+ "start": "00:01:02.666",
+ "end": "00:01:21.033",
+ "duration_s": 18.367
+}

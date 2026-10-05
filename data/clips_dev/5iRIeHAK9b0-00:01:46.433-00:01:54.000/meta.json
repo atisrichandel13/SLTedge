@@ -1,0 +1,30 @@
+{
+ "vid": "5iRIeHAK9b0-00:01:46.433-00:01:54.000",
+ "yid": "5iRIeHAK9b0",
+ "crop_xywh": [
+  318,
+  0,
+  568,
+  720
+ ],
+ "bbox_norm": [
+  0.24882407879483873,
+  -0.1033030532984342,
+  0.6925484318664109,
+  1.1322701073307155
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "We are getting the opportunity here at Atlanta Motor Speedway to get ready for this Saturday and Sunday NASCAR races.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 228,
+ "stride": 1,
+ "start": "00:01:46.433",
+ "end": "00:01:54.000",
+ "duration_s": 7.567
+}

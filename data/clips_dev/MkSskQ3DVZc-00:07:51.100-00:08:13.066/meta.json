@@ -1,0 +1,30 @@
+{
+ "vid": "MkSskQ3DVZc-00:07:51.100-00:08:13.066",
+ "yid": "MkSskQ3DVZc",
+ "crop_xywh": [
+  455,
+  0,
+  824,
+  720
+ ],
+ "bbox_norm": [
+  0.3555133920727354,
+  -0.191823400953402,
+  1.000549842853739,
+  1.6356336806090725
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "In a statement from CVS, they say it is not asking employees to be enforcers of wearing masks but simply asking customers to do their part.",
+ "split": "valid",
+ "fps": 30.0,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 659,
+ "stride": 1,
+ "start": "00:07:51.100",
+ "end": "00:08:13.066",
+ "duration_s": 21.966
+}

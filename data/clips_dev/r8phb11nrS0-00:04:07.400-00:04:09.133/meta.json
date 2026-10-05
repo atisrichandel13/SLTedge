@@ -1,0 +1,30 @@
+{
+ "vid": "r8phb11nrS0-00:04:07.400-00:04:09.133",
+ "yid": "r8phb11nrS0",
+ "crop_xywh": [
+  335,
+  0,
+  646,
+  720
+ ],
+ "bbox_norm": [
+  0.26143128221685236,
+  -0.17208143870035808,
+  0.7661995844407514,
+  1.4179925908946027
+ ],
+ "crop_style": "native",
+ "crop_geom": null,
+ "text": "Thanks Nyle for your time!",
+ "split": "valid",
+ "fps": 29.97,
+ "source_wh": [
+  1280,
+  720
+ ],
+ "n_frames": 52,
+ "stride": 1,
+ "start": "00:04:07.400",
+ "end": "00:04:09.133",
+ "duration_s": 1.733
+}
