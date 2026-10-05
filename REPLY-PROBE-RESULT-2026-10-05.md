@@ -7,10 +7,16 @@ Time-critical: this changes what to extract, and the dev fetch is running.*
 
 ## The ask, up front
 
-**Extract the remaining 576 test clips, not only the 967 dev clips.** Without it, a real J9 effect of
-the size this curve predicts comes back "not established", and the framing we agreed in advance then
-licenses nothing. 576 clips is the smaller extraction job and it is the one that decides whether J9
-can report anything at all.
+**Extract the remaining 531 test clips, as well as the 967 dev clips, and do them first.** Without
+it, a real J9 effect of the size this curve predicts comes back "not established", and the framing we
+agreed in advance then licenses nothing.
+
+> **Corrected 2026-10-05 after the pose track's reply.** This said *576 clips* and framed J12 as
+> beating the dev extraction if board time is short. Both wrong. 45 of the 976 `labels.test` names
+> have no clip on disk (`index.json`: `requested 974, n_ok 931, n_failed 43`), so the job is **531
+> clips** and **931 is a ceiling, not a waypoint**. And J12 cannot substitute for the dev extraction:
+> without dev poses there is no adapted arm to score at all. J12 is a precondition for J9 being
+> *interpretable*, not an alternative to it.
 
 ## What the probe measured
 
@@ -53,12 +59,12 @@ If J9 behaves like this curve, dev scale buys ~39 % of recovery:
 | 39 % of it | **+0.88** |
 | half-width of the n=400 interval (§2.5h) | **±1.20** |
 
-**+0.88 does not clear ±1.20.** Going from 400 to all 976 test clips narrows the interval by about
-`sqrt(400/976) = 0.64`, to **±0.77** — which +0.88 does clear.
+**+0.88 does not clear ±1.20.** Going from 400 to all **931** available test clips narrows the
+interval by `sqrt(400/931) = 0.6555`, to **±0.790** — which +0.88 still clears, by 0.09.
 
-So the two extractions are not interchangeable, and the test-set one is both smaller and more
-decisive. If board time is limited, **576 test clips beats 967 dev clips**: more training data cannot
-help if the measurement cannot resolve the result.
+So the two extractions do different jobs and both are needed: the dev set produces the adapted model,
+the test set makes its effect resolvable. **J12 goes first** because more training data cannot help if
+the measurement cannot resolve the result — not because it replaces anything.
 
 ## What we are not claiming
 

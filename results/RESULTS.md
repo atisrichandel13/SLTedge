@@ -2793,10 +2793,21 @@ If J9's adaptation behaves like this curve, dev scale buys ~39 % of full recover
 agreed framing then licenses nothing. Running J9 as specified risks buying a null that is about
 sample size rather than about adaptation.
 
-**The fix is cheaper than the thing it protects.** The n=400 test pose set is 400 of 976 clips.
-Extracting the remaining 576 narrows the interval by about `sqrt(400/976) = 0.64`, to **±0.77**, which
-**+0.88 does clear**. That is 576 clips of board extraction against the 967 the training set needs, so
-it is the smaller job and it is the one that decides whether J9 can report anything at all.
+**The fix is cheaper than the thing it protects.** The n=400 test pose set is 400 of the **931**
+test clips that exist on disk — `data/clips/index.json` records `requested 974, n_ok 931, n_failed 43`,
+so 45 of the 976 `labels.test` names have no clip and never will. Extracting the remaining **531**
+narrows the interval by `sqrt(400/931) = 0.6555`, to **±0.790**, which **+0.88 still clears** — by
+0.09 rather than the 0.11 a 976-clip ceiling would have given. Measured from the pose-track Mac that
+is 111,388 frames, ~45–47 min of board compute and ~426 MB of pkls back.
+
+> **Corrected 2026-10-05 by the pose track.** This paragraph first said *576 clips* and *±0.771*,
+> taking 976 as the achievable set because `eval_n400_pruned_ours_fps24.json` records `missing: 576`
+> — but that counts against all 976 label names, not against the clips that were successfully
+> fetched. **931 is a ceiling, not a waypoint.** The conclusion survives; the margin is thinner.
+
+**J12 does not substitute for the dev extraction.** Without dev poses there is no adapted arm to
+score, so J12 is a precondition for J9 being *interpretable*, not an alternative to it. Both proceed,
+J12 first.
 
 **Deviations from protocol.** One seed per rung, not three — the rungs are a curve, not a headline, and
 L10's seed spread (0.05 BLEU-4 / 0.15 ROUGE-L) is small against these intervals. Run on Colab, not the
