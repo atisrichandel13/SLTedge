@@ -272,14 +272,26 @@ than a few percent:
 | caveat | size | status |
 |---|---|---|
 | composition vs measured end-to-end | ~6 % low | run-to-run variation is ~3 % at 1σ; ~2σ, consistent but not demonstrated |
-| decoder-width term | **understated 1.7–2.3×** | **open** — partly the pruned/full checkpoint mismatch below |
+| decoder-width term | **understated 2.1–2.3×** | **open** — the checkpoint mismatch explained only about half of it |
 | `LM_J` measured on the pruned model, standalone | direction known | **open** — the in-process re-run would settle it |
 | measured clip at the 83.4th percentile of crop area | **−2.6 %** for a median clip | **closed** — was estimated at ~7 %, measured 3× smaller |
+
+**Net, the absolute column is mildly optimistic, not approximately unbiased.** The composition runs
+~6 % low and the crop-area term is −2.6 %, so they do not offset — an earlier pairing of these two
+assumed the crop term was ~7 %, which J6 measured 3× smaller. The net is roughly **3–4 % low.**
 
 The one we would fix first is the decoder-width term: across two checkpoints and four frame counts the
 measured beam-4 penalty is **flat in absolute joules** (6.95–7.02 J full, 4.50–4.65 J pruned) while the
 composition makes it grow with encoder length. Decoder-width energy is a per-sentence constant and
 should not be modelled as a function of sequence length.
+
+> **On the 2.1–2.3× figure.** An earlier draft said 1.7–2.3×, twice. The error originated in
+> `results/RESULTS.md` §5.4, whose composition row listed the composed value at T=263 as +2.67 J — a
+> linear *extrapolation* of `LM_J` past its measured grid top of 215. **`frontier.py` clamps instead
+> of extrapolating**, so the value it ships is 11.04 − 8.88 = 2.16 J, and the band is 4.50/2.16 = 2.08×
+> to 4.65/2.04 = 2.27×. Quoting 1.7× described a model we do not ship. Fixed at source by the LM
+> track; the pose track had also "corrected" the figure in the wrong direction once, which is what let
+> it regress.
 
 ---
 

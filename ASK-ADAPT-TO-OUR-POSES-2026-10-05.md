@@ -1,7 +1,11 @@
 # Ask: adapt the pose encoder to *our* extractor's keypoints
 
-*2026-10-05, pose track → LM track. You have the 967 dev clips and board access, so this is runnable
-end to end on your side. Everything referenced is on `main`.*
+*2026-10-05, pose track → LM track. **Revised 2026-10-05** after
+`REPLY-J9-ADAPT-2026-10-05.md`; see `REPLY-TO-J9-ISSUES-2026-10-05.md` for the full response. Three
+things in the first draft were wrong and are fixed below: it had no control arm and so could not
+attribute its own result, it implied training runs on the board, and it budgeted step 0 as a copy when
+there are **no dev clips anywhere** — `data/clips/` is 931 test clips with zero dev overlap, so step 0
+is a full YouTube fetch and is the long pole.*
 
 ## Why this is the one accuracy lever left
 
@@ -61,7 +65,10 @@ an **effective-rate guard** (added today) that raises on a truncated extraction 
 ```
 Produces `results/pkl_dev_rtmw_fp16/` (square-norm — the one to train on) and `..._raw/` (crop frame).
 
-**Step 2 — adapt, with your working recipe from L15.2.**
+**Step 2 — adapt, with your working recipe from L15.2. On Colab, not the board** — the on-board
+requirement is about matching the deployed *extraction* distribution (step 1), not about where
+gradients are computed. A 15 W Orin Nano with no sudo and one process at a time is not a training
+device.
 
 ```bash
 python unisign/train_adapt.py \
@@ -70,7 +77,7 @@ python unisign/train_adapt.py \
   --poses results/pkl_dev_rtmw_fp16 \
   --labels data/openasl_labels/labels.dev \
   --lr 1e-5 --label-smoothing 0.0 --warmup-epochs 0.1 \
-  --fps 24 --amp --seed 42 \
+  --fps 24 --amp --seed 42 --epochs 1 --save-every 1 \
   --out-dir weights/adapt_ourposes_s42
 ```
 Notes on the flags, each for a measured reason:
@@ -80,8 +87,21 @@ Notes on the flags, each for a measured reason:
 * `--lr 1e-5` — the default `1e-4` is the one that degraded in L15.2.
 * `--fps 24` — adapt at the rate we deploy. §2.5g: 24 fps is free on our own keypoints
   (+0.13 [−0.49, +0.74]).
+* `--save-every 1` and an explicit `--epochs` — Colab kills sessions mid-epoch and L15 lost a run
+  that way; neither should be left to a default.
 * pruned checkpoint — it is the deployment choice on every axis (§5.4: −12 % system energy, half the
   peak memory and load time) and pruning costs −0.51, not established.
+
+**Step 2b — the control arm. This is not optional.** Same recipe, same `--fps 24`, same seed,
+trained on the **authors'** dev poses, evaluated on the **same** our-pose test n=400. Without it a
+gain cannot be separated from "fine-tuning on 967 dev clips helps regardless of whose keypoints they
+are" — and L15.2 measured that generic gain at **+0.18 BLEU-4 / +0.70 ROUGE-L** with no shift at all.
+The contrast of record is therefore `adapted-on-ours − adapted-on-theirs`, not
+`adapted − un-adapted`.
+
+The authors' dev poses are **not** on the Mac (`data/openasl_pose/` is 976 test pkls, 0 of them in
+`labels.dev`), but they are pose pkls rather than video: `data/openasl_pose_fetch.py --split dev`
+pulls them by HTTP range at ~680 MB, now with size and CRC verification.
 
 **Step 3 — evaluate on TEST with our poses, and against the un-adapted baseline on the same clips.**
 
@@ -91,12 +111,17 @@ python unisign/eval_openasl.py --ckpt <adapted> --mt5 weights/mt5-base-openasl-p
   --num-beams 4 --max-new-tokens 64 --batch-size 1 --fps 24 \
   --out results/eval_n400_adapt_ours_fps24.json
 ```
-`results/pkl_split_rtmw_fp16/` is already on the board — 400 test clips through our extractor, the
-exact set §2.5h measured, so the comparison is paired on identical clips.
+`results/pkl_split_rtmw_fp16/` is 400 test clips through our extractor — the exact set §2.5h measured,
+so the comparison is paired on identical clips. It is on **both** the board and the Mac working tree
+(untracked, covered by the `results/pkl_*/` ignore rule, which is why it is invisible from a fresh
+clone). Nothing needs to move for step 3.
 
 ## What success looks like
 
-The number to beat is **21.57 BLEU-4**, and the headroom is the ceiling at **23.81**. Report
+The number to beat is **21.57 BLEU-4**. **Do not measure the recovered fraction against the 23.81
+ceiling** — that is the *un-adapted* authors'-keypoint score, so crediting adaptation against a fixed
+23.81 folds the generic fine-tuning gain into the numerator. Report the fraction against the control
+arm, or report the raw delta and name the denominator. Report
 `unisign/bootstrap_ci.py results/eval_n400_pruned_ours_fps24.json results/eval_n400_adapt_ours_fps24.json`
 — paired, same 400 clips. **Recovering even half the gap (~+1.1) would be the largest accuracy result
 in the project.**
