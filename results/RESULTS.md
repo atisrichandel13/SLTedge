@@ -3299,3 +3299,52 @@ was pointed at a full-split run, where the whole purpose is coverage.
 time, and the fetch environment is on the pose-track Mac. The ask is that the wording stop saying
 these 2 were dead links, and that the `requested` field stop being cited as an exhaustion check.
 `REPLY-N931-EXHAUSTION-2026-10-05.md`.
+
+---
+
+### L21 Answering lever 3: a one-sided test does not make the J9 effect resolvable either (2026-10-05)
+
+`REPLY-N931-RESAMPLES-2026-10-05.md` §3 offers three levers for the 0.71 detectability cap and flags
+the third — declare a one-sided test before J9 step 2 — as an option, not a proposal, correctly noting
+that it is only legitimate if declared before the data is seen, and that §7.1 of `REPORT.md` already
+catalogues three instances of reading a threshold after the fact.
+
+**It is legitimate to decide now, and the answer is no — not on principle, but because it does not
+work.** Measured rather than approximated, on the **same 2000 draws** as
+`results/ci_n931_posesub_fps24.json` (seed 0, `unisign/bootstrap_ci.py --one-sided`):
+
+```
+python -m unisign.bootstrap_ci results/eval_test976_ceil_b4_fps24_named.json \
+    results/eval_n931_pruned_ours_fps24.json -n 2000 --no-rouge --one-sided
+```
+
+The two-sided interval reproduced the published artifact to four decimals
+(`[-2.185912, -0.630750]`), which is the check that the draws are the same ones and not a fresh
+bootstrap.
+
+| | margin the effect must clear | expected recovery (39 % of 1.4077) | ratio | recovery needed to clear |
+|---|---:|---:|---:|---:|
+| two-sided 95 % | 0.7782 | 0.5490 | 0.705 | **55.3 %** |
+| **one-sided 95 %** | **0.6823** | 0.5490 | **0.805** | **48.5 %** |
+
+**Going one-sided buys 12 % of margin and still does not clear.** It moves the required recovery from
+55.3 % to 48.5 % of the gap, against the 39 % §L17 predicts. So it would spend the one thing §7.1 is
+about — not changing a threshold after seeing data — and buy a verdict that is still *not
+established*. **Declining it, and recording the decision now rather than after J9 runs**, which is the
+only time the decision is worth anything.
+
+**A methodological note worth more than the result.** The normal approximation `0.839 × half-width`
+gives 0.6524 and a required recovery of 46.3 %. The measured margin is **0.6823**, needing 48.5 %. The
+approximation is optimistic by 2.2 points of required recovery, because it assumes the resample
+distribution is symmetric and here it is not — the two-sided margin `|delta − p2.5|` is 0.7782 against
+a half-width of 0.7776, so the asymmetry is visible in the published artifact itself. **Had the
+one-sided benefit been estimated rather than measured, it would have looked meaningfully larger than
+it is.** That is the same error as §L17's power calculation, in a different place: substituting a
+convenient closed form for the quantity actually in hand. `unisign/bootstrap_ci.py` now carries the
+warning in a comment next to the code that would have been the tempting shortcut.
+
+**What this leaves for J9.** Lever 1 only: the true effect on the pose-source axis being larger than
+the 39 % measured on the frame-rate axis. It needs **≥ 55.3 %** recovery two-sided. §L17 already
+records that transfer as unestablished, so this is not a prediction that it will fail — it is the
+honest statement of what J9 would have to deliver to return *established*, agreed in writing before
+the run, which is what the earlier null-framing agreement asks for.

@@ -85,3 +85,42 @@ Because of that exclusion, the clip every early single-clip result was developed
 the 931-clip paired test set.** That is the right side of the line to be on — no single-clip tuning on
 the Bitcoin clip can have leaked into the headline evaluation. It also explains why the pose gap was
 invisible at n=1: the clip it was invisible on is not in the set where it is established.
+
+---
+
+## 6. Lever 3 answered, before J9 runs: no, and not on principle
+
+You flagged the one-sided test as an option rather than a proposal, and put the decision to us. You
+were also right that it is only legitimate declared in advance. **Deciding it now, with the gap
+measured rather than approximated: no.**
+
+Same 2000 draws as `results/ci_n931_posesub_fps24.json`, seed 0, via a new `--one-sided` reporting
+flag on `unisign/bootstrap_ci.py`. The two-sided interval reproduced the published artifact to four
+decimals, which is the check that these are the same draws and not a fresh bootstrap:
+
+| | margin to clear | expected recovery (39 % × 1.4077) | ratio | recovery needed |
+|---|---:|---:|---:|---:|
+| two-sided 95 % | 0.7782 | 0.5490 | 0.705 | **55.3 %** |
+| **one-sided 95 %** | **0.6823** | 0.5490 | **0.805** | **48.5 %** |
+
+**It buys 12 % of margin and still does not clear.** 48.5 % against the 39 % §L17 predicts. So it
+would spend exactly the thing §7.1 is about, for a verdict that is still *not established*. Not worth
+it — and that is a measurement, not a preference.
+
+**The part worth keeping is why I did not estimate it.** `0.839 × half-width` — the normal
+approximation — gives 0.6524, i.e. 46.3 % needed. The measured margin is **0.6823**, i.e. 48.5 %. The
+approximation is optimistic by 2.2 points of required recovery, because it assumes a symmetric
+resample distribution and this one is not: `|delta − p2.5|` is 0.7782 against a published half-width of
+0.7776, so the asymmetry is already visible in the artifact. **Estimating the benefit would have made
+lever 3 look better than it is** — the same substitution of a convenient closed form for the quantity
+in hand that produced the §L17 power error. The warning is now a comment beside the code that would
+have been the shortcut.
+
+**So lever 1 is the only one left, and the number to agree on is 55.3 %.** That is what J9 must
+recover, two-sided, to return *established* at n=931. §L17 records the 39 %-transfer as unestablished,
+so this is not a prediction of failure — it is the threshold, in writing, before the run. Recorded as
+**§L21**.
+
+**No ask.** Q9 is closed, the artifact question is closed, and lever 3 is now decided. If you want to
+overturn the one-sided decision, the time is before step 2 and the reason has to be something other
+than the result.

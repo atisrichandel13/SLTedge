@@ -69,6 +69,12 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--no-rouge", action="store_true", help="BLEU-4 only (skips the rouge dependency)")
     ap.add_argument("--out", default=None, help="write the numbers as JSON too")
+    ap.add_argument("--one-sided", action="store_true",
+                    help="ALSO report the one-sided 95%% bound and margin from the SAME draws. "
+                         "Reporting only; the two-sided interval stays the headline. A one-sided "
+                         "bound is only legitimate if the direction was declared BEFORE the data "
+                         "was seen -- see REPORT.md 7.1, which catalogues three instances of "
+                         "reading a threshold after the fact.")
     args = ap.parse_args()
 
     names, rows = align(args.a, args.b)
@@ -93,6 +99,16 @@ def main():
                       fn([rows[i][0] for i in ix], [rows[i][2] for i in ix]) for ix in idxs])
         d = -d  # delta is b - a
         ci = (float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5)))
+        # One-sided margin, from the same draws. Reported as a MARGIN (distance from the point
+        # estimate to the 5th percentile) rather than a bound, because that is the quantity a power
+        # question compares an expected effect against. Do NOT compute this as 0.839 x half-width:
+        # that normal approximation assumes symmetry and the resample distribution is not symmetric
+        # here -- it understates the margin, and so overstates what going one-sided buys.
+        one = None
+        if args.one_sided:
+            lo1 = float(np.percentile(d, 5.0))
+            one = {"bound_5pct": lo1, "margin": abs((pb - pa) - lo1),
+                   "two_sided_margin": abs((pb - pa) - ci[0])}
         # the degenerate case must not be labelled like a weak one: if every resample gives exactly
         # 0, the two configs emitted identical text on every clip, which is a strong statement
         identical = bool(pb == pa and np.all(d == 0))
@@ -103,8 +119,13 @@ def main():
                     "identical_on_these_clips": identical,
                     "straddles_zero": straddles and not identical,
                     "p_wrong_sign": float(np.mean(np.sign(d) != np.sign(pb - pa))) if pb != pa else 0.0}
+        if one:
+            out[tag]["one_sided"] = one
         print(f"  {tag:8s} {pa:6.2f} -> {pb:6.2f}   delta {pb - pa:+6.2f}  "
               f"95% CI [{ci[0]:+.2f}, {ci[1]:+.2f}]  {verdict}")
+        if one:
+            print(f"  {'':8s} one-sided 95% bound {one['bound_5pct']:+.4f}  margin "
+                  f"{one['margin']:.4f} against two-sided {one['two_sided_margin']:.4f}")
     if args.out:
         json.dump(out, open(args.out, "w"), indent=1)
         print("[ci] wrote", args.out)
