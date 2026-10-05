@@ -3120,9 +3120,23 @@ files.
 ### L19 The pose gap at full width (n=931): it nearly halves, and J12 did not buy the power it was run for (2026-10-05)
 
 J12 extended the board pose set from 400 to all 931 fetched test clips so the pose-substitution gap
-could be measured at full width. `unisign/bootstrap_ci.py`, 2000 resamples, paired by clip name
+could be measured at full width. `unisign/bootstrap_ci.py`, **2000** resamples, paired by clip name
 against `eval_test976_ceil_b4_fps24_named.json` (976 ∩ 931 = **931**, 45 dropped, 0 reference
 mismatches). Artifact: `results/ci_n931_posesub_fps24.json`.
+
+> **Two artifacts exist for this one quantity, computed independently and in parallel by the two
+> tracks.** The point estimates are **identical** — 1.4077 BLEU-4 and 1.3280 ROUGE-L — so the
+> measurement is not in question; only the resample count and the sign convention differ.
+>
+> | | resamples | BLEU-4 interval |
+> |---|---:|---|
+> | `ci_n931_pose_gap.json` (pose track, §2.5k) | 1000 | [−2.21, −0.66] |
+> | `ci_n931_posesub_fps24.json` (this section) | **2000** | **[−2.19, −0.63]** |
+>
+> **The 2000-resample one should be canonical**, because `ci_n400_posesub_fps24_lm.json` — the
+> artifact every "the interval narrowed from ±1.205" statement compares against — is also 2000. An
+> interval width computed at 1000 draws is not directly comparable with one at 2000, and the whole
+> point of the n=931 run was to compare widths across n.
 
 | | n=400 (§2.5h) | **n=931** |
 |---|---|---|
