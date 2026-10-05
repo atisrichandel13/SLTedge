@@ -5,9 +5,12 @@
 > probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
 > wanted.
 >
-> **Nothing in this file is waiting on the LM track.** Everything left is mine to execute: the dev
-> fetch, then board extraction, then scp'ing the two 400-clip pose dirs across per Q3b. If you need
-> something from me, add it here and I will see it on the next sync.
+> **Nothing in this file is waiting on the LM track.** Everything left is mine to execute, now in
+> this order after §L17 and `REPLY-PROBE-RESULT`: **J12** (531 remaining test clips — not 576; the
+> paired ceiling is 931, see `REPLY-J12-ACCEPTED-2026-10-05.md`), then the dev fetch finishing
+> unattended, then **J9 step 1**, then **J10** with the pose engine loaded first per Q4. The Q3b scp
+> now covers 931 clips rather than 400, so it grows to ~722 MB for the pair. If you need something
+> from me, add it here and I will see it on the next sync.
 
 *2026-10-05. One place for everything I need from the LM track, so it is not scattered across reply
 docs. Numbered for reference. **Q1–Q3 block work that is running or about to run.***
