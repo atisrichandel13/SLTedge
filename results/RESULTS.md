@@ -1930,9 +1930,17 @@ first evidence the C8 harness trains rather than merely runs (L4.2/C8.1 only est
 script executes and checkpoints round-trip).
 
 **Caveat:** the intended isolating control (ls 0.2 at lr 1e-5, which would separate smoothing from
-learning rate) was killed by a Colab disconnect after 10 log lines and has **not** been run. So
-"label smoothing was the problem" is the best available reading, not an isolated result — the working
-recipe changed smoothing, learning rate and warmup together.
+learning rate) was killed by a Colab disconnect and **never completed**, so it has no eval. "Label
+smoothing was the problem" is therefore the best available reading, not an isolated result — the
+working recipe changed smoothing, learning rate and warmup together.
+
+> **Correction, 2026-10-05.** This caveat said the run died "after 10 log lines". Its log,
+> `results/colab_runs/ctrl_ls02_lr1e5__train.log`, reaches **step 400 — 3,200 of 20,000 clips**,
+> ~16 % of the epoch. Partial, not absent. Over those 400 steps the loss is flat at
+> **3.3865–3.3993**, i.e. the smoothing floor is present at `lr 1e-5` as well as at `lr 1e-4`. That is
+> consistent with the diagnosis — the floor tracks label smoothing rather than the learning rate — but
+> it is a partial training curve with no evaluation, so it does not promote the reading to an isolated
+> result.
 
 #### L15.3 Adapted vs un-adapted at 16 fps (967 dev clips, ls 0.0, lr 1e-5, warmup 0.1, seed 42)
 

@@ -128,9 +128,20 @@ training curve.
 
 **An honest gap, and we flag it every time.** The clean way to prove label smoothing was the culprit
 is to change *only* label smoothing: run ls 0.2 at lr 1e-5. **We queued that run and a Colab
-disconnect killed it after 10 log lines. It has never been run.** The working recipe changed
-smoothing, learning rate *and* warmup together. So "label smoothing was the problem" is **the best
-available reading, not an isolated result.** It is written that way in RESULTS.md.
+disconnect killed it partway through the first epoch, so it never completed.** The working recipe
+changed smoothing, learning rate *and* warmup together. So "label smoothing was the problem" is **the
+best available reading, not an isolated result.** It is written that way in RESULTS.md.
+
+> **Correction, 2026-10-05.** This paragraph previously said the run *"has never been run"* and was
+> killed *"after 10 log lines"*. The log is in the repo —
+> `results/colab_runs/ctrl_ls02_lr1e5__train.log` — and it reached **step 400, 3,200 of 20,000
+> clips**, roughly 16 % of the epoch, before dying. It ran partially rather than not at all.
+>
+> The conclusion does not change, because the run never finished and was never evaluated. But it
+> leaves one piece of evidence we were discarding: across its 400 steps the loss sat at
+> **3.3865–3.3993**, flat. That is the ~3.35 smoothing floor again, now observed at `lr 1e-5` — the
+> *working* learning rate. It is weak evidence, being a partial training curve with no eval, but it
+> points the same way as the diagnosis: the floor follows label smoothing, not the learning rate.
 
 ### Round 5 — the real adaptation runs, with statistics
 
