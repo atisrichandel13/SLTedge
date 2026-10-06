@@ -3783,3 +3783,57 @@ question" was a claim about board availability, and board availability ends with
 **Two asks, in `REPLY-REPORT-FP16-2026-10-06.md`:** restore the item to §8 or delete §3.2's forward
 reference — not neither — and decide explicitly whether the FP32 arm runs, since an unrun cheap
 question should be unrun on purpose.
+
+---
+
+### L24 Retracting our own FP32 throughput correction — and it was wrong in the direction our own argument predicted (2026-10-06)
+
+`REPLY-J13-RUN-931-2026-10-06.md` §2–§3 corrected the pose track's "FP32 is ~2.6× slower" to
+**2.01× aggregate / 2.29× batch-to-batch**, then built an argument on it: that the board was delivering
+*worse* than `REPORT.md` §3.2's 1.68× per-frame bench, and that the likely cause was the larger FP32
+engine's working set against the same 8 GB. **All of that is retracted.** The completed run:
+
+| source | frames/s | ratio vs FP16 |
+|---|---:|---:|
+| their estimate, 38-clip sample, clips/min across two sets | — | 2.52× (quoted 2.6×) |
+| **our "correction", same 38-clip sample normalised to f/s** | **15.9** | **2.01× / 2.29×** |
+| steady-state batches, all 11 | 24.2–24.9 | — |
+| **§2.5m, per frame, batch rate against FP16's ~37** | **24.4** | **1.52×** |
+| the same run aggregate-to-aggregate, against §2.5k's 32.0 | 22.39 | 1.43× |
+
+**§2.5m's 1.52× is the figure to quote**, and the pose track published it before this retraction was
+written. The 1.43× on the last row is the same run measured aggregate-to-aggregate — both arms
+including staging and reclaim — and it is *lower* precisely because those fixed per-clip costs dilute a
+GPU-bound ratio toward 1.0. Two honest framings of one run, not a disagreement; the per-frame figure is
+the property of the engine and the aggregate is the property of the pipeline.
+
+**Both estimates came from the same unrepresentative 38 clips.** We corrected the pose track's
+*arithmetic* — they had compared dev clips/min against test clips/min, and the sets differ 200.5 vs
+218.6 frames/clip, which was a real error — while inheriting their *sample*. The first 38 clips ran at
+15.9 f/s against a 24.4 f/s steady state, so the early phase was 35 % slow and the whole correction
+rested on it. Waiting about twenty minutes for one completed batch would have settled it.
+
+Their §2.5m also names the lesson better than we would have: **"a complete batch is the smallest
+honest unit for a rate on this board"**, and it lists both failed projections — their ~100 min (§2.5k's
+FP16 aggregate misapplied) and our ~3.5 h (a partial first batch that still included engine load).
+
+**The instructive part: §3 contained the disconfirming argument and explained it away.** It said, in
+support of the 2.0× figure being surprising:
+
+> *"staging, rsync and reclaim passes are roughly constant per clip, so including them should push the
+> observed ratio toward 1.0, not away from it."*
+
+That reasoning is correct, and it predicts the real answer — **1.43×, below the 1.68× GPU-bound
+bench**, which is the ordinary direction. Having written down the mechanism that made 2.0× implausible,
+we treated the implausibility as the finding instead of as a reason to doubt the input. **§3.2's 1.68×
+is not understated by the board; it is a GPU-bound figure diluted toward 1.0 by fixed per-clip costs,
+exactly as expected.** The ask attached to it — "do not cite 1.68× as the deployment-scale figure" — is
+withdrawn: the deployment-scale figure is **1.52× per frame**, which is *cheaper* than the 1.68× bench,
+not dearer.
+
+**What survives from that reply.** Two things, and they are the ones that mattered:
+
+1. **The dev-vs-test clips/min error is real** and the normalisation to frames/s is the right fix. Only
+   the sample was wrong.
+2. **"Run to 931" was right**, though the argument understated the payoff — see §L25.
+
