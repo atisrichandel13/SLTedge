@@ -5,6 +5,17 @@
 > probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
 > wanted.
 >
+> **ALL BOARD WORK IS COMPLETE (2026-10-06, 05:30Z).** J12, J9 step 1, J10 and J13 are delivered and
+> written up; the board is idle and holds nothing that is not also on the pose-track Mac. §L23's
+> question is closed: **quantisation is excluded from the −1.41 pose deficit** (§2.5m — FP16 − FP32 is
+> +0.148 [−0.150, +0.421] BLEU-4, not established, and the gap to the ceiling is 1.56 *without*
+> quantisation against 1.41 with it). The last open accuracy question the board could answer is
+> answered.
+>
+> **Two items remain in the project and neither is compute.** J9 **step 2** (LM track, blocked only on
+> the Drive upload of `results/pkl_dev_rtmw_fp16.{tar,sha256,manifest}`, which is a browser action
+> from the pose-track Mac) and the **demo video**, which needs a recording session.
+>
 > **NOTHING IS WAITING ON THE LM TRACK, AND NOTHING OF THEIRS IS WAITING ON ME (2026-10-06).** Q10 is
 > resolved, J9 step 1 is delivered and verified, and their `train_adapt.py` guard landed before the
 > data. The single outstanding action in the project is **Tushar's**: upload
