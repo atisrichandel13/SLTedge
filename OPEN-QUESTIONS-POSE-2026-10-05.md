@@ -5,6 +5,10 @@
 > probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
 > wanted.
 >
+> **ONE THING IS WAITING ON THEM AGAIN: Q10 at the end of this file** — how the dev pose pkls get to
+> Colab for step 2. `ASK-ADAPT-TO-OUR-POSES` never said, which is a gap in a doc I wrote, and it
+> blocks their step 2 rather than my step 1.
+>
 > **J9 STEP 1 IS RUNNING, started 2026-10-06T00:08:48Z.** Dev pose extraction on the 918 fetched dev
 > clips — 184,093 frames, 11 batches of 90, ~96 min at J12's measured 32.0 frames/s aggregate, into
 > `results/pkl_dev_rtmw_fp16{,_raw}` with `SLT_SKIP_REF=1` (the dev split has no ceiling row). This is
@@ -375,3 +379,49 @@ goes against J9:
    anyone would have reported here, BLEU-4, overstated the effect by 0.83, while the metric you
    called blind to it was closer to the full-width answer all along. That is a better version of the
    "reporting one metric is unsafe in either direction" argument than the one in §2.5h now.
+
+### Q10 — how do you want the dev pose pkls delivered for step 2?  —  **OPEN, and it blocks you, not me**
+
+*2026-10-06, raised while J9 step 1 is still extracting so it is answered before it matters.*
+
+`ASK-ADAPT-TO-OUR-POSES` puts step 1 on the board and step 2 on Colab, and **says nothing about how
+the poses get from one to the other.** That is a gap in a doc I wrote, and it is about to become the
+thing standing between you and training.
+
+**What will exist, in ~1 hour:** 918 dev clips extracted at native rate on the board, in two
+normalisations:
+
+| directory | what it is | size |
+|---|---|---:|
+| `results/pkl_dev_rtmw_fp16` | `--square-norm`, **the one the test arm was scored on** | ~335 MB |
+| `results/pkl_dev_rtmw_fp16_raw` | the unnormalised companion | ~335 MB |
+
+**My recommendation, and the part worth checking rather than assuming: you need only the first, so
+~335 MB.** The n=931 test arm (`results/eval_n931_pruned_ours_fps24.json`, `config.poses`) was scored
+on `results/pkl_split_rtmw_fp16` — the square-norm directory. **Training must use the matching
+normalisation or step 2 adapts to a distribution the test set does not have**, which would be a
+quieter repeat of the §2.5d coordinate-frame mismatch. Take `pkl_dev_rtmw_fp16`, not `_raw`.
+
+**Q10a: which transfer do you want?** Q3b closed as *neither side moves pkls*, but that reasoning was
+specific to the **test** pkls, whose only consumer is an eval JSON I can produce on the board. The
+**dev** pkls are your training input, so they genuinely have to reach you and that conclusion does not
+carry over.
+
+Options as I see them, and I do not know which you already have working:
+
+1. **The shared Drive** — `.gitignore`'s header says large artefacts live there "mirroring these
+   paths", which is how `weights/` and `models/*.engine` already move. If that is still live, this is
+   just another directory on it and needs nothing new.
+2. **`model-data-lpcv/`** — I would rather not. It is a 7.9 GB clone of *this* repo, and anything
+   pushed through it lands in the SLTedge history, which is exactly the problem Q6 defers to after the
+   project. Adding 335 MB to it now would make Q6 worse.
+3. **Direct transfer to the LM-track Mac**, if you would rather not round-trip through Drive.
+
+**Q10b: do you want them at native rate, or pre-thinned to 24 fps?** They come off the board at
+**native** rate, which is correct and deliberate — pose pkls are rate-independent and
+`fps_ratio_for_clip` thins at load, so one set serves any target rate. That also means **the same
+files serve a `--fps 16` training run** if §L16's adapted-@-16 fps candidate is still live, at no
+extra board cost. Nothing to decide unless your recipe wants them pre-thinned.
+
+**Nothing of mine is blocked by this** — step 1 finishes regardless and the files will be on the board
+and on the pose-track Mac either way. Answer whenever; I will stage whichever you pick.
