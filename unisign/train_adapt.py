@@ -180,6 +180,15 @@ def main():
     ap.add_argument("--num-beams", type=int, default=4)
     ap.add_argument("--max-new-tokens", type=int, default=64)
     ap.add_argument("--eval-before", action="store_true", help="also score the un-adapted model first")
+    # J9 step 2 transfer guards. The dev poses cross three machines (board -> pose Mac -> Drive ->
+    # Colab) and 96 minutes of shared board time is not re-derivable, so a short extract must abort
+    # rather than train on whatever arrived. Same shape as eval_openasl.py's --expect-n.
+    ap.add_argument("--expect-n", type=int, default=None,
+                    help="ABORT unless exactly this many train clips resolve. A partially transferred "
+                         "archive that extracts without error is the RESULTS.md 2.5i failure class.")
+    ap.add_argument("--manifest", default=None,
+                    help="file of expected clip names, one per line (results/pkl_dev_rtmw_fp16.manifest). "
+                         "Compared as SETS, never as sorted sequences -- see the comment at the check.")
     args = ap.parse_args()
 
     torch.manual_seed(args.seed); np.random.seed(args.seed); random.seed(args.seed)
@@ -200,6 +209,35 @@ def main():
     names = available_names(labels, args.poses, args.limit)
     if not names:
         raise SystemExit(f"no train clips found in {args.poses}")
+
+    # --- J9 step 2 transfer guards -------------------------------------------------------------
+    # The manifest is compared as a SET, not as two sorted lists. The pose track hit exactly that
+    # bug on 2026-10-06: a manifest sorted in the board's locale, diffed against a listing sorted on
+    # macOS, reported MISMATCH with nothing actually missing, because these clip names carry colons
+    # and mixed case and BSD and GNU collate them differently. Set comparison is immune to collation
+    # and reports the two directions separately, which is what a reader needs anyway. (Anything that
+    # must sort these names for display pins LC_ALL=C.)
+    if args.manifest:
+        with open(args.manifest) as fh:
+            want = {ln.strip() for ln in fh if ln.strip()}
+        have = {n[:-4] if n.endswith(".mp4") else n for n in names}
+        missing, extra = sorted(want - have), sorted(have - want)
+        if missing or extra:
+            raise SystemExit(
+                f"[train] ABORT: {args.poses!r} does not match {args.manifest!r}.\n"
+                f"  manifest {len(want)} names, resolved {len(have)}\n"
+                f"  {len(missing)} in the manifest with no usable pkl+label: {missing[:5]}\n"
+                f"  {len(extra)} resolved but not in the manifest: {extra[:5]}\n"
+                f"  A short extract or a truncated transfer looks exactly like this. Re-check the "
+                f"tar against its .sha256 before re-running.")
+        print(f"[train] manifest OK: all {len(want)} expected clips resolved")
+    if args.expect_n is not None and len(names) != args.expect_n:
+        raise SystemExit(
+            f"[train] ABORT: {len(names)} train clips resolved, expected {args.expect_n}. "
+            f"Refusing to train on a partial set and report a number for it. "
+            f"(--limit is applied before this check, so pass --expect-n only without --limit, or "
+            f"set it to the limited count deliberately.)")
+    # ------------------------------------------------------------------------------------------
     ds = PoseTextDataset(args.poses, labels, names, args.max_length, True, args.fps, args.src_fps)
     # Explicit generator, reseeded per epoch below, so each epoch's batch order is reproducible.
     # Mid-epoch resume replays the same order and skips the batches already consumed; without this
