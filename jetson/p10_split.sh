@@ -40,6 +40,15 @@ EXPECT_N="${SLT_EXPECT_N:-}"
 # and the n=400 pairing was cuda-vs-cuda, and restricting their 976 to the same 400 clips puts the
 # cpu-vs-cuda offset at +0.0514 BLEU-4 / -0.0036 ROUGE-L with 3 of 400 predictions differing.
 ARMS="${SLT_ARMS:-all}"
+# J13: the FP32 pose arm. Added 2026-10-06 as an ARM of this script rather than a hand-written
+# eval_openasl.py invocation, deliberately. The LM track's J13 protocol lists fourteen config fields
+# that must match the FP16 arm with `poses` as the ONLY difference, and the way to guarantee that is
+# to reuse eval_one -- then beams, cap, batch size, rate, dtype, checkpoint and mT5 are identical BY
+# CONSTRUCTION instead of by transcription. Transcribing them is how J12 lost `device`.
+FP32_DIR="${SLT_FP32_DIR:-results/pkl_split_rtmw_fp32}"
+# Optional name-level guard: --expect-n catches a SHORT set, a manifest catches a DIFFERENT set of
+# the same size. results/pkl_split_rtmw_fp16.manifest is the 931 names the FP16 arm actually scored.
+MANIFEST="${SLT_MANIFEST:-}"
 POSE_DIR="${SLT_POSE_DIR:-results/pkl_split_rtmw_fp16}"
 REF="${SLT_REF:-data/openasl_pose_split}"
 ENG=models/rtmw/rtmw-l-m_256x192_fp16.engine
@@ -93,12 +102,14 @@ eval_one() {  # $1 name  $2 poses  $3 ckpt  $4 mt5  $5 fps('' = source)
   [ -n "$fps" ] && fpsarg=(--fps "$fps")
   local nexp=()
   [ -n "$EXPECT_N" ] && nexp=(--expect-n "$EXPECT_N")
+  local nman=()
+  [ -n "$MANIFEST" ] && nman=(--manifest "$MANIFEST")
   prep_mem 3000 || return 1
   echo "[p10] === $name  $(date -u +%TZ)"
   local t0=$SECONDS
   "${R[@]}" python3 unisign/eval_openasl.py --ckpt "$ckpt" --mt5 "$mt5" --poses "$poses" \
       --labels "$LABELS" --num-beams 4 --max-new-tokens 64 --batch-size 1 "${fpsarg[@]}" \
-      "${nexp[@]}" --out "$out" > "results/logs/eval_${TAG}_${name}.log" 2>&1
+      "${nexp[@]}" "${nman[@]}" --out "$out" > "results/logs/eval_${TAG}_${name}.log" 2>&1
   local rc=$?
   if [ $rc -ne 0 ]; then echo "[p10] FAILED $name rc=$rc"; tail -4 "results/logs/eval_${TAG}_${name}.log"; return 0; fi
   echo "[p10] done $name in $((SECONDS - t0)) s"
@@ -109,6 +120,10 @@ print('[p10] %-24s n=%-4d missing=%-4d BLEU-4 %6.2f  ROUGE-L %6.2f' % ('$name', 
 
 # the deployable config, and the three rows it has to be read against
 eval_one pruned_ours_fps24   "$OURS" "$PRUNED_CKPT" "$PRUNED_MT5" 24
+# J13: identical to the row above in every field except the pose directory. --dtype is NOT touched:
+# it is the mT5/ST-GCN precision and is fp32 in both arms already. The FP16-vs-FP32 axis lives
+# entirely in the pose extraction upstream of this eval (their J13 protocol 2).
+eval_one pruned_fp32_fps24   "$FP32_DIR" "$PRUNED_CKPT" "$PRUNED_MT5" 24
 eval_one pruned_ceil_fps24   "$REF"  "$PRUNED_CKPT" "$PRUNED_MT5" 24
 eval_one pruned_ours_src     "$OURS" "$PRUNED_CKPT" "$PRUNED_MT5" ""
 eval_one pruned_ceil_src     "$REF"  "$PRUNED_CKPT" "$PRUNED_MT5" ""
