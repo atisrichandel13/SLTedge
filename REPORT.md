@@ -456,7 +456,30 @@ system at **n=931, every paired test clip that exists**, and the diagnosis of it
 
 **Outstanding:** **J9 step 2** — the adaptation training itself, the single remaining accuracy lever.
 Step 1 is **done**: 918 dev clips extracted on the board in 95.5 min, packaged and checksummed
-(§2.5l). And the **demo video**, which needs a recording session rather than compute.
+(§2.5l). The **FP16 re-test at scale**, which §3.2 points at and which is **running now** — see
+below. And the **demo video**, which needs a recording session rather than compute.
+
+> **Restored 2026-10-06, after I deleted it by accident (§L23).** The previous edit removed
+> "re-testing FP16 at n≈400" from this list together with the `LM_J` re-run beside it. The `LM_J`
+> half deserved removing — it had run. **The FP16 half had not run, and §3.2 still pointed here for
+> it**, leaving `REPORT.md`'s only `n≈400` reference aimed at a list that no longer contained the
+> item. The LM track caught it.
+>
+> **It is not bookkeeping.** The shipped system runs RTMW-l-m **FP16**, and its entire accuracy
+> evidence is `results/ci_30clip_rtmw_fp32__rtmw_fp16.json`: **−0.1292 BLEU-4 [−1.476, +1.214]** at
+> **n=30** — a near-zero estimate inside ±1.5 on the deployed configuration, which is the exact shape
+> §7.1 catalogues three times. And the −1.41 deficit is measured against `pkl_split_rtmw_fp16`, *our
+> FP16 extraction*, so it bundles extractor architecture, crop, normalisation **and FP16
+> quantisation**. §2.5i excluded gross keypoint disagreement and §2.5j excluded hand localisation;
+> FP16 remains an **unexcluded contributor to the project's one real accuracy deficit**, bounded only
+> by that ±1.5.
+>
+> **Decision: it runs, at the full 931 rather than 400.** The board is idle, J9 step 1 and J10 are
+> delivered, J11 is agreed unrun, and the only other remaining action is a browser upload — so this
+> is the last window, and "cheapest open accuracy question" was a claim about board availability that
+> expires with the project. 931 costs ~100 min against ~45 for 400 and pairs against the FP16 poses
+> already on the board for every one of those clips, which both tightens the interval and removes the
+> question of which subset was chosen.
 
 > **Corrected 2026-10-06.** An earlier draft listed "the in-process `LM_J` re-run that would close the
 > frontier's last open caveat" as optional future work. **It ran (J10, §2.9E) and it did not close

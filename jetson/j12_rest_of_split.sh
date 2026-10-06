@@ -65,6 +65,11 @@ SKIP_REF="${SLT_SKIP_REF:-0}"
 PKL="${SLT_PKL:-results/pkl_split_rtmw_fp16}"
 NBATCH="${SLT_BATCH_CLIPS:-90}"
 ENG="${SLT_ENG:-models/rtmw/rtmw-l-m_256x192_fp16.engine}"
+# A LABEL only (09_batch_clips.py:66 -- it names log lines and --dumps-out files, and does not touch
+# preprocessing), but it was hardcoded to rtmw_fp16, so an FP32 arm would have logged every batch as
+# "rtmw_fp16 done". Harmless at runtime and poisonous to read back six weeks later, which is a lesson
+# this project already paid for once when J12's log was lost.
+CONFIG="${SLT_CONFIG:-rtmw_fp16}"
 WORK="${SLT_WORK:-${TMPDIR:-/tmp}}/j12"
 mkdir -p "$WORK"
 
@@ -155,7 +160,7 @@ print(n)\")" 2>/dev/null | sed 's/\r$//' | sed -n 's/.*J12COUNT=\([0-9][0-9]*\).
     "$JSSH" "cd $RPATH && python3 jetson/drop_file_cache.py --target-free-mb=3500 2>&1 | tail -1 && \
         awk '/MemFree/{printf \"[j12]   MemFree %d MB\n\", \$2/1024}' /proc/meminfo && \
         jetson/run.sh exec-batch python3 task1_rtmpose/09_batch_clips.py --engine $ENG \
-            --clips-dir $CLIPS --config rtmw_fp16 --pkl-out $PKL --pkl-out-raw ${PKL}_raw \
+            --clips-dir $CLIPS --config $CONFIG --pkl-out $PKL --pkl-out-raw ${PKL}_raw \
             --square-norm --progress-every 50 2>&1 | tail -3" \
         2>&1 | grep -v --line-buffered '^spawn \|password:' | sed -u 's/^/[j12]   /'
 
