@@ -43,6 +43,13 @@ results/*.pkl
 # the shared Drive, never in git.
 results/**/*.pkl
 results/pkl_*/
+# ...and the packaged pose archives handed to the LM track (data/package_dev_poses.sh). The dev tar is
+# ~335 MB. Added 2026-10-06 BEFORE the file existed, because this is the third time this directory has
+# had an addable-but-unwanted artefact: 296 MB of n=400 pkls and 2.4 GB of dev frames both sat one
+# `git add -A` from the history. The tar is regenerable from the pkl dir, and the pkl dir from the
+# board, so it belongs on Drive and on disk, never in git. The .sha256 and .manifest beside it are
+# tiny and ARE tracked -- they are how a short extract is caught.
+results/*.tar
 
 # ---- python / envs / editors ----
 __pycache__/

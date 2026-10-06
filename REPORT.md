@@ -310,7 +310,7 @@ should not be modelled as a function of sequence length.
 > Re-running the identical sweep with the RTMW FP16 engine resident, changing nothing else, moves the
 > decoder-width term from 2.16 / 1.94 / 1.34 / 2.49 / 1.15 J to **2.15 / 1.80 / 1.21 / 2.40 / 1.13**
 > — a ratio of **0.90–1.00×**. The spread *narrows* by ~5 % where the hypothesis needed it to widen by
-> ~110 %, and per-cell energy agrees within ±0.15 J with no consistent sign. **So the 2.1–2.3×
+> ~110 %, and per-cell energy agrees within ±0.15 J, the small shifts offsetting (§L22). **So the 2.1–2.3×
 > understatement is real, measurement context is not its cause, and the beam-width axis of the
 > frontier stays unquotable.** This is a narrowing, not a fix: what J10 bought is the elimination of
 > the one candidate we could test, and the remaining explanation is the modelling error named in the

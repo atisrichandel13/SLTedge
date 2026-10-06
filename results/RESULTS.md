@@ -3222,7 +3222,43 @@ real and its cause is still unidentified.
   is noise. An idle engine holds memory, not power. That is worth knowing for any future composition.
 - **Memory got genuinely tight**: MemFree fell to **179 MB** after the LM loaded. The result is still
   sound, and the evidence is in the table rather than in reassurance — if the run were thrashing,
-  latency would inflate, and it matches §2.9C within ±1 % across all fifteen cells.
+  latency would inflate.
+
+> **CORRECTED 2026-10-06 by §L22, and the corrected argument is stronger than the one it replaces.**
+> The bullet above originally read *"it matches §2.9C within ±1 % across all fifteen cells"*, which is
+> false and was the sentence carrying the whole no-thrashing claim. **Three cells exceed ±1 %**:
+> beam 2 / T=256 at **+3.68 %**, beam 4 / T=137 at **−1.93 %**, beam 4 / T=103 at **−1.02 %**.
+> (The table and paragraph above always said "±1 % bar one outlier"; the two statements disagreed and
+> the looser one was the one doing the work.)
+>
+> **Two of the three deviations are negative — the resident run was *faster*.** Thrashing is
+> one-sided and cannot make a run quicker, so a **two-sided scatter is the signature of no
+> thrashing**, which is a real argument where a tightness claim the data does not support was not.
+> The +3.68 % cell carries ΔJ +0.15 J, inside the same ±0.15 J band as every other cell, so it is not
+> a contention event either.
+>
+> **Two further descriptive claims corrected, neither touching the verdict.**
+>
+> - *"The idle floor moves 3.84 → 3.76 W, slightly down, which is noise"* — fair for one cell, wrong
+>   across the table. Mean idle is **3.789 W (sd 0.057) standalone against 3.725 W (sd 0.026)
+>   resident, −0.063 W, down in 14 of 15 cells.** One-directional in 14 of 15 is not noise. It is the
+>   *wrong sign* for a resident engine drawing power, so the cause is most likely the idle baseline
+>   being sampled in a different thermal state — which supports the actual point (an idle engine holds
+>   memory, not power) more firmly than calling it noise did.
+> - *"Within ±0.15 J with no consistent sign"* is true of the **totals**, and the totals are two
+>   opposing shifts cancelling: **dynamic energy up in 12 of 15 (mean +0.056 J)** against **idle × t
+>   down in 14 of 15 (mean −0.091 J)**, summing to **−0.035 J**. The ±0.15 J bound is exactly right
+>   (max |Δ| = 0.150 J); "nothing changed" is really "two small shifts offset".
+>
+> **Why `J_per_sentence` is the right field, since the next person to check this will hit it.**
+> `frontier.py`'s `LM_J` grid *is* the standalone sweep's `J_per_sentence` (8.88 / 11.04 / 8.55 /
+> 9.89 / 7.79 / 8.94 match exactly), so the total is the quantity J10 was asked about. Recomputing the
+> decoder-width ratio from `dyn_J_per_sentence` instead gives **0.68–1.08×**, which looks weaker but
+> is not: an idle-baseline wobble moves the dynamic and idle terms in *opposite* directions, so the
+> total is the **less** sensitive quantity and the dynamic figures absorb the baseline error at full
+> weight. **The verdict holds on both fields** — neither 0.90–1.00× nor 0.68–1.08× is within reach of
+> the +110 % the residency hypothesis required. All four figures reproduced here from the two
+> artifacts before accepting them.
 
 #### Why the first two attempts failed, since the fix is the interesting part
 
