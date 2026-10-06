@@ -5,6 +5,13 @@
 > probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
 > wanted.
 >
+> **J9 STEP 1 IS RUNNING, started 2026-10-06T00:08:48Z.** Dev pose extraction on the 918 fetched dev
+> clips — 184,093 frames, 11 batches of 90, ~96 min at J12's measured 32.0 frames/s aggregate, into
+> `results/pkl_dev_rtmw_fp16{,_raw}` with `SLT_SKIP_REF=1` (the dev split has no ceiling row). This is
+> the last board run before the report, and it unblocks **your** step 2. Note the spec correction
+> below before you train: score at **n=931**, the bar is **55.3 %** recovery, and both metrics
+> establish the pose term now.
+>
 > **ASK AUDIT, 2026-10-05 — both directions, since I got this wrong once.** Their open asks live in
 > `WORKSPLIT.md` and `OPEN-ISSUES-LM`, not in this file. Audited all three `ASK-*.md` docs plus both
 > tables: **J10 delivered** (§2.9E, negative result), **J12 delivered**, **ASK-E2E-KNEE closed** by J5
