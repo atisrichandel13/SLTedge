@@ -3275,6 +3275,37 @@ Checked before blaming the hardware: the board was idle for attempt 2 — nobody
 non-system process `gnome-shell` at 56 MB — so "J10 does not fit in 8 GB" would have been a wrong
 conclusion reported as a finding.
 
+### 2.5m / J13: FP32 pose arm — IN PROGRESS, interim sanity check only (2026-10-06)
+
+Running since 02:30:15Z: all 931 test clips re-extracted with
+`models/rtmw/rtmw-l-m_256x192_fp32.engine`, everything else held to §2.5k. Measured rate from
+complete batches: **24.2–24.4 frames/s**, against FP16's ~37 — **1.77× slower in wall clock, 1.52×
+per frame** — so 931 costs **~2.5 h**, not the ~100 min first projected by misapplying §2.5k's FP16
+aggregate.
+
+**Why it is running:** the shipped system is FP16 and its entire accuracy evidence is
+`results/ci_30clip_rtmw_fp32__rtmw_fp16.json` — **−0.1292 BLEU-4 [−1.476, +1.214] at n=30**, a
+near-zero estimate inside ±1.5 on the deployed configuration, which is the shape §7.1 catalogues
+three times. And the −1.41 deficit is measured against our FP16 extraction, so it bundles architecture,
+crop, normalisation **and quantisation**; §2.5i and §2.5j excluded two mechanisms and recorded the
+residue as diffuse, leaving FP16 an **unexcluded contributor** (§L23).
+
+**Interim check at 275/931, done early so a wasted run would be caught in minutes rather than hours.**
+Three FP32 pkls against their FP16 counterparts:
+
+| | |
+|---|---|
+| identical | **no** — the engine swap took effect |
+| mean abs difference | **2.4–3.1 × 10⁻⁴** in normalised coordinates |
+
+**That is ~0.026 % of the frame, roughly 18× smaller than the 0.47 % median our keypoints sit from the
+authors' (§2.5i).** **It does not predict the BLEU effect and must not be read as doing so** — §2.5i
+is precisely the precedent that close keypoint agreement coexists with a −1.41 BLEU-4 gap. The check
+establishes only that the two arms are genuinely different, which is what makes the eval worth running.
+
+Accuracy follows when extraction finishes; the eval is `SLT_ARMS=pruned_fp32_fps24` with
+`--expect-n 931` and `--manifest results/pkl_split_rtmw_fp16.manifest`.
+
 ### 2.5l / J9 step 1: dev pose extraction, all 918 clips (2026-10-06)
 
 `jetson/j12_rest_of_split.sh` with `SLT_CLIPS=data/clips_dev SLT_PKL=results/pkl_dev_rtmw_fp16
