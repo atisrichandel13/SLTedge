@@ -46,6 +46,15 @@ FP32 run without adjusting.
 Measured on the board just now: **38 clips in ~8.7 min ≈ 4.4 clips/min**, against FP16's ~11
 clips/min — FP32 is roughly **2.6× slower**. So the real cost of 931 is **~3.5 hours**, not ~100 min.
 
+> **Both figures here are wrong, corrected 2026-10-06 (§2.5m, §L24).** The 38-clip sample still
+> included engine load and ran ~35 % slow against the steady state. **Measured from complete batches:
+> 24.2–24.9 frames/s against FP16's ~37 — 1.52× per frame, 1.77× in wall clock — and the run took
+> 151.5 min, not 3.5 h.** The LM track then corrected my 2.6× to 2.0–2.3× and **retracted that too**,
+> because it inherited the same bad sample. Neither 2.6× nor 2.0× ever reached `RESULTS.md`: §2.5m
+> was written from complete batches and carries 1.52×. Three successive rate estimates were wrong
+> here, all from sampling too short a window, which is why §2.5m states the rule rather than the
+> number: **a complete batch is the smallest honest unit for a rate on this board.**
+
 **I am letting it run to 931 anyway, and the reasoning survives the correction** — but it is a
 different decision than the one I wrote down, so here is the honest version:
 
@@ -67,7 +76,20 @@ this comparison is cleaner than the headline it is decomposing.
 
 **FP32-vs-ceiling rather than subtracting** is the part I want to endorse explicitly. Subtracting
 (1) from −1.41 would assume the quantisation and architecture terms are additive, and nothing on
-record establishes that — §2.5i and §2.5j excluded two candidate mechanisms and recorded the residue
+record establishes that
+
+> **WRONG, corrected 2026-10-06 by §L25 — and they corrected their own doc and my endorsement of it
+> together.** The point estimates **are** additive by construction: they are differences among three
+> corpus scores on one clip set, and it checks out exactly —
+> (ceiling − FP32) − (ceiling − FP16) = 1.5559 − 1.4077 = **+0.1482**, the FP16−FP32 delta to
+> **1.1 × 10⁻¹⁴**. There is no interaction term to assume away.
+>
+> **What subtraction cannot give is the interval.** The three half-widths are ±0.285, ±0.792 and
+> ±0.778 and do not combine, because the bootstrap covariance between two comparisons sharing a
+> reference arm is not recoverable from their marginal intervals. So measuring FP32-vs-ceiling
+> directly was the right call **for the interval and only for the interval** — which is a narrower and
+> more useful justification than the one I endorsed. "Assumes additivity" invites a reader to hunt for
+> an interaction that cannot exist here, which is worse than giving no reason. — §2.5i and §2.5j excluded two candidate mechanisms and recorded the residue
 as *diffuse*, which is the opposite of a decomposition. Measuring it directly is the only version that
 answers the question asked.
 

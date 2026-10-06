@@ -3353,6 +3353,40 @@ n=931 it is **0.15 above**. Both sit well inside each other's intervals, so this
 sign, not a reversal — but anyone who had quoted the n=30 point estimate as "FP16 costs 0.13 BLEU-4"
 would have quoted a number whose sign does not survive measurement.
 
+#### What the bound actually is, after §L25 (2026-10-06)
+
+**Quantisation is capped at 10.6 % of the pose deficit, not 55 %.** The reportable form of a null on
+this axis is an upper bound, and the worst case for FP16 is the interval's lower edge: FP16 is at most
+**0.1496 BLEU-4** below FP32, which is **10.6 % of the −1.4077 gap** to the authors' keypoints.
+
+**That is 2.73× tighter than either track projected**, and the reason is worth keeping. The LM track
+sized this run by projecting the *pose-source* axis's ±0.778 half-width onto this axis, giving "at most
+55 %". Measured: **±0.285**. The projection ignored correlation — the FP16 and FP32 arms share
+extractor, crop and normalisation and differ **only** in precision, so pairing cancels far more
+per-clip difficulty than it does between two different extractors. **A cross-axis half-width
+projection is a weak prior even when it points the right way**, and §L17's 39 % transfer rests on the
+same kind of move.
+
+**Why FP32-vs-ceiling was measured directly, stated correctly.** An earlier justification of mine said
+subtraction "would assume additivity nobody has established". That was wrong and §L25 corrected it:
+the point estimates **are** additive by construction — (ceiling − FP32) − (ceiling − FP16) = 1.5559 −
+1.4077 = **+0.1482**, the FP16−FP32 delta to **1.1 × 10⁻¹⁴**. What subtraction cannot give is the
+**interval**: the three half-widths (±0.285, ±0.792, ±0.778) do not combine, because the bootstrap
+covariance between two comparisons sharing a reference arm is not recoverable from their marginals.
+The direct measurement was right **for the interval and only for the interval**.
+
+**Quantisation is not a no-op — it is a symmetric perturbation.** 228 of 931 sentences (24.5 %) differ
+between the arms while both corpus metrics move under 0.3. FP16 rewrites a quarter of the translations
+and the rewrites cancel, which is a stronger and more interesting claim than "FP16 is safe". It
+completes a set with §L18's two protocol axes: batching rewrites ~30 % of sentences, device 0.8 %,
+quantisation 24.5 %, and none of the three moves a corpus metric by as much as its own noise.
+
+**One figure deliberately not quoted.** The same draws give a one-sided margin of 0.247 against the
+two-sided 0.298, i.e. FP16 at worst 0.099 below FP32, 7.0 % of the gap. The LM track computed it,
+flagged that they had it so nobody later finds it and thinks it was suppressed, and declined to quote
+it — it was computed *after* the two-sided interval was in hand, which is §7.1's pattern and exactly
+what §L21 declined for J9. **The headline is the two-sided 10.6 %.**
+
 #### Custody of the board artefacts, as of 2026-10-06 05:45Z
 
 All board work for the pose track is complete, and **nothing on the Jetson is unique any more** —
