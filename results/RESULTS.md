@@ -3331,6 +3331,21 @@ carried it all the way to an evaluation; the LM track's training entry point tak
 **Drive is reachable only from inside Colab in this project** — neither Mac has a mount, `rclone` or
 `gdrive` — so the final upload is a browser action and not a scriptable step on either side.
 
+**Verified end to end on the pose-track Mac after transfer**, which is the point of the checksum
+rather than a formality: `shasum -a 256 -c` returns **OK** against the board-computed
+`a9b480b5…`, the archive holds **918 pkl entries against 918 manifest lines**, and both pulled
+directories hold exactly the manifest's 918 names.
+
+> **One trap found by running that check rather than assuming it, 2026-10-06.** The first comparison
+> reported **MISMATCH** on both directories while nothing was missing. The manifest was sorted in the
+> board's locale and compared against a listing sorted in macOS's; these clip names carry colons and
+> mixed case, and BSD and GNU collate them differently, so the diff showed reordering that reads
+> exactly like missing files. **`data/package_dev_poses.sh` now pins `LC_ALL=C` on every sort** and
+> the manifest has been regenerated, so a consumer on any machine gets a byte-order comparison that
+> agrees. The tar's sha256 is unaffected — the manifest is not inside the archive — and still
+> verifies. A checksum that is never checked, and a manifest that cries wolf, are both worse than
+> none.
+
 ### L19 The pose gap at full width (n=931): it nearly halves, and J12 did not buy the power it was run for (2026-10-05)
 
 J12 extended the board pose set from 400 to all 931 fetched test clips so the pose-substitution gap

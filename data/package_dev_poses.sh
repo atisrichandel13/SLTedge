@@ -58,7 +58,12 @@ fi
 # results/ prefix for the consumer to strip.
 echo "[pkg] writing $TAR"
 tar -cf "$TAR" -C "$PKL" .
-find "$PKL" -name '*.pkl' -exec basename {} .pkl \; | sort > "$OUT_DIR/$BASE.manifest"
+# LC_ALL=C on every sort here. Clip names carry colons and mixed case, and BSD vs GNU collation
+# order them differently, so a manifest sorted in the board's locale and a listing sorted in the
+# consumer's produce a diff that looks like missing files and is not. Seen for real on 2026-10-06:
+# the pulled directories compared "MISMATCH" against this manifest while holding the identical 918
+# names. Byte-order collation is the same everywhere.
+find "$PKL" -name '*.pkl' -exec basename {} .pkl \; | LC_ALL=C sort > "$OUT_DIR/$BASE.manifest"
 # sha256: coreutils on the Jetson, perl script on macOS. Both exist on this board (checked:
 # /usr/bin/sha256sum and /usr/bin/shasum), but pick whichever is present so the script is portable.
 if command -v sha256sum >/dev/null 2>&1; then
@@ -76,7 +81,7 @@ fi
 # stronger than the code. Now every entry is compared: the only non-pkl entry tolerated is the "./"
 # directory record that `tar -C dir .` always writes.
 tmp_in="${TMPDIR:-/tmp}/.pkg_intar.$$"
-tar -tf "$TAR" | sed 's#^\./##' | grep -v '^$' | sort > "$tmp_in"
+tar -tf "$TAR" | sed 's#^\./##' | grep -v '^$' | LC_ALL=C sort > "$tmp_in"
 grep -v '\.pkl$' "$tmp_in" > "${tmp_in}.extra" || true
 if [ -s "${tmp_in}.extra" ]; then
     echo "[pkg] ABORT: archive holds non-pkl entries:" >&2; sed 's/^/[pkg]   /' "${tmp_in}.extra" >&2
