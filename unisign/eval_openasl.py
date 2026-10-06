@@ -43,6 +43,13 @@ def main():
     ap.add_argument("--max-new-tokens", type=int, default=100)
     ap.add_argument("--num-beams", type=int, default=4)
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--manifest", default=None,
+                    help="file of expected clip names, one per line, compared as a SET against what "
+                         "was actually scored. --expect-n catches a SHORT set; this catches a "
+                         "DIFFERENT set of the same size, which is the failure --expect-n cannot see. "
+                         "Bare names or .mp4 both work -- the suffix is normalised off both sides, "
+                         "because the eval JSONs carry .mp4 (they are label keys) while the pose "
+                         "manifests are written bare.")
     ap.add_argument("--expect-n", type=int, default=None,
                     help="fail unless exactly this many clips get scored. The pose directory IS the "
                          "clip selection here (the n=400 runs request all 976 names and score the "
@@ -99,6 +106,25 @@ def main():
             f"{len(missing)} of {len(names)} requested names have no .pkl under {args.poses!r}. "
             f"Either the directory is not the one that produced the set you are pairing against, "
             f"or its contents changed.")
+
+    # Compared as SETS, never as sorted sequences. Collation differs between BSD and GNU on these
+    # names -- they carry colons and mixed case -- and a sorted-sequence diff reports a mismatch when
+    # nothing is missing. A FALSE mismatch is the expensive direction: it gets waved off, and then the
+    # real one does too. Shape shared with train_adapt.py's guard.
+    if args.manifest:
+        bare = lambda n: n[:-4] if n.endswith(".mp4") else n
+        with open(args.manifest) as fh:
+            want = {bare(ln.strip()) for ln in fh if ln.strip()}
+        have = {bare(n) for n in kept}
+        extra_n, missing_n = sorted(have - want), sorted(want - have)
+        if extra_n or missing_n:
+            raise SystemExit(
+                f"[eval] ABORT: the scored set does not match {args.manifest!r}.\n"
+                f"  manifest {len(want)} names, scored {len(have)}\n"
+                f"  {len(missing_n)} in the manifest, not scored: {missing_n[:5]}\n"
+                f"  {len(extra_n)} scored, not in the manifest: {extra_n[:5]}\n"
+                f"  Same count with different members is what --expect-n cannot catch, and it would "
+                f"pair two arms on different clips -- the RESULTS.md 2.5c error.")
 
     bleu, rouge = translation_performance(refs, preds)
     res = {"n": len(preds), "missing": len(missing), "bleu": bleu, "rouge_l": rouge,
