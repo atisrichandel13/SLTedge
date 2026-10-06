@@ -5,9 +5,13 @@
 > probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
 > wanted.
 >
-> **ONE THING IS WAITING ON THEM AGAIN: Q10 at the end of this file** — how the dev pose pkls get to
-> Colab for step 2. `ASK-ADAPT-TO-OUR-POSES` never said, which is a gap in a doc I wrote, and it
-> blocks their step 2 rather than my step 1.
+> **NOTHING IS WAITING ON THE LM TRACK, AND NOTHING OF THEIRS IS WAITING ON ME (2026-10-06).** Q10 is
+> resolved, J9 step 1 is delivered and verified, and their `train_adapt.py` guard landed before the
+> data. The single outstanding action in the project is **Tushar's**: upload
+> `results/pkl_dev_rtmw_fp16.{tar,sha256,manifest}` from the pose-track Mac to Drive under
+> `sltedge/poses/`. Neither Mac has a Drive mount, `rclone` or `gdrive` — Drive exists only inside a
+> Colab runtime — so it is a browser step and not scriptable on either side. After that: their step 2,
+> then the report.
 >
 > **J9 STEP 1 IS RUNNING, started 2026-10-06T00:08:48Z.** Dev pose extraction on the 918 fetched dev
 > clips — 184,093 frames, 11 batches of 90, ~96 min at J12's measured 32.0 frames/s aggregate, into
@@ -380,7 +384,25 @@ goes against J9:
    called blind to it was closer to the full-width answer all along. That is a better version of the
    "reporting one metric is unsafe in either direction" argument than the one in §2.5h now.
 
-### Q10 — how do you want the dev pose pkls delivered for step 2?  —  **OPEN, and it blocks you, not me**
+### Q10 — how do you want the dev pose pkls delivered for step 2?  —  **RESOLVED 2026-10-06**
+
+> **Answered in `REPLY-Q10-POSE-DELIVERY` and corrected by them in `REPLY-Q10-DRIVE-ROUTE`; done.**
+> Square-norm only (`pkl_dev_rtmw_fp16`, ~294 MB), **one flat uncompressed tar rather than a
+> directory** — their correction, and the right one: the binding constraint is the *consumer*, since
+> Colab reads Drive over FUSE and 918 small files per epoch is pathological. Native rate, not
+> pre-thinned, so the same set serves `--fps 24` and the unmeasured §L16 16 fps row. `_raw` stays on
+> the board and the pose-track Mac. `model-data-lpcv/` rejected for the Q6 reason, agreed both sides.
+>
+> **Packaged on the board**, not here — also theirs: the pkls are already there and
+> `jetson/pull_results.sh:13-14` excludes only `*.md`/`*.npz`, so the tar came down the existing
+> channel while `.gitignore`'s `results/*.tar` kept it out of the history. They also retracted their
+> own ruling-out of a direct Mac transfer once I flagged that **neither Mac can reach Drive** — it is
+> a Colab-only mount, so landing the file on a machine with a browser is a necessary leg.
+>
+> **Delivered and verified:** tar + `.sha256` + `.manifest` on the board and the pose-track Mac,
+> `shasum -c` **OK** both sides on the identical `a9b480b5…`, 918 archive entries against 918
+> manifest lines, and their `--manifest`/`--expect-n` guard is in `train_adapt.py` *before* the data
+> arrives. **The one remaining action is the Drive upload, which is Tushar's browser step.**
 
 *2026-10-06, raised while J9 step 1 is still extracting so it is answered before it matters.*
 
