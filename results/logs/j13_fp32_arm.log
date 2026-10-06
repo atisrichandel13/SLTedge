@@ -2,3 +2,6 @@
 [j12] 931 clips to extract; 0 pkl pairs already on the board
 [j12] 11 batches of up to 90 clips
 [j12] === batch 1/11: 90 clips, board has 0 pkls  02:30:18Z
+[j12]   90 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3860 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3860 MB
