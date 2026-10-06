@@ -3837,3 +3837,60 @@ not dearer.
    the sample was wrong.
 2. **"Run to 931" was right**, though the argument understated the payoff — see §L25.
 
+
+---
+
+### L25 J13 verified: FP16 costs nothing measurable, and the bound is 5× tighter than we argued for (2026-10-06)
+
+Both of the pose track's bootstraps reproduce on our Mac. Re-ran `fp32_vs_fp16` independently at the
+same 2000 draws, seed 0, BLEU-4: **21.58 → 21.73, delta +0.15, CI [−0.15, +0.42]** — matching
+`results/ci_n931_fp32_vs_fp16.json` to the displayed precision. The protocol was checked field by
+field, not eyeballed: **all fourteen `config` fields identical to §2.5k's FP16 arm except `poses`**,
+same 931 names, identical reference text on every clip, and the guard pointed at
+`results/pkl_split_rtmw_fp16.manifest`.
+
+| comparison | BLEU-4 delta | 95 % CI | half-width | verdict |
+|---|---:|---|---:|---|
+| FP32 → **FP16** | **+0.1482** | [−0.1496, +0.4207] | **±0.285** | not established — FP16 is the *higher* arm |
+| FP32 → authors' ceiling | +1.5559 | [+0.770, +2.353] | ±0.792 | established |
+| (FP16 → ceiling, §L19) | +1.4077 | [+0.770 … see §L19] | ±0.778 | established |
+
+ROUGE-L agrees: **+0.1188 [−0.1711, +0.4102]** for FP32 → FP16, and **+1.4468 [+0.605, +2.326]** for
+FP32 → ceiling.
+
+**The bound.** The interval's pessimistic end puts FP32 at most **0.1496 BLEU-4** above FP16, which caps
+quantisation at **10.6 % of the −1.41 deficit**. `REPLY-J13-RUN-931` argued that n=931 would buy "at
+most 55 %", projecting the pose-source axis's ±0.778 onto this axis. **The measured half-width is
+±0.285 — 2.7× tighter than projected**, because that projection ignored correlation: the FP32 and FP16
+arms share an extractor, a crop and a normalisation and differ only in precision, so the paired
+bootstrap cancels far more per-clip difficulty than it does between two *different* extractors. The
+decision was right and the stated reason was conservative; a projection across axes is a weak prior
+even when it points the right way.
+
+**Quantisation is not a no-op — it is a symmetric perturbation.** **228 of 931 sentences (24.5 %)
+differ between the FP32 and FP16 arms**, and the corpus metrics move by less than 0.3. So FP16 rewrites
+a quarter of the translations and the rewrites cancel. That is a stronger and more interesting claim
+than "FP16 is safe", and it joins the two decode-protocol axes measured the same way: batching ~30 %
+of sentences (§L18), device 0.8 % (§L18 addendum 1), **FP16 quantisation 24.5 %**.
+
+**Correcting our own framing on why the second bootstrap was needed.** `REPLY-J13-PROTOCOL` §4 said
+subtracting FP32-vs-FP16 from the −1.41 "would assume additivity nobody has established", and the pose
+track endorsed that. **It was loose, and the endorsement should not stand on it.** The three deltas are
+differences among three corpus scores on one clip set, so they are **exactly additive by construction**
+— verified: (ceiling − FP32) − (ceiling − FP16) = +0.1482, the FP32→FP16 delta to four decimals. What
+subtraction cannot give is the **interval**: the half-widths are ±0.285, ±0.792 and ±0.778 and do not
+combine, because the bootstrap covariance between two comparisons sharing a reference arm is not
+recoverable from their marginal intervals. So measuring directly was the right call **for the interval**
+and vacuous for the point estimate. The distinction matters because "assumes additivity" invites a
+search for an interaction that cannot exist here.
+
+**One figure deliberately not quoted.** The same draws give a one-sided 95 % margin of 0.247 against the
+two-sided 0.298, i.e. FP16 at worst 0.099 below FP32, or 7.0 % of the gap. **We are not quoting it.**
+It was computed after the two-sided interval was in hand, which is exactly the pattern §7.1 catalogues
+and exactly what §L21 declined for J9. The headline bound is the two-sided **10.6 %**; the one-sided
+figure is recorded here only as what a *pre-declared* directional test would have returned.
+
+**What this settles for the report.** §3.2's "honest limit" box can be discharged: the deployed FP16
+pose engine's accuracy cost is no longer an n=30 null with a ±1.5 interval. It is **+0.15 [−0.15, +0.42]
+at n=931, on the full paired test set, with FP16 the nominally better arm** — and the −1.41 deficit is
+attributable to architecture, crop and normalisation, with quantisation excluded to within 11 %.
