@@ -75,24 +75,38 @@ else
 fi
 
 # Verify the archive lists exactly what the manifest claims -- and nothing else.
-# STRENGTHENED 2026-10-06 (REPLY-Q10-DRIVE-ROUTE 4). The first version filtered to `grep '\.pkl$'`
-# BEFORE diffing, so it proved the .pkl entries matched but said nothing about anything else in the
-# archive. The claim made for it -- "verifies tar contents against the manifest line by line" -- was
-# stronger than the code. Now every entry is compared: the only non-pkl entry tolerated is the "./"
-# directory record that `tar -C dir .` always writes.
-tmp_in="${TMPDIR:-/tmp}/.pkg_intar.$$"
-tar -tf "$TAR" | sed 's#^\./##' | grep -v '^$' | LC_ALL=C sort > "$tmp_in"
-grep -v '\.pkl$' "$tmp_in" > "${tmp_in}.extra" || true
-if [ -s "${tmp_in}.extra" ]; then
-    echo "[pkg] ABORT: archive holds non-pkl entries:" >&2; sed 's/^/[pkg]   /' "${tmp_in}.extra" >&2
-    rm -f "$tmp_in" "${tmp_in}.extra"; exit 1
-fi
-sed 's/\.pkl$//' "$tmp_in" > "${tmp_in}.names"
-if ! diff -q "${tmp_in}.names" "$OUT_DIR/$BASE.manifest" >/dev/null; then
-    echo "[pkg] ABORT: tar contents do not match the manifest" >&2
-    rm -f "$tmp_in" "${tmp_in}.extra" "${tmp_in}.names"; exit 1
-fi
-rm -f "$tmp_in" "${tmp_in}.extra" "${tmp_in}.names"
+# COMPARED AS SETS, not as two sorted sequences. The sorted-sequence form was the first version and
+# it is the weaker one: on 2026-10-06 a manifest sorted in the board's locale, diffed against a
+# listing sorted on macOS, reported a mismatch with nothing missing, because these clip names carry
+# colons and mixed case and BSD and GNU collate them differently. Pinning LC_ALL=C fixes one site and
+# has to be remembered at the next; a set difference is immune by construction, and its failure mode
+# is not a FALSE mismatch -- which is the expensive direction, because a manifest that cries wolf
+# gets ignored the day it is right. Shape taken from the LM track's train_adapt.py guard (L-reply
+# 2026-10-06 1). It also reports the two directions separately, which is what a reader needs.
+python3 - "$TAR" "$OUT_DIR/$BASE.manifest" <<'PYCHK'
+import sys, tarfile
+tar_path, man_path = sys.argv[1], sys.argv[2]
+with tarfile.open(tar_path) as tf:
+    entries = [n[2:] if n.startswith("./") else n for n in tf.getnames()]
+entries = [e for e in entries if e not in ("", ".")]
+nonpkl = sorted(e for e in entries if not e.endswith(".pkl"))
+if nonpkl:
+    sys.exit("[pkg] ABORT: archive holds %d non-pkl entries: %s" % (len(nonpkl), nonpkl[:5]))
+have = {e[:-4] for e in entries}
+want = {ln.strip() for ln in open(man_path) if ln.strip()}
+missing, extra = sorted(want - have), sorted(have - want)
+if missing or extra:
+    sys.exit("[pkg] ABORT: archive does not match the manifest.\n"
+             "  manifest %d names, archive %d\n"
+             "  %d in the manifest, absent from the archive: %s\n"
+             "  %d in the archive, absent from the manifest: %s"
+             % (len(want), len(have), len(missing), missing[:5], len(extra), extra[:5]))
+if len(entries) != len(have):
+    sys.exit("[pkg] ABORT: %d entries collapse to %d names -- duplicates in the archive"
+             % (len(entries), len(have)))
+PYCHK
+rc=$?
+[ "$rc" -ne 0 ] && exit 1
 
 echo "[pkg] OK  $(du -h "$TAR" | cut -f1)  $(wc -l < "$OUT_DIR/$BASE.manifest" | tr -d ' ') clips"
 echo "[pkg] sha256: $(cut -d' ' -f1 "$OUT_DIR/$BASE.sha256")"
