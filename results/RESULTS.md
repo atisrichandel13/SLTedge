@@ -3628,3 +3628,55 @@ reach of the +110 % the residency hypothesis required — which is the robustnes
 
 **Net: §2.9E's verdict stands unaltered.** Residency is eliminated, the beam-width axis stays
 unquotable, and `REPORT.md` §6 is right to keep the row open-and-narrowed rather than closed.
+
+---
+
+### L23 §8 dropped the FP16 re-test, and §3.2 still points at §8 for it (2026-10-06)
+
+`bc4eecc` swept three stale claims out of `REPORT.md`'s opening and closing paragraphs — all three
+corrections are right. But the same edit **deleted an outstanding item without resolving it**, and the
+sentence that depends on it is still there.
+
+**The dangling reference.** `REPORT.md:95`, §3.2, unchanged:
+
+> *"That −0.13 is n=30 and its interval is ±1.5. **§8 lists re-testing it at n≈400** as the cheapest
+> open accuracy question, precisely because an n=30 null is what hid the pose gap in §5."*
+
+§8's outstanding list previously read *"…re-testing FP16 at n≈400 and the in-process `LM_J` re-run"*.
+The `LM_J` half was correctly removed as completed-and-mis-described. **The FP16 half was removed with
+it and is not completed.** `n≈400` now appears exactly once in `REPORT.md` — at line 95, pointing at a
+list that no longer contains it.
+
+**The caveat is live, and it is on the shipped configuration.** The deployed system runs RTMW-l-m
+**FP16** (§3.2, §4.1). Its entire accuracy evidence is `results/ci_30clip_rtmw_fp32__rtmw_fp16.json`:
+
+| metric | delta | 95 % CI | n | verdict |
+|---|---:|---|---:|---|
+| BLEU-4 | −0.1292 | [−1.476, +1.214] | 30 | not established |
+| ROUGE-L | +0.0387 | [−1.032, +1.219] | 30 | not established |
+
+A near-zero point estimate inside a ±1.5 interval at n=30 is **the exact shape §7.1 catalogues three
+times** — and §3.2's own box says so. Removing it from the outstanding list makes the report assert
+less open work than exists, on the one precision choice the deployment depends on.
+
+**The sharper reason it matters, which neither section states.** The −1.41 [−2.19, −0.63] pose
+deficit (§2.5k, §L19) is measured between the **authors' keypoints** and
+`results/pkl_split_rtmw_fp16` — *our FP16 extraction*. So that figure bundles every difference at
+once: extractor architecture, crop and normalisation, **and FP16 quantisation**. §2.5i excluded gross
+keypoint disagreement and §2.5j excluded hand localisation, leaving the cause "diffuse". **FP16 is an
+unexcluded contributor to the project's one real accuracy deficit, and it is bounded only by a ±1.5
+interval at n=30.** It could account for anything from none of the −1.41 to most of it.
+
+**What closing it would cost.** FP32 poses exist only for the 30-clip set
+(`results/pkl_30clip_rtmw_fp32`); every set at scale is FP16-only. So it needs a board FP32
+extraction, paired against the FP16 poses already on the board — roughly 45 min for a 400-clip arm,
+~100 min for all 931, at J12's measured 32.0 frames/s aggregate. Against an FP16 arm that already
+exists, so only one new extraction.
+
+**And this is the last window.** The board is idle: J9 step 1 is delivered, J10 is delivered, J11 is
+agreed unrun, and the only remaining project action is a browser upload. "Cheapest open accuracy
+question" was a claim about board availability, and board availability ends with the project.
+
+**Two asks, in `REPLY-REPORT-FP16-2026-10-06.md`:** restore the item to §8 or delete §3.2's forward
+reference — not neither — and decide explicitly whether the FP32 arm runs, since an unrun cheap
+question should be unrun on purpose.
