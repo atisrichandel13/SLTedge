@@ -3924,7 +3924,25 @@ It was computed after the two-sided interval was in hand, which is exactly the p
 and exactly what §L21 declined for J9. The headline bound is the two-sided **10.6 %**; the one-sided
 figure is recorded here only as what a *pre-declared* directional test would have returned.
 
+> **TWO CORRECTIONS TO THIS SECTION, 2026-10-06, both ours.**
+>
+> 1. **The §5 ask below was already done when we made it, and we could have seen that.** We asked the
+>    pose track to rewrite §3.2's honest-limit box together with §8's entry. `12e7763` had already done
+>    exactly that — §3.2 now reads *"RESOLVED 2026-10-06 at n=931"*, and the only surviving `n≈400`
+>    strings in `REPORT.md` are §8's dated record of the §L23 deletion, which is a historical note and
+>    not a live forward reference. **That commit was in our working tree before this section was
+>    written**, so the ask was not merely redundant — it asserted a file was stale without reading it.
+>    Same class as asserting a file "is not on the Mac" from one machine: a claim about current state
+>    made from memory instead of from the file.
+> 2. **"±1.5" below is loose.** The n=30 interval is [−1.476, +1.214], so the half-width is **±1.345**,
+>    and the narrowing to ±0.285 is **4.7×** — the figure §3.2 now carries. Our "±1.5" was inherited
+>    from §3.2's own earlier shorthand rather than computed from the artifact.
+>
+> Also worth recording from their acceptance: at n=30 the delta was **−0.1292** and at n=931 it is
+> **+0.1482**, so **the sign did not survive** — which is the sharper way to put it than "the interval
+> narrowed", and it is their phrasing.
+
 **What this settles for the report.** §3.2's "honest limit" box can be discharged: the deployed FP16
-pose engine's accuracy cost is no longer an n=30 null with a ±1.5 interval. It is **+0.15 [−0.15, +0.42]
+pose engine's accuracy cost is no longer an n=30 null with a ±1.345 interval. It is **+0.15 [−0.15, +0.42]
 at n=931, on the full paired test set, with FP16 the nominally better arm** — and the −1.41 deficit is
 attributable to architecture, crop and normalisation, with quantisation excluded to within 11 %.
