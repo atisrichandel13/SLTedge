@@ -5,3 +5,115 @@
 [j12]   90 clip(s) staged on the board with a complete frame set
 [j12]   [cache] MemFree 3860 MB already >= target 3500 MB, no reclaim needed
 [j12]   [j12]   MemFree 3860 MB
+[j12]   [batch] skip zpKzb1SBN3Y-00:07:36.100-00:07:39.533: no frames on disk
+[j12]   [batch] skip zsX7rrJK2Ho-00:01:35.666-00:01:38.166: no frames on disk
+[j12]   [batch] rtmw_fp32 done: 90 clips, 21211 frames in 14.5 min (24.4 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 0 -> 90 (+90 of 90 in this batch)
+[j12]   [reclaim] freed 0.73 GB from 90 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   95G   14G  88% /
+[j12] === batch 2/11: 90 clips, board has 90 pkls  02:46:05Z
+[j12]   90 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3833 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3836 MB
+[j12]   [batch] skip zpKzb1SBN3Y-00:07:36.100-00:07:39.533: no frames on disk
+[j12]   [batch] skip zsX7rrJK2Ho-00:01:35.666-00:01:38.166: no frames on disk
+[j12]   [batch] rtmw_fp32 done: 90 clips, 20099 frames in 13.8 min (24.2 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 90 -> 180 (+90 of 90 in this batch)
+[j12]   [reclaim] freed 0.67 GB from 90 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   95G   14G  88% /
+[j12] === batch 3/11: 90 clips, board has 180 pkls  03:01:10Z
+[j12]   90 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3814 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3814 MB
+[j12]   [batch] skip zpKzb1SBN3Y-00:07:36.100-00:07:39.533: no frames on disk
+[j12]   [batch] skip zsX7rrJK2Ho-00:01:35.666-00:01:38.166: no frames on disk
+[j12]   [batch] rtmw_fp32 done: 90 clips, 20747 frames in 14.3 min (24.2 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 180 -> 270 (+90 of 90 in this batch)
+[j12]   [reclaim] freed 0.68 GB from 90 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   95G   14G  88% /
+[j12] === batch 4/11: 90 clips, board has 270 pkls  03:16:39Z
+[j12]   90 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3813 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3813 MB
+[j12]   [batch] skip zpKzb1SBN3Y-00:07:36.100-00:07:39.533: no frames on disk
+[j12]   [batch] skip zsX7rrJK2Ho-00:01:35.666-00:01:38.166: no frames on disk
+[j12]   [batch] rtmw_fp32 done: 90 clips, 20842 frames in 14.2 min (24.4 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 270 -> 360 (+90 of 90 in this batch)
+[j12]   [reclaim] freed 0.68 GB from 90 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   96G   14G  88% /
+[j12] === batch 5/11: 90 clips, board has 360 pkls  03:32:12Z
+[j12]   90 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3742 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3741 MB
+[j12]   [batch] skip zpKzb1SBN3Y-00:07:36.100-00:07:39.533: no frames on disk
+[j12]   [batch] skip zsX7rrJK2Ho-00:01:35.666-00:01:38.166: no frames on disk
+[j12]   [batch] rtmw_fp32 done: 90 clips, 18213 frames in 12.4 min (24.5 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 360 -> 450 (+90 of 90 in this batch)
+[j12]   [reclaim] freed 0.57 GB from 90 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   96G   14G  88% /
+[j12] === batch 6/11: 90 clips, board has 450 pkls  03:45:36Z
+[j12]   90 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3784 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3788 MB
+[j12]   [batch] skip zpKzb1SBN3Y-00:07:36.100-00:07:39.533: no frames on disk
+[j12]   [batch] skip zsX7rrJK2Ho-00:01:35.666-00:01:38.166: no frames on disk
+[j12]   [batch] rtmw_fp32 done: 90 clips, 22429 frames in 15.3 min (24.4 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 450 -> 540 (+90 of 90 in this batch)
+[j12]   [reclaim] freed 0.66 GB from 90 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   96G   14G  88% /
+[j12] === batch 7/11: 90 clips, board has 540 pkls  04:02:04Z
+[j12]   90 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3883 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3887 MB
+[j12]   [batch] skip zpKzb1SBN3Y-00:07:36.100-00:07:39.533: no frames on disk
+[j12]   [batch] skip zsX7rrJK2Ho-00:01:35.666-00:01:38.166: no frames on disk
+[j12]   [batch] rtmw_fp32 done: 90 clips, 17505 frames in 12.1 min (24.1 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 540 -> 630 (+90 of 90 in this batch)
+[j12]   [reclaim] freed 0.62 GB from 90 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   96G   14G  88% /
+[j12] === batch 8/11: 90 clips, board has 630 pkls  04:15:10Z
+[j12]   90 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3774 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3774 MB
+[j12]   [batch] skip zpKzb1SBN3Y-00:07:36.100-00:07:39.533: no frames on disk
+[j12]   [batch] skip zsX7rrJK2Ho-00:01:35.666-00:01:38.166: no frames on disk
+[j12]   [batch] rtmw_fp32 done: 90 clips, 19662 frames in 13.5 min (24.3 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 630 -> 720 (+90 of 90 in this batch)
+[j12]   [reclaim] freed 0.64 GB from 90 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   96G   14G  88% /
+[j12] === batch 9/11: 90 clips, board has 720 pkls  04:29:48Z
+[j12]   90 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3750 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3752 MB
+[j12]   [batch] skip zpKzb1SBN3Y-00:07:36.100-00:07:39.533: no frames on disk
+[j12]   [batch] skip zsX7rrJK2Ho-00:01:35.666-00:01:38.166: no frames on disk
+[j12]   [batch] rtmw_fp32 done: 90 clips, 16869 frames in 11.6 min (24.2 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 720 -> 810 (+90 of 90 in this batch)
+[j12]   [reclaim] freed 0.64 GB from 90 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   96G   14G  88% /
+[j12] === batch 10/11: 90 clips, board has 810 pkls  04:42:36Z
+[j12]   90 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3937 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3940 MB
+[j12]   [batch] skip zpKzb1SBN3Y-00:07:36.100-00:07:39.533: no frames on disk
+[j12]   [batch] skip zsX7rrJK2Ho-00:01:35.666-00:01:38.166: no frames on disk
+[j12]   [batch] rtmw_fp32 done: 90 clips, 19034 frames in 13.0 min (24.4 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 810 -> 900 (+90 of 90 in this batch)
+[j12]   [reclaim] freed 0.56 GB from 90 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   96G   14G  88% /
+[j12] === batch 11/11: 31 clips, board has 900 pkls  04:56:36Z
+[j12]   31 clip(s) staged on the board with a complete frame set
+[j12]   [cache] MemFree 3917 MB already >= target 3500 MB, no reclaim needed
+[j12]   [j12]   MemFree 3920 MB
+[j12]   [batch] rtmw_fp32: 931 clips, 31 to do, 900 already have a pkl
+[j12]   [batch] 31/31 clips  6951 frames  24.9 frames/s  eta 0.0 min
+[j12]   [batch] rtmw_fp32 done: 31 clips, 6951 frames in 4.7 min (24.9 frames/s) -> results/pkl_split_rtmw_fp32
+[j12]   pkls 900 -> 931 (+31 of 31 in this batch)
+[j12]   [reclaim] freed 0.23 GB from 31 captured clip(s); kept frames for 0 clip(s) still awaiting a pkl
+[j12]   /dev/mmcblk0p1  114G   96G   14G  88% /
+[j12] SLT_SKIP_REF=1: not pushing reference poses (no ceiling row for this split)
+[j12]   [j12] pkls: 931 / raw 931
+[j12]   /dev/mmcblk0p1  114G   96G   14G  88% /
+[j12] EXTRACTION DONE 2026-10-06T05:01:48Z
+[j12] next: package for the LM track --
+[j12]   SLT_PKL=results/pkl_split_rtmw_fp32 data/package_dev_poses.sh

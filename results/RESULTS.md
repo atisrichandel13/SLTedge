@@ -3275,6 +3275,109 @@ Checked before blaming the hardware: the board was idle for attempt 2 — nobody
 non-system process `gnome-shell` at 56 MB — so "J10 does not fit in 8 GB" would have been a wrong
 conclusion reported as a finding.
 
+### 2.5m / J13: FP32 pose arm — quantisation is NOT part of the pose deficit (2026-10-06)
+
+**Extraction COMPLETE.** All 931 test clips re-extracted with
+`models/rtmw/rtmw-l-m_256x192_fp32.engine`, everything else held to §2.5k.
+
+| | |
+|---|---:|
+| clips | **931 / 931**, both normalisations |
+| wall clock | 02:30:15Z → 05:01:48Z, **151.5 min** |
+| batches | 11, **all `+N of N`** |
+| failed extractions | **0** |
+| clips whose frames were kept awaiting a pkl | **0** |
+| `.pkl.part` left behind | **0** |
+| rate | **24.2–24.9 frames/s**, flat across all 11 batches |
+
+**FP32 is 1.77× slower in wall clock and 1.52× slower per frame than FP16** (~37 frames/s, §2.5l).
+The 151.5 min measured lands on the ~150 min projected from the first complete batch — after two
+earlier projections that were wrong in opposite directions, ~100 min (§2.5k's FP16 aggregate
+misapplied to an FP32 run) and ~3.5 h (a partial first batch that still included engine load). **A
+complete batch is the smallest honest unit for a rate on this board.**
+
+**Why it is running:** the shipped system is FP16 and its entire accuracy evidence is
+`results/ci_30clip_rtmw_fp32__rtmw_fp16.json` — **−0.1292 BLEU-4 [−1.476, +1.214] at n=30**, a
+near-zero estimate inside ±1.5 on the deployed configuration, which is the shape §7.1 catalogues
+three times. And the −1.41 deficit is measured against our FP16 extraction, so it bundles architecture,
+crop, normalisation **and quantisation**; §2.5i and §2.5j excluded two mechanisms and recorded the
+residue as diffuse, leaving FP16 an **unexcluded contributor** (§L23).
+
+**Sanity check done at 275/931, early so a wasted run would be caught in minutes rather than hours.**
+Three FP32 pkls against their FP16 counterparts:
+
+| | |
+|---|---|
+| identical | **no** — the engine swap took effect |
+| mean abs difference | **2.4–3.1 × 10⁻⁴** in normalised coordinates |
+
+**That is ~0.026 % of the frame, roughly 18× smaller than the 0.47 % median our keypoints sit from the
+authors' (§2.5i).** **It does not predict the BLEU effect and must not be read as doing so** — §2.5i
+is precisely the precedent that close keypoint agreement coexists with a −1.41 BLEU-4 gap. The check
+establishes only that the two arms are genuinely different, which is what makes the eval worth running.
+
+#### Accuracy: quantisation contributes **none** of the −1.41 deficit
+
+`results/eval_n931_pruned_fp32_fps24.json` (n=931, missing=45, 1560 s, both `--expect-n 931` and
+`--manifest` passed). Protocol verified field by field against the FP16 arm: **the only substantive
+difference in the two config blocks is `poses`** — exactly what §L23's protocol asked for, and
+guaranteed by running it as an arm of `p10_split.sh` rather than a transcribed invocation.
+
+| arm, n=931 | BLEU-4 | ROUGE-L |
+|---|---:|---:|
+| FP16 (shipped) | 21.7310 | 41.8239 |
+| FP32 | 21.5828 | 41.7051 |
+
+Paired bootstraps, 2000 draws, seed 0:
+
+| comparison | BLEU-4 | ROUGE-L | verdict |
+|---|---|---|---|
+| **FP16 − FP32** (`ci_n931_fp32_vs_fp16.json`) | **+0.1482 [−0.150, +0.421]** | **+0.1188 [−0.171, +0.410]** | **not established on either** |
+| ceiling − FP16 (§L19) | +1.4077 [+0.631, +2.186] | +1.3280 [+0.490, +2.226] | established |
+| **ceiling − FP32** (`ci_n931_fp32_vs_ceiling.json`) | **+1.5559 [+0.770, +2.353]** | **+1.4468 [+0.605, +2.326]** | established |
+
+**1. Quantisation is excluded as a contributor to the pose deficit.** Removing FP16 does not shrink
+the gap to the authors' keypoints — it is **1.56 without quantisation against 1.41 with it**, and the
+FP16−FP32 difference is not established on either metric. §L23 raised FP16 as the one *unexcluded*
+candidate inside the −1.41; it now joins gross keypoint disagreement (§2.5i) and hand localisation
+(§2.5j) as **excluded**. The residue stays with extractor architecture, crop and normalisation.
+
+**2. The deployed precision choice now rests on a tight null instead of a wide one.** The half-width
+goes **±1.345 at n=30 → ±0.285 at n=931, a 4.7× narrowing.** "FP16 costs nothing we can detect" was
+not a defensible sentence at n=30, where the interval admitted a ±1.5 effect; at ±0.285 it is, and
+that is the whole return on the 2.5 h.
+
+**3. The sign flipped, and that is the §7.1 lesson landing on the deployed configuration.** At n=30
+FP16 was **0.13 below** FP32 (`ci_30clip_rtmw_fp32__rtmw_fp16.json`, −0.1292 [−1.476, +1.214]); at
+n=931 it is **0.15 above**. Both sit well inside each other's intervals, so this is noise carrying a
+sign, not a reversal — but anyone who had quoted the n=30 point estimate as "FP16 costs 0.13 BLEU-4"
+would have quoted a number whose sign does not survive measurement.
+
+#### Custody of the board artefacts, as of 2026-10-06 05:45Z
+
+All board work for the pose track is complete, and **nothing on the Jetson is unique any more** —
+every set is duplicated on the pose-track Mac, so the shared board can be cleared whenever the space
+is wanted without losing anything that cost board time.
+
+| artefact | board | pose-track Mac |
+|---|---:|---:|
+| `results/pkl_split_rtmw_fp16{,_raw}` | 931 + 931, 652 MB | 931 + 931 |
+| `results/pkl_split_rtmw_fp32{,_raw}` | 931 + 931, 652 MB | 931 + 931 |
+| `results/pkl_dev_rtmw_fp16{,_raw}` | 918 + 918, 592 MB | 918 + 918 |
+| `data/openasl_pose_split` (authors' reference) | 931, 536 MB | the 976-clip superset it was pushed from |
+| `results/pkl_dev_rtmw_fp16.tar` | 294 MB | 294 MB, `shasum -c` OK |
+
+Board total **~2.7 GB**. Every directory is `.gitignore`d (`:44-45`), so none of it is in the history;
+the `.sha256` and `.manifest` beside the tar are tracked, because they are how a short transfer gets
+caught. **Deleting from the board is not done unasked** — it is a one-way door against ~4.5 h of
+cumulative extraction, and the duplication above is what makes it safe rather than what authorises it.
+
+**And the arms are not trivially identical: 228 of 931 predictions (24.5 %) differ.** The perturbation
+is real — mean absolute keypoint difference 2.4–3.1 × 10⁻⁴, ~0.026 % of the frame — it changes a
+quarter of sentences, and it still moves the corpus metric by less than its own noise. That is the
+same shape as §2.5i, where keypoints agree closely and BLEU-4 differs by 1.41, read in the other
+direction.
+
 ### 2.5l / J9 step 1: dev pose extraction, all 918 clips (2026-10-06)
 
 `jetson/j12_rest_of_split.sh` with `SLT_CLIPS=data/clips_dev SLT_PKL=results/pkl_dev_rtmw_fp16
