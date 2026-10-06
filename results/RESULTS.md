@@ -3353,6 +3353,25 @@ n=931 it is **0.15 above**. Both sit well inside each other's intervals, so this
 sign, not a reversal — but anyone who had quoted the n=30 point estimate as "FP16 costs 0.13 BLEU-4"
 would have quoted a number whose sign does not survive measurement.
 
+#### Custody of the board artefacts, as of 2026-10-06 05:45Z
+
+All board work for the pose track is complete, and **nothing on the Jetson is unique any more** —
+every set is duplicated on the pose-track Mac, so the shared board can be cleared whenever the space
+is wanted without losing anything that cost board time.
+
+| artefact | board | pose-track Mac |
+|---|---:|---:|
+| `results/pkl_split_rtmw_fp16{,_raw}` | 931 + 931, 652 MB | 931 + 931 |
+| `results/pkl_split_rtmw_fp32{,_raw}` | 931 + 931, 652 MB | 931 + 931 |
+| `results/pkl_dev_rtmw_fp16{,_raw}` | 918 + 918, 592 MB | 918 + 918 |
+| `data/openasl_pose_split` (authors' reference) | 931, 536 MB | the 976-clip superset it was pushed from |
+| `results/pkl_dev_rtmw_fp16.tar` | 294 MB | 294 MB, `shasum -c` OK |
+
+Board total **~2.7 GB**. Every directory is `.gitignore`d (`:44-45`), so none of it is in the history;
+the `.sha256` and `.manifest` beside the tar are tracked, because they are how a short transfer gets
+caught. **Deleting from the board is not done unasked** — it is a one-way door against ~4.5 h of
+cumulative extraction, and the duplication above is what makes it safe rather than what authorises it.
+
 **And the arms are not trivially identical: 228 of 931 predictions (24.5 %) differ.** The perturbation
 is real — mean absolute keypoint difference 2.4–3.1 × 10⁻⁴, ~0.026 % of the frame — it changes a
 quarter of sentences, and it still moves the corpus metric by less than its own noise. That is the
