@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_n931_pruned_fp32_fps24.json",
+ "b": "results/eval_test976_ceil_b4_fps24_named.json",
+ "n_clips": 931,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 21.582781990896173,
+  "b": 23.13865321771282,
+  "delta": 1.5558712268166488,
+  "ci": [
+   0.769965834763487,
+   2.3530646462073643
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0
+ },
+ "rouge_l": {
+  "a": 41.705064639778904,
+  "b": 43.151869662249084,
+  "delta": 1.4468050224701798,
+  "ci": [
+   0.6052906674176366,
+   2.3263489958742896
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0
+ }
+}

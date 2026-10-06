@@ -92,8 +92,19 @@ Accuracy cost **−0.13 BLEU-4 [−1.48, +1.21]**, and 99.81 % of the consumed k
 of FP32. FP16 later proved to be a *fitting* requirement as well: the same end-to-end run with the
 FP32 engine runs out of memory during LM decode.
 
-> **Honest limit.** That −0.13 is n=30 and its interval is ±1.5. §8 lists re-testing it at n≈400 as
-> the cheapest open accuracy question, precisely because an n=30 null is what hid the pose gap in §5.
+> **RESOLVED 2026-10-06 at n=931 — and the n=30 figure's sign did not survive (§2.5m).** The whole
+> test set was re-extracted with the FP32 engine and scored with `poses` as the only differing config
+> field. **FP16 − FP32 = +0.148 BLEU-4 [−0.150, +0.421] and +0.119 ROUGE-L [−0.171, +0.410]: not
+> established on either metric**, with the half-width down from **±1.345 to ±0.285, a 4.7×
+> narrowing.** So the deployed precision choice now rests on a *tight* null rather than a wide one,
+> which is a claim worth making where "not established at n=30" was not.
+>
+> Two things to keep from it. **The sign flipped** — FP16 was 0.13 *below* FP32 at n=30 and is 0.15
+> *above* at n=931, both well inside each other's intervals — so the earlier point estimate was noise
+> carrying a sign, exactly the §7.1 failure applied to the shipped configuration. And **quantisation
+> is excluded from the −1.41 pose deficit**: the gap to the authors' keypoints is **1.56 without
+> quantisation against 1.41 with it**, so removing FP16 does not shrink it. FP16 joins §2.5i and
+> §2.5j as an excluded mechanism.
 
 ### 3.3 Vocabulary pruning
 
@@ -456,8 +467,11 @@ system at **n=931, every paired test clip that exists**, and the diagnosis of it
 
 **Outstanding:** **J9 step 2** — the adaptation training itself, the single remaining accuracy lever.
 Step 1 is **done**: 918 dev clips extracted on the board in 95.5 min, packaged and checksummed
-(§2.5l). The **FP16 re-test at scale**, which §3.2 points at and which is **running now** — see
-below. And the **demo video**, which needs a recording session rather than compute.
+(§2.5l). And the **demo video**, which needs a recording session rather than compute.
+
+**The FP16 re-test at scale is DONE** (§2.5m, 2026-10-06): not established at n=931, ±0.285, and
+quantisation is excluded from the pose deficit. That closes the last open accuracy question the board
+could answer.
 
 > **Restored 2026-10-06, after I deleted it by accident (§L23).** The previous edit removed
 > "re-testing FP16 at n≈400" from this list together with the `LM_J` re-run beside it. The `LM_J`
