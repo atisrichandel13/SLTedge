@@ -96,11 +96,25 @@ POSE_J_PER_S = {"source": 4.25, 24: 3.36, 16: 2.27}
 # These rows are the PRUNED checkpoint (vocab 26,078). Every on-board end-to-end run so far loaded
 # the FULL released checkpoint (vocab 250,112), where the measured greedy->beam-4 penalty is 3-5x
 # larger (+7.02 J at T=204, +6.95 J at T=136, RESULTS.md 5.3). Pruning does account for part of
-# that -- 7.02 -> 4.65 J -- but not for the rest. Leading candidate, and it is OURS to test: 2.9C
-# measured the LM STANDALONE, while every end-to-end run has the pose engine resident too. The
-# error has a consistent sign across all four cells (greedy overestimated, beam 4 underestimated),
-# which is what a different resident footprint would do. The clean test is to re-run the 2.9C
-# beam x T sweep in-process with the pose engine loaded; not yet done.
+# that -- 7.02 -> 4.65 J -- but not for the rest.
+# RESIDENCY IS ELIMINATED, 2026-10-05 (J10 / RESULTS.md 2.9E). The leading candidate used to be
+# named here: 2.9C measured the LM STANDALONE while every end-to-end run has the pose engine
+# resident, and the error had a consistent sign across all four cells, which is what a different
+# resident footprint would do. That test has now RUN -- the identical sweep with the RTMW FP16
+# engine resident, results/lm_sweep_pruned_resident.json. The decoder-width term goes
+# 2.16/1.94/1.34/2.49/1.15 -> 2.15/1.80/1.21/2.40/1.13 J, i.e. 0.90-1.00x: it NARROWS by up to 10%
+# where the hypothesis needed it to WIDEN by ~110%. Residency is not the missing factor. A resident
+# TensorRT pose context costs ~292 MB and about 0 W idle -- it holds memory, not power.
+# So the 2.1-2.3x understatement is UNEXPLAINED, not fixed, and the warning above stands. The
+# leading remaining explanation is the one visible two lines up and in this file's own modelling:
+# LM_J is interpolated in T while the measured beam-4 penalty is FLAT in T. Decoder-width energy is
+# a per-sentence constant and should not be a function of sequence length.
+# Reading 2.9E against 2.9C: compare J_per_sentence, which is what LM_J below is -- the grid values
+# are exactly the standalone sweep's J_per_sentence (8.88 / 11.04 / 8.55 / 9.89 / 7.79 / 8.94).
+# On dyn_J_per_sentence the same cells give 0.68-1.08x, which looks like a weaker result and is not
+# one: idle_W is re-measured per run (standalone mean 3.789 W, sd 0.057; resident 3.725 W, sd 0.026)
+# and enters the total as idle_W x t, roughly 60% of it, so a baseline wobble moves the dynamic term
+# and the idle term in OPPOSITE directions. The total is the less sensitive quantity, not the more.
 # The frame-rate term IS validated: -16.7% measured vs -17% composed. See RESULTS.md L16 addendum 2.
 # --- measured: LM stage, J per sentence, by (beams, frames used) (HANDOFF s0b) ---
 LM_J = {(1, 215): 8.88, (2, 215): 10.26, (4, 215): 11.04,

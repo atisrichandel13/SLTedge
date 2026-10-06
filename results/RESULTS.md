@@ -2128,6 +2128,14 @@ which is what a different resident footprint would do. Four cells with a consist
 not a cause. **The clean test is to re-run the §2.9C beam × T sweep in-process with the pose engine
 loaded.** Not yet done.
 
+> **RUN 2026-10-05, and the answer is no — §2.9E / J10.** The identical sweep with the RTMW FP16
+> engine resident puts the decoder-width term at **0.90–1.00×** of the standalone value: it narrows
+> slightly where this hypothesis needed it to widen ~110 %. **Residency is excluded as the cause.**
+> The 2.08–2.27× understatement in this section is unchanged and still real; what J10 removes is the
+> one candidate we could test. The leading remaining explanation is the modelling error named in this
+> section already — `LM_J` interpolated in T while the measured beam-4 penalty is flat in T. See
+> §L22 for three descriptive corrections to §2.9E that do not touch its conclusion.
+
 **What this does and does not change.**
 
 * The **recommendation is unaffected**: beam 4 @ 24 fps rests on the frame-rate term, which board
@@ -3447,3 +3455,69 @@ the 39 % measured on the frame-rate axis. It needs **≥ 55.3 %** recovery two-s
 records that transfer as unestablished, so this is not a prediction that it will fail — it is the
 honest statement of what J9 would have to deliver to return *established*, agreed in writing before
 the run, which is what the earlier null-framing agreement asks for.
+
+---
+
+### L22 Three descriptive corrections to §2.9E — the conclusion is right and is better supported than stated (2026-10-05)
+
+J10's conclusion is correct and I reproduced it from the two artifacts before writing this:
+`results/lm_sweep_pruned.json` against `results/lm_sweep_pruned_resident.json`, decoder-width term
+2.16/1.94/1.34/2.49/1.15 → 2.15/1.80/1.21/2.40/1.13 J, **0.903–0.995×**. Residency is excluded.
+`unisign/frontier.py` now says so; it had still carried "the clean test … not yet done" and named
+residency as the leading candidate.
+
+Three descriptive claims in §2.9E are wrong or overstated. **None changes the verdict**, and the first
+makes its weakest argument stronger.
+
+**1. "Latency matches §2.9C within ±1 % across all fifteen cells" is false — it is 12 of 15.** §2.9E's
+own table says "within ±1 % bar one +3.7 % outlier" two paragraphs above, so the section contradicts
+itself, and the stronger wording is the one carrying the load: it is the stated evidence that MemFree
+falling to **179 MB** did not corrupt the run. Measured:
+
+| cell | Δ latency |
+|---|---:|
+| beam 2, T=256 | **+3.68 %** |
+| beam 4, T=137 | **−1.93 %** |
+| beam 4, T=103 | **−1.02 %** |
+
+**The anti-thrashing argument survives and is better made from the correct numbers.** Two of the three
+deviations are *negative* — the resident run was **faster** — and thrashing is one-sided: it cannot
+make a run quicker. So the deviations are two-sided noise, which is the signature of no thrashing;
+"all fifteen within ±1 %" claimed a tightness the data does not have, when the actual data supports the
+conclusion for a better reason. The +3.68 % cell carries ΔJ +0.15 J, inside the same ±0.15 J band as
+every other cell, so it is not a thermal or contention event either.
+
+**2. "The idle floor moves 3.84 → 3.76 W … which is noise" — it moves down in 14 of 15 cells.** Mean
+idle 3.789 W standalone (sd 0.057) against 3.725 W resident (sd 0.026): **−0.063 W**, one-directional
+in 14 of 15. A shift that consistent is not noise. It is also the wrong sign for a resident engine
+drawing power, so the likely cause is the idle baseline being sampled in a different thermal state
+rather than anything the engine does — which supports the section's actual point (an idle engine holds
+memory, not power) more strongly than calling it noise does.
+
+**3. "Per-cell energy within ±0.15 J with no consistent sign" is true of the totals, and the totals are
+two one-directional shifts cancelling.** `J_per_sentence` = dynamic + `idle_W × t`, and the idle term
+is ~60 % of it:
+
+| quantity | direction across the 15 cells | mean |
+|---|---|---:|
+| dynamic energy | **up in 12 of 15** | +0.056 J |
+| idle floor × mean 1.46 s sentence | **down in 14 of 15** | −0.092 J |
+| **total** | down in 9, up in 5 | **−0.035 J** |
+
+−0.035 ≈ +0.056 − 0.092. So "nothing changed" is the sum of the LM's own consumption rising slightly
+and the measured idle baseline falling slightly. Worth stating because of what it implies for anyone
+re-deriving the result.
+
+**Which field to compare, and why the total is the right one.** `frontier.py`'s `LM_J` grid *is* the
+standalone sweep's `J_per_sentence` — 8.88 / 11.04 / 8.55 / 9.89 / 7.79 / 8.94 match exactly — so for
+the question J10 was asked, the total is the correct field and §2.9E uses it correctly. **Anyone
+recomputing from `dyn_J_per_sentence` will get 0.68–1.08× instead of 0.90–1.00× and conclude the
+result is weaker. It is not.** Because an idle-baseline wobble moves the dynamic term and the idle
+term in *opposite* directions, the total is the **less** sensitive quantity, not the more; the
+dynamic figures scatter more because they absorb the baseline error at full weight. The worst dynamic
+cell, greedy at T=205, pairs a +0.30 J dynamic jump with the table's largest idle deviation
+(−0.21 W). **The conclusion holds on both fields** — neither 0.90–1.00× nor 0.68–1.08× comes within
+reach of the +110 % the residency hypothesis required — which is the robustness check that matters.
+
+**Net: §2.9E's verdict stands unaltered.** Residency is eliminated, the beam-width axis stays
+unquotable, and `REPORT.md` §6 is right to keep the row open-and-narrowed rather than closed.
