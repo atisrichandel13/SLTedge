@@ -5,9 +5,13 @@
 Atisri Chandel (language-model track) · Tushar Goyal (pose track, all board runs)
 
 > **Status.** Every number here is measured and traceable to a file in `results/`. Two items are
-> outstanding and are marked where they appear: the **adaptation run** (J9, the pose track's ask of
-> 2026-10-05, the one remaining accuracy lever) and the **demo video**. Nothing in this draft depends
-> on either.
+> outstanding and are marked where they appear: **J9 step 2** (the adaptation training, the one
+> remaining accuracy lever — step 1, the 918-clip dev pose extraction, is delivered and verified,
+> §2.5l) and the **demo video**. Nothing in this draft depends on either.
+>
+> **Updated 2026-10-06.** The accuracy numbers here are at **n=931**, not the n=400 subset an earlier
+> draft used, and the pose deficit is **−1.41 [−2.19, −0.63]**, not −2.24 (§2.5k, §L19). J10 has also
+> run (§2.9E) with a negative result, so the frontier's beam-width caveat is **narrowed, not closed**.
 
 ---
 
@@ -448,11 +452,19 @@ Kept deliberately; several of these are the project's more useful output.
 axis on every row; vocabulary pruning with its leak fix; INT8 and TensorRT-decoder negatives;
 the decode-knob and frame-rate studies; the frontier; the full C9 protocol including sustained runs
 and process-level repeats; end-to-end deployment of the recommended cell; the accuracy of the shipped
-system at n=400 and the diagnosis of its one deficit.
+system at **n=931, every paired test clip that exists**, and the diagnosis of its one deficit.
 
-**Outstanding:** the adaptation run (J9) — the single remaining accuracy lever, specified and handed
-over; the demo video; and, if time allows, re-testing FP16 at n≈400 and the in-process `LM_J` re-run
-that would close the frontier's last open caveat.
+**Outstanding:** **J9 step 2** — the adaptation training itself, the single remaining accuracy lever.
+Step 1 is **done**: 918 dev clips extracted on the board in 95.5 min, packaged and checksummed
+(§2.5l). And the **demo video**, which needs a recording session rather than compute.
+
+> **Corrected 2026-10-06.** An earlier draft listed "the in-process `LM_J` re-run that would close the
+> frontier's last open caveat" as optional future work. **It ran (J10, §2.9E) and it did not close
+> that caveat** — residency is excluded as the cause, the decoder-width term is still understated
+> 2.1–2.3×, and the beam-width axis is still the one axis §6 tells people not to quote. The remaining
+> candidate is the modelling error §6 names: `LM_J` interpolated in T when the measured penalty is
+> flat in T. Listing a completed run as optional future work, and crediting it with closing something
+> it did not, were both wrong.
 
 **The headline.** On a 15 W Jetson Orin Nano, the pipeline translates a sign-language utterance in
 **7.0 s for 37.8 J**, sustains that for 30 minutes without throttling, and scores **21.73 BLEU-4**
