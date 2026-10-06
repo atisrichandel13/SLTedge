@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 # Package the dev pose set for the LM track's J9 step 2, per REPLY-Q10-POSE-DELIVERY-2026-10-05.md.
-# Runs on the POSE-TRACK MAC. Produces, next to the pkl directory's parent:
+#
+# RUNS ON EITHER THE BOARD OR THE POSE-TRACK MAC -- the relative paths are the same in both repo
+# copies. Prefer the BOARD (REPLY-Q10-DRIVE-ROUTE): the pkls are already there, so it saves a 335 MB
+# hop, and jetson/pull_results.sh already rsyncs results/ off the board excluding only *.md and
+# *.npz (:13-14) -- so a tar in the board's results/ arrives through the existing tested channel,
+# while .gitignore's results/*.tar keeps it out of the history. Those two compose by luck, not design.
+#
+# Produces, next to the pkl directory's parent:
 #
 #     pkl_dev_rtmw_fp16.tar        ~335 MB, FLAT (entries are <clip>.pkl, not results/...)
 #     pkl_dev_rtmw_fp16.sha256     checksum of the tar
@@ -52,15 +59,35 @@ fi
 echo "[pkg] writing $TAR"
 tar -cf "$TAR" -C "$PKL" .
 find "$PKL" -name '*.pkl' -exec basename {} .pkl \; | sort > "$OUT_DIR/$BASE.manifest"
-shasum -a 256 "$TAR" > "$OUT_DIR/$BASE.sha256"
-
-# Verify the archive lists exactly what the manifest claims, before anyone trusts either.
-tar -tf "$TAR" | sed 's#^\./##' | grep '\.pkl$' | sed 's/\.pkl$//' | sort > /tmp/.pkg_intar.$$
-if ! diff -q /tmp/.pkg_intar.$$ "$OUT_DIR/$BASE.manifest" >/dev/null; then
-    echo "[pkg] ABORT: tar contents do not match the manifest" >&2
-    rm -f /tmp/.pkg_intar.$$; exit 1
+# sha256: coreutils on the Jetson, perl script on macOS. Both exist on this board (checked:
+# /usr/bin/sha256sum and /usr/bin/shasum), but pick whichever is present so the script is portable.
+if command -v sha256sum >/dev/null 2>&1; then
+    ( cd "$OUT_DIR" && sha256sum "$BASE.tar" ) > "$OUT_DIR/$BASE.sha256"
+elif command -v shasum >/dev/null 2>&1; then
+    ( cd "$OUT_DIR" && shasum -a 256 "$BASE.tar" ) > "$OUT_DIR/$BASE.sha256"
+else
+    echo "[pkg] ABORT: no sha256sum or shasum" >&2; exit 1
 fi
-rm -f /tmp/.pkg_intar.$$
+
+# Verify the archive lists exactly what the manifest claims -- and nothing else.
+# STRENGTHENED 2026-10-06 (REPLY-Q10-DRIVE-ROUTE 4). The first version filtered to `grep '\.pkl$'`
+# BEFORE diffing, so it proved the .pkl entries matched but said nothing about anything else in the
+# archive. The claim made for it -- "verifies tar contents against the manifest line by line" -- was
+# stronger than the code. Now every entry is compared: the only non-pkl entry tolerated is the "./"
+# directory record that `tar -C dir .` always writes.
+tmp_in="${TMPDIR:-/tmp}/.pkg_intar.$$"
+tar -tf "$TAR" | sed 's#^\./##' | grep -v '^$' | sort > "$tmp_in"
+grep -v '\.pkl$' "$tmp_in" > "${tmp_in}.extra" || true
+if [ -s "${tmp_in}.extra" ]; then
+    echo "[pkg] ABORT: archive holds non-pkl entries:" >&2; sed 's/^/[pkg]   /' "${tmp_in}.extra" >&2
+    rm -f "$tmp_in" "${tmp_in}.extra"; exit 1
+fi
+sed 's/\.pkl$//' "$tmp_in" > "${tmp_in}.names"
+if ! diff -q "${tmp_in}.names" "$OUT_DIR/$BASE.manifest" >/dev/null; then
+    echo "[pkg] ABORT: tar contents do not match the manifest" >&2
+    rm -f "$tmp_in" "${tmp_in}.extra" "${tmp_in}.names"; exit 1
+fi
+rm -f "$tmp_in" "${tmp_in}.extra" "${tmp_in}.names"
 
 echo "[pkg] OK  $(du -h "$TAR" | cut -f1)  $(wc -l < "$OUT_DIR/$BASE.manifest" | tr -d ' ') clips"
 echo "[pkg] sha256: $(cut -d' ' -f1 "$OUT_DIR/$BASE.sha256")"
@@ -69,5 +96,7 @@ echo "[pkg] Upload these three to Drive under sltedge/poses/ :"
 echo "[pkg]   $TAR"
 echo "[pkg]   $OUT_DIR/$BASE.sha256"
 echo "[pkg]   $OUT_DIR/$BASE.manifest"
-echo "[pkg] (No Drive CLI on this Mac -- no CloudStorage mount, no rclone, no gdrive -- so the upload"
-echo "[pkg]  is a manual step. See REPLY-Q10-ANSWERED for the headroom question.)"
+echo "[pkg] Drive is reachable ONLY from inside Colab in this project (drive.mount, authenticated by"
+echo "[pkg] the runtime) -- neither Mac has a mount, rclone or gdrive. So the last leg is a browser"
+echo "[pkg] action from whichever machine holds the file. If this ran on the board, jetson/pull_results.sh"
+echo "[pkg] brings it to the pose-track Mac through the existing channel."
