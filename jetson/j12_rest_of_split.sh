@@ -196,5 +196,12 @@ REFTALLY=" / ref \$(ls ${REFDST}/*.pkl 2>/dev/null|wc -l)"
 "$JSSH" "cd $RPATH && echo \"[j12] pkls: \$(ls ${PKL}/*.pkl|wc -l) / raw \$(ls ${PKL}_raw/*.pkl|wc -l)${REFTALLY}\" && df -h ~|tail -1" \
     2>&1 | grep -v --line-buffered '^spawn \|password:' | sed -u 's/^/[j12]   /'
 echo "[j12] EXTRACTION DONE $(date -u +%FT%TZ)"
+if [ "$SKIP_REF" = "1" ]; then
+    # The dev split has no evals -- it produces the adapted model, it is never scored against a
+    # ceiling -- so printing the test-split hint here would send the reader at the wrong next step.
+    echo "[j12] next: package for the LM track --"
+    echo "[j12]   SLT_PKL=${PKL} data/package_dev_poses.sh"
+else
 echo "[j12] next: the evals, which need a NEW tag or eval_one skips them --"
 echo "[j12]   SLT_TAG=n931 SLT_EXPECT_N=931 jetson/p10_split.sh"
+fi

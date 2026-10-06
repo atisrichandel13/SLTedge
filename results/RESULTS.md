@@ -3275,6 +3275,62 @@ Checked before blaming the hardware: the board was idle for attempt 2 — nobody
 non-system process `gnome-shell` at 56 MB — so "J10 does not fit in 8 GB" would have been a wrong
 conclusion reported as a finding.
 
+### 2.5l / J9 step 1: dev pose extraction, all 918 clips (2026-10-06)
+
+`jetson/j12_rest_of_split.sh` with `SLT_CLIPS=data/clips_dev SLT_PKL=results/pkl_dev_rtmw_fp16
+SLT_SKIP_REF=1`, same engine and extractor as §2.5k, `pmode:0000` (15 W). This is the training input
+for J9 step 2 and the last board run before the report.
+
+| | |
+|---|---:|
+| clips | **918 / 918** (both normalisations) |
+| frames | **184,093** |
+| wall clock | 00:08:48Z → 01:44:20Z, **95.5 min** |
+| batches | 11 of up to 90 clips, **all `+N of N`** |
+| failed extractions | **0** |
+| clips whose frames were kept awaiting a pkl | **0** |
+| `.pkl.part` left behind | **0** |
+| board after | **0** frame dirs, **0** JPEGs, 15 G free |
+| size | 296 MB square-norm, 296 MB raw |
+
+**The ~96 min estimate was right**: predicted from §2.5k's 32.0 frames/s aggregate before the run,
+measured 95.5 min. Per-batch extraction rate was flat — 37.2 / 36.9 / 37.5 / 37.0 / 36.4 / 36.8 /
+37.8 / 36.7 / … frames/s. A 36.4 mid-run looked briefly like drift and was not: a 37.8 three batches
+later brackets it, so it is ±0.7 scatter with no trend, consistent with §5.6 finding no throttling at
+15 W over 30 minutes.
+
+**Native rate, deliberately.** `fps_ratio_for_clip` returns `min(1.0, target/src)` and thins at load,
+so this one set serves every target rate — including the still-unmeasured §L16 adapted-@-16 fps row,
+at no extra board cost. Pre-thinning at 24 would foreclose that and would not even be uniformly 24,
+since clips already at or below the target are not thinned at all.
+
+**Square-norm is the one that ships.** `results/eval_n931_pruned_ours_fps24.json`'s own
+`config.poses` is `results/pkl_split_rtmw_fp16`, the square-norm directory, so training must use the
+matching normalisation or step 2 adapts to a distribution the test set does not have. The `_raw`
+companion stays on the board and the pose-track Mac as a diagnostic.
+
+#### Handoff artifact
+
+`data/package_dev_poses.sh`, run **on the board** (§Q10 route): the pkls are already there, and
+`jetson/pull_results.sh:13-14` excludes only `*.md` and `*.npz`, so a tar in the board's `results/`
+comes down the existing channel while `.gitignore`'s `results/*.tar` keeps it out of the history.
+
+| file | |
+|---|---|
+| `results/pkl_dev_rtmw_fp16.tar` | **294 MB**, flat entries, uncompressed |
+| `results/pkl_dev_rtmw_fp16.sha256` | `a9b480b5e524692ba58d1e6d2a36d1c360060715dc199e27225cc91b79350ac2` |
+| `results/pkl_dev_rtmw_fp16.manifest` | 918 clip names |
+
+The script **refuses to package a partial set** — it aborts unless the directory holds exactly
+`--expect-n` clips, then checks that every tar entry appears in the manifest and that the archive
+holds nothing else. That guard exists because a partially transferred archive which extracts without
+error is the failure class that put a 4-frame clip for a 7.8 s utterance into the n=400 set and
+carried it all the way to an evaluation; the LM track's training entry point takes its `--expect-n
+918` from this manifest.
+
+**Drive is reachable only from inside Colab in this project** — neither Mac has a mount, `rclone` or
+`gdrive` — so the final upload is a browser action and not a scriptable step on either side.
+
 ### L19 The pose gap at full width (n=931): it nearly halves, and J12 did not buy the power it was run for (2026-10-05)
 
 J12 extended the board pose set from 400 to all 931 fetched test clips so the pose-substitution gap
