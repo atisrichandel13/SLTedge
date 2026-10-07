@@ -56,8 +56,10 @@ WHAT GOES TO DRIVE AND WHAT DOES NOT
 RE-RUNNABLE. Every stage's output file is its own skip key, and training is reached only through a
 lambda, so a recycled runtime that lost /content will not retrain an arm it has already scored.
 """
+import gzip
 import json
 import os
+import pickle
 import subprocess
 import sys
 
@@ -157,6 +159,13 @@ if missing:
              "    tar -xf pkl_dev_rtmw_fp16.tar -C /content/poses_dev_ours\n")
 
 
+def _labels_n(path):
+    """How many clips the split's label file names. The control arm's completeness is measured
+    against this, never against our own set's size."""
+    with gzip.open(path, "rb") as fh:
+        return len(pickle.load(fh))
+
+
 def count_pkls(d):
     return sum(1 for f in os.listdir(d) if f.endswith(".pkl"))
 
@@ -218,9 +227,18 @@ def run(cmd, what):
 # ------------------------------------------------------------------- arm 3's training input only
 def fetch_authors_dev():
     """Authors' dev poses, ~680 MB by HTTP range. Public source, so LOCAL disk, never Drive."""
-    if os.path.isdir(POSES_DEV_THEIRS) and count_pkls(POSES_DEV_THEIRS) >= N_DEV:
-        print(f"[j9] authors' dev poses present ({count_pkls(POSES_DEV_THEIRS)} pkls)")
+    # Compared against the AUTHORS' dev label count, not N_DEV. N_DEV is OUR dev set and the two have
+    # no reason to agree -- after one clip was quarantined on 2026-10-07 it became 917 while the
+    # authors' dev set is 967, so `>= N_DEV` would have accepted a fetch that died at 920 as complete.
+    # It passed that day only because the fetch had in fact finished. A resumable fetch makes this
+    # cheap to get right: re-running it is a no-op when the set is whole.
+    want = _labels_n(LABELS_DEV)
+    have = count_pkls(POSES_DEV_THEIRS) if os.path.isdir(POSES_DEV_THEIRS) else 0
+    if have >= want:
+        print(f"[j9] authors' dev poses present ({have} of {want} labelled clips)")
         return
+    if have:
+        print(f"[j9] authors' dev poses incomplete ({have} of {want}); resuming the fetch")
     os.makedirs(POSES_DEV_THEIRS, exist_ok=True)
     run(f"{P} -u data/openasl_pose_fetch.py --split dev "
         f"--labels-dir data/openasl_labels --out {POSES_DEV_THEIRS} "
