@@ -63,3 +63,33 @@ clip). The arm will be reported as trained on 917, not 918, wherever it appears.
 **This does not break the comparison.** The control arm already trains on a different set — the
 authors' dev poses, whatever the public fetch yields — so the arms were never matched on training-set
 size. What must match is the recipe, and it does.
+
+---
+
+## Addendum, same day — ask 1 answered by measurement: the authors' poses are clean
+
+Scanned the authors' dev poses with the same code, so this is a comparison and not an argument:
+
+| archive | estimator / format | pkls with non-finite values |
+|---|---|---|
+| authors' dev (`openasl_pose_fetch.py`) | upstream released poses | **0 of 967** |
+| `pkl_dev_rtmw_fp16.tar` | RTMW, fp16 | **1 of 918** |
+| `pkl_split_rtmw_fp16.tar` | RTMW, fp16 | **0 of 931** |
+
+The control arm also trained on all 967 without the new non-finite guard firing once — same model,
+same loss path, same recipe that NaN'd on ours. **So the defect is in your extraction pipeline and
+not in the upstream pose format.**
+
+**What this does not settle, and it matters for where you look:** the authors' set differs from yours
+in *both* estimator and quantisation, so 0-of-967 narrows the fault to your pipeline without saying
+which stage. The evidence inside your own two archives is the more useful cut — **1 bad clip in 1,849
+RTMW-fp16 clips**, with finite coordinates beside NaN confidences in 7 whole frames. A systematic
+fp16 overflow would not be that rare and would not spare the coordinates, which are the larger
+magnitudes. A sporadic estimator-side event on 7 consecutive frames fits what is actually there.
+
+Ask 2 stands unchanged: re-extract that clip, or tell us the NaN is expected and how it should be
+read. Ask 1 is withdrawn as a question and replaced by the table above.
+
+**One thing you should check that we cannot:** the FP32 arm's poses have never been scanned by either
+side. If this is estimator-side, they are the same estimator and nothing rules them out. §L23/§8's
+FP16-vs-FP32 comparison rests on them.
