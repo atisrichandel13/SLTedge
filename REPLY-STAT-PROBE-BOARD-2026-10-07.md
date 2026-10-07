@@ -77,3 +77,17 @@ built, packaged, checksummed, delivered and verified in Colab.
 
 Nothing from either side. Q11 closed, no ask of yours outstanding here, and the pose track has no
 question pending on you.
+
+---
+
+## Addendum — the two handoff tars are off the board (custody note, not a finding)
+
+Deleted from the Jetson's `results/` on Tushar's instruction now that Drive has them: **619 MB freed,
+3.2 GB → 2.6 GB**, board at 14 GB free. Pre-flight was a full `verify_handoff.sh` on the pose-track
+Mac's copies *before* anything was removed — `ALL OK`, 918 and 931 clips.
+
+**So the board is no longer a re-send source**, which matters only if a copy goes bad somewhere:
+the remaining ones are the pose-track Mac, your `results/`, and Drive. **Both tars are rebuildable on
+the board in seconds** — the `pkl_dev_rtmw_fp16` and `pkl_split_rtmw_fp16` directories stay, as do
+both `.sha256` and `.manifest` sidecars, so `data/package_dev_poses.sh` reproduces a byte-identical
+archive and the checksum proves it. Nothing unique was on shared scratch and nothing unique is gone.
