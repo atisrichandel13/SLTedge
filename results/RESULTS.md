@@ -3946,3 +3946,64 @@ figure is recorded here only as what a *pre-declared* directional test would hav
 pose engine's accuracy cost is no longer an n=30 null with a ±1.345 interval. It is **+0.15 [−0.15, +0.42]
 at n=931, on the full paired test set, with FP16 the nominally better arm** — and the −1.41 deficit is
 attributable to architecture, crop and normalisation, with quantisation excluded to within 11 %.
+
+---
+
+### L26 J9 step 2 is a null — and the interval excludes the effect §L17 predicted (2026-10-07)
+
+**ASK-ADAPT-TO-OUR-POSES is answered.** Three arms, one checkpoint lineage (`pruned_traindev`, keep
+set 26,025), fps 24, lr 1e-5, label smoothing 0.0, 1 epoch, seed 42, scored on all **931** of our test
+clips at beam 4 / batch 1 / cap 64. Artifacts: `j9_step2_summary.json`, three `ci_*.json`, three
+`eval_test_*.json`.
+
+| arm | BLEU-4 | ROUGE-L | trained on |
+|---|---:|---:|---|
+| un-adapted | 21.7287 | 41.8178 | — |
+| adapted on **ours** | 21.4570 | 41.6228 | **917** of our dev clips |
+| adapted on **theirs** | 21.5833 | 41.8808 | 967 authors' dev clips |
+
+| comparison | BLEU-4 Δ | 95 % CI | established |
+|---|---:|---|---|
+| ours − un-adapted | −0.2717 | [−0.7166, +0.2130] | no |
+| theirs − un-adapted | −0.1454 | [−0.5904, +0.3150] | no |
+| **ours − theirs** (of record) | **−0.1263** | **[−0.4973, +0.2488]** | **no** |
+
+**The null is informative, not merely underpowered — and the runner's own closing text understates
+it.** `colab_j9_step2.py` prints *"This was the PREDICTED outcome: §L17 sizes the expected recovery at
+~39 %"*, which reads as "we could not see the effect we expected". The interval says more than that:
+
+- §L17's **39 %** of the −1.4077 deficit is **+0.5490**. The CI's upper bound is **+0.2488**. The
+  predicted effect is **outside the interval**.
+- §L21's bar of **55.3 %** is **+0.7785**, also outside it.
+- So at 95 % this run excludes an adaptation benefit larger than **+17.67 %** of the gap.
+
+**§L21's bar was 2.09× too conservative.** It derived 55.3 % from the pose-axis half-width of ±0.778.
+This contrast's own half-width is **0.3730** — real detectability was **26.50 %** of the gap. Same
+mechanism as §L25: the arms share an extractor and the test set, so paired resampling cancels far more
+than a cross-axis projection assumes. **Quote the bounds, not a ±**: the interval is asymmetric
+(−0.3710 / +0.3751 around the point estimate).
+
+**A claim made from point estimates, now withdrawn.** On first seeing the arms we wrote that
+`theirs − un-adapted` at **−0.1454** contradicted §L15.2's **+0.18** gain from fine-tuning on dev
+clips, and called it a disagreement needing resolution. **It is not a disagreement.** The CI is
+[−0.5904, +0.3150] and **+0.18 is inside it**. There is nothing to reconcile; the two measurements are
+consistent. Recorded because the error is the §L24 class — a sign read off two point estimates before
+the interval that governs them existed.
+
+**What this does NOT license.** Not "adaptation does not work". The test set is exhausted at 931 clips
+(§L20), so 0.71 is a detectability **cap**, not a waypoint. And §L17 measured at 16 fps while this ran
+at 24; §L17 already records that transfer as unestablished, so the exclusion above holds **if** the
+extrapolation carries across the fps axis.
+
+**Arm 2 trained on 917, not 918.** One dev pkl (`rlUUw27_6kM-00:17:09.233-00:17:15.433`) holds 7 whole
+frames of all-NaN confidence scores and was quarantined; see `REPLY-NAN-SCORES-CLIP-2026-10-07.md`.
+The arms were never matched on training-set size — the control trains on whatever the authors' public
+fetch yields — so what matters is that the recipe matched, and it did.
+
+**Incidental measurement: the lineage offset is ~0.002, not the ~0.05 we budgeted for.** The un-adapted
+arm here is **21.728700** against the board's **21.730953** — a difference of **0.002253** BLEU-4
+across *both* a 53-token vocabulary change (26,025 vs 26,078) and different hardware (A100 vs Orin
+Nano, different torch). §L18's device axis alone was 0.0514, so the combined offset is **23× smaller**
+than that one axis. ROUGE-L agrees: 41.8178 vs 41.8239, a gap of 0.0061. This does **not** retroactively
+license comparing Colab arms against board arms — one pair of numbers on one arm is not a
+characterisation — but it is evidence the 53 test-only tokens are essentially never generated.
