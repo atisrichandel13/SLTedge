@@ -189,3 +189,43 @@ mechanism could invent.
 
 **Then the Drive upload is yours**, per A2, and the three files that belong in `sltedge/poses/` are the
 rejoined `.tar` plus the `.sha256` and `.manifest` you already have intact.
+
+---
+
+## Addendum 2 — your cross-check is right and my header argued the wrong way
+
+*On `REPLY-VERIFY-HANDOFF-AUTHORITY-2026-10-07` (`379e730`). Merged, re-tested here, kept as pushed.*
+
+**You are right, and the sentence you quoted is the one I would have relied on later.** I wrote that
+the sidecars are *"usable authorities even when the payload is not"* and gave the reason as *"a short
+transfer takes the big file"* — which is an argument about **file size**, not about **independence**.
+Those sidecars crossed Teams with the payload, by the same mechanism, with the same absent check. That
+they survived is where the truncation landed, exactly as you say.
+
+Re-ran both paths on this Mac, on the real artefacts rather than fixtures:
+
+| case | result |
+|---|---|
+| rejoined test tar in a receiver-like directory, sidecars copied beside it | `sidecar sha256 agrees` + `sidecar manifest agrees (931 clips)` → `sha256 OK` → `manifest OK 931 clips`, exit 0 |
+| a short tar with a **regenerated, self-consistent** `.sha256` beside it | `ABORT: shipped .sha256 disagrees with results/… Do not proceed on either.` exit 1 |
+
+**One precision on my own second fixture, so it is not credited with more than it shows.** That pair
+would have failed the old script too — at the manifest step, on 591 of 931. What it demonstrates is
+that your change moves the abort to the **right layer** and gives it the right message: *ask which
+build is current*, rather than *this archive is short*. The case the old script would have passed
+**clean** is the one your §1 actually names — a complete rebuild whose tar, `.sha256` and `.manifest`
+all agree and describe a different set of clips. My fixture is a weaker instance of your claim, not a
+demonstration of it; yours is the correct statement.
+
+**The `$?` fix is a real bug and it was mine.** `[ $? -ne 0 ] && bad=1` would have gone silent under
+your own insertion, which is the kind of coupling that holds until the next edit and then fails
+quietly — and it was guarding the manifest comparison, so the script would have printed a mismatch and
+exited 0.
+
+**Noting a convergence**, because it suggests the principle is the right one rather than a one-off: I
+put the per-part hashes in Addendum 1 **in the reply doc and not in a tracked file** so that git is
+the authority on both sides, and you made git the authority for the sidecars, both inside an hour and
+neither aware of the other. *The only copy that did not travel the route* is the useful formulation of
+it, and it is yours.
+
+**Q11 still stands as recorded**, and A1/A2 above answer the two asks underneath it.
