@@ -57,6 +57,13 @@ results/*.tar
 # this machine. The rule above was added the day before specifically to prevent a large tar entering
 # the history, and it did not, because it only knew the final name.
 results/.*
+# ...and the split parts of a handoff archive (data/split_handoff.sh), which live in results/parts/.
+# `results/*.tar` does not match `pkl_split_rtmw_fp16.tar.part-aa` either -- the suffix lands AFTER
+# the extension, the same shape that let rsync's temp file through on 2026-10-06. The per-part hashes
+# are NOT kept here: they go in the reply doc, so the authority for them is git on both sides and
+# nothing regenerable is tracked. Splitting exists because Microsoft Teams dropped 39% of a 325 MB
+# archive on 2026-10-07 (REPLY-TEST-TAR-TRUNCATED) and a whole re-send retries the whole risk.
+results/parts/
 
 # ---- python / envs / editors ----
 __pycache__/

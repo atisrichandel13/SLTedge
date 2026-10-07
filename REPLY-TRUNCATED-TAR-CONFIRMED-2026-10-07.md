@@ -117,3 +117,75 @@ genuinely unguarded leg is the Mac-to-Mac one in §2, which is also the one that
 
 Nothing else from me. Your §1 localisation was the right work to do before reporting it, and it meant
 I could confirm rather than re-investigate.
+
+---
+
+## Addendum, same day, after Tushar answered both asks
+
+Leaving §2 and §3 as written — they were honest about what I did not know, and this is what I did not
+know. **Both of your asks are answered and one of them reverses my §4.**
+
+### A1. The channel is Microsoft Teams
+
+That is what moved all four files to your Mac. So the leg is a chat file transfer, and your reading in
+§2 was the right one: **this is the silent-zero class.** A truncated delivery that leaves no
+`.crdownload`, a stable mtime, and a clean byte prefix is what a completed-but-short transfer through
+a chat client looks like — not a download that was interrupted and could resume.
+
+Worth recording because it also explains why the **dev** tar survived: nothing about Teams guarantees
+a 308 MB file and refuses a 325 MB one, so **the dev tar's success is not evidence the channel is
+sound.** It is one sample of a channel that has now failed once in two attempts on files of the same
+kind. Treat both as unverified-in-transit from here on; `data/verify_handoff.sh` is the response.
+
+### A2. Colab is linked to Atisri's Drive — so **you** upload, and my §4 was wrong
+
+This settles it in your favour and against what I wrote. If the Drive that Colab mounts is yours, the
+file has to reach **your** Google account, and no browser action of Tushar's puts it there.
+`REPLY-TEST-TAR` §4's *"the Drive upload is Tushar's browser step"* described a route that cannot
+work, and you were right to flag the inconsistency rather than assume I meant something sensible.
+
+**Consequence: the re-send is not optional**, and your §2 ask 1 was the live one all along. Do not
+delete your copy yet — rename it, so the parts below cannot be confused with it:
+
+```
+mv ~/Downloads/pkl_split_rtmw_fp16.tar ~/Downloads/pkl_split_rtmw_fp16.tar.BAD
+```
+
+### A3. Sending it in five verifiable parts, not as one 325 MB retry
+
+A whole re-send retries the whole risk and, if it fails again, tells us nothing we do not already
+know. `data/split_handoff.sh` (new, committed) splits the verified archive into 80 MB parts with a
+hash each, so **a second failure localises to one part and only that part is re-sent.**
+
+| part | bytes | sha256 |
+|---|---:|---|
+| `pkl_split_rtmw_fp16.tar.part-aa` | 83,886,080 | `ab552784bfffb7308b106fc8fa05b4354f7367b184d7f1ea61df9522ffab565c` |
+| `pkl_split_rtmw_fp16.tar.part-ab` | 83,886,080 | `03351e4d86c2d55ae41445171f9da7a5e1320d711e99c6f12745e3ab3ed8ddb6` |
+| `pkl_split_rtmw_fp16.tar.part-ac` | 83,886,080 | `463a7c553c087692e6c4a2c3f6b6ce821e211e6bbfdfe30832e4cbb7bc356dbf` |
+| `pkl_split_rtmw_fp16.tar.part-ad` | 83,886,080 | `ac70057c2e64f9f07de79ac7e7c690da844dfc3a88851e8f94ddac2046b354ec` |
+| `pkl_split_rtmw_fp16.tar.part-ae` | 4,956,160 | `1a71fa6f1c688a60263c1c37b0c9f8b546652d5eedf1f075622688b05127c8c1` |
+
+4 × 83,886,080 + 4,956,160 = **340,500,480**, the documented size. The hashes are in this doc and not
+in a tracked file on purpose: git is then the authority on both sides, and nothing regenerable enters
+the history (`.gitignore` takes `results/parts/`).
+
+On your side, in the directory holding the parts:
+
+```
+shasum -a 256 *.part-*                            # against the table above
+cat pkl_split_rtmw_fp16.tar.part-* > pkl_split_rtmw_fp16.tar
+./data/verify_handoff.sh pkl_split_rtmw_fp16.tar  # proves the rejoin, not just the parts
+```
+
+`cat` with a glob is correct here because `split` names parts `aa`, `ab`, `ac` in sequence, so shell
+glob order **is** the split order. The last line is the one that matters: five good parts do not prove
+a good rejoin, and the whole-archive hash does.
+
+**Verified round-trip before sending**: the five parts rejoined on this Mac give 340,500,480 bytes,
+`sha256` matching `results/pkl_split_rtmw_fp16.sha256`, and **931 clips against the manifest**.
+`split_handoff.sh` also refuses to split a source that fails its own sidecar — splitting a bad archive
+would produce parts that each verify while the whole stays wrong, which is the one failure this
+mechanism could invent.
+
+**Then the Drive upload is yours**, per A2, and the three files that belong in `sltedge/poses/` are the
+rejoined `.tar` plus the `.sha256` and `.manifest` you already have intact.
