@@ -91,10 +91,28 @@ LOCAL = _p("J9_LOCAL", "/content")            # where full/ and work/ live
 
 LABELS_DEV = f"{REPO}/data/openasl_labels/labels.dev"
 LABELS_TEST = f"{REPO}/data/openasl_labels/labels.test"
-MAN_DEV = f"{REPO}/results/pkl_dev_rtmw_fp16.manifest"
-MAN_TEST = f"{REPO}/results/pkl_split_rtmw_fp16.manifest"
+MAN_DEV = _p("J9_MAN_DEV", f"{REPO}/results/pkl_dev_rtmw_fp16.manifest")
+MAN_TEST = _p("J9_MAN_TEST", f"{REPO}/results/pkl_split_rtmw_fp16.manifest")
 
-N_DEV, N_TEST = 918, 931
+
+# DERIVED from the manifest, not hardcoded. These were 918 and 931 literals, which made the preflight
+# assert "the extract is complete" when the invariant that actually matters is "the pose directory is
+# the set we are about to train and score against". The two came apart on 2026-10-07: one dev clip
+# (rlUUw27_6kM-00:17:09.233-00:17:15.433) holds 7 frames of all-NaN confidence scores, was quarantined,
+# and the arm legitimately trains on 917 -- whereupon the literal 918 aborted a correct run with "a
+# short extract looks exactly like this", which is precisely what it was not.
+# Deriving the count keeps the guard's strength: a genuinely short extract still fails, because the
+# manifest it is compared against is the one the training step then checks member-by-member.
+def _manifest_n(path, fallback):
+    try:
+        with open(path) as fh:
+            return sum(1 for ln in fh if ln.strip())
+    except OSError:
+        return fallback          # reported as a missing input by the preflight below
+
+
+N_DEV = _manifest_n(MAN_DEV, 918)
+N_TEST = _manifest_n(MAN_TEST, 931)
 SEED = 42
 FPS = 24
 
@@ -147,8 +165,11 @@ for d, n, tar in ((POSES_DEV_OURS, N_DEV, "pkl_dev_rtmw_fp16.tar"),
                   (POSES_TEST_OURS, N_TEST, "pkl_split_rtmw_fp16.tar")):
     got = count_pkls(d)
     if got != n:
-        sys.exit(f"[j9] ABORT: {d} holds {got} pkl(s), expected {n}. A short extract looks exactly\n"
-                 f"      like this. Re-check {tar} against its .sha256 and extract again.")
+        sys.exit(f"[j9] ABORT: {d} holds {got} pkl(s), but the manifest it will be checked against\n"
+                 f"      names {n}. Either the extract is short -- re-check {tar} against its\n"
+                 f"      .sha256 and extract again -- or the directory and the manifest are not the\n"
+                 f"      same set, e.g. a clip was quarantined without pointing J9_MAN_DEV at the\n"
+                 f"      matching manifest.")
 print(f"[j9] preflight OK: {N_DEV} dev + {N_TEST} test pkls, checkpoint and labels present")
 
 for d in (E, FULL, WORK):
