@@ -32,7 +32,12 @@ fi
 
 bytes_of() { wc -c < "$1" | tr -d ' '; }
 
-if stat -f %m . >/dev/null 2>&1; then mtime_of() { stat -f %m "$1"; }; else mtime_of() { stat -c %Y "$1"; }; fi
+# Probe with the GNU form FIRST. The obvious probe -- `stat -f %m` succeeding means BSD -- is wrong:
+# on GNU `stat -f` means FILESYSTEM info and %m is the MOUNT POINT, so it succeeds on Linux too and
+# returns a path. mtime_of would then yield "/content" and the age arithmetic below dies with a bash
+# syntax error, on Linux only, on the failure path only. `stat -c` has no GNU/BSD ambiguity: BSD stat
+# rejects -c outright. Caught 2026-10-07 before this ran on Colab; the board is Linux too.
+if stat -c %Y . >/dev/null 2>&1; then mtime_of() { stat -c %Y "$1"; }; else mtime_of() { stat -f %m "$1"; }; fi
 
 bad=0
 for TAR in "$@"; do
