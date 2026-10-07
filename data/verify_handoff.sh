@@ -40,6 +40,55 @@ for TAR in "$@"; do
         [ -f "$s" ] || { echo "[vfy]   ABORT: missing sidecar $s"; bad=1; continue 2; }
     done
 
+    # CROSS-CHECK THE SIDECARS AGAINST THE REPO'S COMMITTED COPIES. The .sha256 and .manifest that
+    # arrive beside the tar rode the SAME leg as the payload, so they are the weaker authority. A short
+    # transfer leaves them intact -- that is why they were usable on 2026-10-07 -- but that is luck
+    # about which file the truncation landed in, not a property of the route. The case they cannot
+    # catch is a rebuilt-or-restaged pair that agrees with itself: sidecar and tar match, and neither
+    # is the artefact the repo names. git is the only copy that did not travel the failing route, so it
+    # is the authority of record. All four sidecars are committed under results/.
+    #
+    # On disagreement this ABORTS rather than preferring either one. Which build is current is a
+    # question for the pose track; guessing past it is how a clean-looking number ends up measuring the
+    # wrong set of clips.
+    REPO_RESULTS="$(cd "$(dirname "${BASH_SOURCE[0]}")/../results" 2>/dev/null && pwd)" || REPO_RESULTS=""
+    SIDE_DIR="$(cd "$(dirname "$BASE")" 2>/dev/null && pwd)" || SIDE_DIR=""
+    NAME="$(basename "$BASE")"
+    if [ -n "$REPO_RESULTS" ] && [ "$SIDE_DIR" != "$REPO_RESULTS" ]; then
+        if [ -f "$REPO_RESULTS/$NAME.sha256" ]; then
+            ship_h=$(cut -d' ' -f1 "$BASE.sha256")
+            repo_h=$(cut -d' ' -f1 "$REPO_RESULTS/$NAME.sha256")
+            if [ "$ship_h" != "$repo_h" ]; then
+                echo "[vfy]   ABORT: shipped .sha256 disagrees with results/$NAME.sha256"
+                echo "[vfy]     shipped $ship_h"
+                echo "[vfy]     repo    $repo_h"
+                echo "[vfy]     Do not proceed on either. Ask which build is current."
+                bad=1
+                continue
+            fi
+            echo "[vfy]   sidecar sha256 agrees with results/$NAME.sha256"
+        fi
+        if [ -f "$REPO_RESULTS/$NAME.manifest" ]; then
+            # Set comparison again, for the collation reason documented below.
+            if ! python3 - "$BASE.manifest" "$REPO_RESULTS/$NAME.manifest" <<'PYMAN'
+import sys
+a = {ln.strip() for ln in open(sys.argv[1]) if ln.strip()}
+b = {ln.strip() for ln in open(sys.argv[2]) if ln.strip()}
+if a != b:
+    sys.exit("[vfy]   ABORT: shipped .manifest disagrees with the committed one: "
+             "%d shipped, %d committed, %d only-shipped %s, %d only-committed %s"
+             % (len(a), len(b), len(a - b), sorted(a - b)[:3], len(b - a), sorted(b - a)[:3]))
+print("[vfy]   sidecar manifest agrees with results/%s.manifest  (%d clips)"
+      % (sys.argv[2].rsplit("/", 1)[-1][:-9], len(a)))
+PYMAN
+            then
+                echo "[vfy]     Do not proceed. Ask which clip set is current."
+                bad=1
+                continue
+            fi
+        fi
+    fi
+
     want_hash=$(cut -d' ' -f1 "$BASE.sha256")
     got_hash=$(hash_of "$TAR")
     got_bytes=$(bytes_of "$TAR")
@@ -90,7 +139,7 @@ if len(entries) != len(have):
     sys.exit("[vfy]   ABORT: %d entries collapse to %d names -- duplicates" % (len(entries), len(have)))
 print("[vfy]   manifest OK  %d clips" % len(have))
 PYCHK
-    [ $? -ne 0 ] && bad=1
+    if [ $? -ne 0 ]; then bad=1; fi
 done
 
 if [ "$bad" -ne 0 ]; then
