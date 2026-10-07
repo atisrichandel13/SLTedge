@@ -1,5 +1,28 @@
 # Open questions from the pose track
 
+> **SUPERSEDED IN TWO PLACES, 2026-10-07 — the status blocks below are kept as written, not rewritten,
+> because one of them states a route that cannot work and that is worth leaving legible.**
+>
+> **1. J9 step 2 is no longer blocked. Both pose tars are on Drive and Colab sees them**, at
+> 307,998,720 bytes (dev, 918 clips) and 340,500,480 bytes (test, 931 clips) — byte-identical to the
+> archives `data/package_dev_poses.sh` built, verified on both Macs by `data/verify_handoff.sh`. The
+> test tar was added to the handoff after `REPLY-Q10-TEST-POSES-TOO-2026-10-07.md:8-20` showed the
+> original ask was one tar short: dev is the training input, but step 3 scores on test. So step 2 has
+> both arms and the only remaining item in the project is the **demo video**, which needs a recording
+> session.
+>
+> **2. "A browser action from the pose-track Mac" was wrong, and it was wrong about whose browser.**
+> Both status blocks below say the upload is mine to do. **Colab is linked to the LM track's Drive**,
+> so the upload could only ever come from the LM-track Mac; the pose-track Mac has no route to that
+> Drive, with or without a browser. What was actually mine was getting the bytes to the LM-track Mac
+> intact, and that leg had no verification at all until the test tar arrived truncated at
+> 208,823,294 of 340,500,480 bytes over Teams — a clean prefix that `tar -tf` read 591 of 931 members
+> from without erroring. Re-sent as five hashed parts, rejoined and verified there, then uploaded.
+> `data/verify_handoff.sh` now checks that leg, with git as the authority for the sidecars (they rode
+> the same failing route) and a settle loop so an in-flight transfer is not called a truncation.
+> **Not claimed: that splitting fixed anything** — one failure in seven deliveries cannot separate a
+> size limit from chance.
+
 > **Status 2026-10-05, after `ANSWERS-Q1-Q7`, `REPLY-Q2-SCALE` and `ec7371f`:** Q1a, Q1b, Q3a, Q3b,
 > Q4, Q5, Q7, Q8 **all resolved** (see inline). Q2 **decided by Tushar — J9 proceeds**, with their
 > probe (`colab_probe_scale.py`) accepted in parallel. Q6 **deferred to after the project**, no answer
