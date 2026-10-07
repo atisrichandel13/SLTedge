@@ -191,10 +191,23 @@ if todo:
 print("\n[probe] SCALING CURVE -- adaptation gain vs training-set size")
 print("All rows: 16 fps, seed 42, lr 1e-5, ls 0.0, warmup 0.1, 1 epoch, scored on 967 dev clips,")
 print("paired against the same un-adapted 16 fps baseline.\n")
+def bleu4_of(ev_json):
+    """eval_openasl writes bleu as a DICT {bleu1..bleu4}, not a float.
+
+    FIXED 2026-10-07. This block shipped formatting ev["bleu"] directly, which raises
+    "unsupported format string passed to dict.__format__" -- so the summary crashed AFTER every rung
+    had been trained and bootstrapped, and L17's curve had to be reconstructed from the artifacts by
+    hand. The artifacts were fine; only the printer was broken. Verified against all five
+    results/probe_scale/evals/*.json and the 931-clip board arms: bleu is a dict in every vintage.
+    """
+    b = ev_json["bleu"]
+    return b["bleu4"] if isinstance(b, dict) else b
+
+
 b = json.load(open(base))
 print(f"{'n_train':>8}  {'BLEU-4':>7}  {'d BLEU-4':>22}  {'ROUGE-L':>8}  {'d ROUGE-L':>22}")
-print(f"{'un-adapt':>8}  {b['bleu']:>7.2f}  {'(baseline)':>22}  {b['rouge_l']:>8.2f}  {'(baseline)':>22}")
-summary = {"baseline": {"bleu4": b["bleu"], "rouge_l": b["rouge_l"]}, "rungs": {}}
+print(f"{'un-adapt':>8}  {bleu4_of(b):>7.2f}  {'(baseline)':>22}  {b['rouge_l']:>8.2f}  {'(baseline)':>22}")
+summary = {"baseline": {"bleu4": bleu4_of(b), "rouge_l": b["rouge_l"]}, "rungs": {}}
 for n, ev, ci in rows:
     e, c = json.load(open(ev)), json.load(open(ci))
     # bootstrap_ci.py writes {"bleu4": {"delta":…, "ci":[lo,hi]}, "rouge_l": {…}} -- verified
@@ -202,8 +215,8 @@ for n, ev, ci in rows:
     def fmt(m):
         d = c[m]
         return f"{d['delta']:+.2f} [{d['ci'][0]:+.2f}, {d['ci'][1]:+.2f}]"
-    print(f"{n:>8}  {e['bleu']:>7.2f}  {fmt('bleu4'):>22}  {e['rouge_l']:>8.2f}  {fmt('rouge_l'):>22}")
-    summary["rungs"][n] = {"bleu4": e["bleu"], "rouge_l": e["rouge_l"], "ci": c}
+    print(f"{n:>8}  {bleu4_of(e):>7.2f}  {fmt('bleu4'):>22}  {e['rouge_l']:>8.2f}  {fmt('rouge_l'):>22}")
+    summary["rungs"][n] = {"bleu4": bleu4_of(e), "rouge_l": e["rouge_l"], "ci": c}
 json.dump(summary, open(f"{OUT}/scaling_curve.json", "w"), indent=1)
 
 print(f"\n[probe] wrote {OUT}/scaling_curve.json")
