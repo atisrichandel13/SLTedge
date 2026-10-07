@@ -4,14 +4,14 @@
 
 Atisri Chandel (language-model track) · Tushar Goyal (pose track, all board runs)
 
-> **Status.** Every number here is measured and traceable to a file in `results/`. Two items are
-> outstanding and are marked where they appear: **J9 step 2** (the adaptation training, the one
-> remaining accuracy lever — step 1, the 918-clip dev pose extraction, is delivered and verified,
-> §2.5l) and the **demo video**. Nothing in this draft depends on either.
+> **Status.** Every number here is measured and traceable to a file in `results/`. **One** item is
+> outstanding and is marked where it appears: the **demo video**. Nothing in this draft depends on it.
 >
-> **Updated 2026-10-06.** The accuracy numbers here are at **n=931**, not the n=400 subset an earlier
-> draft used, and the pose deficit is **−1.41 [−2.19, −0.63]**, not −2.24 (§2.5k, §L19). J10 has also
-> run (§2.9E) with a negative result, so the frontier's beam-width caveat is **narrowed, not closed**.
+> **Updated 2026-10-07. J9 step 2 has run and the last accuracy lever is closed, not deferred:**
+> adaptation to our own keypoints is a **null**, and the interval **excludes** the effect that
+> motivated it (§5, §L26). Accuracy is at **n=931** and the pose deficit is **−1.41 [−2.19, −0.63]**
+> (§2.5k, §L19). J10 ran with a negative result (§2.9E), so the frontier's beam-width caveat is
+> **narrowed, not closed**.
 
 ---
 
@@ -268,18 +268,26 @@ own board extraction, pruned checkpoint, 24 fps, beam 4, batch 1:
 - The authors' poses came from the **same** 256×192 RTMW/RTMPose family we use, so there is no
   better-architecture upgrade available.
 
-**So the gap is a training-distribution shift, not an extraction failure** — the model was fitted on
-the authors' keypoints and never saw our extractor's noise. That makes **adaptation** the lever and a
-pose-model swap a poor use of board time.
+**The gap looked like a training-distribution shift rather than an extraction failure** — the model
+was fitted on the authors' keypoints and never saw our extractor's noise, which made **adaptation**
+the obvious lever. **We tested it, and it is not.**
 
-> **Outstanding (J9).** Fine-tuning the pose encoder on dev-split poses from our own extractor, then
-> evaluating on the test clips, is specified in `ASK-ADAPT-TO-OUR-POSES-2026-10-05.md` and has not
-> been run. **The target is 21.73 with a ceiling of 23.14, on all 931 paired clips** (updated
-> 2026-10-05 from 21.57/23.81 at n=400). Supporting evidence that it should work: the harness already
-> *improves* the model (+0.18 BLEU-4 / +0.70 ROUGE-L) with **no** distribution shift to adapt to.
-> **Counter-evidence that it may not be resolvable:** §L17 sizes the expected recovery at ~39 % of the
-> gap, which is +0.55 against the measured ±0.778 half-width at n=931, so an effect of the predicted
-> size would come back *not established* even at full width. Open as Q9 to the LM track.
+> **J9, run 2026-10-07 (§L26).** Three arms in one checkpoint lineage, scored on all 931 paired clips.
+> The contrast of record — adapted on **our** poses minus adapted on the **authors'** — is **−0.1263
+> BLEU-4, 95 % CI [−0.4973, +0.2488]: not established.** Both adapted arms came out slightly *below*
+> un-adapted.
+>
+> **The bound matters more than the null.** §L17's predicted recovery of 39 % of the gap is **+0.5490**
+> and §L21's pre-agreed bar was **+0.7785** — **both lie outside the interval**, so a benefit larger
+> than **+17.67 %** of the gap is excluded at 95 %. The control arm is what makes that readable:
+> §L15.2 showed this harness gains from fine-tuning on dev clips with *no* shift to adapt to, so
+> "adapted beats un-adapted" would have isolated nothing.
+>
+> **The deficit therefore stays with architecture, crop and normalisation.** Quantisation is excluded
+> to within 11 % (§2.5m), adaptation to within ~18 %. This does **not** license "adaptation does not
+> work": the test set is exhausted at 931 clips (§L20), so 0.71 is a detectability **cap**, not a
+> waypoint. §L21's bar was itself 2.09× too conservative — real detectability was 26.5 %, because arms
+> sharing an extractor cancel more under paired resampling than a cross-axis projection assumes.
 
 ---
 
@@ -385,9 +393,9 @@ different decode protocols (batch 8 and batch 1), and §L18 measures the ROUGE-L
 ~0.35 — negligible for BLEU-4 at ≤0.05, but not for ROUGE-L. The point each row makes is internal to
 it, so the comparison the table exists for is unaffected; comparing −1.34 against −1.11 as magnitudes
 is not. Our first reading was "ROUGE-L is more powerful than BLEU-4",
-which is **wrong**: BLEU-4's interval is the *narrower* of the two in **all four** comparisons we have
-on shared draws (by 10–26 %, each ±~5 percentage points from bootstrap noise — the sign is stable, the
-magnitudes are not). Precision never reversed; **effect size** did.
+which is **wrong**: BLEU-4's interval is the *narrower* of the two in **all seven** comparisons we have
+on shared draws, three of them added by J9 (by 7–26 %, each ±~5 percentage points
+from bootstrap noise — the sign is stable, the magnitudes are not). Precision never reversed; **effect size** did.
 
 The defensible claim: **BLEU-4 is precise and partly blind to fluency-type degradation; ROUGE-L is
 noisier and responds to it.** Our working explanation, untested: frame-rate thinning and adaptation
@@ -465,9 +473,8 @@ the decode-knob and frame-rate studies; the frontier; the full C9 protocol inclu
 and process-level repeats; end-to-end deployment of the recommended cell; the accuracy of the shipped
 system at **n=931, every paired test clip that exists**, and the diagnosis of its one deficit.
 
-**Outstanding:** **J9 step 2** — the adaptation training itself, the single remaining accuracy lever.
-Step 1 is **done**: 918 dev clips extracted on the board in 95.5 min, packaged and checksummed
-(§2.5l). And the **demo video**, which needs a recording session rather than compute.
+**Outstanding:** the **demo video**, which needs a recording session rather than compute. **J9 step 2
+is done** (§L26) — the single remaining accuracy lever was tested and closed, not deferred.
 
 **The FP16 re-test at scale is DONE** (§2.5m, 2026-10-06): not established at n=931, ±0.285, and
 quantisation is excluded from the pose deficit. That closes the last open accuracy question the board
