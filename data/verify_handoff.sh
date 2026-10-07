@@ -32,11 +32,17 @@ fi
 
 bytes_of() { wc -c < "$1" | tr -d ' '; }
 
-# Probe with the GNU form FIRST. The obvious probe -- `stat -f %m` succeeding means BSD -- is wrong:
-# on GNU `stat -f` means FILESYSTEM info and %m is the MOUNT POINT, so it succeeds on Linux too and
-# returns a path. mtime_of would then yield "/content" and the age arithmetic below dies with a bash
-# syntax error, on Linux only, on the failure path only. `stat -c` has no GNU/BSD ambiguity: BSD stat
-# rejects -c outright. Caught 2026-10-07 before this ran on Colab; the board is Linux too.
+# Probe with the GNU form FIRST, because `stat -f %m .` is an AMBIGUOUS probe -- NOT, as the first
+# version of this comment asserted, one that is actively wrong on GNU. Corrected 2026-10-07 against a
+# measurement on jetson-lpcv-03 (GNU coreutils 8.32): `stat -f %m . >/dev/null 2>&1` exits **1** there,
+# so the old probe selected the `stat -c %Y` branch, which is the correct one, and the failure
+# described here originally could not occur. The mechanism is not that `-f %m` succeeds: `-f` is
+# --file-system and a FORMAT needs -c, so `%m` is read as a FILENAME operand and stat fails on it.
+# (`stat -f -c %m .` prints `?` on that filesystem, so even read as a format it yields no path.)
+# The real exposure is narrow but still worth removing: the old probe picks the BSD branch on Linux
+# only if a file literally named `%m` exists in the working directory. `stat -c %Y` has no such
+# reading in either direction -- BSD stat rejects -c outright (`stat: illegal option -- c`) -- so the
+# ambiguity costs nothing to eliminate. Kept on that ground, not on the original one.
 if stat -c %Y . >/dev/null 2>&1; then mtime_of() { stat -c %Y "$1"; }; else mtime_of() { stat -f %m "$1"; }; fi
 
 bad=0
