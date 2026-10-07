@@ -1,0 +1,45 @@
+[j9] preflight OK: 917 dev + 931 test pkls, checkpoint and labels present
+[j9] unadapted: already evaluated, skipping
+[j9] adapt_ours: full checkpoint already on local disk, skipping training
+
+[j9] eval adapt_ours on 931 test clips
+[j9] authors' dev poses present (967 pkls)
+
+[j9] train adapt_theirs
+
+[j9] eval adapt_theirs on 931 test clips
+
+[j9] 3 bootstrap(s) over 3 worker(s)
+[j9] bootstrap ours_vs_unadapt done
+[j9] bootstrap theirs_vs_unadapt done
+[j9] bootstrap ours_vs_theirs done
+
+==============================================================================
+J9 step 2 -- adaptation to our own keypoints, with the control arm
+==============================================================================
+All arms: pruned_traindev lineage (keep set 26,025), fps 24, lr 1e-5, ls 0.0, 1 epoch,
+seed 42; scored on 931 OUR test clips, beam 4, batch 1, cap 64.
+Absolute BLEU-4 is NOT comparable with the board's 21.73 -- different vocabulary. The
+deltas are, because the lineage offset is shared by every arm and cancels.
+
+  un-adapted          BLEU-4  21.73   ROUGE-L  41.82
+  adapted on OURS     BLEU-4  21.46   ROUGE-L  41.62
+  adapted on THEIRS   BLEU-4  21.58   ROUGE-L  41.88
+
+comparison               BLEU-4               95% CI   ROUGE-L               95% CI
+ours_vs_unadapt           -0.27 [  -0.72,  +0.21]     -0.20 [  -0.75,  +0.39]
+theirs_vs_unadapt         -0.15 [  -0.59,  +0.31]     +0.06 [  -0.42,  +0.61]
+ours_vs_theirs            -0.13 [  -0.50,  +0.25]     -0.26 [  -0.67,  +0.13]
+
+--- the contrast of record: adapted-on-ours minus adapted-on-theirs ---
+  BLEU-4 -0.1263  95% CI [-0.4973, +0.2488]  -> NOT established
+  as a share of the -1.4077 pose deficit: -9.0%
+  the bar agreed before this ran (L21): 55.3% of the gap, i.e. +0.778
+  -> does NOT clear the bar. This was the PREDICTED outcome: L17 sizes the expected
+     recovery at ~39 % against a 55.3 % bar, and L21 recorded that before the run.
+     A null here does NOT license 'adaptation does not work' -- the test set is
+     exhausted at 931 clips (L20), so 0.71 detectability is a CAP, not a waypoint.
+
+[j9] wrote /content/drive/MyDrive/sltedge/j9_step2/j9_step2_summary.json
+[j9] Drive holds the evals, the CIs and this summary. The ~570 MB checkpoints are on local
+[j9] disk at /content/full and are NOT backed up -- re-running retrains only what is missing.

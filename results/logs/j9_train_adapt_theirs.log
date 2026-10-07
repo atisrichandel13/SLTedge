@@ -1,0 +1,13 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791394251.001355   23121 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1791394251.069890   23121 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791394253.445491   23121 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1791394253.445977   23121 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[train] trainable 5.35 M of 243.5 M params; target fps 24.0; max_length 256
+[train] 967 clips, 242 batches/epoch, batch 4 x accum 2
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[train] ep 0 step 100 loss 1.7345 lr 8.88e-07 800/967 clips  0.05 s/clip  eta 0.1 min
+[train] epoch 0 done: loss 1.7146, 50 s
+[train] wrote /content/work/adapt_theirs/last.pt and /content/full/adapt_theirs.pth (570 MB)
