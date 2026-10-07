@@ -36,7 +36,13 @@ import os
 import subprocess
 import sys
 
-sys.stdout.reconfigure(line_buffering=True)
+# getattr, not a bare call: under IPython sys.stdout is an ipykernel OutStream with NO reconfigure,
+# so importing this module inside a Colab cell dies with AttributeError before anything runs. Hit for
+# real 2026-10-07 importing colab_setup to skip its unused archive step. Under `!python file.py`
+# stdout is a real TextIOWrapper and this behaves exactly as before; IPython already line-buffers.
+_rc = getattr(sys.stdout, "reconfigure", None)
+if _rc:
+    _rc(line_buffering=True)
 
 R = "/content/runs/block5"
 CKPT = "/content/pruned_traindev.pth"

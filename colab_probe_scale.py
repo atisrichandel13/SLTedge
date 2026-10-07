@@ -63,7 +63,13 @@ import sys
 
 # Line-buffer stdout: under nohup with output redirected, Python block-buffers and a healthy run
 # looks hung for minutes. This has caused three false "it died" diagnoses on this project.
-sys.stdout.reconfigure(line_buffering=True)
+# getattr, not a bare call: under IPython sys.stdout is an ipykernel OutStream with NO reconfigure,
+# so importing this module inside a Colab cell dies with AttributeError before anything runs. Hit for
+# real 2026-10-07 importing colab_setup to skip its unused archive step. Under `!python file.py`
+# stdout is a real TextIOWrapper and this behaves exactly as before; IPython already line-buffers.
+_rc = getattr(sys.stdout, "reconfigure", None)
+if _rc:
+    _rc(line_buffering=True)
 
 P = sys.executable
 CKPT = "/content/pruned_traindev.pth"
