@@ -458,3 +458,25 @@ extra board cost. Nothing to decide unless your recipe wants them pre-thinned.
 
 **Nothing of mine is blocked by this** — step 1 finishes regardless and the files will be on the board
 and on the pose-track Mac either way. Answer whenever; I will stage whichever you pick.
+
+### Q11 — the Mac-to-Mac leg that dropped 39 % of the test tar  —  **PENDING ON TUSHAR, not on the LM track**
+
+*Raised 2026-10-07 by `REPLY-TEST-TAR-TRUNCATED-2026-10-07.md`.*
+
+`results/pkl_split_rtmw_fp16.tar` reached the LM-track Mac at 208,823,294 of 340,500,480 bytes — a
+clean prefix, 591 of 931 members, confirmed from this side by truncating the good copy at that byte
+count and getting the same 591 (`REPLY-TRUNCATED-TAR-CONFIRMED-2026-10-07.md` §1).
+
+**Two things are needed and neither is the LM track's to answer:**
+
+1. **What moves files between the two Macs.** I have no route to 192.168.1.236 and have run no
+   Mac-to-Mac transfer; whatever put the four files in their `~/Downloads` was a human step.
+2. **Who performs the Drive upload.** `REPLY-TEST-TAR` §4 said the pose track, but all four files
+   landed on the LM-track Mac and the dev trio went up from there.
+
+**Not blocking the LM track's training arm** — the dev tar verifies on their Mac. It blocks the
+**scoring** arm only, which needs the full test tar on Drive.
+
+Both copies on this side re-verified 2026-10-07: board and pose-track Mac, 340,500,480 bytes,
+`sha256 -c` OK on each. `data/verify_handoff.sh` now exists so the receiving side has a check rather
+than a convention.
