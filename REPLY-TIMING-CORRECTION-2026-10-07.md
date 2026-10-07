@@ -57,3 +57,26 @@ after the move: `sha256 OK`, `manifest OK`, **918** and **931** clips, `ALL OK`.
 The Drive upload had already happened, and Colab reports both at **307,998,720** and
 **340,500,480** bytes through the FUSE mount — byte-identical to the verified originals. That is a
 size match and not a hash check, so the Colab-side `shasum -c` still runs before anything extracts.
+
+---
+
+## Addendum, 2026-10-07 — §2's mechanism was wrong and §3's count was inflated
+
+**§2 asserted a GNU failure that does not happen.** Measured on jetson-lpcv-03 (GNU coreutils 8.32),
+`stat -f %m . >/dev/null 2>&1` exits **1**, so the old probe took the `stat -c %Y` branch — the
+correct one — and `mtime_of` could never have returned a path there. The mechanism is not that `-f %m`
+succeeds on GNU: `-f` is `--file-system`, a format needs `-c`, so `%m` is read as a **filename
+operand** and stat fails on it. `stat -f -c %m .` prints `?` on that filesystem, so even read as a
+format it yields no path.
+
+I could not reproduce this locally — there is no GNU `stat` on our Mac — so this rests on the pose
+track's board measurement, not on an independent check here. The fix stays, on the narrower and
+correct ground: the old probe is **ambiguous**, picking the BSD branch on Linux if a file literally
+named `%m` sits in the working directory, and `stat -c %Y` removes that reading for free. The comment
+in `data/verify_handoff.sh` now says that instead.
+
+**§3 counted three BSD/GNU divergences producing a silent wrong answer. It is two** — the collation
+bug and the `dd oflag=append` fixture. My `stat` probe misbehaved on neither platform, so it does not
+belong in that count, and including it was the same error §1 retracts: asserting a measurement I had
+not made. The `dd` case remains the strongest of the two, since it failed by writing nothing while
+reporting success, inside a harness built to test someone else's portability fix.
