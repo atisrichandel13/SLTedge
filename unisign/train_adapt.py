@@ -168,6 +168,12 @@ def main():
     ap.add_argument("--weight-decay", type=float, default=1e-4)
     ap.add_argument("--warmup-epochs", type=float, default=0.0)
     ap.add_argument("--clip-grad", type=float, default=1.0)
+    ap.add_argument("--skip-nonfinite", action="store_true",
+                    help="drop a batch whose loss is NaN/inf and keep going, instead of aborting. "
+                         "OFF by default: one non-finite loss poisons every trainable parameter, so "
+                         "continuing silently is how a 570 MB checkpoint of NaNs gets written and "
+                         "scored (seen 2026-10-07, J9 step 2 arm 2: BLEU-4 0.00, every clip decoded "
+                         "as 'a').")
     ap.add_argument("--label-smoothing", type=float, default=0.2)
     ap.add_argument("--freeze-bn", action="store_true", help="keep BatchNorm running stats fixed (small-batch CPU runs)")
     ap.add_argument("--num-workers", type=int, default=2)
@@ -264,9 +270,26 @@ def main():
     start_epoch, step, skip_batches = 0, 0, 0
     last_path = os.path.join(args.out_dir, "last.pt")
 
+    def assert_finite_params(where):
+        """Refuse to write a checkpoint built from non-finite weights.
+
+        The 2026-10-07 failure wrote last.pt AND a 570 MB --full-out from NaN parameters and exited
+        0. Nothing downstream could tell that file from a good one: it loads, it generates, it scores,
+        and colab_j9_step2.py treats its existence as the skip key for "this arm is trained". A
+        checkpoint that cannot be distinguished from a healthy one is worse than no checkpoint.
+        """
+        bad = [n for n, prm in model.named_parameters()
+               if prm.requires_grad and not torch.isfinite(prm).all()]
+        if bad:
+            raise SystemExit(
+                f"[train] ABORT at {where}: {len(bad)} trainable tensor(s) hold NaN/inf; refusing to\n"
+                f"      save. First: {bad[:5]}\n"
+                "      Nothing was written, so no poisoned checkpoint can be picked up as a skip key.")
+
     def save_ckpt(epoch, step, batch_in_epoch, epoch_done):
         """Atomic: write to .tmp then os.replace. On Drive a session dying mid-write would
         otherwise leave a truncated last.pt and destroy the run it was meant to protect."""
+        assert_finite_params(f"save_ckpt(epoch={epoch}, step={step})")
         tmp = last_path + ".tmp"
         torch.save({"trainable": trainable_state(model), "optimizer": opt.state_dict(),
                     "scheduler": sched.state_dict(), "epoch": epoch, "step": step,
@@ -306,6 +329,7 @@ def main():
                     m.eval()
         model.mt5_model.eval()  # frozen LM: no dropout inside mT5
         t0, run_loss, run_tok, n_seen = time.perf_counter(), 0.0, 0, 0
+        n_skipped = 0
         opt.zero_grad(set_to_none=True)
         dl_gen.manual_seed(args.seed * 100003 + epoch)   # reproducible order for this epoch
         if skip_batches:
@@ -316,6 +340,28 @@ def main():
             src = to_device(src, args.device)
             with torch.autocast(device_type="cuda", dtype=torch.bfloat16, enabled=use_amp):
                 loss, ntok = compute_loss(model, src, texts, args.label_smoothing)
+            # GUARD BEFORE BACKWARD. A non-finite loss must never reach .backward(): it writes
+            # NaN into every one of the 5.35 M trainable tensors in a single step, and from then on
+            # the run looks healthy -- it trains, it saves, it scores, it exits 0. On 2026-10-07 this
+            # arm reported "loss 1.7359" at step 100 and "loss nan" at step 115, and the 570 MB
+            # checkpoint it wrote scored BLEU-4 0.00 with every clip decoded as "a".
+            # ntok == 0 is included because cross_entropy over an all-ignored target returns NaN, and
+            # because run_loss += nan * 0 is still nan, which is how the epoch average lost the
+            # evidence of which batch did it.
+            if ntok == 0 or not torch.isfinite(loss):
+                names_b = src.get("name_batch", ["<no name_batch>"])
+                lens_b = src.get("src_length_batch")
+                detail = (f"[train] non-finite loss at epoch {epoch} batch {i}: "
+                          f"loss={loss.item()!r} ntok={ntok}\n"
+                          f"      clips: {list(names_b)}\n"
+                          f"      frames: {lens_b.tolist() if lens_b is not None else '<unknown>'}")
+                if not args.skip_nonfinite:
+                    raise SystemExit(detail + "\n      ABORTED before backward; nothing saved. Re-run "
+                                              "with --skip-nonfinite to drop such batches instead.")
+                n_skipped += 1
+                print(detail + "  -- SKIPPED (--skip-nonfinite)", flush=True)
+                opt.zero_grad(set_to_none=True)
+                continue
             (loss / args.accum).backward()
             run_loss += loss.item() * ntok; run_tok += ntok; n_seen += len(texts)
             if (i + 1) % args.accum == 0 or (i + 1) == len(dl):
@@ -334,6 +380,11 @@ def main():
                     print(f"[train] checkpoint at ep {epoch} step {step} (batch {i+1}/{len(dl)})", flush=True)
         skip_batches = 0                                 # only the resumed epoch skips
         ep_loss = run_loss / max(1, run_tok)
+        if n_skipped:
+            print(f"[train] WARNING: {n_skipped} batch(es) skipped for non-finite loss this epoch. "
+                  f"The arm was NOT trained on all {len(names)} clips; say so wherever it is reported.")
+        if not (ep_loss == ep_loss):          # NaN survived into the epoch average
+            raise SystemExit(f"[train] ABORT: epoch {epoch} average loss is NaN. Nothing saved.")
         print(f"[train] epoch {epoch} done: loss {ep_loss:.4f}, {time.perf_counter()-t0:.0f} s")
         log({"epoch_done": epoch, "loss": round(ep_loss, 4), "wall_s": round(time.perf_counter() - t0)})
         save_ckpt(epoch, step, len(dl), epoch_done=True)
@@ -349,6 +400,9 @@ def main():
                       for k, v in model.state_dict().items()}}
     if getattr(model, "keep_ids", None) is not None:
         full["keep_ids"] = model.keep_ids.tolist()
+    # The --full-out checkpoint is the one colab_j9_step2.py uses as its "already trained" skip key,
+    # so a poisoned one does not just score badly -- it makes a re-run decline to fix itself.
+    assert_finite_params("--full-out save")
     full_path = args.full_out or os.path.join(args.out_dir, "adapted_full.pth")
     os.makedirs(os.path.dirname(os.path.abspath(full_path)), exist_ok=True)
     torch.save(full, full_path)
