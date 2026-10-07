@@ -4007,3 +4007,13 @@ Nano, different torch). §L18's device axis alone was 0.0514, so the combined of
 than that one axis. ROUGE-L agrees: 41.8178 vs 41.8239, a gap of 0.0061. This does **not** retroactively
 license comparing Colab arms against board arms — one pair of numbers on one arm is not a
 characterisation — but it is evidence the 53 test-only tokens are essentially never generated.
+
+> **Reproduced on a second machine, 2026-10-07.** Re-running `unisign.bootstrap_ci` on this Mac from
+> the committed `j9_eval_test_*.json` returns the contrast **bit-identically** — BLEU-4
+> −0.1263255165920576 with bounds [−0.4972893830687156, +0.24880052603283836], and ROUGE-L
+> −0.2579979958514187 with [−0.6735365353799697, +0.13110262367496997], to full float precision on
+> both metrics. **What that establishes is narrower than it looks**: the draws are seeded
+> deterministically, so this confirms the artifacts survived Drive → browser → zip → repo intact and
+> that the computation is hardware-independent. It is **not** a second statistical sample — it says
+> nothing about the interval's stability under different draws, and a differently-seeded run would
+> move the bounds.
