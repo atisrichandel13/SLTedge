@@ -32,6 +32,8 @@ fi
 
 bytes_of() { wc -c < "$1" | tr -d ' '; }
 
+if stat -f %m . >/dev/null 2>&1; then mtime_of() { stat -f %m "$1"; }; else mtime_of() { stat -c %Y "$1"; }; fi
+
 bad=0
 for TAR in "$@"; do
     BASE="${TAR%.tar}"
@@ -90,6 +92,10 @@ PYMAN
     fi
 
     want_hash=$(cut -d' ' -f1 "$BASE.sha256")
+    # Size on BOTH sides of the hash read. Reading 325 MB takes about a second, which costs nothing and
+    # is a free settle interval: if the file grew across it, the transfer is still running and the
+    # mismatch below is not a verdict. See the IN FLIGHT branch for why this is not a nicety.
+    bytes_before=$(bytes_of "$TAR")
     got_hash=$(hash_of "$TAR")
     got_bytes=$(bytes_of "$TAR")
     man_n=$(grep -c '[^[:space:]]' "$BASE.manifest")
@@ -101,6 +107,40 @@ PYMAN
         echo "[vfy]     expected $want_hash"
         echo "[vfy]     got      $got_hash"
         echo "[vfy]     $got_bytes bytes on disk"
+        # IS IT STILL ARRIVING? Decided BEFORE calling it a bad transfer, because a short file being
+        # written and a short file abandoned are indistinguishable from ONE sample, and a premature
+        # "re-send it" asks for a 325 MB resend of a file that was going to be fine. Seen for real on
+        # 2026-10-07: all five Teams parts measured short at 10:54:14 and four were complete and
+        # hash-correct twenty seconds later, looking no different from the 61% truncation half an hour
+        # before.
+        #
+        # This costs SLT_SETTLE_S x 3 seconds and ONLY on the failure path -- a good archive never
+        # reaches here. That is the right place to spend it: the happy path stays instant and the
+        # expensive-to-get-wrong path gets a real measurement instead of one sample.
+        #
+        # Two signals, because the first one alone is not enough. The before/after-hash pair catches a
+        # fast writer for free, but it was measured on 2026-10-07 FAILING to catch a 20 MB/s append to
+        # a 250 MB file -- the hash read of cached zeros was quicker than the gap between writes, and
+        # both samples landed between the same pair of appends. So the explicit settle loop below is
+        # the mechanism of record and the free pair is only an early out.
+        settle_b="$got_bytes"
+        grew=0
+        for _ in 1 2 3; do
+            sleep "${SLT_SETTLE_S:-2}"
+            nb=$(bytes_of "$TAR")
+            [ "$nb" = "$settle_b" ] || { grew=1; settle_b="$nb"; }
+        done
+        if [ "$bytes_before" != "$got_bytes" ] || [ "$grew" -ne 0 ]; then
+            echo "[vfy]     IN FLIGHT: grew $bytes_before -> $settle_b while being checked."
+            echo "[vfy]     => NOT a verdict. Wait for the size to settle, then re-run."
+            bad=1
+            continue
+        fi
+        echo "[vfy]     size settled over $(( ${SLT_SETTLE_S:-2} * 3 ))s, so this is a finished transfer"
+        age=$(( $(date +%s) - $(mtime_of "$TAR") ))
+        if [ "$age" -lt 30 ]; then
+            echo "[vfy]     CAUTION: last written ${age}s ago -- settled, but only just."
+        fi
         # Distinguish a short transfer from corruption in place: a prefix truncation lists a readable
         # head and then stops, so the readable count is strictly short of the manifest. Corruption at
         # full length lists everything (or fails somewhere in the middle at full size).
