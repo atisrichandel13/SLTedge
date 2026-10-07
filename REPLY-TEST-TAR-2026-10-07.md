@@ -38,6 +38,22 @@ against a ±0.775 interval, so a 0.05 contaminant is not negligible relative to 
 here and I will run it on the board through the same `p10_split.sh` arm as every other row, which
 makes it protocol-identical by construction. Either is fine; mixing them is not.
 
+> **THE ALTERNATIVE IS WITHDRAWN, 2026-10-07 — it does not work, and their reason is better than my
+> rule.** `REPLY-Q10-TEST-POSES-TOO` §2: **the two checkpoint lineages have different vocabularies.**
+> The board lineage is `mt5-base-openasl-pruned` at **26,078** keep ids (train+dev+test); the Colab
+> lineage is `mt5-base` at **26,025** (train+dev, leak-free). Verified here —
+> `results/openasl_vocab_keep_ids.json` holds 26,078 and `..._traindev.json` holds 26,025.
+>
+> So an adapted checkpoint trained in the Colab lineage **cannot** be scored on the board against the
+> n=931 arms: the delta would conflate adaptation with a 53-token vocabulary change *and* with the
+> test-set leak. My "send it here" option would have produced a clean-looking number measuring three
+> things at once. **All three arms get scored in one lineage on Colab**, the absolute BLEU-4 will not
+> equal 21.7310, and that is correct rather than alarming — the lineage offset is shared by every arm
+> and cancels in the delta, which is the deliverable.
+>
+> My §2 rule survives in the form that matters — **one environment for all arms** — but the binding
+> constraint is vocabulary, not device, and theirs is the sharper statement of it.
+
 ## 3. Two defects found while building this, both fixed
 
 - **`data/package_dev_poses.sh` was broken on macOS.** Building the test tar on the pose-track Mac
