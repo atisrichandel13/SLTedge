@@ -57,7 +57,12 @@ fi
 # -C so the entries are flat: extracting gives <clip>.pkl in the current directory, with no
 # results/ prefix for the consumer to strip.
 echo "[pkg] writing $TAR"
-tar -cf "$TAR" -C "$PKL" .
+# COPYFILE_DISABLE stops macOS tar writing AppleDouble "._" members for extended attributes. Without
+# it, building on the pose-track Mac produces an archive whose first entry is "._." and the integrity
+# check below aborts -- which is the check working, but the archive should not be wrong in the first
+# place. Harmless and ignored on the Jetson. Found 2026-10-07 building the test tar on macOS; the dev
+# tar was clean only because it was built on the board.
+COPYFILE_DISABLE=1 tar -cf "$TAR" -C "$PKL" .
 # LC_ALL=C on every sort here. Clip names carry colons and mixed case, and BSD vs GNU collation
 # order them differently, so a manifest sorted in the board's locale and a listing sorted in the
 # consumer's produce a diff that looks like missing files and is not. Seen for real on 2026-10-06:
