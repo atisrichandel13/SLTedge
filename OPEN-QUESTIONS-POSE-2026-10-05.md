@@ -459,7 +459,7 @@ extra board cost. Nothing to decide unless your recipe wants them pre-thinned.
 **Nothing of mine is blocked by this** — step 1 finishes regardless and the files will be on the board
 and on the pose-track Mac either way. Answer whenever; I will stage whichever you pick.
 
-### Q11 — the Mac-to-Mac leg that dropped 39 % of the test tar  —  **PENDING ON TUSHAR, not on the LM track**
+### Q11 — the Mac-to-Mac leg that dropped 39 % of the test tar  —  **RESOLVED 2026-10-07: channel was Teams; re-sent in five parts and verified on the LM-track Mac**
 
 *Raised 2026-10-07 by `REPLY-TEST-TAR-TRUNCATED-2026-10-07.md`.*
 
@@ -480,3 +480,17 @@ count and getting the same 591 (`REPLY-TRUNCATED-TAR-CONFIRMED-2026-10-07.md` §
 Both copies on this side re-verified 2026-10-07: board and pose-track Mac, 340,500,480 bytes,
 `sha256 -c` OK on each. `data/verify_handoff.sh` now exists so the receiving side has a check rather
 than a convention.
+
+> **RESOLVED 2026-10-07, both asks answered and the artefact delivered.**
+> **(1) The channel was Microsoft Teams** (Tushar). So the failure is a completed-but-short chat
+> transfer, not an interrupted download — which matches `REPLY-TEST-TAR-TRUNCATED-2026-10-07.md:19-20`'s
+> stable mtime and absent `.crdownload`.
+> **(2) The Drive upload is the LM track's**, because Colab mounts their Drive — my
+> `REPLY-TEST-TAR-2026-10-07.md:71-72` said it was Tushar's and described a route that cannot work.
+> **Delivered:** re-sent as five 80 MB parts with published hashes (`REPLY-TRUNCATED-TAR-CONFIRMED-2026-10-07.md`
+> §A3), all five matched byte for byte on their Mac, and the rejoin verified there and here —
+> 340,500,480 bytes, `dd40ba3c…f0be`, 931 clips (`REPLY-VERIFY-INFLIGHT-2026-10-07.md` §3).
+> **Not claimed:** that splitting is what fixed it. One failure in seven deliveries does not separate a
+> size limit from chance, and both tracks have recorded it that way.
+> The only remaining step is their browser upload to `sltedge/poses/`, which blocks J9 step 2's
+> **scoring** arm only; the training arm has had the dev tar since it arrived intact.
