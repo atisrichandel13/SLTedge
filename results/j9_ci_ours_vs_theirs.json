@@ -1,0 +1,31 @@
+{
+ "a": "/content/drive/MyDrive/sltedge/j9_step2/evals/eval_test_adapt_theirs.json",
+ "b": "/content/drive/MyDrive/sltedge/j9_step2/evals/eval_test_adapt_ours.json",
+ "n_clips": 931,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 21.583345709767233,
+  "b": 21.457020193175175,
+  "delta": -0.1263255165920576,
+  "ci": [
+   -0.4972893830687156,
+   0.24880052603283836
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.2675
+ },
+ "rouge_l": {
+  "a": 41.88076538778665,
+  "b": 41.622767391935234,
+  "delta": -0.2579979958514187,
+  "ci": [
+   -0.6735365353799697,
+   0.13110262367496997
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": true,
+  "p_wrong_sign": 0.114
+ }
+}

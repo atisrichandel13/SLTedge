@@ -1,0 +1,89 @@
+{
+ "lineage": "pruned_traindev keep 26025",
+ "fps": 24,
+ "n_test": 931,
+ "seed": 42,
+ "bar_frac_of_gap": 0.5526745755487675,
+ "arms": {
+  "unadapted": {
+   "bleu4": 21.728699624704507,
+   "rouge_l": 41.8177695869887
+  },
+  "adapt_ours": {
+   "bleu4": 21.457020193175175,
+   "rouge_l": 41.62276739193524
+  },
+  "adapt_theirs": {
+   "bleu4": 21.583345709767233,
+   "rouge_l": 41.88076538778663
+  }
+ },
+ "pairs": {
+  "ours_vs_unadapt": {
+   "what": "adaptation on OUR poses vs un-adapted",
+   "bleu4": {
+    "delta": -0.27167943152933205,
+    "ci": [
+     -0.7165787472981,
+     0.21296682665337427
+    ],
+    "established": false
+   },
+   "rouge_l": {
+    "delta": -0.1950021950535259,
+    "ci": [
+     -0.7514659156224095,
+     0.3919414585605412
+    ],
+    "established": false
+   }
+  },
+  "theirs_vs_unadapt": {
+   "what": "the GENERIC gain: adaptation on the authors' poses",
+   "bleu4": {
+    "delta": -0.14535391493727445,
+    "ci": [
+     -0.5903758553532208,
+     0.3149783376095765
+    ],
+    "established": false
+   },
+   "rouge_l": {
+    "delta": 0.0629958007978928,
+    "ci": [
+     -0.4242958807056064,
+     0.6056199244873228
+    ],
+    "established": false
+   }
+  },
+  "ours_vs_theirs": {
+   "what": "*** THE CONTRAST OF RECORD: ours - theirs ***",
+   "bleu4": {
+    "delta": -0.1263255165920576,
+    "ci": [
+     -0.4972893830687156,
+     0.24880052603283836
+    ],
+    "established": false
+   },
+   "rouge_l": {
+    "delta": -0.2579979958514187,
+    "ci": [
+     -0.6735365353799697,
+     0.13110262367496997
+    ],
+    "established": false
+   }
+  }
+ },
+ "contrast_of_record": {
+  "bleu4_delta": -0.1263255165920576,
+  "bleu4_ci": [
+   -0.4972893830687156,
+   0.24880052603283836
+  ],
+  "established": false,
+  "share_of_gap": -0.08973894763945273
+ }
+}
