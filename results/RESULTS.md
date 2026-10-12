@@ -2694,7 +2694,9 @@ one-line guard both needed.
 
 ### 2.5j Hand swap: the pose gap is not localised to the hands (2026-10-04)
 
-`jetson/p12_hybrid_hands.sh`, `task1_rtmpose/11_make_hybrid.py`, raw `results/eval_hybrid_*.json`,
+`jetson/hand_group_ablation.sh` (renamed from `jetson/p12_hybrid_hands.sh` on 2026-10-12: the `p12_`
+prefix collided with the WORKSPLIT P12 row and read as if that heuristic existed; P12 is now dropped),
+`task1_rtmpose/11_make_hybrid.py`, raw `results/eval_hybrid_*.json`,
 CIs `results/ci_hyb_*.json`. §2.5i showed our keypoints agree with the authors' to a median of 0.47 %
 of the frame with no systematic offset, but that hands are the worst group and the face the best.
 Since handshape is the signal in sign language, a hand-only error was the leading hypothesis for
