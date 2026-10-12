@@ -106,6 +106,9 @@ def get_simcc_maximum(simcc_x, simcc_y):
     max_x[mask] = max_y[mask]
     vals = max_x
     locs[vals <= 0.0] = -1
+    # The line above is a no-op when the engine emits NaN, because `np.nan <= 0.0` is False -- and
+    # np.argmax on an all-NaN row returns 0, so locs stays (0, 0) rather than the -1 sentinel. Fixed
+    # in postprocess() rather than here: see the note there. 2026-10-12.
     return locs.reshape(n, k, 2), vals.reshape(n, k)
 
 
@@ -115,6 +118,23 @@ def postprocess(simcc_x, simcc_y, center, scale, pp):
     kpts = locs / pp["simcc_split_ratio"]  # input-crop pixel space
     input_size = np.array(pp["input_size"], dtype=np.float32)
     kpts = kpts / input_size * scale + center - 0.5 * scale
+    # A NON-FINITE CONFIDENCE MUST NOT LEAVE BEHIND A FINITE-LOOKING COORDINATE. 2026-10-12.
+    #
+    # One dev clip (rlUUw27_6kM-00:17:09.233-00:17:15.433) came out of the FP16 engine with all-NaN
+    # SimCC on 7 of 149 frames. NaN scores were written, but the keypoints for those frames were the
+    # CONSTANT (center - 0.5*scale) -- the top-left of the padded crop box, bit-identical on all
+    # seven -- because argmax of an all-NaN row is 0 and the <=0 sentinel in get_simcc_maximum does
+    # not fire on NaN. That reads as a finite, in-range pose: the LM track scanned the archive, saw
+    # "0 non-finite keypoints, max abs 1.046, nothing overflowed", and had no way to know the
+    # coordinates on those frames were a placeholder. It cost them a training arm that NaN'd its
+    # loss, wrote 570 MB of NaN weights and exited 0 (REPLY-NAN-SCORES-CLIP-2026-10-07.md).
+    #
+    # Note the -1 sentinel would not have helped: the affine below maps locs=-1 to -0.5 crop px,
+    # i.e. still a near-corner coordinate. The signal has to be non-finite to survive postprocess,
+    # so a frame the estimator failed on now carries NaN in BOTH channels and any isfinite() check
+    # on either one catches it. This changes no committed artefact -- it changes what a re-extraction
+    # writes for such a frame.
+    kpts[~np.isfinite(vals)] = np.nan
     return kpts[0], vals[0]
 
 
@@ -145,3 +165,13 @@ if __name__ == "__main__":
     assert np.allclose(kp[0], exp, atol=1e-3), (kp[0], exp)
     assert np.allclose(sc, 0.9)
     print("rtmpose_utils self-test OK: peak ->", kp[0], "expected", exp)
+
+    # An all-NaN SimCC frame -- what the FP16 engine actually produced on 7 frames of one dev clip.
+    # Both channels must come back non-finite; before 2026-10-12 the keypoints came back as the
+    # crop box's top-left corner, which is finite and passes every range check.
+    nx = np.full((1, K, 288 * 2), np.nan, np.float32)
+    ny = np.full((1, K, 384 * 2), np.nan, np.float32)
+    kp_n, sc_n = postprocess(nx, ny, center, scale, pp)
+    assert not np.isfinite(sc_n).any(), sc_n[:4]
+    assert not np.isfinite(kp_n).any(), kp_n[:4]
+    print("rtmpose_utils self-test OK: all-NaN SimCC -> NaN in BOTH keypoints and scores")

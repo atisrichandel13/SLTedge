@@ -3,6 +3,13 @@
 > **SUPERSEDED IN TWO PLACES, 2026-10-07 — the status blocks below are kept as written, not rewritten,
 > because one of them states a route that cannot work and that is worth leaving legible.**
 >
+> **UPDATE 2026-10-12 — J9 step 2 has RUN, so every "blocked on the upload" line below is history,
+> not status.** It ran 2026-10-07 on Colab as three arms in one checkpoint lineage and the result is
+> §L26: `ours − theirs` = **−0.1263 BLEU-4, [−0.4973, +0.2488], not established**, with §L17's
+> predicted +0.5490 and §L21's bar of +0.7785 **both outside the interval**. **Q9 is answered below**;
+> there is no outstanding action on either side's delivery of pose artefacts. The only project item
+> left is the **demo video**, which needs a recording session, not compute.
+>
 > **1. J9 step 2 is no longer blocked. Both pose tars are on Drive and Colab sees them**, at
 > 307,998,720 bytes (dev, 918 clips) and 340,500,480 bytes (test, 931 clips) — byte-identical to the
 > archives `data/package_dev_poses.sh` built, verified on both Macs by `data/verify_handoff.sh`. The
@@ -393,6 +400,34 @@ established* even at full width — the outcome J12 was run to prevent.
 useful under every answer above, so I will start it when the board is free unless you say otherwise.
 What I will not do without your answer is present the 39 % sizing as still holding.
 
+> ### Q9's three sub-questions — **ANSWERED 2026-10-12 by measurement, not by choosing a model (§L26)**
+>
+> J9 step 2 ran on 2026-10-07. All three are settled, and the one I was most confident about is the
+> one that was wrong.
+>
+> **(1) Does §L17's 39 % still apply to a 1.41 gap?** It no longer has to be decided. The interval
+> **excludes** 39 % of the gap: +0.5490 sits outside [−0.4973, +0.2488]. Whichever of the two models
+> you preferred — fixed fraction or fixed absolute — a recovery of that size is ruled out at 95 %.
+> The exclusion is bounded at **+17.67 %** of the gap.
+>
+> **(2) Was J9 still worth running?** Yes, and for a better reason than the one I gave. I argued for
+> "an unresolved-but-correctly-sized interval is a legitimate result we agreed in advance to report".
+> It did better than that: it is an **exclusion**, not an unresolved null. The lever is bounded, which
+> is a usable finding rather than a shrug.
+>
+> **(3) Does it change the dev-scale target / was the 918-clip rung wrong?** Moot. The test set is
+> exhausted at **931** clips (§L20), so detectability is **capped** — a higher training rung cannot be
+> answered by a wider measurement, and the exclusion makes the rung question idle.
+>
+> **And the correction that lands on me.** This whole section rested on a projected half-width of
+> **±0.778**, which I used to argue J9 was underpowered before it ran. The contrast's own measured
+> half-width is **0.3730** — real detectability was **26.50 %** of the gap, so the sizing I pressed was
+> **2.09× too conservative** and J9 was roughly twice as well powered as I told them it would be. The
+> mechanism is the §L25 one: arms sharing an extractor and a test set cancel far more under paired
+> resampling than a cross-axis projection assumes. **A projection from a different axis is not a
+> prediction of a paired interval**, and I had already seen that fail once in §L25 before repeating it
+> here.
+
 **The bootstrap has landed and the caveat is discharged** (`results/ci_n931_posesub_fps24.json`, 931
 paired clips, 1000 resamples, seed 0):
 
@@ -517,3 +552,41 @@ than a convention.
 > size limit from chance, and both tracks have recorded it that way.
 > The only remaining step is their browser upload to `sltedge/poses/`, which blocks J9 step 2's
 > **scoring** arm only; the training arm has had the dev tar since it arrived intact.
+
+---
+
+### Q12 — `adapt_fps16_s42_cap100`'s eval JSON has never been pushed, and two files still mark the frame-rate DiD as blocked on it  —  **OPEN, asked 2026-10-12**
+
+This is the only thing I know of that is still blocked on your side, and it is **not** the J9 axis.
+
+`results/RESULTS.md:779` records that whether adaptation *specifically* repairs frame-rate shift — as
+opposed to helping everywhere — is the difference-in-differences that `adapt_ci.py` computes, and that
+it is "still waiting on one eval JSON (`adapt_fps16_s42_cap100`, quoted in §L15.3 but not yet
+pushed)". `ORIENTATION.md:383` carries the matching open item. **`results/` holds no file matching
+that name today**, so both lines are still accurate rather than stale.
+
+Alongside it, adaptation at source rate sits at ROUGE-L **+0.60** with P(Δ<0) spanning
+**0.044–0.056** across seeds — straddling the 0.05 line, so it must not be quoted as established or
+as null, and the DiD is what would resolve it.
+
+**Q12: does that run still exist?** Two acceptable answers:
+
+1. **It exists and the JSON can be pushed** — then `adapt_ci.py` closes the DiD and §L15.3's quoted
+   figure gets its interval.
+2. **It is gone** (lost Colab session, pruned checkpoint, whatever) — then say so and I will **strike
+   the DiD from both files** as not-measurable rather than leave two places marking a pending result.
+   Re-running it is not worth board or Colab time this late for a side axis, and I would rather the
+   report say "we did not measure it" than carry an open item nobody intends to close.
+
+**Not asking you to re-run anything.** This is a question about whether a file survives, and if it
+does not, permission to delete the forward references.
+
+---
+
+## State of the ledger, 2026-10-12
+
+**Mine, open:** Q12 only (above). **Yours, open on me:** the board re-extraction of
+`rlUUw27_6kM-00:17:09.233-00:17:15.433` in FP16 and FP32, which is queued and blocked on the lab-split
+WireGuard tunnel being down — everything else in `REPLY-NAN-SCORES-CLIP-2026-10-07.md` and
+`REPLY-J9-RESULT-2026-10-07.md` is answered in `REPLY-NAN-SCORES-DIAGNOSED-2026-10-12.md`, including
+the FP32 scan (**0 of 931**, clean). Q1–Q11 are all resolved or deferred by agreement.

@@ -375,9 +375,26 @@ it, for roughly 15 minutes of board time.
 - **The 931-clip full-split pass.** Clips are on the Mac (6.6 GB); the board has 17 GB free at 85 %
   full, so this needs batching — roughly 100 clips, run, pull, delete, ten times. **Needs your call
   before any data moves**, under the shared-board rule.
+  > **CLOSED 2026-10-05 (§2.5k), noted here 2026-10-12.** It ran in six batches, not ten: 528 clips
+  > in **57.5 min** of board wall clock (20:13:39 → 21:11:10 UTC, 110,357 frames, 32.0 frames/s
+  > aggregate), taking `pkl_split_rtmw_fp16{,_raw}` to all **931** test clips that exist on disk. The
+  > ceiling is 931, not 976: `data/clips/index.json` records `requested 974, n_ok 931, n_failed 43`.
+  > Frames and `.part` files were cleared off the board afterwards.
 - **Adaptation is not yet quotable.** The difference-in-differences is blocked on one eval JSON, and
   adaptation at source rate sits at ROUGE-L +0.60 with P(Δ<0) = 0.044–0.056 across seeds — straddling
   the threshold, so it must not be quoted as either established or null.
+  > **Still accurate on this axis, 2026-10-12 — and do not read §L26 as having answered it.** The
+  > item above is the **frame-rate** difference-in-differences, and it is still blocked on the same
+  > file: `adapt_fps16_s42_cap100`'s eval JSON has never been pushed and `results/` holds nothing
+  > matching it today (asked again in `REPLY-NAN-SCORES-DIAGNOSED-2026-10-12.md:§8`).
+  >
+  > What *has* been answered is the **pose-deficit** axis, which was a different pending lever.
+  > §L26 (J9 step 2, 2026-10-07): adapting on our own keypoints is a null at **−0.1263 BLEU-4,
+  > [−0.4973, +0.2488]**, and the interval **excludes** §L17's predicted +0.5490 and §L21's bar of
+  > +0.7785 — so a benefit above **~18 %** of the −1.4077 deficit is excluded at 95 %. **Nowhere in
+  > this repo should the pose deficit now be described as partly an adaptation shortfall pending a
+  > run.** It is attributed to architecture, crop and normalisation, with quantisation excluded to
+  > within 11 % (§L25) and adaptation to within ~18 %.
 - **Not blocked, not started:** INT8 PTQ on the pose model (P5), the pose variant sweep (P6), moving
   preprocessing to the GPU (P11), the sentence-segmentation heuristic for the live demo (P12), the iOS
   app (P14), and the final report (C11).

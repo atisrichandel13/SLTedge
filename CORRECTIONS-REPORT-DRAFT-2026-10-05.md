@@ -33,3 +33,11 @@ Separately, and not a correction to the numbers: the J9 adaptation run the draft
 five open issues in `REPLY-J9-ADAPT-2026-10-05.md`, one of them structural — as specified the
 experiment cannot separate adaptation-to-our-keypoints from fine-tuning-on-dev helping generally.
 Worth resolving before the draft commits to what that row will say.
+
+> **Resolved 2026-10-07, noted here 2026-10-12.** The structural issue was fixed rather than lived
+> with: the LM track added a **control arm** adapted on the authors' dev poses, so J9 ran as three
+> arms in one checkpoint lineage and the contrast of record is `ours − theirs`, which the flagged
+> design could not have isolated. Result is a null — **−0.1263 BLEU-4, [−0.4973, +0.2488]** — with
+> §L17's predicted +0.5490 and §L21's bar of +0.7785 both **outside** the interval (§L26). `REPORT.md`
+> no longer marks J9 outstanding; the demo video is the only item left, and it needs a recording
+> session rather than compute.

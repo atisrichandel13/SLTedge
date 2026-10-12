@@ -4017,3 +4017,71 @@ characterisation — but it is evidence the 53 test-only tokens are essentially 
 > that the computation is hardware-independent. It is **not** a second statistical sample — it says
 > nothing about the interval's stability under different draws, and a differently-seeded run would
 > move the bounds.
+
+---
+
+### L27 A NaN confidence left a finite-looking coordinate behind, for 7 frames of one dev clip (2026-10-12)
+
+**The defect.** `rlUUw27_6kM-00:17:09.233-00:17:15.433` in `pkl_dev_rtmw_fp16{,_raw}` carries all-NaN
+confidences on **7 of its 149 frames** — frames 9, 12, 13, 14, 15, 19, 22, which is **931 = 7 × 133**
+NaN scores. Found by the LM track by training on it: the loss came back NaN, `.backward()` wrote NaN
+into all 5.35 M trainable parameters, and the arm **trained to completion, saved a 570 MB checkpoint
+and exited 0**, scoring BLEU-4 0.00 with all 931 clips decoded as `"a"`
+(`REPLY-NAN-SCORES-CLIP-2026-10-07.md`).
+
+**The scan, over every pose archive we hold.** 5,560 pkls, 1,182,434 frames, 157,263,722 confidences
+and 314,527,444 coordinates:
+
+| archive | engine | pkls | frames | non-finite pkls |
+|---|---|---:|---:|---:|
+| `pkl_split_rtmw_fp32{,_raw}` | FP32 | 931 each | 203,562 each | **0** |
+| `pkl_split_rtmw_fp16{,_raw}` | FP16 | 931 each | 203,562 each | 0 |
+| `pkl_dev_rtmw_fp16{,_raw}` | FP16 | 918 each | 184,093 each | **1** |
+
+So **§L23/§8's FP16-vs-FP32 comparison does not rest on a contaminated archive** — the open question
+in `REPLY-J9-RESULT-2026-10-07.md:42-44` is closed. The defect is **1 clip in the 1,849 RTMW-FP16
+clips we have**.
+
+**The lesson is not the NaN. It is that the NaN was accompanied by a plausible coordinate.** On all
+seven frames every one of the 133 keypoints held the *same single point* — two distinct values in the
+whole 133 × 2 array, bit-identical across the seven frames, where a good frame has 134. Mechanism,
+verified by exec'ing the committed functions on an all-NaN SimCC:
+
+- `np.argmax` of an all-NaN row returns **0**;
+- `get_simcc_maximum`'s no-peak guard `locs[vals <= 0.0] = -1` **does not fire**, because
+  `np.nan <= 0.0` is `False`;
+- so `locs` stays `(0, 0)` and the affine at `task1_rtmpose/rtmpose_utils.py:120` maps bin 0 to
+  `center - 0.5 * scale` — the top-left of the 1.25-padded, aspect-corrected crop box. For this
+  clip's 528 × 720 crop that is `(-73.5, -90.0)` px = `(-0.13920455, -0.125)` crop-normalised,
+  **which is the observed constant to the last digit**.
+
+The arithmetic also identifies *which* degenerate output the engine produced: an all-**zero** SimCC
+would take the `<= 0` branch and give `(-0.14142401, -0.1266276)` with a score of `0.0`. The observed
+values match the NaN branch and exclude it.
+
+**What this invalidates about reasoning from the archive.** The LM track inferred the fault was
+estimator-side rather than an FP16 event partly because the coordinates were untouched — *"a
+systematic fp16 overflow would not spare the coordinates, which are the larger magnitudes"*
+(`REPLY-NAN-SCORES-CLIP-2026-10-07.md:85-88`). **The coordinates were never spared; they were
+overwritten before anything could be observed about them.** On those frames the coordinate channel
+carries no information about the engine, so a finite-range check on it is a fact about the decode.
+**FP16 is therefore not excluded**, and the fp16-vs-estimator question stays open pending a board
+re-extraction of this one clip in both precisions. What *is* established: the fault is upstream of
+the decode's argmax and upstream of square-norm — the identical NaN frame set appears in `_raw`,
+which is the same inference pass before normalisation.
+
+**The fix.** `postprocess` now sets the keypoints non-finite wherever the confidence is non-finite, so
+a failed frame carries NaN in **both** channels and an `isfinite()` check on either catches it. The
+`-1` sentinel could not serve: the affine maps `locs = -1` to −0.5 crop px, still a near-corner
+coordinate, so the signal must be non-finite to survive `postprocess` at all. The module self-test now
+asserts the all-NaN case. **No committed artefact changes** — this changes what a re-extraction writes.
+
+**The handling of the affected arm is correct as it stands.** Arm 2 of §L26 trained on **917** clips
+via `pkl_dev_rtmw_fp16_minus_nan_scores.manifest`, not 918. The LM track declined to impute
+`score = 0` on the grounds that editing a measured artefact was not theirs to do; that was right, and
+for a stronger reason than was visible to them — imputing the score and keeping the coordinates would
+have trained the encoder on a 133-point mass outside the crop frame.
+
+> **Not claimed:** that FP16 caused the NaN; that `verify_handoff.sh` should now scan pkl interiors
+> (it checks transport, and a second tool scanning contents is the right split); that the fix would
+> have prevented the NaN rather than making it impossible to mistake for data.
