@@ -7,6 +7,11 @@ Atisri Chandel (language-model track) · Tushar Goyal (pose track, all board run
 > **Status.** Every number here is measured and traceable to a file in `results/`. **One** item is
 > outstanding and is marked where it appears: the **demo video**. Nothing in this draft depends on it.
 >
+> **Updated 2026-10-22.** The demo's board half is **built and verified**, not pending: a live
+> translation server holding both models resident, reached from a WireGuard peer, **4.5–4.9 s per
+> sentence** (`jetson/demo_server.py`, runbook `jetson/DEMO.md`, measured in §L30). What remains is
+> the phone-side capture and the recording itself.
+>
 > **Updated 2026-10-07. J9 step 2 has run and the last accuracy lever is closed, not deferred:**
 > adaptation to our own keypoints is a **null**, and the interval **excludes** the effect that
 > motivated it (§5, §L26). Accuracy is at **n=931** and the pose deficit is **−1.41 [−2.19, −0.63]**
@@ -533,8 +538,16 @@ the decode-knob and frame-rate studies; the frontier; the full C9 protocol inclu
 and process-level repeats; end-to-end deployment of the recommended cell; the accuracy of the shipped
 system at **n=931, every paired test clip that exists**, and the diagnosis of its one deficit.
 
-**Outstanding:** the **demo video**, which needs a recording session rather than compute. **J9 step 2
-is done** (§L26) — the single remaining accuracy lever was tested and closed, not deferred.
+**Outstanding:** the **demo video**. **J9 step 2 is done** (§L26) — the single remaining accuracy
+lever was tested and closed, not deferred.
+
+> **Corrected 2026-10-22.** This line read "which needs a recording session rather than compute", and
+> that was wrong twice over. The ask changed — the professor asked for the demo to run **live on a
+> real device**, not as a recorded dataset clip — and a live demo needs a built thing, not a
+> recording. It is now built on the board side and measured: `jetson/demo_server.py` holds the RTMW
+> FP16 engine and the pruned LM resident in one process and serves `POST /translate` over the lab
+> WireGuard tunnel at **4.5–4.9 s per sentence**, 58 % of it pose (§L30). Still outstanding: the
+> **phone-side capture** and the recording.
 
 **The FP16 re-test at scale is DONE** (§2.5m, 2026-10-06): not established at n=931, ±0.285, and
 quantisation is excluded from the pose deficit. That closes the last open accuracy question the board

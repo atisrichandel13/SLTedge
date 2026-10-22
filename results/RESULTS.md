@@ -4275,3 +4275,76 @@ committed at `results/suspect_clips_2026-10-22.json`, and the scan is reproducib
 > names with `.mp4` and the clip directories do not, so nothing matched and the exclusion arm was
 > silently identical to the full arm. **A null produced by a failed join looks exactly like a null
 > produced by a null.** The script now asserts that the drop set is non-empty before it will report.
+
+---
+
+### L30 The demo server runs, and the first request is the one that bites (2026-10-22)
+
+`jetson/demo_server.py`. One long-lived process on the board holding the RTMW FP16 engine **and** the
+pruned LM resident, serving `POST /translate` over HTTP: video bytes in, English out. Built for the
+live-device demo the LM track asked for in `ASK-IOS-DEMO-BOARD-2026-10-12.md`. **Verified end to end
+from the pose-track Mac over WireGuard**, which is the demo's real path.
+
+#### It fits, and §4.3's reclaim rule is not optional
+
+First launch **failed** with `NVML_SUCCESS == r INTERNAL ASSERT FAILED` — §4.3's signature for out of
+memory — after a reclaim to only 3,500 MB. J10 started from MemFree **5,130**. Reclaiming to 5,400
+first, it loads:
+
+| point | MemFree |
+|---|---:|
+| start | 4,802 MB |
+| after the pose engine | 4,650 MB |
+| after the LM | 193 MB |
+| after warm-up | 75 MB |
+| steady state, serving | **91–130 MB** |
+
+So the pairing fits with very little room, as J10 predicted (177 MB there). **The server prints its
+own warning below 120 MB** rather than leaving the next person to decode the assert.
+
+#### Measured, n=6 requests on a 4.53 s / 136-frame clip
+
+Thinned 136 → 109 frames at the §3.4 operating point of 24 fps, beam 4:
+
+| stage | steady state |
+|---|---:|
+| pose, 109 frames | **2,341–2,489 ms** (21.5–22.8 ms/frame) |
+| convert | ~243 ms |
+| LM total | **1,810–2,004 ms** |
+| **request total** | **4,500–4,900 ms** |
+
+**The pose stage costs 21.5–22.8 ms/frame here against 13.8 ms standalone (§1) — about 1.6×.** That is
+§2.2b's contention prediction showing up in a deployed service: CPU-side stages slow when the GPU
+takes more of the 15 W budget. The LM's ~1.9 s/sentence matches the standalone figure, so the
+contention lands on the pose stage, which is also the one that charges per frame.
+
+**Beam width is not the lever here either, and the system says so more strongly than the LM did.**
+Beam 4 → greedy saves 531 ms of decoder but only **12 % of the request** (4,604 → 4,040 ms), because
+pose is **58 %** of it. Consistent with §2.9's 103.5 J vs 1.0 J per BLEU-4 point.
+
+#### The finding worth keeping: warm the LM, not just the engine
+
+The **first** request on a fresh process cost **gcn 3,422 ms, decoder 3,526 ms, 11.7 s end to end** —
+against 131–230 ms / 1,642 ms / 4.5 s for every request after it. A **2.6× penalty paid entirely by
+whoever goes first**, which in a live demo is the audience. Warming the TRT engine is not enough;
+the LM's first `translate()` pays its own kernel setup. One synthetic sentence at start-up costs
+**6.1 s of load time** and removes it: the first real request now runs in **4.9 s**.
+
+#### §L28's guard, demonstrated rather than asserted
+
+Sent the §L28 B-roll clip (`rlUUw27_6kM-00:17:09.233-00:17:15.433`) through the live server. **12 of
+150 frames were dropped as non-finite**, including every one of the indices §L28 identified
+(9, 12, 13, 14, 15, 19, 22), and the sentence was translated from the remaining 138. Without the
+§L27 fix those frames would have entered the model as a constant corner coordinate. **This is the
+path a live phone video will hit constantly** — signer out of shot, hand over the lens — so the guard
+is load-bearing, not defensive.
+
+Translation quality is unchanged from the offline system, as it should be: the B-roll clip returned
+*"The game has really benefited people who really have enough support in their home country"* against
+a reference of *"The game can be really beneficial for those who don't have enough support at home,
+or in the school environment."*
+
+> **Not claimed:** that greedy is more accurate than beam 4 — one sample is not a comparison, and §5
+> is the authority. That the phone leg works (untested; a phone is a different WireGuard peer). That
+> these timings are a protocol-grade measurement: n=6 on one clip, with the board otherwise idle but
+> no power window and no repeats-of-three. They are demo engineering numbers, not §C9 rows.
