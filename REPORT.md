@@ -457,11 +457,32 @@ Kept deliberately; several of these are the project's more useful output.
 - **Hands are the accuracy floor** in every configuration (~99 % of keypoints within 5 px, p99.9
   ~30 px) and are unchanged by the precision fix, so hand error is argmax instability in the pose
   head — not something a number format or, per §5, a sibling model will fix.
+- **No weight sparsity was attempted, and no architecture search.** Our compression coverage is
+  precision and vocabulary, not sparsity: FP16 TensorRT on the pose engine, a 26,025-token vocabulary
+  prune on mT5, weight-only INT8 (W8A32, §L9.1) on the LM, and frame-rate reduction — which turned out
+  to be the dominant system lever anyway at **103.5 J per BLEU-4 point against beam width's 1.1**.
+  Magnitude pruning, lottery-ticket-style iterative prune-and-rewind, and Ampere 2:4 structured
+  sparsity are all absent. Two honest reasons: each needs a train-prune-retrain budget this project
+  never had (our largest training run is one epoch over 917 clips), and 2:4 would need a recovery
+  retrain on top. **Neither would have moved the accuracy deficit** — the lottery-ticket claim is that
+  a sparse subnetwork reaches *the same* accuracy, not better — but 2:4 has real sparse-tensor-core
+  support on Orin, so it is the compression row we are most visibly missing rather than a lever we
+  ruled out. Architecture search was never applicable: we consume a frozen checkpoint and fine-tune at
+  most a 5.35 M-parameter projection, and §5's finding is that the authors' poses come from the **same**
+  RTMW/RTMPose family we use, so there is no better-architecture upgrade to search for. Pose-side INT8
+  (P5) was dropped deliberately, with the reasoning at `results/RESULTS.md:835-836`.
 - **One clip for all end-to-end timing.** Energy generalises better than it looks (§6: 85 % of
   per-frame cost is fixed, 15.1× crop area costs 1.34× energy), but latency on a single clip is still
   a single clip.
 - **Sample sizes.** Accuracy at n=976 (authors' keypoints) and n=400 (ours); the pose-substitution
   interval is ±1.2 BLEU-4 and the full 931-clip split would roughly halve it.
+  > **Superseded 2026-10-22 — the 931-clip split has since run, and the prediction was right.** Our
+  > arm is at **n=931**, every paired test clip that exists (§2.5k), and the pose deficit is
+  > **−1.4077 BLEU-4 [−2.186, −0.631]**, a half-width of **±0.778** against the ±1.2 above — so
+  > "roughly halve it" landed. 931 is the **ceiling**, not a waypoint: `data/clips/index.json`
+  > records `requested 974, n_ok 931, n_failed 43`, and §L20 accounts for the 43 as dead links plus
+  > 2 deliberate exclusions. The sentence above is kept because the prediction it made is part of the
+  > record.
 
 ---
 
