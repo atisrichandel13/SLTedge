@@ -487,10 +487,11 @@ Kept deliberately; several of these are the project's more useful output.
   head — not something a number format or, per §5, a sibling model will fix.
 - **A floor of 1.3–1.7 % of clips carry no usable signer pose.** A scan of both splits
   (`data/scan_shot_changes.py`, list at `results/suspect_clips_2026-10-22.json`) flags **12 of 918**
-  dev and **16 of 931** test clips. Seven were re-fetched and inspected; **all seven were defective**,
-  in four ways — B-roll cutaways and screen recordings with no person in frame, fade-to-black
-  transitions, a crop 58 px wide, and one clip where **OpenASL's bbox is on a news inset rather than
-  on the signer for all 585 frames**. Removing the 16 test clips moves the pose deficit from
+  dev and **16 of 931** test clips. Eight were re-fetched and inspected; **all eight were defective** —
+  B-roll cutaways and screen recordings with no person in frame, fade-to-black transitions, a crop
+  58 px wide, and **two clips of good, clearly-signed video where the bounding box is on the wrong
+  thing**: one on a news inset beside the signer for all 585 frames, one a 128 × 178 box on a
+  signer's torso for all 114. Removing the 16 test clips moves the pose deficit from
   **−1.4077 to −1.3147**, a shift of 6.6 % and about one-eighth of the interval's half-width, with
   both intervals still excluding zero (§L29) — so the headline is **not** an artefact of bad clips,
   and they are left in. The rate is a **floor**: the detector needs a confidence *change* within a

@@ -82,7 +82,8 @@
   "FCcLqY-Nezo-00:00:23.233-00:00:42.733": "bbox on the news INSET, not the signer; signer is on the right of the frame for the whole clip (SignOn News layout)",
   "9C82salEk7w-00:13:52.533-00:13:56.000": "B-roll cutaway: close-up of a car keyless ignition button, no person",
   "hvSB-C04cc4-00:03:05.100-00:03:13.533": "screen recording of the YouTube caption editor, no person",
-  "rlUUw27_6kM-00:17:09.233-00:17:15.433": "B-roll cutaway: dark overhead shot of hands on a tablet, no signer (L28)"
+  "rlUUw27_6kM-00:17:09.233-00:17:15.433": "B-roll cutaway: dark overhead shot of hands on a tablet, no signer (L28)",
+  "wn3kpVhXTLQ-00:02:11.433-00:02:15.233": "bbox [567,378,128,178] is a 128x178 box on the signer's TORSO; she fills the frame and signs clearly. Worst clip in dev: mean confidence 0.1405, all 114 frames <0.50. Second verified wrong-bbox case after FCcLqY-Nezo; caught only by the small-crop rule, since a wrong bbox produces no confidence CHANGE."
  },
  "_method": {
   "low_conf": 0.5,

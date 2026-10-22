@@ -4191,7 +4191,7 @@ first one alone is blind to the worst case:
 Small-crop clips carry visibly worse poses: mean confidence **0.575 vs 0.836** (dev) and
 **0.641 vs 0.833** (test).
 
-#### Seven sampled, seven defective -- and four different defects
+#### Eight sampled, eight defective -- and five different defects
 
 Each was re-fetched and looked at. This is a verified sample, not a heuristic's say-so.
 
@@ -4204,10 +4204,12 @@ Each was re-fetched and looked at. This is a verified sample, not a heuristic's 
 | `uZwKNtHx9FE-00:24:16.033-00:24:17.200` | test | black frame |
 | `FCcLqY-Nezo-00:00:23.233-00:00:42.733` | test | **the bbox is on the news inset, not the signer** |
 | `ey3i9jNcat4-00:00:53.366-00:00:54.633` | test | a person, but the crop is **58 px wide** |
+| `wn3kpVhXTLQ-00:02:11.433-00:02:15.233` | dev | **the bbox is a 128x178 box on the signer's torso** -- she fills the frame, signing clearly |
 
-Five have **no person in the crop at all**. One has a person who is **not the signer**. One has a
-signer too small to pose. `ey3i9jNcat4` was picked deliberately as the most likely false positive --
-smallest crop but *high* confidence, 0.714 -- and it is not one.
+Five have **no person in the crop at all**. One has a signer too small to pose. **Two are good video
+with the bounding box on the wrong thing** -- and those two are the important ones.
+`ey3i9jNcat4` was picked deliberately as the most likely false positive -- smallest crop but *high*
+confidence, 0.714 -- and it is not one.
 
 #### The one that should worry us most
 
@@ -4216,14 +4218,26 @@ the left. OpenASL's bbox is `[205, 97, 124, 228]` -- it is on the inset.** All *
 of test data, are poses of a man walking to a car. The signer is in the same picture, unused. This is
 not a cutaway inside a good clip; it is a clip whose subject is wrong from the first frame to the last.
 
+**`wn3kpVhXTLQ` is the same failure in dev, and it is the worst clip in the split** -- mean confidence
+**0.1405**, all **114** frames below 0.50, where the next worst clip in dev is 0.4261. The video is
+fine: a woman signing clearly in an NAD office, filling the frame. The bbox `[567, 378, 128, 178]`
+sits on the lace panel of her top. **So the "wrong subject" failure is not a one-off curiosity of one
+news layout; it appears in both splits, and in both cases the clip is otherwise good.**
+
 **That also bounds what this scan can claim.** The contrast rule only fires when confidence *changes*
 within a clip, and `FCcLqY-Nezo` has no change -- it is flatly mediocre throughout, and it surfaced
 only because its crop is also small. A wrong bbox over a *large* region would trip neither rule.
 **So 1.3 % / 1.7 % is a floor, not a count.** Nobody has audited the other 98 %.
 
-> **Not claimed:** that the unsampled 21 suspects are all defective (7 of 28 were checked, and all 7
+> **Not claimed:** that the unsampled suspects are all defective (8 of 28 were checked, and all 8
 > were); that the rate is 1.3-1.7 % rather than higher; that OpenASL's bboxes are generally wrong --
-> one verified case is one case.
+> two verified cases are two cases.
+
+**For the LM track specifically: 11 of the 12 flagged dev clips are inside the 917-clip manifest arm 2
+trained on** (the twelfth is the quarantined NaN clip). That is 1,165 frames, 0.63 % of dev, of which
+235 are below 0.50 confidence. Written up in `REPLY-DEV-CLIP-QUALITY-2026-10-22.md` with the reason it
+does not threaten §L26: both arms are built on the same published `bbox-v1.0.json`, so a clip whose
+box is wrong is wrong for the control arm too, and `ours - theirs` is the quantity it cancels out of.
 
 #### The headline reported both ways, which is the point of having looked
 
