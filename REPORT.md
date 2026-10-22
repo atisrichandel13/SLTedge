@@ -44,6 +44,34 @@ decoder width is not**: per BLEU-4 point sacrificed, reducing 30→24 fps costs 
 for beam 4→2 (§2.9). Calling beam width "the frontier" was true of the language model alone and false
 of the system.
 
+### Why this platform, and not a phone
+
+A fair question, since the system is small: what we actually deploy is **571 MB** of pruned-vocabulary
+language model (§3.3) plus a **68 MB** RTMW FP16 engine — about **640 MB** of weights, at a measured
+**1.07 GB** peak GPU. Weight-only INT8 would take the language model to 293 MB again (§3.5). Either
+way it fits a current 8 GB-class phone several times over, so **memory is not what keeps this on a
+board**.
+
+**Numerics are.** §3.5 records it as a rejection: **mT5 in FP16 is dead, not degraded** — every step
+returns token 0 at logprob −10.169 = −ln(26078), a uniform distribution. That is why our int8 scheme
+is W8A32, weights in int8 with activations and accumulation in **fp32**; a genuine fp16 scheme
+inherits the failure. Apple's Neural Engine is an
+fp16 device, so on a phone the language model could not use the NPU at all and would fall back to GPU
+or CPU in fp32, which is exactly where the efficiency argument for moving it there breaks down. The
+**pose** stage has no such problem: FP16 costs it nothing measurable (§5, +0.15 BLEU-4
+[−0.15, +0.42]). **The hard part of putting sign-language translation on a phone is the decoder's
+numerics, not its size** — which is a more interesting obstacle than the one we expected to find.
+
+**The second reason is that the board can be measured and a phone cannot.** Every number in the
+frontier comes from per-rail INA3221 power sampled at 100 ms via `tegrastats`: the 103.5 J per BLEU-4
+point above, the 85 %-fixed crop-area law in §6, the sustained thermal runs in §4. A phone exposes
+nothing equivalent — MetricKit is coarse and retrospective. **A phone could plausibly run this
+system; the Jetson is what lets us say what it costs**, and the cost is the deliverable.
+
+Stated plainly, because it cuts against us: if the goal were a shipped product rather than a
+measurement study, phone-first would likely be the better engineering call, and the fp16 finding
+above would become the first problem to solve rather than a reason not to start.
+
 ---
 
 ## 2. Baseline clarity
@@ -457,6 +485,16 @@ Kept deliberately; several of these are the project's more useful output.
 - **Hands are the accuracy floor** in every configuration (~99 % of keypoints within 5 px, p99.9
   ~30 px) and are unchanged by the precision fix, so hand error is argmax instability in the pose
   head — not something a number format or, per §5, a sibling model will fix.
+- **A floor of 1.3–1.7 % of clips carry no usable signer pose.** A scan of both splits
+  (`data/scan_shot_changes.py`, list at `results/suspect_clips_2026-10-22.json`) flags **12 of 918**
+  dev and **16 of 931** test clips. Seven were re-fetched and inspected; **all seven were defective**,
+  in four ways — B-roll cutaways and screen recordings with no person in frame, fade-to-black
+  transitions, a crop 58 px wide, and one clip where **OpenASL's bbox is on a news inset rather than
+  on the signer for all 585 frames**. Removing the 16 test clips moves the pose deficit from
+  **−1.4077 to −1.3147**, a shift of 6.6 % and about one-eighth of the interval's half-width, with
+  both intervals still excluding zero (§L29) — so the headline is **not** an artefact of bad clips,
+  and they are left in. The rate is a **floor**: the detector needs a confidence *change* within a
+  clip, so a wrong bbox over a large region would evade it, and only 7 of 28 were checked.
 - **No weight sparsity was attempted, and no architecture search.** Our compression coverage is
   precision and vocabulary, not sparsity: FP16 TensorRT on the pose engine, a 26,025-token vocabulary
   prune on mT5, weight-only INT8 (W8A32, §L9.1) on the LM, and frame-rate reduction — which turned out

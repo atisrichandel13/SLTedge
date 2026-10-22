@@ -4164,3 +4164,100 @@ precision offset — on a clip that is 17 % cutaway, the tail is where the cutaw
 > n=931 and is untouched. This is a **reliability** finding about the deployed precision, not an
 > accuracy one. Not that 9.9 % of dev clips contain B-roll — that number is a relative-threshold flag
 > and the cause is verified for one clip only.
+
+---
+
+### L29 A floor of 1.3-1.7% of clips carry no usable signer pose, and one has the bbox on the wrong person (2026-10-22)
+
+**§L28 found a B-roll cutaway inside one dev clip and asked whether it was unique. It is not, and the
+more serious defect is a different one.**
+
+#### The scan
+
+`data/scan_shot_changes.py`, over every pose pkl in both splits. Two independent rules, because the
+first one alone is blind to the worst case:
+
+1. **Confidence contrast** — a run of >=8 consecutive frames with mean confidence <0.50, *and* >=25 %
+   of the clip above 0.70. The second clause is what makes it a shot *change* rather than a uniformly
+   poor clip.
+2. **Small crop** — `crop_xywh` height below half the frame height. Crops are overwhelmingly
+   full-height (p25 = p50 = **1.000** in both splits), so this tail is anomalous on its own.
+
+| split | by contrast | by small crop | union | of | rate |
+|---|---:|---:|---:|---:|---:|
+| dev | 4 | 9 | **12** | 918 | **1.3 %** |
+| test | 8 | 10 | **16** | 931 | **1.7 %** |
+
+Small-crop clips carry visibly worse poses: mean confidence **0.575 vs 0.836** (dev) and
+**0.641 vs 0.833** (test).
+
+#### Seven sampled, seven defective -- and four different defects
+
+Each was re-fetched and looked at. This is a verified sample, not a heuristic's say-so.
+
+| clip | split | what is actually in the frames |
+|---|---|---|
+| `rlUUw27_6kM-00:17:09.233-00:17:15.433` | dev | B-roll: dark overhead shot of hands on a tablet (§L28) |
+| `9C82salEk7w-00:13:52.533-00:13:56.000` | test | B-roll: close-up of a car keyless ignition, news caption |
+| `hvSB-C04cc4-00:03:05.100-00:03:13.533` | test | screen recording of the YouTube caption editor |
+| `u919vf-yghQ-00:11:30.666-00:11:37.600` | dev | **fade to black** -- f_0009 is 2,988 bytes for a 648x720 frame |
+| `uZwKNtHx9FE-00:24:16.033-00:24:17.200` | test | black frame |
+| `FCcLqY-Nezo-00:00:23.233-00:00:42.733` | test | **the bbox is on the news inset, not the signer** |
+| `ey3i9jNcat4-00:00:53.366-00:00:54.633` | test | a person, but the crop is **58 px wide** |
+
+Five have **no person in the crop at all**. One has a person who is **not the signer**. One has a
+signer too small to pose. `ey3i9jNcat4` was picked deliberately as the most likely false positive --
+smallest crop but *high* confidence, 0.714 -- and it is not one.
+
+#### The one that should worry us most
+
+**`FCcLqY-Nezo` is a SignOn News broadcast: a signer on the right of the frame, a news video inset on
+the left. OpenASL's bbox is `[205, 97, 124, 228]` -- it is on the inset.** All **585 frames**, 19.5 s
+of test data, are poses of a man walking to a car. The signer is in the same picture, unused. This is
+not a cutaway inside a good clip; it is a clip whose subject is wrong from the first frame to the last.
+
+**That also bounds what this scan can claim.** The contrast rule only fires when confidence *changes*
+within a clip, and `FCcLqY-Nezo` has no change -- it is flatly mediocre throughout, and it surfaced
+only because its crop is also small. A wrong bbox over a *large* region would trip neither rule.
+**So 1.3 % / 1.7 % is a floor, not a count.** Nobody has audited the other 98 %.
+
+> **Not claimed:** that the unsampled 21 suspects are all defective (7 of 28 were checked, and all 7
+> were); that the rate is 1.3-1.7 % rather than higher; that OpenASL's bboxes are generally wrong --
+> one verified case is one case.
+
+#### The headline reported both ways, which is the point of having looked
+
+The pose deficit recomputed on the same artifacts with the 16 test suspects removed, `unisign.bootstrap_ci`
+aligned by name, 2000 resamples, seed 0 — the published protocol:
+
+| set | n | ceiling | ours | deficit | 95 % CI | half-width |
+|---|---:|---:|---:|---:|---|---:|
+| all clips (**published**) | 931 | 23.1387 | 21.7310 | **−1.4077** | [−2.1859, −0.6307] | 0.7776 |
+| suspects removed | **915** | 22.9332 | 21.6184 | **−1.3147** | [−2.1182, −0.5187] | 0.7998 |
+| the 16 suspects alone | 16 | 33.1077 | 26.8352 | −6.27 | — | — |
+
+**The deficit is not an artefact of bad clips.** Removing them moves it by **+0.093 BLEU-4 — 6.6 % of
+the deficit, and about one-eighth of the interval's own half-width.** It stays established, both
+intervals exclude zero, and the half-width barely moves. §L19, §L25 and §L26 all stand as published
+and **no number in the report needs restating**.
+
+**They are mildly disproportionate, which is the expected direction.** 16 clips are 1.7 % of the set
+but carry 6.6 % of the deficit: on frames with no signer our RTMW extraction diverges from the
+authors' released poses further than it does on real signing, so the worst clips are worst for us.
+That is a reason to report the figure, not a reason to drop the clips.
+
+> **Read the n=16 row with care.** Corpus BLEU over 16 short sentences is noisy and
+> brevity-penalty-sensitive, which is why no interval is quoted for it. It is reported to show the
+> *direction* and rough size of the contribution, not as a measurement.
+
+**Decision recorded: the clips stay in.** 931 is the exhausted paired ceiling (§L20), every published
+number is at n=931, and re-cutting the test set this late would mean restating §L19/§L25/§L26 to move
+a headline by less than an eighth of its own interval. The defect is documented, the suspect list is
+committed at `results/suspect_clips_2026-10-22.json`, and the scan is reproducible via
+`data/scan_shot_changes.py`.
+
+> **A near-miss worth recording, of the §L24 family.** The first run of this comparison reported
+> `suspects_in_comparison=0` and would have printed a clean "no change": the eval JSONs suffix clip
+> names with `.mp4` and the clip directories do not, so nothing matched and the exclusion arm was
+> silently identical to the full arm. **A null produced by a failed join looks exactly like a null
+> produced by a null.** The script now asserts that the drop set is non-empty before it will report.

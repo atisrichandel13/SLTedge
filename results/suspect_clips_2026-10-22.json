@@ -1,0 +1,95 @@
+{
+ "dev": {
+  "n_clips": 918,
+  "by_confidence_contrast": [
+   "I74ifR94oho-00:12:27.666-00:12:29.466",
+   "kTrTETgKpBw-00:10:10.066-00:10:13.333",
+   "rlUUw27_6kM-00:17:09.233-00:17:15.433",
+   "u919vf-yghQ-00:11:30.666-00:11:37.600"
+  ],
+  "by_small_crop": {
+   "5-XiLc5yNM4-00:05:36.666-00:05:44.333": 0.3333,
+   "6iGqd6tHOPk-00:00:18.433-00:00:21.233": 0.4833,
+   "I74ifR94oho-00:12:27.666-00:12:29.466": 0.3639,
+   "ZtOo5YOCVYA-00:00:24.400-00:00:28.100": 0.3417,
+   "hcfvUwu-Rtg-00:00:40.600-00:00:41.700": 0.3222,
+   "kAI8SAxYHSs-00:01:06.233-00:01:10.666": 0.3278,
+   "lIE16P1LVhc-00:06:47.533-00:06:48.033": 0.2444,
+   "wdmj6E_faOo-00:00:50.133-00:00:55.066": 0.2472,
+   "wn3kpVhXTLQ-00:02:11.433-00:02:15.233": 0.2472
+  },
+  "union": [
+   "5-XiLc5yNM4-00:05:36.666-00:05:44.333",
+   "6iGqd6tHOPk-00:00:18.433-00:00:21.233",
+   "I74ifR94oho-00:12:27.666-00:12:29.466",
+   "ZtOo5YOCVYA-00:00:24.400-00:00:28.100",
+   "hcfvUwu-Rtg-00:00:40.600-00:00:41.700",
+   "kAI8SAxYHSs-00:01:06.233-00:01:10.666",
+   "kTrTETgKpBw-00:10:10.066-00:10:13.333",
+   "lIE16P1LVhc-00:06:47.533-00:06:48.033",
+   "rlUUw27_6kM-00:17:09.233-00:17:15.433",
+   "u919vf-yghQ-00:11:30.666-00:11:37.600",
+   "wdmj6E_faOo-00:00:50.133-00:00:55.066",
+   "wn3kpVhXTLQ-00:02:11.433-00:02:15.233"
+  ],
+  "n_union": 12
+ },
+ "test": {
+  "n_clips": 931,
+  "by_confidence_contrast": [
+   "9C82salEk7w-00:13:52.533-00:13:56.000",
+   "FCcLqY-Nezo-00:00:23.233-00:00:42.733",
+   "Wv8juaN202w-00:11:25.166-00:11:29.166",
+   "Wv8juaN202w-00:13:50.533-00:14:21.533",
+   "ZPiRIM1gYLQ-00:12:50.066-00:13:21.566",
+   "hvSB-C04cc4-00:03:05.100-00:03:13.533",
+   "lIE16P1LVhc-00:06:35.200-00:06:39.700",
+   "mNF1kg9azQw-00:12:10.633-00:12:22.000"
+  ],
+  "by_small_crop": {
+   "FCcLqY-Nezo-00:00:23.233-00:00:42.733": 0.3167,
+   "YR7BS6l_95E-00:01:54.133-00:01:58.233": 0.4389,
+   "dBKY0y6Zypk-00:11:59.366-00:12:04.566": 0.4722,
+   "ey3i9jNcat4-00:00:53.366-00:00:54.633": 0.2167,
+   "iD6DQiD2J7I-00:04:42.466-00:04:45.200": 0.4667,
+   "jPvOkmxsKoA-00:04:56.633-00:04:57.300": 0.3111,
+   "lIE16P1LVhc-00:06:35.200-00:06:39.700": 0.475,
+   "lIE16P1LVhc-00:09:09.700-00:09:16.366": 0.4139,
+   "plH6Tq2rj6k-00:00:06.600-00:00:07.466": 0.4472,
+   "uZwKNtHx9FE-00:24:16.033-00:24:17.200": 0.2444
+  },
+  "union": [
+   "9C82salEk7w-00:13:52.533-00:13:56.000",
+   "FCcLqY-Nezo-00:00:23.233-00:00:42.733",
+   "Wv8juaN202w-00:11:25.166-00:11:29.166",
+   "Wv8juaN202w-00:13:50.533-00:14:21.533",
+   "YR7BS6l_95E-00:01:54.133-00:01:58.233",
+   "ZPiRIM1gYLQ-00:12:50.066-00:13:21.566",
+   "dBKY0y6Zypk-00:11:59.366-00:12:04.566",
+   "ey3i9jNcat4-00:00:53.366-00:00:54.633",
+   "hvSB-C04cc4-00:03:05.100-00:03:13.533",
+   "iD6DQiD2J7I-00:04:42.466-00:04:45.200",
+   "jPvOkmxsKoA-00:04:56.633-00:04:57.300",
+   "lIE16P1LVhc-00:06:35.200-00:06:39.700",
+   "lIE16P1LVhc-00:09:09.700-00:09:16.366",
+   "mNF1kg9azQw-00:12:10.633-00:12:22.000",
+   "plH6Tq2rj6k-00:00:06.600-00:00:07.466",
+   "uZwKNtHx9FE-00:24:16.033-00:24:17.200"
+  ],
+  "n_union": 16
+ },
+ "_verified_by_eye": {
+  "FCcLqY-Nezo-00:00:23.233-00:00:42.733": "bbox on the news INSET, not the signer; signer is on the right of the frame for the whole clip (SignOn News layout)",
+  "9C82salEk7w-00:13:52.533-00:13:56.000": "B-roll cutaway: close-up of a car keyless ignition button, no person",
+  "hvSB-C04cc4-00:03:05.100-00:03:13.533": "screen recording of the YouTube caption editor, no person",
+  "rlUUw27_6kM-00:17:09.233-00:17:15.433": "B-roll cutaway: dark overhead shot of hands on a tablet, no signer (L28)"
+ },
+ "_method": {
+  "low_conf": 0.5,
+  "signer_conf": 0.7,
+  "min_run_frames": 8,
+  "min_signer_frac": 0.25,
+  "small_crop_height_frac": 0.5,
+  "note": "the confidence-contrast rule only catches clips where confidence CHANGES mid-clip; a clip whose bbox is wrong from frame 0 has flat mediocre confidence and is invisible to it. The small-crop rule is the independent signal that catches those. Both are lower bounds."
+ }
+}
