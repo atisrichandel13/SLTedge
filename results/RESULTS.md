@@ -4068,7 +4068,11 @@ systematic fp16 overflow would not spare the coordinates, which are the larger m
 overwritten before anything could be observed about them.** On those frames the coordinate channel
 carries no information about the engine, so a finite-range check on it is a fact about the decode.
 **FP16 is therefore not excluded**, and the fp16-vs-estimator question stays open pending a board
-re-extraction of this one clip in both precisions. What *is* established: the fault is upstream of
+re-extraction of this one clip in both precisions.
+> **RESOLVED 2026-10-22 by that re-extraction — it is FP16. See §L28.** Same frames, same pre-§L27
+> decode, input proven identical by the 142 clean frames reproducing bit-identically: FP16 reproduces
+> all seven NaN frames, FP32 produces none. The frames themselves turn out to be a B-roll cutaway with
+> no signer in them. What *is* established: the fault is upstream of
 the decode's argmax and upstream of square-norm — the identical NaN frame set appears in `_raw`,
 which is the same inference pass before normalisation.
 
@@ -4087,3 +4091,76 @@ have trained the encoder on a 133-point mass outside the crop frame.
 > **Not claimed:** that FP16 caused the NaN; that `verify_handoff.sh` should now scan pkl interiors
 > (it checks transport, and a second tool scanning contents is the right split); that the fix would
 > have prevented the NaN rather than making it impossible to mistake for data.
+
+---
+
+### L28 The NaN was FP16, and the frames that triggered it are B-roll with no signer in them (2026-10-22)
+
+**§L27 left one question open — "is the NaN from the FP16 engine or from the estimator?" — and said it
+could not be settled from the archives. It is now settled on the board: FP16.**
+
+Board re-extraction of `rlUUw27_6kM-00:17:09.233-00:17:15.433` in **both** precisions, same clip, same
+frames, same script.
+
+**The input is proven identical, which is what makes the comparison worth anything.** The clip's frames
+had been reclaimed, so they were re-fetched with `data/openasl_fetch.py --only-vid` at the original
+parameters; the re-fetched `meta.json` is **field-for-field identical** to the tracked one
+(`1280x720@23.976`, `crop_xywh [470, 0, 528, 720]`, 149 frames). The proof is stronger than the meta,
+though: **the 142 non-NaN frames reproduce bit-identically — keypoints *and* scores — against the
+committed `pkl_dev_rtmw_fp16`.** Same pixels, same deterministic engine. The board also still runs the
+**pre-§L27 decode** (no `isfinite` guard; board `md5 c038e948…` vs this Mac's `1c2c47cd…`), so the
+re-run executed the same code that produced the original artefact.
+
+| arm | NaN score frames | NaN scores | NaN keypoints |
+|---|---|---:|---:|
+| committed FP16 (2026-10-05) | 9, 12, 13, 14, 15, 19, 22 | 931 | 0 |
+| **re-extracted FP16** (2026-10-22) | **9, 12, 13, 14, 15, 19, 22** | **931** | 0 |
+| **re-extracted FP32**, same frames | **none** | **0** | 0 |
+
+So the defect is **deterministic and precision-dependent**. On the seven frames FP16 fails, FP32
+returns ordinary output — 114–135 distinct keypoint values per frame spanning the full range, with
+mean confidences 0.20–0.29 in line with their neighbours, where FP16 gave a single bit-identical
+corner point. **`REPLY-NAN-SCORES-CLIP-2026-10-07.md:85-88` inferred the fault was estimator-side and
+not an fp16 event; that inference is now disconfirmed**, and §L27's refusal to accept it — on the
+grounds that the coordinates had been overwritten and therefore carried no evidence — was the right
+call for the right reason.
+
+#### What is actually in those frames
+
+**Frames 0–25 of this clip are a B-roll cutaway: a dark overhead shot of hands on a tablet, with no
+signer in frame at all.** Frame 75, for contrast, is an ordinary bright signer shot. OpenASL's bbox is
+**static per clip**, so on the cutaway the crop lands on a frame containing no person, and the pose
+head is asked to find 133 whole-body keypoints in it.
+
+| segment | frames | mean confidence |
+|---|---|---:|
+| B-roll cutaway | 0–25 (**1.08 s of a 6.21 s clip, 17 %**) | **0.2458** |
+| signer | 26–148 | 0.8214 |
+| whole clip | 149 | 0.7444 |
+
+**All seven FP16-NaN frames fall inside the cutaway.** They are also the lowest-detail frames in it,
+at 54–60 % of the clip's median JPEG size. So the mechanism end to end: no person in the crop →
+flat/degenerate SimCC logits → FP16 lacks the range to carry them and emits NaN → `np.argmax` of an
+all-NaN row returns 0 → the `<= 0` sentinel does not fire on NaN → a constant corner coordinate that
+looks like data (§L27).
+
+**The clip is not a freak.** Its clip-level mean confidence of 0.7444 ranks **49th of 918** dev clips —
+the 5th percentile, low but not an outlier, and it is the 1.08 s cutaway dragging an otherwise normal
+clip down. **91 of 918 dev clips (9.9 %) have more than 20 % of their frames below the 5th-percentile
+confidence threshold.** That is a *flag*, not a finding: the threshold is relative, so some clips sit
+below it by construction, and **B-roll is verified as the cause in exactly one clip — this one.**
+Whether the other 90 are cutaways, dark rooms, small signers or bad boxes is unmeasured.
+
+#### Incidental: FP16 vs FP32 on the 142 clean frames of this clip
+
+Square side 896 px. Median deviation is **exactly zero** — most keypoints are bit-identical between
+precisions — with p90/p95 at **1.76 px**, p99 at **5.27 px**, and **98.75 % within 5 px** (99.26 %
+within 10). But the tail is long: p99.9 is **255.89 px** and the max **553.71 px**. Consistent with
+§2.5i's reading that the disagreement is argmax instability on hard keypoints rather than a uniform
+precision offset — on a clip that is 17 % cutaway, the tail is where the cutaway lives.
+
+> **Not claimed:** that FP16 NaNs anywhere else — the scan in §L27 found 1 clip in 1,849, and this is
+> that clip. Not that the accuracy conclusions move: §L25's FP16−FP32 bound is a BLEU-4 result at
+> n=931 and is untouched. This is a **reliability** finding about the deployed precision, not an
+> accuracy one. Not that 9.9 % of dev clips contain B-roll — that number is a relative-threshold flag
+> and the cause is verified for one clip only.

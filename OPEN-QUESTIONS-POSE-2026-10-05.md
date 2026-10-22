@@ -585,6 +585,14 @@ does not, permission to delete the forward references.
 
 ## State of the ledger, 2026-10-12
 
+> **UPDATED 2026-10-22 — the board queue is cleared.** The tunnel came back up and the re-extraction
+> ran: **the NaN is FP16's** (FP32 is clean on the identical frames, with input identity proven by the
+> 142 clean frames reproducing bit-identically), and the seven frames turn out to be a **B-roll cutaway
+> with no signer in them** — §L28, `REPLY-NAN-RESOLVED-AND-PORT-2026-10-22.md`. Their demo item 2 is
+> also answered: a WireGuard peer at `10.66.0.9` reached `192.168.1.73:8765` inside the container.
+> **Mine, open: Q12 only.** **Theirs, open on me: nothing.** Remaining board asks need them to send
+> live phone clips (their item 3.2) and need an answer on board travel (their item 6, Tushar's).
+
 **Mine, open:** Q12 only (above). **Yours, open on me:** the board re-extraction of
 `rlUUw27_6kM-00:17:09.233-00:17:15.433` in FP16 and FP32, which is queued and blocked on the lab-split
 WireGuard tunnel being down — everything else in `REPLY-NAN-SCORES-CLIP-2026-10-07.md` and
