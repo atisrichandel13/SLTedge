@@ -384,9 +384,12 @@ it, for roughly 15 minutes of board time.
   adaptation at source rate sits at ROUGE-L +0.60 with P(Δ<0) = 0.044–0.056 across seeds — straddling
   the threshold, so it must not be quoted as either established or null.
   > **Still accurate on this axis, 2026-10-12 — and do not read §L26 as having answered it.** The
-  > item above is the **frame-rate** difference-in-differences, and it is still blocked on the same
-  > file: `adapt_fps16_s42_cap100`'s eval JSON has never been pushed and `results/` holds nothing
-  > matching it today (asked again in `REPLY-NAN-SCORES-DIAGNOSED-2026-10-12.md:§8`).
+  > item above is the **frame-rate** difference-in-differences.
+  > ~~still blocked on the same file: `adapt_fps16_s42_cap100`'s eval JSON has never been pushed and
+  > `results/` holds nothing matching it today~~ **CORRECTED 2026-10-22 — that was false when
+  > written.** `results/block4/eval_dev_adapt_fps16_s42_cap100.json` has been in `origin/main` since
+  > `54b0eef`. **This DiD is unblocked**; `REPLY-Q12-EVAL-JSON-EXISTS-2026-10-22.md` has the path, the
+  > caveat about §L15.3's adapted cells not reproducing, and why that does not gate `adapt_ci.py`.
   >
   > What *has* been answered is the **pose-deficit** axis, which was a different pending lever.
   > §L26 (J9 step 2, 2026-10-07): adapting on our own keypoints is a null at **−0.1263 BLEU-4,

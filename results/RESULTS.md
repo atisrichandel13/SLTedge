@@ -775,8 +775,14 @@ ratios across rates are what P8 needs and they are unaffected.
 > *source* rate at ROUGE-L **+0.60**, with P(delta<0) spanning **0.044–0.056** across seeds — it sits
 > exactly on the 0.05 line, so "established" flips with the resample draw. It must not be quoted as
 > either established or null. Whether adaptation specifically repairs frame-rate shift, as opposed to
-> helping everywhere, is the difference-in-differences that `adapt_ci.py` computes and that is still
-> waiting on one eval JSON (`adapt_fps16_s42_cap100`, quoted in L15.3 but not yet pushed).
+> helping everywhere, is the difference-in-differences that `adapt_ci.py` computes.
+> ~~still waiting on one eval JSON (`adapt_fps16_s42_cap100`, quoted in L15.3 but not yet pushed)~~
+> **CORRECTED 2026-10-22 — that was false when written.** The file has been in `origin/main` since
+> `54b0eef`, at `results/block4/eval_dev_adapt_fps16_s42_cap100.json`, with all 967 per-clip
+> predictions. The DiD is **not** blocked; see `REPLY-Q12-EVAL-JSON-EXISTS-2026-10-22.md`, which also
+> records that re-deriving §L15.3's 2×2 from the four committed JSONs reproduces both *un-adapted*
+> cells exactly and neither *adapted* cell — so quote the DiD computed from the JSONs, not the
+> **+0.22 / +0.31** in the §L15.3 table, until that is run down.
 >
 > **Revised operating point: 24 fps, not 16.** Free on both metrics (test −0.07 BLEU-4, dev +0.26;
 > ROUGE-L +0.15) for 21 % less pose energy. 16 fps buys 47 % but costs ~1.3–1.6 ROUGE-L. **Table A
