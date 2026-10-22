@@ -28,7 +28,14 @@ TWO TRAPS, both measured 2026-10-05 and each worth an hour.
    here) returns `The page needs to be reloaded.` for *every* video. The remedy is master:
      python3 -m venv ytenv && ytenv/bin/pip install "git+https://github.com/yt-dlp/yt-dlp.git"
    which needs **Python >= 3.10** (the system 3.9 cannot install it) and gave 2026.08.19, which
-   works at 720p. Do NOT fall back to `--extractor-args youtube:player_client=android`: it extracts
+   works at 720p.
+   UPDATED 2026-10-22, re-confirmed the hard way while re-fetching one clip for L28: yt-dlp master
+   now requires **Python >= 3.11**, so the system 3.9 AND the venv recipe above both fail with
+   "Package 'yt-dlp' requires a different Python". On the pose-track Mac use miniconda's base
+   interpreter (`~/miniconda3/bin/python3`, 3.13) to build the venv; master was 2026.10.21 and gives
+   720p. The stale copy in the `yt-crawl` conda env (2026.03.03) does NOT error -- it silently
+   returns 360p only, which is the confound this docstring warns about two lines down. Check the
+   height before trusting a fetch, not just the exit code. Do NOT fall back to `--extractor-args youtube:player_client=android`: it extracts
    successfully but only offers 640x360, and fetching at 360p changes the input resolution and so the
    pose distribution, which confounds any comparison against the 720p clips already collected.
 
