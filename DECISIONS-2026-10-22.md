@@ -4,6 +4,24 @@
 see §10. Written for the two of us, because a lot of this project was carried by tooling and neither
 of us can currently recite the decision chain end to end.*
 
+> **POSE HALF FILLED IN 2026-10-22 by the pose track.** All seven `[OPEN — POSE TRACK]` blocks in §10
+> are answered in place, and three rows above are corrected in place as §10 invited:
+>
+> | corrected | what was wrong |
+> |---|---|
+> | **§3.1** | the "Rejected" line rejects the model we shipped — "rtmlib lightweight" **is** RTMW-l-m 256×192 |
+> | **§3.9** | `adapt_ci.py` **had** been run; its output has been committed since 2026-09-30 and the DiD is **not established** |
+> | **§9**, items 1–2 | both closed by the above |
+>
+> Two of the §10 answers change a claim rather than filling a blank: **§10.2** — `l-m` *was* compared
+> against `x-l` 384×288 and won, so it stays in §3.1 as a decision, not §5 as a gap; **§10.4** — the
+> keypoint head is **27 % of the model's weights**, so the 69-of-133 question is not
+> backbone-dominated and cannot be closed as free. **§10.5** gets a call: a fixed box on the preview,
+> not iOS Vision, not the whole frame. Two *new* §5 gaps fell out of answering: the RTMW-x-l 384×288
+> row was never scored on BLEU, and RTMPose-l / -m wholebody were never run at all.
+>
+> Nothing in §1–§8 needed a hardware number added; every one I checked was already right.
+
 ---
 
 ## 0. How to read this, and the rules for extending it
@@ -88,7 +106,13 @@ of which pose is 58 % (§L30).
 ### 3.1 Which pose extractor — RTMW-l-m 256×192, and it was not the obvious pick
 
 **Chosen:** RTMW-l-m at 256×192.
-**Rejected:** RTMPose-x at 384×288, and the two rtmlib bundles (lightweight / performance).
+~~**Rejected:** RTMPose-x at 384×288, and the two rtmlib bundles (lightweight / performance).~~
+
+> **CORRECTED 2026-10-22 by the pose track — this rejects the model we shipped.** "rtmlib
+> lightweight" **is** RTMW-l-m 256×192; §C2 states it outright ("the Jetson baseline pose model is
+> RTMW-l-m 256x192 (rtmlib \"lightweight\", ONNX shipped by OpenMMLab)"). The rtmlib *bundles* are
+> packaging, not models. **Rejected:** RTMPose-x at 384×288, and **RTMW-x-l at 384×288** (which is
+> what "rtmlib performance" is). See §10.1 and §10.2 — the larger RTMW *was* compared, and lost.
 
 The honest order of events matters here. We did **not** pick RTMW for speed. We ran §C2 to find out
 *which extractor the Uni-Sign authors actually used to make their released keypoints* — the archive
@@ -302,12 +326,28 @@ cross-entropy is ~0.36, and at lr 1e-5 fine-tuning *improves* both metrics.
 
 **Status as of today**, and this is the one genuinely unfinished result in the LM track:
 
-- **Frame-rate adaptation (does training recover what 16 fps costs?)** — the 2×2 exists in §L15.3 and
-  all four eval JSONs are in `results/block4/`. `adapt_ci.py` has not been run, so there is **no
-  confidence interval** and it is **not quotable**. Recomputed from the files the
-  difference-in-differences is **+0.348 BLEU-4 / +0.441 ROUGE-L**; §L15.3's prose says +0.22 / +0.31
-  and we have not run that discrepancy down (`REPLY-Q12-EVAL-JSON-EXISTS-2026-10-22.md`, deferred
-  until after the demo).
+- ~~**Frame-rate adaptation (does training recover what 16 fps costs?)** — `adapt_ci.py` has not been
+  run, so there is **no confidence interval** and it is **not quotable**.~~
+  > **CORRECTED 2026-10-22 by the pose track — `adapt_ci.py` WAS run, and its output has been
+  > committed since 2026-09-30.** `results/adapt_ci_dev.json` landed in **`54b0eef`, the same commit
+  > as the fourth eval JSON**, and holds the complete output: every pair, the seed spread, and a
+  > `did` block. **This is the last genuinely unfinished LM-track result crossed off, and it was
+  > never unfinished.** Re-running it on the pose-track Mac reproduces it **bit-identically to twelve
+  > decimals** (`results/adapt_ci_2026-10-22.json`).
+  >
+  > **The answer: not established, on either metric.** BLEU-4 **+0.32 [−0.55, +1.18]**, P(>0) =
+  > 0.772; ROUGE-L **+0.42 [−0.58, +1.53]**, P(>0) = 0.780 — roughly a 1-in-4 chance of the opposite
+  > sign. §L15.3's lead bullet ("adaptation helps more under frame-rate shift than without it") is
+  > **retracted**; what survives is the within-rate result, adaptation at 16 fps = **+1.044 ROUGE-L
+  > [+0.247, +1.802]**, established. The attribution falls, the operating point does not.
+  >
+  > **And the §L15.3 table discrepancy is fully accounted for, so do not defer it.** The two
+  > *adapted* cells' gaps are **opposite in sign**, so the DiD adds them: +0.123 / +0.135 against the
+  > observed table-to-file shift of +0.128 / +0.131, residual = the table's 2-dp rounding. Nothing is
+  > left to run down. §L31 and `REPLY-Q12-ALREADY-COMPUTED-2026-10-22.md`.
+  >
+  > Both lines that sent you looking for a blocker were **mine**, not yours — please take §2 of
+  > `REPLY-Q12-EVAL-JSON-EXISTS` back.
 - **Pose adaptation (does training on *our* keypoints close the −1.41 pose gap?)** — **answered, and
   it is a null.** §L26: **−0.1263 BLEU-4 [−0.4973, +0.2488]**, and the interval **excludes** the
   +0.5490 §L17 predicted and the +0.7785 bar §L21 set. So a benefit above **~18 %** of the −1.41
@@ -414,6 +454,10 @@ calling them "future work" without saying they were in the plan would be dishone
 | **PTQ vs QAT on the pose front-end (P10)** | not started | |
 | **GPU preprocessing (P11)** | not started | The cost *is* quantified: imread 6.02 ms + preprocess 5.11 ms per frame, 19 % of frame time (§2.2b). |
 | **Same-model resolution row (P7)** | partial | We compared *across* models (RTMPose-x 384 vs RTMW 256), never the same model at two resolutions. |
+| **RTMW-x-l 384×288 on BLEU** | **agreement only** | *Added 2026-10-22 from §10.1.* It was compared against RTMW-l-m on keypoint agreement (§C2) and on one sentence's logprob (§C5), **never on BLEU**. So the one same-family resolution comparison we do have never reached the translation metric. |
+| **RTMPose-l / RTMPose-m wholebody 256×192** | **never run** | *Added 2026-10-22 from §10.1.* Both are in `WORKSPLIT.md` P6's plan and neither was run, so §C2's caveat — "an MMPose RTMPose-m/l wholebody 256×192 would also fit the folder name" — is **still open**: §C2 pinned the authors' extractor's resolution and family, not its checkpoint. |
+| **Layer-level TRT profile of the pose engine** | never produced | *Added 2026-10-22 from §10.4.* Needed to turn "the keypoint head is 27 % of the weights" into a latency number. One ~15-minute board run. |
+| **Batching the pose engine** | never measured | *Added 2026-10-22 from §10.7(b).* The engine has one optimisation profile and every run in this project is batch 1 — which is also the only path our agreement checks cover (§6 rule 9). |
 | **A board-measured BLEU** | **never produced** | *Every* accuracy number in this project is offline on the Mac. The only bridge is a 30-clip batch-size-1 agreement check. This is the biggest genuine methodological gap we have. |
 | **Streaming / overlapped stages** | unmeasured | M1 ran all frames *then* the LM, sequentially, and the 15 W contention we predicted did not appear. **M1 is not evidence that streaming is free** — a pipeline decoding sentence N while extracting N+1 would contend. §L30's 1.6× pose slowdown is the first hint of what that costs. |
 | **iOS app (P14)** | nothing built | The board half is done; the phone half is not. |
@@ -515,10 +559,14 @@ difference between a dropped frame and a confident translation of nothing.
 
 ## 9. Still genuinely open
 
-1. **`adapt_ci.py` has not been run**, so the frame-rate difference-in-differences has no interval and
-   is not quotable. Unblocked as of today (`REPLY-Q12-EVAL-JSON-EXISTS-2026-10-22.md`).
-2. **§L15.3's adapted cells do not reproduce** from the committed eval JSONs. Low priority, deferred
-   until after the demo, recorded so nobody quotes the table in the meantime.
+1. ~~**`adapt_ci.py` has not been run**, so the frame-rate difference-in-differences has no interval
+   and is not quotable.~~ **CLOSED 2026-10-22 — it was run and committed on 2026-09-30, and the DiD
+   is *not established*: +0.32 [−0.55, +1.18] / +0.42 [−0.58, +1.53].** §3.9 above, §L31.
+2. ~~**§L15.3's adapted cells do not reproduce** from the committed eval JSONs. Low priority,
+   deferred until after the demo.~~ **CLOSED 2026-10-22 — accounted for arithmetically**: the two
+   adapted gaps are opposite in sign and sum to the whole observed DiD shift (§3.9, §L31). The table
+   now carries a dated note giving the JSON cells. Nobody should quote the table; nothing needs
+   investigating.
 3. **No board-measured BLEU exists.** §5.
 4. **The phone half of the demo does not exist.** §10.
 5. **Whether the board may physically leave the lab** — asked, still unanswered (`ASK-IOS-DEMO-BOARD`
@@ -540,11 +588,59 @@ pose-side statuses from committed artifacts rather than being told them.
 bundles as swept. Those rows are not in the ledger above because the LM track does not have them
 broken out. **What did they score, and on what — keypoint agreement, BLEU, or latency only?**
 
+> **ANSWERED 2026-10-22, pose track. Keypoint agreement and latency. Never BLEU, and never more than
+> one clip.** First, the naming, because it is the source of the confusion in §3.1: the rtmlib
+> "bundles" are not extra models. **lightweight = RTMW-l-m 256×192** (what we shipped);
+> **performance = RTMW-x-l 384×288**. There were three candidates in total, not four.
+>
+> They were scored twice, both on the Bitcoin clip `Ads-4j06eJY` only:
+>
+> **§C2 — keypoint agreement against the authors' released `pose-rtmpose-192` pkl** (the measurement
+> that actually decided it), as model-space distance per group after a framing fit:
+>
+> | candidate | raw mean px | after framing fit | body / left / right / face |
+> |---|---:|---:|---|
+> | **rtmlib lightweight = RTMW-l-m 256×192** | 57 | **3.3** | **0.091 / 0.053 / 0.041 / 0.012** |
+> | rtmlib performance = RTMW-x-l 384×288 | 57 | 3.5 | 0.141 / 0.139 / 0.056 / 0.020 |
+>
+> **§C5 — one sentence each through the LM, Mac CPU, greedy** (not a BLEU; n=1 clip):
+>
+> | pose source | mean logprob | gcn/enc/dec ms |
+> |---|---:|---|
+> | authors' released poses | −0.75 | — |
+> | **rtmlib lightweight** | **−0.81** | 81 / 76 / 295 |
+> | rtmlib performance | −1.20 | 89 / 80 / 345 |
+>
+> **So: agreement + latency + one logprob, and no BLEU on this axis ever.** The BLEU comparison in
+> §2.5c (n=30) is RTMW-l-m against **RTMPose-x 384×288**, a different model, and the two rtmlib rows
+> were never carried into it. That is a real gap and it belongs in §5, not here:
+> **the 384×288 RTMW-x-l row was never scored on BLEU, only on keypoint agreement.**
+>
+> One further gap: `WORKSPLIT.md` P6's plan also listed **RTMPose-l and RTMPose-m wholebody 256×192**.
+> Those were **never run.** §C2's own caveat — "an MMPose RTMPose-m/l wholebody 256×192 would also fit
+> the folder name" — is therefore still open: §C2 identified the authors' extractor's *resolution and
+> family*, not its exact checkpoint.
+
 ### 10.2 Why *l-m* specifically
 RTMW ships in several sizes. §C2 established that the authors used *a 256×192 RTMW/RTMPose model* and
 we matched the resolution. **Was `l-m` chosen because it is what the SDK zip shipped, or was it
 compared against `x-l` 384×288 and other sizes? If it was never compared, that belongs in §5 as a gap,
 not in §3.1 as a decision.**
+
+> **ANSWERED 2026-10-22, pose track. It was compared against `x-l` 384×288, and it won on the
+> measurement that mattered. It stays in §3.1 as a decision.** See the §C2 table in §10.1 above:
+> l-m is closer to the authors' released keypoints on **every one of the four groups** — body
+> 0.091 vs 0.141, left hand 0.053 vs 0.139, right hand 0.041 vs 0.056, face 0.012 vs 0.020 — and its
+> poses produced the more confident sentence (−0.81 vs −1.20).
+>
+> **But your instinct is half right, so state both halves.** The *resolution* 256×192 was chosen to
+> **match the authors' archive** (§C2, folder `pose-rtmpose-192`), not on a sweep — that is a
+> replication decision. Given the resolution, `l-m` versus `x-l` **was** a measured comparison. What
+> was never swept is the size axis *within* 256×192 (RTMPose-l / -m wholebody — see §10.1), so the
+> honest statement is:
+>
+> **"256×192 to match the authors; l-m over x-l on keypoint agreement; the smaller 256×192 variants
+> never compared."** The third clause is the §5 gap.
 
 ### 10.3 The 7 FP32 layers
 §3.2 trap 2 says 7 of 465 RTMPose-x layers stay in FP32. **How were those 7 picked — a measured
@@ -552,10 +648,80 @@ activation-range sweep, or the one overflowing layer plus its neighbours?** The 
 reusable part, and it is currently unrecorded. (Note this applies to the *rejected* RTMPose-x path;
 say explicitly whether RTMW FP16 needed any layer kept in FP32, or whether it was clean.)
 
+> **ANSWERED 2026-10-22, pose track. A measured scan found the cause; a regex pinned the block. The
+> 7 is not a minimised set and nobody tried pinning fewer.**
+>
+> **Step 1 — measure, don't guess.** `task1_rtmpose/08_fp16_range_scan.py` loads the ONNX, appends
+> **every intermediate tensor to the graph outputs**, runs it on onnxruntime CPU over reference
+> frames, and reports each tensor's peak |activation| against FP16's 65,504. On RTMPose-x it named a
+> single cause: the head's ScaleNorm sum-of-squares `/mlp/mlp.0/ReduceSum` at **142,293** (2.2× over),
+> with `/mlp/mlp.0/Pow` at **23,565** already within 4×. **One tensor in 376 saturates and takes the
+> whole head with it** (p90 error 130 px). Raw: `results/rtmposex_fp16_range.json`.
+>
+> **Step 2 — pin by regex, not by hand.** `02_build_engine.py --fp16 --fp32-layers 'mlp\.0'`.
+> `common/trt_runner.py:126-145` compiles the regex, sets `OBEY_PRECISION_CONSTRAINTS`, and pins every
+> *matching compute* layer, skipping SHAPE/CONSTANT/CAST/IDENTITY/SHUFFLE/SLICE/CONCATENATION/GATHER
+> (dtype pass-throughs) and integer/bool shape math. **"7 of 465" is simply what that regex caught
+> after those skips** — it is the whole `mlp.0` ScaleNorm block, not a minimal repair set. **We never
+> tried pinning only `ReduceSum`, or only `ReduceSum` + `Pow`.** That is the honest limit of the
+> procedure, and the reusable part is step 1, not the number 7.
+>
+> Result: simcc error 0.649 → **0.023** (tolerance 0.05), ≤2 px 67.7 → **96.1 %**, ≤5 px 71.7 →
+> **99.5 %**, for **23.3 vs 22.7 ms** TRT and 264 vs 254 mJ/frame — under 3 %, as §3.2 says.
+>
+> **RTMW FP16 was clean: zero layers kept in FP32.** The same scan over RTMW-l-m's **398 tensors**
+> found **no tensor overflowing or near-overflowing** (`results/rtmw_fp16_range.json`). That is the
+> whole reason its plain FP16 engine works, and it is why the shipped engine has no precision
+> constraints at all. **A corollary for §6:** "blanket FP16 broke this model" is not a property of
+> FP16 — it is a property of one architecture's normalisation, and the scan is a one-minute CPU check
+> that tells you which case you are in *before* building anything.
+>
+> One note on §3.2 trap 1 for accuracy: `trt_runner.py:146-149` clears `BuilderFlag.TF32` **only when
+> neither FP16 nor BF16 is requested** — i.e. only for the FP32 baseline, which is the only place it
+> matters. The shipped FP16 engine never touches that path.
+
 ### 10.4 Is a 69-keypoint extraction even possible
 §3.4: the model consumes 69 of 133. **Is there a wholebody head that emits a subset, or is 133 the
 only granularity RTMW offers?** If extraction cost is dominated by the backbone rather than the head,
 say so — that closes the question permanently instead of leaving it as future work.
+
+> **ANSWERED 2026-10-22, pose track. No subset head exists, but one could be *sliced* — and I
+> measured the ceiling on what it would buy. It is not negligible: 13 % of the weights.**
+>
+> **Never run** — so it stays in §5 as a gap. But "is it even possible" now has an answer, from the
+> shipped ONNX (`models/rtmw/rtmw-l-m_256x192.onnx`, **gitignored**, so invisible to you — which is
+> why this was unanswerable from the committed tree):
+>
+> | | |
+> |---|---:|
+> | total initialiser params | **32.236 M** over 225 initialisers, 405 nodes |
+> | **keypoint-count-dependent params** | **8.759 M = 27.17 %** |
+>
+> Only **four** initialisers carry a 133 dimension, and they are the final two convolutions plus
+> their biases:
+>
+> | tensor | shape | params | consumed by |
+> |---|---|---:|---|
+> | `1453` | `[133, 768, 7, 7]` | 5.0051 M | `Conv_336` |
+> | `1459` | `[133, 576, 7, 7]` | 3.7538 M | `Conv_358` |
+> | `1454`, `1460` | `[133]` | 0.0002 M | biases |
+>
+> **These are ordinary `Conv` layers whose *output channels are the keypoints*, one channel per
+> keypoint, with no cross-keypoint mixing at that point.** So dropping keypoints is a clean row-slice
+> of two weight tensors — architecturally the same move as §3.5's vocabulary pruning, applied to the
+> keypoint axis instead of the token axis, and equally retraining-free. The ONNX even leaves the
+> keypoint dimension **symbolic** in its outputs (`simcc_x: ['batch', 'MatMulsimcc_x_dim_1', 384]`),
+> so a sliced graph should re-export and rebuild without shape surgery.
+>
+> **What it would buy:** keeping 69 of 133 removes **4.215 M params = 13.08 % of the model**
+> (32.236 → 28.021 M).
+>
+> **What I cannot tell you, and will not estimate:** whether 13 % of weights is 13 % of *latency*.
+> Those two convs are 7×7 at an unprofiled spatial resolution, **no layer-level TRT profile exists in
+> this project**, and §11 of your §6 is the rule that forbids me inventing one. So: **the cost is not
+> backbone-dominated the way you hoped — the head is 27 % of the weights, which is too big to
+> dismiss — and the remaining question is a 15-minute board run with a TRT layer profiler, not a
+> design question.**
 
 ### 10.5 Where does the person box come from on the phone
 This is the biggest hole in the demo and it is a **design** question, not a measurement.
@@ -574,16 +740,128 @@ anything in the energy table (§2.9D: 15.1× the crop area costs 1.34× the ener
 fixed** — `mJ/frame = 109.7 + 49.5/Mpx`), so it is affordable, but it is also a crop distribution
 nothing has been measured on.
 
+> **ANSWERED 2026-10-22, pose track — and this is a call, not a measurement, so here is mine.**
+>
+> **Use a fixed box drawn on the phone's preview that the signer stands inside. Not iOS Vision, not
+> the whole frame.** Reasons, in order of how much they matter:
+>
+> 1. **It is the only option with zero unmeasured code on the critical path.** Vision is new code
+>    whose failure mode is a *plausible wrong box* — §8's `wn3kpVhXTLQ` case is exactly that, 114
+>    frames of a lace panel scoring 133 confident keypoints, and it passed every check either track
+>    runs. A detector that mis-fires in front of an audience produces a confident sentence about
+>    nothing, which is the worst possible demo failure and indistinguishable from a model failure.
+> 2. **A fixed box is verifiable before the demo starts.** The signer steps into the rectangle and
+>    sees themselves inside it. That is a human check, on screen, once — against a detector you would
+>    have to trust per frame.
+> 3. **It matches the measured crop distribution better than the whole frame does.** Your §2.9D
+>    reading is right and I verified the model, but affordability is not the issue — the issue is that
+>    every accuracy number in this project was measured on *tight signer bboxes* (`crop_style=native`,
+>    §3.3). A whole-frame box feeds RTMW a signer occupying maybe 15 % of the crop, which is a scale
+>    regime nothing in §2.5c or §2.5k covers. A hand-drawn box that frames the signer reproduces the
+>    measured distribution; the whole frame does not.
+>
+> **The server is already indifferent to which you pick** — it takes four fractions and clamps them
+> (§L30), so switching later is a phone-side change only. **Still, do not read this as risk-free:
+> live phone framing is unmeasured territory whichever option you choose, which is exactly why item
+> 3.2 (2–3 real phone clips through the board) is the one thing I am still waiting on.**
+>
+> **If you do go with Vision anyway**, the mitigation is cheap and I would want it either way: have
+> the phone show the box it is about to send, over the preview, and require the signer to confirm.
+> That converts a silent wrong box into a visible one.
+>
+> *Verified while answering:* §2.9D's model is as you quote it — `results/RESULTS.md:2951-2952`,
+> "15.1× more crop area costs only 1.34× the energy … **mJ/frame = 109.7 + 49.5 per Mpx**". **One
+> thing to add that sharpens your own point against the whole-frame option:** that fit was measured
+> over crops spanning **50,660 → 766,080 px** (`ORIENTATION.md:371`). A 1080p whole frame is
+> **2,073,600 px — 2.7× beyond the top of the measured range.** So quoting the 85 %-fixed model for a
+> whole-frame crop is extrapolation, not interpolation. It is probably still affordable; it is not
+> *measured* to be.
+
 ### 10.6 The pose-stage decisions this ledger may have mis-stated
 The LM track wrote §3.1–§3.3 from `RESULTS.md` and `ORIENTATION.md`, not from the pose track.
 **Specifically check:** that FP16 was chosen on energy *and* became a fitting requirement only later
 (§3.2); that the native crop was a deliberate deviation from OpenASL's recipe rather than an
 accident (§3.3); and that P5/P9/P10/P11 in §5 are genuinely un-run rather than run and unreported.
 
+> **CHECKED 2026-10-22, pose track. All three hold. §3.1's "Rejected" line was the only real error
+> and is corrected in place above.**
+>
+> **1. FP16 — chosen on energy, became a fitting requirement later. Correct, and here are the
+> dates.** The energy choice came first (§1/P2 and §P4, 2026-09-26: 13.8 vs 25.6 ms TRT, 127 vs
+> 275 mJ/frame, −0.13 BLEU-4 [−1.48, +1.21], 99.81 % of consumed keypoints within 5 px). The fitting
+> requirement was discovered **two days later** in **§5.1 / M1, 2026-09-28**
+> (`results/RESULTS.md:929`): the same end-to-end run with the FP32 engine "fails partway through LM
+> decode, **out of memory in the KV-cache concat**" — 159 MB vs 68 MB. So the ordering in §3.2 is
+> right. Two refinements: cite **`RESULTS.md:929` (§5.1/M1)** rather than ORIENTATION §3.2, and the
+> failure is specifically **in the KV-cache concat**, which is worth keeping because it is the same
+> allocation that §L30's 91–130 MB steady-state headroom has to survive.
+>
+> **2. Native crop — deliberate, and it was a correction of an earlier plan, which is stronger than
+> "deliberate".** The LM track's own `ASK-IOS-DEMO-BOARD-2026-10-12.md:61` (item 1) asked me to
+> *confirm* that reproducing `openasl_square_crop`'s 224 square from a phone box was right. **I
+> answered that it was wrong** (`323ec9d`, "item 3's crop is wrong"), on the double-resample +
+> affine-padding argument now in §3.3 and `jetson/DEMO.md`. So the native crop is not just a chosen
+> deviation — it is a deviation we were asked to reverse and declined to, with the reason written
+> down. The fetch indices recording `crop_style=native` are the artefact.
+>
+> **3. P5 / P9 / P10 / P11 — genuinely un-run.** Confirmed against `WORKSPLIT.md:57,61,62,63`:
+> P5 "⬜ no INT8 pose artifact in the repo. **Corrected 2026-10-22: the calibrator does not exist**";
+> P9 "⬜ neither side has run it"; P10 "⬜ not started"; P11 "⬜ not started". Add **P14** (⬜ nothing
+> built) and **P7** (🔄 across models, not same-model), both of which §5 already states correctly.
+> **One addition to §5 from §10.1:** the **RTMW-x-l 384×288** row exists on keypoint agreement only
+> and was never scored on BLEU, and **RTMPose-l / RTMPose-m wholebody 256×192 were never run at all**
+> despite being in P6's plan — so §C2's "an MMPose RTMPose-m/l would also fit the folder name" caveat
+> is still open.
+
 ### 10.7 Anything the pose track decided that is not in this file at all
 The LM track has no visibility into: engine build settings beyond TF32, batching on the pose side,
 JPEG decode choices, how `max_frames=900` was picked, or the thread model in `demo_server.py`.
 **Add a §3.11 for anything that was a real choice with a real alternative.**
+
+> **ANSWERED 2026-10-22, pose track. Five items. Two are real decisions, three are not — and saying
+> which is which is the point.**
+>
+> **Real choices, with real alternatives:**
+>
+> **(a) The server serialises requests behind one lock, and threads only so `/health` stays
+> answerable.** `jetson/demo_server.py:77-80` and `:90`: `ThreadingHTTPServer` plus a single
+> `threading.Lock`. The alternative was a worker queue with concurrent translation. **Rejected on a
+> measurement, not on taste:** the GPU and the 15 W budget are not shareable, and §2.2b measured CPU
+> stages slowing **×1.281** when the GPU takes more of that budget — §L30 then saw it as a **1.6×**
+> pose slowdown in the live service. Two concurrent requests would make *both* slower than running
+> them back to back, and would make per-request latency depend on who else is signing. Threading is
+> there for one reason: a `/health` probe must not block behind a translation in flight.
+>
+> **(b) The pose stage runs at batch 1, frame by frame.** The alternative was batching frames into
+> the engine. Not chosen, and **not measured either** — the engine was built with a single
+> optimisation profile and the offline runs are batch 1, so batching would need a rebuild. Note this
+> interacts with your §6 rule 9 (*batch size changes the output*): batch 1 is also what reproduces
+> M1's sentence exactly, so batch 1 is the path all our agreement checks cover. **Treat "would
+> batching the pose engine help?" as an open §5 item, not a closed decision.**
+>
+> **Not decisions — say so rather than dressing them up:**
+>
+> **(c) `max_frames=900` is a guard with no measurement behind it.** `demo_server.py:374-376`, help
+> text "so one long upload cannot stall the demo; 900 is ~37 s at 24 fps". It was picked as a round
+> number comfortably above any plausible demo sentence. **Nothing was measured and no alternative was
+> considered.** It belongs in §5 if anywhere.
+>
+> **(d) There is no JPEG decode in the server at all.** `demo_server.py:158` opens the uploaded video
+> with `cv2.VideoCapture`, so frames come from the video decoder. **The 5.3 ms/frame JPEG decode in
+> §2.2b is a dataset artefact** — the offline runs read pre-extracted JPEGs off disk — and §7's
+> "`fps_end_to_end` includes JPEG decode (~5.3 ms, a dataset artefact a camera pipeline would not
+> pay)" is exactly right. **The live server does not pay it**, which is worth stating positively: one
+> of the costs in the energy table is not in the deployed path.
+>
+> **(e) Engine build settings beyond TF32** (`common/trt_runner.py:105-160`), for completeness, none
+> of which was a judgement call: `create_network(0)` because TRT 10 has only explicit batch; a
+> workspace memory-pool limit; `BuilderFlag.FP16`; `OBEY_PRECISION_CONSTRAINTS` **only** when
+> `--fp32-layers` is passed; optimisation profiles from the caller. The one that *is* a real
+> decision is TF32, and §3.2 trap 1 already has it — with the refinement that it is cleared **only
+> on the FP32 path**, so the shipped FP16 engine never touches it.
+>
+> **Nothing else.** I went looking for a §3.11 and did not find one worth adding: every other
+> pose-side choice in the shipped path is already in §3.1–§3.3 or in §10.3 above.
 
 ---
 

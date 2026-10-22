@@ -784,6 +784,16 @@ ratios across rates are what P8 needs and they are unaffected.
 > cells exactly and neither *adapted* cell — so quote the DiD computed from the JSONs, not the
 > **+0.22 / +0.31** in the §L15.3 table, until that is run down.
 >
+> **FURTHER, 2026-10-22 — the DiD was not merely unblocked, it was already computed and committed in
+> that same `54b0eef`.** `results/adapt_ci_dev.json` holds `adapt_ci.py`'s complete output: every
+> pair, the seed spread, and the DiD at **+0.32 BLEU-4 [−0.55, +1.18]** and **+0.42 ROUGE-L
+> [−0.58, +1.53]**, both **not established**, P(>0) = 0.772 / 0.780. **The line struck above was
+> mine, written in `f144f77` at 16:05:35 on 2026-09-30, eighteen minutes before `54b0eef` landed the
+> file on a parallel branch — so it was true when written.** The LM track's correction note above
+> takes the blame for it; it is a pose-track line and it was not wrong at the time. What was wrong is
+> `ORIENTATION.md:383`, written 2026-10-12 when the file was already in my checkout. **§L31** has the
+> full account, the per-cell table gaps, and what §L15.3 has to retract.
+>
 > **Revised operating point: 24 fps, not 16.** Free on both metrics (test −0.07 BLEU-4, dev +0.26;
 > ROUGE-L +0.15) for 21 % less pose energy. 16 fps buys 47 % but costs ~1.3–1.6 ROUGE-L. **Table A
 > (energy) is unaffected** — it is one clip at 29.97 fps, so the ratios hold.
@@ -1979,11 +1989,27 @@ working recipe changed smoothing, learning rate and warmup together.
 | source rate | 23.13 / 42.93 | 23.31 / 43.63 | +0.18 | +0.70 |
 | **16 fps** | 22.79 / 41.59 | **23.19 / 42.60** | **+0.40** | **+1.01** |
 
+> **CORRECTED 2026-10-22 — the two *adapted* cells of this table are stale; read them off the eval
+> JSONs instead.** `results/block4/` gives adapted/source **23.2495 / 43.5287** (not 23.31 / 43.63)
+> and adapted/16 fps **23.2522 / 42.6339** (not 23.19 / 42.60), so the deltas are **+0.116 / +0.603**
+> and **+0.464 / +1.044**. Both *un-adapted* cells reproduce to within rounding. The rest of the
+> project had already switched: `RESULTS.md:775` quotes +0.60 and §L17's anchor column quotes
+> +0.464 / +1.044, both JSON-derived. **§L31** has the per-cell gaps and why they land twice as hard
+> on the DiD below as on any single cell.
+
 **Reading.**
 
-* **Adaptation helps more under frame-rate shift than without it.** Difference-in-differences:
+* ~~**Adaptation helps more under frame-rate shift than without it.** Difference-in-differences:
   **+0.22 BLEU-4, +0.31 ROUGE-L** — the part attributable to frame-rate adaptation rather than to
-  fine-tuning in general.
+  fine-tuning in general.~~
+  > **RETRACTED 2026-10-22 — not established, and the interval has existed since 2026-09-30.**
+  > `results/adapt_ci_dev.json` (committed in `54b0eef`, the same commit as the fourth cell) puts the
+  > DiD at **+0.32 BLEU-4 [−0.55, +1.18]**, P(>0) = 0.772, and **+0.42 ROUGE-L [−0.58, +1.53]**,
+  > P(>0) = 0.780 — roughly a 1-in-4 chance of the opposite sign on either metric. Recomputed from
+  > the JSONs the point estimate is +0.348 / +0.441, not +0.22 / +0.31, for the reason in the table
+  > note above. **The attribution this bullet makes cannot be separated from "fine-tuning helps
+  > everywhere" at n=967.** What survives is the within-rate result in the next bullet: adaptation at
+  > 16 fps is +1.044 ROUGE-L [+0.247, +1.802], established. **§L31.**
 * **It recovers most of the frame-rate loss.** Un-adapted, 16 fps costs **−1.34 ROUGE-L** (42.93 →
   41.59). Adapted, the 16 fps model sits **−0.33 ROUGE-L** below the un-adapted full-rate baseline —
   roughly **75 % of the loss recovered** — and **+0.06 BLEU-4 above** it.
@@ -1999,6 +2025,11 @@ working recipe changed smoothing, learning rate and warmup together.
    967 predictions, so none of these deltas can be bootstrapped. Every other comparison in this file
    carries a paired CI; these do not. `eval_openasl.py` must be re-run against the adapted checkpoints
    to produce eval JSONs before any of this is quotable.
+   > **STALE since 2026-09-30, noted 2026-10-22.** `eval_openasl.py` *was* re-run: all seven
+   > `results/block4/eval_dev_*.json` carry the 967 per-clip predictions, and
+   > `results/adapt_ci_dev.json` carries every paired CI plus the DiD. Both landed in `54b0eef`. This
+   > caveat is why the table's adapted cells differ from the JSONs — the table came from the
+   > in-training eval, the JSONs from the re-run — but it is no longer a limitation. **§L31.**
 2. **One seed.** Guide row 4.3 (L10 seed variance) has not been run. "+0.40 vs +0.18" is
    uninterpretable without the seed-to-seed spread, and that is a different noise source from the
    clip-resampling CI.
@@ -4354,3 +4385,120 @@ or in the school environment."*
 > is the authority. That the phone leg works (untested; a phone is a different WireGuard peer). That
 > these timings are a protocol-grade measurement: n=6 on one clip, with the board otherwise idle but
 > no power window and no repeats-of-three. They are demo engineering numbers, not §C9 rows.
+
+### L31 The frame-rate difference-in-differences was computed and committed on 2026-09-30, and it is not established (2026-10-22)
+
+Q12 asked the LM track for ten days whether `adapt_fps16_s42_cap100`'s eval JSON survived, because
+`results/RESULTS.md:779` and `ORIENTATION.md:383` (now `:391`) both marked the frame-rate DiD as
+blocked on it. The answer is that nothing was ever blocked. **The DiD had already been computed and
+committed**, in the same commit that landed the eval JSON, and both files were sitting in my own
+checkout the whole time.
+
+#### What was actually in the repo
+
+| artefact | landed | holds |
+|---|---|---|
+| `results/block4/eval_dev_adapt_fps16_s42_cap100.json` | `54b0eef`, 2026-09-30 16:23:26 | the fourth 2×2 cell, `n=967`, `missing=0`, all 967 predictions |
+| `results/adapt_ci_dev.json` | **the same commit** | the complete `adapt_ci.py` output — every pair, the seed spread, **and the DiD** |
+
+`results/adapt_ci_dev.json` is cited by name seventeen times across the project, including at
+`OPEN-QUESTIONS-POSE-2026-10-05.md:308` — **250 lines above where I later asked Q12 in the same
+file** — where I quote its ROUGE-L cells and write "~78 % of the loss recovered", which is the
+JSON-derived figure and not §L15.3's 75 %. I had already used the file that contained the answer.
+
+#### The answer: the DiD is not established, on either metric
+
+From `results/adapt_ci_dev.json`, `did`, n=967, 1000 resamples, seed 0, every cell scored on one
+shared set of draws:
+
+| | DiD | 95 % CI | P(DiD > 0) | |
+|---|---:|---|---:|---|
+| BLEU-4 | **+0.32** | **[−0.55, +1.18]** | 0.772 | **not established** |
+| ROUGE-L | **+0.42** | **[−0.58, +1.53]** | 0.780 | **not established** |
+
+Roughly a **1-in-4 chance the true DiD is negative** on either metric. The point estimate from the
+four files is +0.3480 / +0.4409; `adapt_ci.py` reports the resample *mean* for the DiD (+0.3229 /
++0.4242) while reporting the full-sample value for the pairwise deltas — a small inconsistency in the
+script, and the gap between the two is bootstrap bias, not a second result.
+
+#### What this retires, and what survives
+
+**§L15.3's lead bullet is not supported by the interval.** It reads "**Adaptation helps more under
+frame-rate shift than without it.** Difference-in-differences: **+0.22 BLEU-4, +0.31 ROUGE-L**". That
+is an unestablished quantity stated as a finding, and it is the one claim in §L15.3 that the DiD
+exists to test. See the dated note added there.
+
+**What survives is the within-rate result, which is a different claim.** Adaptation at 16 fps is
+**+1.044 ROUGE-L [+0.247, +1.802]**, P(Δ<0)=0.004 — established. §L16's frontier reading therefore
+stands: adapted 16 fps is a real operating point. What does **not** stand is the *attribution* — that
+the gain is frame-rate repair rather than fine-tuning helping everywhere. Adaptation at source rate is
+**+0.603 ROUGE-L [−0.102, +1.374]** with P(Δ<0) = 0.044–0.056 across four Mac seeds
+(`results/block4/adapt_ci_mac_repro_4seeds.json`), and the DiD is the difference of those two — it
+cannot separate them at n=967.
+
+#### §L15.3's table has two stale cells, and the project had already stopped using them
+
+Re-deriving the 2×2 from the four committed JSONs reproduces both **un-adapted** cells to within
+rounding (±0.005) and neither **adapted** cell:
+
+| cell | JSON (BLEU-4 / ROUGE-L) | §L15.3 table | gap |
+|---|---|---|---|
+| un-adapted, source | 23.1331 / 42.9255 | 23.13 / 42.93 | +0.003 / −0.005 |
+| un-adapted, 16 fps | 22.7878 / 41.5899 | 22.79 / 41.59 | −0.002 / −0.000 |
+| **adapted, source** | **23.2495 / 43.5287** | 23.31 / 43.63 | **−0.061 / −0.101** |
+| **adapted, 16 fps** | **23.2522 / 42.6339** | 23.19 / 42.60 | **+0.062 / +0.034** |
+
+**The two adapted gaps have opposite signs, so the DiD sums them instead of cancelling them.** Signed
+as the DiD combines them they total +0.123 BLEU-4 / +0.135 ROUGE-L, against an observed table-to-file
+shift of +0.128 / +0.131 — the residual is the table's 2-dp rounding. That is the whole discrepancy,
+accounted for. **The general lesson: a difference-in-differences accumulates all four cells' errors,
+so it is the most fragile number in any 2×2 and must be read off the artefacts, never off a rounded
+table.**
+
+The JSONs were already winning everywhere else. `RESULTS.md:775` quotes adaptation at source rate as
+**+0.60**, which is the JSON value, not the table's +0.70. §L17's anchor column quotes L15.3 as
+**+0.464 / +1.044** (`RESULTS.md:3008`), which is the JSON value, not the table's +0.40 / +1.01. Only
+§L15.3's own table still carried the other numbers. So this needs no investigation — the table is
+simply stale, and §L15.3's "What is NOT established" item 1 ("No confidence intervals … none of these
+deltas can be bootstrapped") has been stale since `54b0eef` for the same reason.
+
+Three derived figures in §L15.3's prose move, all in the direction that *flatters* adaptation, which
+is the direction to be most careful about quoting: the adapted-16 fps gap below the full-rate baseline
+is **−0.29 ROUGE-L, not −0.33**; the share of the frame-rate loss recovered is **78 %, not 75 %**; and
+adapted 16 fps sits **+0.12 BLEU-4** above the un-adapted full-rate baseline, not +0.06.
+
+#### The lesson is about trusting a forward reference over the filesystem
+
+Both "blocked" lines were **mine**, and they fail in two different ways:
+
+* `results/RESULTS.md:779` — written in `f144f77` at **16:05:35** on 2026-09-30. `54b0eef` landed the
+  file at **16:23:26**, eighteen minutes later, on a parallel branch. **The line was true when
+  written** and went stale almost immediately. The LM track's reply apologises for this line; it
+  should not, on either count.
+* `ORIENTATION.md:391` (`:383` as their reply cites it) — written in `059b9b7` on 2026-10-12, by
+  which time `54b0eef` was an ancestor of my HEAD and the file was on this disk. **That one was false
+  when written**, and `git ls-tree -r 059b9b7` — **the commit that added Q12** — lists both
+  `results/block4/eval_dev_adapt_fps16_s42_cap100.json` *and* `results/adapt_ci_dev.json`.
+
+This is the §L24 family — an absence asserted without a search that could have found it — but with a
+sharper edge than §L29's `suspects_in_comparison = 0` near-miss. There, a guard was missing. Here,
+**`RESULTS.md` was trusted as authoritative about what files exist.** It is authoritative for
+*results*; the filesystem is the only authority on *artefacts*. `find results -name '*adapt_fps16*'`
+takes one second and would have ended this on 2026-10-12. Ten days of asking, and a correction note
+written by the wrong track, came out of skipping it.
+
+> **Reproduction.** Re-ran `unisign/adapt_ci.py --evals results/block4 -n 1000 --seed 0` on the
+> pose-track Mac over all seven `eval_dev_*.json` → `results/adapt_ci_2026-10-22.json`.
+> **Bit-identical to `adapt_ci_dev.json` on every field**: both DiD blocks, all four paired deltas,
+> every point estimate, to twelve decimals (`+0.322949 [−0.550709, +1.179296]`, P(>0) = 0.772;
+> `+0.424196 [−0.575791, +1.526096]`, P(>0) = 0.780). The harness is deterministic given the seed and
+> the eval JSONs, so the committed 2026-09-30 numbers stand without qualification — and the only
+> reason to have re-run it was that I had asserted it was never run.
+
+**Not claimed:** that the DiD is zero — a 95 % interval spanning [−0.55, +1.18] is a statement about
+resolution at n=967, not a null. That §L15.3's adapted cells can be traced to a cause: the
+checkpoints did not survive (retraction at `RESULTS.md:2043`), the two gaps are the same order as the
+−0.054 / −0.024 run-to-run tolerance §L17 measured on BLEU-4 but the −0.101 ROUGE-L gap is about four
+times it, so "run-to-run non-determinism" fits three of the four numbers and not the fourth. That any
+of this changes a headline — the DiD is a side axis, and the operating-point recommendation is 24 fps
+(`RESULTS.md:797`), where there is no frame-rate shift to adapt to.

@@ -380,9 +380,12 @@ it, for roughly 15 minutes of board time.
   > aggregate), taking `pkl_split_rtmw_fp16{,_raw}` to all **931** test clips that exist on disk. The
   > ceiling is 931, not 976: `data/clips/index.json` records `requested 974, n_ok 931, n_failed 43`.
   > Frames and `.part` files were cleared off the board afterwards.
-- **Adaptation is not yet quotable.** The difference-in-differences is blocked on one eval JSON, and
-  adaptation at source rate sits at ROUGE-L +0.60 with P(Δ<0) = 0.044–0.056 across seeds — straddling
-  the threshold, so it must not be quoted as either established or null.
+- ~~**Adaptation is not yet quotable.** The difference-in-differences is blocked on one eval JSON~~,
+  and adaptation at source rate sits at ROUGE-L +0.60 with P(Δ<0) = 0.044–0.056 across seeds —
+  straddling the threshold, so it must not be quoted as either established or null.
+  **The DiD half is ANSWERED as of 2026-10-22, and had been since 2026-09-30: not established,
+  +0.32 BLEU-4 [−0.55, +1.18] and +0.42 ROUGE-L [−0.58, +1.53] (§L31).** The source-rate caveat
+  stands unchanged — that one really is on the 0.05 line.
   > **Still accurate on this axis, 2026-10-12 — and do not read §L26 as having answered it.** The
   > item above is the **frame-rate** difference-in-differences.
   > ~~still blocked on the same file: `adapt_fps16_s42_cap100`'s eval JSON has never been pushed and
@@ -390,6 +393,13 @@ it, for roughly 15 minutes of board time.
   > written.** `results/block4/eval_dev_adapt_fps16_s42_cap100.json` has been in `origin/main` since
   > `54b0eef`. **This DiD is unblocked**; `REPLY-Q12-EVAL-JSON-EXISTS-2026-10-22.md` has the path, the
   > caveat about §L15.3's adapted cells not reproducing, and why that does not gate `adapt_ci.py`.
+  >
+  > **FURTHER, 2026-10-22 — it never needed gating: `results/adapt_ci_dev.json`, committed in that
+  > same `54b0eef`, already held the DiD.** Both metrics straddle zero with P(>0) = 0.772 / 0.780, so
+  > §L15.3's "adaptation helps more under frame-rate shift" bullet is retracted. **The struck line
+  > directly above is mine** (`059b9b7`, 2026-10-12) and it *was* false when written — the file was in
+  > my checkout. The LM track's note takes the blame for it and for `RESULTS.md:779`, which was also
+  > mine and was *true* when written, eighteen minutes before their commit landed. **§L31.**
   >
   > What *has* been answered is the **pose-deficit** axis, which was a different pending lever.
   > §L26 (J9 step 2, 2026-10-07): adapting on our own keypoints is a null at **−0.1263 BLEU-4,

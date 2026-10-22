@@ -555,7 +555,7 @@ than a convention.
 
 ---
 
-### Q12 — `adapt_fps16_s42_cap100`'s eval JSON has never been pushed, and two files still mark the frame-rate DiD as blocked on it  —  **OPEN, asked 2026-10-12**
+### Q12 — `adapt_fps16_s42_cap100`'s eval JSON has never been pushed, and two files still mark the frame-rate DiD as blocked on it  —  **RESOLVED 2026-10-22, and the premise was my own error**
 
 This is the only thing I know of that is still blocked on your side, and it is **not** the J9 axis.
 
@@ -581,6 +581,34 @@ as null, and the DiD is what would resolve it.
 **Not asking you to re-run anything.** This is a question about whether a file survives, and if it
 does not, permission to delete the forward references.
 
+> **RESOLVED 2026-10-22 — answer 1, and the question should never have been asked.** The file is at
+> `results/block4/eval_dev_adapt_fps16_s42_cap100.json`, `n = 967`, `missing = 0`, all 967 per-clip
+> predictions, `bleu.bleu4 = 23.2522` / `rouge_l = 42.6339`,
+> `config.ckpt = /content/runs/fps16_s42/adapted_full.pth`, `fps = 16.0`, `num_beams = 4`,
+> `dtype = fp32`. It landed in `54b0eef` on **2026-09-30** and has been in `origin/main` ever since
+> (`REPLY-Q12-EVAL-JSON-EXISTS-2026-10-22.md`).
+>
+> **The bolded claim above — "`results/` holds no file matching that name today" — was false when I
+> wrote it, and it was false about my own checkout.** `git ls-tree -r 059b9b7` — **the commit that
+> added this very question** — lists `eval_dev_adapt_fps16_s42_cap100.json`, its `cap64` sibling,
+> **and `results/adapt_ci_dev.json`, which already held the computed DiD.** `54b0eef` is an ancestor
+> of all three of my 2026-10-12 commits. The file was on this disk, one directory below where I looked, for the entire ten days I
+> spent asking for it. The LM track's reply takes the blame for their two stale lines; those lines
+> were stale, but they are not what caused this. An un-recursed glob over `results/` is.
+>
+> **This is a §L24-family error: an absence asserted without a search that could have found it.**
+> It is the same shape as the `suspects_in_comparison = 0` near-miss in §L29, where a name-format
+> mismatch would have printed a clean null. The guard there was an `assert`. The guard here is
+> cheaper: **never write "`results/` holds nothing matching" from a non-recursive listing** — the
+> block-4 evals have always lived in `results/block4/`, and `find results -name '*adapt_fps16*'`
+> takes one second and would have ended this on 2026-10-12.
+>
+> **The DiD is computed, not merely unblocked** — `unisign/adapt_ci.py` over all seven
+> `results/block4/eval_dev_*.json` on one shared set of 1000 draws, §L31 and
+> `results/adapt_ci_2026-10-22.json`. §L15.3's **+0.22 / +0.31** is superseded by the figure computed
+> from the JSONs; see §L31 for why the table's two *adapted* cells do not reproduce and why that
+> discrepancy lands twice as hard on the DiD as on any single cell.
+
 ---
 
 ## State of the ledger, 2026-10-12
@@ -592,6 +620,13 @@ does not, permission to delete the forward references.
 > also answered: a WireGuard peer at `10.66.0.9` reached `192.168.1.73:8765` inside the container.
 > **Mine, open: Q12 only.** **Theirs, open on me: nothing.** Remaining board asks need them to send
 > live phone clips (their item 3.2) and need an answer on board travel (their item 6, Tushar's).
+
+> **UPDATED again 2026-10-22, later the same day — Q12 is closed and nothing is open from me.**
+> The eval JSON was never missing; it was in `results/block4/` on my own disk the whole time, and my
+> absence claim was the thing that was wrong (see the Q12 note above). The DiD it was supposedly
+> blocking is now **computed with an interval** — §L31. **Mine, open: nothing.** **Theirs, open on
+> me: nothing.** The two remaining asks are not questions: live phone clips through the demo server
+> (their item 3.2) and board travel (their item 6, Tushar's).
 
 **Mine, open:** Q12 only (above). **Yours, open on me:** the board re-extraction of
 `rlUUw27_6kM-00:17:09.233-00:17:15.433` in FP16 and FP32, which is queued and blocked on the lab-split

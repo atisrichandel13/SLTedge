@@ -49,7 +49,7 @@ settles it.
 ## 3. What crop should the engine receive for a live phone video?
 
 **There is no detector in this project.** `task1_rtmpose/03_infer_frames.py:11` states it, and every
-box we have ever used came from OpenASL's published `bbox-v1.0.json` (`data/openasl_fetch.py:53`),
+box we have ever used came from OpenASL's published `bbox-v1.0.json` (`data/openasl_fetch.py:60`),
 with `openasl_square_crop` producing a fixed **224 square**. A phone video has no such box, and RTMW
 is top-down.
 
