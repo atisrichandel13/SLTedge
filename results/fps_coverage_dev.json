@@ -1,0 +1,36 @@
+{
+ "poses": "data/openasl_dev_pose",
+ "n_clips": 967,
+ "max_length": 256,
+ "frames_at_source": 150406,
+ "over_cap_at_source": 277,
+ "rates": {
+  "16.0": {
+   "clips_not_thinned": 0,
+   "clips_same_frame_count_to_model": 78,
+   "frames_to_model": 101141,
+   "frames_pct_change": -32.75467733999973,
+   "median_frames": [
+    158,
+    86
+   ]
+  },
+  "24.0": {
+   "clips_not_thinned": 18,
+   "clips_same_frame_count_to_model": 246,
+   "frames_to_model": 135302,
+   "frames_pct_change": -10.042152573700518,
+   "median_frames": [
+    158,
+    129
+   ]
+  }
+ },
+ "native_rate_bands": {
+  "<20": 0,
+  "20-25.5": 192,
+  "25.5-28": 11,
+  "28-32": 755,
+  ">32": 9
+ }
+}

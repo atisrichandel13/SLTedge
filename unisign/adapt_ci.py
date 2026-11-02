@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Paired bootstrap CIs for the adaptation 2x2 (guide row 4.4), BLEU-4 and ROUGE-L.
 
-    python -m unisign.adapt_ci --evals results/block4 -n 1000
+    python -m unisign.adapt_ci --evals results/block4 -n 1000                  # 16 fps (default)
+    python -m unisign.adapt_ci --evals results/block6 -n 1000 --rate fps24     # 24 fps
 
 Why this exists rather than reusing bootstrap_ci.py: row 4.4 needs more than pairwise deltas. The
 question "does adaptation help MORE under frame-rate shift than without it" is a difference of two
@@ -51,6 +52,11 @@ def main():
     ap.add_argument("-n", type=int, default=1000)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--no-rouge", action="store_true", help="BLEU-4 only (much faster)")
+    ap.add_argument("--rate", default="fps16",
+                    help="rate tag as it appears in the eval filenames: fps16, fps24, ... The 2x2 is "
+                         "always {un-adapted, adapted} x {source, --rate}.")
+    ap.add_argument("--rate-seed", type=int, default=42,
+                    help="seed tag of the adapted cell at --rate (eval_dev_adapt_<rate>_s<N>_cap100)")
     ap.add_argument("--out", default=None)
     a = ap.parse_args()
 
@@ -101,10 +107,13 @@ def main():
         lo, hi = q(v)
         return full, lo, hi, float(np.mean(v < 0)), v
 
-    pairs = [("unadapt_src_cap100", "unadapt_fps16_cap100", "un-adapted: source -> 16 fps"),
+    R, S = a.rate, a.rate_seed
+    disp = f"{R[3:]} fps" if R.startswith("fps") else R
+    UN_R, AD_R = f"unadapt_{R}_cap100", f"adapt_{R}_s{S}_cap100"
+    pairs = [("unadapt_src_cap100", UN_R, f"un-adapted: source -> {disp}"),
              ("unadapt_src_cap100", "adapt_src_cap100", "source rate: un-adapted -> adapted"),
-             ("unadapt_fps16_cap100", "adapt_fps16_s42_cap100", "16 fps: un-adapted -> adapted"),
-             ("adapt_fps16_s42_cap64", "adapt_fps16_s42_cap100", "adapted 16 fps: cap 64 -> cap 100")]
+             (UN_R, AD_R, f"{disp}: un-adapted -> adapted"),
+             (f"adapt_{R}_s{S}_cap64", AD_R, f"adapted {disp}: cap 64 -> cap 100")]
 
     print("\nPaired deltas (95% CI, 'P(<0)' = fraction of resamples where the delta is negative)")
     for aa, b, label in pairs:
@@ -118,14 +127,14 @@ def main():
             out["deltas"].setdefault(label, {})[name] = {"delta": full, "lo": lo, "hi": hi, "p_lt0": p}
 
     # Difference-in-differences: does adaptation help MORE at 16 fps than at source rate?
-    need = ["unadapt_src_cap100", "adapt_src_cap100", "unadapt_fps16_cap100", "adapt_fps16_s42_cap100"]
+    need = ["unadapt_src_cap100", "adapt_src_cap100", UN_R, AD_R]
     if all(t in runs for t in need):
-        print("\nDifference-in-differences: (adapted-unadapted @16fps) - (adapted-unadapted @source)")
+        print(f"\nDifference-in-differences: (adapted-unadapted @{disp}) - (adapted-unadapted @source)")
         print("  positive = adaptation buys more under frame-rate shift than it does in general")
         for name, _ in metrics:
             g_src = np.array(draws[name]["adapt_src_cap100"]) - np.array(draws[name]["unadapt_src_cap100"])
-            g_16 = np.array(draws[name]["adapt_fps16_s42_cap100"]) - np.array(draws[name]["unadapt_fps16_cap100"])
-            d = g_16 - g_src
+            g_r = np.array(draws[name][AD_R]) - np.array(draws[name][UN_R])
+            d = g_r - g_src
             lo, hi = q(d)
             print(f"      {name:8s} {np.mean(d):+6.2f}  [{lo:+6.2f}, {hi:+6.2f}]  P(>0)={np.mean(d>0):.3f}")
             out["did"][name] = {"mean": float(np.mean(d)), "lo": lo, "hi": hi,
@@ -135,9 +144,9 @@ def main():
 
     # Seed spread. NOT a CI: it bundles seed effects with GPU non-determinism, which is non-zero
     # here -- three runs at the identical seed 43 gave final losses 0.3765 / 0.3742 / 0.3788.
-    seeds = {t: runs[t] for t in runs if t.startswith("adapt_fps16_s") and t.endswith("cap100")}
+    seeds = {t: runs[t] for t in runs if t.startswith(f"adapt_{R}_s") and t.endswith("cap100")}
     if len(seeds) > 1:
-        print(f"\nSeed spread across {len(seeds)} runs at 16 fps (range, not a CI):")
+        print(f"\nSeed spread across {len(seeds)} runs at {disp} (range, not a CI):")
         for name, key in (("BLEU-4", lambda d: d["bleu"]["bleu4"]), ("ROUGE-L", lambda d: d["rouge_l"])):
             v = [key(d) for d in seeds.values()]
             print(f"      {name:8s} {min(v):.2f} .. {max(v):.2f}   spread {max(v)-min(v):.2f}   "
