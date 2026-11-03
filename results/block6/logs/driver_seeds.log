@@ -1,0 +1,5 @@
+[block6] rate fps24, seeds [42, 43, 44], TF32 PyTorch default, as block 4
+[block6] ctrl_src_s42: adapted_full.pth present, skipping
+[block6] fps24_s42: adapted_full.pth present, skipping
+
+[block6] train fps24_s43 (tail /content/drive/MyDrive/SLTedge/block6/runs/fps24_s43/train.log)

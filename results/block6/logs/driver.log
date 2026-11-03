@@ -1,0 +1,31 @@
+[block6] rate fps24, seeds [42], TF32 PyTorch default, as block 4
+
+[block6] train ctrl_src_s42 (tail /content/drive/MyDrive/SLTedge/block6/runs/ctrl_src_s42/train.log)
+
+[block6] train fps24_s42 (tail /content/drive/MyDrive/SLTedge/block6/runs/fps24_s42/train.log)
+
+[block6] eval unadapt_src cap100
+
+[block6] eval unadapt_fps24 cap100
+
+[block6] eval adapt_src cap100
+
+[block6] eval adapt_fps24_s42 cap100
+
+[block6] eval adapt_fps24_s42 cap64
+
+========================================================================
+[block6] VALIDITY GATE vs block 4 un-adapted/source (967 clips)
+           d BLEU-4 +0.000000e+00   d ROUGE-L +0.000000e+00   identical preds 967/967
+           BIT-EXACT -- this 2x2 is comparable to block 4's.
+========================================================================
+
+[block6] DONE. eval JSONs in /content/drive/MyDrive/SLTedge/block6/evals:
+    eval_dev_adapt_fps24_s42_cap100.json
+    eval_dev_adapt_fps24_s42_cap64.json
+    eval_dev_adapt_src_cap100.json
+    eval_dev_unadapt_fps24_cap100.json
+    eval_dev_unadapt_src_cap100.json
+
+Next:  python -m unisign.adapt_ci --evals /content/drive/MyDrive/SLTedge/block6/evals -n 1000 --rate fps24 \
+           --out /content/drive/MyDrive/SLTedge/block6/adapt_ci_dev_fps24.json

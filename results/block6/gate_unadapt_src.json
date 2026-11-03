@@ -1,0 +1,8 @@
+{
+ "ref": "/content/SLTedge/results/block4/eval_dev_unadapt_src_cap100.json",
+ "d_bleu4": 0.0,
+ "d_rouge_l": 0.0,
+ "preds_identical": 967,
+ "n": 967,
+ "bit_exact": true
+}
