@@ -4502,3 +4502,112 @@ checkpoints did not survive (retraction at `RESULTS.md:2043`), the two gaps are 
 times it, so "run-to-run non-determinism" fits three of the four numbers and not the fourth. That any
 of this changes a headline — the DiD is a side axis, and the operating-point recommendation is 24 fps
 (`RESULTS.md:797`), where there is no frame-rate shift to adapt to.
+
+---
+
+### L32 Adaptation at 24 fps, the rate we ship: it helps, and the reason still is not the frame rate (2026-11-03)
+
+§L15/§L31 and `DECISIONS` §3.9 measure adaptation **only at 16 fps**, a rate the project rejected.
+§L31 closes by saying the DiD does not change a headline because "the operating-point recommendation
+is 24 fps … **where there is no frame-rate shift to adapt to**". That last clause is wrong, and it is
+the reason this cell went unmeasured for five weeks.
+
+**There is a shift at 24 fps; it is about a third of the one at 16 fps.**
+`unisign/fps_coverage.py` over all 967 dev pose files (`results/fps_coverage_dev.json`):
+
+| | 16 fps | 24 fps |
+|---|---:|---:|
+| frames reaching the model | **−32.8 %** | **−10.0 %** |
+| median frames per clip | 158 → 86 | 158 → 129 |
+| clips not thinned at all (native rate ≤ target) | 0.0 % | **1.9 %** |
+| clips whose frame *count* is unchanged (`max_length` 256 absorbs it) | 8.1 % | **25.4 %** |
+
+277 of 967 dev clips are already over the 256-frame cap at source, so thinning them changes which
+frames are picked, not how many. The treatment is real but weak — which predicts a null DiD before
+any GPU time is spent, and is why this was worth measuring rather than assuming either way.
+
+**Method.** Block 6 (`colab_block6.py`), fresh Colab A100, PyTorch TF32 defaults. Same recipe as
+§L15.3: pose stack + projection trainable (5.35 M of 243.5 M), mT5 frozen, ls 0.0, lr 1e-5, warmup
+0.1, 20,000 train clips, 1 epoch, batch 4 × accum 2, seed 42, from the L5.4 leak-free checkpoint.
+Scored through `eval_openasl.py` on 967 dev clips, beam 4, cap 100. **Both source-rate cells were
+retrained rather than reused from block 4**, so all four cells come from one environment; GPU
+reductions are non-deterministic and reuse would have put an uncontrolled difference on the diagonal.
+It mattered: the retrained control landed +0.030 BLEU-4 / +0.053 ROUGE-L from block 4's, which would
+have moved the DiD by that much as an artefact.
+
+**Validity gate.** The un-adapted source cell involves no training, so it must reproduce block 4
+exactly. It did: **d BLEU-4 0.0, d ROUGE-L 0.0, 967/967 identical predictions**
+(`results/block6/gate_unadapt_src.json`). That is what makes the two 2×2s comparable, and it is
+consistent with §8.4's "Colab A100" rather than §L15's "All runs: Colab Tesla T4" — see the
+documentation note below.
+
+| 967 dev clips | BLEU-4 | ROUGE-L |
+|---|---:|---:|
+| un-adapted, source | 23.1331 | 42.9255 |
+| adapted, source | 23.2798 | 43.5819 |
+| un-adapted, 24 fps | 23.3760 | 42.7162 |
+| **adapted, 24 fps** | **23.7080** | **43.7430** |
+
+`unisign/adapt_ci.py --rate fps24`, 1000 resamples, every cell on one shared set of draws
+(`results/adapt_ci_dev_fps24.json`):
+
+| | BLEU-4 | ROUGE-L |
+|---|---|---|
+| un-adapted: source → 24 fps | +0.24 [−0.22, +0.83] | −0.21 [−0.84, +0.38] |
+| source rate: un-adapted → adapted | +0.15 [−0.51, +0.82] | +0.66 [−0.05, +1.42] |
+| **24 fps: un-adapted → adapted** | +0.33 [−0.35, +0.95] | **+1.03 [+0.29, +1.81]** |
+| operating point: un-adapted source → adapted 24 fps | +0.57 [−0.11, +1.31] | +0.82 [+0.01, +1.68] ⚠ |
+| **difference-in-differences** | +0.13 [−0.53, +0.82] | +0.37 [−0.36, +1.09] |
+| adapted 24 fps: cap 64 → cap 100 | +0.00 [0, 0] | +0.00 [0, 0] |
+
+**Reading.**
+
+* **Adaptation at 24 fps is established on ROUGE-L: +1.03 [+0.29, +1.81]**, P(<0) = 0.003. It is
+  within 0.02 of the 16 fps figure (+1.044 [+0.247, +1.802]) — adaptation buys the same amount at the
+  rate we ship as at a rate three times more aggressive. BLEU-4 does not establish it (+0.33
+  [−0.35, +0.95]), the §L13 pattern for effects below ~1 point at n ≤ 1000.
+* **The DiD is not established: +0.37 [−0.36, +1.09]**, P(>0) = 0.832. §L15.3's retracted attribution
+  — "adaptation helps more under frame-rate shift than without it" — **fails independently at 24 fps
+  too**. This is now a measured null at two rates, not an assumption carried over from one.
+* **And the table shows why.** 64 % of the ROUGE-L gain at 24 fps (0.66 of 1.03) is already present
+  at source rate with no frame-rate shift at all. There is little left for the shift to explain. The
+  source-rate gain itself misses the bar by 0.05 of a point (+0.66 [−0.05, +1.42], P(<0) = 0.038),
+  which is the same effect seen from the other side.
+* **⚠ The operating-point move clears the bar by almost nothing.** Leaving today's shipped
+  configuration for the adapted model at 24 fps is +0.82 ROUGE-L, and the 95 % interval excludes
+  zero — but by **+0.01**. Re-run at three independent bootstrap seeds the lower bound is
+  **+0.008 / +0.001 / +0.066** (`results/block6/ci_fps24_bootseed{1,2}.json`); it never crosses, so
+  the result is not a seed artefact, but at seed 1 it is a thousandth of a point clear. **Do not
+  quote this as a robust gain.** The quotable number is the within-rate +1.03 [+0.29, +1.81]. BLEU-4
+  does not clear it at all (+0.57 [−0.11, +1.31], P(<0) = 0.054). The DiD by contrast is stable
+  across the same three seeds (+0.37 / +0.37 / +0.38, every interval spanning zero), so the null is
+  solid in a way this gain is not.
+* **24 fps remains free on accuracy**: ROUGE-L −0.21 [−0.84, +0.38], BLEU-4 +0.24 [−0.22, +0.83].
+  That reproduces §L31's test-split −0.07 [−0.53, +0.39] on a different split and independently
+  supports the §797 operating-point choice.
+* **`max_new_tokens` 64 and 100 are identical to 4 dp on the adapted 24 fps model**, CI exactly
+  [0, 0]. §L3.2's equivalence survives adaptation here; block 4 found the same at 16 fps.
+
+**What is NOT established.**
+
+1. **One training seed** (42). Seeds 43 and 44 were mid-training when the Colab runtime was closed;
+   their partial `last.pt` is on Drive. Block 4's 16 fps seed band was 0.05 BLEU-4 / 0.15 ROUGE-L,
+   small against these intervals, but that is block 4's band, not this one's.
+2. **Dev split, not test.** Every figure here is the 967-clip dev split.
+3. **Frame-rate emulation thins already-extracted 30 fps poses.** A real 24 fps capture differs in
+   exposure and motion blur. Unchanged from §L15.3's caveat 4.
+4. **No board measurement.** The energy claim this pairs with (−17 %) is §3.8's, measured on one clip
+   at source rate; nothing here was run on the Jetson.
+5. **The adapted checkpoint no longer exists in full.** `adapted_full.pth` (571 MB) was on `/content`
+   and died with the runtime. Only `last.pt` (the 5.35 M trainable deltas) survives, on Drive.
+   Rebuilding it needs the Colab base checkpoint — §L15.3 records that the Mac's pruned checkpoint is
+   a different artefact (22.77 vs 22.79 on the same condition), so a Mac rebuild would not reproduce
+   23.7080 / 43.7430.
+
+**Documentation defect found on the way.** `RESULTS.md` §L15's header reads "All runs: Colab Tesla
+T4, FP32 (no AMP — T4 is Turing, no bf16…)", and `REPLY-POWER-CAVEAT-STANDS-2026-10-05.md` reads
+"All runs" as covering Block 4. **It does not.** None of block 4's four run names (`ctrl_src_s42`,
+`fps16_s42/43/44`) appear in `results/colab_runs/`, and every log there is at lr 1e-4 — the rejected
+recipe. `LM-TRACK-REPORT-2026-09-30.md` §8.4 and `SYNC-REPLY-LM-2026-09-30.md:239` both say **A100**
+for the runs that shipped. The header governs §L15.1/§L15.2 only. The conclusion of
+`REPLY-POWER-CAVEAT-STANDS` is unaffected — Block 4 did train on 20,000 clips and evaluate on 967.

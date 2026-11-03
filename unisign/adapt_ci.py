@@ -113,6 +113,9 @@ def main():
     pairs = [("unadapt_src_cap100", UN_R, f"un-adapted: source -> {disp}"),
              ("unadapt_src_cap100", "adapt_src_cap100", "source rate: un-adapted -> adapted"),
              (UN_R, AD_R, f"{disp}: un-adapted -> adapted"),
+             # The deployment move: what you actually get by leaving today's shipped baseline for
+             # the adapted model at the lower rate. Both halves change at once, which is the point.
+             ("unadapt_src_cap100", AD_R, f"OPERATING POINT: un-adapted source -> adapted {disp}"),
              (f"adapt_{R}_s{S}_cap64", AD_R, f"adapted {disp}: cap 64 -> cap 100")]
 
     print("\nPaired deltas (95% CI, 'P(<0)' = fraction of resamples where the delta is negative)")

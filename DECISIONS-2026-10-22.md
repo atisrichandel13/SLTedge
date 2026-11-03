@@ -354,6 +354,35 @@ cross-entropy is ~0.36, and at lr 1e-5 fine-tuning *improves* both metrics.
   deficit is excluded at 95 %. The pose deficit is attributed to architecture, crop and normalisation
    — with quantisation excluded to within 11 % (§L25) and adaptation to within ~18 %.
 
+> **UPDATED 2026-11-03 — adaptation has now been measured at 24 fps, the rate we actually ship,
+> and both answers changed shape. §L32, `results/block6/`, `results/adapt_ci_dev_fps24.json`.**
+>
+> Everything above is 16 fps, a rate §3.8 rejected. `RESULTS.md` justified never measuring 24 fps on
+> the grounds that it is "where there is no frame-rate shift to adapt to". **That is wrong**:
+> `unisign/fps_coverage.py` over all 967 dev clips puts 24 fps at **−10.0 %** of frames reaching the
+> model against −32.8 % at 16 fps, with 98.1 % of clips thinned. The shift is real, about a third the
+> size, and 25.4 % of clips reach the model with an unchanged frame *count* only because
+> `max_length` 256 already caps them.
+>
+> **Adaptation at 24 fps: +1.03 ROUGE-L [+0.29, +1.81]**, P(<0) = 0.003 — **established**, and within
+> 0.02 of the 16 fps figure. Adaptation buys the same amount at the shipped rate as at one three
+> times more aggressive.
+>
+> **The DiD is null again: +0.37 [−0.36, +1.09]**, P(>0) = 0.832, stable across three bootstrap
+> seeds. The attribution §L15.3 retracted at 16 fps **fails independently at 24 fps too**, so it is
+> now a measured null at two rates rather than an assumption carried from one. The reason is visible
+> in the cells: 64 % of the gain is already there at source rate with no shift at all.
+>
+> **Do not quote the operating-point move as a robust gain.** Un-adapted source → adapted 24 fps is
+> +0.82 ROUGE-L and the interval excludes zero by **+0.01**; at three bootstrap seeds the lower bound
+> is +0.008 / +0.001 / +0.066. It never crosses, but it is marginal enough that the within-rate
+> +1.03 is the number to use.
+>
+> **Caveats that keep this out of a headline:** one training seed (42 — 43 and 44 were mid-training
+> when the runtime closed), dev split only, no board measurement, and **the adapted checkpoint no
+> longer exists in full** — `adapted_full.pth` died with the Colab runtime and only the 5.35 M
+> trainable deltas survive on Drive.
+
 ### 3.10 The demo shape — thin client, board does the work
 
 **Chosen:** phone captures and uploads; **board runs both models**; English comes back as text.
