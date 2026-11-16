@@ -312,6 +312,70 @@ class Pipeline:
                                    f"dropped rather than translated (§L28).")
         return out
 
+    def translate_keypoints(self, payload, num_beams, max_new_tokens):
+        """The keypoint twin of translate(): the PHONE ran the pose stage (ios/SLTEdge, ONNX Runtime
+        on the CoreML EP over the same end2end.onnx this board's engine was built from), thinned to
+        the operating rate from its own timestamps and dropped non-finite frames, and sends pixel
+        keypoints in its crop. This enters the pipeline exactly where translate() leaves its pose
+        loop, so square-norm, to_model_inputs, collate and the LM are the same calls in the same
+        order. Nothing here is new modelling; it is the split point of the offload study.
+
+        Payload (ios/SLTEdge/BoardClient.swift, format sltedge-kp/1):
+            keypoints [T,133,2] px in the crop, scores [T,133], bbox_norm [4], source_wh [W,H],
+            crop_xywh [4] (data/openasl_fetch.py:crop_xywh on the phone), src_fps, keep_fps,
+            frames_captured, frames_dropped_nonfinite."""
+        from common.pose_to_unisign import collate, to_model_inputs
+
+        t_req = time.perf_counter()
+        try:
+            kp = np.asarray(payload["keypoints"], dtype=np.float32)
+            sc = np.asarray(payload["scores"], dtype=np.float32)
+            bbox_norm = [float(v) for v in payload["bbox_norm"]]
+            source_wh = [int(v) for v in payload["source_wh"]]
+            crop = [int(v) for v in payload["crop_xywh"]]
+        except (KeyError, TypeError, ValueError) as e:
+            raise ValueError(f"payload: {type(e).__name__}: {e}")
+        if kp.ndim != 3 or kp.shape[1:] != (133, 2) or sc.shape != kp.shape[:2]:
+            raise ValueError(f"keypoints {kp.shape} / scores {sc.shape}; expected (T,133,2) and (T,133)")
+        if len(bbox_norm) != 4 or len(source_wh) != 2 or len(crop) != 4:
+            raise ValueError("bbox_norm must have 4 values, source_wh 2, crop_xywh 4")
+        if not (np.isfinite(kp).all() and np.isfinite(sc).all()):
+            # The phone is required to drop these (§L28); a NaN here is a client bug, not a frame to skip.
+            raise ValueError("non-finite keypoints in the payload; the phone must drop those frames")
+        if len(kp) == 0:
+            raise ValueError("zero frames in the payload")
+
+        sqf = self._square_norm_fn(bbox_norm, crop, source_wh)
+        kps = [sqf(k).reshape(1, 133, 2) for k in kp]
+        scs = [s.reshape(1, 133) for s in sc]
+
+        t_c0 = time.perf_counter()
+        inputs, idx = to_model_inputs(kps, scs, self.args.max_length)
+        src = collate([inputs], ["live"])
+        convert_ms = (time.perf_counter() - t_c0) * 1e3
+
+        r = self.model.translate(src, max_new_tokens=max_new_tokens, num_beams=num_beams)
+
+        return {
+            "text": r["text"],
+            "pose_ran_on": "phone",
+            "frames_received": len(kps),
+            "frames_used_by_model": len(idx),
+            "frames_captured_on_phone": payload.get("frames_captured"),
+            "frames_dropped_on_phone": payload.get("frames_dropped_nonfinite"),
+            "src_fps": payload.get("src_fps"),
+            "keep_fps": payload.get("keep_fps"),
+            "crop_xywh": crop,
+            "source_wh": source_wh,
+            "timing_ms": {
+                "pose": 0.0,          # on the phone; it reports its own number
+                "convert": round(convert_ms, 1),
+                "lm": {k: round(v, 1) for k, v in r["timing_ms"].items()},
+                "request_total": round((time.perf_counter() - t_req) * 1e3, 1),
+            },
+            "memfree_mb": _memfree_mb(),
+        }
+
 
 class Handler(BaseHTTPRequestHandler):
     pipeline = None
@@ -347,8 +411,10 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         u = urlparse(self.path)
+        if u.path == "/translate_kp":
+            return self._post_keypoints(u)
         if u.path != "/translate":
-            return self._json(404, {"error": "POST /translate"})
+            return self._json(404, {"error": "POST /translate (video) or POST /translate_kp (keypoints)"})
         q = parse_qs(u.query)
 
         def num(name, default):
@@ -392,6 +458,47 @@ class Handler(BaseHTTPRequestHandler):
                 traceback.print_exc()
                 self._json(500, {"error": f"{type(e).__name__}: {e}"})
 
+    def _post_keypoints(self, u):
+        """POST /translate_kp: JSON keypoints from the phone (see Pipeline.translate_keypoints)."""
+        q = parse_qs(u.query)
+
+        def num(name, default):
+            try:
+                return float(q[name][0])
+            except (KeyError, ValueError, IndexError):
+                return default
+
+        try:
+            n = int(self.headers.get("Content-Length") or 0)
+        except ValueError:
+            return self._json(400, {"error": "bad Content-Length"})
+        if n <= 0:
+            return self._json(400, {"error": "empty body; send the keypoint JSON as the request body"})
+        if n > MAX_UPLOAD_BYTES:
+            return self._json(413, {"error": f"{n} bytes exceeds the {MAX_UPLOAD_BYTES} cap"})
+        beams = int(num("beams", self.pipeline.args.num_beams))
+        max_new = int(num("max_new_tokens", self.pipeline.args.max_new_tokens))
+
+        try:
+            payload = json.loads(self.rfile.read(n))
+        except ValueError as e:
+            return self._json(400, {"error": f"body is not JSON: {e}"})
+        p = self.pipeline
+        if p.lock.locked():
+            self.log_message("queued behind a translation in flight")
+        with p.lock:
+            try:
+                out = p.translate_keypoints(payload, beams, max_new)
+                p.n_served += 1
+                p.last = out
+                self.log_message("kp -> %r (%.0f ms)", out["text"], out["timing_ms"]["request_total"])
+                self._json(200, out)
+            except ValueError as e:
+                self._json(400, {"error": str(e)})
+            except Exception as e:                                    # noqa: BLE001
+                traceback.print_exc()
+                self._json(500, {"error": f"{type(e).__name__}: {e}"})
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -425,7 +532,8 @@ def main():
     os.chdir(ROOT)
     Handler.pipeline = Pipeline(args)
     srv = ThreadingHTTPServer((args.host, args.port), Handler)
-    print(f"[demo] listening on {args.host}:{args.port} -- POST /translate, GET /health", flush=True)
+    print(f"[demo] listening on {args.host}:{args.port} -- POST /translate, POST /translate_kp, "
+          f"GET /health", flush=True)
     try:
         srv.serve_forever()
     except KeyboardInterrupt:

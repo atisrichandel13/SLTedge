@@ -1,0 +1,61 @@
+# xcodegen spec for the phone half of the split pipeline. `xcodegen generate` in this directory
+# writes SLTEdge.xcodeproj; the .xcodeproj is a build product and is not committed, this file is.
+#
+# The pose stage (RTMW-l-m 256x192) runs ON THE PHONE through ONNX Runtime's CoreML execution
+# provider, from the byte-identical end2end.onnx the board's TensorRT engine was built from
+# (sha256 68db326c..., checked against the OpenMMLab SDK zip 2026-11-16). The language model stays
+# on the board: mT5 FP16 saturates (RESULTS.md L8), and the Neural Engine is FP16-only.
+name: SLTEdge
+options:
+  bundleIdPrefix: com.atisri
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+packages:
+  onnxruntime:
+    url: https://github.com/microsoft/onnxruntime-swift-package-manager
+    exactVersion: 1.24.2
+targets:
+  SLTEdge:
+    type: application
+    platform: iOS
+    sources:
+      - path: SLTEdge
+      # The model and its preprocessing constants, straight from the repo so the phone cannot drift
+      # from what the board and the Mac parity run used.
+      - path: ../models/rtmw/rtmw-l-m_256x192.onnx
+        buildPhase: resources
+      - path: ../models/rtmw/preproc.json
+        buildPhase: resources
+      # The 299 frames of the board's reference clip, for the on-device parity test against
+      # results/rtmw_trt_fp32.json. 13 MB; a debug-only asset, dropped from any release build.
+      - path: ../data/test_frames
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: onnxruntime
+        product: onnxruntime
+    info:
+      path: SLTEdge/Info.plist
+      properties:
+        NSCameraUsageDescription: "The camera captures the signer; frames are turned into pose keypoints on this phone."
+        NSLocalNetworkUsageDescription: "Keypoints are sent to the lab board for translation."
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        CFBundleDisplayName: SLTEdge
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.atisri.sltedge
+        CODE_SIGN_STYLE: Automatic
+        # Set in Xcode > Signing & Capabilities once; xcodegen keeps it from this file after that.
+        DEVELOPMENT_TEAM: MHXH8PM5D4
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+        SWIFT_OPTIMIZATION_LEVEL: "-O"
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
