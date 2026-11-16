@@ -15,9 +15,34 @@ struct ParitySummary {
     var compute = ""
     var outputPath = ""
     var error: String?
+    var results: [PoseResult] = []
 }
 
 enum ParityTest {
+    /// Expected greedy output for this clip from the Python ONNX chain and PyTorch (token-identical,
+    /// 2026-11-16, keypoints from the Mac ORT run). The reference caption is different -- this is
+    /// the model's 23 BLEU-4 showing, not a bug -- so the gate is this sentence, not the caption.
+    static let expectedGreedy = "The donation appears to have targeted people who contributed to the Biden campaign."
+
+    /// After the pose pass: thin to 24 fps from the clip's own rate, convert, translate on the phone.
+    static func translateClip(results: [PoseResult], translator: Translator) -> (String, [String: Double], Int)? {
+        guard let murl = Bundle.main.url(forResource: "test_frames_meta", withExtension: "json"),
+              let meta = try? JSONSerialization.jsonObject(with: Data(contentsOf: murl)) as? [String: Any],
+              let bbox = (meta["bbox_norm"] as? [NSNumber])?.map({ $0.floatValue }),
+              let cxywh = (meta["crop_xywh"] as? [NSNumber])?.map({ $0.intValue }),
+              let fps = (meta["fps"] as? NSNumber)?.doubleValue else { log("parity: test_frames_meta.json missing"); return nil }
+        let crop = Crop(x: cxywh[0], y: cxywh[1], w: cxywh[2], h: cxywh[3])
+        let idx = keepIdx(n: results.count, keepFPS: 24, srcFPS: fps)
+        let kept = idx.map { results[$0] }.filter { $0.isFinite }
+        do {
+            // source_wh: the crop came from a 1280x720 frame (bbox 0.2987*1280 -> 382 = crop x).
+            let tens = try UniSign.build(kpts: kept.map { $0.keypoints }, scores: kept.map { $0.scores },
+                                         bboxNorm: bbox, crop: crop, sourceWH: (1280, 720))
+            let r = try translator.translate(tens)
+            return (r.text, r.timingMs, tens.T)
+        } catch { log("parity: translate failed: \(error)"); return nil }
+    }
+
     static func run(pose: RTMWPose, pp: Preproc, progress: @escaping (Int, Int) -> Void) -> ParitySummary {
         var s = ParitySummary()
         s.compute = pose.compute.rawValue; s.loadS = pose.loadSeconds
@@ -41,6 +66,7 @@ enum ParityTest {
             let c = CFAbsoluteTimeGetCurrent()
             if i >= s.warmup { s.prepMs.append((b - a) * 1e3); s.runMs.append(ms); s.decodeMs.append((c - b) * 1e3 - ms) }
             if !r.isFinite { s.nNonFinite += 1 }
+            s.results.append(r)
             lines.append(jsonFrame(name: name, r: r))
             progress(i + 1, frames.count)
         }

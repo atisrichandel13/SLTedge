@@ -1,10 +1,11 @@
 // Hold-to-record. The button press is the sentence boundary (WORKSPLIT P12 was dropped for exactly
 // this), the box is frozen at the press so one box serves the whole clip as on the board, frames are
 // warped on arrival and kept as uint8 (147 KB each), and on release the clip is thinned to the
-// operating rate from the camera's OWN timestamps, run through the pose model, guarded, and sent.
+// operating rate from the camera's OWN timestamps, run through the pose model, guarded, converted
+// and translated -- everything on the phone, nothing leaves it.
 //
 // Order of operations on release mirrors demo_server.Pipeline.translate: thin -> pose per frame ->
-// drop non-finite -> hand the keypoints on. The one difference is who runs the pose stage.
+// drop non-finite -> square-norm + load_part_kp -> translator.
 import Foundation
 import CoreMedia
 import CoreVideo
@@ -19,9 +20,8 @@ struct SentenceOutcome {
     var keepFPS: Double = 0
     var poseRunMs: [Double] = []      // session.run per kept frame
     var poseStageMs: Double = 0       // whole pose loop incl. normalise + decode
-    var payloadBytes = 0
-    var networkMs: Double = 0
-    var serverTiming: [String: Any]?
+    var lmTimingMs: [String: Double]?   // translator stages: front, encoder, decoder, total
+    var tokens: [Int] = []
     var thermal: String = ""
     var batteryBefore: Float = -1, batteryAfter: Float = -1
     var error: String?
@@ -67,9 +67,9 @@ final class SentenceRecorder {
         stamps.append(CMTimeGetSeconds(t))
     }
 
-    /// Stops, thins, runs the pose model, and returns everything the board needs plus the phone's
-    /// own measurements. Runs on the caller's queue; the pose loop is sequential like the board's.
-    func finish(pose: RTMWPose, keepFPS: Double, client: BoardClient?, pp: Preproc) -> SentenceOutcome {
+    /// Stops, thins, runs pose and the translator, and returns the text plus the phone's own
+    /// measurements. Runs on the caller's queue; the pose loop is sequential.
+    func finish(pose: RTMWPose, keepFPS: Double, translator: Translator?, pp: Preproc) -> SentenceOutcome {
         lock.lock()
         isRecording = false
         let fr = frames, ts = stamps, c = crop, bb = bboxNorm, wh = sourceWH
@@ -102,19 +102,12 @@ final class SentenceRecorder {
         o.poseStageMs = (CFAbsoluteTimeGetCurrent() - t0) * 1e3
         if kps.isEmpty { o.error = "every frame failed the finite check -- no person in the box?"; return o }
 
-        let payload = BoardClient.payload(keypoints: kps, scores: scs, bboxNorm: bb, sourceWH: wh,
-                                          crop: crop, srcFPS: o.srcFPS, keepFPS: keepFPS,
-                                          captured: fr.count, dropped: o.framesDroppedNonFinite)
-        o.payloadBytes = payload.count
-        if let client = client {
-            let t1 = CFAbsoluteTimeGetCurrent()
-            do {
-                let reply = try client.translate(payload)
-                o.networkMs = (CFAbsoluteTimeGetCurrent() - t1) * 1e3
-                o.text = reply["text"] as? String
-                o.serverTiming = reply["timing_ms"] as? [String: Any]
-            } catch { o.error = "board: \(error.localizedDescription)" }
-        }
+        guard let tr = translator else { o.error = "translator not loaded"; return o }
+        do {
+            let tens = try UniSign.build(kpts: kps, scores: scs, bboxNorm: bb, crop: crop, sourceWH: wh)
+            let r = try tr.translate(tens)
+            o.text = r.text; o.tokens = r.tokens; o.lmTimingMs = r.timingMs
+        } catch { o.error = "translator: \(error.localizedDescription)" }
         o.batteryAfter = UIDevice.current.batteryLevel
         return o
     }

@@ -52,9 +52,9 @@ struct ContentView: View {
                     .onEnded { _ in m.pressEnded() })
 
             HStack {
-                TextField("board host:port", text: $m.boardHost)
-                    .textFieldStyle(.roundedBorder).autocapitalization(.none).disableAutocorrection(true)
-                Button("ping") { m.checkBoard() }.disabled(m.busy)
+                Text(m.translatorState).font(.caption2).foregroundColor(.secondary).lineLimit(1)
+                Spacer()
+                Button("load") { m.loadTranslatorIfPresent() }.font(.caption).disabled(m.busy)
             }.padding(.horizontal)
 
             HStack {

@@ -1,7 +1,7 @@
 // The person box. There is no detector anywhere in this project (task1_rtmpose/03_infer_frames.py:11);
 // every box the board has ever consumed came from OpenASL's bbox-v1.0.json. On the phone the box
-// comes from iOS Vision, and the board receives it the way it receives OpenASL's: normalised
-// [x0, y0, x1, y1], top-left origin, allowed to fall outside 0..1 (crop_xywh clamps).
+// comes from iOS Vision, in OpenASL's convention: normalised [x0, y0, x1, y1], top-left origin,
+// allowed to fall outside 0..1 (crop_xywh clamps).
 //
 // upperBodyOnly matches the corpus framing better than a full-body box: OpenASL signers are framed
 // chest-up, and a full-body box on a seated signer would put the crop centre below the hands.

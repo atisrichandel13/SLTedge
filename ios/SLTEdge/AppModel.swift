@@ -52,9 +52,7 @@ final class AppModel: ObservableObject {
     @Published var isRecording = false
     @Published var busy = false
     @Published var compute: Compute = .all { didSet { reloadPose() } }
-    @Published var boardHost: String = UserDefaults.standard.string(forKey: "boardHost") ?? "192.168.1.73:8765" {
-        didSet { UserDefaults.standard.set(boardHost, forKey: "boardHost") }
-    }
+    @Published var translatorState = "translator: not loaded"
     @Published var keepFPS: Double = 24
     @Published var parity: ParitySummary?
     @Published var parityProgress = ""
@@ -62,6 +60,7 @@ final class AppModel: ObservableObject {
     let camera = CameraController()
     private var pump: FramePump!
     private var pose: RTMWPose?
+    private var translator: Translator?
     private let work = DispatchQueue(label: "sltedge.work", qos: .userInitiated)
 
     init() {
@@ -92,7 +91,6 @@ final class AppModel: ObservableObject {
             do {
                 let p = try RTMWPose(compute: c, pp: pp)
                 log(String(format: "pose: session created in %.1fs; warming up", p.loadSeconds))
-                // Warm up as the board does, so the first sentence does not pay first-call cost.
                 let blank = PreparedFrame(chw: [UInt8](repeating: 0, count: 3 * pp.width * pp.height),
                                           center: .zero, scale: SIMD2<Float>(1, 1), crop: Crop(x: 0, y: 0, w: 2, h: 2))
                 var ms: [Double] = []
@@ -101,10 +99,32 @@ final class AppModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.pose = p; self.busy = false
                     self.status = String(format: "ready (%@, load %.1fs)", c.rawValue, p.loadSeconds)
+                    self.loadTranslatorIfPresent()
                 }
             } catch {
                 log("pose: LOAD FAILED: \(error)")
                 DispatchQueue.main.async { self.busy = false; self.status = "pose load failed: \(error.localizedDescription)" }
+            }
+        }
+    }
+
+    /// The translator graphs are pushed to Documents/models by devicectl; load them once if present.
+    func loadTranslatorIfPresent() {
+        guard translator == nil else { return }
+        guard Translator.available else {
+            translatorState = "translator: graphs not in Documents/models -- push them with devicectl"
+            log(translatorState); return
+        }
+        translatorState = "translator: loading 1.46 GB of graphs..."
+        log("translator: loading front/encoder/decoder_init/decoder_step from Documents/models")
+        work.async {
+            do {
+                let t = try Translator()
+                log(String(format: "translator: loaded in %.1fs", t.loadSeconds))
+                DispatchQueue.main.async { self.translator = t; self.translatorState = String(format: "translator: ready (%.1fs load)", t.loadSeconds) }
+            } catch {
+                log("translator: LOAD FAILED: \(error)")
+                DispatchQueue.main.async { self.translatorState = "translator: load failed: \(error.localizedDescription)" }
             }
         }
     }
@@ -122,20 +142,24 @@ final class AppModel: ObservableObject {
     func pressEnded() {
         guard isRecording, let pose = pose, let pump = pump else { return }
         isRecording = false; busy = true; status = "pose on phone..."
-        let client = boardHost.isEmpty ? nil : URL(string: "http://\(boardHost)").map(BoardClient.init)
+        let tr = translator
+        if tr == nil { log("sentence: the translator is not loaded; nothing will translate") }
         let keep = keepFPS, comp = compute.rawValue
         work.async {
-            let o = pump.recorder.finish(pose: pose, keepFPS: keep, client: client, pp: pump.pp)
+            let o = pump.recorder.finish(pose: pose, keepFPS: keep, translator: tr, pp: pump.pp)
             Metrics.record(o, compute: comp)
             DispatchQueue.main.async {
                 self.lastOutcome = o; self.busy = false
                 self.translation = o.text ?? ""
-                if let e = o.error { self.status = e }
+                if let e = o.error { self.status = e; log("sentence: \(e)") }
                 else {
                     let p50 = o.poseRunMs.sorted()[o.poseRunMs.count / 2]
-                    self.status = String(format: "%d/%d frames, pose %.0f ms (%.1f ms/frame p50), %@ KB, net %.0f ms, %@",
-                                         o.framesAfterThinning, o.framesCaptured, o.poseStageMs, p50,
-                                         String(o.payloadBytes / 1024), o.networkMs, o.thermal)
+                    var s = String(format: "%d/%d frames, pose %.0f ms (%.1f ms/frame p50)", o.framesAfterThinning, o.framesCaptured, o.poseStageMs, p50)
+                    if let lm = o.lmTimingMs {
+                        s += String(format: ", LM %.0f ms (front %.0f, enc %.0f, dec %.0f / %.0f tok)", lm["total"] ?? 0, lm["front"] ?? 0, lm["encoder"] ?? 0, lm["decoder"] ?? 0, lm["decoder_steps"] ?? 0)
+                    }
+                    s += ", \(o.thermal)"
+                    self.status = s; log("sentence: \(s) -> \(o.text ?? "")")
                 }
             }
         }
@@ -147,12 +171,19 @@ final class AppModel: ObservableObject {
         guard let pose = pose else { log("parity: tapped but no pose model is loaded"); return }
         busy = true; parity = nil; status = "parity test running"
         log("parity: starting 299 frames on \(pose.compute.rawValue)")
-        let pp = pump.pp
+        let pp = pump.pp, tr = translator
         work.async {
-            let s = ParityTest.run(pose: pose, pp: pp) { i, n in
+            var s = ParityTest.run(pose: pose, pp: pp) { i, n in
                 if i % 50 == 0 || i == n { log("parity: \(i)/\(n)") }
                 DispatchQueue.main.async { self.parityProgress = "\(i)/\(n)" }
             }
+            if s.error == nil, let tr = tr, let (text, tm, T) = ParityTest.translateClip(results: s.results, translator: tr) {
+                let ok = text == ParityTest.expectedGreedy
+                log(String(format: "parity translate: T=%d, front %.0f ms, encoder %.0f ms, decoder %.0f ms (%.0f steps) -> %@", T, tm["front"] ?? 0, tm["encoder"] ?? 0, tm["decoder"] ?? 0, tm["decoder_steps"] ?? 0, text))
+                log("parity translate: \(ok ? "MATCHES the Mac/PyTorch greedy sentence" : "DIFFERS from the Mac/PyTorch greedy sentence")")
+                s.error = nil
+            }
+            s.results = []
             DispatchQueue.main.async {
                 self.parity = s; self.busy = false
                 if let e = s.error { self.status = "parity: \(e)"; log("parity: FAILED: \(e)") }
@@ -162,22 +193,6 @@ final class AppModel: ObservableObject {
                                          s.nFrames, a[a.count / 2], s.nNonFinite, (s.outputPath as NSString).lastPathComponent)
                     log(self.status)
                 }
-            }
-        }
-    }
-
-    func checkBoard() {
-        guard let url = URL(string: "http://\(boardHost)"), let host = url.host else { return }
-        let c = BoardClient(baseURL: url)
-        status = "checking board..."
-        log("reach: TCP \(host):22 (route check, independent of the server)")
-        work.async {
-            let r = tcpReach(host: host, port: 22)
-            log("reach: \(host):22 -> \(r)")
-            let h = c.health()
-            log("health: \(url.absoluteString)/health -> \(h.prefix(200))")
-            DispatchQueue.main.async {
-                self.status = "route \(r.hasPrefix("ready") || r.contains("refused") ? "OK" : "NO (\(r))"); server: " + h.prefix(80)
             }
         }
     }

@@ -1,10 +1,12 @@
-# xcodegen spec for the phone half of the split pipeline. `xcodegen generate` in this directory
+# xcodegen spec for SLTEdge, the all-on-phone sign language translator. `xcodegen generate` in this directory
 # writes SLTEdge.xcodeproj; the .xcodeproj is a build product and is not committed, this file is.
 #
-# The pose stage (RTMW-l-m 256x192) runs ON THE PHONE through ONNX Runtime's CoreML execution
+# Everything runs ON THE PHONE. Pose (RTMW-l-m 256x192) through ONNX Runtime's CoreML execution
 # provider, from the byte-identical end2end.onnx the board's TensorRT engine was built from
-# (sha256 68db326c..., checked against the OpenMMLab SDK zip 2026-11-16). The language model stays
-# on the board: mT5 FP16 saturates (RESULTS.md L8), and the Neural Engine is FP16-only.
+# (sha256 68db326c..., checked against the OpenMMLab SDK zip 2026-11-16). The translator (ST-GCN
+# front end + pruned mT5, four ONNX graphs, 1.46 GB) runs FP32 on ORT's CPU provider: mT5 FP16
+# saturates (RESULTS.md L8) and the Neural Engine is FP16-only. The translator graphs are pushed to
+# the app's Documents/models with devicectl rather than bundled.
 name: SLTEdge
 options:
   bundleIdPrefix: com.atisri
@@ -32,6 +34,8 @@ targets:
       - path: ../data/test_frames
         type: folder
         buildPhase: resources
+      - path: ../data/test_frames_meta.json
+        buildPhase: resources
     dependencies:
       - package: onnxruntime
         product: onnxruntime
@@ -39,9 +43,6 @@ targets:
       path: SLTEdge/Info.plist
       properties:
         NSCameraUsageDescription: "The camera captures the signer; frames are turned into pose keypoints on this phone."
-        NSLocalNetworkUsageDescription: "Keypoints are sent to the lab board for translation."
-        NSAppTransportSecurity:
-          NSAllowsArbitraryLoads: true
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait

@@ -25,15 +25,13 @@ enum Metrics {
             "src_fps": o.srcFPS, "keep_fps": o.keepFPS,
             "pose_run_ms": stat(o.poseRunMs),
             "pose_stage_ms": o.poseStageMs,
-            "payload_bytes": o.payloadBytes,
-            "network_ms": o.networkMs,
             "thermal": o.thermal,
             "battery_before": o.batteryBefore, "battery_after": o.batteryAfter,
             "bbox_norm": o.bboxNorm,
         ]
         if let c = o.crop { d["crop_xywh"] = c.xywh }
+        if let t = o.lmTimingMs { d["lm_timing_ms"] = t; d["tokens"] = o.tokens }
         if let t = o.text { d["text"] = t }
-        if let t = o.serverTiming { d["server_timing_ms"] = t }
         if let e = o.error { d["error"] = e }
         guard let line = try? JSONSerialization.data(withJSONObject: d) else { return }
         if let h = try? FileHandle(forWritingTo: url) {
