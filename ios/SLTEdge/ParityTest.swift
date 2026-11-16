@@ -13,16 +13,19 @@ struct ParitySummary {
     var runMs: [Double] = [], prepMs: [Double] = [], decodeMs: [Double] = []
     var wallS = 0.0, loadS = 0.0
     var compute = ""
+    var variant = ""
     var outputPath = ""
     var error: String?
     var results: [PoseResult] = []
 }
 
 enum ParityTest {
-    /// Expected greedy output for this clip from the Python ONNX chain and PyTorch (token-identical,
-    /// 2026-11-16, keypoints from the Mac ORT run). The reference caption is different -- this is
-    /// the model's 23 BLEU-4 showing, not a bug -- so the gate is this sentence, not the caption.
-    static let expectedGreedy = "The donation appears to have targeted people who contributed to the Biden campaign."
+    /// Expected beam-4 output for this clip from the Python ONNX chain (task3_mt5_onnx/05_beam_onnx.py,
+    /// token-identical to PyTorch beam 4 on 30/30 clips), keypoints from the Mac ORT FP32 run,
+    /// 2026-11-16. The reference caption is different -- that is the model's ~23 BLEU-4, not a bug --
+    /// so the gate is this sentence, not the caption. With the FP32 pose model the phone should match it
+    /// exactly; with FP16 pose a different sentence is information, not a failure.
+    static let expectedBeam4 = "However, this appears to be a targeted target for donations that are likely to be part of the Biden campaign."
 
     /// After the pose pass: thin to 24 fps from the clip's own rate, convert, translate on the phone.
     static func translateClip(results: [PoseResult], translator: Translator) -> (String, [String: Double], Int)? {
@@ -38,14 +41,14 @@ enum ParityTest {
             // source_wh: the crop came from a 1280x720 frame (bbox 0.2987*1280 -> 382 = crop x).
             let tens = try UniSign.build(kpts: kept.map { $0.keypoints }, scores: kept.map { $0.scores },
                                          bboxNorm: bbox, crop: crop, sourceWH: (1280, 720))
-            let r = try translator.translate(tens)
+            let r = try translator.translate(tens, beams: 4)
             return (r.text, r.timingMs, tens.T)
         } catch { log("parity: translate failed: \(error)"); return nil }
     }
 
     static func run(pose: RTMWPose, pp: Preproc, progress: @escaping (Int, Int) -> Void) -> ParitySummary {
         var s = ParitySummary()
-        s.compute = pose.compute.rawValue; s.loadS = pose.loadSeconds
+        s.compute = pose.compute.rawValue; s.variant = pose.variant.short; s.loadS = pose.loadSeconds
         guard let dir = Bundle.main.url(forResource: "test_frames", withExtension: nil),
               let names = try? FileManager.default.contentsOfDirectory(atPath: dir.path) else {
             s.error = "test_frames not in bundle"; return s
@@ -83,6 +86,7 @@ enum ParityTest {
         let dev = UIDevice.current
         var summary = "{\"n_frames\":\(s.nFrames),\"n_timed\":\(s.runMs.count),\"warmup\":\(s.warmup)"
         summary += String(format: ",\"wall_s\":%.3f,\"n_nonfinite\":%d,\"load_s\":%.2f", s.wallS, s.nNonFinite, s.loadS)
+        summary += ",\"pose_variant\":\"\(pose.variant.rawValue)\""
         summary += ",\"provider\":\"\(pose.compute == .noCoreML ? "cpu" : "coreml")\",\"compute_units\":\"\(s.compute)\""
         summary += ",\"device\":\"\(modelIdentifier())\",\"system\":\"\(dev.systemName) \(dev.systemVersion)\""
         summary += ",\"thermal\":\"\(ProcessInfo.processInfo.thermalState.rawValue)\""
@@ -90,7 +94,7 @@ enum ParityTest {
         let doc = "{\"summary\":\(summary),\"results\":[\(lines.joined(separator: ","))]}"
 
         let out = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("parity_\(s.compute.lowercased()).json")
+            .appendingPathComponent("parity_\(s.variant)_\(s.compute.lowercased()).json")
         do { try doc.write(to: out, atomically: true, encoding: .utf8); s.outputPath = out.path }
         catch { s.error = "write: \(error.localizedDescription)" }
         return s

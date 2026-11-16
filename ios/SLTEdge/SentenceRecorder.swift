@@ -69,7 +69,7 @@ final class SentenceRecorder {
 
     /// Stops, thins, runs pose and the translator, and returns the text plus the phone's own
     /// measurements. Runs on the caller's queue; the pose loop is sequential.
-    func finish(pose: RTMWPose, keepFPS: Double, translator: Translator?, pp: Preproc) -> SentenceOutcome {
+    func finish(pose: RTMWPose, keepFPS: Double, translator: Translator?, beams: Int, pp: Preproc) -> SentenceOutcome {
         lock.lock()
         isRecording = false
         let fr = frames, ts = stamps, c = crop, bb = bboxNorm, wh = sourceWH
@@ -105,7 +105,7 @@ final class SentenceRecorder {
         guard let tr = translator else { o.error = "translator not loaded"; return o }
         do {
             let tens = try UniSign.build(kpts: kps, scores: scs, bboxNorm: bb, crop: crop, sourceWH: wh)
-            let r = try tr.translate(tens)
+            let r = try tr.translate(tens, beams: beams)
             o.text = r.text; o.tokens = r.tokens; o.lmTimingMs = r.timingMs
         } catch { o.error = "translator: \(error.localizedDescription)" }
         o.batteryAfter = UIDevice.current.batteryLevel

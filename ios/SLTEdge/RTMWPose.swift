@@ -10,6 +10,17 @@ enum Compute: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
+/// Which RTMW graph runs (task1_rtmpose/05d_make_mobile_onnx.py). Both have the batch axis fixed to 1.
+///   fp32      exact: 99.99 % of Uni-Sign's keypoints within 1 px of the board FP32 engine on the Mac
+///   fp16head  FP16 backbone, FP32 SimCC head, for the Neural Engine: 62.8 % within 1 px, 96.9 % within
+///             5 px on the Mac -- below the board FP16 engine (82.7 %) and NOT yet gated on BLEU-4
+enum PoseVariant: String, CaseIterable, Identifiable {
+    case fp32 = "rtmw-l-m_256x192_b1", fp16head = "rtmw-l-m_256x192_b1_fp16head32"
+    var id: String { rawValue }
+    var label: String { self == .fp32 ? "FP32" : "FP16 (unvalidated)" }
+    var short: String { self == .fp32 ? "fp32" : "fp16head" }
+}
+
 struct PoseResult {
     let keypoints: [SIMD2<Float>]   // crop pixels; NaN where the estimator failed
     let scores: [Float]
@@ -22,28 +33,31 @@ struct PoseResult {
 final class RTMWPose {
     let pp: Preproc
     let compute: Compute
+    let variant: PoseVariant
     private let env: ORTEnv
     private let session: ORTSession
     private let inputName: String
     let loadSeconds: Double
 
-    init(compute: Compute, pp: Preproc) throws {
+    init(compute: Compute, variant: PoseVariant, pp: Preproc) throws {
         self.pp = pp
         self.compute = compute
+        self.variant = variant
         let t0 = CFAbsoluteTimeGetCurrent()
-        guard let path = Bundle.main.path(forResource: "rtmw-l-m_256x192", ofType: "onnx") else {
-            throw NSError(domain: "SLTEdge", code: 2, userInfo: [NSLocalizedDescriptionKey: "rtmw-l-m_256x192.onnx missing from bundle"])
+        guard let path = Bundle.main.path(forResource: variant.rawValue, ofType: "onnx") else {
+            throw NSError(domain: "SLTEdge", code: 2, userInfo: [NSLocalizedDescriptionKey: "\(variant.rawValue).onnx missing from bundle"])
         }
         env = try ORTEnv(loggingLevel: .warning)
         let opts = try ORTSessionOptions()
         try opts.setIntraOpNumThreads(2)
         if compute != .noCoreML {
             // Same keys as the Mac run (05c_infer_frames_ort.py). The flag is a permission, not an
-            // instruction: ORT logs how many nodes CoreML actually took at INFO level.
+            // instruction: ORT logs how many nodes CoreML actually took. With the dynamic batch axis
+            // the phone got 344 of 397 nodes in 6 partitions; the graph now has batch fixed to 1.
             try opts.appendCoreMLExecutionProvider(withOptionsV2: [
                 "MLComputeUnits": compute.rawValue,
                 "ModelFormat": "MLProgram",
-                "RequireStaticInputShapes": "0",
+                "RequireStaticInputShapes": "1",
                 "EnableOnSubgraphs": "0",
             ])
         }

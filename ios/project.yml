@@ -25,7 +25,9 @@ targets:
       - path: SLTEdge
       # The model and its preprocessing constants, straight from the repo so the phone cannot drift
       # from what the board and the Mac parity run used.
-      - path: ../models/rtmw/rtmw-l-m_256x192.onnx
+      - path: ../models/rtmw/rtmw-l-m_256x192_b1.onnx
+        buildPhase: resources
+      - path: ../models/rtmw/rtmw-l-m_256x192_b1_fp16head32.onnx
         buildPhase: resources
       - path: ../models/rtmw/preproc.json
         buildPhase: resources

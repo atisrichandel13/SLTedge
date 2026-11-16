@@ -58,8 +58,14 @@ struct ContentView: View {
             }.padding(.horizontal)
 
             HStack {
+                Picker("pose", selection: $m.variant) {
+                    ForEach(PoseVariant.allCases) { Text($0.label).tag($0) }
+                }.pickerStyle(.menu).disabled(m.busy)
                 Picker("compute", selection: $m.compute) {
                     ForEach(Compute.allCases) { Text($0.rawValue).tag($0) }
+                }.pickerStyle(.menu).disabled(m.busy)
+                Picker("beams", selection: $m.beams) {
+                    Text("beam 4").tag(4); Text("greedy").tag(1)
                 }.pickerStyle(.menu).disabled(m.busy)
                 Spacer()
                 Button(m.parityProgress.isEmpty || m.parity != nil ? "parity test" : m.parityProgress) { m.runParity() }
