@@ -1,0 +1,247 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{array}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+% Alternative titles, if you prefer one of these:
+%   \title{Closing the Last 6\%: Real-Time Sign Language Translation\\on a 15\,W Jetson Orin Nano}
+%   \title{Real-Time Sign Language Translation on a\\15\,W Jetson Orin Nano}
+%   \title{Meeting Real Time for On-Device Sign Language\\Translation on a 15\,W Jetson Orin Nano}
+\title{Real-Time Sign Language Translation on a 15\,W Jetson Orin Nano}
+
+\author{\IEEEauthorblockN{Fnu Atisri}
+\IEEEauthorblockA{\textit{The University of Texas at Dallas}\\
+fnu.atisri@utdallas.edu}
+\and
+\IEEEauthorblockN{Tushar Goyal}
+\IEEEauthorblockA{\textit{The University of Texas at Dallas}\\
+tushar.goyal@utdallas.edu}
+}
+
+\maketitle
+
+\begin{abstract}
+We target continuous sign language translation on a 15\,W Jetson Orin Nano, where the
+pipeline must consume one second of signed video in at most one second of wall clock. Our
+baseline pairs an RTMW-l-m pose extractor with a Uni-Sign pose-only translator and reaches
+a real-time factor of 1.064x at 23.16 BLEU-4 on 976 OpenASL clips, so it fails the latency
+requirement. The pose stage is 6640.7 of the 9052.8\,ms per sentence and a cheaper
+extractor costs 7.13 BLEU-4, so we propose vocabulary pruning of the translator, FP16
+quantization of the extractor and frame-rate reduction to 24\,fps, each with a
+re-measurement and a named failure mode.
+\end{abstract}
+
+\begin{IEEEkeywords}
+sign language translation, model compression, edge inference, Jetson Orin Nano
+\end{IEEEkeywords}
+
+\section{Problem Statement}
+
+The vision task is continuous sign language translation, which maps video frames of a
+person signing to an English sentence, so the output is a sentence and not a sign label. A
+whole-body pose extractor turns each frame into 133 keypoints, and a graph encoder
+followed by an mT5 text decoder turns that keypoint sequence into English.
+
+The deployment scenario is an assistive device on a counter or desk that translates
+American Sign Language into English text during a face-to-face exchange between a Deaf
+signer and a hearing person who does not sign. The input is video of
+the signer, cropped to the signer bounding box at native resolution and at the clip's own
+capture rate. The device must run on the board and not send frames to a server, because
+these are private medical and transactional exchanges, and clinic desks and pharmacy
+counters often have poor connectivity.
+
+The constraint that binds is \textbf{latency}. The pipeline must consume one second of
+signed video in at most one second of wall clock at 15\,W, which is a real-time factor of
+at most 1.00x. The exchange is turn-taking, so above 1.00x the backlog grows with
+every sentence and the English text arrives after the conversation has moved on. Our baseline measurement in Section~II gives
+\textbf{1.064x}, so the baseline fails this constraint.
+
+The accuracy floor is a \textbf{BLEU-4 loss of at most 1.00 point} against our baseline of
+23.16, hence a floor of 22.16. We set it at 1.00 because the same checkpoint scores 22.67
+in the paper, 22.53 replicating the authors' code on Colab in bf16, and 23.16 on our own
+fp32 loop. That 0.6 spread comes from framework, precision and frame subsampling, not
+run-to-run variance, so a tighter floor would reject a stage over a difference the
+evaluation path produces by itself.
+
+\section{Baseline Model}
+
+The pose extractor is RTMW-l-m~\cite{rtmw} at 256$\times$192 producing 133 COCO-WholeBody keypoints, exported
+to ONNX from the OpenMMLab deployment package~\cite{mmpose} and built as a TensorRT FP16 engine. The
+translator is the released Uni-Sign pose-only checkpoint~\cite{unisign}, which pairs a
+spatio-temporal graph encoder with mT5-base~\cite{mt5}, run in PyTorch at FP32. The
+evaluation set is the OpenASL~\cite{openasl} test split, 976 clips, and the board clip is
+a 255-frame, 8.51\,s sentence.
+
+FP16 is the reference precision for the pose stage but not for the translator, where we
+measured mT5 returning token~0 at every step at a log probability of $-10.169$, exactly
+$-\ln(26078)$ and hence a uniform distribution from saturated logits.
+
+Table~\ref{tab:baseline} reports our own measurements on course board
+\texttt{jetson-lpcv-03} at 15\,W mode~0, GPU clock 612\,MHz, occupancy confirmed idle. The
+pose row is 897 timed inferences (3 repeats of 299 frames) at batch~1. The sentence row is
+3 repeats of one 8.51\,s clip, so its interval is run-to-run jitter and not variation
+across sentences. Every stage below, and a re-measured baseline, is timed on 30 clips
+spanning the duration range, 3 repeats each: 90 inferences rather than the protocol's
+1000, which would hold a shared board for over two hours.
+
+\begin{table}[t]
+\caption{Baseline measured by us, \texttt{lpcv} container, 15\,W mode 0, GPU 612\,MHz, batch 1.}
+\label{tab:baseline}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{0.40\columnwidth}p{0.52\columnwidth}@{}}
+\toprule
+\textbf{Property} & \textbf{Value} \\
+\midrule
+Models / weights & RTMW-l-m (OpenMMLab SDK ONNX); Uni-Sign pose-only + mT5-base \\
+Input (px, fps) & 644$\times$720 signer crop, 29.97 \\
+Precision, runtime & pose FP16 TensorRT 10.11; LM FP32 PyTorch 2.8 \\
+Accuracy (BLEU-4 / ROUGE-L) & 23.16 / 43.17, 976 clips \\
+Pose stage (ms/frame) & 19.7 \\
+Sentence latency, P50 (ms) & 9052.8 $\pm$ 335.6 \\
+\textbf{Real-time factor (x)} & \textbf{1.064} \\
+Energy, total / dyn. (J/sent.) & 50.37 / 14.68 \\
+Peak GPU memory (MiB) & 2577 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A smaller off-the-shelf model does not satisfy both requirements. The pose stage is 6640.7 of the 9052.8\,ms, so a cheaper extractor is the
+obvious alternative and we tested it. Substituting RTMPose-x, the extractor the Uni-Sign
+authors name, costs \textbf{7.13 BLEU-4}, 95\% CI $[-10.94, -3.07]$, because the
+translator was trained on RTMW-family keypoints and another extractor shifts its input
+distribution. That is seven times the accuracy floor, and within the family RTMW-l-m
+256$\times$192 is already the smallest variant with a verified ONNX export. The
+extractor is at its floor, so the remaining latency must come from running it fewer times
+and from compressing the translator.
+
+\section{Compression Plan}
+
+We apply three stages with a measurement between each. We prune first because the
+vocabulary slice halves peak memory, so later stages can be measured in the configuration
+we deploy. We quantize second, and only the pose stage, because the
+translator's numerics forbid it. We reduce the input rate last because its accuracy cost
+must be charged against the already-compressed model. Distillation is excluded, as a
+fourth stage would weaken the three.
+
+\textbf{Stage 1: structured vocabulary pruning of the translator.} OpenASL uses 26{,}025
+of the 250{,}112 mT5 tokens, so we slice those rows from the shared embedding and the
+output projection and remove 344\,M of 587.7\,M parameters without retraining.
+\emph{Re-measure:} BLEU-4 and ROUGE-L on 976 clips with a paired bootstrap, then board
+latency, energy and peak memory. \emph{Failure mode A:} the keep set is selected using the
+test split, which leaks evaluation data into the architecture, and we detect it by
+re-running the census over train and dev only and re-scoring both keep sets.
+\emph{Failure mode B:} a smaller softmax shifts beam scores even where the greedy argmax
+is unchanged, so accuracy moves for a reason unrelated to capacity, and we count how many
+of the 976 predictions change.
+
+\textbf{Stage 2: FP16 quantization of the pose extractor.} We build the extractor as an
+FP16 TensorRT engine~\cite{trt}. \emph{Re-measure:} keypoint agreement against the FP32 engine, as
+the fraction of confident keypoints within 5\,px, then end-to-end BLEU-4. \emph{Failure
+mode A:} one activation overflows the FP16 range and silently destroys the head. On
+RTMPose-x we measured the ScaleNorm sum of squares at 142{,}293 vs the FP16 maximum of
+65{,}504. We detect it before building, with a range scan that exposes every intermediate
+tensor and runs the graph on ONNX Runtime CPU.
+\emph{Failure mode B:} TensorRT enables TF32 by default, so an engine built as FP32 is not
+FP32 and the gate uses the wrong reference. Clearing the TF32 builder flag moved our gate
+from 1.55e-3 to 7.2e-6 with all 2416 confident keypoints at 0.0\,px. \emph{Failure mode C:} the
+FP16 flag permits rather than forces, so the builder can keep layers above the requested
+precision, and we report the fraction that actually run in FP16, read from the built
+engine rather than from the build flag.
+
+\textbf{Stage 3: input frame-rate reduction, 29.97 to 24\,fps.} The pose stage charges per
+frame, so fewer frames is the largest single lever on the binding constraint.
+\emph{Re-measure:} paired bootstrap on 976 clips at 30, 24, 16, 12 and 8\,fps, plus board
+latency and energy over the rate by beam-width grid. \emph{Failure mode A:} the accuracy
+cost is real but hidden by an interval too wide to exclude it. We made this error once,
+reading a 16\,fps cost of $-0.15$, interval $[-3.20, +2.89]$ at $n{=}30$, as free, where
+$n{=}976$ later gave $-1.33$, $[-2.00, -0.64]$. We fix $n{=}976$ in advance and refuse any
+claim whose interval half-width exceeds the accuracy floor. \emph{Failure mode B:} OpenASL
+is not one frame rate (76.5\% near 30, 22.2\% near 24), so a hardcoded source rate
+subsamples the wrong frames, and we derive each clip's rate from frames divided by
+duration.
+
+Two techniques are excluded with a named reason. \emph{Weight-only INT8 on the translator}
+is sound at 22.79 BLEU-4 and 4.05x smaller, but the decoder is bound by its host-side step
+loop, so INT8 buys memory and not latency, and its runtime is 10x slower per token because
+217 layers dequantize on every step. \emph{A TensorRT decoder engine set} is
+token-identical at 19\,ms per token vs 55 for PyTorch, but is not faster end to end for the
+same reason and needs 2.07\,GB resident, which does not fit beside the pose engine.
+
+\textbf{Feasibility.} Fine-tuning is needed only if Stage~3 goes past 24\,fps. It runs on
+Google Colab, to which we have access, and one epoch over 20{,}000 clips with mT5 frozen
+trains 5.35\,M of 243.5\,M parameters in a few hours. We assume no desktop GPU and train
+nothing on the board. We estimate 6 to 8 board-hours for the remaining measurements, and our 528-clip pose pass took 57.5 minutes. All three stages should complete by Milestone~2. The riskiest is
+Stage~3 at 16\,fps, where the cost exceeds the floor and fine-tuning may not recover it,
+hence the plan is 24\,fps, which needs none. Baseline and Stage~1--2 board measurements
+are already taken.
+
+\section{Metrics}
+
+\label{m1}\textbf{Metrics.} The primary metric is the binding constraint of Section~I,
+end-to-end sentence latency on the board at 15\,W, as P50 and P95 in ms and as a
+real-time factor against the clip duration. Secondary metrics are energy per
+sentence in J, total and dynamic, peak GPU memory in MiB, and per-stage energy integrated
+from each stage's own power window rather than apportioned by latency share, since the
+pose stage draws 5.0\,W and the language model 6.2\,W. Accuracy is BLEU-4 and ROUGE-L on
+the 976-clip test split. Parameter counts and checkpoint sizes are context, not results.
+
+\label{m2}\textbf{Baseline.} Every comparison is against the Table~\ref{tab:baseline}
+configuration, in the same runtime, on the same board and the same 30 clips, and for
+accuracy on the same 976 clips.
+
+\label{m3}\textbf{Decision rule.} The project succeeds if the compressed pipeline reaches
+a real-time factor of at most 1.00x at 15\,W \emph{and} the BLEU-4 loss against baseline
+has a 95\% confidence interval whose lower bound is above $-1.00$ point. It fails otherwise. The rule is stated on the interval and not on the point estimate, so a result
+cannot pass on a loss that the data cannot actually bound.
+
+\label{evidencestart}\textbf{Evidence.} Four ablations isolate each stage: vocabulary
+pruning on and off, frame rate at 30, 24, 16, 12 and 8\,fps, beam width at 4, 2 and 1, and
+pose FP16 vs FP32. Every board row is 3 repeats with the DVFS state logged, and every accuracy difference is a
+paired clip-level bootstrap on one shared set of draws.
+
+\label{refsstart}
+\begin{thebibliography}{00}
+\bibitem{unisign} Z. Li, W. Zhou, W. Zhao, K. Wu, H. Hu, and H. Li, ``Uni-Sign: Toward
+unified sign language understanding at scale,'' in \emph{Proc. ICLR}, 2025.
+\bibitem{openasl} D. Shi, D. Brentari, G. Shakhnarovich, and K. Livescu, ``Open-domain
+sign language translation learned from online video,'' in \emph{Proc. EMNLP}, 2022.
+\bibitem{rtmw} T. Jiang, X. Xie, and Y. Li, ``RTMW: Real-time multi-person 2D and 3D
+whole-body pose estimation,'' arXiv:2407.08634, 2024.
+\bibitem{mt5} L. Xue, N. Constant, A. Roberts, M. Kale, R. Al-Rfou, A. Siddhant,
+A. Barua, and C. Raffel, ``mT5: A massively multilingual pre-trained text-to-text
+transformer,'' in \emph{Proc. NAACL}, 2021.
+\bibitem{mmpose} MMPose Contributors, ``OpenMMLab pose estimation toolbox and
+benchmark,'' \url{https://github.com/open-mmlab/mmpose}, 2020.
+\bibitem{trt} NVIDIA, ``TensorRT 10.11 developer guide,'' 2025.
+\end{thebibliography}
+
+\section*{AI Use Statement}
+
+We used Anthropic's Claude to draft and edit the prose of this proposal and to check its
+formatting against the IEEE conference template; all measurements it reports come from our
+own experimental runs on the course board and the OpenASL test split.
+
+\section*{Contribution Statement}\label{contribstart}
+
+The work is split by model stage, so that each partner owns a contract the other can test
+against, and the interface between them is a fixed keypoint tensor format.
+\textbf{Tushar Goyal} owns everything up to the keypoints: camera and frame
+handling, the RTMW ONNX export and TensorRT engines, Stage~2 and its range scan, and all
+board latency, power and energy measurement. \textbf{Fnu Atisri} owns everything after the
+keypoints: the graph encoder and mT5 translator, Stage~1 vocabulary pruning, the accuracy
+evaluation and the paired bootstrap, and the Stage~3 frame-rate study. The evaluation set
+and the measurement protocol are shared, so that neither partner is the only person who
+measures the stage they built. Both partners contributed equally.
+
+\end{document}

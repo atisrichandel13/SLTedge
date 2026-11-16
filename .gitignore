@@ -99,3 +99,13 @@ results/logs/fetch_dev_split.log
 runs/
 scratchpad/
 weights/adapt_*.pt
+
+# ios: xcodegen outputs, regenerated from ios/project.yml
+ios/SLTEdge.xcodeproj/
+ios/SLTEdge/Info.plist
+ios/build/
+
+# LaTeX build products
+*.aux
+*.log
+!results/logs/
