@@ -5,6 +5,15 @@
         --clips-dir data/clips --config rtmw_fp16 --pkl-out results/pkl_full_rtmw_fp16 \
         --square-norm --limit-clips 100
 
+    # pose-track Mac, ONNX Runtime CPU FP32 (no TensorRT): same loop, same pkls
+    python task1_rtmpose/09_batch_clips.py --backend ort --engine <dir>/end2end.onnx \
+        --clips-dir data/clips --config rtmpose_m_fp32 --pkl-out results/pkl_split_rtmpose_m_fp32 \
+        --shard 0/3
+
+    # the authors' rtmlib path: YOLOX-tiny person box first (person_det.py), pose on that box
+    python task1_rtmpose/09_batch_clips.py --backend ort --engine models/rtmw/rtmw-l-m_256x192.onnx \
+        --det <dir>/yolox_tiny/end2end.onnx --det-size 416 --config rtmw_det_fp32 ...
+
 Why this exists. `jetson/p4_clips.sh` launches one container exec per (config, clip), and we measured
 ~15.4 s per clip of which only ~6 s is inference: the other ~9 s is docker exec plus engine load plus
 CUDA init. At 974 clips that is 2.4 HOURS of pure overhead per configuration. Here the engine is built
@@ -35,7 +44,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from common.trt_runner import TrtRunner  # noqa: E402
 from rtmpose_utils import load_preproc, postprocess, preprocess  # noqa: E402
 
 import cv2  # noqa: E402
@@ -58,6 +66,18 @@ def square_fn(meta):
     return f
 
 
+def openasl_emulator(meta):
+    """The authors' 224 input rebuilt from our native crop (person_det.authors_224)."""
+    from person_det import authors_224
+    W, H = meta["source_wh"]
+    return authors_224(meta["bbox_norm"], W, H, meta["crop_xywh"][:2])
+
+
+def _np(t):
+    # TrtRunner returns torch CUDA tensors, OrtRunner numpy arrays
+    return t.cpu().numpy() if hasattr(t, "cpu") else np.asarray(t)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--engine", required=True)
@@ -71,12 +91,31 @@ def main():
                     help="ALSO write crop-normalised pkls here. The square-frame and crop-frame forms "
                          "are the same keypoints under two exact normalisations, so writing both costs "
                          "no GPU work and saves a whole second extraction pass over the split")
+    ap.add_argument("--backend", choices=["trt", "ort"], default="trt",
+                    help="trt = TensorRT engine on the board; ort = ONNX Runtime CPU on the Mac, "
+                         "--engine then names the .onnx")
+    ap.add_argument("--threads", type=int, default=0, help="ort intra-op threads (0 = all cores)")
+    ap.add_argument("--det", default=None,
+                    help="YOLOX person-detector .onnx (ORT, CPU): pose runs on the largest detected box, "
+                         "full crop if none -- the authors' rtmlib path (task1_rtmpose/person_det.py)")
+    ap.add_argument("--det-size", type=int, default=416, help="416 = rtmlib lightweight (yolox-tiny)")
+    ap.add_argument("--openasl-emulate", action="store_true",
+                    help="run detector + pose on the authors' 224 square rebuilt from our native crop "
+                         "(openasl_emulator); keypoints are mapped back, so outputs keep their frames")
+    ap.add_argument("--clip-list", default=None, help="file of clip names, one per line; only these")
+    ap.add_argument("--shard", default=None, help="i/n: take every n-th clip from i, for parallel runs")
     ap.add_argument("--limit-clips", type=int, default=None)
     ap.add_argument("--warmup", type=int, default=20)
     ap.add_argument("--progress-every", type=int, default=10)
     args = ap.parse_args()
 
     metas = sorted(glob.glob(os.path.join(args.clips_dir, "*", "meta.json")))
+    if args.clip_list:
+        keep = {ln.strip() for ln in open(args.clip_list) if ln.strip()}
+        metas = [m for m in metas if os.path.basename(os.path.dirname(m)) in keep]
+    if args.shard:
+        i, n = (int(v) for v in args.shard.split("/"))
+        metas = metas[i::n]
     if args.limit_clips:
         metas = metas[: args.limit_clips]
     if not metas:
@@ -89,8 +128,17 @@ def main():
 
     pp = load_preproc(args.preproc or os.path.join(os.path.dirname(os.path.abspath(args.engine)),
                                                    "preproc.json"))
-    runner = TrtRunner(args.engine)
+    if args.backend == "ort":
+        from common.ort_runner import OrtRunner
+        runner = OrtRunner(args.engine, threads=args.threads)
+    else:
+        from common.trt_runner import TrtRunner
+        runner = TrtRunner(args.engine)
     in_name = runner.inputs[0]
+    det = None
+    if args.det:
+        from person_det import YoloxPersonDet
+        det = YoloxPersonDet(args.det, size=args.det_size, threads=args.threads)
     warmed = False
 
     def complete(vid):
@@ -130,7 +178,9 @@ def main():
             warmed = True
 
         sqf = square_fn(meta) if args.square_norm else None
-        kps, scs, raw, kps_raw = [], [], [], []
+        emu = openasl_emulator(meta) if args.openasl_emulate else None
+        kps, scs, raw, kps_raw, boxes = [], [], [], [], []
+        no_det = 0
         wh_crop = np.asarray([meta["crop_xywh"][2], meta["crop_xywh"][3]], dtype=np.float32)
         # A single unreadable JPEG used to abort the entire pass: cv2.imread returns None and
         # preprocess dies on None.shape at rtmpose_utils.py:81. On 2026-10-05 that killed a 531-clip
@@ -143,10 +193,20 @@ def main():
             if img is None:
                 bad = path
                 break
-            x, center, scale = preprocess(img, None, pp)
+            if emu is not None:
+                img = emu[0](img)
+            box = None
+            if det is not None:
+                box = det(img)
+                if box is None:
+                    no_det += 1
+                boxes.append(box if box is not None else [0, 0, img.shape[1], img.shape[0]])
+            x, center, scale = preprocess(img, box, pp)
             outs = runner.infer({in_name: x})
-            k, s = postprocess(outs["simcc_x"].cpu().numpy(), outs["simcc_y"].cpu().numpy(),
+            k, s = postprocess(_np(outs["simcc_x"]), _np(outs["simcc_y"]),
                               center, scale, pp)
+            if emu is not None:
+                k = emu[1](k)
             if args.dumps_out:
                 raw.append({"frame": os.path.basename(path), "keypoints": k.round(2).tolist(),
                             "scores": s.round(4).tolist()})
@@ -171,11 +231,19 @@ def main():
                 pickle.dump(payload, f)
             os.replace(t, os.path.join(d, vid + ".pkl"))
 
+        extra = {}
+        if det is not None:
+            # boxes in crop pixels, so a run can be audited for where the detector put the signer
+            extra = {"det": os.path.basename(os.path.dirname(os.path.abspath(args.det))),
+                     "det_boxes": np.asarray(boxes, dtype=np.float32), "det_none": no_det}
+            if no_det:
+                print(f"[batch] {vid}: no person on {no_det}/{len(frames)} frames, full crop used",
+                      flush=True)
         save(args.pkl_out, {"keypoints": kps, "scores": scs,
-                            "square_norm": bool(sqf is not None), "vid": vid})
+                            "square_norm": bool(sqf is not None), "vid": vid, **extra})
         if args.pkl_out_raw:
             save(args.pkl_out_raw, {"keypoints": kps_raw, "scores": scs,
-                                    "square_norm": False, "vid": vid})
+                                    "square_norm": False, "vid": vid, **extra})
         if args.dumps_out:
             json.dump({"summary": {"n_frames": len(frames)}, "results": raw},
                       open(os.path.join(args.dumps_out, f"{args.config}__{vid}.json"), "w"))

@@ -1,0 +1,62 @@
+{
+ "onnx": "scratchpad/models/rtmpose-l_ucoco_256x192/end2end.onnx",
+ "frames": 12,
+ "fp16_max": 65504.0,
+ "overflow": [],
+ "near": [
+  {
+   "max": 36816.08203125,
+   "mean": 18748.2890625,
+   "tensor": "820",
+   "node": "ReduceSum_273",
+   "op": "ReduceSum"
+  }
+ ],
+ "top": [
+  {
+   "max": 36816.08203125,
+   "mean": 18748.2890625,
+   "tensor": "820",
+   "node": "ReduceSum_273",
+   "op": "ReduceSum"
+  },
+  {
+   "max": 7462.92626953125,
+   "mean": 339.24334716796875,
+   "tensor": "819",
+   "node": "Mul_272",
+   "op": "Mul"
+  },
+  {
+   "max": 191.8751678466797,
+   "mean": 131.6103515625,
+   "tensor": "821",
+   "node": "Sqrt_274",
+   "op": "Sqrt"
+  },
+  {
+   "max": 101.95881652832031,
+   "mean": 0.5138956904411316,
+   "tensor": "533",
+   "node": "Add_47",
+   "op": "Add"
+  },
+  {
+   "max": 101.95881652832031,
+   "mean": 0.4492298364639282,
+   "tensor": "534",
+   "node": "Concat_48",
+   "op": "Concat"
+  },
+  {
+   "max": 101.92239379882812,
+   "mean": 1.1783850193023682,
+   "tensor": "919",
+   "node": "Conv_44",
+   "op": "Conv"
+  }
+ ],
+ "prefixes": [
+  "ReduceSum_273"
+ ]
+}

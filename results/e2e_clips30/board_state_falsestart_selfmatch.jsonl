@@ -1,0 +1,2 @@
+{"label": "before_shipped", "time": "2026-11-16T10:51:09-06:00", "power_mode": "15W", "gpu_max_MHz": 612, "users": 0, "foreign_procs_gt1pct": 0, "foreign": "", "other_containers": 0, "our_python_procs": 1, "tj_C": "43.093", "memfree_MB": 1832}
+{"label": "before_shipped", "time": "2026-11-16T10:51:41-06:00", "power_mode": "15W", "gpu_max_MHz": 612, "users": 0, "foreign_procs_gt1pct": 0, "foreign": "", "other_containers": 0, "our_python_procs": 1, "tj_C": "42.656", "memfree_MB": 1829}

@@ -4611,3 +4611,210 @@ T4, FP32 (no AMP — T4 is Turing, no bf16…)", and `REPLY-POWER-CAVEAT-STANDS-
 recipe. `LM-TRACK-REPORT-2026-09-30.md` §8.4 and `SYNC-REPLY-LM-2026-09-30.md:239` both say **A100**
 for the runs that shipped. The header governs §L15.1/§L15.2 only. The conclusion of
 `REPLY-POWER-CAVEAT-STANDS` is unaffected — Block 4 did train on 20,000 clips and evaluate on 967.
+
+---
+
+### L33 The 256×192 size sweep: RTMW-x-l is +0.83 BLEU-4 and the ceiling gap stops being established; copying the authors' preprocessing buys nothing (2026-11-03)
+
+Closes `DECISIONS` §5's "RTMPose-l / RTMPose-m wholebody 256×192 — never run" and §10.1's "the 256×192
+size axis was never swept". Pose track, pose-track Mac and board. Every arm is the same 931 test
+clips (`results/pkl_split_rtmw_fp16.manifest`, `--expect-n 931`).
+
+**What the authors ran, from their own code.** `demo/pose_extraction.py` in the Uni-Sign repo calls
+rtmlib `Wholebody(mode="lightweight")` by default. Their vendored rtmlib defines three modes:
+**lightweight = yolox-tiny 416 + RTMW-l-m 256×192** (what we ship), **balanced = yolox-m 640 + RTMW-x-l
+256×192**, performance = yolox-m 640 + RTMW-x-l 384×288. Three things in that path differ from ours:
+a **YOLOX person box** in front of the pose net (their edit to `yolox.py` keeps only the **largest** box,
+which is why every released pkl has one person per frame); **BGR into the pose net** (`base.py` never
+converts, and normalises with the RGB mean/std); and their 224 padded square as input. The archive
+name `pose-rtmpose-192` cannot separate RTMPose from RTMW: rtmlib's class is called `RTMPose` either way.
+
+#### Method, and the two controls that make the arms pairable
+
+Candidates from the OpenMMLab ONNX SDK zips (`rtmpose-m/l_simcc-ucoco_dw-ucoco_270e-256x192`,
+`rtmw-dw-x-l_simcc-cocktail14_270e-256x192`), identical preprocessing (pad 1.25, 192×256, ImageNet
+mean/std, simcc split 2.0). Extracted with ONNX Runtime CPU FP32 on the pose-track Mac
+(`common/ort_runner.py`, `09_batch_clips.py --backend ort`), square-norm on, written exactly like the
+board's pkls. Scored on the pose-track Mac CPU: FP32, batch 1, `max_length` 256, 24 fps, cap 64,
+beam 4, pruned checkpoint. Paired bootstrap 2,000 resamples, seed 0.
+
+1. **The Mac extractor is the board extractor.** Mac ORT RTMW-l-m against the board's TRT FP32 pkls on
+   7,299 frames: coordinate max |Δ| 4.76e-02, 0.008 % of points above 1e-3, score max |Δ| 9.0e-06.
+2. **The Mac scorer is the board scorer, to 10 sentences.** Re-scoring the board's RTMW FP32 pkls on
+   the Mac CPU gives **21.5695 / 41.6896** against the board CUDA run's 21.5828 / 41.7051; **10 of 931**
+   predictions differ. Every arm below is paired against this Mac re-score
+   (`eval_n931_rtmw_fp32_maccpu_fps24.json`), so scorer hardware cancels.
+
+#### The result
+
+| extractor, 256×192, native crop | BLEU-4 | ROUGE-L | Δ BLEU-4 vs shipped | Δ ROUGE-L vs shipped |
+|---|---:|---:|---|---|
+| RTMPose-m (ucoco) | 19.6194 | 39.2195 | **−1.95 [−2.73, −1.16]** | **−2.47 [−3.35, −1.55]** |
+| RTMPose-l (ucoco) | 20.5260 | 40.2361 | **−1.04 [−1.73, −0.35]** | **−1.45 [−2.30, −0.59]** |
+| **RTMW-l-m (shipped)** | **21.5695** | **41.6896** | — | — |
+| **RTMW-x-l ("balanced")** | **22.4002** | **42.4019** | **+0.83 [+0.09, +1.57]** | +0.71 [−0.03, +1.52] |
+| authors' poses (ceiling) | 23.1387 | 43.1519 | +1.56 [+0.77, +2.35] (§2.5m, board-scored FP32) | +1.45 [+0.61, +2.33] |
+
+**RTMW-x-l against the ceiling: −0.74 [−1.46, +0.01] BLEU-4, −0.75 [−1.65, +0.18] ROUGE-L —
+neither established** (`ci_n931_rtmw_xl256_vs_ceiling.json`). For the first time in the project the
+gap to the authors' keypoints is not established at n=931. It is **not** "as good as theirs": a
+non-inferiority margin of −1.00 (the BF16 rule) is missed, lower bound −1.46.
+
+* **RTMPose-m and RTMPose-l are rejected on the evidence**, both metrics established worse. §C2's
+  caveat ("an MMPose RTMPose-m/l wholebody 256×192 would also fit the folder name") is closed.
+* **The keypoint-agreement screen predicted the BLEU order exactly.** On the §2.5c clips (19 of 30
+  usable after the ±1-frame rule; `kpt_agreement_30clip_192candidates.json`), per-clip median used69
+  distance to the authors' pkl, paired against RTMW-l-m: RTMPose-m **+0.00086 [+0.00056, +0.00124]**,
+  RTMPose-l **+0.00042 [+0.00018, +0.00070]**, RTMW-x-l **−0.00025 [−0.00036, −0.00014]** (closer on
+  84 % of clips). Further from theirs → lower BLEU, in the same order, on all four.
+* **FP16 range** (`08_fp16_range_scan.py`, 12 calibration frames): RTMPose-m max 6,321.5, clean;
+  RTMPose-l 36,816 at `ReduceSum_273`, 1.8× headroom, would need ScaleNorm pinned; **RTMW-x-l 386.9,
+  clean** — an all-FP16 engine should be safe, not yet built.
+
+#### Matching the authors' pipeline instead: same pixels, same box, same colour order
+
+`data/clips_openasl` holds 5 test clips fetched with OpenASL's own crop (square, black-pad, 224). An
+exact replica of their rtmlib path was written from the vendored source and run on them; its RGB,
+no-detector setting reproduces `09_batch_clips.py` on **99.996 %** of 200,830 points (8 near-tie
+argmax flips). Distance to the authors' pkl, one consensus frame lag per clip applied to every source
+(3 of 5 clips are ±1 frame), `kpt_agreement_5clip_samepix.json`:
+
+| on their 224 frames | no box | yolox-tiny box | yolox-m box |
+|---|---:|---:|---:|
+| RTMW-l-m, RGB | 0.0058 | **0.0040** | — |
+| RTMW-l-m, BGR (theirs) | 0.0060 | 0.0041 | 0.0041 |
+| RTMW-x-l, RGB | 0.0052 | — | **0.0036** |
+| RTMW-x-l, BGR (theirs) | 0.0052 | 0.0037 | 0.0037 |
+| *our native crop, RTMW-l-m* | *0.0046* | *0.0045* | |
+
+* **The person box is the only factor that moves.** ~30 % closer for both models. Detector size and
+  colour order are within 0.0001. On our native crop the box does nothing (0.0045 vs 0.0046): the
+  OpenASL bbox is already tight, so the detector returns nearly the same box.
+* **Nothing reproduces their keypoints.** The best, x-l + box, still sits at 0.0036 (~0.8 px at 224),
+  with 44.7 % of used keypoints within one simcc bin. The remainder is most likely their video decode
+  against our JPEG frames. Which model they ran is therefore still not identified.
+* **Their 224 input can be rebuilt from our native crop** (`person_det.authors_224`: paste into their
+  square, black where it reaches past our crop, `cv2.resize` INTER_LINEAR): 0.0041 against 0.0040 for
+  the true 224 frames.
+
+**At n=931 that recipe is a null.** Rebuilt 224 square + yolox-tiny box + RTMW-l-m
+(`09_batch_clips.py --openasl-emulate --det`): **21.4950 / 41.7584**, against shipped
+**−0.07 [−0.65, +0.47] / +0.07 [−0.56, +0.79]**, and against the ceiling still **−1.64 [−2.39, −0.90]**.
+20 of 931 clips had at least one frame with no box (full crop used, as rtmlib does). **A 5-clip
+agreement gain did not become BLEU.** The screen ordered four different networks correctly; it did not
+predict a preprocessing change on the same network. Treat agreement as a screen for models, not a
+substitute for the n=931 score.
+
+#### What the recipe costs on the board, measured anyway
+
+`jetson/demo_server.py --det-engine` (yolox-tiny cut before NMS, `person_det.cut_before_nms`; the
+cut graph + numpy NMS picks **bit-identical** boxes to the full ONNX on 1,510 frames; the board FP16
+engine's boxes match Mac FP32 to median 0.11 px, max 5.2 px). jetson-lpcv-03, 15 W, GPU cap 612 MHz,
+6 requests each on `wdmj6E_faOo-00:01:42.200-00:01:46.733` (136 frames / 4.53 s — the §L30 clip is
+gone, so this is our native crop placed at its true position on a black 1280×720 frame, same box).
+`results/demo_recipe_board_2026-11-03.json`, `det_bench_yolox_tiny_fp16_board.json`:
+
+| | shipped | + authors' recipe |
+|---|---:|---:|
+| RAM used, excl. page cache (tegrastats, of 7,620 MB) | 4,114 MB | 4,183 MB (+69) |
+| MemFree serving | 93–112 MB | 89–122 MB |
+| pose per frame | 20.2–21.9 ms | **40.5–43.8 ms** (box 16.5–17.4, square 2.1–2.6) |
+| request total | 4.1–4.8 s | 6.0–6.8 s |
+| energy / request, total / dynamic | 26.2 / 8.2 J | 36.0 / 10.3 J |
+
+Standalone, the detector is 17.1 ms/frame: 2.3 letterbox (CPU), 11.5 TRT FP16, 3.3 numpy NMS (a
+Python loop over 80 classes). Engine 13.0 MB, built in 368 s. **It fits in memory; it does not fit a
+live 24 fps stream** (41.7 ms/frame) without work. Moot given the null above.
+
+**A correction to how §L30's memory line reads.** "91–130 MB steady" is MemFree, and MemFree here is
+mostly page cache filled by the weights load: tegrastats shows **4.1 GB of 7.6 GB in use** with both
+models resident. The binding moment is any *new* GPU allocation, which draws from MemFree only (nvmap
+does not reclaim cache) — model load, and a larger-than-seen request. The ~100 MB is the headroom for
+those, not the board's total headroom, which is why a +69 MB detector changed nothing visible.
+
+#### Reading
+
+* **RTMW-x-l 256×192 is the extractor to adopt, pending its board numbers.** +0.83 BLEU-4 established,
+  ceiling gap no longer established, FP16-clean. It is the authors' own "balanced" mode.
+* **The gain is the network, not the preprocessing.** Their box, their square and their colour order
+  together moved RTMW-l-m's BLEU by −0.07. Keep §3.3's native crop.
+
+**What is NOT established.**
+1. **RTMW-x-l on the board.** No engine built; latency, energy and resident memory unmeasured. 57.2 M
+   params against 32.2 M; on the Mac CPU it is 1.76× slower per frame (42.9 vs 24.4 ms).
+2. **ROUGE-L for x-l** (+0.71 [−0.03, +1.52]) — the §L13 pattern for sub-point effects at n ≤ 1000.
+3. **Non-inferiority to the authors.** Not met at the −1.00 margin.
+4. **The board recipe numbers are demo engineering**, n=6 on one synthetic clip, like §L30's.
+
+---
+
+### L34 End to end on the board over 30 clips: RTMW-x-l costs +13 % latency and +17 % energy, and the YOLO recipe is not real-time (2026-11-16)
+
+Answers `ASK-LATENCY-CLIP-COUNT-2026-11-04`: every earlier board e2e row was 3 repeats of one clip.
+`jetson/e2e_clips30.sh` → `unisign/e2e_translate.py --clip-list`, one process per arm (models load
+once), **30 test clips × 3 repeats = 90 sentences per arm**. The clips are the 931-clip test set sorted
+by duration and sampled at 30 evenly spaced quantiles (`results/e2e_clips30.txt`: 0.67–26.0 s, median
+6.17 s against 6.07 s for all 931; 6,097 frames). Same LM for every arm: pruned checkpoint, pre-pruned
+mT5 dir, FP32, beam 4, cap 64, 24 fps. jetson-lpcv-03, 15 W, GPU cap 612 MHz, 50 ms power sampling.
+
+**The board was verified clean for every number.** Before and after each arm the driver checks power
+mode, GPU cap, other users' processes > 1 % CPU, other containers, leftover processes in ours and
+junction temperature, and refuses to time an arm that fails (`results/e2e_clips30/board_state.jsonl`,
+6 of 6 clean, tj 42.5–45.7 °C). A sampler logged foreign load every 10 s *during* each arm:
+**zero samples in all three** (`foreign_during_*.txt`, empty). A first launch was blocked by the guard's
+own `pgrep` matching itself; nothing was timed then (`board_state_falsestart_selfmatch.jsonl`).
+
+**Engines.** RTMW-x-l 256×192 FP16 built on the board (118.9 MB, 572 s). Its FP16 drift against the
+Mac's FP32 keypoints on 5 of the 30 clips (73,071 consumed keypoints): **99.31 % within 2 bins**, 94.01 %
+within 1, against 99.44 % / 93.90 % for the shipped RTMW-l-m engine's own FP16-vs-FP32 on the same
+clips. yolox-tiny cut before NMS (§L33), FP16, 12.9 MB.
+
+| 90 sentences per arm | shipped (RTMW-l-m) | **RTMW-x-l** | RTMW-x-l + YOLO recipe |
+|---|---:|---:|---:|
+| latency P50 / P95 / max, ms | 5,370 / 15,128 / 19,037 | **6,063 / 17,560 / 23,338** | 8,667 / 27,657 / 36,764 |
+| — excluding JPEG imread | 4,635 / 12,773 / 15,803 | 5,228 / 14,881 / 19,245 | 8,046 / 25,112 / 32,598 |
+| pose ms/frame P50 / P95 | 25.4 / 28.5 | **29.2 / 33.8** | 50.7 / 55.3 |
+| — of which TRT / detector | 13.4 / — | 17.3 / — | 17.7 / 16.3 |
+| LM ms P50 / P95 | 1,443 / 3,007 | 1,608 / 3,003 | 1,543 / 2,886 |
+| **RTF P50 / P95 / max** | **0.88 / 1.22 / 2.13** | **0.99 / 1.42 / 1.74** | 1.51 / 1.88 / 2.12 |
+| sentences with RTF ≤ 1 | **77.8 %** | **53.3 %** | 3.3 % |
+| RTF excl. imread P50 / P95 | 0.76 / 1.16 | 0.87 / 1.35 | 1.36 / 1.79 |
+| energy J/sentence P50 / P95 (mean) | 29.1 / 80.0 (33.0) | **33.7 / 95.1 (38.9)** | 47.7 / 145.2 (57.4) |
+| — pose / LM stage J (mean) | 23.1 / 9.6 | 28.6 / 10.0 | 47.2 / 9.9 |
+| MemAvailable after LM | 4,614 MB | 4,649 MB | 4,453 MB |
+
+Paired per clip against shipped (median of the 30 per-clip ratios, [min, max]): RTMW-x-l latency
+**×1.134 [0.955, 1.280]**, pose ×1.173, energy **×1.169 [0.921, 1.314]**; the YOLO recipe latency
+×1.674, pose ×1.998, energy ×1.691. Stage energies reconstruct the window total to 1.2–2.0 %. torch peak
+GPU 1.10 GB in every arm; all three fit, the detector costing ~134 MB of MemAvailable.
+
+**RTF is a property of the clip length, not of the system.** Shipped, by duration: clips < 3 s median
+RTF **1.06** (5 of 7 above 1.00 — the LM's ~1 s floor dominates a sub-second clip), 3–8 s **0.89** (1 of
+12), > 8 s **0.79** (0 of 11). So "RTF ≤ 1.00" holds for the shipped system on every clip over 8 s and
+fails on most clips under 3 s; the single-clip RTF (`results/e2e_pruned/e2e_24_beam4.json`: 7.0 s on an
+8.51 s clip, 0.82) sat in the favourable half.
+RTMW-x-l moves the medians to 1.14 / 0.99 / 0.94.
+
+**The three repeats were identical sentences on 30 of 30 clips in every arm.** Repeats add jitter
+samples, not sentence variance: the P95 above is governed by 30 clips, i.e. roughly the second-largest
+clip. **P99 is not estimable from this design**; it needs ~100 clips, not more repeats.
+
+**The e2e path reproduces the offline evals.** First-repeat sentences against the n=931 offline
+predictions on the same clips: shipped **25/30** identical (both against Mac CPU and board CUDA FP32
+pose); RTMW-x-l **22/30** against its Mac FP32 eval. The difference is FP16 pose plus scorer device;
+22 vs 25 is within noise at n=30, but it is the one thing below that is not yet established.
+
+**Reading.**
+* **RTMW-x-l is deployable**: it fits, its P50 RTF is 0.99, and it buys +0.83 BLEU-4 (§L33) for
+  **+13 % latency and +17 % energy** per sentence. Whether that trade is taken is a decision, not a
+  measurement — see `DECISIONS` §3.1.
+* **The YOLO recipe is rejected on the board too**: RTF ≤ 1 on 3 of 90 sentences, ×1.69 energy, for a
+  BLEU null (§L33).
+
+**What is NOT established.**
+1. **RTMW-x-l's BLEU with the FP16 engine.** §L33's +0.83 is FP32 pose. §L25 cleared FP16 for RTMW-l-m at
+   n=931; the same check for x-l needs the full split through the board engine (~2 h of board time, and
+   frames pushed in batches — the board has 4.2 GB free).
+2. **P99**, as above.
+3. **Camera capture.** imread is ~5.2–5.4 ms/frame of JPEG decode a camera pipeline would not pay; the
+   "excl. imread" rows bound it.

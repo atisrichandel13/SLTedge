@@ -1,0 +1,525 @@
+{
+ "what": "demo_server on jetson-lpcv-03, 15 W (nvpmodel 0, GPU cap 612 MHz), shipped config vs the authors' recipe (224 square rebuilt from our crop + yolox-tiny FP16 box + RTMW-l-m FP16), 6 requests each",
+ "clip": "wdmj6E_faOo-00:01:42.200-00:01:46.733 (test), 136 frames / 4.53 s, rebuilt as a 1280x720 mp4 with the native crop on black at its true position; box = the clip's bbox_norm",
+ "date": "2026-11-03",
+ "arms": {
+  "native": {
+   "health": {
+    "ok": true,
+    "served": 0,
+    "load_pose_s": 1.2,
+    "load_lm_s": 48.9,
+    "load_det_s": null,
+    "warm_lm_s": 8.2,
+    "memfree_mb_now": 71,
+    "memfree_mb_at_load": {
+     "start": 4466,
+     "after_pose": 4209,
+     "after_det": null,
+     "after_lm": 420,
+     "after_warmup": 77
+    },
+    "busy": false
+   },
+   "requests": [
+    {
+     "text": "There are many of you who  cheated against us in your history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "native",
+     "frames_no_person_box": null,
+     "timing_ms": {
+      "pose": 2337.1,
+      "pose_of_which_square_224": null,
+      "pose_of_which_detector": null,
+      "convert": 17.4,
+      "lm": {
+       "gcn": 260.8,
+       "encoder": 47.3,
+       "decoder": 1262.8,
+       "total": 1570.9,
+       "encoder_len": 117,
+       "decoded_tokens": 18
+      },
+      "request_total": 4799.5
+     },
+     "memfree_mb": 112
+    },
+    {
+     "text": "There are many of you who  cheated against us in your history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "native",
+     "frames_no_person_box": null,
+     "timing_ms": {
+      "pose": 2232.9,
+      "pose_of_which_square_224": null,
+      "pose_of_which_detector": null,
+      "convert": 15.4,
+      "lm": {
+       "gcn": 128.3,
+       "encoder": 37.4,
+       "decoder": 1241.7,
+       "total": 1407.3,
+       "encoder_len": 117,
+       "decoded_tokens": 18
+      },
+      "request_total": 4133.0
+     },
+     "memfree_mb": 95
+    },
+    {
+     "text": "There are many of you who  cheated against us in your history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "native",
+     "frames_no_person_box": null,
+     "timing_ms": {
+      "pose": 2268.2,
+      "pose_of_which_square_224": null,
+      "pose_of_which_detector": null,
+      "convert": 15.1,
+      "lm": {
+       "gcn": 132.8,
+       "encoder": 42.8,
+       "decoder": 1255.5,
+       "total": 1431.1,
+       "encoder_len": 117,
+       "decoded_tokens": 18
+      },
+      "request_total": 4205.2
+     },
+     "memfree_mb": 95
+    },
+    {
+     "text": "There are many of you who  cheated against us in your history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "native",
+     "frames_no_person_box": null,
+     "timing_ms": {
+      "pose": 2202.9,
+      "pose_of_which_square_224": null,
+      "pose_of_which_detector": null,
+      "convert": 12.5,
+      "lm": {
+       "gcn": 119.3,
+       "encoder": 38.3,
+       "decoder": 1262.0,
+       "total": 1419.6,
+       "encoder_len": 117,
+       "decoded_tokens": 18
+      },
+      "request_total": 4110.1
+     },
+     "memfree_mb": 93
+    },
+    {
+     "text": "There are many of you who  cheated against us in your history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "native",
+     "frames_no_person_box": null,
+     "timing_ms": {
+      "pose": 2347.7,
+      "pose_of_which_square_224": null,
+      "pose_of_which_detector": null,
+      "convert": 15.2,
+      "lm": {
+       "gcn": 127.7,
+       "encoder": 37.2,
+       "decoder": 1241.3,
+       "total": 1406.2,
+       "encoder_len": 117,
+       "decoded_tokens": 18
+      },
+      "request_total": 4251.8
+     },
+     "memfree_mb": 94
+    },
+    {
+     "text": "There are many of you who  cheated against us in your history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "native",
+     "frames_no_person_box": null,
+     "timing_ms": {
+      "pose": 2388.6,
+      "pose_of_which_square_224": null,
+      "pose_of_which_detector": null,
+      "convert": 15.6,
+      "lm": {
+       "gcn": 134.0,
+       "encoder": 39.4,
+       "decoder": 1271.0,
+       "total": 1444.5,
+       "encoder_len": 117,
+       "decoded_tokens": 18
+      },
+      "request_total": 4324.9
+     },
+     "memfree_mb": 93
+    }
+   ],
+   "tegrastats": {
+    "interval_ms": 100,
+    "ram_used_mb_median": 4114.0,
+    "ram_used_mb_max": 4118,
+    "busy_window_s": 28.3,
+    "vdd_in_mean_mw_busy": 5561.265017667844,
+    "vdd_in_idle_mw": 3814.0,
+    "energy_total_j_per_request": 26.230633333333333,
+    "energy_dynamic_j_per_request": 8.241266666666666
+   }
+  },
+  "recipe": {
+   "health": {
+    "ok": true,
+    "served": 0,
+    "load_pose_s": 1.3,
+    "load_lm_s": 52.5,
+    "load_det_s": 0.3,
+    "warm_lm_s": 5.4,
+    "memfree_mb_now": 85,
+    "memfree_mb_at_load": {
+     "start": 4926,
+     "after_pose": 4691,
+     "after_det": 4499,
+     "after_lm": 414,
+     "after_warmup": 87
+    },
+    "busy": false
+   },
+   "requests": [
+    {
+     "text": "There are many countries that live in their history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "authors_224_yolox",
+     "frames_no_person_box": 0,
+     "timing_ms": {
+      "pose": 4776.7,
+      "pose_of_which_square_224": 286.0,
+      "pose_of_which_detector": 1902.7,
+      "convert": 13.6,
+      "lm": {
+       "gcn": 194.3,
+       "encoder": 37.9,
+       "decoder": 968.9,
+       "total": 1201.1,
+       "encoder_len": 117,
+       "decoded_tokens": 12
+      },
+      "request_total": 6775.4
+     },
+     "memfree_mb": 122
+    },
+    {
+     "text": "There are many countries that live in their history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "authors_224_yolox",
+     "frames_no_person_box": 0,
+     "timing_ms": {
+      "pose": 4410.2,
+      "pose_of_which_square_224": 234.2,
+      "pose_of_which_detector": 1797.5,
+      "convert": 11.1,
+      "lm": {
+       "gcn": 128.3,
+       "encoder": 37.1,
+       "decoder": 946.2,
+       "total": 1111.6,
+       "encoder_len": 117,
+       "decoded_tokens": 12
+      },
+      "request_total": 5996.9
+     },
+     "memfree_mb": 97
+    },
+    {
+     "text": "There are many countries that live in their history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "authors_224_yolox",
+     "frames_no_person_box": 0,
+     "timing_ms": {
+      "pose": 4611.5,
+      "pose_of_which_square_224": 260.9,
+      "pose_of_which_detector": 1846.1,
+      "convert": 13.3,
+      "lm": {
+       "gcn": 133.6,
+       "encoder": 42.0,
+       "decoder": 956.3,
+       "total": 1131.9,
+       "encoder_len": 117,
+       "decoded_tokens": 12
+      },
+      "request_total": 6258.3
+     },
+     "memfree_mb": 105
+    },
+    {
+     "text": "There are many countries that live in their history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "authors_224_yolox",
+     "frames_no_person_box": 0,
+     "timing_ms": {
+      "pose": 4688.6,
+      "pose_of_which_square_224": 268.0,
+      "pose_of_which_detector": 1856.0,
+      "convert": 14.4,
+      "lm": {
+       "gcn": 124.9,
+       "encoder": 35.2,
+       "decoder": 949.6,
+       "total": 1109.6,
+       "encoder_len": 117,
+       "decoded_tokens": 12
+      },
+      "request_total": 6304.9
+     },
+     "memfree_mb": 101
+    },
+    {
+     "text": "There are many countries that live in their history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "authors_224_yolox",
+     "frames_no_person_box": 0,
+     "timing_ms": {
+      "pose": 4701.2,
+      "pose_of_which_square_224": 266.8,
+      "pose_of_which_detector": 1870.8,
+      "convert": 15.7,
+      "lm": {
+       "gcn": 132.0,
+       "encoder": 35.5,
+       "decoder": 957.1,
+       "total": 1124.6,
+       "encoder_len": 117,
+       "decoded_tokens": 12
+      },
+      "request_total": 6317.2
+     },
+     "memfree_mb": 96
+    },
+    {
+     "text": "There are many countries that live in their history.",
+     "frames_decoded": 136,
+     "frames_after_thinning": 109,
+     "frames_dropped_nonfinite": 0,
+     "dropped_frame_indices": [],
+     "frames_used_by_model": 109,
+     "src_fps": 30.0,
+     "keep_fps": 24.0,
+     "crop_xywh": [
+      213,
+      56,
+      398,
+      590
+     ],
+     "source_wh": [
+      1280,
+      720
+     ],
+     "recipe": "authors_224_yolox",
+     "frames_no_person_box": 0,
+     "timing_ms": {
+      "pose": 4421.2,
+      "pose_of_which_square_224": 237.3,
+      "pose_of_which_detector": 1798.0,
+      "convert": 10.5,
+      "lm": {
+       "gcn": 122.6,
+       "encoder": 37.1,
+       "decoder": 958.6,
+       "total": 1118.2,
+       "encoder_len": 117,
+       "decoded_tokens": 12
+      },
+      "request_total": 6020.6
+     },
+     "memfree_mb": 89
+    }
+   ],
+   "tegrastats": {
+    "interval_ms": 100,
+    "ram_used_mb_median": 4183.0,
+    "ram_used_mb_max": 4207,
+    "busy_window_s": 40.0,
+    "vdd_in_mean_mw_busy": 5394.52,
+    "vdd_in_idle_mw": 3854.0,
+    "energy_total_j_per_request": 35.96346666666667,
+    "energy_dynamic_j_per_request": 10.270133333333334
+   }
+  }
+ }
+}

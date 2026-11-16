@@ -1,0 +1,4060 @@
+{
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-5.15.148-tegra-aarch64-with-glibc2.39",
+    "jetpack": "unknown (nvidia-jetpack package not found)",
+    "l4t": "R36.4.7",
+    "nvpmodel": "mode 0 (15W) from /var/lib/nvpmodel/status",
+    "gpu_max_MHz": 612.0,
+    "gpu_min_MHz": 306.0,
+    "cpu_max_MHz": 1497.6,
+    "torch": "2.8.0a0+5228986c39.nv25.06",
+    "torch_cuda": "12.9",
+    "cuda_available": true,
+    "gpu": "Orin",
+    "tensorrt": "10.11.0.33",
+    "nvcc": "V12.9.86"
+  },
+  "summary": {
+    "text": "Trump tweeted that mail-in voting is a \"potentially fraudulent act\" and that he fears mail-in ballots will be robbed.",
+    "n_sentences": 90,
+    "frames_in": 624,
+    "frames_used": 256,
+    "sentence_total_ms": {
+      "mean": 6164.4,
+      "std": 4414.9,
+      "runs": [
+        1421.2,
+        814.9,
+        809.0,
+        1476.3,
+        1363.6,
+        1330.2,
+        1527.0,
+        1401.1,
+        1409.5,
+        1982.8,
+        1810.0,
+        1803.5,
+        2274.5,
+        2113.6,
+        2095.4,
+        2715.6,
+        2538.4,
+        2509.3,
+        2933.7,
+        2820.5,
+        2869.5,
+        3511.4,
+        3250.4,
+        3114.5,
+        3574.5,
+        3358.0,
+        3286.3,
+        4085.0,
+        3723.2,
+        3812.1,
+        3860.8,
+        3633.4,
+        3562.4,
+        4626.9,
+        4262.1,
+        4064.6,
+        4667.6,
+        4510.4,
+        4424.1,
+        6666.6,
+        6209.9,
+        6139.6,
+        5631.9,
+        5364.3,
+        5375.2,
+        5568.8,
+        5516.1,
+        5597.0,
+        6187.9,
+        5443.8,
+        5224.4,
+        5709.0,
+        5353.7,
+        5422.6,
+        495.7,
+        415.7,
+        416.1,
+        8174.3,
+        7761.2,
+        7797.3,
+        8031.5,
+        7397.2,
+        7373.4,
+        7812.9,
+        7189.1,
+        7170.6,
+        8918.7,
+        8111.4,
+        8140.1,
+        8968.0,
+        8136.1,
+        8243.7,
+        9892.6,
+        9241.5,
+        9858.5,
+        10062.3,
+        9550.3,
+        9707.6,
+        13364.3,
+        12260.7,
+        12298.1,
+        13955.3,
+        12878.1,
+        13025.5,
+        16444.2,
+        15072.7,
+        15172.8,
+        19037.5,
+        18944.5,
+        18722.1
+      ]
+    },
+    "pose_total_ms": 4546.1,
+    "convert_ms": 17.59,
+    "lm_total_ms": 1600.8,
+    "per_frame_ms": {
+      "imread_ms": {
+        "mean": 4.941,
+        "p95": 5.887
+      },
+      "preprocess_ms": {
+        "mean": 5.726,
+        "p95": 6.556
+      },
+      "trt_ms": {
+        "mean": 13.498,
+        "p95": 14.344
+      },
+      "postprocess_ms": {
+        "mean": 1.346,
+        "p95": 1.547
+      }
+    },
+    "J_per_sentence": 33.3,
+    "dyn_J_per_sentence": 7.76,
+    "square_norm": true,
+    "square_geom": {
+      "crop_xywh": [
+        173,
+        84,
+        412,
+        636
+      ],
+      "square_xywh": [
+        30,
+        83,
+        699
+      ],
+      "scale_vs_crop": 0.5894134477825465
+    },
+    "fps": {
+      "keep_fps": 24.0,
+      "src_fps": 30.03,
+      "frames_in": 20,
+      "frames_kept": 16
+    },
+    "num_beams": 4,
+    "load_pose_s": 1.16,
+    "load_lm_s": 30.87,
+    "detector": null,
+    "meminfo_mb": {
+      "start": {
+        "MemTotal": 7619,
+        "MemFree": 3735,
+        "MemAvailable": 5881
+      },
+      "after_pose": {
+        "MemTotal": 7619,
+        "MemFree": 3494,
+        "MemAvailable": 5706
+      },
+      "after_lm": {
+        "MemTotal": 7619,
+        "MemFree": 939,
+        "MemAvailable": 4614
+      }
+    },
+    "peak_gpu_GB": 1.102,
+    "distribution": {
+      "n_clips": 30,
+      "n_sentences": 90,
+      "repeats_per_clip": 3,
+      "sentence_total_ms": {
+        "p50": 5369.753,
+        "p95": 15127.769,
+        "max": 19037.491,
+        "mean": 6164.443,
+        "n": 90
+      },
+      "sentence_excl_imread_ms": {
+        "p50": 4635.329,
+        "p95": 12773.089,
+        "max": 15802.906,
+        "mean": 5208.549,
+        "n": 90
+      },
+      "pose_total_ms": {
+        "p50": 3570.541,
+        "p95": 12082.024,
+        "max": 16290.467,
+        "mean": 4546.089,
+        "n": 90
+      },
+      "pose_ms_per_frame": {
+        "p50": 25.389,
+        "p95": 28.544,
+        "max": 32.263,
+        "mean": 25.256,
+        "n": 90
+      },
+      "lm_total_ms": {
+        "p50": 1443.183,
+        "p95": 3006.506,
+        "max": 3193.899,
+        "mean": 1600.767,
+        "n": 90
+      },
+      "decoded_tokens": {
+        "p50": 16.5,
+        "p95": 41.0,
+        "max": 43.0,
+        "mean": 19.367,
+        "n": 90
+      },
+      "rtf": {
+        "p50": 0.881,
+        "p95": 1.22,
+        "max": 2.134,
+        "mean": 0.897,
+        "n": 90,
+        "frac_le_1": 0.778
+      },
+      "rtf_excl_imread": {
+        "p50": 0.758,
+        "p95": 1.155,
+        "max": 1.986,
+        "mean": 0.777,
+        "n": 90
+      },
+      "J_per_sentence": {
+        "p50": 29.135,
+        "p95": 79.97,
+        "max": 100.984,
+        "mean": 32.977,
+        "n": 90
+      },
+      "dyn_J_per_sentence": {
+        "p50": 6.696,
+        "p95": 17.498,
+        "max": 22.35,
+        "mean": 7.653,
+        "n": 90
+      },
+      "clip_duration_s": {
+        "p50": 6.166,
+        "p95": 18.208,
+        "max": 26.0,
+        "mean": 7.597,
+        "n": 30
+      }
+    }
+  },
+  "runs": [
+    {
+      "clip": "TXyNxVRRPt8-00:01:25.600-00:01:26.266",
+      "text": "Thank you.",
+      "lm_ms": {
+        "gcn": 435.9155680285767,
+        "encoder": 73.00204690545797,
+        "decoder": 390.07834205403924,
+        "total": 898.9959569880739,
+        "encoder_len": 24,
+        "decoded_tokens": 4
+      },
+      "convert_ms": 5.948942038230598,
+      "pose_total_ms": 516.2104850169271,
+      "frames_in": 16,
+      "frames_used": 16,
+      "sentence_total_ms": 1421.1553840432316,
+      "imread_total_ms": 98.60828006640077,
+      "sentence_excl_imread_ms": 1322.5471039768308,
+      "duration_s": 0.666,
+      "rtf": 2.133866943007855,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.163,
+        "p95": 11.173
+      },
+      "preprocess_ms": {
+        "mean": 6.133,
+        "p95": 7.74
+      },
+      "trt_ms": {
+        "mean": 18.06,
+        "p95": 24.658
+      },
+      "postprocess_ms": {
+        "mean": 1.795,
+        "p95": 2.977
+      },
+      "tag": "c0r0",
+      "J": 6.095,
+      "dyn_J": 0.507
+    },
+    {
+      "clip": "TXyNxVRRPt8-00:01:25.600-00:01:26.266",
+      "text": "Thank you.",
+      "lm_ms": {
+        "gcn": 43.192025972530246,
+        "encoder": 42.90018102619797,
+        "decoder": 381.0695370193571,
+        "total": 467.1617440180853,
+        "encoder_len": 24,
+        "decoded_tokens": 4
+      },
+      "convert_ms": 4.426640924066305,
+      "pose_total_ms": 343.3037860086188,
+      "frames_in": 16,
+      "frames_used": 16,
+      "sentence_total_ms": 814.8921709507704,
+      "imread_total_ms": 43.860070989467204,
+      "sentence_excl_imread_ms": 771.0320999613032,
+      "duration_s": 0.666,
+      "rtf": 1.2235618182444,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 2.741,
+        "p95": 3.519
+      },
+      "preprocess_ms": {
+        "mean": 4.206,
+        "p95": 5.652
+      },
+      "trt_ms": {
+        "mean": 13.248,
+        "p95": 14.116
+      },
+      "postprocess_ms": {
+        "mean": 1.178,
+        "p95": 1.367
+      },
+      "tag": "c0r1",
+      "J": 4.243,
+      "dyn_J": 1.139
+    },
+    {
+      "clip": "TXyNxVRRPt8-00:01:25.600-00:01:26.266",
+      "text": "Thank you.",
+      "lm_ms": {
+        "gcn": 41.735999984666705,
+        "encoder": 41.6666220407933,
+        "decoder": 382.47081101872027,
+        "total": 465.8734330441803,
+        "encoder_len": 24,
+        "decoded_tokens": 4
+      },
+      "convert_ms": 4.166860948316753,
+      "pose_total_ms": 338.94927403889596,
+      "frames_in": 16,
+      "frames_used": 16,
+      "sentence_total_ms": 808.989568031393,
+      "imread_total_ms": 42.18720912467688,
+      "sentence_excl_imread_ms": 766.8023589067161,
+      "duration_s": 0.666,
+      "rtf": 1.2146990510981877,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 2.637,
+        "p95": 3.367
+      },
+      "preprocess_ms": {
+        "mean": 4.058,
+        "p95": 5.237
+      },
+      "trt_ms": {
+        "mean": 13.22,
+        "p95": 14.146
+      },
+      "postprocess_ms": {
+        "mean": 1.19,
+        "p95": 1.401
+      },
+      "tag": "c0r2",
+      "J": 4.689,
+      "dyn_J": 1.379
+    },
+    {
+      "clip": "W-Ag3H16yN0-00:09:09.133-00:09:10.166",
+      "text": "I'm Crystal Cousineau.",
+      "lm_ms": {
+        "gcn": 111.28406296484172,
+        "encoder": 37.03136893454939,
+        "decoder": 685.5474599869922,
+        "total": 833.8628918863833,
+        "encoder_len": 33,
+        "decoded_tokens": 9
+      },
+      "convert_ms": 5.800139042548835,
+      "pose_total_ms": 636.6127340588719,
+      "frames_in": 25,
+      "frames_used": 25,
+      "sentence_total_ms": 1476.275764987804,
+      "imread_total_ms": 141.14326832350343,
+      "sentence_excl_imread_ms": 1335.1324966643006,
+      "duration_s": 1.033,
+      "rtf": 1.4291149709465674,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.646,
+        "p95": 7.008
+      },
+      "preprocess_ms": {
+        "mean": 4.924,
+        "p95": 6.142
+      },
+      "trt_ms": {
+        "mean": 13.633,
+        "p95": 14.357
+      },
+      "postprocess_ms": {
+        "mean": 1.18,
+        "p95": 1.371
+      },
+      "tag": "c1r0",
+      "J": 7.976,
+      "dyn_J": 2.182
+    },
+    {
+      "clip": "W-Ag3H16yN0-00:09:09.133-00:09:10.166",
+      "text": "I'm Crystal Cousineau.",
+      "lm_ms": {
+        "gcn": 38.52989198639989,
+        "encoder": 38.182365940883756,
+        "decoder": 685.7102159410715,
+        "total": 762.4224738683552,
+        "encoder_len": 33,
+        "decoded_tokens": 9
+      },
+      "convert_ms": 4.310991964302957,
+      "pose_total_ms": 596.8239080393687,
+      "frames_in": 25,
+      "frames_used": 25,
+      "sentence_total_ms": 1363.5573738720268,
+      "imread_total_ms": 111.59334809053689,
+      "sentence_excl_imread_ms": 1251.96402578149,
+      "duration_s": 1.033,
+      "rtf": 1.319997457765757,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.464,
+        "p95": 5.612
+      },
+      "preprocess_ms": {
+        "mean": 4.524,
+        "p95": 5.349
+      },
+      "trt_ms": {
+        "mean": 13.623,
+        "p95": 14.223
+      },
+      "postprocess_ms": {
+        "mean": 1.183,
+        "p95": 1.383
+      },
+      "tag": "c1r1",
+      "J": 7.915,
+      "dyn_J": 2.328
+    },
+    {
+      "clip": "W-Ag3H16yN0-00:09:09.133-00:09:10.166",
+      "text": "I'm Crystal Cousineau.",
+      "lm_ms": {
+        "gcn": 39.64293689932674,
+        "encoder": 40.85153597407043,
+        "decoder": 683.8628560071811,
+        "total": 764.3573288805783,
+        "encoder_len": 33,
+        "decoded_tokens": 9
+      },
+      "convert_ms": 5.036892951466143,
+      "pose_total_ms": 560.7961108908057,
+      "frames_in": 25,
+      "frames_used": 25,
+      "sentence_total_ms": 1330.1903327228501,
+      "imread_total_ms": 105.16849101986736,
+      "sentence_excl_imread_ms": 1225.0218417029828,
+      "duration_s": 1.033,
+      "rtf": 1.287696353071491,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.207,
+        "p95": 5.14
+      },
+      "preprocess_ms": {
+        "mean": 4.338,
+        "p95": 5.135
+      },
+      "trt_ms": {
+        "mean": 12.73,
+        "p95": 13.366
+      },
+      "postprocess_ms": {
+        "mean": 1.077,
+        "p95": 1.277
+      },
+      "tag": "c1r2",
+      "J": 7.456,
+      "dyn_J": 2.283
+    },
+    {
+      "clip": "fNT8a6e1gx8-00:07:01.066-00:07:02.400",
+      "text": "It s my home.",
+      "lm_ms": {
+        "gcn": 115.67736091092229,
+        "encoder": 37.205387954600155,
+        "decoder": 622.4599680863321,
+        "total": 775.3427169518545,
+        "encoder_len": 40,
+        "decoded_tokens": 7
+      },
+      "convert_ms": 6.092080031521618,
+      "pose_total_ms": 745.5690810456872,
+      "frames_in": 32,
+      "frames_used": 32,
+      "sentence_total_ms": 1527.0038780290633,
+      "imread_total_ms": 116.8979259673506,
+      "sentence_excl_imread_ms": 1410.1059520617127,
+      "duration_s": 1.334,
+      "rtf": 1.1446805682376786,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 3.653,
+        "p95": 4.884
+      },
+      "preprocess_ms": {
+        "mean": 5.452,
+        "p95": 6.799
+      },
+      "trt_ms": {
+        "mean": 12.987,
+        "p95": 14.222
+      },
+      "postprocess_ms": {
+        "mean": 1.124,
+        "p95": 1.369
+      },
+      "tag": "c2r0",
+      "J": 8.63,
+      "dyn_J": 2.422
+    },
+    {
+      "clip": "fNT8a6e1gx8-00:07:01.066-00:07:02.400",
+      "text": "It s my home.",
+      "lm_ms": {
+        "gcn": 45.141759095713496,
+        "encoder": 43.42713602818549,
+        "decoder": 629.4250580249354,
+        "total": 717.9939531488344,
+        "encoder_len": 40,
+        "decoded_tokens": 7
+      },
+      "convert_ms": 4.858106025494635,
+      "pose_total_ms": 678.2770920544863,
+      "frames_in": 32,
+      "frames_used": 32,
+      "sentence_total_ms": 1401.1291512288153,
+      "imread_total_ms": 76.15800783969462,
+      "sentence_excl_imread_ms": 1324.9711433891207,
+      "duration_s": 1.334,
+      "rtf": 1.0503217025703262,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 2.38,
+        "p95": 3.152
+      },
+      "preprocess_ms": {
+        "mean": 4.729,
+        "p95": 6.148
+      },
+      "trt_ms": {
+        "mean": 12.839,
+        "p95": 14.148
+      },
+      "postprocess_ms": {
+        "mean": 1.166,
+        "p95": 1.53
+      },
+      "tag": "c2r1",
+      "J": 7.979,
+      "dyn_J": 2.392
+    },
+    {
+      "clip": "fNT8a6e1gx8-00:07:01.066-00:07:02.400",
+      "text": "It s my home.",
+      "lm_ms": {
+        "gcn": 44.028682983480394,
+        "encoder": 41.274072020314634,
+        "decoder": 640.9859440755099,
+        "total": 726.2886990793049,
+        "encoder_len": 40,
+        "decoded_tokens": 7
+      },
+      "convert_ms": 4.626740934327245,
+      "pose_total_ms": 678.5458989907056,
+      "frames_in": 32,
+      "frames_used": 32,
+      "sentence_total_ms": 1409.4613390043378,
+      "imread_total_ms": 77.54728430882096,
+      "sentence_excl_imread_ms": 1331.9140546955168,
+      "duration_s": 1.334,
+      "rtf": 1.0565677203930568,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 2.423,
+        "p95": 3.218
+      },
+      "preprocess_ms": {
+        "mean": 4.713,
+        "p95": 5.882
+      },
+      "trt_ms": {
+        "mean": 12.843,
+        "p95": 14.095
+      },
+      "postprocess_ms": {
+        "mean": 1.147,
+        "p95": 1.318
+      },
+      "tag": "c2r2",
+      "J": 7.985,
+      "dyn_J": 2.398
+    },
+    {
+      "clip": "rSiciLyYOyI-00:12:15.300-00:12:17.000",
+      "text": "It was a funny sight.",
+      "lm_ms": {
+        "gcn": 121.6004149755463,
+        "encoder": 38.17878302652389,
+        "decoder": 709.7122049890459,
+        "total": 869.491402991116,
+        "encoder_len": 49,
+        "decoded_tokens": 10
+      },
+      "convert_ms": 7.4286810122430325,
+      "pose_total_ms": 1105.8927769772708,
+      "frames_in": 41,
+      "frames_used": 41,
+      "sentence_total_ms": 1982.81286098063,
+      "imread_total_ms": 314.53887827228755,
+      "sentence_excl_imread_ms": 1668.2739827083424,
+      "duration_s": 1.7,
+      "rtf": 1.1663605064591942,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 7.672,
+        "p95": 9.183
+      },
+      "preprocess_ms": {
+        "mean": 4.69,
+        "p95": 6.153
+      },
+      "trt_ms": {
+        "mean": 13.264,
+        "p95": 14.337
+      },
+      "postprocess_ms": {
+        "mean": 1.259,
+        "p95": 1.529
+      },
+      "tag": "c3r0",
+      "J": 10.945,
+      "dyn_J": 2.874
+    },
+    {
+      "clip": "rSiciLyYOyI-00:12:15.300-00:12:17.000",
+      "text": "It was a funny sight.",
+      "lm_ms": {
+        "gcn": 50.00690498854965,
+        "encoder": 42.53399895969778,
+        "decoder": 689.7586560808122,
+        "total": 782.2995600290596,
+        "encoder_len": 49,
+        "decoded_tokens": 10
+      },
+      "convert_ms": 6.519383983686566,
+      "pose_total_ms": 1021.1368530290201,
+      "frames_in": 41,
+      "frames_used": 41,
+      "sentence_total_ms": 1809.9557970417663,
+      "imread_total_ms": 233.34442381747067,
+      "sentence_excl_imread_ms": 1576.6113732242957,
+      "duration_s": 1.7,
+      "rtf": 1.0646798806128037,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.691,
+        "p95": 6.892
+      },
+      "preprocess_ms": {
+        "mean": 4.251,
+        "p95": 5.436
+      },
+      "trt_ms": {
+        "mean": 13.602,
+        "p95": 14.45
+      },
+      "postprocess_ms": {
+        "mean": 1.278,
+        "p95": 1.699
+      },
+      "tag": "c3r1",
+      "J": 10.068,
+      "dyn_J": 2.826
+    },
+    {
+      "clip": "rSiciLyYOyI-00:12:15.300-00:12:17.000",
+      "text": "It was a funny sight.",
+      "lm_ms": {
+        "gcn": 48.45141991972923,
+        "encoder": 41.67324805166572,
+        "decoder": 706.2479850137606,
+        "total": 796.3726529851556,
+        "encoder_len": 49,
+        "decoded_tokens": 10
+      },
+      "convert_ms": 6.366261979565024,
+      "pose_total_ms": 1000.7833930430934,
+      "frames_in": 41,
+      "frames_used": 41,
+      "sentence_total_ms": 1803.522308007814,
+      "imread_total_ms": 230.8418827597052,
+      "sentence_excl_imread_ms": 1572.6804252481088,
+      "duration_s": 1.7,
+      "rtf": 1.060895475298714,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.63,
+        "p95": 6.589
+      },
+      "preprocess_ms": {
+        "mean": 4.262,
+        "p95": 5.101
+      },
+      "trt_ms": {
+        "mean": 13.22,
+        "p95": 14.294
+      },
+      "postprocess_ms": {
+        "mean": 1.215,
+        "p95": 1.456
+      },
+      "tag": "c3r2",
+      "J": 10.342,
+      "dyn_J": 2.893
+    },
+    {
+      "clip": "ubC82N6N1bQ-00:01:52.033-00:01:54.233",
+      "text": "I saw heavy rains in America.",
+      "lm_ms": {
+        "gcn": 119.1861960105598,
+        "encoder": 39.050895953550935,
+        "decoder": 763.9805079670623,
+        "total": 922.217599931173,
+        "encoder_len": 61,
+        "decoded_tokens": 10
+      },
+      "convert_ms": 9.000133955851197,
+      "pose_total_ms": 1343.232552986592,
+      "frames_in": 53,
+      "frames_used": 53,
+      "sentence_total_ms": 2274.4502868736163,
+      "imread_total_ms": 290.9138388931751,
+      "sentence_excl_imread_ms": 1983.5364479804412,
+      "duration_s": 2.2,
+      "rtf": 1.0338410394880073,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.489,
+        "p95": 6.958
+      },
+      "preprocess_ms": {
+        "mean": 5.13,
+        "p95": 7.18
+      },
+      "trt_ms": {
+        "mean": 13.33,
+        "p95": 14.352
+      },
+      "postprocess_ms": {
+        "mean": 1.303,
+        "p95": 1.512
+      },
+      "tag": "c4r0",
+      "J": 12.084,
+      "dyn_J": 2.979
+    },
+    {
+      "clip": "ubC82N6N1bQ-00:01:52.033-00:01:54.233",
+      "text": "I saw heavy rains in America.",
+      "lm_ms": {
+        "gcn": 50.79187999945134,
+        "encoder": 42.261834954842925,
+        "decoder": 759.7212330438197,
+        "total": 852.7749479981139,
+        "encoder_len": 61,
+        "decoded_tokens": 10
+      },
+      "convert_ms": 7.280869991518557,
+      "pose_total_ms": 1253.5623951116577,
+      "frames_in": 53,
+      "frames_used": 53,
+      "sentence_total_ms": 2113.61821310129,
+      "imread_total_ms": 217.69050508737564,
+      "sentence_excl_imread_ms": 1895.9277080139145,
+      "duration_s": 2.2,
+      "rtf": 0.9607355514096773,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.107,
+        "p95": 5.06
+      },
+      "preprocess_ms": {
+        "mean": 4.939,
+        "p95": 6.208
+      },
+      "trt_ms": {
+        "mean": 13.301,
+        "p95": 14.275
+      },
+      "postprocess_ms": {
+        "mean": 1.218,
+        "p95": 1.493
+      },
+      "tag": "c4r1",
+      "J": 11.493,
+      "dyn_J": 2.802
+    },
+    {
+      "clip": "ubC82N6N1bQ-00:01:52.033-00:01:54.233",
+      "text": "I saw heavy rains in America.",
+      "lm_ms": {
+        "gcn": 54.930420010350645,
+        "encoder": 42.667443049140275,
+        "decoder": 755.8443639427423,
+        "total": 853.4422270022333,
+        "encoder_len": 61,
+        "decoded_tokens": 10
+      },
+      "convert_ms": 6.281876005232334,
+      "pose_total_ms": 1235.716502997093,
+      "frames_in": 53,
+      "frames_used": 53,
+      "sentence_total_ms": 2095.4406060045585,
+      "imread_total_ms": 206.8211593432352,
+      "sentence_excl_imread_ms": 1888.6194466613233,
+      "duration_s": 2.2,
+      "rtf": 0.9524730027293447,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 3.902,
+        "p95": 4.797
+      },
+      "preprocess_ms": {
+        "mean": 4.81,
+        "p95": 5.659
+      },
+      "trt_ms": {
+        "mean": 13.343,
+        "p95": 14.25
+      },
+      "postprocess_ms": {
+        "mean": 1.176,
+        "p95": 1.421
+      },
+      "tag": "c4r2",
+      "J": 11.245,
+      "dyn_J": 2.76
+    },
+    {
+      "clip": "W5m8NDOi6V8-00:05:47.500-00:05:50.166",
+      "text": "We can measure how many these diseases are sick.",
+      "lm_ms": {
+        "gcn": 120.22804096341133,
+        "encoder": 39.04916800092906,
+        "decoder": 893.9960029674694,
+        "total": 1053.2732119318098,
+        "encoder_len": 72,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 8.249688078649342,
+      "pose_total_ms": 1654.1170859709382,
+      "frames_in": 64,
+      "frames_used": 64,
+      "sentence_total_ms": 2715.6399859813973,
+      "imread_total_ms": 380.1735982997343,
+      "sentence_excl_imread_ms": 2335.466387681663,
+      "duration_s": 2.666,
+      "rtf": 1.0186196496554378,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.94,
+        "p95": 7.697
+      },
+      "preprocess_ms": {
+        "mean": 5.056,
+        "p95": 6.564
+      },
+      "trt_ms": {
+        "mean": 13.469,
+        "p95": 14.388
+      },
+      "postprocess_ms": {
+        "mean": 1.292,
+        "p95": 1.56
+      },
+      "tag": "c5r0",
+      "J": 14.493,
+      "dyn_J": 3.525
+    },
+    {
+      "clip": "W5m8NDOi6V8-00:05:47.500-00:05:50.166",
+      "text": "We can measure how many these diseases are sick.",
+      "lm_ms": {
+        "gcn": 56.71653407625854,
+        "encoder": 45.846894034184515,
+        "decoder": 883.1282230094075,
+        "total": 985.6916511198506,
+        "encoder_len": 72,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 9.03319101780653,
+      "pose_total_ms": 1543.6828659148887,
+      "frames_in": 64,
+      "frames_used": 64,
+      "sentence_total_ms": 2538.407708052546,
+      "imread_total_ms": 303.1542624812573,
+      "sentence_excl_imread_ms": 2235.2534455712885,
+      "duration_s": 2.666,
+      "rtf": 0.9521409257511425,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.737,
+        "p95": 5.531
+      },
+      "preprocess_ms": {
+        "mean": 4.665,
+        "p95": 5.765
+      },
+      "trt_ms": {
+        "mean": 13.369,
+        "p95": 14.408
+      },
+      "postprocess_ms": {
+        "mean": 1.263,
+        "p95": 1.493
+      },
+      "tag": "c5r1",
+      "J": 13.8,
+      "dyn_J": 3.454
+    },
+    {
+      "clip": "W5m8NDOi6V8-00:05:47.500-00:05:50.166",
+      "text": "We can measure how many these diseases are sick.",
+      "lm_ms": {
+        "gcn": 58.57103306334466,
+        "encoder": 39.5638020709157,
+        "decoder": 880.3181910188869,
+        "total": 978.4530261531472,
+        "encoder_len": 72,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 8.37625004351139,
+      "pose_total_ms": 1522.4859389709309,
+      "frames_in": 64,
+      "frames_used": 64,
+      "sentence_total_ms": 2509.3152151675895,
+      "imread_total_ms": 293.78939024172723,
+      "sentence_excl_imread_ms": 2215.5258249258623,
+      "duration_s": 2.666,
+      "rtf": 0.9412285128160501,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.59,
+        "p95": 5.695
+      },
+      "preprocess_ms": {
+        "mean": 4.645,
+        "p95": 5.737
+      },
+      "trt_ms": {
+        "mean": 13.258,
+        "p95": 14.268
+      },
+      "postprocess_ms": {
+        "mean": 1.21,
+        "p95": 1.51
+      },
+      "tag": "c5r2",
+      "J": 13.426,
+      "dyn_J": 3.287
+    },
+    {
+      "clip": "c2JEjHSoKT0-00:01:31.433-00:01:34.333",
+      "text": "You have to go there and find a match access.",
+      "lm_ms": {
+        "gcn": 115.35451200325042,
+        "encoder": 38.3926450740546,
+        "decoder": 952.5266959099099,
+        "total": 1106.273852987215,
+        "encoder_len": 78,
+        "decoded_tokens": 13
+      },
+      "convert_ms": 9.699570946395397,
+      "pose_total_ms": 1817.7344009745866,
+      "frames_in": 70,
+      "frames_used": 70,
+      "sentence_total_ms": 2933.707824908197,
+      "imread_total_ms": 462.58994087111205,
+      "sentence_excl_imread_ms": 2471.117884037085,
+      "duration_s": 2.9,
+      "rtf": 1.0116233878993783,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.608,
+        "p95": 8.12
+      },
+      "preprocess_ms": {
+        "mean": 4.483,
+        "p95": 5.329
+      },
+      "trt_ms": {
+        "mean": 13.539,
+        "p95": 14.403
+      },
+      "postprocess_ms": {
+        "mean": 1.253,
+        "p95": 1.502
+      },
+      "tag": "c6r0",
+      "J": 16.007,
+      "dyn_J": 4.005
+    },
+    {
+      "clip": "c2JEjHSoKT0-00:01:31.433-00:01:34.333",
+      "text": "You have to go there and find a match access.",
+      "lm_ms": {
+        "gcn": 61.64932996034622,
+        "encoder": 41.99507902376354,
+        "decoder": 998.6466249683872,
+        "total": 1102.291033952497,
+        "encoder_len": 78,
+        "decoded_tokens": 13
+      },
+      "convert_ms": 7.300551049411297,
+      "pose_total_ms": 1710.8768550679088,
+      "frames_in": 70,
+      "frames_used": 70,
+      "sentence_total_ms": 2820.468440069817,
+      "imread_total_ms": 384.4342901138589,
+      "sentence_excl_imread_ms": 2436.034149955958,
+      "duration_s": 2.9,
+      "rtf": 0.9725753241620059,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.492,
+        "p95": 6.525
+      },
+      "preprocess_ms": {
+        "mean": 4.246,
+        "p95": 5.358
+      },
+      "trt_ms": {
+        "mean": 13.355,
+        "p95": 14.453
+      },
+      "postprocess_ms": {
+        "mean": 1.261,
+        "p95": 1.544
+      },
+      "tag": "c6r1",
+      "J": 15.464,
+      "dyn_J": 4.083
+    },
+    {
+      "clip": "c2JEjHSoKT0-00:01:31.433-00:01:34.333",
+      "text": "You have to go there and find a match access.",
+      "lm_ms": {
+        "gcn": 68.63896397408098,
+        "encoder": 52.30163689702749,
+        "decoder": 961.0107360640541,
+        "total": 1081.9513369351625,
+        "encoder_len": 78,
+        "decoded_tokens": 13
+      },
+      "convert_ms": 9.19130607508123,
+      "pose_total_ms": 1778.3536609495059,
+      "frames_in": 70,
+      "frames_used": 70,
+      "sentence_total_ms": 2869.4963039597496,
+      "imread_total_ms": 405.4107766132802,
+      "sentence_excl_imread_ms": 2464.0855273464695,
+      "duration_s": 2.9,
+      "rtf": 0.9894814841240517,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.792,
+        "p95": 7.51
+      },
+      "preprocess_ms": {
+        "mean": 4.709,
+        "p95": 6.277
+      },
+      "trt_ms": {
+        "mean": 13.512,
+        "p95": 14.392
+      },
+      "postprocess_ms": {
+        "mean": 1.306,
+        "p95": 1.612
+      },
+      "tag": "c6r2",
+      "J": 15.474,
+      "dyn_J": 3.679
+    },
+    {
+      "clip": "wH3lJm0Typ0-00:17:52.033-00:17:55.433",
+      "text": "They could see the possibilities for me to achieve.",
+      "lm_ms": {
+        "gcn": 123.33421409130096,
+        "encoder": 39.46104797068983,
+        "decoder": 1025.8217299124226,
+        "total": 1188.6169919744134,
+        "encoder_len": 90,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 11.815929901786149,
+      "pose_total_ms": 2310.982067952864,
+      "frames_in": 82,
+      "frames_used": 82,
+      "sentence_total_ms": 3511.4149898290634,
+      "imread_total_ms": 547.0553502673283,
+      "sentence_excl_imread_ms": 2964.359639561735,
+      "duration_s": 3.4,
+      "rtf": 1.0327691146556068,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.671,
+        "p95": 8.006
+      },
+      "preprocess_ms": {
+        "mean": 6.38,
+        "p95": 7.37
+      },
+      "trt_ms": {
+        "mean": 13.685,
+        "p95": 14.423
+      },
+      "postprocess_ms": {
+        "mean": 1.352,
+        "p95": 1.525
+      },
+      "tag": "c7r0",
+      "J": 18.582,
+      "dyn_J": 4.304
+    },
+    {
+      "clip": "wH3lJm0Typ0-00:17:52.033-00:17:55.433",
+      "text": "They could see the possibilities for me to achieve.",
+      "lm_ms": {
+        "gcn": 68.8457190990448,
+        "encoder": 45.67581997253001,
+        "decoder": 1054.0900670457631,
+        "total": 1168.611606117338,
+        "encoder_len": 90,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 8.896932005882263,
+      "pose_total_ms": 2072.932469076477,
+      "frames_in": 82,
+      "frames_used": 82,
+      "sentence_total_ms": 3250.441007199697,
+      "imread_total_ms": 402.1498217480257,
+      "sentence_excl_imread_ms": 2848.2911854516715,
+      "duration_s": 3.4,
+      "rtf": 0.9560120609410875,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.904,
+        "p95": 6.172
+      },
+      "preprocess_ms": {
+        "mean": 5.32,
+        "p95": 6.46
+      },
+      "trt_ms": {
+        "mean": 13.612,
+        "p95": 14.551
+      },
+      "postprocess_ms": {
+        "mean": 1.351,
+        "p95": 1.62
+      },
+      "tag": "c7r1",
+      "J": 17.727,
+      "dyn_J": 4.483
+    },
+    {
+      "clip": "wH3lJm0Typ0-00:17:52.033-00:17:55.433",
+      "text": "They could see the possibilities for me to achieve.",
+      "lm_ms": {
+        "gcn": 61.985145905055106,
+        "encoder": 45.869966968894005,
+        "decoder": 1026.8271369859576,
+        "total": 1134.6822498599067,
+        "encoder_len": 90,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 10.424031992442906,
+      "pose_total_ms": 1969.4012240506709,
+      "frames_in": 82,
+      "frames_used": 82,
+      "sentence_total_ms": 3114.5075059030205,
+      "imread_total_ms": 366.2508347770199,
+      "sentence_excl_imread_ms": 2748.2566711260006,
+      "duration_s": 3.4,
+      "rtf": 0.9160316193832414,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.466,
+        "p95": 5.283
+      },
+      "preprocess_ms": {
+        "mean": 4.86,
+        "p95": 5.709
+      },
+      "trt_ms": {
+        "mean": 13.402,
+        "p95": 14.219
+      },
+      "postprocess_ms": {
+        "mean": 1.206,
+        "p95": 1.485
+      },
+      "tag": "c7r2",
+      "J": 16.878,
+      "dyn_J": 4.05
+    },
+    {
+      "clip": "sfNL5tR2Now-00:06:05.400-00:06:09.066",
+      "text": "I'm really excited for a real process!",
+      "lm_ms": {
+        "gcn": 130.20951102953404,
+        "encoder": 41.02207103278488,
+        "decoder": 1028.1883210409433,
+        "total": 1199.4199031032622,
+        "encoder_len": 96,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 12.420997954905033,
+      "pose_total_ms": 2362.700280966237,
+      "frames_in": 88,
+      "frames_used": 88,
+      "sentence_total_ms": 3574.5411820244044,
+      "imread_total_ms": 506.89182453788817,
+      "sentence_excl_imread_ms": 3067.6493574865162,
+      "duration_s": 3.666,
+      "rtf": 0.9750521500339346,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.76,
+        "p95": 7.048
+      },
+      "preprocess_ms": {
+        "mean": 6.086,
+        "p95": 7.038
+      },
+      "trt_ms": {
+        "mean": 13.578,
+        "p95": 14.364
+      },
+      "postprocess_ms": {
+        "mean": 1.33,
+        "p95": 1.524
+      },
+      "tag": "c8r0",
+      "J": 18.895,
+      "dyn_J": 4.41
+    },
+    {
+      "clip": "sfNL5tR2Now-00:06:05.400-00:06:09.066",
+      "text": "I'm really excited for a real process!",
+      "lm_ms": {
+        "gcn": 72.50921300146729,
+        "encoder": 48.00923995207995,
+        "decoder": 1039.7820139769465,
+        "total": 1160.3004669304937,
+        "encoder_len": 96,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 11.55957393348217,
+      "pose_total_ms": 2186.1107589211315,
+      "frames_in": 88,
+      "frames_used": 88,
+      "sentence_total_ms": 3357.9707997851074,
+      "imread_total_ms": 376.739862607792,
+      "sentence_excl_imread_ms": 2981.2309371773154,
+      "duration_s": 3.666,
+      "rtf": 0.9159767593521843,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.281,
+        "p95": 4.831
+      },
+      "preprocess_ms": {
+        "mean": 5.729,
+        "p95": 6.911
+      },
+      "trt_ms": {
+        "mean": 13.426,
+        "p95": 14.313
+      },
+      "postprocess_ms": {
+        "mean": 1.312,
+        "p95": 1.538
+      },
+      "tag": "c8r1",
+      "J": 18.035,
+      "dyn_J": 4.171
+    },
+    {
+      "clip": "sfNL5tR2Now-00:06:05.400-00:06:09.066",
+      "text": "I'm really excited for a real process!",
+      "lm_ms": {
+        "gcn": 63.47592605743557,
+        "encoder": 48.763846047222614,
+        "decoder": 1040.3204939793795,
+        "total": 1152.5602660840377,
+        "encoder_len": 96,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 11.590487090870738,
+      "pose_total_ms": 2122.141459956765,
+      "frames_in": 88,
+      "frames_used": 88,
+      "sentence_total_ms": 3286.2922131316736,
+      "imread_total_ms": 370.67104794550687,
+      "sentence_excl_imread_ms": 2915.6211651861668,
+      "duration_s": 3.666,
+      "rtf": 0.89642449894481,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.212,
+        "p95": 4.797
+      },
+      "preprocess_ms": {
+        "mean": 5.627,
+        "p95": 6.641
+      },
+      "trt_ms": {
+        "mean": 12.86,
+        "p95": 13.876
+      },
+      "postprocess_ms": {
+        "mean": 1.319,
+        "p95": 1.501
+      },
+      "tag": "c8r2",
+      "J": 17.622,
+      "dyn_J": 4.171
+    },
+    {
+      "clip": "PYbUwpYMx0A-00:12:26.000-00:12:30.000",
+      "text": "Remember to like us on Facebook and follow us on Twitter.",
+      "lm_ms": {
+        "gcn": 123.88843693770468,
+        "encoder": 44.487319071777165,
+        "decoder": 1218.0151180364192,
+        "total": 1386.390874045901,
+        "encoder_len": 104,
+        "decoded_tokens": 16
+      },
+      "convert_ms": 13.050513924099505,
+      "pose_total_ms": 2685.5622979346663,
+      "frames_in": 96,
+      "frames_used": 96,
+      "sentence_total_ms": 4085.003685904667,
+      "imread_total_ms": 608.9180152630433,
+      "sentence_excl_imread_ms": 3476.0856706416234,
+      "duration_s": 4.0,
+      "rtf": 1.0212509214761667,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.343,
+        "p95": 7.618
+      },
+      "preprocess_ms": {
+        "mean": 6.515,
+        "p95": 7.368
+      },
+      "trt_ms": {
+        "mean": 13.666,
+        "p95": 14.351
+      },
+      "postprocess_ms": {
+        "mean": 1.353,
+        "p95": 1.535
+      },
+      "tag": "c9r0",
+      "J": 21.592,
+      "dyn_J": 5.038
+    },
+    {
+      "clip": "PYbUwpYMx0A-00:12:26.000-00:12:30.000",
+      "text": "Remember to like us on Facebook and follow us on Twitter.",
+      "lm_ms": {
+        "gcn": 62.066204962320626,
+        "encoder": 48.98343491367996,
+        "decoder": 1224.1300869500265,
+        "total": 1335.179726826027,
+        "encoder_len": 104,
+        "decoded_tokens": 16
+      },
+      "convert_ms": 12.418181984685361,
+      "pose_total_ms": 2375.627493020147,
+      "frames_in": 96,
+      "frames_used": 96,
+      "sentence_total_ms": 3723.2254018308595,
+      "imread_total_ms": 448.4904134878889,
+      "sentence_excl_imread_ms": 3274.7349883429706,
+      "duration_s": 4.0,
+      "rtf": 0.9308063504577149,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.672,
+        "p95": 5.36
+      },
+      "preprocess_ms": {
+        "mean": 5.694,
+        "p95": 6.547
+      },
+      "trt_ms": {
+        "mean": 12.974,
+        "p95": 14.18
+      },
+      "postprocess_ms": {
+        "mean": 1.312,
+        "p95": 1.524
+      },
+      "tag": "c9r1",
+      "J": 20.147,
+      "dyn_J": 4.834
+    },
+    {
+      "clip": "PYbUwpYMx0A-00:12:26.000-00:12:30.000",
+      "text": "Remember to like us on Facebook and follow us on Twitter.",
+      "lm_ms": {
+        "gcn": 61.18343700654805,
+        "encoder": 48.469666042365134,
+        "decoder": 1233.6405740352347,
+        "total": 1343.293677084148,
+        "encoder_len": 104,
+        "decoded_tokens": 16
+      },
+      "convert_ms": 12.503367965109646,
+      "pose_total_ms": 2456.311465939507,
+      "frames_in": 96,
+      "frames_used": 96,
+      "sentence_total_ms": 3812.1085109887645,
+      "imread_total_ms": 456.5037799766287,
+      "sentence_excl_imread_ms": 3355.6047310121357,
+      "duration_s": 4.0,
+      "rtf": 0.9530271277471911,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.755,
+        "p95": 5.484
+      },
+      "preprocess_ms": {
+        "mean": 5.904,
+        "p95": 6.787
+      },
+      "trt_ms": {
+        "mean": 13.532,
+        "p95": 14.269
+      },
+      "postprocess_ms": {
+        "mean": 1.302,
+        "p95": 1.52
+      },
+      "tag": "c9r2",
+      "J": 20.184,
+      "dyn_J": 4.664
+    },
+    {
+      "clip": "PYbUwpYMx0A-00:02:23.633-00:02:28.033",
+      "text": "The woman forced her to take the SUV.",
+      "lm_ms": {
+        "gcn": 131.3497289083898,
+        "encoder": 37.31925203464925,
+        "decoder": 723.1889830436558,
+        "total": 891.8579639866948,
+        "encoder_len": 114,
+        "decoded_tokens": 11
+      },
+      "convert_ms": 16.49736100807786,
+      "pose_total_ms": 2952.4217610014603,
+      "frames_in": 106,
+      "frames_used": 106,
+      "sentence_total_ms": 3860.777085996233,
+      "imread_total_ms": 655.1479455083609,
+      "sentence_excl_imread_ms": 3205.629140487872,
+      "duration_s": 4.4,
+      "rtf": 0.8774493377264165,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.181,
+        "p95": 7.504
+      },
+      "preprocess_ms": {
+        "mean": 6.59,
+        "p95": 7.39
+      },
+      "trt_ms": {
+        "mean": 13.638,
+        "p95": 14.376
+      },
+      "postprocess_ms": {
+        "mean": 1.348,
+        "p95": 1.536
+      },
+      "tag": "c10r0",
+      "J": 20.473,
+      "dyn_J": 4.54
+    },
+    {
+      "clip": "PYbUwpYMx0A-00:02:23.633-00:02:28.033",
+      "text": "The woman forced her to take the SUV.",
+      "lm_ms": {
+        "gcn": 72.2384910332039,
+        "encoder": 56.759931962005794,
+        "decoder": 739.8928799666464,
+        "total": 868.8913029618561,
+        "encoder_len": 114,
+        "decoded_tokens": 11
+      },
+      "convert_ms": 16.879321075975895,
+      "pose_total_ms": 2747.632193029858,
+      "frames_in": 106,
+      "frames_used": 106,
+      "sentence_total_ms": 3633.40281706769,
+      "imread_total_ms": 503.40039329603314,
+      "sentence_excl_imread_ms": 3130.002423771657,
+      "duration_s": 4.4,
+      "rtf": 0.8257733675153841,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.749,
+        "p95": 5.653
+      },
+      "preprocess_ms": {
+        "mean": 5.836,
+        "p95": 6.757
+      },
+      "trt_ms": {
+        "mean": 13.875,
+        "p95": 14.301
+      },
+      "postprocess_ms": {
+        "mean": 1.366,
+        "p95": 1.521
+      },
+      "tag": "c10r1",
+      "J": 18.484,
+      "dyn_J": 3.792
+    },
+    {
+      "clip": "PYbUwpYMx0A-00:02:23.633-00:02:28.033",
+      "text": "The woman forced her to take the SUV.",
+      "lm_ms": {
+        "gcn": 64.2885520355776,
+        "encoder": 47.95356094837189,
+        "decoder": 729.1597260627896,
+        "total": 841.401839046739,
+        "encoder_len": 114,
+        "decoded_tokens": 11
+      },
+      "convert_ms": 15.885991044342518,
+      "pose_total_ms": 2705.113597912714,
+      "frames_in": 106,
+      "frames_used": 106,
+      "sentence_total_ms": 3562.4014280037954,
+      "imread_total_ms": 492.63405869714916,
+      "sentence_excl_imread_ms": 3069.7673693066463,
+      "duration_s": 4.4,
+      "rtf": 0.8096366881826808,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.647,
+        "p95": 5.705
+      },
+      "preprocess_ms": {
+        "mean": 5.758,
+        "p95": 6.74
+      },
+      "trt_ms": {
+        "mean": 13.676,
+        "p95": 14.306
+      },
+      "postprocess_ms": {
+        "mean": 1.344,
+        "p95": 1.525
+      },
+      "tag": "c10r2",
+      "J": 18.6,
+      "dyn_J": 3.908
+    },
+    {
+      "clip": "6ozfmRow9e0-00:00:04.300-00:00:09.133",
+      "text": "TTYs, VRS calls, and telephone calls must be equal.",
+      "lm_ms": {
+        "gcn": 123.51774692069739,
+        "encoder": 38.25037297792733,
+        "decoder": 1359.4206679845229,
+        "total": 1521.1887878831476,
+        "encoder_len": 124,
+        "decoded_tokens": 20
+      },
+      "convert_ms": 18.62319395877421,
+      "pose_total_ms": 3087.1111949672922,
+      "frames_in": 116,
+      "frames_used": 116,
+      "sentence_total_ms": 4626.923176809214,
+      "imread_total_ms": 525.6283746566623,
+      "sentence_excl_imread_ms": 4101.294802152552,
+      "duration_s": 4.833,
+      "rtf": 0.9573604752346812,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.531,
+        "p95": 5.602
+      },
+      "preprocess_ms": {
+        "mean": 6.786,
+        "p95": 7.201
+      },
+      "trt_ms": {
+        "mean": 13.811,
+        "p95": 14.327
+      },
+      "postprocess_ms": {
+        "mean": 1.383,
+        "p95": 1.508
+      },
+      "tag": "c11r0",
+      "J": 24.592,
+      "dyn_J": 5.761
+    },
+    {
+      "clip": "6ozfmRow9e0-00:00:04.300-00:00:09.133",
+      "text": "TTYs, VRS calls, and telephone calls must be equal.",
+      "lm_ms": {
+        "gcn": 81.2586909160018,
+        "encoder": 58.16450295969844,
+        "decoder": 1391.2724039983004,
+        "total": 1530.6955978740007,
+        "encoder_len": 124,
+        "decoded_tokens": 20
+      },
+      "convert_ms": 15.852229902520776,
+      "pose_total_ms": 2715.5616369564086,
+      "frames_in": 116,
+      "frames_used": 116,
+      "sentence_total_ms": 4262.10946473293,
+      "imread_total_ms": 364.6163336234167,
+      "sentence_excl_imread_ms": 3897.4931311095133,
+      "duration_s": 4.833,
+      "rtf": 0.881876570397875,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 3.143,
+        "p95": 3.616
+      },
+      "preprocess_ms": {
+        "mean": 5.919,
+        "p95": 6.866
+      },
+      "trt_ms": {
+        "mean": 12.967,
+        "p95": 14.228
+      },
+      "postprocess_ms": {
+        "mean": 1.286,
+        "p95": 1.471
+      },
+      "tag": "c11r1",
+      "J": 22.9,
+      "dyn_J": 5.518
+    },
+    {
+      "clip": "6ozfmRow9e0-00:00:04.300-00:00:09.133",
+      "text": "TTYs, VRS calls, and telephone calls must be equal.",
+      "lm_ms": {
+        "gcn": 69.6083310758695,
+        "encoder": 47.21348499879241,
+        "decoder": 1394.639612059109,
+        "total": 1511.4614281337708,
+        "encoder_len": 124,
+        "decoded_tokens": 20
+      },
+      "convert_ms": 12.028767028823495,
+      "pose_total_ms": 2541.101331007667,
+      "frames_in": 116,
+      "frames_used": 116,
+      "sentence_total_ms": 4064.591526170261,
+      "imread_total_ms": 324.733070214279,
+      "sentence_excl_imread_ms": 3739.858455955982,
+      "duration_s": 4.833,
+      "rtf": 0.8410079714815355,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 2.799,
+        "p95": 3.446
+      },
+      "preprocess_ms": {
+        "mean": 4.989,
+        "p95": 6.033
+      },
+      "trt_ms": {
+        "mean": 12.837,
+        "p95": 14.184
+      },
+      "postprocess_ms": {
+        "mean": 1.197,
+        "p95": 1.445
+      },
+      "tag": "c11r2",
+      "J": 22.192,
+      "dyn_J": 5.637
+    },
+    {
+      "clip": "2MnvFrB5ljQ-00:01:53.066-00:01:58.233",
+      "text": "Hi, I'm Alicia and I've worked with the Outreach committee.",
+      "lm_ms": {
+        "gcn": 124.43232606165111,
+        "encoder": 41.28051095176488,
+        "decoder": 1371.2596689583734,
+        "total": 1536.9725059717894,
+        "encoder_len": 132,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 16.751319053582847,
+      "pose_total_ms": 3113.860846031457,
+      "frames_in": 124,
+      "frames_used": 124,
+      "sentence_total_ms": 4667.584671056829,
+      "imread_total_ms": 688.2725592004135,
+      "sentence_excl_imread_ms": 3979.312111856416,
+      "duration_s": 5.167,
+      "rtf": 0.90334520438491,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.551,
+        "p95": 6.997
+      },
+      "preprocess_ms": {
+        "mean": 5.108,
+        "p95": 6.755
+      },
+      "trt_ms": {
+        "mean": 13.05,
+        "p95": 14.377
+      },
+      "postprocess_ms": {
+        "mean": 1.311,
+        "p95": 1.531
+      },
+      "tag": "c12r0",
+      "J": 25.761,
+      "dyn_J": 6.516
+    },
+    {
+      "clip": "2MnvFrB5ljQ-00:01:53.066-00:01:58.233",
+      "text": "Hi, I'm Alicia and I've worked with the Outreach committee.",
+      "lm_ms": {
+        "gcn": 75.63154899980873,
+        "encoder": 40.6637960113585,
+        "decoder": 1356.4948289422318,
+        "total": 1472.790173953399,
+        "encoder_len": 132,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 10.274623055011034,
+      "pose_total_ms": 3027.31465396937,
+      "frames_in": 124,
+      "frames_used": 124,
+      "sentence_total_ms": 4510.37945097778,
+      "imread_total_ms": 553.5928159952164,
+      "sentence_excl_imread_ms": 3956.7866349825636,
+      "duration_s": 5.167,
+      "rtf": 0.8729203504892162,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.464,
+        "p95": 5.402
+      },
+      "preprocess_ms": {
+        "mean": 5.146,
+        "p95": 6.458
+      },
+      "trt_ms": {
+        "mean": 13.476,
+        "p95": 14.317
+      },
+      "postprocess_ms": {
+        "mean": 1.241,
+        "p95": 1.508
+      },
+      "tag": "c12r1",
+      "J": 24.201,
+      "dyn_J": 5.784
+    },
+    {
+      "clip": "2MnvFrB5ljQ-00:01:53.066-00:01:58.233",
+      "text": "Hi, I'm Alicia and I've worked with the Outreach committee.",
+      "lm_ms": {
+        "gcn": 82.185078994371,
+        "encoder": 51.68211297132075,
+        "decoder": 1401.0176819283515,
+        "total": 1534.8848738940433,
+        "encoder_len": 132,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 13.826209004037082,
+      "pose_total_ms": 2875.426765996963,
+      "frames_in": 124,
+      "frames_used": 124,
+      "sentence_total_ms": 4424.137848895043,
+      "imread_total_ms": 503.59262514393777,
+      "sentence_excl_imread_ms": 3920.5452237511054,
+      "duration_s": 5.167,
+      "rtf": 0.8562295043342448,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.061,
+        "p95": 4.99
+      },
+      "preprocess_ms": {
+        "mean": 4.841,
+        "p95": 5.989
+      },
+      "trt_ms": {
+        "mean": 12.968,
+        "p95": 14.167
+      },
+      "postprocess_ms": {
+        "mean": 1.237,
+        "p95": 1.606
+      },
+      "tag": "c12r2",
+      "J": 24.734,
+      "dyn_J": 6.524
+    },
+    {
+      "clip": "ov4V4iCiM_s-00:01:11.466-00:01:17.066",
+      "text": "It's nice because we know each other and they know how to work with each other, and they know how to work with each other.",
+      "lm_ms": {
+        "gcn": 128.93212505150586,
+        "encoder": 42.799098999239504,
+        "decoder": 2366.933063021861,
+        "total": 2538.6642870726064,
+        "encoder_len": 142,
+        "decoded_tokens": 36
+      },
+      "convert_ms": 15.79354191198945,
+      "pose_total_ms": 4112.131888046861,
+      "frames_in": 134,
+      "frames_used": 134,
+      "sentence_total_ms": 6666.5897170314565,
+      "imread_total_ms": 1389.16624058038,
+      "sentence_excl_imread_ms": 5277.423476451077,
+      "duration_s": 5.6,
+      "rtf": 1.190462449469903,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 10.367,
+        "p95": 12.034
+      },
+      "preprocess_ms": {
+        "mean": 5.138,
+        "p95": 5.738
+      },
+      "trt_ms": {
+        "mean": 13.71,
+        "p95": 14.461
+      },
+      "postprocess_ms": {
+        "mean": 1.377,
+        "p95": 1.594
+      },
+      "tag": "c13r0",
+      "J": 36.17,
+      "dyn_J": 8.855
+    },
+    {
+      "clip": "ov4V4iCiM_s-00:01:11.466-00:01:17.066",
+      "text": "It's nice because we know each other and they know how to work with each other, and they know how to work with each other.",
+      "lm_ms": {
+        "gcn": 76.18388102855533,
+        "encoder": 53.457699017599225,
+        "decoder": 2391.3744039600715,
+        "total": 2521.015984006226,
+        "encoder_len": 142,
+        "decoded_tokens": 36
+      },
+      "convert_ms": 13.27592704910785,
+      "pose_total_ms": 3675.575905945152,
+      "frames_in": 134,
+      "frames_used": 134,
+      "sentence_total_ms": 6209.867817000486,
+      "imread_total_ms": 1108.6746614892036,
+      "sentence_excl_imread_ms": 5101.193155511282,
+      "duration_s": 5.6,
+      "rtf": 1.1089049673215154,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 8.274,
+        "p95": 10.305
+      },
+      "preprocess_ms": {
+        "mean": 4.395,
+        "p95": 5.029
+      },
+      "trt_ms": {
+        "mean": 13.382,
+        "p95": 14.345
+      },
+      "postprocess_ms": {
+        "mean": 1.291,
+        "p95": 1.517
+      },
+      "tag": "c13r1",
+      "J": 33.656,
+      "dyn_J": 8.203
+    },
+    {
+      "clip": "ov4V4iCiM_s-00:01:11.466-00:01:17.066",
+      "text": "It's nice because we know each other and they know how to work with each other, and they know how to work with each other.",
+      "lm_ms": {
+        "gcn": 83.23946897871792,
+        "encoder": 48.535495065152645,
+        "decoder": 2373.232842073776,
+        "total": 2505.0078061176464,
+        "encoder_len": 142,
+        "decoded_tokens": 36
+      },
+      "convert_ms": 14.127686969004571,
+      "pose_total_ms": 3620.4738930100575,
+      "frames_in": 134,
+      "frames_used": 134,
+      "sentence_total_ms": 6139.6093860967085,
+      "imread_total_ms": 1079.4166621053591,
+      "sentence_excl_imread_ms": 5060.192723991349,
+      "duration_s": 5.6,
+      "rtf": 1.0963588189458409,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 8.055,
+        "p95": 9.568
+      },
+      "preprocess_ms": {
+        "mean": 4.359,
+        "p95": 5.135
+      },
+      "trt_ms": {
+        "mean": 13.24,
+        "p95": 14.328
+      },
+      "postprocess_ms": {
+        "mean": 1.276,
+        "p95": 1.53
+      },
+      "tag": "c13r2",
+      "J": 33.537,
+      "dyn_J": 8.291
+    },
+    {
+      "clip": "qilEmtLS5Qk-00:02:09.200-00:02:15.166",
+      "text": "A few states saw a same-time ban.",
+      "lm_ms": {
+        "gcn": 141.28874288871884,
+        "encoder": 45.62334599904716,
+        "decoder": 1905.3241179790348,
+        "total": 2092.236206866801,
+        "encoder_len": 151,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 19.07200296409428,
+      "pose_total_ms": 3520.6087079131976,
+      "frames_in": 143,
+      "frames_used": 143,
+      "sentence_total_ms": 5631.916917744093,
+      "imread_total_ms": 471.2771924678236,
+      "sentence_excl_imread_ms": 5160.639725276269,
+      "duration_s": 5.966,
+      "rtf": 0.9440021652269682,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 3.296,
+        "p95": 4.312
+      },
+      "preprocess_ms": {
+        "mean": 6.617,
+        "p95": 7.022
+      },
+      "trt_ms": {
+        "mean": 13.263,
+        "p95": 14.282
+      },
+      "postprocess_ms": {
+        "mean": 1.344,
+        "p95": 1.496
+      },
+      "tag": "c14r0",
+      "J": 31.144,
+      "dyn_J": 7.968
+    },
+    {
+      "clip": "qilEmtLS5Qk-00:02:09.200-00:02:15.166",
+      "text": "A few states saw a same-time ban.",
+      "lm_ms": {
+        "gcn": 86.35856909677386,
+        "encoder": 54.571929038502276,
+        "decoder": 1910.479974001646,
+        "total": 2051.410472136922,
+        "encoder_len": 151,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 19.86488199327141,
+      "pose_total_ms": 3293.014419032261,
+      "frames_in": 143,
+      "frames_used": 143,
+      "sentence_total_ms": 5364.289773162454,
+      "imread_total_ms": 322.3029946675524,
+      "sentence_excl_imread_ms": 5041.986778494902,
+      "duration_s": 5.966,
+      "rtf": 0.8991434416966902,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 2.254,
+        "p95": 2.527
+      },
+      "preprocess_ms": {
+        "mean": 6.212,
+        "p95": 6.994
+      },
+      "trt_ms": {
+        "mean": 13.138,
+        "p95": 14.239
+      },
+      "postprocess_ms": {
+        "mean": 1.324,
+        "p95": 1.51
+      },
+      "tag": "c14r1",
+      "J": 29.595,
+      "dyn_J": 7.454
+    },
+    {
+      "clip": "qilEmtLS5Qk-00:02:09.200-00:02:15.166",
+      "text": "A few states saw a same-time ban.",
+      "lm_ms": {
+        "gcn": 84.52794305048883,
+        "encoder": 58.48051398061216,
+        "decoder": 1882.6510549988598,
+        "total": 2025.6595120299608,
+        "encoder_len": 151,
+        "decoded_tokens": 14
+      },
+      "convert_ms": 20.222200895659626,
+      "pose_total_ms": 3329.3341300450265,
+      "frames_in": 143,
+      "frames_used": 143,
+      "sentence_total_ms": 5375.215842970647,
+      "imread_total_ms": 328.96660501137376,
+      "sentence_excl_imread_ms": 5046.249237959273,
+      "duration_s": 5.966,
+      "rtf": 0.900974831205271,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 2.3,
+        "p95": 2.548
+      },
+      "preprocess_ms": {
+        "mean": 6.361,
+        "p95": 6.963
+      },
+      "trt_ms": {
+        "mean": 13.212,
+        "p95": 14.304
+      },
+      "postprocess_ms": {
+        "mean": 1.312,
+        "p95": 1.493
+      },
+      "tag": "c14r2",
+      "J": 29.232,
+      "dyn_J": 7.297
+    },
+    {
+      "clip": "IsEzvnueFQk-00:00:33.000-00:00:39.366",
+      "text": "NLTC is outstanding because without this opportunity, we can't learn.",
+      "lm_ms": {
+        "gcn": 88.6538450140506,
+        "encoder": 55.286663002334535,
+        "decoder": 1387.5501279253513,
+        "total": 1531.4906359417364,
+        "encoder_len": 161,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 17.84074807073921,
+      "pose_total_ms": 4019.446511985734,
+      "frames_in": 153,
+      "frames_used": 153,
+      "sentence_total_ms": 5568.77789599821,
+      "imread_total_ms": 908.5315408883616,
+      "sentence_excl_imread_ms": 4660.246355109848,
+      "duration_s": 6.366,
+      "rtf": 0.87476875526205,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.938,
+        "p95": 7.31
+      },
+      "preprocess_ms": {
+        "mean": 5.512,
+        "p95": 6.359
+      },
+      "trt_ms": {
+        "mean": 13.398,
+        "p95": 14.307
+      },
+      "postprocess_ms": {
+        "mean": 1.329,
+        "p95": 1.569
+      },
+      "tag": "c15r0",
+      "J": 29.638,
+      "dyn_J": 6.669
+    },
+    {
+      "clip": "IsEzvnueFQk-00:00:33.000-00:00:39.366",
+      "text": "NLTC is outstanding because without this opportunity, we can't learn.",
+      "lm_ms": {
+        "gcn": 76.31710299756378,
+        "encoder": 42.03700798097998,
+        "decoder": 1368.500760057941,
+        "total": 1486.8548710364848,
+        "encoder_len": 161,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 16.765465028584003,
+      "pose_total_ms": 4012.4301590258256,
+      "frames_in": 153,
+      "frames_used": 153,
+      "sentence_total_ms": 5516.050495090894,
+      "imread_total_ms": 905.0319138914347,
+      "sentence_excl_imread_ms": 4611.01858119946,
+      "duration_s": 6.366,
+      "rtf": 0.8664860972495907,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.915,
+        "p95": 6.973
+      },
+      "preprocess_ms": {
+        "mean": 5.593,
+        "p95": 6.55
+      },
+      "trt_ms": {
+        "mean": 13.305,
+        "p95": 14.343
+      },
+      "postprocess_ms": {
+        "mean": 1.319,
+        "p95": 1.549
+      },
+      "tag": "c15r1",
+      "J": 29.124,
+      "dyn_J": 6.568
+    },
+    {
+      "clip": "IsEzvnueFQk-00:00:33.000-00:00:39.366",
+      "text": "NLTC is outstanding because without this opportunity, we can't learn.",
+      "lm_ms": {
+        "gcn": 87.39238302223384,
+        "encoder": 54.48421696200967,
+        "decoder": 1376.6977560007945,
+        "total": 1518.574355985038,
+        "encoder_len": 161,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 19.827441894449294,
+      "pose_total_ms": 4058.629581006244,
+      "frames_in": 153,
+      "frames_used": 153,
+      "sentence_total_ms": 5597.031378885731,
+      "imread_total_ms": 915.6451494200155,
+      "sentence_excl_imread_ms": 4681.386229465716,
+      "duration_s": 6.366,
+      "rtf": 0.8792069398186823,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.985,
+        "p95": 7.442
+      },
+      "preprocess_ms": {
+        "mean": 5.586,
+        "p95": 6.504
+      },
+      "trt_ms": {
+        "mean": 13.532,
+        "p95": 14.337
+      },
+      "postprocess_ms": {
+        "mean": 1.329,
+        "p95": 1.561
+      },
+      "tag": "c15r2",
+      "J": 29.516,
+      "dyn_J": 6.547
+    },
+    {
+      "clip": "SsQxB7yYxgQ-00:05:10.766-00:05:17.600",
+      "text": "Hopefully, the Camp Taloali will be safe, not impacted by the storm.",
+      "lm_ms": {
+        "gcn": 132.99432303756475,
+        "encoder": 37.4745560111478,
+        "decoder": 1330.6773570366204,
+        "total": 1501.146236085333,
+        "encoder_len": 172,
+        "decoded_tokens": 19
+      },
+      "convert_ms": 18.429175950586796,
+      "pose_total_ms": 4668.312355992384,
+      "frames_in": 164,
+      "frames_used": 164,
+      "sentence_total_ms": 6187.887768028304,
+      "imread_total_ms": 1110.8825006522238,
+      "sentence_excl_imread_ms": 5077.00526737608,
+      "duration_s": 6.834,
+      "rtf": 0.9054562142271443,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.774,
+        "p95": 8.053
+      },
+      "preprocess_ms": {
+        "mean": 6.459,
+        "p95": 7.23
+      },
+      "trt_ms": {
+        "mean": 13.728,
+        "p95": 14.484
+      },
+      "postprocess_ms": {
+        "mean": 1.402,
+        "p95": 1.586
+      },
+      "tag": "c16r0",
+      "J": 33.142,
+      "dyn_J": 7.689
+    },
+    {
+      "clip": "SsQxB7yYxgQ-00:05:10.766-00:05:17.600",
+      "text": "Hopefully, the Camp Taloali will be safe, not impacted by the storm.",
+      "lm_ms": {
+        "gcn": 92.70825993735343,
+        "encoder": 49.48492394760251,
+        "decoder": 1307.044510031119,
+        "total": 1449.237693916075,
+        "encoder_len": 172,
+        "decoded_tokens": 19
+      },
+      "convert_ms": 16.604181961156428,
+      "pose_total_ms": 3977.9722719686106,
+      "frames_in": 164,
+      "frames_used": 164,
+      "sentence_total_ms": 5443.814147845842,
+      "imread_total_ms": 735.2241708431393,
+      "sentence_excl_imread_ms": 4708.589977002703,
+      "duration_s": 6.834,
+      "rtf": 0.7965780140248525,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.483,
+        "p95": 5.281
+      },
+      "preprocess_ms": {
+        "mean": 4.81,
+        "p95": 5.658
+      },
+      "trt_ms": {
+        "mean": 13.581,
+        "p95": 14.35
+      },
+      "postprocess_ms": {
+        "mean": 1.295,
+        "p95": 1.6
+      },
+      "tag": "c16r1",
+      "J": 29.458,
+      "dyn_J": 7.109
+    },
+    {
+      "clip": "SsQxB7yYxgQ-00:05:10.766-00:05:17.600",
+      "text": "Hopefully, the Camp Taloali will be safe, not impacted by the storm.",
+      "lm_ms": {
+        "gcn": 76.98019000235945,
+        "encoder": 45.249070040881634,
+        "decoder": 1307.1021849755198,
+        "total": 1429.3314450187609,
+        "encoder_len": 172,
+        "decoded_tokens": 19
+      },
+      "convert_ms": 15.075864968821406,
+      "pose_total_ms": 3780.016890959814,
+      "frames_in": 164,
+      "frames_used": 164,
+      "sentence_total_ms": 5224.4242009473965,
+      "imread_total_ms": 705.9999469202012,
+      "sentence_excl_imread_ms": 4518.424254027195,
+      "duration_s": 6.834,
+      "rtf": 0.7644753001093645,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.305,
+        "p95": 5.224
+      },
+      "preprocess_ms": {
+        "mean": 4.655,
+        "p95": 5.592
+      },
+      "trt_ms": {
+        "mean": 12.813,
+        "p95": 14.266
+      },
+      "postprocess_ms": {
+        "mean": 1.196,
+        "p95": 1.478
+      },
+      "tag": "c16r2",
+      "J": 28.585,
+      "dyn_J": 7.064
+    },
+    {
+      "clip": "gALXtpV4IY8-00:02:52.000-00:02:59.366",
+      "text": "Some homes are locked and schools are closed.",
+      "lm_ms": {
+        "gcn": 126.34556193370372,
+        "encoder": 39.68557401094586,
+        "decoder": 1047.1370479790494,
+        "total": 1213.168183923699,
+        "encoder_len": 185,
+        "decoded_tokens": 13
+      },
+      "convert_ms": 18.200500053353608,
+      "pose_total_ms": 4477.633415022865,
+      "frames_in": 177,
+      "frames_used": 177,
+      "sentence_total_ms": 5709.0020989999175,
+      "imread_total_ms": 977.5864346884191,
+      "sentence_excl_imread_ms": 4731.415664311498,
+      "duration_s": 7.366,
+      "rtf": 0.7750478005701762,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.523,
+        "p95": 7.105
+      },
+      "preprocess_ms": {
+        "mean": 4.978,
+        "p95": 6.544
+      },
+      "trt_ms": {
+        "mean": 13.379,
+        "p95": 14.434
+      },
+      "postprocess_ms": {
+        "mean": 1.324,
+        "p95": 1.584
+      },
+      "tag": "c17r0",
+      "J": 30.848,
+      "dyn_J": 7.465
+    },
+    {
+      "clip": "gALXtpV4IY8-00:02:52.000-00:02:59.366",
+      "text": "Some homes are locked and schools are closed.",
+      "lm_ms": {
+        "gcn": 83.87552096974105,
+        "encoder": 56.05237605050206,
+        "decoder": 1083.4415740100667,
+        "total": 1223.3694710303098,
+        "encoder_len": 185,
+        "decoded_tokens": 13
+      },
+      "convert_ms": 18.630587961524725,
+      "pose_total_ms": 4111.693904036656,
+      "frames_in": 177,
+      "frames_used": 177,
+      "sentence_total_ms": 5353.6939630284905,
+      "imread_total_ms": 764.1207227716222,
+      "sentence_excl_imread_ms": 4589.573240256868,
+      "duration_s": 7.366,
+      "rtf": 0.726811561638405,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.317,
+        "p95": 5.338
+      },
+      "preprocess_ms": {
+        "mean": 4.735,
+        "p95": 5.758
+      },
+      "trt_ms": {
+        "mean": 12.857,
+        "p95": 14.231
+      },
+      "postprocess_ms": {
+        "mean": 1.235,
+        "p95": 1.579
+      },
+      "tag": "c17r1",
+      "J": 28.657,
+      "dyn_J": 6.722
+    },
+    {
+      "clip": "gALXtpV4IY8-00:02:52.000-00:02:59.366",
+      "text": "Some homes are locked and schools are closed.",
+      "lm_ms": {
+        "gcn": 84.48548405431211,
+        "encoder": 53.625292028300464,
+        "decoder": 1089.5208320580423,
+        "total": 1227.6316081406549,
+        "encoder_len": 185,
+        "decoded_tokens": 13
+      },
+      "convert_ms": 18.45138508360833,
+      "pose_total_ms": 4176.548651070334,
+      "frames_in": 177,
+      "frames_used": 177,
+      "sentence_total_ms": 5422.631644294597,
+      "imread_total_ms": 762.9915534052998,
+      "sentence_excl_imread_ms": 4659.640090889297,
+      "duration_s": 7.366,
+      "rtf": 0.7361704648784412,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.311,
+        "p95": 5.454
+      },
+      "preprocess_ms": {
+        "mean": 4.729,
+        "p95": 5.986
+      },
+      "trt_ms": {
+        "mean": 13.187,
+        "p95": 14.347
+      },
+      "postprocess_ms": {
+        "mean": 1.28,
+        "p95": 1.571
+      },
+      "tag": "c17r2",
+      "J": 29.146,
+      "dyn_J": 6.797
+    },
+    {
+      "clip": "N29DdjIj5rw-00:00:11.400-00:00:19.200",
+      "text": "No.",
+      "lm_ms": {
+        "gcn": 104.02821796014905,
+        "encoder": 37.8938929643482,
+        "decoder": 261.0503879841417,
+        "total": 402.97249890863895,
+        "encoder_len": 12,
+        "decoded_tokens": 3
+      },
+      "convert_ms": 2.1647759713232517,
+      "pose_total_ms": 90.5382379423827,
+      "frames_in": 4,
+      "frames_used": 4,
+      "sentence_total_ms": 495.6755128223449,
+      "imread_total_ms": 20.85274097044021,
+      "sentence_excl_imread_ms": 474.8227718519047,
+      "duration_s": 7.8,
+      "rtf": 0.0635481426695314,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.213,
+        "p95": 7.551
+      },
+      "preprocess_ms": {
+        "mean": 3.776,
+        "p95": 3.834
+      },
+      "trt_ms": {
+        "mean": 12.641,
+        "p95": 12.778
+      },
+      "postprocess_ms": {
+        "mean": 0.942,
+        "p95": 0.978
+      },
+      "tag": "c18r0",
+      "J": 2.66,
+      "dyn_J": 0.797
+    },
+    {
+      "clip": "N29DdjIj5rw-00:00:11.400-00:00:19.200",
+      "text": "No.",
+      "lm_ms": {
+        "gcn": 33.14506798051298,
+        "encoder": 37.60652802884579,
+        "decoder": 259.97379200998694,
+        "total": 330.7253880193457,
+        "encoder_len": 12,
+        "decoded_tokens": 3
+      },
+      "convert_ms": 2.276073908433318,
+      "pose_total_ms": 82.70762697793543,
+      "frames_in": 4,
+      "frames_used": 4,
+      "sentence_total_ms": 415.70908890571445,
+      "imread_total_ms": 13.580093043856323,
+      "sentence_excl_imread_ms": 402.12899586185813,
+      "duration_s": 7.8,
+      "rtf": 0.05329603703919416,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 3.395,
+        "p95": 3.428
+      },
+      "preprocess_ms": {
+        "mean": 3.726,
+        "p95": 3.812
+      },
+      "trt_ms": {
+        "mean": 12.547,
+        "p95": 12.69
+      },
+      "postprocess_ms": {
+        "mean": 0.938,
+        "p95": 0.957
+      },
+      "tag": "c18r1",
+      "J": 2.035,
+      "dyn_J": 0.586
+    },
+    {
+      "clip": "N29DdjIj5rw-00:00:11.400-00:00:19.200",
+      "text": "No.",
+      "lm_ms": {
+        "gcn": 33.55643595568836,
+        "encoder": 36.994323949329555,
+        "decoder": 260.48113009892404,
+        "total": 331.03189000394195,
+        "encoder_len": 12,
+        "decoded_tokens": 3
+      },
+      "convert_ms": 1.9853489939123392,
+      "pose_total_ms": 83.05182598996907,
+      "frames_in": 4,
+      "frames_used": 4,
+      "sentence_total_ms": 416.06906498782337,
+      "imread_total_ms": 13.632350135594606,
+      "sentence_excl_imread_ms": 402.43671485222876,
+      "duration_s": 7.8,
+      "rtf": 0.05334218781895172,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 3.408,
+        "p95": 3.422
+      },
+      "preprocess_ms": {
+        "mean": 3.821,
+        "p95": 4.074
+      },
+      "trt_ms": {
+        "mean": 12.564,
+        "p95": 12.711
+      },
+      "postprocess_ms": {
+        "mean": 0.91,
+        "p95": 0.931
+      },
+      "tag": "c18r2",
+      "J": 2.314,
+      "dyn_J": 0.658
+    },
+    {
+      "clip": "yjAuZBiVFII-00:00:33.033-00:00:41.233",
+      "text": "When you meet with your governor s office, you can check with your state s legislators to see what their information is.",
+      "lm_ms": {
+        "gcn": 141.61545096430928,
+        "encoder": 44.59920304361731,
+        "decoder": 2567.9806179832667,
+        "total": 2754.1952719911933,
+        "encoder_len": 205,
+        "decoded_tokens": 31
+      },
+      "convert_ms": 29.150208923965693,
+      "pose_total_ms": 5390.937948017381,
+      "frames_in": 197,
+      "frames_used": 197,
+      "sentence_total_ms": 8174.28342893254,
+      "imread_total_ms": 1344.2694136174396,
+      "sentence_excl_imread_ms": 6830.014015315101,
+      "duration_s": 8.2,
+      "rtf": 0.9968638327966514,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.824,
+        "p95": 8.396
+      },
+      "preprocess_ms": {
+        "mean": 5.468,
+        "p95": 6.709
+      },
+      "trt_ms": {
+        "mean": 13.657,
+        "p95": 14.369
+      },
+      "postprocess_ms": {
+        "mean": 1.322,
+        "p95": 1.532
+      },
+      "tag": "c19r0",
+      "J": 44.651,
+      "dyn_J": 11.128
+    },
+    {
+      "clip": "yjAuZBiVFII-00:00:33.033-00:00:41.233",
+      "text": "When you meet with your governor s office, you can check with your state s legislators to see what their information is.",
+      "lm_ms": {
+        "gcn": 92.66189497429878,
+        "encoder": 53.655692958272994,
+        "decoder": 2567.3982669832185,
+        "total": 2713.7158549157903,
+        "encoder_len": 205,
+        "decoded_tokens": 31
+      },
+      "convert_ms": 19.718033028766513,
+      "pose_total_ms": 5027.733635972254,
+      "frames_in": 197,
+      "frames_used": 197,
+      "sentence_total_ms": 7761.167523916811,
+      "imread_total_ms": 1114.026744151488,
+      "sentence_excl_imread_ms": 6647.140779765323,
+      "duration_s": 8.2,
+      "rtf": 0.9464838443800989,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.655,
+        "p95": 6.981
+      },
+      "preprocess_ms": {
+        "mean": 5.45,
+        "p95": 6.473
+      },
+      "trt_ms": {
+        "mean": 13.029,
+        "p95": 14.303
+      },
+      "postprocess_ms": {
+        "mean": 1.295,
+        "p95": 1.544
+      },
+      "tag": "c19r1",
+      "J": 43.076,
+      "dyn_J": 11.002
+    },
+    {
+      "clip": "yjAuZBiVFII-00:00:33.033-00:00:41.233",
+      "text": "When you meet with your governor s office, you can check with your state s legislators to see what their information is.",
+      "lm_ms": {
+        "gcn": 100.85507400799543,
+        "encoder": 57.17470310628414,
+        "decoder": 2579.145233030431,
+        "total": 2737.1750101447105,
+        "encoder_len": 205,
+        "decoded_tokens": 31
+      },
+      "convert_ms": 25.02206899225712,
+      "pose_total_ms": 5035.133154015057,
+      "frames_in": 197,
+      "frames_used": 197,
+      "sentence_total_ms": 7797.330233152024,
+      "imread_total_ms": 1110.336456564255,
+      "sentence_excl_imread_ms": 6686.993776587769,
+      "duration_s": 8.2,
+      "rtf": 0.9508939308721982,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.636,
+        "p95": 6.582
+      },
+      "preprocess_ms": {
+        "mean": 5.483,
+        "p95": 6.607
+      },
+      "trt_ms": {
+        "mean": 13.018,
+        "p95": 14.288
+      },
+      "postprocess_ms": {
+        "mean": 1.325,
+        "p95": 1.544
+      },
+      "tag": "c19r2",
+      "J": 42.783,
+      "dyn_J": 10.708
+    },
+    {
+      "clip": "yG_ZGSd4bVg-00:01:22.133-00:01:31.000",
+      "text": "While she was teaching, she created a paper for deaf people all over.",
+      "lm_ms": {
+        "gcn": 137.68322102259845,
+        "encoder": 49.8412229353562,
+        "decoder": 1921.2748440913856,
+        "total": 2108.7992880493402,
+        "encoder_len": 221,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 24.107492063194513,
+      "pose_total_ms": 5898.6115080770105,
+      "frames_in": 213,
+      "frames_used": 213,
+      "sentence_total_ms": 8031.518288189545,
+      "imread_total_ms": 1320.1917235273868,
+      "sentence_excl_imread_ms": 6711.3265646621585,
+      "duration_s": 8.867,
+      "rtf": 0.9057762815145534,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.198,
+        "p95": 7.381
+      },
+      "preprocess_ms": {
+        "mean": 6.629,
+        "p95": 7.4
+      },
+      "trt_ms": {
+        "mean": 13.414,
+        "p95": 14.381
+      },
+      "postprocess_ms": {
+        "mean": 1.356,
+        "p95": 1.547
+      },
+      "tag": "c20r0",
+      "J": 43.355,
+      "dyn_J": 10.453
+    },
+    {
+      "clip": "yG_ZGSd4bVg-00:01:22.133-00:01:31.000",
+      "text": "While she was teaching, she created a paper for deaf people all over.",
+      "lm_ms": {
+        "gcn": 93.91773003153503,
+        "encoder": 62.63403897173703,
+        "decoder": 1935.948641039431,
+        "total": 2092.500410042703,
+        "encoder_len": 221,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 23.63682701252401,
+      "pose_total_ms": 5281.097520026378,
+      "frames_in": 213,
+      "frames_used": 213,
+      "sentence_total_ms": 7397.2347570816055,
+      "imread_total_ms": 965.815328177996,
+      "sentence_excl_imread_ms": 6431.4194289036095,
+      "duration_s": 8.867,
+      "rtf": 0.8342432341357398,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.534,
+        "p95": 5.255
+      },
+      "preprocess_ms": {
+        "mean": 5.768,
+        "p95": 6.864
+      },
+      "trt_ms": {
+        "mean": 13.088,
+        "p95": 14.284
+      },
+      "postprocess_ms": {
+        "mean": 1.311,
+        "p95": 1.505
+      },
+      "tag": "c20r1",
+      "J": 40.875,
+      "dyn_J": 10.248
+    },
+    {
+      "clip": "yG_ZGSd4bVg-00:01:22.133-00:01:31.000",
+      "text": "While she was teaching, she created a paper for deaf people all over.",
+      "lm_ms": {
+        "gcn": 107.32386994641274,
+        "encoder": 60.63361803535372,
+        "decoder": 1936.7941149976104,
+        "total": 2104.751602979377,
+        "encoder_len": 221,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 28.466037940233946,
+      "pose_total_ms": 5240.199872059748,
+      "frames_in": 213,
+      "frames_used": 213,
+      "sentence_total_ms": 7373.417512979358,
+      "imread_total_ms": 961.102387518622,
+      "sentence_excl_imread_ms": 6412.315125460736,
+      "duration_s": 8.867,
+      "rtf": 0.8315571797653499,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.512,
+        "p95": 5.337
+      },
+      "preprocess_ms": {
+        "mean": 5.748,
+        "p95": 6.65
+      },
+      "trt_ms": {
+        "mean": 12.959,
+        "p95": 14.283
+      },
+      "postprocess_ms": {
+        "mean": 1.29,
+        "p95": 1.486
+      },
+      "tag": "c20r2",
+      "J": 39.662,
+      "dyn_J": 9.45
+    },
+    {
+      "clip": "NGry3ZtyTyE-00:01:59.733-00:02:09.133",
+      "text": "If you have questions during the interview, let us know.",
+      "lm_ms": {
+        "gcn": 147.92754594236612,
+        "encoder": 55.239852983504534,
+        "decoder": 1078.8552060257643,
+        "total": 1282.022604951635,
+        "encoder_len": 234,
+        "decoded_tokens": 15
+      },
+      "convert_ms": 28.91225495841354,
+      "pose_total_ms": 6501.95971201174,
+      "frames_in": 226,
+      "frames_used": 226,
+      "sentence_total_ms": 7812.894571921788,
+      "imread_total_ms": 1688.6196365812793,
+      "sentence_excl_imread_ms": 6124.274935340509,
+      "duration_s": 9.4,
+      "rtf": 0.8311589970129561,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 7.472,
+        "p95": 8.786
+      },
+      "preprocess_ms": {
+        "mean": 6.352,
+        "p95": 6.865
+      },
+      "trt_ms": {
+        "mean": 13.49,
+        "p95": 14.417
+      },
+      "postprocess_ms": {
+        "mean": 1.359,
+        "p95": 1.536
+      },
+      "tag": "c21r0",
+      "J": 41.338,
+      "dyn_J": 9.056
+    },
+    {
+      "clip": "NGry3ZtyTyE-00:01:59.733-00:02:09.133",
+      "text": "If you have questions during the interview, let us know.",
+      "lm_ms": {
+        "gcn": 112.32396599370986,
+        "encoder": 59.28591394331306,
+        "decoder": 1093.7935760011896,
+        "total": 1265.4034559382126,
+        "encoder_len": 234,
+        "decoded_tokens": 15
+      },
+      "convert_ms": 22.356644039973617,
+      "pose_total_ms": 5901.334983995184,
+      "frames_in": 226,
+      "frames_used": 226,
+      "sentence_total_ms": 7189.0950839733705,
+      "imread_total_ms": 1291.0714575555176,
+      "sentence_excl_imread_ms": 5898.023626417853,
+      "duration_s": 9.4,
+      "rtf": 0.7647973493588692,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.713,
+        "p95": 6.837
+      },
+      "preprocess_ms": {
+        "mean": 5.633,
+        "p95": 6.676
+      },
+      "trt_ms": {
+        "mean": 13.355,
+        "p95": 14.294
+      },
+      "postprocess_ms": {
+        "mean": 1.318,
+        "p95": 1.546
+      },
+      "tag": "c21r1",
+      "J": 37.165,
+      "dyn_J": 7.781
+    },
+    {
+      "clip": "NGry3ZtyTyE-00:01:59.733-00:02:09.133",
+      "text": "If you have questions during the interview, let us know.",
+      "lm_ms": {
+        "gcn": 91.78742102812976,
+        "encoder": 62.55455198697746,
+        "decoder": 1099.0404039621353,
+        "total": 1253.3823769772425,
+        "encoder_len": 234,
+        "decoded_tokens": 15
+      },
+      "convert_ms": 28.136400040239096,
+      "pose_total_ms": 5889.106165035628,
+      "frames_in": 226,
+      "frames_used": 226,
+      "sentence_total_ms": 7170.624942053109,
+      "imread_total_ms": 1285.6384633341804,
+      "sentence_excl_imread_ms": 5884.986478718929,
+      "duration_s": 9.4,
+      "rtf": 0.7628324406439477,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.689,
+        "p95": 6.616
+      },
+      "preprocess_ms": {
+        "mean": 5.559,
+        "p95": 6.257
+      },
+      "trt_ms": {
+        "mean": 13.402,
+        "p95": 14.312
+      },
+      "postprocess_ms": {
+        "mean": 1.315,
+        "p95": 1.535
+      },
+      "tag": "c21r2",
+      "J": 37.171,
+      "dyn_J": 7.787
+    },
+    {
+      "clip": "S1HvZQRRIaY-00:00:35.500-00:00:45.766",
+      "text": "The explosion killed 200 people and injured dozens more in the Sri Lanka area.",
+      "lm_ms": {
+        "gcn": 141.84228400699794,
+        "encoder": 62.90444696787745,
+        "decoder": 1846.8502879841253,
+        "total": 2051.5970189590007,
+        "encoder_len": 254,
+        "decoded_tokens": 20
+      },
+      "convert_ms": 26.745782932266593,
+      "pose_total_ms": 6840.368104050867,
+      "frames_in": 246,
+      "frames_used": 246,
+      "sentence_total_ms": 8918.710905942135,
+      "imread_total_ms": 1507.255252217874,
+      "sentence_excl_imread_ms": 7411.455653724261,
+      "duration_s": 10.266,
+      "rtf": 0.8687620208398729,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.127,
+        "p95": 7.302
+      },
+      "preprocess_ms": {
+        "mean": 6.636,
+        "p95": 7.382
+      },
+      "trt_ms": {
+        "mean": 13.559,
+        "p95": 14.371
+      },
+      "postprocess_ms": {
+        "mean": 1.384,
+        "p95": 1.536
+      },
+      "tag": "c22r0",
+      "J": 47.91,
+      "dyn_J": 11.076
+    },
+    {
+      "clip": "S1HvZQRRIaY-00:00:35.500-00:00:45.766",
+      "text": "The explosion killed 200 people and injured dozens more in the Sri Lanka area.",
+      "lm_ms": {
+        "gcn": 109.96533406432718,
+        "encoder": 67.62104807421565,
+        "decoder": 1832.81964098569,
+        "total": 2010.406023124233,
+        "encoder_len": 254,
+        "decoded_tokens": 20
+      },
+      "convert_ms": 27.578342938795686,
+      "pose_total_ms": 6073.380752000958,
+      "frames_in": 246,
+      "frames_used": 246,
+      "sentence_total_ms": 8111.365118063986,
+      "imread_total_ms": 1117.8595612291247,
+      "sentence_excl_imread_ms": 6993.505556834862,
+      "duration_s": 10.266,
+      "rtf": 0.7901193374307409,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.544,
+        "p95": 5.322
+      },
+      "preprocess_ms": {
+        "mean": 5.792,
+        "p95": 6.819
+      },
+      "trt_ms": {
+        "mean": 12.945,
+        "p95": 14.329
+      },
+      "postprocess_ms": {
+        "mean": 1.316,
+        "p95": 1.538
+      },
+      "tag": "c22r1",
+      "J": 43.424,
+      "dyn_J": 10.108
+    },
+    {
+      "clip": "S1HvZQRRIaY-00:00:35.500-00:00:45.766",
+      "text": "The explosion killed 200 people and injured dozens more in the Sri Lanka area.",
+      "lm_ms": {
+        "gcn": 109.81342708691955,
+        "encoder": 49.9590840190649,
+        "decoder": 1856.4473029691726,
+        "total": 2016.219814075157,
+        "encoder_len": 254,
+        "decoded_tokens": 20
+      },
+      "convert_ms": 26.636278023943305,
+      "pose_total_ms": 6097.282954026014,
+      "frames_in": 246,
+      "frames_used": 246,
+      "sentence_total_ms": 8140.139046125114,
+      "imread_total_ms": 1112.0755897136405,
+      "sentence_excl_imread_ms": 7028.063456411473,
+      "duration_s": 10.266,
+      "rtf": 0.7929221747637945,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.521,
+        "p95": 5.165
+      },
+      "preprocess_ms": {
+        "mean": 5.81,
+        "p95": 6.675
+      },
+      "trt_ms": {
+        "mean": 13.057,
+        "p95": 14.321
+      },
+      "postprocess_ms": {
+        "mean": 1.306,
+        "p95": 1.524
+      },
+      "tag": "c22r2",
+      "J": 44.077,
+      "dyn_J": 10.555
+    },
+    {
+      "clip": "sP6B4dlSOoc-00:08:20.233-00:08:31.200",
+      "text": "President Trump signed an executive order to end kidney changes Wednesday.",
+      "lm_ms": {
+        "gcn": 151.498565915972,
+        "encoder": 57.98541195690632,
+        "decoder": 1227.3088470101357,
+        "total": 1436.792824883014,
+        "encoder_len": 264,
+        "decoded_tokens": 17
+      },
+      "convert_ms": 30.73267498984933,
+      "pose_total_ms": 7500.520320027135,
+      "frames_in": 263,
+      "frames_used": 256,
+      "sentence_total_ms": 8968.045819899999,
+      "imread_total_ms": 1794.3933393107727,
+      "sentence_excl_imread_ms": 7173.652480589226,
+      "duration_s": 10.967,
+      "rtf": 0.8177300829670829,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.823,
+        "p95": 8.041
+      },
+      "preprocess_ms": {
+        "mean": 6.655,
+        "p95": 7.464
+      },
+      "trt_ms": {
+        "mean": 13.546,
+        "p95": 14.524
+      },
+      "postprocess_ms": {
+        "mean": 1.396,
+        "p95": 1.58
+      },
+      "tag": "c23r0",
+      "J": 47.139,
+      "dyn_J": 10.305
+    },
+    {
+      "clip": "sP6B4dlSOoc-00:08:20.233-00:08:31.200",
+      "text": "President Trump signed an executive order to end kidney changes Wednesday.",
+      "lm_ms": {
+        "gcn": 98.32818899303675,
+        "encoder": 80.28804103378206,
+        "decoder": 1258.5114620160311,
+        "total": 1437.12769204285,
+        "encoder_len": 264,
+        "decoded_tokens": 17
+      },
+      "convert_ms": 27.289987076073885,
+      "pose_total_ms": 6671.72768805176,
+      "frames_in": 263,
+      "frames_used": 256,
+      "sentence_total_ms": 8136.145367170684,
+      "imread_total_ms": 1328.9481231477112,
+      "sentence_excl_imread_ms": 6807.197244022973,
+      "duration_s": 10.967,
+      "rtf": 0.7418752044470396,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.053,
+        "p95": 6.145
+      },
+      "preprocess_ms": {
+        "mean": 5.692,
+        "p95": 6.713
+      },
+      "trt_ms": {
+        "mean": 13.19,
+        "p95": 14.326
+      },
+      "postprocess_ms": {
+        "mean": 1.338,
+        "p95": 1.575
+      },
+      "tag": "c23r1",
+      "J": 42.728,
+      "dyn_J": 9.206
+    },
+    {
+      "clip": "sP6B4dlSOoc-00:08:20.233-00:08:31.200",
+      "text": "President Trump signed an executive order to end kidney changes Wednesday.",
+      "lm_ms": {
+        "gcn": 112.25136497523636,
+        "encoder": 79.02353792451322,
+        "decoder": 1260.0796940969303,
+        "total": 1451.35459699668,
+        "encoder_len": 264,
+        "decoded_tokens": 17
+      },
+      "convert_ms": 35.66684806719422,
+      "pose_total_ms": 6756.6323559731245,
+      "frames_in": 263,
+      "frames_used": 256,
+      "sentence_total_ms": 8243.653801036999,
+      "imread_total_ms": 1336.8833666900173,
+      "sentence_excl_imread_ms": 6906.770434346981,
+      "duration_s": 10.967,
+      "rtf": 0.7516781071429742,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.083,
+        "p95": 6.116
+      },
+      "preprocess_ms": {
+        "mean": 5.8,
+        "p95": 6.763
+      },
+      "trt_ms": {
+        "mean": 13.368,
+        "p95": 14.337
+      },
+      "postprocess_ms": {
+        "mean": 1.343,
+        "p95": 1.567
+      },
+      "tag": "c23r2",
+      "J": 43.07,
+      "dyn_J": 9.133
+    },
+    {
+      "clip": "oUljxXXBVfY-00:08:26.066-00:08:38.333",
+      "text": "Three of them were from the Kirkland nursing home and the sixth person was in the Noah County, which is near the Seattle area.",
+      "lm_ms": {
+        "gcn": 107.02397092245519,
+        "encoder": 74.73795406986028,
+        "decoder": 2177.932766964659,
+        "total": 2359.6946919569746,
+        "encoder_len": 264,
+        "decoded_tokens": 32
+      },
+      "convert_ms": 24.768723058514297,
+      "pose_total_ms": 7508.181312936358,
+      "frames_in": 294,
+      "frames_used": 256,
+      "sentence_total_ms": 9892.644727951847,
+      "imread_total_ms": 1626.187183195725,
+      "sentence_excl_imread_ms": 8266.457544756122,
+      "duration_s": 12.267,
+      "rtf": 0.8064436885914932,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.531,
+        "p95": 7.268
+      },
+      "preprocess_ms": {
+        "mean": 5.17,
+        "p95": 6.805
+      },
+      "trt_ms": {
+        "mean": 13.407,
+        "p95": 14.355
+      },
+      "postprocess_ms": {
+        "mean": 1.338,
+        "p95": 1.565
+      },
+      "tag": "c24r0",
+      "J": 53.914,
+      "dyn_J": 13.148
+    },
+    {
+      "clip": "oUljxXXBVfY-00:08:26.066-00:08:38.333",
+      "text": "Three of them were from the Kirkland nursing home and the sixth person was in the Noah County, which is near the Seattle area.",
+      "lm_ms": {
+        "gcn": 121.88799597788602,
+        "encoder": 58.399917907081544,
+        "decoder": 2165.858864085749,
+        "total": 2346.1467779707164,
+        "encoder_len": 264,
+        "decoded_tokens": 32
+      },
+      "convert_ms": 21.164495963603258,
+      "pose_total_ms": 6874.167121015489,
+      "frames_in": 294,
+      "frames_used": 256,
+      "sentence_total_ms": 9241.478394949809,
+      "imread_total_ms": 1242.2922472469509,
+      "sentence_excl_imread_ms": 7999.186147702858,
+      "duration_s": 12.267,
+      "rtf": 0.7533609191285408,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.225,
+        "p95": 5.134
+      },
+      "preprocess_ms": {
+        "mean": 4.85,
+        "p95": 5.741
+      },
+      "trt_ms": {
+        "mean": 13.007,
+        "p95": 14.316
+      },
+      "postprocess_ms": {
+        "mean": 1.214,
+        "p95": 1.497
+      },
+      "tag": "c24r1",
+      "J": 50.347,
+      "dyn_J": 12.271
+    },
+    {
+      "clip": "oUljxXXBVfY-00:08:26.066-00:08:38.333",
+      "text": "Three of them were from the Kirkland nursing home and the sixth person was in the Noah County, which is near the Seattle area.",
+      "lm_ms": {
+        "gcn": 114.99058699700981,
+        "encoder": 57.99312703311443,
+        "decoder": 2180.7928000343964,
+        "total": 2353.7765140645206,
+        "encoder_len": 264,
+        "decoded_tokens": 32
+      },
+      "convert_ms": 27.671530027873814,
+      "pose_total_ms": 7477.04596305266,
+      "frames_in": 294,
+      "frames_used": 256,
+      "sentence_total_ms": 9858.494007145055,
+      "imread_total_ms": 1434.9059903761372,
+      "sentence_excl_imread_ms": 8423.588016768917,
+      "duration_s": 12.267,
+      "rtf": 0.8036597380895945,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.881,
+        "p95": 5.664
+      },
+      "preprocess_ms": {
+        "mean": 5.84,
+        "p95": 6.802
+      },
+      "trt_ms": {
+        "mean": 13.283,
+        "p95": 14.344
+      },
+      "postprocess_ms": {
+        "mean": 1.333,
+        "p95": 1.557
+      },
+      "tag": "c24r2",
+      "J": 52.806,
+      "dyn_J": 12.04
+    },
+    {
+      "clip": "UgqB79-BaJ4-00:02:47.000-00:03:00.400",
+      "text": "Another officer shot at Lehenga Harper, who was pregnant with two young children.",
+      "lm_ms": {
+        "gcn": 110.51757610403001,
+        "encoder": 57.47279792558402,
+        "decoder": 1697.1275880932808,
+        "total": 1865.1179621228948,
+        "encoder_len": 264,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 26.89346799161285,
+      "pose_total_ms": 8170.288895955309,
+      "frames_in": 322,
+      "frames_used": 256,
+      "sentence_total_ms": 10062.300326069817,
+      "imread_total_ms": 1769.4460251368582,
+      "sentence_excl_imread_ms": 8292.854300932959,
+      "duration_s": 13.4,
+      "rtf": 0.7509179347813296,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.495,
+        "p95": 7.344
+      },
+      "preprocess_ms": {
+        "mean": 5.076,
+        "p95": 6.606
+      },
+      "trt_ms": {
+        "mean": 13.388,
+        "p95": 14.434
+      },
+      "postprocess_ms": {
+        "mean": 1.324,
+        "p95": 1.59
+      },
+      "tag": "c25r0",
+      "J": 55.073,
+      "dyn_J": 13.687
+    },
+    {
+      "clip": "UgqB79-BaJ4-00:02:47.000-00:03:00.400",
+      "text": "Another officer shot at Lehenga Harper, who was pregnant with two young children.",
+      "lm_ms": {
+        "gcn": 107.65397106297314,
+        "encoder": 58.592628105543554,
+        "decoder": 1738.707844982855,
+        "total": 1904.9544441513717,
+        "encoder_len": 264,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 28.30559096764773,
+      "pose_total_ms": 7617.070904001594,
+      "frames_in": 322,
+      "frames_used": 256,
+      "sentence_total_ms": 9550.330939120613,
+      "imread_total_ms": 1367.0402347343042,
+      "sentence_excl_imread_ms": 8183.290704386309,
+      "duration_s": 13.4,
+      "rtf": 0.7127112641134785,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.245,
+        "p95": 5.103
+      },
+      "preprocess_ms": {
+        "mean": 4.82,
+        "p95": 5.857
+      },
+      "trt_ms": {
+        "mean": 13.242,
+        "p95": 14.344
+      },
+      "postprocess_ms": {
+        "mean": 1.263,
+        "p95": 1.543
+      },
+      "tag": "c25r1",
+      "J": 51.011,
+      "dyn_J": 11.694
+    },
+    {
+      "clip": "UgqB79-BaJ4-00:02:47.000-00:03:00.400",
+      "text": "Another officer shot at Lehenga Harper, who was pregnant with two young children.",
+      "lm_ms": {
+        "gcn": 114.50555804185569,
+        "encoder": 76.15273597184569,
+        "decoder": 1729.5655119232833,
+        "total": 1920.2238059369847,
+        "encoder_len": 264,
+        "decoded_tokens": 21
+      },
+      "convert_ms": 32.60343195870519,
+      "pose_total_ms": 7754.773898050189,
+      "frames_in": 322,
+      "frames_used": 256,
+      "sentence_total_ms": 9707.601135945879,
+      "imread_total_ms": 1432.5273792492226,
+      "sentence_excl_imread_ms": 8275.073756696656,
+      "duration_s": 13.4,
+      "rtf": 0.7244478459661103,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.449,
+        "p95": 5.676
+      },
+      "preprocess_ms": {
+        "mean": 5.058,
+        "p95": 6.298
+      },
+      "trt_ms": {
+        "mean": 13.185,
+        "p95": 14.365
+      },
+      "postprocess_ms": {
+        "mean": 1.302,
+        "p95": 1.577
+      },
+      "tag": "c25r2",
+      "J": 51.879,
+      "dyn_J": 11.735
+    },
+    {
+      "clip": "0JWnUGQrtIs-00:02:56.733-00:03:11.266",
+      "text": "The emotions stirred by Flake's capture of the moment he and his inner circle met with other Senators, quickly breaking up the boundaries of the debate.",
+      "lm_ms": {
+        "gcn": 115.44125701766461,
+        "encoder": 74.04133689124137,
+        "decoder": 3004.4166690204293,
+        "total": 3193.8992629293352,
+        "encoder_len": 264,
+        "decoded_tokens": 43
+      },
+      "convert_ms": 34.21539894770831,
+      "pose_total_ms": 10136.233306955546,
+      "frames_in": 349,
+      "frames_used": 256,
+      "sentence_total_ms": 13364.34796883259,
+      "imread_total_ms": 2636.7289010668173,
+      "sentence_excl_imread_ms": 10727.619067765772,
+      "duration_s": 14.533,
+      "rtf": 0.9195863186425782,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 7.555,
+        "p95": 8.873
+      },
+      "preprocess_ms": {
+        "mean": 6.349,
+        "p95": 7.109
+      },
+      "trt_ms": {
+        "mean": 13.66,
+        "p95": 14.429
+      },
+      "postprocess_ms": {
+        "mean": 1.382,
+        "p95": 1.565
+      },
+      "tag": "c26r0",
+      "J": 71.476,
+      "dyn_J": 16.432
+    },
+    {
+      "clip": "0JWnUGQrtIs-00:02:56.733-00:03:11.266",
+      "text": "The emotions stirred by Flake's capture of the moment he and his inner circle met with other Senators, quickly breaking up the boundaries of the debate.",
+      "lm_ms": {
+        "gcn": 95.8726319950074,
+        "encoder": 58.45960299484432,
+        "decoder": 2967.239903053269,
+        "total": 3121.5721380431205,
+        "encoder_len": 264,
+        "decoded_tokens": 43
+      },
+      "convert_ms": 31.303312978707254,
+      "pose_total_ms": 9107.80471097678,
+      "frames_in": 349,
+      "frames_used": 256,
+      "sentence_total_ms": 12260.680161998607,
+      "imread_total_ms": 2029.7761234687641,
+      "sentence_excl_imread_ms": 10230.904038529843,
+      "duration_s": 14.533,
+      "rtf": 0.8436441314249369,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.816,
+        "p95": 7.003
+      },
+      "preprocess_ms": {
+        "mean": 5.511,
+        "p95": 6.484
+      },
+      "trt_ms": {
+        "mean": 13.318,
+        "p95": 14.341
+      },
+      "postprocess_ms": {
+        "mean": 1.357,
+        "p95": 1.576
+      },
+      "tag": "c26r1",
+      "J": 65.476,
+      "dyn_J": 14.986
+    },
+    {
+      "clip": "0JWnUGQrtIs-00:02:56.733-00:03:11.266",
+      "text": "The emotions stirred by Flake's capture of the moment he and his inner circle met with other Senators, quickly breaking up the boundaries of the debate.",
+      "lm_ms": {
+        "gcn": 111.77888594102114,
+        "encoder": 57.61322006583214,
+        "decoder": 2987.0791599387303,
+        "total": 3156.4712659455836,
+        "encoder_len": 264,
+        "decoded_tokens": 43
+      },
+      "convert_ms": 26.796667953021824,
+      "pose_total_ms": 9114.876755978912,
+      "frames_in": 349,
+      "frames_used": 256,
+      "sentence_total_ms": 12298.144689877518,
+      "imread_total_ms": 2034.971005283296,
+      "sentence_excl_imread_ms": 10263.173684594221,
+      "duration_s": 14.533,
+      "rtf": 0.8462220250380181,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.831,
+        "p95": 6.817
+      },
+      "preprocess_ms": {
+        "mean": 5.512,
+        "p95": 6.409
+      },
+      "trt_ms": {
+        "mean": 13.33,
+        "p95": 14.337
+      },
+      "postprocess_ms": {
+        "mean": 1.349,
+        "p95": 1.572
+      },
+      "tag": "c26r2",
+      "J": 65.934,
+      "dyn_J": 15.236
+    },
+    {
+      "clip": "j2iRHiIYtTg-00:12:28.033-00:12:44.500",
+      "text": "The best thing I know is that it's proud to be speaking for our students of color, BIPOC, and persons of color at Gallaudet University.",
+      "lm_ms": {
+        "gcn": 97.70479600410908,
+        "encoder": 57.33900691848248,
+        "decoder": 2491.8791520176455,
+        "total": 2646.922954940237,
+        "encoder_len": 264,
+        "decoded_tokens": 36
+      },
+      "convert_ms": 25.707846973091364,
+      "pose_total_ms": 11282.650848967023,
+      "frames_in": 395,
+      "frames_used": 256,
+      "sentence_total_ms": 13955.281650880352,
+      "imread_total_ms": 3046.350298100151,
+      "sentence_excl_imread_ms": 10908.9313527802,
+      "duration_s": 16.467,
+      "rtf": 0.8474695846772546,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 7.712,
+        "p95": 9.267
+      },
+      "preprocess_ms": {
+        "mean": 5.753,
+        "p95": 6.576
+      },
+      "trt_ms": {
+        "mean": 13.63,
+        "p95": 14.426
+      },
+      "postprocess_ms": {
+        "mean": 1.373,
+        "p95": 1.571
+      },
+      "tag": "c27r0",
+      "J": 74.415,
+      "dyn_J": 16.889
+    },
+    {
+      "clip": "j2iRHiIYtTg-00:12:28.033-00:12:44.500",
+      "text": "The best thing I know is that it's proud to be speaking for our students of color, BIPOC, and persons of color at Gallaudet University.",
+      "lm_ms": {
+        "gcn": 102.83084702678025,
+        "encoder": 57.53318697679788,
+        "decoder": 2510.320328990929,
+        "total": 2670.684362994507,
+        "encoder_len": 264,
+        "decoded_tokens": 36
+      },
+      "convert_ms": 31.733594019897282,
+      "pose_total_ms": 10175.637119915336,
+      "frames_in": 395,
+      "frames_used": 256,
+      "sentence_total_ms": 12878.05507692974,
+      "imread_total_ms": 2354.780010995455,
+      "sentence_excl_imread_ms": 10523.275065934286,
+      "duration_s": 16.467,
+      "rtf": 0.7820522910627158,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.961,
+        "p95": 7.29
+      },
+      "preprocess_ms": {
+        "mean": 5.043,
+        "p95": 6.045
+      },
+      "trt_ms": {
+        "mean": 13.339,
+        "p95": 14.356
+      },
+      "postprocess_ms": {
+        "mean": 1.324,
+        "p95": 1.564
+      },
+      "tag": "c27r1",
+      "J": 68.286,
+      "dyn_J": 15.105
+    },
+    {
+      "clip": "j2iRHiIYtTg-00:12:28.033-00:12:44.500",
+      "text": "The best thing I know is that it's proud to be speaking for our students of color, BIPOC, and persons of color at Gallaudet University.",
+      "lm_ms": {
+        "gcn": 113.09395497664809,
+        "encoder": 58.06939001195133,
+        "decoder": 2506.7254080204293,
+        "total": 2677.8887530090287,
+        "encoder_len": 264,
+        "decoded_tokens": 36
+      },
+      "convert_ms": 27.447017026133835,
+      "pose_total_ms": 10320.176679058932,
+      "frames_in": 395,
+      "frames_used": 256,
+      "sentence_total_ms": 13025.512449094094,
+      "imread_total_ms": 2386.2183489836752,
+      "sentence_excl_imread_ms": 10639.29410011042,
+      "duration_s": 16.467,
+      "rtf": 0.791007010936667,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.041,
+        "p95": 7.238
+      },
+      "preprocess_ms": {
+        "mean": 5.239,
+        "p95": 6.101
+      },
+      "trt_ms": {
+        "mean": 13.416,
+        "p95": 14.389
+      },
+      "postprocess_ms": {
+        "mean": 1.338,
+        "p95": 1.574
+      },
+      "tag": "c27r2",
+      "J": 68.386,
+      "dyn_J": 14.791
+    },
+    {
+      "clip": "NBpYolVo5WQ-00:05:19.033-00:05:38.666",
+      "text": "Some countries are testing different samples from patients who had symptoms that showed a respiratory illness in December and January, trying to understand how the virus spread.",
+      "lm_ms": {
+        "gcn": 108.47220406867564,
+        "encoder": 58.17003303673118,
+        "decoder": 2843.750659027137,
+        "total": 3010.3928961325437,
+        "encoder_len": 264,
+        "decoded_tokens": 41
+      },
+      "convert_ms": 34.10106396768242,
+      "pose_total_ms": 13399.71566409804,
+      "frames_in": 471,
+      "frames_used": 256,
+      "sentence_total_ms": 16444.209624198265,
+      "imread_total_ms": 3145.2796248486266,
+      "sentence_excl_imread_ms": 13298.929999349639,
+      "duration_s": 19.633,
+      "rtf": 0.8375800755971204,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 6.678,
+        "p95": 7.869
+      },
+      "preprocess_ms": {
+        "mean": 6.617,
+        "p95": 7.329
+      },
+      "trt_ms": {
+        "mean": 13.656,
+        "p95": 14.448
+      },
+      "postprocess_ms": {
+        "mean": 1.399,
+        "p95": 1.566
+      },
+      "tag": "c28r0",
+      "J": 87.008,
+      "dyn_J": 19.135
+    },
+    {
+      "clip": "NBpYolVo5WQ-00:05:19.033-00:05:38.666",
+      "text": "Some countries are testing different samples from patients who had symptoms that showed a respiratory illness in December and January, trying to understand how the virus spread.",
+      "lm_ms": {
+        "gcn": 100.74297105893493,
+        "encoder": 79.42048506811261,
+        "decoder": 2851.487959967926,
+        "total": 3031.6514160949737,
+        "encoder_len": 264,
+        "decoded_tokens": 41
+      },
+      "convert_ms": 33.451867988333106,
+      "pose_total_ms": 12007.626114995219,
+      "frames_in": 471,
+      "frames_used": 256,
+      "sentence_total_ms": 15072.729399078526,
+      "imread_total_ms": 2334.4418052583933,
+      "sentence_excl_imread_ms": 12738.287593820132,
+      "duration_s": 19.633,
+      "rtf": 0.7677242091926108,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.956,
+        "p95": 6.069
+      },
+      "preprocess_ms": {
+        "mean": 5.729,
+        "p95": 6.907
+      },
+      "trt_ms": {
+        "mean": 13.375,
+        "p95": 14.481
+      },
+      "postprocess_ms": {
+        "mean": 1.339,
+        "p95": 1.574
+      },
+      "tag": "c28r1",
+      "J": 80.004,
+      "dyn_J": 17.718
+    },
+    {
+      "clip": "NBpYolVo5WQ-00:05:19.033-00:05:38.666",
+      "text": "Some countries are testing different samples from patients who had symptoms that showed a respiratory illness in December and January, trying to understand how the virus spread.",
+      "lm_ms": {
+        "gcn": 109.64502906426787,
+        "encoder": 57.261665002442896,
+        "decoder": 2834.8480610875413,
+        "total": 3001.754755154252,
+        "encoder_len": 264,
+        "decoded_tokens": 41
+      },
+      "convert_ms": 28.151832055300474,
+      "pose_total_ms": 12142.894717049785,
+      "frames_in": 471,
+      "frames_used": 256,
+      "sentence_total_ms": 15172.801304259337,
+      "imread_total_ms": 2371.2386179249734,
+      "sentence_excl_imread_ms": 12801.562686334364,
+      "duration_s": 19.633,
+      "rtf": 0.772821336742186,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.034,
+        "p95": 6.001
+      },
+      "preprocess_ms": {
+        "mean": 5.821,
+        "p95": 6.671
+      },
+      "trt_ms": {
+        "mean": 13.477,
+        "p95": 14.333
+      },
+      "postprocess_ms": {
+        "mean": 1.353,
+        "p95": 1.544
+      },
+      "tag": "c28r2",
+      "J": 79.929,
+      "dyn_J": 17.229
+    },
+    {
+      "clip": "L68SkmewDnI-00:05:17.666-00:05:43.666",
+      "text": "Trump tweeted that mail-in voting is a \"potentially fraudulent act\" and that he fears mail-in ballots will be robbed.",
+      "lm_ms": {
+        "gcn": 114.55008399207145,
+        "encoder": 77.4136979598552,
+        "decoder": 2519.664725055918,
+        "total": 2711.6285070078447,
+        "encoder_len": 264,
+        "decoded_tokens": 35
+      },
+      "convert_ms": 35.39529803674668,
+      "pose_total_ms": 16290.46745004598,
+      "frames_in": 624,
+      "frames_used": 256,
+      "sentence_total_ms": 19037.491255090572,
+      "imread_total_ms": 3548.732287134044,
+      "sentence_excl_imread_ms": 15488.758967956528,
+      "duration_s": 26.0,
+      "rtf": 0.7322112021188681,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.687,
+        "p95": 7.383
+      },
+      "preprocess_ms": {
+        "mean": 5.382,
+        "p95": 6.969
+      },
+      "trt_ms": {
+        "mean": 13.579,
+        "p95": 14.468
+      },
+      "postprocess_ms": {
+        "mean": 1.364,
+        "p95": 1.602
+      },
+      "tag": "c29r0",
+      "J": 100.984,
+      "dyn_J": 22.35
+    },
+    {
+      "clip": "L68SkmewDnI-00:05:17.666-00:05:43.666",
+      "text": "Trump tweeted that mail-in voting is a \"potentially fraudulent act\" and that he fears mail-in ballots will be robbed.",
+      "lm_ms": {
+        "gcn": 99.54647207632661,
+        "encoder": 59.972566086798906,
+        "decoder": 2553.956900956109,
+        "total": 2713.4759391192347,
+        "encoder_len": 264,
+        "decoded_tokens": 35
+      },
+      "convert_ms": 26.34402201510966,
+      "pose_total_ms": 16204.663256066851,
+      "frames_in": 624,
+      "frames_used": 256,
+      "sentence_total_ms": 18944.483217201196,
+      "imread_total_ms": 3141.577077913098,
+      "sentence_excl_imread_ms": 15802.906139288098,
+      "duration_s": 26.0,
+      "rtf": 0.7286339698923536,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 5.035,
+        "p95": 5.872
+      },
+      "preprocess_ms": {
+        "mean": 5.914,
+        "p95": 6.656
+      },
+      "trt_ms": {
+        "mean": 13.561,
+        "p95": 14.38
+      },
+      "postprocess_ms": {
+        "mean": 1.364,
+        "p95": 1.552
+      },
+      "tag": "c29r1",
+      "J": 98.156,
+      "dyn_J": 19.936
+    },
+    {
+      "clip": "L68SkmewDnI-00:05:17.666-00:05:43.666",
+      "text": "Trump tweeted that mail-in voting is a \"potentially fraudulent act\" and that he fears mail-in ballots will be robbed.",
+      "lm_ms": {
+        "gcn": 109.61863305419683,
+        "encoder": 80.70729800965637,
+        "decoder": 2521.464377990924,
+        "total": 2711.790309054777,
+        "encoder_len": 264,
+        "decoded_tokens": 35
+      },
+      "convert_ms": 32.706191996112466,
+      "pose_total_ms": 15977.586759021506,
+      "frames_in": 624,
+      "frames_used": 256,
+      "sentence_total_ms": 18722.083260072395,
+      "imread_total_ms": 3083.3905935287476,
+      "sentence_excl_imread_ms": 15638.692666543648,
+      "duration_s": 26.0,
+      "rtf": 0.7200801253873998,
+      "no_person_box": null,
+      "imread_ms": {
+        "mean": 4.941,
+        "p95": 5.887
+      },
+      "preprocess_ms": {
+        "mean": 5.726,
+        "p95": 6.556
+      },
+      "trt_ms": {
+        "mean": 13.498,
+        "p95": 14.344
+      },
+      "postprocess_ms": {
+        "mean": 1.346,
+        "p95": 1.547
+      },
+      "tag": "c29r2",
+      "J": 96.574,
+      "dyn_J": 19.388
+    }
+  ],
+  "power": {
+    "n_samples": 11107,
+    "duration_s": 555.3,
+    "rails_mW_avg": {
+      "VDD_CPU_GPU_CV": 1537.0,
+      "VDD_IN": 5396.4,
+      "VDD_SOC": 1419.6
+    },
+    "rails_mW_max": {
+      "VDD_CPU_GPU_CV": 2440.0,
+      "VDD_IN": 6931.1,
+      "VDD_SOC": 1725.5
+    },
+    "aux_avg": {
+      "GR3D_FREQ_pct": 50.19,
+      "cpu0_MHz": 921.89,
+      "fan_pwm": 59.63,
+      "fan_rpm": 1039.94,
+      "gpu_MHz": 328.4,
+      "temp_cpu_C": 44.8,
+      "temp_gpu_C": 45.39,
+      "temp_soc0_C": 44.86,
+      "temp_soc1_C": 44.04,
+      "temp_soc2_C": 44.2,
+      "temp_tj_C": 45.39
+    },
+    "total_rail": "VDD_IN",
+    "avg_watts": 5.396,
+    "energy_mJ": 2996606.5,
+    "baseline_watts": 4.139,
+    "dynamic_energy_mJ": 698428.6,
+    "n_frames": 15864,
+    "mJ_per_frame": 188.89,
+    "dynamic_mJ_per_frame": 44.03
+  },
+  "stage_power": {
+    "pose": {
+      "n_windows": 90,
+      "J_per_sentence": 23.08,
+      "dyn_J_per_sentence": 4.467,
+      "avg_watts": 5.262,
+      "duration_s": 4.497,
+      "n_samples_per_window": 90.9
+    },
+    "convert": {
+      "n_windows": 30,
+      "J_per_sentence": 0.0,
+      "dyn_J_per_sentence": 0.0,
+      "avg_watts": 4.961,
+      "duration_s": 0.0,
+      "n_samples_per_window": 1
+    },
+    "lm": {
+      "n_windows": 90,
+      "J_per_sentence": 9.562,
+      "dyn_J_per_sentence": 3.127,
+      "avg_watts": 6.035,
+      "duration_s": 1.555,
+      "n_samples_per_window": 32.1
+    },
+    "_check": {
+      "stage_sum_J_per_sentence": 32.642,
+      "window_J_per_sentence": 33.296,
+      "residual_J": 0.654,
+      "residual_pct": 1.96,
+      "note": "residual is edge quantisation plus the inter-stage gaps; compare it against n_samples_per_window before reading anything into a stage"
+    }
+  },
+  "config": {
+    "engine": "models/rtmw/rtmw-l-m_256x192_fp16.engine",
+    "frames": null,
+    "meta": null,
+    "clip_list": "results/e2e_clips30.txt",
+    "clips_dir": "data/clips",
+    "det_engine": null,
+    "det_size": 416,
+    "preproc": null,
+    "ckpt": "weights/openasl_pose_only_slt_pruned.pth",
+    "mt5": "weights/mt5-base-openasl-pruned",
+    "square_norm": true,
+    "crop_wh": null,
+    "device": "cuda",
+    "dtype": "fp32",
+    "max_length": 256,
+    "max_new_tokens": 64,
+    "num_beams": 4,
+    "warmup": 20,
+    "limit": null,
+    "repeat": 3,
+    "keep_fps": 24.0,
+    "src_fps": null,
+    "out": "results/e2e_clips30/e2e_shipped.json",
+    "power_backend": "auto",
+    "power_interval_ms": 50,
+    "power_sudo": false,
+    "idle_seconds": 3.0,
+    "power_csv": null,
+    "power_json": "results/e2e_clips30/power_shipped.json"
+  }
+}

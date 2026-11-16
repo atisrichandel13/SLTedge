@@ -117,8 +117,17 @@ def square_norm_fn(meta_path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--engine", required=True)
-    ap.add_argument("--frames", required=True)
+    ap.add_argument("--frames", default=None, help="one clip's frames dir (or use --clip-list)")
     ap.add_argument("--meta", default=None, help="clip meta.json; required for --square-norm")
+    ap.add_argument("--clip-list", default=None,
+                    help="file of clip names under --clips-dir: every clip runs --repeat timed "
+                         "sentences in ONE process, so the LM loads once and the summary reports the "
+                         "distribution across clips (ASK-LATENCY-CLIP-COUNT-2026-11-04)")
+    ap.add_argument("--clips-dir", default="data/clips")
+    ap.add_argument("--det-engine", default=None,
+                    help="YOLOX TRT engine cut before NMS (task1_rtmpose/person_det.py): the authors' "
+                         "recipe -- their 224 square rebuilt from our crop, pose on the largest box")
+    ap.add_argument("--det-size", type=int, default=416)
     ap.add_argument("--preproc", default=None)
     ap.add_argument("--ckpt", required=True)
     ap.add_argument("--mt5", required=True)
@@ -142,38 +151,83 @@ def main():
     add_power_args(ap)
     args = ap.parse_args()
 
-    if args.square_norm and not args.meta:
-        raise SystemExit("--square-norm needs --meta (the clip's bbox and source resolution)")
+    if args.clip_list:
+        names = [ln.strip() for ln in open(args.clip_list) if ln.strip()]
+        specs = [(os.path.join(args.clips_dir, n, "frames"), os.path.join(args.clips_dir, n, "meta.json"),
+                  n) for n in names]
+    elif args.frames:
+        specs = [(args.frames, args.meta,
+                  os.path.basename(os.path.dirname(os.path.abspath(args.frames))))]
+    else:
+        raise SystemExit("give --frames (one clip) or --clip-list")
+    if (args.square_norm or args.det_engine) and not all(m for _, m, _ in specs):
+        raise SystemExit("--square-norm / --det-engine need each clip's meta (bbox and source "
+                         "resolution)")
+    multi = len(specs) > 1
 
-    frames, fps_info = list_frames(args.frames, args.limit, keep_fps=args.keep_fps,
-                                   meta_path=args.meta, src_fps=args.src_fps)
     pp = load_preproc(args.preproc or os.path.join(os.path.dirname(os.path.abspath(args.engine)),
                                                    "preproc.json"))
-    sqf, geom = (square_norm_fn(args.meta) if args.square_norm else (None, None))
+    clips = []
+    for fdir, meta, name in specs:
+        frames, fps_info = list_frames(fdir, args.limit, keep_fps=args.keep_fps,
+                                       meta_path=meta, src_fps=args.src_fps)
+        sqf, geom = (square_norm_fn(meta) if args.square_norm else (None, None))
+        m = json.load(open(meta)) if meta else {}
+        emu = None
+        if args.det_engine:
+            from person_det import authors_224
+            emu = authors_224(m["bbox_norm"], m["source_wh"][0], m["source_wh"][1], m["crop_xywh"][:2])
+        clips.append({"name": name, "frames": frames, "fps_info": fps_info, "sqf": sqf, "geom": geom,
+                      "emu": emu, "duration_s": m.get("duration_s")})
+
+    def meminfo():
+        out = {}
+        try:
+            for line in open("/proc/meminfo"):
+                k = line.split(":")[0]
+                if k in ("MemFree", "MemAvailable", "MemTotal"):
+                    out[k] = int(line.split()[1]) // 1024
+        except OSError:
+            pass
+        return out
 
     # Both models are loaded BEFORE the power window: this is the deployed configuration (pose engine
     # and LM resident together, sharing the 15 W cap), and load cost is a startup number, not a
     # per-sentence one.
+    mem = {"start": meminfo()}
     t0 = time.perf_counter()
     runner = TrtRunner(args.engine)
     load_pose_s = time.perf_counter() - t0
     in_name = runner.inputs[0]
+    mem["after_pose"] = meminfo()
+
+    det = None
+    if args.det_engine:
+        from person_det import YoloxPersonDet
+        det = YoloxPersonDet(args.det_engine, size=args.det_size)
+        z = np.zeros((args.det_size, args.det_size, 3), dtype=np.uint8)
+        for _ in range(args.warmup):
+            det(z)
+        mem["after_det"] = meminfo()
 
     t0 = time.perf_counter()
     dtype = {"fp32": torch.float32, "fp16": torch.float16, "bf16": torch.bfloat16}[args.dtype]
     model = load_model(args.ckpt, args.mt5, device=args.device, dtype=dtype)
     load_lm_s = time.perf_counter() - t0
-    print(f"[m1] pose engine {load_pose_s:.1f}s, LM {load_lm_s:.1f}s, {len(frames)} frames, "
-          f"square_norm={args.square_norm}")
-    if args.keep_fps:
-        print(f"[m1] rate {fps_info['src_fps']} -> {fps_info['keep_fps']} fps: "
-              f"{fps_info['frames_in']} -> {fps_info['frames_kept']} frames")
+    mem["after_lm"] = meminfo()
+    print(f"[m1] pose engine {load_pose_s:.1f}s, LM {load_lm_s:.1f}s, {len(clips)} clip(s), "
+          f"{sum(len(c['frames']) for c in clips)} frames, square_norm={args.square_norm}, "
+          f"detector={'yes' if det else 'no'}")
+    if args.keep_fps and not multi:
+        fi = clips[0]["fps_info"]
+        print(f"[m1] rate {fi['src_fps']} -> {fi['keep_fps']} fps: "
+              f"{fi['frames_in']} -> {fi['frames_kept']} frames")
 
-    x0, _, _ = preprocess(cv2.imread(frames[0]), None, pp)
+    x0, _, _ = preprocess(cv2.imread(clips[0]["frames"][0]), None, pp)
     for _ in range(args.warmup):
         runner.infer({in_name: x0})
 
-    def one_sentence(pl=None, tag=None):
+    def one_sentence(clip, pl=None, tag=None):
         """pl/tag are the per-stage power windows. Marks are named <tag>_<stage>_{0,1} and are
         carved out of the same sample stream afterwards, so a stage's joules are integrated from
         its own samples rather than apportioned from the sentence total by latency share -- the
@@ -181,23 +235,38 @@ def main():
         def mk(name):
             if pl is not None and tag is not None:
                 pl.mark(f"{tag}_{name}")
-        lat = {"imread_ms": [], "preprocess_ms": [], "trt_ms": [], "postprocess_ms": []}
+        frames, sqf, emu = clip["frames"], clip["sqf"], clip["emu"]
+        lat = {"imread_ms": [], "square_ms": [], "det_ms": [], "preprocess_ms": [], "trt_ms": [],
+               "postprocess_ms": []}
         kps, scs = [], []
+        nobox = 0
         mk("pose_0")
         t_pose0 = time.perf_counter()
         for path in frames:
             tr0 = time.perf_counter()
             img = cv2.imread(path)
             t1 = time.perf_counter()
-            x, center, scale = preprocess(img, None, pp)
+            lat["imread_ms"].append((t1 - tr0) * 1e3)
+            box, pimg = None, img
+            if det is not None:
+                pimg = emu[0](img)
+                ts = time.perf_counter()
+                box = det(pimg)
+                nobox += box is None
+                td = time.perf_counter()
+                lat["square_ms"].append((ts - t1) * 1e3)
+                lat["det_ms"].append((td - ts) * 1e3)
+                t1 = td
+            x, center, scale = preprocess(pimg, box, pp)
             t2 = time.perf_counter()
             outs = runner.infer({in_name: x})
             t3 = time.perf_counter()
             sx = outs["simcc_x"].cpu().numpy()
             sy = outs["simcc_y"].cpu().numpy()
             k, s = postprocess(sx, sy, center, scale, pp)
+            if emu is not None:
+                k = emu[1](k)
             t4 = time.perf_counter()
-            lat["imread_ms"].append((t1 - tr0) * 1e3)
             lat["preprocess_ms"].append((t2 - t1) * 1e3)
             lat["trt_ms"].append((t3 - t2) * 1e3)
             lat["postprocess_ms"].append((t4 - t3) * 1e3)
@@ -221,28 +290,43 @@ def main():
         mk("lm_0")
         r = model.translate(src, max_new_tokens=args.max_new_tokens, num_beams=args.num_beams)
         mk("lm_1")
-        out = {"text": r["text"], "lm_ms": r["timing_ms"], "convert_ms": convert_ms,
+        total = pose_total_ms + convert_ms + r["timing_ms"]["total"]
+        imread_total = sum(lat["imread_ms"])
+        out = {"clip": clip["name"], "text": r["text"], "lm_ms": r["timing_ms"], "convert_ms": convert_ms,
                "pose_total_ms": pose_total_ms, "frames_in": len(frames), "frames_used": len(idx),
-               "sentence_total_ms": pose_total_ms + convert_ms + r["timing_ms"]["total"]}
+               "sentence_total_ms": total,
+               # imread is a dataset artefact (JPEG off disk); a camera pipeline would not pay it
+               "imread_total_ms": imread_total, "sentence_excl_imread_ms": total - imread_total,
+               "duration_s": clip["duration_s"],
+               "rtf": (total / 1e3 / clip["duration_s"]) if clip["duration_s"] else None,
+               "no_person_box": nobox if det is not None else None}
         for k, v in lat.items():
-            out[k] = {"mean": round(statistics.mean(v), 3), "p95": round(float(np.percentile(v, 95)), 3)}
+            if v:
+                out[k] = {"mean": round(statistics.mean(v), 3), "p95": round(float(np.percentile(v, 95)), 3)}
         return out
 
     print("[m1] warm-up sentence ...")
-    w = one_sentence()
+    # a mid-length clip in a multi-clip run, so the warm-up exercises a typical sequence length
+    w = one_sentence(clips[len(clips) // 2])
     print(f"[m1] warm-up {w['sentence_total_ms']:.0f} ms -> {w['text']!r}")
 
     plbox = {}
 
     def job(pl):
         plbox["pl"] = pl          # the logger outlives the with-block; its samples/marks persist
-        runs = []
-        for i in range(args.repeat):
-            r = one_sentence(pl, f"r{i}")
-            runs.append(r)
-            print(f"[m1] run {i+1}: pose {r['pose_total_ms']:.0f} + convert {r['convert_ms']:.1f} + "
-                  f"LM {r['lm_ms']['total']:.0f} = {r['sentence_total_ms']:.0f} ms")
-        return {"runs": runs, "n_frames_total": sum(r["frames_in"] for r in runs),
+        runs, tags = [], []
+        for j, clip in enumerate(clips):
+            for i in range(args.repeat):
+                tag = f"c{j}r{i}" if multi else f"r{i}"
+                r = one_sentence(clip, pl, tag)
+                r["tag"] = tag
+                runs.append(r)
+                tags.append(tag)
+                print(f"[m1] {clip['name'][:24]} run {i+1}: pose {r['pose_total_ms']:.0f} + convert "
+                      f"{r['convert_ms']:.1f} + LM {r['lm_ms']['total']:.0f} = "
+                      f"{r['sentence_total_ms']:.0f} ms ({r['frames_in']} frames, "
+                      f"{r['lm_ms'].get('decoded_tokens')} tokens)", flush=True)
+        return {"runs": runs, "tags": tags, "n_frames_total": sum(r["frames_in"] for r in runs),
                 "n_sentences": len(runs)}
 
     res, power = run_with_power(args, job, lambda s: s["n_frames_total"], pass_logger=True)
@@ -269,8 +353,8 @@ def main():
         stage_power = {}
         for st in ("pose", "convert", "lm"):
             per = []
-            for i in range(res["n_sentences"]):
-                w = (f"r{i}_{st}_0", f"r{i}_{st}_1")
+            for tag in res["tags"]:
+                w = (f"{tag}_{st}_0", f"{tag}_{st}_1")
                 if w[0] in pl.marks and w[1] in pl.marks:
                     per.append(pl.summarize(window=w, baseline=base))
             ok = [x for x in per if "error" not in x]
@@ -313,12 +397,48 @@ def main():
                          ("imread_ms", "preprocess_ms", "trt_ms", "postprocess_ms")},
         "J_per_sentence": round(j_per_sentence, 2),
         "dyn_J_per_sentence": round(dyn_j_per_sentence, 2),
-        "square_norm": args.square_norm, "square_geom": geom,
-        "fps": fps_info, "num_beams": args.num_beams,
+        "square_norm": args.square_norm, "square_geom": clips[0]["geom"],
+        "fps": clips[0]["fps_info"], "num_beams": args.num_beams,
         "load_pose_s": round(load_pose_s, 2), "load_lm_s": round(load_lm_s, 2),
+        "detector": args.det_engine, "meminfo_mb": mem,
     }
     if args.device == "cuda":
         summary["peak_gpu_GB"] = round(torch.cuda.max_memory_allocated() / 1e9, 3)
+
+    # Per-sentence energy from the sentence's own window, then the distribution ACROSS CLIPS. Three
+    # repeats of one clip measure run-to-run jitter only; the decoder scales with output tokens and the
+    # pose stage with frames, so the variance that governs RTF is across sentences
+    # (ASK-LATENCY-CLIP-COUNT-2026-11-04).
+    if pl is not None:
+        base = ("idle_start", "idle_end") if args.idle_seconds > 0 else None
+        for r in runs:
+            s = pl.summarize(window=(f"{r['tag']}_pose_0", f"{r['tag']}_lm_1"), baseline=base)
+            if "error" not in s:
+                r["J"] = round(s["energy_mJ"] / 1e3, 3)
+                r["dyn_J"] = round(s.get("dynamic_energy_mJ", float("nan")) / 1e3, 3)
+    if multi:
+        def dist(v):
+            v = [x for x in v if x is not None]
+            if not v:
+                return None
+            return {"p50": round(float(np.percentile(v, 50)), 3), "p95": round(float(np.percentile(v, 95)), 3),
+                    "max": round(float(max(v)), 3), "mean": round(float(np.mean(v)), 3), "n": len(v)}
+        rtf = [r["rtf"] for r in runs if r["rtf"] is not None]
+        summary["distribution"] = {
+            "n_clips": len(clips), "n_sentences": len(runs), "repeats_per_clip": args.repeat,
+            "sentence_total_ms": dist([r["sentence_total_ms"] for r in runs]),
+            "sentence_excl_imread_ms": dist([r["sentence_excl_imread_ms"] for r in runs]),
+            "pose_total_ms": dist([r["pose_total_ms"] for r in runs]),
+            "pose_ms_per_frame": dist([r["pose_total_ms"] / r["frames_in"] for r in runs]),
+            "lm_total_ms": dist([r["lm_ms"]["total"] for r in runs]),
+            "decoded_tokens": dist([r["lm_ms"].get("decoded_tokens") for r in runs]),
+            "rtf": dict(dist(rtf), frac_le_1=round(sum(x <= 1.0 for x in rtf) / len(rtf), 3)),
+            "rtf_excl_imread": dist([r["sentence_excl_imread_ms"] / 1e3 / r["duration_s"]
+                                     for r in runs if r["duration_s"]]),
+            "J_per_sentence": dist([r.get("J") for r in runs]),
+            "dyn_J_per_sentence": dist([r.get("dyn_J") for r in runs]),
+            "clip_duration_s": dist([c["duration_s"] for c in clips]),
+        }
     print("\n[m1] " + json.dumps({k: v for k, v in summary.items() if k != "square_geom"}, indent=2))
     print(f"[m1] text: {summary['text']!r}")
     if stage_power:

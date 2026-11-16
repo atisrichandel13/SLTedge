@@ -1,0 +1,35 @@
+{
+  "n_samples": 11107,
+  "duration_s": 555.3,
+  "rails_mW_avg": {
+    "VDD_CPU_GPU_CV": 1537.0,
+    "VDD_IN": 5396.4,
+    "VDD_SOC": 1419.6
+  },
+  "rails_mW_max": {
+    "VDD_CPU_GPU_CV": 2440.0,
+    "VDD_IN": 6931.1,
+    "VDD_SOC": 1725.5
+  },
+  "aux_avg": {
+    "GR3D_FREQ_pct": 50.19,
+    "cpu0_MHz": 921.89,
+    "fan_pwm": 59.63,
+    "fan_rpm": 1039.94,
+    "gpu_MHz": 328.4,
+    "temp_cpu_C": 44.8,
+    "temp_gpu_C": 45.39,
+    "temp_soc0_C": 44.86,
+    "temp_soc1_C": 44.04,
+    "temp_soc2_C": 44.2,
+    "temp_tj_C": 45.39
+  },
+  "total_rail": "VDD_IN",
+  "avg_watts": 5.396,
+  "energy_mJ": 2996606.5,
+  "baseline_watts": 4.139,
+  "dynamic_energy_mJ": 698428.6,
+  "n_frames": 15864,
+  "mJ_per_frame": 188.89,
+  "dynamic_mJ_per_frame": 44.03
+}

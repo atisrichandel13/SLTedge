@@ -1,0 +1,52 @@
+{
+ "onnx": "scratchpad/models/rtmw-x-l_256x192/end2end.onnx",
+ "frames": 12,
+ "fp16_max": 65504.0,
+ "overflow": [],
+ "near": [],
+ "top": [
+  {
+   "max": 386.90435791015625,
+   "mean": 178.6752166748047,
+   "tensor": "1288",
+   "node": "ReduceSum_424",
+   "op": "ReduceSum"
+  },
+  {
+   "max": 130.13284301757812,
+   "mean": 0.930600106716156,
+   "tensor": "1287",
+   "node": "Mul_423",
+   "op": "Mul"
+  },
+  {
+   "max": 125.80452728271484,
+   "mean": 18.067977905273438,
+   "tensor": "1336",
+   "node": "MatMul_457",
+   "op": "MatMul"
+  },
+  {
+   "max": 117.5398178100586,
+   "mean": 2.77240252494812,
+   "tensor": "1337",
+   "node": "Mul_458",
+   "op": "Mul"
+  },
+  {
+   "max": 90.85277557373047,
+   "mean": 1.9245868921279907,
+   "tensor": "1520",
+   "node": "Conv_198",
+   "op": "Conv"
+  },
+  {
+   "max": 90.85277557373047,
+   "mean": 0.6319918036460876,
+   "tensor": "988",
+   "node": "Mul_200",
+   "op": "Mul"
+  }
+ ],
+ "prefixes": []
+}

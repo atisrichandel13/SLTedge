@@ -26,9 +26,10 @@ TRT engine set takes 2.07 GB resident (§L8.2) and has NEVER been run with the p
 L8.2 already needed the 1.03 GB PyTorch reference freed and the page cache evicted before those
 engines would deserialise. Do not "optimise" this to TRT without re-measuring MemFree first.
 
-WHY THE PHONE SENDS A BOX AND NOT A CROP. There is no person detector in this project
+WHY THE PHONE SENDS A BOX AND NOT A CROP. The shipped path runs no person detector
 (`task1_rtmpose/03_infer_frames.py`), so the box has to come from the caller -- iOS Vision on the
-phone. But the phone must send FULL frames plus the box, not a pre-cropped image, and specifically
+phone. (`--det-engine` adds the authors' YOLOX box on their 224 square; §L33 measured it as a BLEU
+null at n=931 that doubles pose time, so it is off by default.) But the phone must send FULL frames plus the box, not a pre-cropped image, and specifically
 NOT OpenASL's 224 square: every pose number we have was extracted from a NATIVE-resolution bbox crop
 (`data/clips*/index.json` record `crop_style=native`, "no square/pad/resize") because RTMW does its
 own affine (`data/openasl_fetch.py:17`). Cropping to 224 on the phone would resample twice and feed
@@ -101,6 +102,20 @@ class Pipeline:
         self.in_name = self.runner.inputs[0]
         mf1 = _memfree_mb()
 
+        # The authors' recipe (§L33): their 224 square rebuilt from our crop, a YOLOX-tiny person box,
+        # pose on that box. The detector alone on our native crop measured as a null (0.0045 vs 0.0046
+        # used69 distance), so --det-engine always brings the square with it.
+        self.det, self.load_det_s, mf_det = None, None, None
+        if args.det_engine:
+            from person_det import YoloxPersonDet
+            t0 = time.perf_counter()
+            self.det = YoloxPersonDet(args.det_engine, size=args.det_size)
+            self.load_det_s = time.perf_counter() - t0
+            z = np.zeros((args.det_size, args.det_size, 3), dtype=np.uint8)
+            for _ in range(args.warmup):
+                self.det(z)
+            mf_det = _memfree_mb()
+
         t0 = time.perf_counter()
         dtype = {"fp32": torch.float32, "fp16": torch.float16, "bf16": torch.bfloat16}[args.dtype]
         self.model = load_model(args.ckpt, args.mt5, device=args.device, dtype=dtype)
@@ -135,8 +150,11 @@ class Pipeline:
                   f"~2.6x slower than steady state", flush=True)
         mf3 = _memfree_mb()
 
-        self.memfree_mb = {"start": mf0, "after_pose": mf1, "after_lm": mf2, "after_warmup": mf3}
-        print(f"[demo] pose engine {self.load_pose_s:.1f}s, LM {self.load_lm_s:.1f}s, "
+        self.memfree_mb = {"start": mf0, "after_pose": mf1, "after_det": mf_det, "after_lm": mf2,
+                           "after_warmup": mf3}
+        print(f"[demo] pose engine {self.load_pose_s:.1f}s, detector "
+              f"{'none' if self.load_det_s is None else round(self.load_det_s, 1)}"
+              f"{'' if self.load_det_s is None else 's'}, LM {self.load_lm_s:.1f}s, "
               f"LM warm-up {self.warm_lm_s if self.warm_lm_s is None else round(self.warm_lm_s, 1)}s",
               flush=True)
         print(f"[demo] MemFree MB {self.memfree_mb}", flush=True)
@@ -221,14 +239,31 @@ class Pipeline:
                         "at its native rate rather than at the requested one")
 
         sqf = self._square_norm_fn(bbox_norm, crop, source_wh)
+        emu = None
+        if self.det is not None:
+            from person_det import authors_224
+            emu = authors_224(bbox_norm, source_wh[0], source_wh[1], crop)
 
         t_pose0 = time.perf_counter()
         kps, scs, dropped = [], [], []
+        sq_ms = det_ms = 0.0
+        no_det = 0
         for i, img in enumerate(frames):
-            x, center, scale = preprocess(img, None, self.pp)
+            box = None
+            if emu is not None:
+                t0 = time.perf_counter()
+                img = emu[0](img)
+                t1 = time.perf_counter()
+                box = self.det(img)
+                det_ms += (time.perf_counter() - t1) * 1e3
+                sq_ms += (t1 - t0) * 1e3
+                no_det += box is None
+            x, center, scale = preprocess(img, box, self.pp)
             outs = self.runner.infer({self.in_name: x})
             k, s = postprocess(outs["simcc_x"].cpu().numpy(),
                                outs["simcc_y"].cpu().numpy(), center, scale, self.pp)
+            if emu is not None:
+                k = emu[1](k)
             if not (np.isfinite(k).all() and np.isfinite(s).all()):
                 dropped.append(i)          # §L28: no person in the crop. Never translate these.
                 continue
@@ -258,8 +293,12 @@ class Pipeline:
             "keep_fps": keep_fps,
             "crop_xywh": crop,
             "source_wh": source_wh,
+            "recipe": "native" if emu is None else "authors_224_yolox",
+            "frames_no_person_box": no_det if emu is not None else None,
             "timing_ms": {
                 "pose": round(pose_ms, 1),
+                "pose_of_which_square_224": round(sq_ms, 1) if emu is not None else None,
+                "pose_of_which_detector": round(det_ms, 1) if emu is not None else None,
                 "convert": round(convert_ms, 1),
                 "lm": {k: round(v, 1) for k, v in r["timing_ms"].items()},
                 "request_total": round((time.perf_counter() - t_req) * 1e3, 1),
@@ -296,6 +335,7 @@ class Handler(BaseHTTPRequestHandler):
             self._json(200, {"ok": True, "served": p.n_served,
                              "load_pose_s": round(p.load_pose_s, 1),
                              "load_lm_s": round(p.load_lm_s, 1),
+                             "load_det_s": None if p.load_det_s is None else round(p.load_det_s, 1),
                              "warm_lm_s": None if p.warm_lm_s is None else round(p.warm_lm_s, 1),
                              "memfree_mb_now": _memfree_mb(),
                              "memfree_mb_at_load": p.memfree_mb,
@@ -375,6 +415,10 @@ def main():
                     help="hard cap on decoded frames per request, so one long upload cannot stall "
                          "the demo; 900 is ~37 s at 24 fps")
     ap.add_argument("--warmup", type=int, default=20)
+    ap.add_argument("--det-engine", default=None,
+                    help="YOLOX person-detector TRT engine built from the graph cut before NMS "
+                         "(person_det.cut_before_nms). Turns on the authors' recipe: 224 square + box")
+    ap.add_argument("--det-size", type=int, default=416)
     ap.add_argument("--tmpdir", default="/tmp")
     args = ap.parse_args()
 

@@ -1,0 +1,12 @@
+{"label": "before_shipped", "time": "2026-11-16T10:52:29-06:00", "power_mode": "15W", "gpu_max_MHz": 612, "users": 0, "foreign_procs_gt1pct": 0, "foreign": "", "other_containers": 0, "our_python_procs": 0, "tj_C": "42.468", "memfree_MB": 1823}
+[cache] force-reclaim touched 4096 MB: MemFree 3280 -> 4380 MB (target 4000)
+[e2e30] === shipped  (users=0 foreign=0 memfree=4383MB after reclaim) 10:52:31
+[e2e30] shipped exit=0 11:02:48 (users_after=0, samples with foreign load: 0)
+{"label": "before_xl", "time": "2026-11-16T11:02:58-06:00", "power_mode": "15W", "gpu_max_MHz": 612, "users": 0, "foreign_procs_gt1pct": 0, "foreign": "", "other_containers": 0, "our_python_procs": 0, "tj_C": "44.906", "memfree_MB": 1904}
+[cache] force-reclaim touched 4096 MB: MemFree 3528 -> 4247 MB (target 4000)
+[e2e30] === xl  (users=0 foreign=0 memfree=4250MB after reclaim) 11:03:01
+[e2e30] xl exit=0 11:14:32 (users_after=0, samples with foreign load: 0)
+{"label": "before_xl_yolo", "time": "2026-11-16T11:14:43-06:00", "power_mode": "15W", "gpu_max_MHz": 612, "users": 0, "foreign_procs_gt1pct": 0, "foreign": "", "other_containers": 0, "our_python_procs": 0, "tj_C": "45.218", "memfree_MB": 1916}
+[cache] force-reclaim touched 4096 MB: MemFree 3615 -> 4370 MB (target 4000)
+[e2e30] === xl_yolo  (users=0 foreign=0 memfree=4370MB after reclaim) 11:14:45
+[e2e30] xl_yolo exit=0 11:31:49 (users_after=0, samples with foreign load: 0)

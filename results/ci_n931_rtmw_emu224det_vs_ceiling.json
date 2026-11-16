@@ -1,0 +1,31 @@
+{
+ "a": "results/eval_test976_ceil_b4_fps24_named.json",
+ "b": "scratchpad/evals/eval_n931_rtmw_emu224det_fp32_maccpu_fps24.json",
+ "n_clips": 931,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 23.13865321771282,
+  "b": 21.495024793884973,
+  "delta": -1.643628423827849,
+  "ci": [
+   -2.3857308573375815,
+   -0.9038386244962596
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0
+ },
+ "rouge_l": {
+  "a": 43.151869662249084,
+  "b": 41.758387495254226,
+  "delta": -1.3934821669948576,
+  "ci": [
+   -2.2393005594682767,
+   -0.5163351810208672
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0
+ }
+}

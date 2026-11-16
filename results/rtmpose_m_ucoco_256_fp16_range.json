@@ -1,0 +1,52 @@
+{
+ "onnx": "scratchpad/models/rtmpose-m_ucoco_256x192/end2end.onnx",
+ "frames": 12,
+ "fp16_max": 65504.0,
+ "overflow": [],
+ "near": [],
+ "top": [
+  {
+   "max": 6321.4853515625,
+   "mean": 2907.06396484375,
+   "tensor": "635",
+   "node": "ReduceSum_214",
+   "op": "ReduceSum"
+  },
+  {
+   "max": 1201.2064208984375,
+   "mean": 55.829402923583984,
+   "tensor": "634",
+   "node": "Mul_213",
+   "op": "Mul"
+  },
+  {
+   "max": 82.7210693359375,
+   "mean": 2.531691074371338,
+   "tensor": "695",
+   "node": "Conv_3",
+   "op": "Conv"
+  },
+  {
+   "max": 81.63636016845703,
+   "mean": 1.3019452095031738,
+   "tensor": "773",
+   "node": "Conv_91",
+   "op": "Conv"
+  },
+  {
+   "max": 81.63636016845703,
+   "mean": 0.44570276141166687,
+   "tensor": "484",
+   "node": "Mul_93",
+   "op": "Mul"
+  },
+  {
+   "max": 80.92787170410156,
+   "mean": 0.5731118321418762,
+   "tensor": "485",
+   "node": "Add_94",
+   "op": "Add"
+  }
+ ],
+ "prefixes": []
+}

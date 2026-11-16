@@ -114,6 +114,22 @@ of which pose is 58 % (§L30).
 > packaging, not models. **Rejected:** RTMPose-x at 384×288, and **RTMW-x-l at 384×288** (which is
 > what "rtmlib performance" is). See §10.1 and §10.2 — the larger RTMW *was* compared, and lost.
 
+> **CANDIDATE REPLACEMENT 2026-11-03, pose track (§L33): RTMW-x-l at 256×192** (rtmlib "balanced").
+> n=931: **22.40 BLEU-4, +0.83 [+0.09, +1.57] over RTMW-l-m, established**; ROUGE-L +0.71
+> [−0.03, +1.52], not. Against the authors' poses **−0.74 [−1.46, +0.01] — the first configuration
+> whose ceiling gap is not established** (non-inferiority at −1.00 is still missed). FP16 range clean
+> (max 386.9). ~~**Not adopted yet:** no board engine, so latency, energy and resident memory are
+> unmeasured; 57.2 M params against 32.2 M.~~ RTMPose-m / -l 256×192 were run in the same sweep and
+> are rejected (§5).
+>
+> **BOARD-MEASURED 2026-11-16 (§L34), 30 clips × 3, board verified clean.** It fits. Against shipped,
+> paired per clip: **latency ×1.134, energy ×1.169**; pose 29.2 vs 25.4 ms/frame; RTF P50 **0.99** vs
+> 0.88, sentences with RTF ≤ 1 **53 %** vs 78 %; 33.7 vs 29.1 J/sentence P50. FP16 engine drift
+> matches the shipped engine's (99.31 % vs 99.44 % of consumed keypoints within 2 bins). **The
+> remaining decision is the trade: +0.83 BLEU-4 for +13 % latency and +17 % energy.** One gap before
+> quoting the BLEU for the deployed engine: §L33 is FP32 pose, and x-l's FP16 has not had §L25's n=931
+> BLEU check (22/30 e2e sentences match the FP32 eval, against 25/30 for l-m — within noise, not shown).
+
 The honest order of events matters here. We did **not** pick RTMW for speed. We ran §C2 to find out
 *which extractor the Uni-Sign authors actually used to make their released keypoints* — the archive
 folder is literally named `pose-rtmpose-192` — and matched it. RTMPose-x 384×288 then became the
@@ -178,6 +194,12 @@ argmax instability in the pose head, not a precision problem, and no choice of n
 
 **Chosen:** crop to the OpenASL signer bbox at **native resolution and native frame rate**, no square
 pad, no resize to 224. **Rejected:** OpenASL's own square-pad-resize-224 recipe.
+
+> **NOW REJECTED ON THE EVIDENCE, 2026-11-03 (§L33)** — the rejection above was reasoned, and §2.5's
+> test was n=5. The authors' full extraction path — their 224 square (rebuilt from our crop), their
+> YOLOX-tiny largest box, RTMW-l-m — scored **21.50 at n=931, −0.07 [−0.65, +0.47] against the native
+> crop**, and it doubles pose time on the board (40.5–43.8 vs 20.2–21.9 ms/frame in the demo server).
+> It does move keypoints toward theirs on 5 clips (0.0046 → 0.0041); that did not become BLEU.
 
 This is the decision most likely to be got wrong by whoever builds the phone side, so it is written
 into `jetson/DEMO.md` as well. RTMW does its **own** affine transform internally. Cropping to a 224
@@ -409,6 +431,12 @@ engine) → 193 (LM) → 75 (warm-up) → **91–130 MB steady**. The first laun
 5,400 first. **This is why the LM runs as PyTorch and not as TensorRT engines** — the FP32 engine set
 is 2.07 GB resident (§L8.2) and there is not 2 GB of room.
 
+> **How to read that MemFree, 2026-11-03 (§L33).** tegrastats shows **4.1 GB of 7.6 GB in use** with
+> both models resident; the rest of what MemFree does not show is page cache from the weights load.
+> GPU allocations draw from MemFree only, so the ~100 MB is the headroom for a *new* GPU allocation
+> (model load, a longer request than any seen) — not the board's total headroom. A YOLOX-tiny engine
+> added to this server cost **+69 MB used** and left serving MemFree unchanged (89–122 MB).
+
 ---
 
 ## 4. Rejected choices, consolidated — including three where our first reason was wrong
@@ -484,7 +512,7 @@ calling them "future work" without saying they were in the plan would be dishone
 | **GPU preprocessing (P11)** | not started | The cost *is* quantified: imread 6.02 ms + preprocess 5.11 ms per frame, 19 % of frame time (§2.2b). |
 | **Same-model resolution row (P7)** | partial | We compared *across* models (RTMPose-x 384 vs RTMW 256), never the same model at two resolutions. |
 | **RTMW-x-l 384×288 on BLEU** | **agreement only** | *Added 2026-10-22 from §10.1.* It was compared against RTMW-l-m on keypoint agreement (§C2) and on one sentence's logprob (§C5), **never on BLEU**. So the one same-family resolution comparison we do have never reached the translation metric. |
-| **RTMPose-l / RTMPose-m wholebody 256×192** | **never run** | *Added 2026-10-22 from §10.1.* Both are in `WORKSPLIT.md` P6's plan and neither was run, so §C2's caveat — "an MMPose RTMPose-m/l wholebody 256×192 would also fit the folder name" — is **still open**: §C2 pinned the authors' extractor's resolution and family, not its checkpoint. |
+| ~~**RTMPose-l / RTMPose-m wholebody 256×192**~~ | ~~**never run**~~ **RUN 2026-11-03, rejected** | *Added 2026-10-22 from §10.1.* **Closed by §L33**, n=931 paired against shipped RTMW-l-m: RTMPose-m **−1.95 BLEU-4 [−2.73, −1.16]**, RTMPose-l **−1.04 [−1.73, −0.35]**, both established worse on both metrics. §C2's caveat is closed. The same sweep scored **RTMW-x-l 256×192** ("balanced"): **+0.83 [+0.09, +1.57]**, established — see §3.1. |
 | **Layer-level TRT profile of the pose engine** | never produced | *Added 2026-10-22 from §10.4.* Needed to turn "the keypoint head is 27 % of the weights" into a latency number. One ~15-minute board run. |
 | **Batching the pose engine** | never measured | *Added 2026-10-22 from §10.7(b).* The engine has one optimisation profile and every run in this project is batch 1 — which is also the only path our agreement checks cover (§6 rule 9). |
 | **A board-measured BLEU** | **never produced** | *Every* accuracy number in this project is offline on the Mac. The only bridge is a 30-clip batch-size-1 agreement check. This is the biggest genuine methodological gap we have. |
@@ -649,6 +677,14 @@ broken out. **What did they score, and on what — keypoint agreement, BLEU, or 
 > Those were **never run.** §C2's own caveat — "an MMPose RTMPose-m/l wholebody 256×192 would also fit
 > the folder name" — is therefore still open: §C2 identified the authors' extractor's *resolution and
 > family*, not its exact checkpoint.
+>
+> **CLOSED 2026-11-03, pose track (§L33).** All three 256×192 alternatives now have an n=931 BLEU:
+> RTMPose-m 19.62, RTMPose-l 20.53, **RTMW-x-l 22.40**, against shipped RTMW-l-m 21.57 and the
+> authors' poses 23.14. The 19-clip keypoint-agreement screen ordered all four exactly as BLEU did.
+> The authors' own `demo/pose_extraction.py` defaults to rtmlib lightweight = **RTMW-l-m**, the model we
+> ship; their vendored rtmlib also puts a YOLOX person box in front and feeds BGR. Copying both onto
+> their 224 square brought no BLEU (−0.07 [−0.65, +0.47]). Their exact extractor is still not
+> identified: the closest replica (x-l + box) sits at 0.0036 from their keypoints, not zero.
 
 ### 10.2 Why *l-m* specifically
 RTMW ships in several sizes. §C2 established that the authors used *a 256×192 RTMW/RTMPose model* and
@@ -670,6 +706,11 @@ not in §3.1 as a decision.**
 >
 > **"256×192 to match the authors; l-m over x-l on keypoint agreement; the smaller 256×192 variants
 > never compared."** The third clause is the §5 gap.
+>
+> **SUPERSEDED 2026-11-03 (§L33).** The x-l that lost here was **384×288**, on one clip. **x-l at
+> 256×192** beats l-m on BLEU-4 at n=931 (+0.83 [+0.09, +1.57]) and is closer to the authors' keypoints
+> on 84 % of the 19 screen clips. The 256×192 size axis is now swept; l-m stays shipped only until x-l
+> has board numbers (§3.1).
 
 ### 10.3 The 7 FP32 layers
 §3.2 trap 2 says 7 of 465 RTMPose-x layers stay in FP32. **How were those 7 picked — a measured

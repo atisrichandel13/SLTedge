@@ -1,0 +1,31 @@
+{
+ "a": "scratchpad/evals/eval_n931_rtmw_fp32_maccpu_fps24.json",
+ "b": "scratchpad/evals/eval_n931_rtmpose_m_fp32_maccpu_fps24.json",
+ "n_clips": 931,
+ "n_boot": 2000,
+ "aligned_by": "names",
+ "bleu4": {
+  "a": 21.569519062525448,
+  "b": 19.619406820788203,
+  "delta": -1.9501122417372443,
+  "ci": [
+   -2.7329328707610143,
+   -1.1604153172935052
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0
+ },
+ "rouge_l": {
+  "a": 41.689649734552795,
+  "b": 39.21950096838533,
+  "delta": -2.470148766167462,
+  "ci": [
+   -3.354146948015928,
+   -1.5531631399201857
+  ],
+  "identical_on_these_clips": false,
+  "straddles_zero": false,
+  "p_wrong_sign": 0.0
+ }
+}

@@ -1,0 +1,339 @@
+[m1] pose engine 1.2s, LM 30.9s, 30 clip(s), 5288 frames, square_norm=True, detector=no
+[m1] warm-up sentence ...
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[m1] warm-up 8541 ms -> "NLTC is outstanding because without this opportunity, we can't learn."
+[power] backend=sysfs interval=50ms
+[m1] TXyNxVRRPt8-00:01:25.600 run 1: pose 516 + convert 5.9 + LM 899 = 1421 ms (16 frames, 4 tokens)
+[m1] TXyNxVRRPt8-00:01:25.600 run 2: pose 343 + convert 4.4 + LM 467 = 815 ms (16 frames, 4 tokens)
+[m1] TXyNxVRRPt8-00:01:25.600 run 3: pose 339 + convert 4.2 + LM 466 = 809 ms (16 frames, 4 tokens)
+[m1] W-Ag3H16yN0-00:09:09.133 run 1: pose 637 + convert 5.8 + LM 834 = 1476 ms (25 frames, 9 tokens)
+[m1] W-Ag3H16yN0-00:09:09.133 run 2: pose 597 + convert 4.3 + LM 762 = 1364 ms (25 frames, 9 tokens)
+[m1] W-Ag3H16yN0-00:09:09.133 run 3: pose 561 + convert 5.0 + LM 764 = 1330 ms (25 frames, 9 tokens)
+[m1] fNT8a6e1gx8-00:07:01.066 run 1: pose 746 + convert 6.1 + LM 775 = 1527 ms (32 frames, 7 tokens)
+[m1] fNT8a6e1gx8-00:07:01.066 run 2: pose 678 + convert 4.9 + LM 718 = 1401 ms (32 frames, 7 tokens)
+[m1] fNT8a6e1gx8-00:07:01.066 run 3: pose 679 + convert 4.6 + LM 726 = 1409 ms (32 frames, 7 tokens)
+[m1] rSiciLyYOyI-00:12:15.300 run 1: pose 1106 + convert 7.4 + LM 869 = 1983 ms (41 frames, 10 tokens)
+[m1] rSiciLyYOyI-00:12:15.300 run 2: pose 1021 + convert 6.5 + LM 782 = 1810 ms (41 frames, 10 tokens)
+[m1] rSiciLyYOyI-00:12:15.300 run 3: pose 1001 + convert 6.4 + LM 796 = 1804 ms (41 frames, 10 tokens)
+[m1] ubC82N6N1bQ-00:01:52.033 run 1: pose 1343 + convert 9.0 + LM 922 = 2274 ms (53 frames, 10 tokens)
+[m1] ubC82N6N1bQ-00:01:52.033 run 2: pose 1254 + convert 7.3 + LM 853 = 2114 ms (53 frames, 10 tokens)
+[m1] ubC82N6N1bQ-00:01:52.033 run 3: pose 1236 + convert 6.3 + LM 853 = 2095 ms (53 frames, 10 tokens)
+[m1] W5m8NDOi6V8-00:05:47.500 run 1: pose 1654 + convert 8.2 + LM 1053 = 2716 ms (64 frames, 14 tokens)
+[m1] W5m8NDOi6V8-00:05:47.500 run 2: pose 1544 + convert 9.0 + LM 986 = 2538 ms (64 frames, 14 tokens)
+[m1] W5m8NDOi6V8-00:05:47.500 run 3: pose 1522 + convert 8.4 + LM 978 = 2509 ms (64 frames, 14 tokens)
+[m1] c2JEjHSoKT0-00:01:31.433 run 1: pose 1818 + convert 9.7 + LM 1106 = 2934 ms (70 frames, 13 tokens)
+[m1] c2JEjHSoKT0-00:01:31.433 run 2: pose 1711 + convert 7.3 + LM 1102 = 2820 ms (70 frames, 13 tokens)
+[m1] c2JEjHSoKT0-00:01:31.433 run 3: pose 1778 + convert 9.2 + LM 1082 = 2869 ms (70 frames, 13 tokens)
+[m1] wH3lJm0Typ0-00:17:52.033 run 1: pose 2311 + convert 11.8 + LM 1189 = 3511 ms (82 frames, 14 tokens)
+[m1] wH3lJm0Typ0-00:17:52.033 run 2: pose 2073 + convert 8.9 + LM 1169 = 3250 ms (82 frames, 14 tokens)
+[m1] wH3lJm0Typ0-00:17:52.033 run 3: pose 1969 + convert 10.4 + LM 1135 = 3115 ms (82 frames, 14 tokens)
+[m1] sfNL5tR2Now-00:06:05.400 run 1: pose 2363 + convert 12.4 + LM 1199 = 3575 ms (88 frames, 14 tokens)
+[m1] sfNL5tR2Now-00:06:05.400 run 2: pose 2186 + convert 11.6 + LM 1160 = 3358 ms (88 frames, 14 tokens)
+[m1] sfNL5tR2Now-00:06:05.400 run 3: pose 2122 + convert 11.6 + LM 1153 = 3286 ms (88 frames, 14 tokens)
+[m1] PYbUwpYMx0A-00:12:26.000 run 1: pose 2686 + convert 13.1 + LM 1386 = 4085 ms (96 frames, 16 tokens)
+[m1] PYbUwpYMx0A-00:12:26.000 run 2: pose 2376 + convert 12.4 + LM 1335 = 3723 ms (96 frames, 16 tokens)
+[m1] PYbUwpYMx0A-00:12:26.000 run 3: pose 2456 + convert 12.5 + LM 1343 = 3812 ms (96 frames, 16 tokens)
+[m1] PYbUwpYMx0A-00:02:23.633 run 1: pose 2952 + convert 16.5 + LM 892 = 3861 ms (106 frames, 11 tokens)
+[m1] PYbUwpYMx0A-00:02:23.633 run 2: pose 2748 + convert 16.9 + LM 869 = 3633 ms (106 frames, 11 tokens)
+[m1] PYbUwpYMx0A-00:02:23.633 run 3: pose 2705 + convert 15.9 + LM 841 = 3562 ms (106 frames, 11 tokens)
+[m1] 6ozfmRow9e0-00:00:04.300 run 1: pose 3087 + convert 18.6 + LM 1521 = 4627 ms (116 frames, 20 tokens)
+[m1] 6ozfmRow9e0-00:00:04.300 run 2: pose 2716 + convert 15.9 + LM 1531 = 4262 ms (116 frames, 20 tokens)
+[m1] 6ozfmRow9e0-00:00:04.300 run 3: pose 2541 + convert 12.0 + LM 1511 = 4065 ms (116 frames, 20 tokens)
+[m1] 2MnvFrB5ljQ-00:01:53.066 run 1: pose 3114 + convert 16.8 + LM 1537 = 4668 ms (124 frames, 21 tokens)
+[m1] 2MnvFrB5ljQ-00:01:53.066 run 2: pose 3027 + convert 10.3 + LM 1473 = 4510 ms (124 frames, 21 tokens)
+[m1] 2MnvFrB5ljQ-00:01:53.066 run 3: pose 2875 + convert 13.8 + LM 1535 = 4424 ms (124 frames, 21 tokens)
+[m1] ov4V4iCiM_s-00:01:11.466 run 1: pose 4112 + convert 15.8 + LM 2539 = 6667 ms (134 frames, 36 tokens)
+[m1] ov4V4iCiM_s-00:01:11.466 run 2: pose 3676 + convert 13.3 + LM 2521 = 6210 ms (134 frames, 36 tokens)
+[m1] ov4V4iCiM_s-00:01:11.466 run 3: pose 3620 + convert 14.1 + LM 2505 = 6140 ms (134 frames, 36 tokens)
+[m1] qilEmtLS5Qk-00:02:09.200 run 1: pose 3521 + convert 19.1 + LM 2092 = 5632 ms (143 frames, 14 tokens)
+[m1] qilEmtLS5Qk-00:02:09.200 run 2: pose 3293 + convert 19.9 + LM 2051 = 5364 ms (143 frames, 14 tokens)
+[m1] qilEmtLS5Qk-00:02:09.200 run 3: pose 3329 + convert 20.2 + LM 2026 = 5375 ms (143 frames, 14 tokens)
+[m1] IsEzvnueFQk-00:00:33.000 run 1: pose 4019 + convert 17.8 + LM 1531 = 5569 ms (153 frames, 21 tokens)
+[m1] IsEzvnueFQk-00:00:33.000 run 2: pose 4012 + convert 16.8 + LM 1487 = 5516 ms (153 frames, 21 tokens)
+[m1] IsEzvnueFQk-00:00:33.000 run 3: pose 4059 + convert 19.8 + LM 1519 = 5597 ms (153 frames, 21 tokens)
+[m1] SsQxB7yYxgQ-00:05:10.766 run 1: pose 4668 + convert 18.4 + LM 1501 = 6188 ms (164 frames, 19 tokens)
+[m1] SsQxB7yYxgQ-00:05:10.766 run 2: pose 3978 + convert 16.6 + LM 1449 = 5444 ms (164 frames, 19 tokens)
+[m1] SsQxB7yYxgQ-00:05:10.766 run 3: pose 3780 + convert 15.1 + LM 1429 = 5224 ms (164 frames, 19 tokens)
+[m1] gALXtpV4IY8-00:02:52.000 run 1: pose 4478 + convert 18.2 + LM 1213 = 5709 ms (177 frames, 13 tokens)
+[m1] gALXtpV4IY8-00:02:52.000 run 2: pose 4112 + convert 18.6 + LM 1223 = 5354 ms (177 frames, 13 tokens)
+[m1] gALXtpV4IY8-00:02:52.000 run 3: pose 4177 + convert 18.5 + LM 1228 = 5423 ms (177 frames, 13 tokens)
+[m1] N29DdjIj5rw-00:00:11.400 run 1: pose 91 + convert 2.2 + LM 403 = 496 ms (4 frames, 3 tokens)
+[m1] N29DdjIj5rw-00:00:11.400 run 2: pose 83 + convert 2.3 + LM 331 = 416 ms (4 frames, 3 tokens)
+[m1] N29DdjIj5rw-00:00:11.400 run 3: pose 83 + convert 2.0 + LM 331 = 416 ms (4 frames, 3 tokens)
+[m1] yjAuZBiVFII-00:00:33.033 run 1: pose 5391 + convert 29.2 + LM 2754 = 8174 ms (197 frames, 31 tokens)
+[m1] yjAuZBiVFII-00:00:33.033 run 2: pose 5028 + convert 19.7 + LM 2714 = 7761 ms (197 frames, 31 tokens)
+[m1] yjAuZBiVFII-00:00:33.033 run 3: pose 5035 + convert 25.0 + LM 2737 = 7797 ms (197 frames, 31 tokens)
+[m1] yG_ZGSd4bVg-00:01:22.133 run 1: pose 5899 + convert 24.1 + LM 2109 = 8032 ms (213 frames, 21 tokens)
+[m1] yG_ZGSd4bVg-00:01:22.133 run 2: pose 5281 + convert 23.6 + LM 2093 = 7397 ms (213 frames, 21 tokens)
+[m1] yG_ZGSd4bVg-00:01:22.133 run 3: pose 5240 + convert 28.5 + LM 2105 = 7373 ms (213 frames, 21 tokens)
+[m1] NGry3ZtyTyE-00:01:59.733 run 1: pose 6502 + convert 28.9 + LM 1282 = 7813 ms (226 frames, 15 tokens)
+[m1] NGry3ZtyTyE-00:01:59.733 run 2: pose 5901 + convert 22.4 + LM 1265 = 7189 ms (226 frames, 15 tokens)
+[m1] NGry3ZtyTyE-00:01:59.733 run 3: pose 5889 + convert 28.1 + LM 1253 = 7171 ms (226 frames, 15 tokens)
+[m1] S1HvZQRRIaY-00:00:35.500 run 1: pose 6840 + convert 26.7 + LM 2052 = 8919 ms (246 frames, 20 tokens)
+[m1] S1HvZQRRIaY-00:00:35.500 run 2: pose 6073 + convert 27.6 + LM 2010 = 8111 ms (246 frames, 20 tokens)
+[m1] S1HvZQRRIaY-00:00:35.500 run 3: pose 6097 + convert 26.6 + LM 2016 = 8140 ms (246 frames, 20 tokens)
+[m1] sP6B4dlSOoc-00:08:20.233 run 1: pose 7501 + convert 30.7 + LM 1437 = 8968 ms (263 frames, 17 tokens)
+[m1] sP6B4dlSOoc-00:08:20.233 run 2: pose 6672 + convert 27.3 + LM 1437 = 8136 ms (263 frames, 17 tokens)
+[m1] sP6B4dlSOoc-00:08:20.233 run 3: pose 6757 + convert 35.7 + LM 1451 = 8244 ms (263 frames, 17 tokens)
+[m1] oUljxXXBVfY-00:08:26.066 run 1: pose 7508 + convert 24.8 + LM 2360 = 9893 ms (294 frames, 32 tokens)
+[m1] oUljxXXBVfY-00:08:26.066 run 2: pose 6874 + convert 21.2 + LM 2346 = 9241 ms (294 frames, 32 tokens)
+[m1] oUljxXXBVfY-00:08:26.066 run 3: pose 7477 + convert 27.7 + LM 2354 = 9858 ms (294 frames, 32 tokens)
+[m1] UgqB79-BaJ4-00:02:47.000 run 1: pose 8170 + convert 26.9 + LM 1865 = 10062 ms (322 frames, 21 tokens)
+[m1] UgqB79-BaJ4-00:02:47.000 run 2: pose 7617 + convert 28.3 + LM 1905 = 9550 ms (322 frames, 21 tokens)
+[m1] UgqB79-BaJ4-00:02:47.000 run 3: pose 7755 + convert 32.6 + LM 1920 = 9708 ms (322 frames, 21 tokens)
+[m1] 0JWnUGQrtIs-00:02:56.733 run 1: pose 10136 + convert 34.2 + LM 3194 = 13364 ms (349 frames, 43 tokens)
+[m1] 0JWnUGQrtIs-00:02:56.733 run 2: pose 9108 + convert 31.3 + LM 3122 = 12261 ms (349 frames, 43 tokens)
+[m1] 0JWnUGQrtIs-00:02:56.733 run 3: pose 9115 + convert 26.8 + LM 3156 = 12298 ms (349 frames, 43 tokens)
+[m1] j2iRHiIYtTg-00:12:28.033 run 1: pose 11283 + convert 25.7 + LM 2647 = 13955 ms (395 frames, 36 tokens)
+[m1] j2iRHiIYtTg-00:12:28.033 run 2: pose 10176 + convert 31.7 + LM 2671 = 12878 ms (395 frames, 36 tokens)
+[m1] j2iRHiIYtTg-00:12:28.033 run 3: pose 10320 + convert 27.4 + LM 2678 = 13026 ms (395 frames, 36 tokens)
+[m1] NBpYolVo5WQ-00:05:19.033 run 1: pose 13400 + convert 34.1 + LM 3010 = 16444 ms (471 frames, 41 tokens)
+[m1] NBpYolVo5WQ-00:05:19.033 run 2: pose 12008 + convert 33.5 + LM 3032 = 15073 ms (471 frames, 41 tokens)
+[m1] NBpYolVo5WQ-00:05:19.033 run 3: pose 12143 + convert 28.2 + LM 3002 = 15173 ms (471 frames, 41 tokens)
+[m1] L68SkmewDnI-00:05:17.666 run 1: pose 16290 + convert 35.4 + LM 2712 = 19037 ms (624 frames, 35 tokens)
+[m1] L68SkmewDnI-00:05:17.666 run 2: pose 16205 + convert 26.3 + LM 2713 = 18944 ms (624 frames, 35 tokens)
+[m1] L68SkmewDnI-00:05:17.666 run 3: pose 15978 + convert 32.7 + LM 2712 = 18722 ms (624 frames, 35 tokens)
+
+[m1] {
+  "text": "Trump tweeted that mail-in voting is a \"potentially fraudulent act\" and that he fears mail-in ballots will be robbed.",
+  "n_sentences": 90,
+  "frames_in": 624,
+  "frames_used": 256,
+  "sentence_total_ms": {
+    "mean": 6164.4,
+    "std": 4414.9,
+    "runs": [
+      1421.2,
+      814.9,
+      809.0,
+      1476.3,
+      1363.6,
+      1330.2,
+      1527.0,
+      1401.1,
+      1409.5,
+      1982.8,
+      1810.0,
+      1803.5,
+      2274.5,
+      2113.6,
+      2095.4,
+      2715.6,
+      2538.4,
+      2509.3,
+      2933.7,
+      2820.5,
+      2869.5,
+      3511.4,
+      3250.4,
+      3114.5,
+      3574.5,
+      3358.0,
+      3286.3,
+      4085.0,
+      3723.2,
+      3812.1,
+      3860.8,
+      3633.4,
+      3562.4,
+      4626.9,
+      4262.1,
+      4064.6,
+      4667.6,
+      4510.4,
+      4424.1,
+      6666.6,
+      6209.9,
+      6139.6,
+      5631.9,
+      5364.3,
+      5375.2,
+      5568.8,
+      5516.1,
+      5597.0,
+      6187.9,
+      5443.8,
+      5224.4,
+      5709.0,
+      5353.7,
+      5422.6,
+      495.7,
+      415.7,
+      416.1,
+      8174.3,
+      7761.2,
+      7797.3,
+      8031.5,
+      7397.2,
+      7373.4,
+      7812.9,
+      7189.1,
+      7170.6,
+      8918.7,
+      8111.4,
+      8140.1,
+      8968.0,
+      8136.1,
+      8243.7,
+      9892.6,
+      9241.5,
+      9858.5,
+      10062.3,
+      9550.3,
+      9707.6,
+      13364.3,
+      12260.7,
+      12298.1,
+      13955.3,
+      12878.1,
+      13025.5,
+      16444.2,
+      15072.7,
+      15172.8,
+      19037.5,
+      18944.5,
+      18722.1
+    ]
+  },
+  "pose_total_ms": 4546.1,
+  "convert_ms": 17.59,
+  "lm_total_ms": 1600.8,
+  "per_frame_ms": {
+    "imread_ms": {
+      "mean": 4.941,
+      "p95": 5.887
+    },
+    "preprocess_ms": {
+      "mean": 5.726,
+      "p95": 6.556
+    },
+    "trt_ms": {
+      "mean": 13.498,
+      "p95": 14.344
+    },
+    "postprocess_ms": {
+      "mean": 1.346,
+      "p95": 1.547
+    }
+  },
+  "J_per_sentence": 33.3,
+  "dyn_J_per_sentence": 7.76,
+  "square_norm": true,
+  "fps": {
+    "keep_fps": 24.0,
+    "src_fps": 30.03,
+    "frames_in": 20,
+    "frames_kept": 16
+  },
+  "num_beams": 4,
+  "load_pose_s": 1.16,
+  "load_lm_s": 30.87,
+  "detector": null,
+  "meminfo_mb": {
+    "start": {
+      "MemTotal": 7619,
+      "MemFree": 3735,
+      "MemAvailable": 5881
+    },
+    "after_pose": {
+      "MemTotal": 7619,
+      "MemFree": 3494,
+      "MemAvailable": 5706
+    },
+    "after_lm": {
+      "MemTotal": 7619,
+      "MemFree": 939,
+      "MemAvailable": 4614
+    }
+  },
+  "peak_gpu_GB": 1.102,
+  "distribution": {
+    "n_clips": 30,
+    "n_sentences": 90,
+    "repeats_per_clip": 3,
+    "sentence_total_ms": {
+      "p50": 5369.753,
+      "p95": 15127.769,
+      "max": 19037.491,
+      "mean": 6164.443,
+      "n": 90
+    },
+    "sentence_excl_imread_ms": {
+      "p50": 4635.329,
+      "p95": 12773.089,
+      "max": 15802.906,
+      "mean": 5208.549,
+      "n": 90
+    },
+    "pose_total_ms": {
+      "p50": 3570.541,
+      "p95": 12082.024,
+      "max": 16290.467,
+      "mean": 4546.089,
+      "n": 90
+    },
+    "pose_ms_per_frame": {
+      "p50": 25.389,
+      "p95": 28.544,
+      "max": 32.263,
+      "mean": 25.256,
+      "n": 90
+    },
+    "lm_total_ms": {
+      "p50": 1443.183,
+      "p95": 3006.506,
+      "max": 3193.899,
+      "mean": 1600.767,
+      "n": 90
+    },
+    "decoded_tokens": {
+      "p50": 16.5,
+      "p95": 41.0,
+      "max": 43.0,
+      "mean": 19.367,
+      "n": 90
+    },
+    "rtf": {
+      "p50": 0.881,
+      "p95": 1.22,
+      "max": 2.134,
+      "mean": 0.897,
+      "n": 90,
+      "frac_le_1": 0.778
+    },
+    "rtf_excl_imread": {
+      "p50": 0.758,
+      "p95": 1.155,
+      "max": 1.986,
+      "mean": 0.777,
+      "n": 90
+    },
+    "J_per_sentence": {
+      "p50": 29.135,
+      "p95": 79.97,
+      "max": 100.984,
+      "mean": 32.977,
+      "n": 90
+    },
+    "dyn_J_per_sentence": {
+      "p50": 6.696,
+      "p95": 17.498,
+      "max": 22.35,
+      "mean": 7.653,
+      "n": 90
+    },
+    "clip_duration_s": {
+      "p50": 6.166,
+      "p95": 18.208,
+      "max": 26.0,
+      "mean": 7.597,
+      "n": 30
+    }
+  }
+}
+[m1] text: 'Trump tweeted that mail-in voting is a "potentially fraudulent act" and that he fears mail-in ballots will be robbed.'
+[stage] pose      23.080 J/sentence  5.262 W   4.497 s  n=91 samples/window
+[stage] convert    0.000 J/sentence  4.961 W   0.000 s  n=1 samples/window
+[stage] lm         9.562 J/sentence  6.035 W   1.555 s  n=32 samples/window
+[stage] sum 32.642 J vs window 33.296 J  residual +0.654 J (+1.96%)
+[m1] wrote results/e2e_clips30/e2e_shipped.json
