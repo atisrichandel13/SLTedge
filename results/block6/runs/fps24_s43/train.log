@@ -1,0 +1,29 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793666632.191917   20714 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1793666632.265554   20714 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793666634.720582   20714 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1793666634.721438   20714 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+[train] trainable 5.35 M of 243.5 M params; target fps 24.0; max_length 256
+[train] 20000 clips, 5000 batches/epoch, batch 4 x accum 2
+Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+[train] ep 0 step 200 loss 0.3786 lr 8.04e-06 1600/20000 clips  0.04 s/clip  eta 13.0 min
+[train] ep 0 step 400 loss 0.3679 lr 9.89e-06 3200/20000 clips  0.04 s/clip  eta 11.3 min
+[train] checkpoint at ep 0 step 500 (batch 1000/5000)
+[train] ep 0 step 600 loss 0.3632 lr 9.41e-06 4800/20000 clips  0.04 s/clip  eta 10.2 min
+[train] ep 0 step 800 loss 0.3626 lr 8.60e-06 6400/20000 clips  0.04 s/clip  eta 9.0 min
+[train] ep 0 step 1000 loss 0.3603 lr 7.50e-06 8000/20000 clips  0.04 s/clip  eta 7.9 min
+[train] checkpoint at ep 0 step 1000 (batch 2000/5000)
+[train] ep 0 step 1200 loss 0.3591 lr 6.21e-06 9600/20000 clips  0.04 s/clip  eta 6.8 min
+[train] ep 0 step 1400 loss 0.3572 lr 4.83e-06 11200/20000 clips  0.04 s/clip  eta 5.8 min
+[train] checkpoint at ep 0 step 1500 (batch 3000/5000)
+[train] ep 0 step 1600 loss 0.3561 lr 3.45e-06 12800/20000 clips  0.04 s/clip  eta 4.7 min
+[train] ep 0 step 1800 loss 0.3549 lr 2.20e-06 14400/20000 clips  0.04 s/clip  eta 3.6 min
+[train] ep 0 step 2000 loss 0.3543 lr 1.17e-06 16000/20000 clips  0.04 s/clip  eta 2.6 min
+[train] checkpoint at ep 0 step 2000 (batch 4000/5000)
+[train] ep 0 step 2200 loss 0.3539 lr 4.32e-07 17600/20000 clips  0.04 s/clip  eta 1.6 min
+[train] ep 0 step 2400 loss 0.3545 lr 4.87e-08 19200/20000 clips  0.04 s/clip  eta 0.5 min
+[train] checkpoint at ep 0 step 2500 (batch 5000/5000)
+[train] epoch 0 done: loss 0.3542, 772 s
+[train] wrote /content/drive/MyDrive/SLTedge/block6/runs/fps24_s43/last.pt and /content/runs/fps24_s43_adapted_full.pth (570 MB)

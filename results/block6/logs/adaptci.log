@@ -1,0 +1,39 @@
+5 evals, N=967 clips, 1000 resamples
+
+run                            BLEU-4  ROUGE-L
+adapt_fps24_s42_cap100          23.71    43.74
+adapt_fps24_s42_cap64           23.71    43.74
+adapt_src_cap100                23.28    43.58
+unadapt_fps24_cap100            23.38    42.72
+unadapt_src_cap100              23.13    42.93
+  ... 100/1000
+  ... 200/1000
+  ... 300/1000
+  ... 400/1000
+  ... 500/1000
+  ... 600/1000
+  ... 700/1000
+  ... 800/1000
+  ... 900/1000
+  ... 1000/1000
+
+Paired deltas (95% CI, 'P(<0)' = fraction of resamples where the delta is negative)
+  un-adapted: source -> 24 fps
+      BLEU-4    +0.24  [ -0.22,  +0.83]  P(<0)=0.134
+      ROUGE-L   -0.21  [ -0.84,  +0.38]  P(<0)=0.733
+  source rate: un-adapted -> adapted
+      BLEU-4    +0.15  [ -0.51,  +0.82]  P(<0)=0.305
+      ROUGE-L   +0.66  [ -0.05,  +1.42]  P(<0)=0.038
+  24 fps: un-adapted -> adapted
+      BLEU-4    +0.33  [ -0.35,  +0.95]  P(<0)=0.191
+      ROUGE-L   +1.03  [ +0.29,  +1.81]  P(<0)=0.003
+  adapted 24 fps: cap 64 -> cap 100
+      BLEU-4    +0.00  [ +0.00,  +0.00]  P(<0)=0.000
+      ROUGE-L   +0.00  [ +0.00,  +0.00]  P(<0)=0.000
+
+Difference-in-differences: (adapted-unadapted @24 fps) - (adapted-unadapted @source)
+  positive = adaptation buys more under frame-rate shift than it does in general
+      BLEU-4    +0.13  [ -0.53,  +0.82]  P(>0)=0.655
+      ROUGE-L   +0.37  [ -0.36,  +1.09]  P(>0)=0.832
+
+wrote /content/drive/MyDrive/SLTedge/block6/adapt_ci_dev_fps24.json
